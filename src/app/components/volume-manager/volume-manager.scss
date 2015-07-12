@@ -1,0 +1,8 @@
+#volumeManager {
+  border: solid 0px purple;
+  background-color: #999;
+  padding:10px;
+  button {
+    @extend .btn, .btn-success;
+  }
+}

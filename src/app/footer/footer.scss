@@ -1,0 +1,16 @@
+footer {
+  @include make-row();
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: $footerHeight;
+  border: solid 0px green;
+  background-color: #EEE;
+
+  .footerBtn{
+    @include make-sm-column(4);
+  }
+  #browseBtn, #playbackBtn, #playlistBtn {
+    @extend .btn, .btn-success, .btn-block;
+  }
+}

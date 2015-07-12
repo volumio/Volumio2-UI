@@ -1,0 +1,11 @@
+#playbackPanel {
+  @include make-row();
+  #leftPanel, #rightPanel {
+    border:solid 0px blue;
+    @include make-sm-column(6);
+  }
+}
+
+#volumeManager {
+
+}

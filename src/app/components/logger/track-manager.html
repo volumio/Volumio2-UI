@@ -1,0 +1,15 @@
+<div id="trackManager">
+  <div>
+    slider
+  </div>
+  <div>
+    <strong>repeatTrack</strong>: {{vm.player.repeatTrack}}
+    <strong>repeatAlbum</strong>: {{vm.player.repeatAlbum}}
+    <strong>shuffle</strong>: {{vm.player.shuffle}}
+  </div>
+  <div id="trackButtonBar">
+    <button ng-click="vm.player.shuffle()">Shuffle</button>
+    <button ng-click="vm.player.repeatTrack()">Repeat track</button>
+    <button ng-click="vm.player.repeatAlbum()">Repeat album</button>
+  </div>
+</div>
