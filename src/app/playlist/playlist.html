@@ -1,1 +1,9 @@
-playlist
+<div class="row" ng-repeat="track in playlist.playQueue.queue">
+  <div class="col-sm-8">
+    <h3>{{track.title}}</h3>
+    <strong>{{track.artist}}</strong> - {{track.album}}
+  </div>
+  <div class="col-sm-4">
+    <button ng-click="playlist.playQueue.remove(track)">Remove</button>
+  </div>
+</div>

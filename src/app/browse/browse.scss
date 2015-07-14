@@ -1,0 +1,8 @@
+#browse{
+  #browseBttons{
+    @include make-row();
+  }
+  #browseList{
+    @include make-row();
+  }
+}

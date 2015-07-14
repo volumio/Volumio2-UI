@@ -8,7 +8,8 @@ import runBlock from './index.run';
 
 // Services
 import PlayerService from './services/player.service';
-import PlaylistService from './services/playlist.service';
+import PlayQueue from './services/play.queue.service';
+//import PlaylistService from './services/playlist.service';
 import SocketService from './services/socket.service';
 
 // Components
@@ -51,7 +52,8 @@ angular.module('volumio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'u
 
   .service('socketService', SocketService)
   .service('player', PlayerService)
-  .service('playlist', PlaylistService)
+  //.service('playlist', PlaylistService)
+  .service('playQueue', PlayQueue)
 
   .directive('playerButtons', () => new PlayerButtonsDirective())
   .directive('volumeManager', () => new VolumeManagerDirective())

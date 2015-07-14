@@ -1,6 +1,8 @@
 class PlaylistController {
-  constructor () {
+  constructor (playQueue) {
     'ngInject';
+    this.playQueue = playQueue;
+    console.log(playQueue);
   }
 }
 
