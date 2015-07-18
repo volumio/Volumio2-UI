@@ -1,22 +1,8 @@
 class VolumioController {
-  constructor (player, playlist) {
+  constructor (socketService) {
     'ngInject';
-    this.player = player;
-    this.playlist = playlist;
-    this.test = 'asd';
+    this.socketService = socketService;
   }
-
-  addTrack() {
-    let newTrack = {
-      artist: 'Led Zeppelin',
-      album: 'Led Zepperin II',
-      track: Math.random() * 10
-    };
-
-    this.playlist.addTrack(newTrack);
-
-  }
-
 }
 
 export default VolumioController;

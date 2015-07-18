@@ -16,9 +16,9 @@ class TrackManagerDirective {
 }
 
 class TrackManagerController {
-  constructor (player) {
+  constructor (playerService) {
     'ngInject';
-    this.player = player;
+    this.playerService = playerService;
   }
 }
 

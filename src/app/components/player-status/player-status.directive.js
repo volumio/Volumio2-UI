@@ -16,10 +16,10 @@ class PlayerStatusDirective {
 }
 
 class PlayerStatusController {
-  constructor (player) {
+  constructor (playerService) {
     'ngInject';
-    this.player = player;
-    console.log(this.player);
+    this.playerService = playerService;
+    //console.log(this.playerService);
   }
 }
 

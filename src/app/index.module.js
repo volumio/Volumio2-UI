@@ -8,9 +8,11 @@ import runBlock from './index.run';
 
 // Services
 import PlayerService from './services/player.service';
-import PlayQueue from './services/play.queue.service';
+import PlayQueueService from './services/play-queue.service';
+import BrowseService from './services/browse.service';
 //import PlaylistService from './services/playlist.service';
 import SocketService from './services/socket.service';
+import LoggerService from './services/logger.service';
 
 // Components
 import PlayerButtonsDirective from './components/player-buttons/player-buttons.directive';
@@ -18,12 +20,14 @@ import VolumeManagerDirective from './components/volume-manager/volume-manager.d
 import TrackManagerDirective from './components/track-manager/track-manager.directive';
 import PlayerStatusDirective from './components/player-status/player-status.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
+import SideMenuDirective from './components/side-menu/side-menu.directive';
 
 // Controllers
 import VolumioController from './volumio/volumio.controller';
 
 import HeaderController from './header/header.controller';
 import FooterController from './footer/footer.controller';
+import SettingsController from './settings/settings.controller';
 
 
 import BrowseController from './browse/browse.controller';
@@ -51,19 +55,23 @@ angular.module('volumio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'u
   // .directive('acmeMalarkey', () => new MalarkeyDirective(malarkey))
 
   .service('socketService', SocketService)
-  .service('player', PlayerService)
-  //.service('playlist', PlaylistService)
-  .service('playQueue', PlayQueue)
+  .service('playerService', PlayerService)
+  .service('browseService', BrowseService)
+  //.service('playlistService', PlaylistService)
+  .service('playQueueService', PlayQueueService)
+  .service('loggerService', LoggerService)
 
   .directive('playerButtons', () => new PlayerButtonsDirective())
   .directive('volumeManager', () => new VolumeManagerDirective())
   .directive('trackManager', () => new TrackManagerDirective())
   .directive('playerStatus', () => new PlayerStatusDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
+  .directive('sideMenu', () => new SideMenuDirective())
 
-  .controller('HeaderController', HeaderController)
   .controller('VolumioController', VolumioController)
+  .controller('HeaderController', HeaderController)
   .controller('FooterController', FooterController)
+  .controller('SettingsController', SettingsController)
 
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)

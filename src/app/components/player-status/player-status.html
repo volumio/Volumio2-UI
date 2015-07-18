@@ -7,7 +7,7 @@
 <strong>mute</strong>: {{vm.player.state._mute}}
  -->
  <div id="playerStatus" class="col-sm-12">
-   <span ng-repeat="(key, val) in playerStatus.player.state">
+   <span ng-repeat="(key, val) in playerStatus.playerService.state">
      <strong>{{key}}: </strong> {{val}}
    </span>
  </div>

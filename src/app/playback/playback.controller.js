@@ -1,22 +1,8 @@
 class PlaybackController {
-  constructor (player, playlist) {
+  constructor (playerService) {
     'ngInject';
-    this.player = player;
-    this.playlist = playlist;
-    this.test = 'asd';
+    this.playerService = playerService;
   }
-
-  addTrack() {
-    let newTrack = {
-      artist: 'Led Zeppelin',
-      album: 'Led Zepperin II',
-      track: Math.random() * 10
-    };
-
-    this.playlist.addTrack(newTrack);
-
-  }
-
 }
 
 export default PlaybackController;

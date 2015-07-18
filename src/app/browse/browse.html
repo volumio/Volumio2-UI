@@ -1,11 +1,13 @@
 <div id="browse">
   <div id="browseButtons">
-    <button ng-class="{selected: browse.listBy === 'artist'}" ng-click="browse.getListBy('artist')">Artist</button>
-    <button ng-class="{selected: browse.listBy === 'album'}" ng-click="browse.getListBy('album')">Album</button>
-    <button ng-class="{selected: browse.listBy === 'genere'}" ng-click="browse.getListBy('genere')">Genere</button>
-    <button ng-class="{selected: browse.listBy === 'track'}" ng-click="browse.getListBy('track')">Track</button>
+    <button
+        ng-repeat="filter in browse.browseService.filters"
+        ng-class="{selected: browseService.listBy === 'artist'}"
+        ng-click="browseService.getListBy('artist')">
+        {{filter.name}}
+    </button>
   </div>
   <div id="browseList">
-    
+
   </div>
 </div>

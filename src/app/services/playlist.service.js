@@ -1,7 +1,6 @@
 class PlaylistService {
-  constructor ($log) {
+  constructor ($rootScope, $log) {
     'ngInject';
-
     this.$log = $log;
     this._status = 'stop';
 
@@ -11,6 +10,11 @@ class PlaylistService {
     ];
     this._currentTrack = this._list[0];
     this._name = 'Playlist one';
+
+    this.init();
+    $rootScope.$on('socket:init', () => {
+      this.init();
+    });
   }
 
 
@@ -82,6 +86,14 @@ class PlaylistService {
     return this._list.length;
   }
 
+  init() {
+  }
+
+  registerListner() {
+  }
+
+  initService() {
+  }
 }
 
 export default PlaylistService;

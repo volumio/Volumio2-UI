@@ -1,9 +1,24 @@
-<div class="row" ng-repeat="track in playlist.playQueue.queue">
-  <div class="col-sm-8">
-    <h3>{{track.title}}</h3>
-    <strong>{{track.artist}}</strong> - {{track.album}}
-  </div>
-  <div class="col-sm-4">
-    <button ng-click="playlist.playQueue.remove(track)">Remove</button>
-  </div>
-</div>
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>Track</th>
+    <th>Album</th>
+    <th>Artist</th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="track in playlist.playQueueService.queue">
+    <td>{{track.name}}</td>
+    <td>
+      <span ng-repeat="artist in track.artists">
+        {{artist.name}}
+      </span>
+    </td>
+    <td>
+      <span ng-repeat="album in track.albums">
+        {{album.name}}
+      </span>
+    </td>
+    <td>
+      <button ng-click="playlist.remove($index)">Remove</button>
+    </td>
+  </tr>
+</table>

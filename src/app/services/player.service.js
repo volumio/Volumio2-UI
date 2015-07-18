@@ -1,5 +1,5 @@
 class PlayerService {
-  constructor ($log, socketService) {
+  constructor ($rootScope, $log, socketService) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
@@ -12,20 +12,11 @@ class PlayerService {
     this._repeatTrack = false;
     this._repeatAlbum = false;
 
-    this.socketService.emit('volumioGetState');
-
-    this.socketService.on('volumioPushState', (data) => {
-     console.log(data);
-     this.state = data;
-    });
-    this.socketService.on('volumioPushQueue', (data) => {
-     console.log(data);
-    });
-    this.socketService.on('volumioPushBrowseData', (data) => {
-     console.log(data);
+    this.init();
+    $rootScope.$on('socket:init', () => {
+      this.init();
     });
   }
-
 
   // PLAYER --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
@@ -129,6 +120,22 @@ class PlayerService {
     }
   }
 
+  init() {
+    this.registerListner();
+    this.initService();
+  }
+
+  registerListner() {
+    this.socketService.on('volumioPushState', (data) => {
+     //console.log(data);
+     this.state = data;
+    });
+  }
+
+  initService() {
+    //this.socketService.emit('playerInit');
+    this.socketService.emit('volumioGetState');
+  }
 }
 
 export default PlayerService;

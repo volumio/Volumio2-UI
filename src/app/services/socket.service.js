@@ -1,8 +1,27 @@
 class SocketService {
-  constructor ($log, $rootScope) {
+  constructor ($log, $rootScope, $window) {
     'ngInject';
     this.$log = $log;
+    this.$window = $window;
     this.$rootScope = $rootScope;
+    //this._host = 'http://localhost:3000';
+    this._host = 'http://192.168.192.14:3000';
+    this.initSocket();
+    console.log('in socket constr');
+  }
+
+  initSocket(){
+    this.$window.socket = io(this.host);
+    this.$rootScope.$emit('socket:init');
+  }
+
+  changeHost(host){
+    console.log(host);
+    this.host = host;
+    this.$window.socket.disconnect();
+    this.$window.socket = undefined;
+    delete this.$window.socket;
+    this.initSocket();
   }
 
   on(eventName, callback) {
@@ -31,6 +50,14 @@ class SocketService {
         }
       });
     });
+  }
+
+  set host(host) {
+    this._host = host;
+  }
+
+  get host() {
+    return this._host;
   }
 }
 

@@ -16,9 +16,9 @@ class VolumeManagerDirective {
 }
 
 class VolumeManagerController {
-  constructor (player) {
+  constructor (playerService) {
     'ngInject';
-    this.player = player;
+    this.playerService = playerService;
   }
 }
 

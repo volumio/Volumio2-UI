@@ -55,13 +55,13 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
       }
     })
 
-    .state('testApi', {
-      url: '/test-api',
+    .state('volumio.components', {
+      url: '/components',
       views: {
-        'content': {
-          templateUrl: 'app/volumio/test-api.html',
-          controller: 'VolumioController',
-          controllerAs: 'volumio'
+        'content@': {
+          templateUrl: 'app/settings/components.html',
+          controller: 'SettingsController',
+          controllerAs: 'settings'
         }
       }
     });

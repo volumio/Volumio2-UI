@@ -1,7 +1,5 @@
 #playerButtonsDirective {
   border: solid 0px red;
 
-  button {
-    @extend .btn, .btn-success;
-  }
+  
 }

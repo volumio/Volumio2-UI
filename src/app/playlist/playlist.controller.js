@@ -1,8 +1,11 @@
 class PlaylistController {
-  constructor (playQueue) {
+  constructor (playQueueService) {
     'ngInject';
-    this.playQueue = playQueue;
-    console.log(playQueue);
+    this.playQueueService = playQueueService;
+  }
+
+  remove(trackIndex) {
+    this.playQueueService.remove(trackIndex);
   }
 }
 

@@ -1,6 +1,7 @@
 class BrowseController {
-  constructor () {
+  constructor (browseService) {
     'ngInject';
+    this.browseService = browseService;
   }
 }
 

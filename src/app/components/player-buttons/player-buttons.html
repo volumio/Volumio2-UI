@@ -1,10 +1,10 @@
 <div id="playerButtonsDirective">
-  <button ng-if="vm.player.state.status !== 'play'" ng-click="vm.player.play()">Play</button>
-  <button ng-if="vm.player.state.status === 'play'" ng-click="vm.player.pause()">Pause</button>
-  <button ng-click="vm.player.stop()">Stop</button>
-  <button ng-click="vm.player.prev()">Prev</button>
-  <button ng-click="vm.player.next()">Next</button>
+  <button ng-if="playerButtons.playerService.state.status !== 'play'" ng-click="playerButtons.playerService.play()">Play</button>
+  <button ng-if="playerButtons.playerService.state.status === 'play'" ng-click="playerButtons.playerService.pause()">Pause</button>
+  <button ng-click="playerButtons.playerService.stop()">Stop</button>
+  <button ng-click="playerButtons.playerService.prev()">Prev</button>
+  <button ng-click="playerButtons.playerService.next()">Next</button>
   &nbsp; | &nbsp;
-  <button ng-click="vm.player.rebuildSpopLibrary()">Spop</button>
-  <button ng-click="vm.player.rebuildLibrary()">Rebuild</button>
+  <button ng-click="playerButtons.playerService.rebuildSpopLibrary()">Spop</button>
+  <button ng-click="playerButtons.playerService.rebuildLibrary()">Rebuild</button>
 </div>

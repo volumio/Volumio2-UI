@@ -16,15 +16,9 @@ class PlayerLoggerDirective {
 }
 
 class PlayerLoggerController {
-  constructor (socketService) {
+  constructor (loggerService) {
     'ngInject';
-    socketService.on('printConsoleMessage', (data) => {
-      this.log = '<br/>' + data + this.log;
-    });
-  }
-
-  clear() {
-    this.log = '';
+    this.loggerService = loggerService;
   }
 }
 

@@ -7,7 +7,7 @@ class PlayerButtonsDirective {
       templateUrl: 'app/components/player-buttons/player-buttons.html',
       scope: false,
       controller: PlayerButtonsController,
-      controllerAs: 'vm',
+      controllerAs: 'playerButtons',
       bindToController: true
     };
 
@@ -16,9 +16,9 @@ class PlayerButtonsDirective {
 }
 
 class PlayerButtonsController {
-  constructor (player) {
+  constructor (playerService) {
     'ngInject';
-    this.player = player;
+    this.playerService = playerService;
   }
 }
 

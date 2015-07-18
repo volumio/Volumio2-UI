@@ -16,15 +16,19 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 $headerHeight: 50px;
 $footerHeight: 50px;
 
+button {
+  @extend .btn, .btn-success;
+}
+
 #content {
   @include make-row();
   position: fixed;
+  z-index: 1;
   top: $headerHeight;
   bottom: $footerHeight;
   width: 100%;
   overflow: scroll;
   border: solid 0px blue;
-  background-color: #DDD;
 }
 
 div {

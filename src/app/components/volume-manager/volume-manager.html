@@ -3,13 +3,13 @@
     slider
   </div>
   <div>
-    <strong>volume</strong> : {{volumeManager.player.volume}}
+    <strong>volume</strong> : {{volumeManager.playerService.volume}}
   </div>
   <div id="volumeButtonBar">
-    <button ng-click="volumeManager.player.volumeUp()">VolumeUp</button>
-    <button ng-click="volumeManager.player.volumeDown()">VolumeDown</button>
-    <button ng-click="volumeManager.player.mutePlayer()">Mute</button>
+    <button ng-click="volumeManager.playerService.volumeUp()">VolumeUp</button>
+    <button ng-click="volumeManager.playerService.volumeDown()">VolumeDown</button>
+    <button ng-click="volumeManager.playerService.mutePlayer()">Mute</button>
     <br>
-    <input type="text" ng-model="volumeManager.player.volume">
+    <input type="text" ng-model="volumeManager.playerService.volume">
   </div>
 </div>
