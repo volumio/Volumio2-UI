@@ -1,24 +1,15 @@
 class BrowseService {
-  constructor ($rootScope, $log, socketService) {
+  constructor ($rootScope, $log, socketService, mockService) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
 
     this._listBy = 'track';
 
-    this._filters = [
-      {name:'Artist', uri: 'artist'},
-      {name:'Album', uri: 'album'},
-      {name:'Genere', uri: 'genere'},
-      {name:'XXX', uri: 'yyy'}
-    ];
+    this._filters = mockService.get('getBrowseFilters');
+    this._sources = mockService.get('getBrowseSources');
 
-    this._sources = [
-      {name:'USB', uri: 'usb'},
-      {name:'NAS', uri: 'nas'},
-      {name:'Web Radio', uri: 'web-radio'},
-      {name:'Spotify', uri: 'spotify'}
-    ];
+    this._list = mockService.get('getBrowseList');
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -49,8 +40,24 @@ class BrowseService {
     return this._filters;
   }
 
+  set filters(filters) {
+    this._filters = filters;
+  }
+
   get sources() {
     return this._sources;
+  }
+
+  set sources(sources) {
+    this._source = sources;
+  }
+
+  get list() {
+    return this._list;
+  }
+
+  set list(list) {
+    this._list = list;
   }
 
   init() {
@@ -59,14 +66,27 @@ class BrowseService {
   }
 
   registerListner() {
-    this.socketService.on('volumioPushBrowseData', (browseData) => {
-    	console.log(browseData);
+    this.socketService.on('pushBrowseFilters', (data) => {
+    	this._filters = data;
     });
+    this.socketService.on('getBrowseSources', (data) => {
+    	this._sources = data;
+    });
+    this.socketService.on('getBrowseList', (data) => {
+    	this._list = data;
+    });
+    // this.socketService.on('volumioPushBrowseData', (browseData) => {
+    // 	console.log(browseData);
+    // });
   }
 
   initService() {
-    this.socketService.emit('volumioBrowseLibrary',
-      {'uid': 'index:root', 'sortby': '', 'datapath': [], 'entries': 0, 'index': 0});
+    this.socketService.emit('getBrowseFilters');
+    this.socketService.emit('getBrowseSources');
+    this.socketService.emit('getBrowseList');
+
+    // this.socketService.emit('volumioBrowseLibrary',
+    //   {'uid': 'index:root', 'sortby': '', 'datapath': [], 'entries': 0, 'index': 0});
   }
 
 }

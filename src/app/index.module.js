@@ -13,6 +13,7 @@ import BrowseService from './services/browse.service';
 //import PlaylistService from './services/playlist.service';
 import SocketService from './services/socket.service';
 import LoggerService from './services/logger.service';
+import MockService from './mock/mock.service';
 
 // Components
 import PlayerButtonsDirective from './components/player-buttons/player-buttons.directive';
@@ -60,6 +61,8 @@ angular.module('volumio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'u
   //.service('playlistService', PlaylistService)
   .service('playQueueService', PlayQueueService)
   .service('loggerService', LoggerService)
+  .service('mockService', MockService)
+
 
   .directive('playerButtons', () => new PlayerButtonsDirective())
   .directive('volumeManager', () => new VolumeManagerDirective())
