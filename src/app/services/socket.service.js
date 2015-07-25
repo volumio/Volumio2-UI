@@ -1,9 +1,11 @@
 class SocketService {
-  constructor ($log, $rootScope, $window) {
+  constructor ($rootScope, $http, $window, $log) {
     'ngInject';
+    this.$rootScope = $rootScope;
+    this.$http = $http;
     this.$log = $log;
     this.$window = $window;
-    this.$rootScope = $rootScope;
+
     //this._host = 'http://localhost:3000';
     //this._host = 'http://192.168.192.14:3000';
     this._host = null;
@@ -13,16 +15,16 @@ class SocketService {
 
   initSocket(){
     // TODO abort call with promise timeout
-    $http.get('http://localhost:3000/api/host').then((res.data) => {
-      console.log(res.data);
+    this.$http.get('http://localhost:3000/api/host').then((res) => {
       this.host = res.data.host;
-      this.$window.socket = io(this.host);
+      this.$window.socket = io(this.host+':3000');
+      this.$rootScope.$emit('socket:init');
     }, (res) => {
       console.log(res);
     });
 
 
-    this.$rootScope.$emit('socket:init');
+
   }
 
   changeHost(host){
