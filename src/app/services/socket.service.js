@@ -1,41 +1,42 @@
 class SocketService {
-  constructor ($rootScope, $http, $window, $log) {
+  constructor ($rootScope, $http, $window, $log, $timeout) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$http = $http;
     this.$log = $log;
     this.$window = $window;
+    this.$timeout = $timeout;
 
     //this._host = 'http://localhost:3000';
     //this._host = 'http://192.168.192.14:3000';
     this._host = null;
-    this.initSocket();
-    console.log('in socket constr');
-  }
-
-  initSocket(){
-    // TODO abort call with promise timeout
-    console.log(this.$window.location.hostname);
-    this.$http.get('http://' + this.$window.location.hostname + ':3000/api/host').then((res) => {
-      console.log(res);
-      this.host = res.data.host;
-      this.$window.socket = io(this.host+':3000');
-      this.$rootScope.$emit('socket:init');
-    }, (res) => {
-      console.log(res);
-    });
-
-
+    //this.initSocket();
 
   }
+
+  // initSocket(){
+  //   // TODO abort call with promise timeout
+  //   this.$timeout(() => {
+  //     console.log(this.$window.location.hostname);
+  //     let apiHost = 'http://' + this.$window.location.hostname + ':3000/api/host';
+  //     apiHost = 'http://192.168.192.14:3000/api/host';
+  //     this.$http.get(apiHost).then((res) => {
+  //       console.log(res);
+  //       this.host = res.data.host;
+  //       this.$window.socket = io(this.host+':3000');
+  //
+  //     }, (res) => {
+  //       console.log(res);
+  //     });
+  //   },1);
+  // }
 
   changeHost(host){
-    console.log(host);
     this.host = host;
     this.$window.socket.disconnect();
     this.$window.socket = undefined;
     delete this.$window.socket;
-    this.initSocket();
+    this.$rootScope.$emit('socket:init');
   }
 
   on(eventName, callback) {
@@ -68,6 +69,7 @@ class SocketService {
 
   set host(host) {
     this._host = host;
+    console.info('The socket host is:', this._host);
   }
 
   get host() {

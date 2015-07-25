@@ -1,8 +1,6 @@
-function runBlock ($log, $window, socketService) {
+function runBlock ($log, $window, socketService, $timeout, $http) {
   'ngInject';
-  $log.debug('runBlock end');
-
-  //$window.socket = io('http://192.168.192.14:3000');
+  //$log.debug('runBlock end');
 }
 
 export default runBlock;

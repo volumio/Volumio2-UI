@@ -4,7 +4,7 @@ class SettingsController {
     this.socketService = socketService;
     this.loggerService = loggerService;
 
-    this.SettingsStructure = mockService.get('getSettingsStructure');
+    //this.SettingsStructure = mockService.get('getSettingsStructure');
   }
 }
 

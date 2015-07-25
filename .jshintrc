@@ -12,7 +12,9 @@
   "globals": {
     "angular": false,
     "inject": false,
-    "module": false
+    "module": false,
+    "io": true,
+    "socket": true
   },
   "devel": {
     "console": true

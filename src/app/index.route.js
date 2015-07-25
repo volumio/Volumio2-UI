@@ -9,16 +9,26 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
           controller: 'HeaderController',
           controllerAs: 'header'
         },
-        'content': {
-          templateUrl: 'app/volumio/player.html'
-          //controller: 'VolumioController',
-          //controllerAs: 'volumio'
-        },
         'footer': {
           templateUrl: 'app/footer/footer.html',
           controller: 'FooterController',
           controllerAs: 'footer'
         }
+      },
+      resolve: {
+        socketResolver: function($http, $window, socketService){
+            let apiHost = 'http://' + $window.location.hostname + ':3000/api/host';
+            return $http.get(apiHost).then((response) => {
+              //console.log(res);
+              $window.socket = io(response.data.host + ':3000');
+              socketService.host  = response.data.host + ':3000';
+            }, () => {
+              //console.log(reason);
+              //Fallback broken socket
+              $window.socket = io('http://192.168.192.14:3000');
+              socketService.host  = 'http://192.168.192.14:3000';
+            });
+         }
       }
     })
 
