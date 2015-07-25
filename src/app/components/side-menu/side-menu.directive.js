@@ -16,36 +16,13 @@ class PlayerButtonsDirective {
 }
 
 class SideMenuController {
-  constructor ($rootScope, socketService, $state) {
+  constructor ($rootScope, socketService, mockService, $state) {
     'ngInject';
     this.socketService = socketService;
     this.$state = $state;
 
     this.visible = false;
-    this.menuItems = [
-      {
-        id: 'home',
-        name: 'Home',
-        type: 'static',
-        state: 'volumio.playback'
-      },
-      {
-        id: 'components',
-        name: 'Components',
-        type: 'static',
-        state: 'volumio.components'
-      },
-      {
-        id: 'network',
-        name: 'Network',
-        type: 'dynamic'
-      },
-      {
-        id: 'settings',
-        name: 'Settings',
-        type: 'Dynamic'
-      },
-    ];
+    this.menuItems = mockService.get('getMenuItems');
 
 
     this.init();
@@ -74,9 +51,9 @@ class SideMenuController {
   }
 
   registerListner() {
-    this.socketService.on('setMenuItems', (data) => {
+    this.socketService.on('pushMenuItems', (data) => {
      //console.log(data);
-     this.items = data;
+     this.menuItems = data;
     });
   }
 

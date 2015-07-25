@@ -56,10 +56,21 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
     })
 
     .state('volumio.components', {
-      url: '/components',
+      url: 'components',
       views: {
         'content@': {
           templateUrl: 'app/settings/components.html',
+          controller: 'SettingsController',
+          controllerAs: 'settings'
+        }
+      }
+    })
+
+    .state('volumio.testSettings', {
+      url: 'test-settings',
+      views: {
+        'content@': {
+          templateUrl: 'app/settings/test-settings.html',
           controller: 'SettingsController',
           controllerAs: 'settings'
         }

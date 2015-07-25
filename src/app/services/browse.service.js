@@ -17,23 +17,10 @@ class BrowseService {
     });
   }
 
-  add() {
-    // TODO add and update the queue
-  }
-
-  save(trackIndex) {
-    //this.socketService.emit('updatePlaybackSettings', settingsObj);
-  }
-
-  clearAll() {
-  }
-
-  isFirst() {
-
-  }
-
-  isLast() {
-
+  fetchLibrary(index) {
+    console.log(index);
+    this.socketService.emit('volumioBrowseLibrary',
+      {'uid': index, 'sortby': '', 'datapath': [], 'entries': 0, 'index': 0});
   }
 
   get filters() {
@@ -69,24 +56,24 @@ class BrowseService {
     this.socketService.on('pushBrowseFilters', (data) => {
     	this._filters = data;
     });
-    this.socketService.on('getBrowseSources', (data) => {
+    this.socketService.on('pushBrowseSources', (data) => {
     	this._sources = data;
     });
-    this.socketService.on('getBrowseList', (data) => {
+    this.socketService.on('pushBrowseList', (data) => {
     	this._list = data;
     });
-    // this.socketService.on('volumioPushBrowseData', (browseData) => {
-    // 	console.log(browseData);
-    // });
+    this.socketService.on('volumioPushBrowseData', (browseData) => {
+    	console.log(browseData);
+    });
   }
 
   initService() {
     this.socketService.emit('getBrowseFilters');
     this.socketService.emit('getBrowseSources');
-    this.socketService.emit('getBrowseList');
+    this.socketService.emit('getBrowseList', {uri:'uri'});
 
-    // this.socketService.emit('volumioBrowseLibrary',
-    //   {'uid': 'index:root', 'sortby': '', 'datapath': [], 'entries': 0, 'index': 0});
+    this.socketService.emit('volumioBrowseLibrary',
+      {'uid': 'index:root', 'sortby': '', 'datapath': [], 'entries': 0, 'index': 0});
   }
 
 }

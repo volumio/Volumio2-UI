@@ -5,13 +5,23 @@ class SocketService {
     this.$window = $window;
     this.$rootScope = $rootScope;
     //this._host = 'http://localhost:3000';
-    this._host = 'http://192.168.192.14:3000';
+    //this._host = 'http://192.168.192.14:3000';
+    this._host = null;
     this.initSocket();
     console.log('in socket constr');
   }
 
   initSocket(){
-    this.$window.socket = io(this.host);
+    // TODO abort call with promise timeout
+    $http.get('http://localhost:3000/api/host').then((res.data) => {
+      console.log(res.data);
+      this.host = res.data.host;
+      this.$window.socket = io(this.host);
+    }, (res) => {
+      console.log(res);
+    });
+
+
     this.$rootScope.$emit('socket:init');
   }
 

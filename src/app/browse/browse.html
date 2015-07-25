@@ -3,7 +3,7 @@
     <button
         ng-repeat="filter in browse.browseService.filters"
         ng-class="{selected: browseService.listBy === 'artist'}"
-        ng-click="browseService.getListBy('artist')">
+        ng-click="browse.browseService.fetchLibrary(filter.index)">
         {{filter.name}}
     </button>
   </div>
