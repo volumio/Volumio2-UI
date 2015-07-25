@@ -5,8 +5,9 @@ class PlayerService {
     this.socketService = socketService;
 
     this._volume = 80;
-    this._lastVolume = 80;
-    this._mute = false;
+    this._volumeStep = 10;
+    //this._lastVolume = 80;
+    //this._mute = false;
 
     this._shuffle = false;
     this._repeatTrack = false;
@@ -83,28 +84,15 @@ class PlayerService {
   // VOLUME --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
   volumeUp() {
-    if(this._mute) {
-      this.mute();
-    }
-    this.volume += 10;
+    this.volume += this.volumeStep;
   }
 
   volumeDown() {
-    if(this._mute) {
-      this.mute();
-    }
-    this.volume -= 10;
+    this.volume -= this.volumeStep;
   }
 
   mute() {
-    //debugger;
-    if (!this._mute) {
-      this._lastVolume = this.volume;
-      this.volume = 0;
-    } else {
-        this.volume = this._lastVolume;
-    }
-    this._mute = !this._mute;
+    this.socketService.emit('volume', this._volume);
   }
 
     // GETTER & SETTER ---------------------------------------------------------
@@ -113,11 +101,13 @@ class PlayerService {
   }
 
   set volume(volume) {
-    if(volume >= 0 && volume <= 100) {
-      this._volume = volume;
-    } else {
-      throw('Volume value not valid: ' + volume);
+    if(volume < 0 ) {
+      this._volume = 0;
+    } else if(volume > 100) {
+      this._volume = 100;
     }
+    this._volume = volume;
+    this.socketService.emit('volume', this._volume);
   }
 
   init() {
