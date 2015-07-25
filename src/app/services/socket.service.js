@@ -15,7 +15,8 @@ class SocketService {
 
   initSocket(){
     // TODO abort call with promise timeout
-    this.$http.get('http://localhost:3000/api/host').then((res) => {
+    console.log(this.$window.location.hostname);
+    this.$http.get('http://' + this.$window.location.hostname + ':3000/api/host').then((res) => {
       console.log(res);
       this.host = res.data.host;
       this.$window.socket = io(this.host+':3000');
