@@ -19,6 +19,9 @@ class VolumeManagerController {
   constructor (playerService) {
     'ngInject';
     this.playerService = playerService;
+    this.knobData = 45;
+    this.knobOptions = {
+    };
   }
 }
 

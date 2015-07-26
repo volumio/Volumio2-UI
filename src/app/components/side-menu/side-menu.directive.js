@@ -38,7 +38,12 @@ class SideMenuController {
   itemClick(item) {
     this.toggleMenu();
     if (item.type === 'static') {
-      this.$state.go(item.state);
+      if (item.params) {
+        this.$state.go(item.state, item.params);
+      } else {
+        this.$state.go(item.state);
+      }
+
     } else {
       //TODO Dynamic page settins templates engine
 
@@ -53,7 +58,7 @@ class SideMenuController {
   registerListner() {
     this.socketService.on('pushMenuItems', (data) => {
      //console.log(data);
-     this.menuItems = data;
+     //this.menuItems = data;
     });
   }
 

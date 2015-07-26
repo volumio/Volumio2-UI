@@ -76,13 +76,13 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
       }
     })
 
-    .state('volumio.testSettings', {
-      url: 'test-settings',
+    .state('volumio.plugin', {
+      url: 'plugin/:pluginName',
       views: {
         'content@': {
-          templateUrl: 'app/settings/test-settings.html',
-          controller: 'SettingsController',
-          controllerAs: 'settings'
+          templateUrl: 'app/plugin/plugin.html',
+          controller: 'PluginController',
+          controllerAs: 'plugin'
         }
       }
     });

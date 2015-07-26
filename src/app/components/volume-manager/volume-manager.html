@@ -1,6 +1,7 @@
 <div id="volumeManager">
   <div>
-    slider
+        <knob knob-data="volumeManager.playerService.volume"
+        knob-options="volumeManager.knobOptions"></knob>
   </div>
   <div>
     <strong>volume</strong> : {{volumeManager.playerService.volume}}
@@ -8,7 +9,10 @@
   <div id="volumeButtonBar">
     <button ng-click="volumeManager.playerService.volumeUp()">VolumeUp</button>
     <button ng-click="volumeManager.playerService.volumeDown()">VolumeDown</button>
-    <button ng-click="volumeManager.playerService.mutePlayer()">Mute</button>
+    <button ng-click="volumeManager.playerService.toggleMute()">
+      <span ng-if="volumeManager.playerService.state.mute">Unmute</span>
+      <span ng-if="!volumeManager.playerService.state.mute">Mute</span>
+    </button>
     <br>
     <input type="text" ng-model="volumeManager.playerService.volume">
   </div>

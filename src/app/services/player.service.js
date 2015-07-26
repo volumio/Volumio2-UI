@@ -4,10 +4,10 @@ class PlayerService {
     this.$log = $log;
     this.socketService = socketService;
 
+    this.state = null;
+
     this._volume = 80;
     this._volumeStep = 10;
-    //this._lastVolume = 80;
-    //this._mute = false;
 
     this._shuffle = false;
     this._repeatTrack = false;
@@ -64,13 +64,13 @@ class PlayerService {
 
 
     // GETTER & SETTER ---------------------------------------------------------
-  get status() {
-    return this._state.status;
-  }
-
-  set status(status) {
-    //this._status = status;
-  }
+  // get status() {
+  //   return this._state.status;
+  // }
+  //
+  // set status(status) {
+  //   //this._status = status;
+  // }
 
   get currentTrack() {
     return this._currentTrack;
@@ -84,30 +84,34 @@ class PlayerService {
   // VOLUME --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
   volumeUp() {
-    this.volume += this.volumeStep;
+    this.volume += this._volumeStep;
   }
 
   volumeDown() {
-    this.volume -= this.volumeStep;
+    this.volume -= this._volumeStep;
   }
 
-  mute() {
-    this.socketService.emit('volume', this._volume);
+  toggleMute() {
+    this.socketService.emit('volume', 'mute');
   }
+
 
     // GETTER & SETTER ---------------------------------------------------------
   get volume() {
-    return parseInt(this._volume);
+    if (this.state) {
+      return parseInt(this.state.volume);
+    } else {
+      return 0;
+    }
   }
 
   set volume(volume) {
     if(volume < 0 ) {
-      this._volume = 0;
+      volume = 0;
     } else if(volume > 100) {
-      this._volume = 100;
+      volume = 100;
     }
-    this._volume = volume;
-    this.socketService.emit('volume', this._volume);
+    this.socketService.emit('volume', volume);
   }
 
   init() {
@@ -119,6 +123,7 @@ class PlayerService {
     this.socketService.on('volumioPushState', (data) => {
      //console.log(data);
      this.state = data;
+
     });
   }
 

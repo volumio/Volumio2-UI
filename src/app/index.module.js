@@ -23,12 +23,18 @@ import PlayerStatusDirective from './components/player-status/player-status.dire
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
 
+//Directives
+import PluginAttributesDirective from './plugin/elements/plugin-attributes.directive';
+import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
+
+
 // Controllers
 import VolumioController from './volumio/volumio.controller';
 
 import HeaderController from './header/header.controller';
 import FooterController from './footer/footer.controller';
 import SettingsController from './settings/settings.controller';
+import PluginController from './plugin/plugin.controller';
 
 
 import BrowseController from './browse/browse.controller';
@@ -41,7 +47,7 @@ import PlaylistController from './playlist/playlist.controller';
 // import NavbarDirective from '../app/components/navbar/navbar.directive';
 // import MalarkeyDirective from '../app/components/malarkey/malarkey.directive';
 
-angular.module('volumio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap'])
+angular.module('volumio', ['ui.select','frapontillo.bootstrap-switch','ui.knob','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap'])
   // .constant('malarkey', malarkey)
   // .constant('toastr', toastr)
   //.constant('moment', moment)
@@ -71,10 +77,14 @@ angular.module('volumio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'u
   .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('sideMenu', () => new SideMenuDirective())
 
+  .directive('pluginAttributes', () => new PluginAttributesDirective())
+  .directive('pluginVisible', () => new PluginVisibleDirective())
+
   .controller('VolumioController', VolumioController)
   .controller('HeaderController', HeaderController)
   .controller('FooterController', FooterController)
   .controller('SettingsController', SettingsController)
+  .controller('PluginController', PluginController)
 
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)

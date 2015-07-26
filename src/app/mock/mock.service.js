@@ -62,8 +62,12 @@ class MockService {
         {
           id: 'settings',
           name: 'Settings',
-          type: 'dynamic'
-        },
+          type: 'static',
+          state: 'volumio.plugin',
+          params: {
+            pluginName: 'settings'
+          }
+        }
       ],
       //Settings
       getSettings: {
@@ -72,189 +76,183 @@ class MockService {
         },
         sections: [
           {
-            "section_player_name": {
-              "element": "section",
-              "label": "Player name",
-              "plugin": "settings/playback_conf",
-              "onSave": "savePlayerName",
-              "savebutton": {
-                "label": "salva",
-                "values": [
-                  "playerName"
-                ]
-              },
-              "content": [
-                {
-                  "playerName": {
-                    "element": "textBox",
-                    "label": "Player Name",
-                    "value": "volumio"
-                  }
-                }
+            "id": "section_player_name",
+            "element": "section",
+            "label": "Player name",
+            "plugin": "settings/playback_conf",
+            "onSave": "savePlayerName",
+            "saveButton": {
+              "label": "salva",
+              "values": [
+                "playerName"
               ]
-            }
+            },
+            "content": [
+              {
+                "id": "playerName",
+                "element": "input",
+                "type": "text",
+                "label": "Player Name",
+                "attributes":[
+                  { "placeholder": "call me with a fancy name"}
+                ],
+                "value": "Volumio"
+              }
+            ]
           },
           {
-            "section_services_management": {
-              "element": "section",
-              "label": "Services management",
-              "text": "Enable or disable certain Volumio functionalities",
-              "plugin": "/settings/playback_conf",
-              "onSave": "saveServicesManagement",
-              "savebutton": {
-                "label": "salva",
-                "values": [
-                  "airplay",
-                  "upnp",
-                  "upnp_dlna_indexing",
-                  "dlna_library"
-                ]
-              },
-              "content": [
-                {
-                  "airplay": {
-                    "element": "switch",
-                    "label": "Airplay",
-                    "value": "true"
-                  }
-                },
-                {
-                  "upnp": {
-                    "element": "switch",
-                    "label": "UPNP Control",
-                    "value": "true"
-                  }
-                },
-                {
-                  "upnp_dlna_indexing": {
-                    "element": "switch",
-                    "label": "UPNP/DLNA Indexing",
-                    "value": "true"
-                  }
-                },
-                {
-                  "dlna_library": {
-                    "element": "switch",
-                    "label": "DLNA Library Server",
-                    "value": "true"
-                  }
-                }
+            "id": "section_services_management",
+            "element": "section",
+            "label": "Services management",
+            "description": "Enable or disable certain Volumio functionalities",
+            "plugin": "/settings/playback_conf",
+            "onSave": "saveServicesManagement",
+            "saveButton": {
+              "label": "salva",
+              "values": [
+                "airplay",
+                "upnp",
+                "upnp_dlna_indexing",
+                "dlna_library"
               ]
-            }
+            },
+            "content": [
+              {
+                "id": "airplay",
+                "element": "switch",
+                "label": "Airplay",
+                "description": "Apple airplay",
+                "value": "true"
+              },
+              {
+                "id": "upnp",
+                "element": "switch",
+                "label": "UPNP Control",
+                "value": "true"
+              },
+              {
+                "id": "upnp_dlna_indexing",
+                "element": "switch",
+                "label": "UPNP/DLNA Indexing",
+                "value": "true"
+              },
+              {
+                "id": "dlna_library",
+                "element": "switch",
+                "label": "DLNA Library Server",
+                "value": "true"
+              }
+            ]
           },
           {
-            "section_streaming_services": {
-              "element": "section",
-              "label": "Streaming services",
-              "plugin": "/settings/playback_conf",
-              "onSave": "saveStreamingServices",
-              "savebutton": {
-                "label": "salva",
-                "values": [
-                  "spotify_service",
-                  "spotify_username",
-                  "spotify_password",
-                  "prefer_high_quality"
-                ]
-              },
-              "text": "Enable or disable Spotify Streaming services",
-              "content": [
-                {
-                  "spotify_service": {
-                    "element": "switch",
-                    "label": "Spotify Service",
-                    "value": "true"
-                  }
-                },
-                {
-                  "spotify_username": {
-                    "element": "input",
-                    "attributes": [
-                      {
-                        "placeholder": ""
-                      },
-                      {
-                        "maxLen": "5"
-                      }
-                    ],
-                    "label": "Username",
-                    "value": "",
-                    "visibleif": "spotify_service:true"
-                  }
-                },
-                {
-                  "spotify_password": {
-                    "element": "password",
-                    "label": "Password",
-                    "value": "dusdhsudhsu",
-                    "visibleif": "spotify_service:true"
-                  }
-                },
-                {
-                  "prefer_high_quality": {
-                    "element": "switch",
-                    "label": "Prefer high quality music",
-                    "value": "true",
-                    "visibleif": "spotify_service:true"
-                  }
-                }
+            "id": "section_streaming_services",
+            "element": "section",
+            "label": "Streaming services",
+            "description": "Enable or disable Spotify Streaming services",
+            "plugin": "/settings/playback_conf",
+            "onSave": "saveStreamingServices",
+            "saveButton": {
+              "label": "salva",
+              "values": [
+                "spotify_service",
+                "spotify_username",
+                "spotify_password",
+                "prefer_high_quality"
               ]
-            }
+            },
+            "content": [
+              {
+                "id": "spotify_service",
+                "element": "switch",
+                "label": "Spotify Service",
+                "value": "true"
+              },
+              {
+                "id": "spotify_username",
+                "element": "input",
+                "attributes": [
+                  {
+                    "placeholder": "Type your spotify username"
+                  },
+                  {
+                    "maxlength": "5"
+                  }
+                ],
+                "label": "Username",
+                "value": "",
+                "visibleIf": {"field":"spotify_service", "value": "true"}
+              },
+              {
+                "id": "spotify_password",
+                "element": "input",
+                "type": "password",
+                "label": "Password",
+                "value": "dusdhsudhsu",
+                "visibleIf": {"field":"spotify_service", "value": "true"}
+              },
+              {
+                "id": "prefer_high_quality",
+                "element": "switch",
+                "label": "Prefer high quality music",
+                "value": "false",
+                "visibleIf": {"field":"spotify_service", "value": "true"}
+              }
+            ]
           },
           {
-            "section_sound_quality": {
-              "type": "section",
-              "label": "Sound quality tweaks",
-              "plugin": "/settings/playback_conf",
-              "onSave": "saveSoundQuality",
-              "savebutton": {
-                "label": "salva",
-                "values": [
-                  "kernel_profile"
-                ]
-              },
-              "text": "These profiles??.",
-              "content": [
-                {
-                  "kernel_profile": {
-                    "element": "select",
-                    "label": "Kernel profile",
-                    "value": "1",
-                    "options": [
-                      {
-                        "1": "Default"
-                      },
-                      {
-                        "2": "Less Jitter"
-                      },
-                      {
-                        "3": "Jitter"
-                      },
-                      {
-                        "4": "Focus"
-                      }
-                    ]
-                  }
-                }
+            "id": "section_sound_quality",
+            "type": "section",
+            "label": "Sound quality tweaks",
+            "description": "These profiles??.",
+            "plugin": "/settings/playback_conf",
+            "onSave": "saveSoundQuality",
+            "saveButton": {
+              "label": "salva",
+              "values": [
+                "kernel_profile"
               ]
-            }
+            },
+            "content": [
+              {
+                "id": "kernel_profile",
+                "element": "select",
+                "label": "Kernel profile",
+                "value": {"value":"2","label":"Less Jitter"},
+                "options": [
+                  {
+                    "value":"1",
+                    "label": "Default"
+                  },
+                  {
+                    "value":"2",
+                    "label": "Less Jitter"
+                  },
+                  {
+                    "value":"3",
+                    "label": "Jitter"
+                  },
+                  {
+                    "value":"4",
+                    "label": "Focus"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "section_updates": {
-              "type": "section",
-              "label": "System updates",
-              "content": [
-                {
-                  "update": {
-                    "element": "button",
-                    "label": "System updates",
-                    "text": "You can check?...",
-                    "plugin": "/settings/playback_conf",
-                    "onClick": "systemUpdate"
-                  }
-                }
-              ]
-            }
+            "id": "section_updates",
+            "type": "section",
+            "label": "System updates",
+            "content": [
+              {
+                "id": "update",
+                "element": "button",
+                "label": "System updates",
+                "description": "You can check?...",
+                "plugin": "/settings/playback_conf",
+                "onClick": "systemUpdate"
+              }
+            ]
           }
         ]
       }
