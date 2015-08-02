@@ -53,7 +53,7 @@ class VolumeManagerController {
       fgColor:'#FF0000',
       width: 120,
       height: 120,
-      displayInput: true,
+      displayInput: false,
       step: 1,
       angleOffset: -125,
       angleArc: 250
