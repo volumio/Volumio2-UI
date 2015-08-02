@@ -25,8 +25,8 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
             }, () => {
               //console.log(reason);
               //Fallback broken socket
-              $window.socket = io('http://192.168.192.14:3000');
-              socketService.host  = 'http://192.168.192.14:3000';
+              $window.socket = io('http://192.168.0.17:3000');
+              socketService.host  = 'http://192.168.0.17:3000';
             });
          }
       }

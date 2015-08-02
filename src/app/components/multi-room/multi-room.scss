@@ -1,0 +1,21 @@
+#multiRoom {
+  border: solid 0px #999;
+  background-color: #999;
+  margin:10px 0px;
+  @include make-row();
+  button {
+    @extend .btn, .btn-success, .btn-xs;
+  }
+
+  .device {
+    @include make-sm-column(4);
+    padding: 10px;
+    margin:10px;
+    background-color: #666;
+    &.selected {
+      .deviceName{
+        color: #0C0;
+      }
+    }
+  }
+}

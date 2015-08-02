@@ -22,8 +22,7 @@ class SideMenuController {
     this.$state = $state;
 
     this.visible = false;
-    this.menuItems = mockService.get('getMenuItems');
-
+    //this.menuItems = mockService.get('getMenuItems');
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -37,16 +36,10 @@ class SideMenuController {
 
   itemClick(item) {
     this.toggleMenu();
-    if (item.type === 'static') {
-      if (item.params) {
-        this.$state.go(item.state, item.params);
-      } else {
-        this.$state.go(item.state);
-      }
-
+    if (item.params) {
+      this.$state.go(item.state, item.params);
     } else {
-      //TODO Dynamic page settins templates engine
-
+      this.$state.go(item.state);
     }
   }
 
@@ -57,8 +50,8 @@ class SideMenuController {
 
   registerListner() {
     this.socketService.on('pushMenuItems', (data) => {
-     //console.log(data);
-     //this.menuItems = data;
+     console.log(data);
+     this.menuItems = data;
     });
   }
 

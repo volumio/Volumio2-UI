@@ -40,32 +40,80 @@ class MockService {
           {track: 'track c', artist: 'artist c', uri: 'uri'}
         ]
       },
-      //Menu
+      getMultiRoomDevices: {
+        misc: {debug: true},
+        list: [
+          {
+            id: 'device_1',
+            host: 'http://192.168.0.17:3000',
+            model: 'model Small',
+            signal: 'low',
+            name: 'Bedroom',
+            state: {
+              status: 'play',
+              volume: 80,
+              mute: false,
+              artist: 'Franz ferdinand',
+              track: 'No you Girls'
+            },
+            child: [
+              {
+                id: 'device_3',
+                host: 'http://192.168.0.18:3000',
+                model: 'xx',
+                signal: 'low',
+                name: 'Bedroom left',
+              },
+              {
+                id: 'device_4',
+                host: 'http://192.168.0.18:3000',
+                model: 'yy',
+                signal: 'low',
+                name: 'Bedroom right',
+              }
+            ]
+          },
+          {
+            id: 'device_2',
+            host: 'http://192.168.0.10:3000',
+            model: 'model Xlarge',
+            signal: 'high',
+            name: 'Living room',
+            state: {
+              status: 'play',
+              volume: 80,
+              mute: false,
+              artist: 'Korn',
+              track: 'Adidas'
+            }
+          }
+        ]
+      },
       getMenuItems: [
         {
           id: 'home',
           name: 'Home',
-          type: 'static',
           state: 'volumio.playback'
         },
         {
           id: 'components',
           name: 'Components',
-          type: 'static',
           state: 'volumio.components'
         },
         {
           id: 'network',
           name: 'Network',
-          type: 'dynamic'
-        },
-        {
-          id: 'settings',
-          name: 'Settings',
-          type: 'static',
           state: 'volumio.plugin',
           params: {
-            pluginName: 'settings'
+            pluginName: 'network'
+          }
+        },
+        {
+          id: 'system',
+          name: 'System',
+          state: 'volumio.plugin',
+          params: {
+            pluginName: 'system'
           }
         }
       ],

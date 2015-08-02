@@ -1,4 +1,4 @@
-function runBlock ($log, $window, socketService, $timeout, $http) {
+function runBlock () {
   'ngInject';
   //$log.debug('runBlock end');
 }

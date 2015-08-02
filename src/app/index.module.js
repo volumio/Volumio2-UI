@@ -19,9 +19,12 @@ import MockService from './mock/mock.service';
 import PlayerButtonsDirective from './components/player-buttons/player-buttons.directive';
 import VolumeManagerDirective from './components/volume-manager/volume-manager.directive';
 import TrackManagerDirective from './components/track-manager/track-manager.directive';
+import TrackInfoDirective from './components/track-info/track-info.directive';
 import PlayerStatusDirective from './components/player-status/player-status.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
+import KnobDirective from './components/knob/knob.directive';
+import MultiRoomDirective from './components/multi-room/multi-room.directive';
 
 //Directives
 import PluginAttributesDirective from './plugin/elements/plugin-attributes.directive';
@@ -47,7 +50,7 @@ import PlaylistController from './playlist/playlist.controller';
 // import NavbarDirective from '../app/components/navbar/navbar.directive';
 // import MalarkeyDirective from '../app/components/malarkey/malarkey.directive';
 
-angular.module('volumio', ['ui.select','frapontillo.bootstrap-switch','ui.knob','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap'])
+angular.module('volumio', ['ui.select','frapontillo.bootstrap-switch','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap'])
   // .constant('malarkey', malarkey)
   // .constant('toastr', toastr)
   //.constant('moment', moment)
@@ -73,9 +76,12 @@ angular.module('volumio', ['ui.select','frapontillo.bootstrap-switch','ui.knob',
   .directive('playerButtons', () => new PlayerButtonsDirective())
   .directive('volumeManager', () => new VolumeManagerDirective())
   .directive('trackManager', () => new TrackManagerDirective())
+  .directive('trackInfo', () => new TrackInfoDirective())
   .directive('playerStatus', () => new PlayerStatusDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('sideMenu', () => new SideMenuDirective())
+  .directive('knob', () => new KnobDirective())
+  .directive('multiRoom', () => new MultiRoomDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())
