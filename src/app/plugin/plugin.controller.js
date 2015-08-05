@@ -1,5 +1,5 @@
 class PluginController {
-  constructor ($stateParams, socketService, mockService) {
+  constructor ($rootScope, $stateParams, socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
     //console.log($stateParams);
@@ -26,7 +26,7 @@ class PluginController {
       saveObj.values = values;
     }
     console.info(saveObj);
-    this.socketService.emit('callPluginMethod', saveObj);
+    this.socketService.emit('callPluginMethod', JSON.stringify(saveObj));
   }
 
   saveButton(item) {
@@ -45,15 +45,16 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-     console.log(data);
+     //console.log(data);
      this.pluginObj = data;
     });
   }
 
   initService() {
     //this.socketService.emit('playerInit');
-    console.log(this.$stateParams.pluginName);
-    this.socketService.emit('getUiConfig', {page: this.$stateParams.pluginName});
+    let testObj = '{"page": "network"}';
+    //console.log(testObj);
+    this.socketService.emit('getUiConfig', testObj);
   }
 }
 

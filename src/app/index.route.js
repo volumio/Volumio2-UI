@@ -76,6 +76,17 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
       }
     })
 
+    .state('volumio.multi-room', {
+      url: 'multi-room',
+      views: {
+        'content@': {
+          templateUrl: 'app/multi-room-manager/multi-room-manager.html',
+          controller: 'MultiRoomManagerController',
+          controllerAs: 'multiRoomManager'
+        }
+      }
+    })
+
     .state('volumio.plugin', {
       url: 'plugin/:pluginName',
       views: {

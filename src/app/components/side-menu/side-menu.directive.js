@@ -22,7 +22,7 @@ class SideMenuController {
     this.$state = $state;
 
     this.visible = false;
-    //this.menuItems = mockService.get('getMenuItems');
+    this.menuItems = mockService.get('getMenuItems');
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -50,8 +50,8 @@ class SideMenuController {
 
   registerListner() {
     this.socketService.on('pushMenuItems', (data) => {
-     console.log(data);
-     this.menuItems = data;
+     //console.log(data);
+     //this.menuItems = data;
     });
   }
 

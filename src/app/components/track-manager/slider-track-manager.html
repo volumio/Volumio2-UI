@@ -1,0 +1,21 @@
+<div id="trackManager">
+  <div>
+    <slider
+      ng-model="trackManager.tempModel"
+      min="0"
+      step="1"
+      max="100"
+      slider-tooltip="hide">
+    </slider>
+  </div>
+  <div>
+    <strong>repeatTrack</strong>: {{trackManager.playerService.repeatTrack}}
+    <strong>repeatAlbum</strong>: {{trackManager.playerService.repeatAlbum}}
+    <strong>shuffle</strong>: {{trackManager.playerService.shuffle}}
+  </div>
+  <div id="trackButtonBar">
+    <button ng-click="trackManager.playerService.shuffle()">Shuffle</button>
+    <button ng-click="trackManager.playerService.repeatTrack()">Repeat track</button>
+    <button ng-click="trackManager.playerService.repeatAlbum()">Repeat album</button>
+  </div>
+</div>

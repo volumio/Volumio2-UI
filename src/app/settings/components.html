@@ -22,6 +22,33 @@
   <h3>Track manager</h3>
   <track-manager></track-manager>
 
+  <h3>Modal</h3>
+  <button type="button" name="button"
+      ng-click="settings.modalService.openModal('default', {title: 'Title', message: 'Mesage'})">
+    Open Modal
+  </button>
+
+  <hr>
+  <h3>Toast Messages</h3>
+  <div class="">
+    <button type="button" name="button"
+        ng-click="settings.toastMessageService.showMessage('success', 'Messaggio', 'Success')">
+      Success
+    </button>
+    <button type="button" name="button" class="btn-info"
+        ng-click="settings.toastMessageService.showMessage('info', 'Messaggio', 'Info')">
+      Info
+    </button>
+    <button type="button" name="button" class="btn-warning"
+        ng-click="settings.toastMessageService.showMessage('warning', 'Messaggio', 'Warning')">
+      Warning
+    </button>
+    <button type="button" name="button" class="btn-danger"
+        ng-click="settings.toastMessageService.showMessage('error', 'Messaggio', 'Error')">
+      Error
+    </button>
+  </div>
+
   <h3>Playlist</h3>
   TODO
   <br>

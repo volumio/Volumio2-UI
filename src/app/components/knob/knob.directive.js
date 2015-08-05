@@ -30,7 +30,7 @@ class KnobController {
           this.value = value;
         }, 200);
       }
-    }
+    };
     angular.extend(knobOptions, this.options);
     $element.knob(knobOptions);
 

@@ -1,3 +1,24 @@
 <div id="trackInfo">
-  track info
+  <div ng-if="trackInfo.playerService.state.dynamictitle">
+    {{trackInfo.playerService.state.dynamictitle}}
+  </div>
+  <div ng-if="trackInfo.playerService.state.artist">
+    <strong>Artist:</strong> {{trackInfo.playerService.state.artist}}
+  </div>
+  <div ng-if="trackInfo.playerService.state.track">
+    <strong>Track:</strong> {{trackInfo.playerService.state.track}}
+  </div>
+  <div ng-if="trackInfo.playerService.state.album">
+    <strong>Album:</strong> {{trackInfo.playerService.state.album}}
+  </div>
+
+  <div ng-if="trackInfo.playerService.state.service">
+    <strong>Service:</strong> {{trackInfo.playerService.state.service}}
+  </div>
+  <div ng-if="trackInfo.playerService.state.samplerate">
+    <strong>Samplerate:</strong> {{trackInfo.playerService.state.samplerate}}
+  </div>
+  <div ng-if="trackInfo.playerService.state.channels">
+    <strong>Channels:</strong> {{trackInfo.playerService.state.channels}}
+  </div>
 </div>

@@ -70,6 +70,13 @@ class MockService {
                 model: 'yy',
                 signal: 'low',
                 name: 'Bedroom right',
+              },
+              {
+                id: 'device_5',
+                host: 'http://192.168.0.18:3000',
+                model: 'zz',
+                signal: 'low',
+                name: 'Bedroom center',
               }
             ]
           },
@@ -85,6 +92,20 @@ class MockService {
               mute: false,
               artist: 'Korn',
               track: 'Adidas'
+            }
+          },
+          {
+            id: 'device_6',
+            host: 'http://192.168.0.18:3000',
+            model: 'model Xlarge',
+            signal: 'high',
+            name: 'Garden',
+            state: {
+              status: 'play',
+              volume: 80,
+              mute: false,
+              artist: 'Banks',
+              track: 'Warm water'
             }
           }
         ]
@@ -107,6 +128,11 @@ class MockService {
           params: {
             pluginName: 'network'
           }
+        },
+        {
+          id: 'multi-room',
+          name: 'Multi Room',
+          state: 'volumio.multi-room'
         },
         {
           id: 'system',

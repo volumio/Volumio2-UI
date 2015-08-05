@@ -12,6 +12,7 @@ class SocketService {
     this.$window.socket.disconnect();
     this.$window.socket = undefined;
     delete this.$window.socket;
+    this.$window.socket = io(this.host);
     this.$rootScope.$emit('socket:init');
   }
 
@@ -22,6 +23,7 @@ class SocketService {
       //console.log(data);
       this.$rootScope.$apply(function () {
         if (callback) {
+          //console.log(data);
           //callback.apply(socket, data);
           callback(data);
         }

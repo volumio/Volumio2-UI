@@ -14,7 +14,8 @@
     "inject": false,
     "module": false,
     "io": true,
-    "socket": true
+    "socket": true,
+    "toastr": true
   },
   "devel": {
     "console": true

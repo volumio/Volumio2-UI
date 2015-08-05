@@ -1,0 +1,29 @@
+<div id="multiRoomManager">
+  <div ng-repeat="device in multiRoomManager.devices"
+      id="{{device.id}}"
+      ng-drag="!device.child"
+      ng-drag-success="onDragComplete($data, $event)"
+      ng-drag-data="device"
+      class="device">
+    <div
+      class="droppableleArea"
+      ng-drop="true"
+      ng-drop-success="multiRoomManager.onDropComplete($data, device, $event)"
+      >
+      <strong>{{device.name}} ({{device.state.status}})</strong><br>
+      <strong>Signal: </strong> {{device.signal}}<br>
+      <strong>Host: </strong> {{device.host}}<br>
+
+      <div
+        ng-repeat="childDevice in device.child"
+        id="childDevice.id"
+        class="childDevice">
+        {{childDevice.name}} <br> {{childDevice.host}}
+        <button ng-click="multiRoomManager.removeChildDevice(device, childDevice)" class="">
+          Del
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

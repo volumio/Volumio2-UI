@@ -4,7 +4,7 @@ class VolumeManagerDirective {
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/volume-manager/volume-manager.html',
+      templateUrl: 'app/components/volume-manager/slider-volume-manager.html',
       scope: false,
       controller: VolumeManagerController,
       controllerAs: 'volumeManager',
@@ -26,7 +26,12 @@ class VolumeManagerController {
     // back and forward two times
     $scope.$watch(() => this.volume,  (value) => {
       if (value) {
-        playerService.volume = value;
+        $timeout.cancel(this.timeoutHandler);
+        this.timeoutHandler = $timeout(() => {
+          //console.log(value);
+          playerService.volume = value;
+        }, 300);
+
       }
     });
 

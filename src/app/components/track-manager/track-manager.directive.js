@@ -4,7 +4,7 @@ class TrackManagerDirective {
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/track-manager/track-manager.html',
+      templateUrl: 'app/components/track-manager/slider-track-manager.html',
       scope: false,
       controller: TrackManagerController,
       controllerAs: 'trackManager',

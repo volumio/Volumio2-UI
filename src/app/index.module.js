@@ -12,6 +12,7 @@ import PlayQueueService from './services/play-queue.service';
 import BrowseService from './services/browse.service';
 //import PlaylistService from './services/playlist.service';
 import SocketService from './services/socket.service';
+import ToastMessageService from './services/toast-message.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 
@@ -26,6 +27,9 @@ import SideMenuDirective from './components/side-menu/side-menu.directive';
 import KnobDirective from './components/knob/knob.directive';
 import MultiRoomDirective from './components/multi-room/multi-room.directive';
 
+import ModalController from './components/modal/modal.controller';
+import ModalService from './components/modal/modal.service';
+
 //Directives
 import PluginAttributesDirective from './plugin/elements/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
@@ -36,13 +40,16 @@ import VolumioController from './volumio/volumio.controller';
 
 import HeaderController from './header/header.controller';
 import FooterController from './footer/footer.controller';
+
 import SettingsController from './settings/settings.controller';
 import PluginController from './plugin/plugin.controller';
-
+import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
 import PlaybackController from './playback/playback.controller';
 import PlaylistController from './playlist/playlist.controller';
+
+
 
 // import MainController from './main/main.controller';
 // import GithubContributorService from '../app/components/githubContributor/githubContributor.service';
@@ -50,7 +57,23 @@ import PlaylistController from './playlist/playlist.controller';
 // import NavbarDirective from '../app/components/navbar/navbar.directive';
 // import MalarkeyDirective from '../app/components/malarkey/malarkey.directive';
 
-angular.module('volumio', ['ui.select','frapontillo.bootstrap-switch','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'ui.bootstrap'])
+angular.module('volumio', [
+  //Vendor module
+  'ui.bootstrap-slider',
+  'ui.bootstrap',
+  'toastr',
+  'ngDraggable',
+  'ui.select',
+  'frapontillo.bootstrap-switch',
+  'ui.bootstrap',
+  'ui.router',
+
+  //Angular core modules
+  'ngAnimate',
+  'ngCookies',
+  'ngTouch',
+  'ngSanitize'
+  ])
   // .constant('malarkey', malarkey)
   // .constant('toastr', toastr)
   //.constant('moment', moment)
@@ -69,8 +92,12 @@ angular.module('volumio', ['ui.select','frapontillo.bootstrap-switch','ngAnimate
   .service('browseService', BrowseService)
   //.service('playlistService', PlaylistService)
   .service('playQueueService', PlayQueueService)
+  .service('toastMessageService', ToastMessageService)
   .service('loggerService', LoggerService)
   .service('mockService', MockService)
+
+  .service('modalService', ModalService)
+
 
 
   .directive('playerButtons', () => new PlayerButtonsDirective())
@@ -89,11 +116,15 @@ angular.module('volumio', ['ui.select','frapontillo.bootstrap-switch','ngAnimate
   .controller('VolumioController', VolumioController)
   .controller('HeaderController', HeaderController)
   .controller('FooterController', FooterController)
+
   .controller('SettingsController', SettingsController)
   .controller('PluginController', PluginController)
+  .controller('MultiRoomManagerController', MultiRoomManagerController)
 
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlaylistController', PlaylistController)
+
+  .controller('ModalController', ModalController)
 
   ;
