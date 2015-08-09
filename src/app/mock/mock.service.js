@@ -45,7 +45,7 @@ class MockService {
         list: [
           {
             id: 'device_1',
-            host: 'http://192.168.0.17:3000',
+            host: 'http://192.168.0.120:3000',
             model: 'model Small',
             signal: 'low',
             name: 'Bedroom',

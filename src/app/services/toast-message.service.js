@@ -3,7 +3,6 @@ class ToastMessageService {
     'ngInject';
     this.socketService = socketService;
 
-    this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
     });
@@ -33,12 +32,12 @@ class ToastMessageService {
 
   registerListner() {
     this.socketService.on('pushToastMessage', (data) => {
-
+      //console.log(data);
+      this.showMessage(data.type, data.message, data.title);
     });
   }
 
   initService() {}
-
 }
 
 export default ToastMessageService;

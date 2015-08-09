@@ -27,8 +27,8 @@ class PluginController {
   }
 
   saveButton(item) {
-    console.info(item.onSave);
-    this.socketService.emit('callMethod', item.onSave);
+    console.info(item.onClick);
+    this.socketService.emit('callMethod', item.onClick);
   }
 
   init() {
@@ -38,7 +38,7 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-     console.log(data);
+     //console.log(data);
      this.pluginObj = data;
     });
   }

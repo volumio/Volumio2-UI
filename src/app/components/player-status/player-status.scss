@@ -1,9 +1,16 @@
-#playerStatus {
-  border: solid 0px red;
-  background-color: #999;
-  padding: 10px;
-  margin:10px 0px;
-  button {
-    @extend .btn, .btn-success;
+#playerStatusWrapper {
+  @include make-row();
+  @include noRowMargin;
+  border: solid 0px blue;
+  margin-bottom:10px;
+  #playerStatus {
+    @include make-sm-column(12);
+    background-color: #999;
+    padding: 10px;
+    border: solid 0px red;
+    button {
+      @extend .btn, .btn-success;
+    }
   }
+
 }

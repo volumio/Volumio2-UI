@@ -1,5 +1,5 @@
 <div id="multiRoomManager">
-  <div ng-repeat="device in multiRoomManager.devices"
+  <div ng-repeat="device in multiRoomManager.multiRoomService.devices.list"
       id="{{device.id}}"
       ng-drag="!device.child"
       ng-drag-success="onDragComplete($data, $event)"
@@ -10,7 +10,9 @@
       ng-drop="true"
       ng-drop-success="multiRoomManager.onDropComplete($data, device, $event)"
       >
-      <strong>{{device.name}} ({{device.state.status}})</strong><br>
+      <strong ng-class="{selected: device.host === multiRoomManager.socketService.host}">
+        {{device.name}} ({{device.state.status}})
+      </strong><br>
       <strong>Signal: </strong> {{device.signal}}<br>
       <strong>Host: </strong> {{device.host}}<br>
 

@@ -1,8 +1,9 @@
 class MultiRoomService {
-  constructor ($rootScope, socketService) {
+  constructor ($rootScope, socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
     this._devices = [];
+    this.mockService = mockService;
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -25,7 +26,9 @@ class MultiRoomService {
 
   registerListner() {
     this.socketService.on('pushMultiRoomDevices', (data) => {
-     console.log('pushMultiRoomDevices', data);
+     //console.log('pushMultiRoomDevices', data);
+     let devicesMock = this.mockService.get('getMultiRoomDevices');
+     data.list = data.list.concat(devicesMock.list)
      this.devices = data;
     });
   }

@@ -20,15 +20,24 @@ button {
   @extend .btn, .btn-success;
 }
 
-#content {
+#contentWrapper {
   @include make-row();
+  width: 100%;
   position: fixed;
   z-index: 1;
   top: $headerHeight;
   bottom: $footerHeight;
-  width: 100%;
   overflow: scroll;
   border: solid 0px blue;
+}
+
+#content {
+  //@include make-sm-column(12);
+}
+
+@mixin noRowMargin {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 div {

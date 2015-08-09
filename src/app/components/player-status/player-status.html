@@ -1,13 +1,7 @@
-<!-- <strong>status</strong>: {{vm.player.state.status}}
-<strong>volume</strong>: {{vm.player.state.volume}}
-<strong>current track</strong>: {{vm.player.state.currentTrack}}
-<strong>repeatTrack</strong>: {{vm.player.state._repeatTrack}}
-<strong>repeatAlbum</strong>: {{vm.player.state._repeatAlbum}}
-<strong>shuffle</strong>: {{vm.player.state._shuffle}}
-<strong>mute</strong>: {{vm.player.state._mute}}
- -->
- <div id="playerStatus" class="col-sm-12">
+<div id="playerStatusWrapper" class="">
+  <div id="playerStatus">
    <span ng-repeat="(key, val) in playerStatus.playerService.state">
      <strong>{{key}}: </strong> {{val}}
    </span>
- </div>
+  </div>
+</div>

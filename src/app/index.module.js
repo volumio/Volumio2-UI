@@ -1,17 +1,15 @@
 // global malarkey:false, toastr:false, moment:false */
 import config from './index.config';
 
-
 import routerConfig from './index.route';
 import runBlock from './index.run';
 
-
 // Services
-import PlayerService from './services/player.service';
-import PlayQueueService from './services/play-queue.service';
-import BrowseService from './services/browse.service';
-//import PlaylistService from './services/playlist.service';
 import SocketService from './services/socket.service';
+import PlayerService from './services/player.service';
+import BrowseService from './services/browse.service';
+import PlayQueueService from './services/play-queue.service';
+//import PlaylistService from './services/playlist.service';
 import MultiRoomService from './services/multi-room.service';
 import ToastMessageService from './services/toast-message.service';
 import LoggerService from './services/logger.service';
@@ -26,7 +24,7 @@ import PlayerStatusDirective from './components/player-status/player-status.dire
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
 import KnobDirective from './components/knob/knob.directive';
-import MultiRoomDirective from './components/multi-room/multi-room.directive';
+import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
 
 import ModalController from './components/modal/modal.controller';
 import ModalService from './components/modal/modal.service';
@@ -110,7 +108,7 @@ angular.module('volumio', [
   .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('sideMenu', () => new SideMenuDirective())
   .directive('knob', () => new KnobDirective())
-  .directive('multiRoom', () => new MultiRoomDirective())
+  .directive('multiRoomDock', () => new MultiRoomDockDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())

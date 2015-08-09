@@ -4,6 +4,7 @@ class PlayerStatusDirective {
 
     let directive = {
       restrict: 'E',
+      replace: false,
       templateUrl: 'app/components/player-status/player-status.html',
       scope: false,
       controller: PlayerStatusController,
