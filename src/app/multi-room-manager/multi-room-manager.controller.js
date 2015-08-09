@@ -1,11 +1,9 @@
 class MultiRoomManagerController {
-  constructor (socketService, mockService, toastMessageService) {
+  constructor (socketService, mockService, toastMessageService, multiRoomService) {
     'ngInject';
     this.socketService = socketService;
     this.toastMessageService = toastMessageService;
     this.devices = mockService.get('getMultiRoomDevices').list;
-
-    //this.init();
   }
 
   onDragComplete(data,event){
@@ -37,22 +35,6 @@ class MultiRoomManagerController {
     //this.socketService.emit('setMultiRoomDevices', this.devices);
     this.toastMessageService.showMessage('success',
         childDevice.name + ' rimosso dal gruppo ' + device.name);
-  }
-
-  init() {
-    this.registerListner();
-    this.initService();
-  }
-
-  registerListner() {
-    this.socketService.on('pushMultiRoomDevices', (data) => {
-     //console.log(data);
-     //this.devices = data;
-    });
-  }
-
-  initService() {
-    this.socketService.emit('getMultiRoomDevices');
   }
 }
 

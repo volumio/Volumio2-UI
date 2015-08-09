@@ -12,6 +12,7 @@ import PlayQueueService from './services/play-queue.service';
 import BrowseService from './services/browse.service';
 //import PlaylistService from './services/playlist.service';
 import SocketService from './services/socket.service';
+import MultiRoomService from './services/multi-room.service';
 import ToastMessageService from './services/toast-message.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
@@ -92,6 +93,7 @@ angular.module('volumio', [
   .service('browseService', BrowseService)
   //.service('playlistService', PlaylistService)
   .service('playQueueService', PlayQueueService)
+  .service('multiRoomService', MultiRoomService)
   .service('toastMessageService', ToastMessageService)
   .service('loggerService', LoggerService)
   .service('mockService', MockService)

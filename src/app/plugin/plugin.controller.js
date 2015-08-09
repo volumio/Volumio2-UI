@@ -44,10 +44,8 @@ class PluginController {
   }
 
   initService() {
-    //this.socketService.emit('playerInit');
-    let testObj = {"page": "network"};
-    //console.log(testObj);
-    this.socketService.emit('getUiConfig', testObj);
+    this.socketService.emit('getUiConfig',
+        {"page": this.$stateParams.pluginName});
   }
 }
 
