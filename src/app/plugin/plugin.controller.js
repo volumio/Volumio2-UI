@@ -9,33 +9,26 @@ class PluginController {
   }
 
   saveSection(section) {
-    let saveObj = {
-      method: section.onSave,
-      plugin: section.plugin
-    };
-    if (section.saveButton.values) {
-      let values = {};
-      section.saveButton.values.forEach((value) => {
+    let saveObj = section.onSave;
+    if (section.saveButton.data) {
+      let data = {};
+      section.saveButton.data.forEach((value) => {
         let item = section.content.filter((item) => {
           return item.id === value;
         })[0];
         if (item) {
-          values[value] = item.value;
+          data[value] = item.value;
         }
       });
-      saveObj.values = values;
+      saveObj.data = data;
     }
     console.info(saveObj);
-    this.socketService.emit('callPluginMethod', JSON.stringify(saveObj));
+    this.socketService.emit('callMethod', saveObj);
   }
 
   saveButton(item) {
-    let saveObj = {
-      method: item.onClick,
-      plugin: item.plugin
-    };
-    console.info(saveObj);
-    this.socketService.emit('callPluginMethod', saveObj);
+    console.info(item.onSave);
+    this.socketService.emit('callMethod', item.onSave);
   }
 
   init() {
@@ -45,14 +38,14 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-     //console.log(data);
+     console.log(data);
      this.pluginObj = data;
     });
   }
 
   initService() {
     //this.socketService.emit('playerInit');
-    let testObj = '{"page": "network"}';
+    let testObj = {"page": "network"};
     //console.log(testObj);
     this.socketService.emit('getUiConfig', testObj);
   }

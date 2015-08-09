@@ -154,7 +154,11 @@ class MockService {
             "element": "section",
             "label": "Player name",
             "plugin": "settings/playback_conf",
-            "onSave": "savePlayerName",
+            "onSave": {
+              "type":"plugin",
+              "endpoint":"music_services/spop",
+              "method":"saveSpopConf"
+            },
             "saveButton": {
               "label": "salva",
               "values": [
@@ -179,8 +183,11 @@ class MockService {
             "element": "section",
             "label": "Services management",
             "description": "Enable or disable certain Volumio functionalities",
-            "plugin": "/settings/playback_conf",
-            "onSave": "saveServicesManagement",
+            "onSave": {
+              "type":"plugin",
+              "endpoint":"music_services/spop",
+              "method":"saveSpopConf"
+            },
             "saveButton": {
               "label": "salva",
               "values": [
@@ -223,8 +230,11 @@ class MockService {
             "element": "section",
             "label": "Streaming services",
             "description": "Enable or disable Spotify Streaming services",
-            "plugin": "/settings/playback_conf",
-            "onSave": "saveStreamingServices",
+            "onSave": {
+              "type":"plugin",
+              "endpoint":"music_services/spop",
+              "method":"saveSpopConf"
+            },
             "saveButton": {
               "label": "salva",
               "values": [
@@ -278,8 +288,11 @@ class MockService {
             "type": "section",
             "label": "Sound quality tweaks",
             "description": "These profiles??.",
-            "plugin": "/settings/playback_conf",
-            "onSave": "saveSoundQuality",
+            "onSave": {
+              "type":"plugin",
+              "endpoint":"music_services/spop",
+              "method":"saveSpopConf"
+            },
             "saveButton": {
               "label": "salva",
               "values": [
@@ -323,8 +336,11 @@ class MockService {
                 "element": "button",
                 "label": "System updates",
                 "description": "You can check?...",
-                "plugin": "/settings/playback_conf",
-                "onClick": "systemUpdate"
+                "onSave": {
+                  "type":"plugin",
+                  "endpoint":"music_services/spop",
+                  "method":"saveSpopConf"
+                }
               }
             ]
           }
