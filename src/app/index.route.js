@@ -3,13 +3,17 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('volumio', {
       url: '/',
+      abstract: true,
       views: {
-        'header': {
+        'layout': {
+          templateUrl: 'app/layout.html',
+        },
+        'header@volumio': {
           templateUrl: 'app/header/header.html',
           controller: 'HeaderController',
           controllerAs: 'header'
         },
-        'footer': {
+        'footer@volumio': {
           templateUrl: 'app/footer/footer.html',
           controller: 'FooterController',
           controllerAs: 'footer'
@@ -38,7 +42,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('volumio.browse', {
       url: 'browse',
       views: {
-        'content@': {
+        'content@volumio': {
           templateUrl: 'app/browse/browse.html',
           controller: 'BrowseController',
           controllerAs: 'browse'
@@ -49,7 +53,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('volumio.playlist', {
       url: 'playlist',
       views: {
-        'content@': {
+        'content@volumio': {
           templateUrl: 'app/playlist/playlist.html',
           controller: 'PlaylistController',
           controllerAs: 'playlist'
@@ -60,7 +64,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('volumio.playback', {
       url: 'playback',
       views: {
-        'content@': {
+        'content@volumio': {
           templateUrl: 'app/playback/playback.html',
           controller: 'PlaybackController',
           controllerAs: 'playback'
@@ -71,7 +75,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('volumio.components', {
       url: 'components',
       views: {
-        'content@': {
+        'content@volumio': {
           templateUrl: 'app/settings/components.html',
           controller: 'SettingsController',
           controllerAs: 'settings'
@@ -82,7 +86,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('volumio.multi-room', {
       url: 'multi-room',
       views: {
-        'content@': {
+        'content@volumio': {
           templateUrl: 'app/multi-room-manager/multi-room-manager.html',
           controller: 'MultiRoomManagerController',
           controllerAs: 'multiRoomManager'
@@ -93,7 +97,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('volumio.plugin', {
       url: 'plugin/:pluginName',
       views: {
-        'content@': {
+        'content@volumio': {
           templateUrl: 'app/plugin/plugin.html',
           controller: 'PluginController',
           controllerAs: 'plugin'

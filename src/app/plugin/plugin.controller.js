@@ -5,6 +5,7 @@ class PluginController {
     //console.log($stateParams);
     this.$stateParams = $stateParams;
     //this.pluginObj = mockService.get('getSettings');
+    //console.log(this.pluginObj);
     this.init();
   }
 
@@ -38,7 +39,7 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-     //console.log(data);
+     console.log(data);
      this.pluginObj = data;
     });
   }

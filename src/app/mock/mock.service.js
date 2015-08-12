@@ -161,7 +161,7 @@ class MockService {
             },
             "saveButton": {
               "label": "salva",
-              "values": [
+              "data": [
                 "playerName"
               ]
             },
@@ -190,7 +190,7 @@ class MockService {
             },
             "saveButton": {
               "label": "salva",
-              "values": [
+              "data": [
                 "airplay",
                 "upnp",
                 "upnp_dlna_indexing",
@@ -203,25 +203,25 @@ class MockService {
                 "element": "switch",
                 "label": "Airplay",
                 "description": "Apple airplay",
-                "value": "true"
+                "value": true
               },
               {
                 "id": "upnp",
                 "element": "switch",
                 "label": "UPNP Control",
-                "value": "true"
+                "value": true
               },
               {
                 "id": "upnp_dlna_indexing",
                 "element": "switch",
                 "label": "UPNP/DLNA Indexing",
-                "value": "true"
+                "value": true
               },
               {
                 "id": "dlna_library",
                 "element": "switch",
                 "label": "DLNA Library Server",
-                "value": "true"
+                "value": true
               }
             ]
           },
@@ -237,7 +237,7 @@ class MockService {
             },
             "saveButton": {
               "label": "salva",
-              "values": [
+              "data": [
                 "spotify_service",
                 "spotify_username",
                 "spotify_password",
@@ -249,7 +249,7 @@ class MockService {
                 "id": "spotify_service",
                 "element": "switch",
                 "label": "Spotify Service",
-                "value": "true"
+                "value": true
               },
               {
                 "id": "spotify_username",
@@ -259,12 +259,12 @@ class MockService {
                     "placeholder": "Type your spotify username"
                   },
                   {
-                    "maxlength": "5"
+                    "maxlength": 5
                   }
                 ],
                 "label": "Username",
                 "value": "",
-                "visibleIf": {"field":"spotify_service", "value": "true"}
+                "visibleIf": {"field":"spotify_service", "value": true}
               },
               {
                 "id": "spotify_password",
@@ -272,14 +272,14 @@ class MockService {
                 "type": "password",
                 "label": "Password",
                 "value": "dusdhsudhsu",
-                "visibleIf": {"field":"spotify_service", "value": "true"}
+                "visibleIf": {"field":"spotify_service", "value": true}
               },
               {
                 "id": "prefer_high_quality",
                 "element": "switch",
                 "label": "Prefer high quality music",
                 "value": "false",
-                "visibleIf": {"field":"spotify_service", "value": "true"}
+                "visibleIf": {"field":"spotify_service", "value": true}
               }
             ]
           },
@@ -295,7 +295,7 @@ class MockService {
             },
             "saveButton": {
               "label": "salva",
-              "values": [
+              "data": [
                 "kernel_profile"
               ]
             },
@@ -304,22 +304,22 @@ class MockService {
                 "id": "kernel_profile",
                 "element": "select",
                 "label": "Kernel profile",
-                "value": {"value":"2","label":"Less Jitter"},
+                "value": {"value": 2 ,"label":"Less Jitter"},
                 "options": [
                   {
-                    "value":"1",
+                    "value": 1,
                     "label": "Default"
                   },
                   {
-                    "value":"2",
+                    "value": 2,
                     "label": "Less Jitter"
                   },
                   {
-                    "value":"3",
+                    "value": 3,
                     "label": "Jitter"
                   },
                   {
-                    "value":"4",
+                    "value": 4,
                     "label": "Focus"
                   }
                 ]
@@ -337,9 +337,9 @@ class MockService {
                 "label": "System updates",
                 "description": "You can check?...",
                 "onSave": {
-                  "type":"plugin",
-                  "endpoint":"music_services/spop",
-                  "method":"saveSpopConf"
+                  "type": "plugin",
+                  "endpoint": "music_services/spop",
+                  "method": "saveSpopConf"
                 }
               }
             ]

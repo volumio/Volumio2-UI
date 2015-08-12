@@ -5,7 +5,7 @@ class PluginAttributesDirective {
     let directive = {
       restrict: 'A',
       scope: {
-        attributes: '='
+        pluginAttributes: '='
       },
       controller: PluginAttributesController,
       controllerAs: 'attributes',
@@ -19,8 +19,8 @@ class PluginAttributesDirective {
 class PluginAttributesController {
   constructor ($element) {
     'ngInject';
-    if (this.attributes) {
-      this.attributes.forEach((attribute) => {
+    if (this.pluginAttributes) {
+      this.pluginAttributes.forEach((attribute) => {
         let key = Object.keys(attribute)[0];
         $element.attr(key, attribute[key]);
       });

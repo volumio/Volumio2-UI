@@ -45,7 +45,7 @@ class PlayQueueService {
 
   registerListner() {
     this.socketService.on('volumioPushQueue', (queue) => {
-    	console.log(queue);
+      //console.log(queue);
       this._queue = queue;
     });
   }
