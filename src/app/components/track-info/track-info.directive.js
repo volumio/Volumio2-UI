@@ -4,7 +4,7 @@ class TrackInfoDirective {
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/track-info/track-info.html',
+      templateUrl: 'app/themes/axiom/components/track-info/axiom-track-info.html',
       scope: false,
       controller: TrackInfoController,
       controllerAs: 'trackInfo',

@@ -1,0 +1,8 @@
+#sources {
+  @include make-sm-column(5);
+
+}
+#playerInfoAndControls {
+  @include make-sm-column(5);
+  @include make-sm-column-offset(2);
+}

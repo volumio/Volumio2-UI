@@ -1,4 +1,4 @@
-function routerConfig ($stateProvider, $urlRouterProvider) {
+function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider) {
   'ngInject';
   $stateProvider
     .state('volumio', {
@@ -6,15 +6,15 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
       abstract: true,
       views: {
         'layout': {
-          templateUrl: 'app/layout.html',
+          templateUrl: themeManagerProvider.getHtmlPath('layout', '')
         },
         'header@volumio': {
-          templateUrl: 'app/header/header.html',
+          templateUrl: themeManagerProvider.getHtmlPath('header'),
           controller: 'HeaderController',
           controllerAs: 'header'
         },
         'footer@volumio': {
-          templateUrl: 'app/footer/footer.html',
+          templateUrl: themeManagerProvider.getHtmlPath('footer'),
           controller: 'FooterController',
           controllerAs: 'footer'
         }
@@ -65,7 +65,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
       url: 'playback',
       views: {
         'content@volumio': {
-          templateUrl: 'app/playback/playback.html',
+          templateUrl: themeManagerProvider.getHtmlPath('playback'),
           controller: 'PlaybackController',
           controllerAs: 'playback'
         }
@@ -105,7 +105,7 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
       }
     });
 
-  $urlRouterProvider.otherwise('/playlist');
+  $urlRouterProvider.otherwise('/playback');
 }
 
 export default routerConfig;

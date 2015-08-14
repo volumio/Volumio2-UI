@@ -15,6 +15,9 @@ import ToastMessageService from './services/toast-message.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 
+//Providers
+import ThemeManagerProvider from './services/theme-manager.provider';
+
 // Components
 import PlayerButtonsDirective from './components/player-buttons/player-buttons.directive';
 import VolumeManagerDirective from './components/volume-manager/volume-manager.directive';
@@ -73,9 +76,16 @@ angular.module('volumio', [
   'ngTouch',
   'ngSanitize'
   ])
-  // .constant('malarkey', malarkey)
-  // .constant('toastr', toastr)
+
+
+  .constant('UI_CONF', {
+    theme: {
+      name: 'volumio'
+    }
+  })
+  //.constant('', toastr)
   //.constant('moment', moment)
+
   .config(config)
   .config(routerConfig)
 
@@ -98,7 +108,7 @@ angular.module('volumio', [
 
   .service('modalService', ModalService)
 
-
+  .provider('themeManager', ThemeManagerProvider)
 
   .directive('playerButtons', () => new PlayerButtonsDirective())
   .directive('volumeManager', () => new VolumeManagerDirective())

@@ -1,0 +1,55 @@
+$panelTitleColor: #00aeef;
+$backgroundColor: #054467;
+
+
+#axiom{
+  font-family: 'HelveticaNeueLTStd-Ex', Helvetica, Arial, sans-serif;
+  color: #4E5C67;
+  font-size: 20px;
+  text-transform: uppercase;
+  background: #054467 url(/app/themes/axiom/assets/ui/inner-bg2.jpg) center top no-repeat;
+
+  #contentWrapper{
+    background: url(/app/themes/axiom/assets/ui/inner-bg-top.jpg) center top no-repeat;
+  }
+  #audioSourcesList {
+    @include make-sm-column(4);
+  }
+  .aPanel{
+    background: url(/app/themes/axiom/assets/ui/content-bg.png) 0 0 / cover no-repeat;
+    box-shadow: 0 0 30px rgba(2,99,154,.75);
+    ul {
+      padding:0px;
+      margin:0px;
+      a.selected {
+        font-size: 20px;
+        background: url(/app/themes/axiom/assets/ui/title-bg.jpg) 0 0 / cover no-repeat;
+        color: #00aeef;
+        margin: 0;
+      }
+      li {
+        list-style: none;
+
+        background: url(/app/themes/axiom/assets/ui/content-title-inactive.png) 0 0 / cover no-repeat;
+      }
+      a {
+        display: block;
+        padding: 15px 0 15px 30px;
+        color: #FFF;
+        text-decoration: none;
+      }
+    }
+  }
+  // color: blue;
+  //
+  // .panel {
+  //   box-shadow: 0 0 30px rgba(2,99,154,.75);
+  //   h2 {
+  //     padding: 15px 0 15px 30px;
+  //     margin: 0px;
+  //     font-size: 20px;
+  //     color: $panelTitleColor;
+  //     text-transform: uppercase;
+  //   }
+  // }
+}
