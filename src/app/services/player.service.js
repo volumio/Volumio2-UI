@@ -23,23 +23,23 @@ class PlayerService {
     // METHODS -----------------------------------------------------------------
   play() {
     console.log('play');
-    this.socketService.emit('volumioPlay');
+    this.socketService.emit('play');
   }
 
   pause() {
-    this.socketService.emit('volumioPause');
+    this.socketService.emit('pause');
   }
 
   stop() {
-    this.socketService.emit('volumioStop');
+    this.socketService.emit('stop');
   }
 
   previus() {
-    this.socketService.emit('volumioPrevious');
+    this.socketService.emit('previous');
   }
 
   next() {
-    this.socketService.emit('volumioNext');
+    this.socketService.emit('next');
   }
 
   shuffle() {
@@ -59,7 +59,7 @@ class PlayerService {
   }
 
   rebuildLibrary() {
-    this.socketService.emit('volumioRebuildLibrary');
+    this.socketService.emit('rebuildLibrary');
   }
 
 
@@ -120,7 +120,7 @@ class PlayerService {
   }
 
   registerListner() {
-    this.socketService.on('volumioPushState', (data) => {
+    this.socketService.on('pushState', (data) => {
      //console.log(data);
      this.state = data;
 
@@ -129,7 +129,7 @@ class PlayerService {
 
   initService() {
     //this.socketService.emit('playerInit');
-    this.socketService.emit('volumioGetState');
+    this.socketService.emit('getState');
   }
 }
 

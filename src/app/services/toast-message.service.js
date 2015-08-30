@@ -1,7 +1,8 @@
 class ToastMessageService {
-  constructor ($rootScope, socketService) {
+  constructor ($rootScope, toastr, socketService) {
     'ngInject';
     this.socketService = socketService;
+    this.toastr = toastr;
 
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -11,16 +12,16 @@ class ToastMessageService {
   showMessage(type, message, title) {
     switch (type) {
       case 'success':
-        toastr.success(message, title);
+        this.toastr.success(message, title);
         break;
       case 'info':
-        toastr.info(message, title);
+        this.toastr.info(message, title);
         break;
       case 'warning':
-        toastr.warning(message, title);
+        this.toastr.warning(message, title);
         break;
       case 'error':
-        toastr.error(message, title);
+        this.toastr.error(message, title);
         break;
     }
   }

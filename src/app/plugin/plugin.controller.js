@@ -46,7 +46,7 @@ class PluginController {
 
   initService() {
     this.socketService.emit('getUiConfig',
-        {"page": this.$stateParams.pluginName});
+        {"page": this.$stateParams.pluginName.replace('-','/')});
   }
 }
 

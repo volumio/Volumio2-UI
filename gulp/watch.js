@@ -27,6 +27,7 @@ gulp.task('watch', ['scripts:watch', 'inject'], function () {
 
 
   gulp.watch(path.join(conf.paths.src, '/app/**/*.html'), function(event) {
+    console.log('browserSync.reload', event.path);
     browserSync.reload(event.path);
   });
 });

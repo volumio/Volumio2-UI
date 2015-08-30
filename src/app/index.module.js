@@ -51,14 +51,6 @@ import BrowseController from './browse/browse.controller';
 import PlaybackController from './playback/playback.controller';
 import PlaylistController from './playlist/playlist.controller';
 
-
-
-// import MainController from './main/main.controller';
-// import GithubContributorService from '../app/components/githubContributor/githubContributor.service';
-// import WebDevTecService from '../app/components/webDevTec/webDevTec.service';
-// import NavbarDirective from '../app/components/navbar/navbar.directive';
-// import MalarkeyDirective from '../app/components/malarkey/malarkey.directive';
-
 angular.module('volumio', [
   //Vendor module
   'ui.bootstrap-slider',

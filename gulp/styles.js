@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var gutil = require('gulp-util');
 
 var browserSync = require('browser-sync');
 
@@ -15,6 +16,9 @@ gulp.task('styles', function () {
   var sassOptions = {
     style: 'expanded'
   };
+
+  var theme = gutil.env.theme ? gutil.env.theme : 'volumio';
+  console.log('Theme', theme);
 
   var injectFiles = gulp.src([
     path.join(conf.paths.src, '/app/**/*.scss'),
@@ -37,10 +41,11 @@ gulp.task('styles', function () {
   ])
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
+    //.pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
     .pipe($.sourcemaps.init())
     .pipe($.sass(sassOptions)).on('error', conf.errorHandler('Sass'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')))
     .pipe(browserSync.reload({ stream: true }));
-});
+ });

@@ -27,7 +27,7 @@ class PluginVisibleController {
       $scope.$watch(() => {
         return fieldToWatch.value;
       }, (val) => {
-        console.log(typeof val, val, typeof this.pluginVisible.value, this.pluginVisible.value);
+        //console.log(typeof val, val, typeof this.pluginVisible.value, this.pluginVisible.value);
         if (val === this.pluginVisible.value) {
           $element.fadeIn(300);
         } else {

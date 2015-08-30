@@ -2,10 +2,11 @@
 <html ng-app="volumio">
   <head>
     <meta charset="utf-8">
-    <title>volumio</title>
+    <title>Volumio</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
     <!-- bower:css -->
@@ -18,7 +19,8 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
-    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+
+
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -31,6 +33,7 @@
     <!-- bower:js -->
     <!-- run `gulp inject` to automatically populate bower script dependencies -->
     <!-- endbower -->
+    <script src="/app/lib/socket/socket.io-1.3.6.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp/serve,.tmp/partials}) scripts/app.js -->
