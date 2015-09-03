@@ -5,6 +5,8 @@ class PlayerService {
     this.socketService = socketService;
 
     this.state = null;
+    this.trackInfo = null;
+    this.seek = null;
 
     this._volume = 80;
     this._volumeStep = 10;
@@ -35,7 +37,7 @@ class PlayerService {
   }
 
   previus() {
-    this.socketService.emit('previous');
+    this.socketService.emit('prev');
   }
 
   next() {
@@ -60,24 +62,6 @@ class PlayerService {
 
   rebuildLibrary() {
     this.socketService.emit('rebuildLibrary');
-  }
-
-
-    // GETTER & SETTER ---------------------------------------------------------
-  // get status() {
-  //   return this._state.status;
-  // }
-  //
-  // set status(status) {
-  //   //this._status = status;
-  // }
-
-  get currentTrack() {
-    return this._currentTrack;
-  }
-
-  set currentTrack(track) {
-    this._currentTrack = track;
   }
 
 
@@ -121,15 +105,23 @@ class PlayerService {
 
   registerListner() {
     this.socketService.on('pushState', (data) => {
-     //console.log(data);
-     this.state = data;
-
+      console.log('pushState', data);
+      this.state = data;
+    });
+    this.socketService.on('pushTrackInfo', (data) => {
+      console.log('pushTrackInfo', data);
+      this.trackInfo = data;
+    });
+    this.socketService.on('pushGetSeek', (data) => {
+      console.log('pushGetSeek', data);
+      this.seek = data;
     });
   }
 
   initService() {
-    //this.socketService.emit('playerInit');
     this.socketService.emit('getState');
+    this.socketService.emit('getTrackInfo');
+    this.socketService.emit('getSeek');
   }
 }
 

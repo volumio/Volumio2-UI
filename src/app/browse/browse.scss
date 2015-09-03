@@ -3,6 +3,10 @@
     @include make-row();
   }
   #browseList{
-    @include make-row();
+    //@include make-row();
+  }
+
+  #browseTable{
+    @include make-sm-column(12);
   }
 }

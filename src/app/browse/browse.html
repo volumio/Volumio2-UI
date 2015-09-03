@@ -9,11 +9,44 @@
   </div>
   <div id="browseSources">
     <button
-        ng-repeat="source in browse.browseService.sources">
+        ng-repeat="source in browse.browseService.sources"
+        ng-click="browse.fetchLibrary(source)">
         {{source.name}}
     </button>
   </div>
+  <br><br>
+  <div class="">
+    <button
+        ng-repeat="breadcrumb in browse.browseService.breadcrumbs"
+        ng-click="browse.fetchLibrary({uri: breadcrumb})"
+        href>
+        Back
+    </button>
+  </div>
+  <br><br>
   <div id="browseList">
-    {{browse.browseService.list}}
+    <table id="browseTable" class="table table-hover table-condensed">
+      <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th><span>Album</span></th>
+        <th><span>Artist</span></th>
+        <th></th>
+      </tr>
+      <tr ng-repeat="item in browse.browseService.list">
+        <td>
+          <img ng-if="item.image" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
+          <i ng-if="item.icon" class="{{item.icon}}"></i>
+        </td>
+        <td>{{item.title}}</td>
+        <td>{{item.album}}</td>
+        <td>{{item.artist}}</td>
+        <td>
+          <button ng-if="item.type !== 'song'" ng-click="browse.fetchLibrary(item)">Enter</button>
+          <button ng-if="item.type === 'song'" ng-click="">Play</button>
+        </td>
+      </tr>
+    </table>
+
   </div>
 </div>

@@ -1,24 +1,26 @@
 <div id="trackInfo">
-  <div ng-if="trackInfo.playerService.state.dynamictitle">
-    {{trackInfo.playerService.state.dynamictitle}}
+  <div ng-if="trackInfo.playerService.trackInfo.artist">
+    <strong>Artist:</strong> {{trackInfo.playerService.trackInfo.artist}}
   </div>
-  <div ng-if="trackInfo.playerService.state.artist">
-    <strong>Artist:</strong> {{trackInfo.playerService.state.artist}}
+  <div ng-if="trackInfo.playerService.trackInfo.title">
+    <strong>Track:</strong> {{trackInfo.playerService.trackInfo.title}}
   </div>
-  <div ng-if="trackInfo.playerService.state.track">
-    <strong>Track:</strong> {{trackInfo.playerService.state.track}}
-  </div>
-  <div ng-if="trackInfo.playerService.state.album">
-    <strong>Album:</strong> {{trackInfo.playerService.state.album}}
+  <div ng-if="trackInfo.playerService.trackInfo.album">
+    <strong>Album:</strong> {{trackInfo.playerService.trackInfo.album}}
   </div>
 
-  <div ng-if="trackInfo.playerService.state.service">
-    <strong>Service:</strong> {{trackInfo.playerService.state.service}}
+  <div ng-if="trackInfo.playerService.trackInfo.albumart">
+    <img ng-src="{{trackInfo.playerService.trackInfo.albumart}}"
+        alt="{{trackInfo.playerService.trackInfo.album}}" />
   </div>
-  <div ng-if="trackInfo.playerService.state.samplerate">
-    <strong>Samplerate:</strong> {{trackInfo.playerService.state.samplerate}}
+
+  <div ng-if="trackInfo.playerService.status.service">
+    <strong>Service:</strong> {{trackInfo.playerService.status.service}}
   </div>
-  <div ng-if="trackInfo.playerService.state.channels">
-    <strong>Channels:</strong> {{trackInfo.playerService.state.channels}}
+  <div ng-if="trackInfo.playerService.status.samplerate">
+    <strong>Samplerate:</strong> {{trackInfo.playerService.status.samplerate}}
+  </div>
+  <div ng-if="trackInfo.playerService.status.channels">
+    <strong>Channels:</strong> {{trackInfo.playerService.status.channels}}
   </div>
 </div>

@@ -44,14 +44,14 @@ class PlayQueueService {
   }
 
   registerListner() {
-    this.socketService.on('volumioPushQueue', (queue) => {
-      //console.log(queue);
-      this._queue = queue;
+    this.socketService.on('pushQueue', (data) => {
+      console.log('pushQueue', data);
+      this._queue = data;
     });
   }
 
   initService() {
-    this.socketService.emit('volumioGetQueue');
+    this.socketService.emit('getQueue');
   }
 }
 
