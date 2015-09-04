@@ -1,16 +1,14 @@
 class TrackInfoDirective {
-  constructor () {
+  constructor (themeManager) {
     'ngInject';
-
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/themes/axiom/components/track-info/axiom-track-info.html',
+      templateUrl: 'app/components/track-info/track-info.html',
       scope: false,
       controller: TrackInfoController,
       controllerAs: 'trackInfo',
       bindToController: true
     };
-
     return directive;
   }
 }

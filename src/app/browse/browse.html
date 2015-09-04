@@ -42,8 +42,12 @@
         <td>{{item.album}}</td>
         <td>{{item.artist}}</td>
         <td>
-          <button ng-if="item.type !== 'song'" ng-click="browse.fetchLibrary(item)">Enter</button>
-          <button ng-if="item.type === 'song'" ng-click="">Play</button>
+          <button ng-if="item.type !== 'song'" ng-click="browse.fetchLibrary(item)">
+            Enter
+          </button>
+          <button ng-if="item.type === 'song'" ng-click="browse.playQueueService.add(item)">
+            Add to queue
+          </button>
         </td>
       </tr>
     </table>

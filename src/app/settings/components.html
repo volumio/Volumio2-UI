@@ -53,6 +53,19 @@
   TODO
   <br>
 
+  <div class="hide">
+    <h3>Test API</h3>
+    <input type="text" ng-model="settings.apiMethod">
+    <input type="text" ng-model="settings.apiParams">
+    <button type="button" name="button" class="btn-danger"
+        ng-click="settings.callApi()">
+      Call API
+    </button>
+    <br>
+  </div>
+
+
+
   <h3>Logger</h3>
   <player-logger></player-logger>
 </div>

@@ -1,8 +1,17 @@
 class ThemeManagerProvider {
-  constructor (UI_CONF) {
+  constructor () {
     'ngInject';
-    this.UI_CONF = UI_CONF;
-    angular.element('body').attr('id', this.UI_CONF.theme.name);
+    this._theme = 'volumio';
+    angular.element('body').attr('id', this._theme);
+  }
+
+  set theme(theme) {
+    console.log(theme);
+    this._theme = theme;
+  }
+
+  get theme() {
+    return this._theme;
   }
 
   getHtmlPath(filename, folder) {
@@ -11,12 +20,12 @@ class ThemeManagerProvider {
     } else if (!folder){
       folder = filename;
     }
-    if (this.UI_CONF.theme.name === 'volumio') {
+    if (this.theme === 'volumio') {
       return 'app/' + ((folder)? folder + '/' : '' ) + filename + '.html';
     } else {
-      return 'app/themes/' + this.UI_CONF.theme.name + '/' +
+      return 'app/themes/' + this.theme + '/' +
           ((folder)? folder + '/' : '' ) +
-          this.UI_CONF.theme.name + '-' + filename + '.html';
+          this.theme + '-' + filename + '.html';
     }
   }
 

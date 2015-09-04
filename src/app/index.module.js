@@ -69,12 +69,6 @@ angular.module('volumio', [
   'ngSanitize'
   ])
 
-
-  .constant('UI_CONF', {
-    theme: {
-      name: 'volumio'
-    }
-  })
   //.constant('', toastr)
   //.constant('moment', moment)
 

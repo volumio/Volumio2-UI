@@ -1,5 +1,7 @@
 function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider) {
   'ngInject';
+  //console.log(themeManagerProvider.theme);
+
   $stateProvider
     .state('volumio', {
       url: '/',

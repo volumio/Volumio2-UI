@@ -11,12 +11,14 @@ class PlayQueueService {
     });
   }
 
-  add() {
-    // TODO add and update the queue
+  add(item) {
+    console.log('addToQueue', item);
+    this.socketService.emit('addToQueue', {uri: item.uri});
   }
 
-  remove(trackIndex) {
-    this.socketService.emit('volumioRemoveQueueItem', trackIndex);
+  remove(index) {
+    console.log('removeFromQueue', index);
+    this.socketService.emit('removeFromQueue', index);
   }
 
   clearAll() {

@@ -1,12 +1,15 @@
 class PlayerService {
-  constructor ($rootScope, $log, socketService) {
+  constructor ($rootScope, $log, $interval, socketService) {
     'ngInject';
     this.$log = $log;
+    this.$interval = $interval;
     this.socketService = socketService;
 
     this.state = null;
     this.trackInfo = null;
-    this.seek = null;
+
+    this.seek = 0;
+    this.thick = 500;
 
     this._volume = 80;
     this._volumeStep = 10;
@@ -29,10 +32,13 @@ class PlayerService {
   }
 
   pause() {
+    this.$interval.cancel(this.intervalHandler);
     this.socketService.emit('pause');
   }
 
   stop() {
+    this.$interval.cancel(this.intervalHandler);
+    this.seekPercent = 0;
     this.socketService.emit('stop');
   }
 
@@ -79,6 +85,21 @@ class PlayerService {
     this.socketService.emit('volume', 'mute');
   }
 
+  calculateSeekPercent() {
+    return Math.floor((this.elapsedTime / 1000) / this.state.duration * 100);
+  }
+
+  startSeek() {
+    if(this.intervalHandler) {
+      this.$interval.cancel(this.intervalHandler);
+    }
+    this.elapsedTime = this.state.seek;
+    this.intervalHandler = this.$interval(() => {
+      this.elapsedTime = (this.elapsedTime + this.thick);
+      this.seekPercent = this.calculateSeekPercent();
+    }, this.thick);
+  }
+
 
     // GETTER & SETTER ---------------------------------------------------------
   get volume() {
@@ -107,6 +128,9 @@ class PlayerService {
     this.socketService.on('pushState', (data) => {
       console.log('pushState', data);
       this.state = data;
+      if (this.state.status === 'play') {
+        this.startSeek();
+      }
     });
     this.socketService.on('pushTrackInfo', (data) => {
       console.log('pushTrackInfo', data);
