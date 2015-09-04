@@ -1,10 +1,11 @@
 <div id="trackManager">
   <div>
+    {{trackManager.playerService.seekPercent}}
     <slider
       ng-model="trackManager.playerService.seekPercent"
       min="0"
       step="1"
-      max="100"
+      max="1000"
       slider-tooltip="hide">
     </slider>
   </div>

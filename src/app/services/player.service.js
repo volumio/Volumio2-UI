@@ -9,7 +9,7 @@ class PlayerService {
     this.trackInfo = null;
 
     this.seek = 0;
-    this.thick = 500;
+    this.thick = 200;
 
     this._volume = 80;
     this._volumeStep = 10;
@@ -86,7 +86,7 @@ class PlayerService {
   }
 
   calculateSeekPercent() {
-    return Math.floor((this.elapsedTime / 1000) / this.state.duration * 100);
+    return Math.floor((this.elapsedTime / 1000) / this.state.duration * 100 * 10) ;
   }
 
   startSeek() {
