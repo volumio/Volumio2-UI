@@ -1,13 +1,17 @@
 <div id="trackManager">
   <div>
-    {{trackManager.playerService.seekPercent}}
-    <slider
-      ng-model="trackManager.playerService.seekPercent"
-      min="0"
-      step="1"
-      max="1000"
-      slider-tooltip="hide">
-    </slider>
+    {{trackManager.playerService.elapsedTimeString}}
+    <div id="" style="position:relative;">
+      <slider
+        ng-model="trackManager.playerService.seekPercent"
+        id=""
+        min="0"
+        step="1"
+        max="1000"
+        slider-tooltip="hide">
+      </slider>
+    </div>
+
   </div>
   <div>
     <strong>repeatTrack</strong>: {{trackManager.playerService.repeatTrack}}

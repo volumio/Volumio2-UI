@@ -4,7 +4,7 @@
   "dependencies": {
     "angular": "~1.4.0",
     "angular-animate": "~1.4.0",
-    "angular-bootstrap": "~0.13.2",
+    "angular-bootstrap": "~0.13.4",
     "angular-bootstrap-slider": "~0.1.17",
     "angular-bootstrap-switch": "~0.4.1",
     "angular-cookies": "~1.4.0",

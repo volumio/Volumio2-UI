@@ -1,4 +1,4 @@
-<div id="browse">
+ <div id="browse">
   <div id="browseButtons">
     <button
         ng-repeat="filter in browse.browseService.filters"
@@ -33,21 +33,41 @@
         <th><span>Artist</span></th>
         <th></th>
       </tr>
-      <tr ng-repeat="item in browse.browseService.list">
+      <tr ng-repeat="item in browse.browseService.list"
+          ng-dblclick="browse.dblClickListItem(item, $event)">
         <td>
           <img ng-if="item.image" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
           <i ng-if="item.icon" class="{{item.icon}}"></i>
         </td>
-        <td>{{item.title}}</td>
+        <td>{{item.title}} - {{item.type}}</td>
         <td>{{item.album}}</td>
         <td>{{item.artist}}</td>
         <td>
-          <button ng-if="item.type !== 'song'" ng-click="browse.fetchLibrary(item)">
-            Enter
-          </button>
-          <button ng-if="item.type === 'song'" ng-click="browse.playQueueService.add(item)">
-            Add to queue
-          </button>
+          <div
+              dropdown
+              on-toggle="browse.toggledItem(open, $event)"
+              class="browseItemMenu">
+            <button
+                class=""
+                dropdown-toggle
+                ng-click="browse.preventDoubleClick($event)">
+              <i class="fa fa-bars"></i>
+            </button>
+            <ul class="dropdown-menu buttonsGroup">
+              <li ng-click="">
+                <a href>Play</a>
+              </li>
+              <li ng-click="browse.addToQueue(item)">
+                <a href>Add to queue</a>
+              </li>
+              <li ng-click="">
+                <a href>Add to playlist</a>
+              </li>
+              <li ng-click="">
+                <a href>Add to favourites</a>
+              </li>
+            </ul>
+          </div>
         </td>
       </tr>
     </table>

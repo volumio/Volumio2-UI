@@ -4,6 +4,16 @@
   }
   #browseList{
     //@include make-row();
+    .browseItemMenu{
+      position: relative;
+      .buttonsGroup{
+        position: absolute;
+        top: 34px;
+        right: 0;
+        left: auto;
+        z-index: 3;
+      }
+    }
   }
 
   #browseTable{
