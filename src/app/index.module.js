@@ -48,6 +48,7 @@ import PluginController from './plugin/plugin.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
+  import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
 import PlaybackController from './playback/playback.controller';
 import PlaylistController from './playlist/playlist.controller';
 
@@ -118,6 +119,8 @@ angular.module('volumio', [
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 
   .controller('BrowseController', BrowseController)
+    .controller('ModalPlaylistController', ModalPlaylistController)
+
   .controller('PlaybackController', PlaybackController)
   .controller('PlaylistController', PlaylistController)
 

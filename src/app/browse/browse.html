@@ -34,12 +34,13 @@
         <th></th>
       </tr>
       <tr ng-repeat="item in browse.browseService.list"
+          ng-click="browse.clickListItem(item, $event)"
           ng-dblclick="browse.dblClickListItem(item, $event)">
         <td>
           <img ng-if="item.image" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
           <i ng-if="item.icon" class="{{item.icon}}"></i>
         </td>
-        <td>{{item.title}} - {{item.type}}</td>
+        <td>{{item.title}}</td>
         <td>{{item.album}}</td>
         <td>{{item.artist}}</td>
         <td>
@@ -50,20 +51,20 @@
             <button
                 class=""
                 dropdown-toggle
-                ng-click="browse.preventDoubleClick($event)">
+                >
               <i class="fa fa-bars"></i>
             </button>
             <ul class="dropdown-menu buttonsGroup">
-              <li ng-click="">
+              <li ng-click="browse.play(item)">
                 <a href>Play</a>
               </li>
               <li ng-click="browse.addToQueue(item)">
                 <a href>Add to queue</a>
               </li>
-              <li ng-click="">
+              <li ng-click="browse.addToPlaylist(item)">
                 <a href>Add to playlist</a>
               </li>
-              <li ng-click="">
+              <li ng-click="browse.addToFavourites(item)">
                 <a href>Add to favourites</a>
               </li>
             </ul>
