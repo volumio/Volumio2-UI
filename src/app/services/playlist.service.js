@@ -1,15 +1,8 @@
 class PlaylistService {
-  constructor ($rootScope, $log) {
+  constructor ($rootScope, socketService) {
     'ngInject';
-    this.$log = $log;
-    this._status = 'stop';
-
-    this._list = [
-      {artist: 'Nirvana', album: 'blech', track: 'track one'},
-      {artist: 'Muse', album: 'Origin of simmetry', track: 'Bliss'}
-    ];
-    this._currentTrack = this._list[0];
-    this._name = 'Playlist one';
+    this.socketService = socketService;
+    this.playlists = [];
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -17,32 +10,35 @@ class PlaylistService {
     });
   }
 
+  add(item, playlist) {
+    this.socketService.emit('addToPlaylist', {
+      name: playlist,
+      uri: item.uri,
+      service: (item.service || null)
+    });
+  }
 
-  // STORAGE -------------------------------------------------------------------
-    // METHODS -----------------------------------------------------------------
+  remove() {
+
+  }
+
+  addToFavourites(item) {
+    this.socketService.emit('addToFavourites', {
+      uri: item.uri,
+      service: (item.service || null)
+    });
+  }
+
   savePlaylist() {
   }
 
-  deletePlaylist() {
+  deletePlaylist(playlist) {
+    this.socketService.emit('deletePlaylist', {value: playlist});
   }
 
   renamePlaylist() {
   }
 
-    // GETTER & SETTER ---------------------------------------------------------
-  get name() {
-    return this._name;
-  }
-
-  set name(name) {
-    this._name = name;
-  }
-
-
-
-
-  // LIST --------------------------------------------------------------------
-    // METHODS -----------------------------------------------------------------
   start() {
 
   }
@@ -55,44 +51,20 @@ class PlaylistService {
 
   }
 
-  addTrack(newTrack, position) {
-    //Add to the end
-    console.log('add Track', newTrack);
-    if(!position) {
-      this._list.unshift(newTrack);
-    }
-  }
-
-  removeTrack(position) {
-
-  }
-
-
-
-    // GETTER & SETTER ---------------------------------------------------------
-  get currentTrack() {
-    return this._currentTrack;
-  }
-
-  set currentTrack(track) {
-    this._currentTrack = track;
-  }
-
-  get list() {
-    return this._list;
-  }
-
-  get length() {
-    return this._list.length;
-  }
-
   init() {
+    this.registerListner();
+    this.initService();
   }
 
   registerListner() {
+    this.socketService.on('pushListPlaylist', (data) => {
+      console.log('pushListPlaylist', data);
+    	this.playlists = data;
+    });
   }
 
   initService() {
+    this.socketService.emit('listPlaylist');
   }
 }
 

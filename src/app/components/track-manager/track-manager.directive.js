@@ -31,9 +31,10 @@ class TrackManagerDirective {
 }
 
 class TrackManagerController {
-  constructor ($element, playerService, $window) {
+  constructor ($element, playerService, playlistService) {
     'ngInject';
     this.playerService = playerService;
+    this.playlistService = playlistService;
 
     this.knobOptions = {
       min:0,
@@ -46,6 +47,10 @@ class TrackManagerController {
       angleOffset: -125,
       angleArc: 250
     };
+  }
+
+  addToFavourites() {
+    this.playlistService.addToFavourites(this.playerService.state.uri);
   }
 }
 

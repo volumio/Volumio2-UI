@@ -6,7 +6,9 @@
     <th>Artist</th>
     <th></th>
   </tr>
-  <tr ng-repeat="item in playlist.playQueueService.queue">
+  <tr
+    ng-repeat="item in playlist.playQueueService.queue"
+    ng-dblclick="playlist.playQueueService.play($index)">
     <td>
       <img ng-if="item.albumart" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
       <i ng-if="item.icon" class="{{item.icon}}"></i>

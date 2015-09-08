@@ -1,6 +1,12 @@
 #browse{
-  #browseBttons{
+  #toolbarRow{
     @include make-row();
+    #browseSources {
+      @include make-sm-column(8);
+    }
+    #searchBox {
+      @include make-sm-column(4);
+    }
   }
   #browseList{
     //@include make-row();

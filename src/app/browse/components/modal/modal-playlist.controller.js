@@ -1,14 +1,18 @@
 class ModalController {
-  constructor (socketService, $modalInstance, params) {
+  constructor (socketService, $modalInstance, playlistService, params) {
     'ngInject';
     this.socketService = socketService;
     this.$modalInstance = $modalInstance;
+    this.playlistService = playlistService;
     this.params = params;
-    this.customPlaylist = '';
+  }
+
+  addToFavourites() {
+    this.playlistService.addToFavourites(this.params.item);
+    this.$modalInstance.close();
   }
 
   addToPlaylist(playlist) {
-    //console.log(this.params.item);
     this.doAddToPlaylist(playlist);
     this.$modalInstance.close();
   }
@@ -19,14 +23,7 @@ class ModalController {
   }
 
   doAddToPlaylist(playlist){
-    this.socketService.emit('addToPlaylist', {
-      name: playlist,
-      uri: this.params.item.uri,
-      service: this.params.item.service
-    });
-  }
-
-  ok() {
+    this.playlistService.add(this.params.item, playlist);
     this.$modalInstance.close();
   }
 

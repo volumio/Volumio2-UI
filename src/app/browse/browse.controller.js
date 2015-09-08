@@ -1,9 +1,9 @@
 class BrowseController {
-  constructor (browseService, playQueueService, socketService, $modal) {
+  constructor (browseService, playQueueService, playlistService, socketService, $modal) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
-    this.lastItemMenuOpened = null;
+    this.playlistService = playlistService;
     this.socketService = socketService;
     // $window.document.find('.toggleItemMenu').addEventListener('cklick', () => {
     //   console.log('asd');
@@ -13,12 +13,6 @@ class BrowseController {
         name: "Music Library",
         uri: "music-library"
       });
-
-    this.socketService.emit('listPlaylist');
-    this.socketService.on('pushListPlaylist', (data) => {
-      console.log('pushListPlaylist', data);
-    	this.playlists = ['Favourites'].concat(data);
-    });
   }
 
   fetchLibrary(item) {
@@ -27,11 +21,7 @@ class BrowseController {
   }
 
   play(item) {
-    console.log('browse play', item);
-    this.socketService.emit('addPlay', {
-      uri: item.uri,
-      service: (item.service || null)
-    });
+    this.playQueueService.addPlay(item);
   }
 
 
@@ -61,26 +51,29 @@ class BrowseController {
         params: () => {
           return {
             title: 'Add to playlist',
-            playlists: this.playlists,
+            playlists: this.playlistService.playlists,
             item: item
           };
         }
       }
     });
 
-    modalInstance.result.then(function () {
-    }, function () {
-      console.info('Modal dismissed at: ' + new Date());
-    });
+    modalInstance.result.then(() => {}, () => {});
+  }
+
+  deletePlaylist(item){
+    console.log('browse - deletePlaylist', item);
+    this.playlistService.deletePlaylist(item.title);
   }
 
   addToFavourites(item){
-    console.log(item);
-    this.socketService.emit('addToPlaylist', {
-      name: 'Favourites',
-      uri: item.uri,
-      service: (item.service || null)
-    });
+    console.log('browse - addToFavourites', item);
+    this.playlistService.addToFavourites(item);
+  }
+
+  search() {
+    console.log('search', this.searchField);
+    this.socketService.emit('search', {value: this.searchField});
   }
 
 }

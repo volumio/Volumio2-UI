@@ -3,24 +3,32 @@
     {{trackManager.playerService.elapsedTimeString}}
     <div id="" style="position:relative;">
       <slider
-        ng-model="trackManager.playerService.seekPercent"
-        id=""
-        min="0"
-        step="1"
-        max="1000"
-        slider-tooltip="hide">
+          ng-model="trackManager.playerService.seekPercent"
+          id=""
+          min="0"
+          step="1"
+          max="1000"
+          slider-tooltip="hide">
       </slider>
     </div>
 
   </div>
   <div>
-    <strong>repeatTrack</strong>: {{trackManager.playerService.repeatTrack}}
-    <strong>repeatAlbum</strong>: {{trackManager.playerService.repeatAlbum}}
-    <strong>shuffle</strong>: {{trackManager.playerService.shuffle}}
   </div>
   <div id="trackButtonBar">
-    <button ng-click="trackManager.playerService.shuffle()">Shuffle</button>
-    <button ng-click="trackManager.playerService.repeatTrack()">Repeat track</button>
-    <button ng-click="trackManager.playerService.repeatAlbum()">Repeat album</button>
+    <button
+        ng-click="trackManager.addToFavourites()">
+      Add to favourite
+    </button>
+    <button
+        ng-class="{'active': trackManager.playerService.state.random}"
+        ng-click="trackManager.playerService.shuffle()">
+      Shuffle
+    </button>
+    <button
+        ng-class="{'active': trackManager.playerService.state.repeat}"
+        ng-click="trackManager.playerService.repeatAlbum()">
+      Repeat album
+    </button>
   </div>
 </div>

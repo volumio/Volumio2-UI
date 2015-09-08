@@ -16,13 +16,14 @@ class PlayerButtonsDirective {
 }
 
 class SideMenuController {
-  constructor ($rootScope, socketService, mockService, $state) {
+  constructor ($rootScope, socketService, mockService, $state, $modal) {
     'ngInject';
     this.socketService = socketService;
     this.$state = $state;
+    this.$modal = $modal;
 
     this.visible = false;
-    //this.menuItems = mockService.get('getMenuItems');
+    this.menuItems = mockService.get('getMenuItems');
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -36,7 +37,25 @@ class SideMenuController {
 
   itemClick(item) {
     this.toggleMenu();
-    if (item.params) {
+    console.log(item);
+    if (item.id === 'modal') {
+      let modalInstance = this.$modal.open({
+        animation: true,
+        templateUrl: 'app/components/side-menu/elements/' +
+            item.params.modalName +'.html',
+        controller: 'ModalPowerOffController',
+        controllerAs: 'modalPowerOff',
+        size: 'sm',
+        resolve: {
+          params: () => {
+            return {
+              title: 'Power off'
+            };
+          }
+        }
+      });
+      modalInstance.result.then(() => {}, () => {});
+    } else if (item.params) {
       for (let param in item.params) {
         console.log(param);
         item.params[param] = String(item.params[param]).replace('/','-');
@@ -55,7 +74,7 @@ class SideMenuController {
   registerListner() {
     this.socketService.on('pushMenuItems', (data) => {
      console.log('pushMenuItems', data);
-     this.menuItems = data;
+     //this.menuItems = data;
     });
   }
 

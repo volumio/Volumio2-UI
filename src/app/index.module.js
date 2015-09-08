@@ -9,7 +9,7 @@ import SocketService from './services/socket.service';
 import PlayerService from './services/player.service';
 import BrowseService from './services/browse.service';
 import PlayQueueService from './services/play-queue.service';
-//import PlaylistService from './services/playlist.service';
+import PlaylistService from './services/playlist.service';
 import MultiRoomService from './services/multi-room.service';
 import ToastMessageService from './services/toast-message.service';
 import LoggerService from './services/logger.service';
@@ -26,6 +26,7 @@ import TrackInfoDirective from './components/track-info/track-info.directive';
 import PlayerStatusDirective from './components/player-status/player-status.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
+  import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import KnobDirective from './components/knob/knob.directive';
 import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
 
@@ -86,7 +87,7 @@ angular.module('volumio', [
   .service('socketService', SocketService)
   .service('playerService', PlayerService)
   .service('browseService', BrowseService)
-  //.service('playlistService', PlaylistService)
+  .service('playlistService', PlaylistService)
   .service('playQueueService', PlayQueueService)
   .service('multiRoomService', MultiRoomService)
   .service('toastMessageService', ToastMessageService)
@@ -124,6 +125,7 @@ angular.module('volumio', [
   .controller('PlaybackController', PlaybackController)
   .controller('PlaylistController', PlaylistController)
 
+  .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalController', ModalController)
 
   ;

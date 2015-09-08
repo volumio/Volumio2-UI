@@ -54,15 +54,12 @@ class PlayerService {
   }
 
   shuffle() {
-    this._shuffle = !this._shuffle;
-  }
-
-  repeatTrack() {
-    this._repeatTrack = !this._repeatTrack;
+    console.log(!this.state.random);
+    this.socketService.emit('setRandom', {value: !this.state.random});
   }
 
   repeatAlbum() {
-    this._repeatAlbum = !this._repeatAlbum;
+    this.socketService.emit('setRepeat', {value: !this.state.repeat});
   }
 
   rebuildSpopLibrary() {

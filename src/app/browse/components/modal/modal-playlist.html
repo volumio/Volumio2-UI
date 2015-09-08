@@ -7,6 +7,11 @@
       <input type="text" ng-model="modalPlaylist.customPlaylist">
       <button type="button" ng-click="modalPlaylist.addToCustomPlaylist()">New</button>
     </li>
+    <li class="list-group-item"
+        ng-click="modalPlaylist.addToFavourite()"
+        >
+      Favourites
+    </li>
     <li ng-repeat="playlist in modalPlaylist.params.playlists track by $index"
         class="list-group-item"
         ng-click="modalPlaylist.addToPlaylist(playlist)"

@@ -11,6 +11,19 @@ class PlayQueueService {
     });
   }
 
+  play(index) {
+    console.log('PlayQueueService play', index);
+    this.socketService.emit('play', {value: index});
+  }
+
+  addPlay(item) {
+    console.log('PlayQueueService addPlay', item);
+    this.socketService.emit('addPlay', {
+      uri: item.uri,
+      service: (item.service || null)
+    });
+  }
+
   add(item) {
     console.log('addToQueue', item);
     this.socketService.emit('addToQueue', {uri: item.uri});
@@ -18,7 +31,7 @@ class PlayQueueService {
 
   remove(index) {
     console.log('removeFromQueue', index);
-    this.socketService.emit('removeFromQueue', index);
+    this.socketService.emit('removeFromQueue', {value: index});
   }
 
   clearAll() {

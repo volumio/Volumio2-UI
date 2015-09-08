@@ -135,11 +135,10 @@ class MockService {
           state: 'volumio.multi-room'
         },
         {
-          id: 'system',
-          name: 'System',
-          state: 'volumio.plugin',
+          id: 'modal',
+          name: 'Power off',
           params: {
-            pluginName: 'system'
+            modalName: 'modal-power-off'
           }
         }
       ],
