@@ -142,10 +142,59 @@ class MockService {
           }
         }
       ],
+      multiRoom: [
+        {
+          name: 'AxiomAir4',
+          ip: 'http://192.168.1.159:3000',
+          volume: 0,
+          song: 'aa',
+          artist: 'bb',
+          albumart: ''
+        },
+        {
+          name: 'AxiomAir6',
+          ip: 'http://192.168.1.129:3000',
+          volume: 0,
+          song: 'cc',
+          artist: 'dd',
+          albumart: ''
+        },
+        {
+          type: 'GROUP',
+          name: 'PUPPA',
+          server: {
+            name: 'AxiomAir',
+            ip: 'http://192.168.1.111:3000',
+            volume: 100,
+            song: 'cazone',
+            artist: 'Artista',
+            albumart: ''
+          },
+          clients: [
+            {
+              name: 'Child 1',
+              ip: 'http://192.168.1.110:3000',
+              volume: 100,
+              song: '',
+              artist: '',
+              albumart: ''
+            },
+            {
+              name: 'Child 2',
+              ip: 'http://192.168.1.116:3000',
+              volume: 100,
+              song: '',
+              artist: '',
+              albumart: ''
+            }
+          ]
+        }
+      ],
       //Settings
       getSettings: {
         page: {
-          "label": "Settings"
+          "label": "Settings",
+          "description": "If you mess up with this configuration, you can reset to default."
         },
         sections: [
           {
@@ -286,7 +335,7 @@ class MockService {
             "id": "section_sound_quality",
             "type": "section",
             "label": "Sound quality tweaks",
-            "description": "These profiles??.",
+            "description": "These profiles??",
             "onSave": {
               "type":"plugin",
               "endpoint":"music_services/spop",

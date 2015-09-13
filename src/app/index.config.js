@@ -1,7 +1,7 @@
 function config ($logProvider, toastrConfig, themeManagerProvider) {
   'ngInject';
   // Enable log
-  themeManagerProvider.theme = 'volumio';
+  themeManagerProvider.theme = 'axiom';
 
   $logProvider.debugEnabled(true);
 

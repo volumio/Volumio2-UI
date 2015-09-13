@@ -1,8 +1,8 @@
-class PlaylistController {
+class PlayQueueController {
   constructor (playQueueService) {
     'ngInject';
     this.playQueueService = playQueueService;
   }
 }
 
-export default PlaylistController;
+export default PlayQueueController;

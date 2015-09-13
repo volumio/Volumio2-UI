@@ -1,0 +1,23 @@
+#axiom {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    height: $headerHeight;
+    border-bottom:solid 0px red;
+    #sideMenuWrapper {
+      @extend .pull-right;
+      margin: 10px 15px 0px 0px;
+    }
+    #logo {
+      @extend .pull-left;
+      img {
+        margin: 10px 0px 0px 15px;
+        height: 36px;
+        cursor: pointer;
+      }
+    }
+  }
+}

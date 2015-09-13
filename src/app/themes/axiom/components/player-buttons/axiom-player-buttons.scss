@@ -1,0 +1,9 @@
+#axiom {
+  #playerButtons {
+    margin-top: -3px;
+    button {
+      @extend .btn-link;
+      font-size: 24px;
+    }
+  }
+}

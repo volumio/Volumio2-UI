@@ -51,7 +51,7 @@ import MultiRoomManagerController from './multi-room-manager/multi-room-manager.
 import BrowseController from './browse/browse.controller';
   import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
 import PlaybackController from './playback/playback.controller';
-import PlaylistController from './playlist/playlist.controller';
+import PlayQueueController from './play-queue/play-queue.controller';
 
 angular.module('volumio', [
   //Vendor module
@@ -67,7 +67,7 @@ angular.module('volumio', [
   //Angular core modules
   'ngAnimate',
   'ngCookies',
-  'ngTouch',
+  //'ngTouch',
   'ngSanitize'
   ])
 
@@ -123,7 +123,7 @@ angular.module('volumio', [
     .controller('ModalPlaylistController', ModalPlaylistController)
 
   .controller('PlaybackController', PlaybackController)
-  .controller('PlaylistController', PlaylistController)
+  .controller('PlayQueueController', PlayQueueController)
 
   .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalController', ModalController)

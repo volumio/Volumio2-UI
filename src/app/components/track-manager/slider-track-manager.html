@@ -1,6 +1,6 @@
 <div id="trackManager">
   <div>
-    {{trackManager.playerService.elapsedTimeString}}
+    <!-- {{trackManager.playerService.elapsedTimeString}} -->
     <div id="" style="position:relative;">
       <slider
           ng-model="trackManager.playerService.seekPercent"
@@ -18,17 +18,17 @@
   <div id="trackButtonBar">
     <button
         ng-click="trackManager.addToFavourites()">
-      Add to favourite
+      <i class="fa fa-heart"></i>
     </button>
     <button
         ng-class="{'active': trackManager.playerService.state.random}"
         ng-click="trackManager.playerService.shuffle()">
-      Shuffle
+      <i class="fa fa-random"></i>
     </button>
     <button
         ng-class="{'active': trackManager.playerService.state.repeat}"
         ng-click="trackManager.playerService.repeatAlbum()">
-      Repeat album
+      <i class="fa fa-repeat"></i>
     </button>
   </div>
 </div>

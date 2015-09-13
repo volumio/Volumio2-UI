@@ -2,16 +2,20 @@ class ThemeManagerProvider {
   constructor () {
     'ngInject';
     this._theme = 'volumio';
-    angular.element('body').attr('id', this._theme);
+    this.setThemeBodyId();
   }
 
   set theme(theme) {
-    console.log(theme);
     this._theme = theme;
+    this.setThemeBodyId();
   }
 
   get theme() {
     return this._theme;
+  }
+
+  setThemeBodyId() {
+    angular.element('body').attr('id', this.theme);
   }
 
   getHtmlPath(filename, folder) {

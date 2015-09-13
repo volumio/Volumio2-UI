@@ -1,0 +1,105 @@
+ <div id="browse">
+   <!-- <div id="browseButtons">
+     <button
+         ng-repeat="filter in browse.browseService.filters"
+         ng-class="{selected: browseService.listBy === 'artist'}"
+         ng-click="browse.browseService.fetchLibrary(filter.index)">
+         {{filter.name}}
+     </button>
+   </div> -->
+   <div class="row">
+     <div id="searchBox" >
+       <form id="search">
+          <input
+              type="text"
+              placeholder="Search music library"
+              ng-model="browse.searchField"
+              ng-change="browse.search()">
+          <button class="btn-link">
+            <i class="fa fa-search"></i>
+          </button>
+          <div class="clearfix"></div>
+        </form>
+     </div>
+   </div>
+
+  <div class="row">
+    <div id="browseSources" class="btn-group">
+      <button
+          ng-repeat="source in browse.browseService.sources"
+          ng-click="browse.fetchLibrary(source)">
+          {{source.name}}
+      </button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="box">
+      <div class="boxHeader">
+        <div class="title">
+          <h2>Music Source</h2>
+        </div>
+        <div class="buttons">
+          <button
+              class="btn-link"
+              ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri})">
+              <i class="fa fa-arrow-circle-left"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="boxTable">
+        <table class="table table-condensed">
+          <tr ng-repeat="item in browse.browseService.list track by $index"
+              ng-click="browse.clickListItem(item, $event)"
+              ng-dblclick="browse.dblClickListItem(item, $event)">
+            <td class="image">
+              <img ng-if="item.image" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
+              <i ng-if="item.icon" class="{{item.icon}}"></i>
+            </td>
+            <td>
+              <div class="title">
+                {{item.title}} - {{item.type}}
+              </div>
+              <div ng-if="item.album">
+                 {{item.album}}
+              </div>
+              <div ng-if="item.artist">
+                {{item.artist}}
+              </div>
+            </td>
+
+            <td class="commandButtons">
+              <div
+                  dropdown
+                  on-toggle="browse.toggledItem(open, $event)"
+                  class="browseItemMenu">
+                <button class="btn-link" dropdown-toggle>
+                  <i class="fa fa-bars"></i>
+                </button>
+                <ul class="dropdown-menu buttonsGroup">
+                  <li ng-click="browse.play(item)">
+                    <a href>Play</a>
+                  </li>
+                  <li ng-click="browse.addToQueue(item)">
+                    <a href>Add to queue</a>
+                  </li>
+                  <li ng-if="item.type !== 'playlist'" ng-click="browse.addToPlaylist(item)">
+                    <a href>Add to playlist</a>
+                  </li>
+                  <li ng-if="item.type === 'playlist'" ng-click="browse.deletePlaylist(item)">
+                    <a href>Delete playlist</a>
+                  </li>
+                  <li ng-if="item.type === 'song'" ng-click="browse.addToFavourites(item)">
+                    <a href>Add to favourites</a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

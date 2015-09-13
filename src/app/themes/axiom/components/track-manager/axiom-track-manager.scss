@@ -1,0 +1,14 @@
+#axiom {
+  #trackManager{
+    margin: 20px;
+  }
+  #trackButtonBar {
+    margin-top: 10px;
+    button {
+      @extend .btn-link;
+      &.active {
+        color: #FFF;
+      }
+    }
+  }
+}

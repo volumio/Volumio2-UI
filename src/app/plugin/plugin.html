@@ -1,95 +1,110 @@
-<h2>{{plugin.pluginObj.page.label}}</h2>
-
-<div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-    <div class="panel panel-default" ng-repeat="section in plugin.pluginObj.sections">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{section.label}}</h3>
+<div id="pluginWrapper">
+  <div class="row">
+    <div class="box">
+      <div class="boxHeader">
+        <div class="title">
+          <h2>{{plugin.pluginObj.page.label}}</h2>
+        </div>
       </div>
 
-      <div class="panel-body">
-        <h4 ng-if="section.description">{{section.description}}</h4>
+      <h4 class="pluginDescription" ng-if="plugin.pluginObj.page.description">
+        {{plugin.pluginObj.page.description}}
+      </h4>
 
-        <div ng-if="section.content">
-
-          <form class="form-horizontal">
-            <div
-                ng-repeat="item in section.content"
-                plugin-visible="item.visibleIf" section="section"
-                class="form-group">
-
-              <label for="{{item.id}}" class="col-sm-3 control-label">{{item.label}}</label>
-              <div ng-switch="item.element" class="col-sm-9">
-
-                <div class="">
-                  <input ng-switch-when="input"
-                      id="{{item.id}}"
-                      type="{{item.type}}"
-                      plugin-attributes="item.attributes"
-                      ng-model="item.value"
-                  >
-
-                  <input ng-switch-when="switch"
-                      id="{{item.id}}"
-                      bs-switch
-                      ng-model="item.value"
-                      type="checkbox"
-                      switch-size="medium"
-                      switch-animate="false"
-                      switch-on-text="On"
-                      switch-off-text="Off"
-                      ng-true-value="true"
-                      ng-false-value="false"
-                  >
-
-                  <div ng-switch-when="select">
-                    <ui-select
-                        id="{{item.id}}"
-                        ng-model="item.value"
-                        search-enabled="false"
-                        append-to-body="true"
-                        theme="bootstrap">
-                      <ui-select-match placeholder="Enter an address...">
-                        {{$select.selected.label}}
-                      </ui-select-match>
-                      <ui-select-choices repeat="option in item.options track by $index">
-                        <div ng-bind-html="option.label"></div>
-                      </ui-select-choices>
-                    </ui-select>
-                  </div>
-
-                  <button ng-switch-when="button"
-                      id="{{item.id}}"
-                      type="button"
-                      name="{{item.id}}"
-                      plugin-attributes="item.attributes"
-                      ng-click="plugin.saveButton(item)">
-                    {{item.label}}
-                  </button>
-
-                  <div ng-switch-default>
-                    Woops I can't display this item!
-                  </div>
-                </div>
-
-                <div ng-if="item.description">
-                  {{item.description}}
-                </div>
-
-              </div>
-            </div>
-
-            <div ng-if="section.saveButton" class="form-group">
-              <div class="col-sm-offset-3 col-sm-9">
-                <button type="button" name="button" ng-click="plugin.saveSection(section)">
-                  {{section.saveButton.label}}
-                </button>
-              </div>
-            </div>
-          </form>
-
+      <div
+          class="panel panel-default"
+          ng-repeat="section in plugin.pluginObj.sections">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{section.label}}</h3>
         </div>
 
+        <div class="panel-body">
+          <h4 class="sectionDescription" ng-if="section.description">
+            {{section.description}}
+          </h4>
+
+          <div ng-if="section.content">
+            <form class="form-horizontal">
+              <div
+                  ng-repeat="item in section.content"
+                  plugin-visible="item.visibleIf"
+                  section="section"
+                  class="form-group">
+
+                <label for="{{item.id}}" class="control-label">{{item.label}}</label>
+
+                <div ng-switch="item.element" class="control-item">
+                  <div class="">
+                    <input ng-switch-when="input"
+                        id="{{item.id}}"
+                        type="{{item.type}}"
+                        plugin-attributes="item.attributes"
+                        ng-model="item.value">
+
+                    <input ng-switch-when="switch"
+                        id="{{item.id}}"
+                        bs-switch
+                        ng-model="item.value"
+                        type="checkbox"
+                        switch-size="medium"
+                        switch-animate="false"
+                        switch-on-text="On"
+                        switch-off-text="Off"
+                        ng-true-value="true"
+                        ng-false-value="false">
+
+                    <div ng-switch-when="select">
+                      <ui-select
+                          id="{{item.id}}"
+                          ng-model="item.value"
+                          search-enabled="false"
+                          append-to-body="true"
+                          theme="bootstrap">
+                        <ui-select-match placeholder="Enter an address...">
+                          {{$select.selected.label}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="option in item.options track by $index">
+                          <div ng-bind-html="option.label"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+
+                    <button ng-switch-when="button"
+                        id="{{item.id}}"
+                        type="button"
+                        class="saveSectionBtn"
+                        name="{{item.id}}"
+                        plugin-attributes="item.attributes"
+                        ng-click="plugin.saveButton(item)">
+                      {{item.label}}
+                    </button>
+
+                    <div ng-switch-default>
+                      Woops I can't display this item!
+                    </div>
+                  </div>
+                </div>
+
+                <div ng-if="item.description" class="control-description">
+                  {{item.description}}
+                </div>
+              </div>
+
+              <div ng-if="section.saveButton" class="form-group">
+                <div class="control-buttons">
+                  <button
+                      type="button"
+                      class="saveSectionBtn"
+                      ng-click="plugin.saveSection(section)">
+                    {{section.saveButton.label}}
+                  </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

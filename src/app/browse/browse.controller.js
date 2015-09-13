@@ -9,10 +9,10 @@ class BrowseController {
     //   console.log('asd');
     // })
     this.$modal = $modal;
-    this.browseService.fetchLibrary({
-        name: "Music Library",
-        uri: "music-library"
-      });
+    // this.browseService.fetchLibrary({
+    //     name: "Music Library",
+    //     uri: "music-library"
+    //   });
   }
 
   fetchLibrary(item) {
@@ -30,12 +30,13 @@ class BrowseController {
   }
 
   clickListItem(item, event) {
-    if (event.target.tagName === 'TD' && item.type !== 'song') {
+    console.log(event);
+    if (event.target.tagName !== 'I' && item.type !== 'song') {
       this.fetchLibrary(item);
     }
   }
   dblClickListItem(item, event) {
-    if (event.target.tagName === 'TD' && item.type === 'song') {
+    if (event.target.tagName !== 'I' && item.type === 'song') {
       this.play(item);
     }
   }

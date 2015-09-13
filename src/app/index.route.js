@@ -1,6 +1,6 @@
 function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider) {
   'ngInject';
-  //console.log(themeManagerProvider.theme);
+  console.info('[TEME]: ' + themeManagerProvider.theme);
 
   $stateProvider
     .state('volumio', {
@@ -45,20 +45,20 @@ function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider)
       url: 'browse',
       views: {
         'content@volumio': {
-          templateUrl: 'app/browse/browse.html',
+          templateUrl: themeManagerProvider.getHtmlPath('browse'),
           controller: 'BrowseController',
           controllerAs: 'browse'
         }
       }
     })
 
-    .state('volumio.playlist', {
-      url: 'playlist',
+    .state('volumio.play-queue', {
+      url: 'queue',
       views: {
         'content@volumio': {
-          templateUrl: 'app/playlist/playlist.html',
-          controller: 'PlaylistController',
-          controllerAs: 'playlist'
+          templateUrl: themeManagerProvider.getHtmlPath('play-queue'),
+          controller: 'PlayQueueController',
+          controllerAs: 'playQueue'
         }
       }
     })

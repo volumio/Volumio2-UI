@@ -4,6 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 var gutil = require('gulp-util');
+var filter = require('gulp-filter');
 
 var browserSync = require('browser-sync');
 
@@ -22,11 +23,15 @@ gulp.task('styles', function () {
 
   var injectFiles = gulp.src([
     path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join('!' + conf.paths.src, '/app/index.scss')
-  ], { read: false });
+    path.join('!' + conf.paths.src, '/app/index.scss'),
+    path.join('!' + conf.paths.src, '/app/themes/axiom/axiom-style.scss')
+  ], { read: true });
+
 
   var injectOptions = {
     transform: function(filePath) {
+      //console.log(filePath);
+
       filePath = filePath.replace(conf.paths.src + '/app/', '');
       return '@import "' + filePath + '";';
     },

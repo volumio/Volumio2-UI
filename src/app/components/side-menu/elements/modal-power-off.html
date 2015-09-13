@@ -2,7 +2,19 @@
   <h3 class="modal-title">{{modalPowerOff.params.title}}</h3>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="modalPowerOff.powerOff()">Power off</button>
-  <button class="btn btn-primary" ng-click="modalPowerOff.reboot()">Reboot</button>
-  <button class="btn btn-warning" ng-click="modalPowerOff.cancel()">Cancel</button>
+  <button
+      class="btn-info"
+      ng-click="modalPowerOff.powerOff()">
+    Power off
+  </button>
+  <button
+      class="btn-info"
+      ng-click="modalPowerOff.reboot()">
+    Reboot
+  </button>
+  <button
+      class="cancelBtn"
+      ng-click="modalPowerOff.cancel()">
+    Cancel
+  </button>
 </div>

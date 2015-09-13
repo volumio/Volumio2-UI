@@ -1,8 +1,43 @@
-#sources {
-  @include make-sm-column(5);
-
-}
-#playerInfoAndControls {
-  @include make-sm-column(5);
-  @include make-sm-column-offset(2);
+#axiom {
+  #playbackWrapper {
+    @include make-sm-column(24);
+    #trackInfos {
+      @include make-row();
+      margin-top: 14px;
+      margin-bottom: 14px;
+      #albumArt {
+        img {
+          width:100%;
+        }
+        @include make-xs-column(24);
+        @include make-sm-column(6);
+      }
+      #trackDescription, #trackTechInfo{
+        @include make-xs-column(24);
+        h3 {
+          font-size: 12px;
+          color: $accentColor;
+          margin: 0;
+          text-transform: uppercase;
+        }
+        p {
+          color: #FFF;
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+      }
+      #trackDescription {
+        @include make-sm-column(12);
+      }
+      #trackTechInfo {
+        @include make-sm-column(6);
+      }
+    }
+    #multiRoomDockBoxWrapper {
+      margin-top: 40px;
+      .boxHeader {
+        background: #062D50;
+      }
+    }
+  }
 }

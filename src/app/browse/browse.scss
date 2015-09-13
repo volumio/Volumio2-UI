@@ -1,28 +1,30 @@
-#browse{
-  #toolbarRow{
-    @include make-row();
-    #browseSources {
-      @include make-sm-column(8);
-    }
-    #searchBox {
-      @include make-sm-column(4);
-    }
-  }
-  #browseList{
-    //@include make-row();
-    .browseItemMenu{
-      position: relative;
-      .buttonsGroup{
-        position: absolute;
-        top: 34px;
-        right: 0;
-        left: auto;
-        z-index: 3;
+#volumio {
+  #browse{
+    #toolbarRow{
+      @include make-row();
+      #browseSources {
+        @include make-sm-column(8);
+      }
+      #searchBox {
+        @include make-sm-column(4);
       }
     }
-  }
+    #browseList{
+      //@include make-row();
+      .browseItemMenu{
+        position: relative;
+        .buttonsGroup{
+          position: absolute;
+          top: 34px;
+          right: 0;
+          left: auto;
+          z-index: 3;
+        }
+      }
+    }
 
-  #browseTable{
-    @include make-sm-column(12);
+    #browseTable{
+      @include make-sm-column(12);
+    }
   }
 }

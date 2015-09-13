@@ -23,9 +23,10 @@ class MultiRoomDockController {
   }
 
   changeDevice(device) {
-    this.socketService.changeHost(device.host);
+    if (!device.isChild) {
+      this.socketService.changeHost(device.host);
+    }
   }
-
 }
 
 export default MultiRoomDockDirective;

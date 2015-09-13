@@ -1,7 +1,15 @@
-<button id="menuBtn" ng-click="sideMenu.toggleMenu()">Menu</button>
-<div id="menuList" class="btn-group-vertical" role="group" ng-if="sideMenu.visible" class="">
-  <button ng-repeat="item in sideMenu.menuItems" type="button" name="button" ng-click="sideMenu.itemClick(item)">
-        {{item.name}}
+<div id="sideMenu">
+  <button id="openMenuBtn" ng-click="sideMenu.toggleMenu()">
+    <i class="fa fa-bars"></i>
   </button>
-</div>
+  <div id="menuList" class="" role="group" ng-if="sideMenu.visible">
+    <button id="closeMenuBtn" ng-click="sideMenu.toggleMenu()">
+      <i class="fa fa-times"></i>
+    </button>
+    <button
+        ng-repeat="item in sideMenu.menuItems"
+        ng-click="sideMenu.itemClick(item)">
+          {{item.name}}
+    </button>
+  </div>
 </div>

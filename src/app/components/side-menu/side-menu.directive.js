@@ -8,7 +8,7 @@ class PlayerButtonsDirective {
       scope: false,
       controller: SideMenuController,
       controllerAs: 'sideMenu',
-      bindToController: true
+      bindToController: true,
     };
 
     return directive;
@@ -23,7 +23,7 @@ class SideMenuController {
     this.$modal = $modal;
 
     this.visible = false;
-    this.menuItems = mockService.get('getMenuItems');
+    //this.menuItems = mockService.get('getMenuItems');
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -57,9 +57,9 @@ class SideMenuController {
       modalInstance.result.then(() => {}, () => {});
     } else if (item.params) {
       for (let param in item.params) {
-        console.log(param);
         item.params[param] = String(item.params[param]).replace('/','-');
       }
+      console.log(item.state, item.params);
       this.$state.go(item.state, item.params);
     } else {
       this.$state.go(item.state);
@@ -74,7 +74,7 @@ class SideMenuController {
   registerListner() {
     this.socketService.on('pushMenuItems', (data) => {
      console.log('pushMenuItems', data);
-     //this.menuItems = data;
+     this.menuItems = data;
     });
   }
 

@@ -62,9 +62,6 @@
 
 $headerHeight: 50px;
 $footerHeight: 50px;
-button {
-  @extend .btn, .btn-success;
-}
 
 #volumio {
   #contentWrapper {
@@ -75,8 +72,12 @@ button {
     top: $headerHeight;
     bottom: $footerHeight;
     overflow: scroll;
-    border: solid 0px blue;
+    border: solid 0 blue;
   }
+}
+
+button {
+  @extend .btn, .btn-success;
 }
 
 @mixin noRowMargin {

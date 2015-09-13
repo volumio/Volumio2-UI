@@ -1,0 +1,27 @@
+#axiom {
+  .volumeManager {
+    .slider-handle {
+      transition: left .3s ease-out;
+    }
+    button {
+      @extend .btn-link;
+      font-size: 28px;
+    }
+    .volumeUp {
+      @include make-xs-column(4, 0);
+      border:solid 0px red;
+    }
+    .volumeDown {
+      text-align: right;
+      @include make-xs-column(4);
+      button:first-child{
+        margin-right:0px;
+      }
+    }
+    .volumeSlider {
+      @include make-xs-column(16);
+      margin-top: 13px;
+      border:solid 0px red;
+    }
+  }
+}
