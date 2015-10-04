@@ -1,5 +1,5 @@
-themes/*
-!themes/volumio/
+src/app/themes/*
+!src/app/themes/volumio/
 node_modules/
 bower_components/
 .sass-cache/
