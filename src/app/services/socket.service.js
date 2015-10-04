@@ -1,5 +1,5 @@
 class SocketService {
-  constructor ($rootScope, $http, $window) {
+  constructor($rootScope, $http, $window) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$http = $http;
@@ -7,7 +7,7 @@ class SocketService {
     this._host = null;
   }
 
-  changeHost(host){
+  changeHost(host) {
     this.host = host;
     this.$window.socket.disconnect();
     this.$window.socket = undefined;
@@ -21,7 +21,7 @@ class SocketService {
     socket.on(eventName, (data) => {
       //console.log(arguments);
       //console.log(data);
-      this.$rootScope.$apply(function () {
+      this.$rootScope.$apply(function() {
         if (callback) {
           //console.log(data);
           //callback.apply(socket, data);
@@ -35,7 +35,7 @@ class SocketService {
     //console.log('emit', eventName);
     socket.emit(eventName, data, (data) => {
       //let arg = arguments;
-      this.$rootScope.$apply(function () {
+      this.$rootScope.$apply(function() {
         if (callback) {
           //callback.apply(socket, arg);
           callback(data);

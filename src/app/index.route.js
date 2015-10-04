@@ -22,22 +22,22 @@ function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider)
         }
       },
       resolve: {
-        //NOTE this resolver init also global serives like toast
-        socketResolver: function($http, $window, socketService, toastMessageService){
-            let apiHost = 'http://' + $window.location.hostname + ':3000/api/host';
-            return $http.get(apiHost).then((response) => {
-              //console.log(res);
-              $window.socket = io(response.data.host + ':3000');
-              socketService.host  = response.data.host + ':3000';
-              toastMessageService.init();
-            }, () => {
-              //console.log(reason);
-              //Fallback broken socket
-              $window.socket = io('http://192.168.0.17:3000');
-              socketService.host  = 'http://192.168.0.17:3000';
-              toastMessageService.init();
-            });
-         }
+        //NOTE this resolver init also global services like toast
+        socketResolver: function($http, $window, socketService, toastMessageService) {
+          let apiHost = 'http://' + $window.location.hostname + ':3000/api/host';
+          return $http.get(apiHost).then((response) => {
+            //console.log(res);
+            $window.socket = io(response.data.host + ':3000');
+            socketService.host  = response.data.host + ':3000';
+            toastMessageService.init();
+          }, () => {
+            //console.log(reason);
+            //Fallback broken socket
+            $window.socket = io('http://192.168.0.32:3000');
+            socketService.host  = 'http://192.168.0.32:3000';
+            toastMessageService.init();
+          });
+        }
       }
     })
 

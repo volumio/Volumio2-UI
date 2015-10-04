@@ -26,7 +26,6 @@ import TrackInfoDirective from './components/track-info/track-info.directive';
 import PlayerStatusDirective from './components/player-status/player-status.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
-  import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import KnobDirective from './components/knob/knob.directive';
 import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
 
@@ -49,9 +48,16 @@ import PluginController from './plugin/plugin.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
-  import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
 import PlaybackController from './playback/playback.controller';
 import PlayQueueController from './play-queue/play-queue.controller';
+
+//Modals
+import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
+import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
+import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
+import ModalAlarmClockController from './components/side-menu/elements/modal-alarm-clock.controller';
+
+
 
 angular.module('volumio', [
   //Vendor module
@@ -120,12 +126,13 @@ angular.module('volumio', [
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 
   .controller('BrowseController', BrowseController)
-    .controller('ModalPlaylistController', ModalPlaylistController)
 
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
 
-  .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalController', ModalController)
-
+  .controller('ModalPlaylistController', ModalPlaylistController)
+  .controller('ModalPowerOffController', ModalPowerOffController)
+  .controller('ModalSleepController', ModalSleepController)
+  .controller('ModalAlarmClockController', ModalAlarmClockController)
   ;

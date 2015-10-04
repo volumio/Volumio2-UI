@@ -303,12 +303,8 @@ class MockService {
                 "id": "spotify_username",
                 "element": "input",
                 "attributes": [
-                  {
-                    "placeholder": "Type your spotify username"
-                  },
-                  {
-                    "maxlength": 5
-                  }
+                  {"placeholder": "Type your spotify username"},
+                  {"maxlength": 5}
                 ],
                 "label": "Username",
                 "value": "",

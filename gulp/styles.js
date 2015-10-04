@@ -1,3 +1,5 @@
+// jshint ignore: start
+// jscs:disable
 'use strict';
 
 var path = require('path');

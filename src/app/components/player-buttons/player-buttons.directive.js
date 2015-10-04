@@ -1,5 +1,5 @@
 class PlayerButtonsDirective {
-  constructor () {
+  constructor() {
     'ngInject';
 
     let directive = {
@@ -10,13 +10,12 @@ class PlayerButtonsDirective {
       controllerAs: 'playerButtons',
       bindToController: true
     };
-
     return directive;
   }
 }
 
 class PlayerButtonsController {
-  constructor (playerService) {
+  constructor(playerService) {
     'ngInject';
     this.playerService = playerService;
   }

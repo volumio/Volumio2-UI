@@ -1,5 +1,5 @@
 class BrowseController {
-  constructor (browseService, playQueueService, playlistService, socketService, $modal) {
+  constructor(browseService, playQueueService, playlistService, socketService, $modal) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
@@ -62,12 +62,12 @@ class BrowseController {
     modalInstance.result.then(() => {}, () => {});
   }
 
-  deletePlaylist(item){
+  deletePlaylist(item) {
     console.log('browse - deletePlaylist', item);
     this.playlistService.deletePlaylist(item.title);
   }
 
-  addToFavourites(item){
+  addToFavourites(item) {
     console.log('browse - addToFavourites', item);
     this.playlistService.addToFavourites(item);
   }

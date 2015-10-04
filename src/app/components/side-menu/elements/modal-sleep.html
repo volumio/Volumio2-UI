@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{modal.params.name}}</h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div id="timepicker">
+      <timepicker
+          ng-model="modal.sleepTime"
+          ng-change="modal.timeChanged()"
+          hour-step="1"
+          minute-step="1"
+          show-meridian="modal.showMeridian">
+      </timepicker>
+    </div>
+    <div id="toggle">
+      <input
+          bs-switch
+          ng-model="modal.sleepActive"
+          type="checkbox"
+          switch-size="medium"
+          switch-animate="false"
+          switch-on-text="On"
+          switch-off-text="Off"
+          ng-true-value="true"
+          ng-false-value="false">
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+      class="cancelBtn"
+      ng-click="modal.cancel()">
+    Cancel
+  </button>
+  <button
+      class="btn-info"
+      ng-click="modal.setSleep()">
+    Save
+  </button>
+</div>

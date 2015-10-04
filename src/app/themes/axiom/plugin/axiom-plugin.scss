@@ -4,35 +4,11 @@
     .pluginDescription{
       margin-top: 10px;
     }
-    .panel {
-      border: none;
-      margin-top: 20px;
-      .panel-heading {
-        padding-left: 0px;
-        border-bottom: solid 1px #069FD7;
-        .panel-title {
-          color: #FFF;
-          font-size: 20px;
-          text-transform: uppercase;
-        }
-      }
-    }
+
     .sectionDescription{
       margin-bottom: 28px;
     }
-    input {
-      color: #666;
-      padding: 6px 10px;
-      width: 100%;
-    }
-    input:focus {
-      background-color: #069FD7;
-    }
-    .ui-select-toggle, .ui-select-container, .ui-select-match {
-      background-color: transparent;
-      border-color: #069FD7;
-      color: #069FD7;
-    }
+
     .saveSectionBtn {
       @extend .btn-info;
     }

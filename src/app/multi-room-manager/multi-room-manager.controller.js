@@ -1,8 +1,7 @@
 class MultiRoomManagerController {
-  constructor (socketService, toastMessageService, multiRoomService) {
+  constructor (socketService, multiRoomService) {
     'ngInject';
     this.socketService = socketService;
-    this.toastMessageService = toastMessageService;
     this.multiRoomService = multiRoomService;
   }
 
@@ -51,6 +50,14 @@ class MultiRoomManagerController {
     };
     console.log('removeChildDevice', obj);
     this.socketService.emit('setMultiroom', obj);
+  }
+
+  toggleClientsView(device) {
+    if (device.clientVisible) {
+      device.clientVisible = false;
+    } else {
+      device.clientVisible = true;
+    }
   }
 }
 

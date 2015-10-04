@@ -1,5 +1,5 @@
 class PlayerService {
-  constructor ($rootScope, $log, $interval, socketService) {
+  constructor($rootScope, $log, $interval, socketService) {
     'ngInject';
     this.$log = $log;
     this.$interval = $interval;
@@ -77,11 +77,14 @@ class PlayerService {
       //   val = 1;
       // }
       let sec = Math.ceil(this.state.duration / this._seekScale * val);
-      console.log('val',val ,'seek', sec);
+      console.log('val', val, 'seek', sec);
       this.socketService.emit('seek', sec);
     }
   }
 
+  get seek() {
+    return null;
+  }
 
   // VOLUME --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
@@ -101,7 +104,7 @@ class PlayerService {
     return Math.floor((this.elapsedTime / this._seekScale) / this.state.duration * 100 * 10) ;
   }
 
-  calculateElapsedTimeString(){
+  calculateElapsedTimeString() {
     let elapsedSeconds = Math.ceil(this.elapsedTime / this._seekScale);
     if (elapsedSeconds === 1) {
       this.elapsedTimeString = '0:00';
@@ -110,7 +113,7 @@ class PlayerService {
       if (seconds < 10) {
         seconds = '0' + seconds;
       }
-      this.elapsedTimeString = Math.floor(elapsedSeconds / 60 ).toFixed(0) + ':' +
+      this.elapsedTimeString = Math.floor(elapsedSeconds / 60).toFixed(0) + ':' +
           seconds;
     }
 
@@ -132,7 +135,7 @@ class PlayerService {
   }
 
   stopSeek() {
-    if(this.intervalHandler) {
+    if (this.intervalHandler) {
       this.$interval.cancel(this.intervalHandler);
     }
   }
@@ -148,9 +151,9 @@ class PlayerService {
   }
 
   set volume(volume) {
-    if(volume < 0 ) {
+    if (volume < 0) {
       volume = 0;
-    } else if(volume > 100) {
+    } else if (volume > 100) {
       volume = 100;
     }
     this.socketService.emit('volume', volume);

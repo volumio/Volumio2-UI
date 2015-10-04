@@ -1,0 +1,10 @@
+#axiom {
+  #timepicker {
+    @include make-xs-column(12);
+  }
+  #toggle {
+    margin-top: 32px;
+    @include make-xs-column(12);
+  }
+
+}

@@ -39,22 +39,27 @@ class SideMenuController {
     this.toggleMenu();
     console.log(item);
     if (item.id === 'modal') {
+      let controllerName = item.params.modalName.split('-').map(
+          (item) => {
+            return item[0].toUpperCase() + item.slice(1, item.length);
+          }).join('');
+      console.log(controllerName);
       let modalInstance = this.$modal.open({
         animation: true,
         templateUrl: 'app/components/side-menu/elements/' +
             item.params.modalName +'.html',
-        controller: 'ModalPowerOffController',
-        controllerAs: 'modalPowerOff',
+        controller: controllerName + 'Controller',
+        controllerAs: 'modal',
         size: 'sm',
         resolve: {
           params: () => {
-            return {
-              title: 'Power off'
-            };
+            return item;
           }
         }
       });
       modalInstance.result.then(() => {}, () => {});
+    } else if (item.id === 'link') {
+      window.open(item.params.url);
     } else if (item.params) {
       for (let param in item.params) {
         item.params[param] = String(item.params[param]).replace('/','-');

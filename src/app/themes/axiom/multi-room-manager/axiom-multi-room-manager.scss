@@ -8,9 +8,12 @@
       &.draggable {
         cursor: grab;
       }
+      &.hasClients {
+        cursor: pointer;
+      }
     }
     .device, .childDevice {
-      background: url('/assets/graphics/table-item-background.png')  100% 100% no-repeat;
+      background: url('/assets/graphics/table-item-background.png')  100% 100% repeat-x;
       min-height: 50px;
       padding: 10px 0;
     }

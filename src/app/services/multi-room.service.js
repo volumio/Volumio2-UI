@@ -4,7 +4,8 @@ class MultiRoomService {
     this.socketService = socketService;
     this.mockService = mockService;
 
-    //this.devices = mockService.get('getMultiRoomDevices').list;
+    //this.multiRoomDevices = mockService.get('multiRoom');
+    //console.log(this.multiRoomDevices);
     //this.devices = this.mapDevices(this.devices);
 
     this.init();

@@ -19,6 +19,19 @@ class VolumeManagerController {
   constructor ($scope, playerService, $timeout) {
     'ngInject';
     this.timeoutHandler = null;
+    this.playerService = playerService;
+
+    this.knobOptions = {
+      min:0,
+      max:100,
+      fgColor:'#FF0000',
+      width: 120,
+      height: 120,
+      displayInput: false,
+      step: 1,
+      angleOffset: -125,
+      angleArc: 250
+    };
 
     // NOTE this watches are for decouple the playerService.volume
     // from the knob value. The playerService.volume (getter) value
@@ -49,20 +62,6 @@ class VolumeManagerController {
         }, 100);
       }
     });
-
-
-    this.playerService = playerService;
-    this.knobOptions = {
-      min:0,
-      max:100,
-      fgColor:'#FF0000',
-      width: 120,
-      height: 120,
-      displayInput: false,
-      step: 1,
-      angleOffset: -125,
-      angleArc: 250
-    };
   }
 }
 

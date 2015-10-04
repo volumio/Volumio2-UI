@@ -19,59 +19,66 @@
           ng-drag="!device.clients"
           ng-drag-success="onDragComplete($data, $event)"
           ng-drag-data="device"
-          ng-class="{'draggable': !device.clients}"
-          class="device">
+          >
         <div
             class="droppableleArea"
             ng-drop="true"
             ng-drop-success="multiRoomManager.onDropComplete($data, device, $event)">
 
-          <div class="deviceIcon">
-            <img ng-src="{{'assets/graphics/device-icon-' + (device.clients.length || 1) + '.png'}}"/>
-          </div>
-
-          <div class="albumArt">
-            <img
-                ng-if="device.server.albumart || device.albumart"
-                ng-src="{{device.server.albumart || device.albumart}}"/>
-          </div>
-
-          <div class="deviceDescription">
-            <div class="deviceName">
-              <strong ng-if="device.clients">Group - </strong>
-              {{device.server.name || device.name}}
+          <div
+              class="device"
+              ng-class="{'draggable': !device.clients, 'hasClients': device.clients}"
+              ng-click="multiRoomManager.toggleClientsView(device)">
+            <div class="deviceIcon">
+              <img ng-src="{{'assets/graphics/device-icon-' + (device.clients.length || 1) + '.png'}}"/>
             </div>
-            <span>Now Playing</span>
-            {{device.server.artist || device.artist}} -
-            {{device.server.song || device.song}}
-          </div>
 
-          <div class="deviceVolume">
-            
+            <div class="albumArt">
+              <img
+                  ng-if="device.server.albumart || device.albumart"
+                  ng-src="{{device.server.albumart || device.albumart}}"/>
+            </div>
+
+            <div class="deviceDescription">
+              <div class="deviceName">
+                <strong ng-if="device.clients">Group - </strong>
+                {{device.server.name || device.name}}
+              </div>
+              <span>Now Playing</span>
+              {{device.server.artist || device.artist}} -
+              {{device.server.song || device.song}}
+            </div>
+
+            <div class="deviceVolume">
+
+            </div>
           </div>
 
           <div ng-if="device.clients" class="clearfix"></div>
 
           <div
               ng-repeat="childDevice in device.clients"
+              ng-show="device.clientVisible"
               id="{{childDevice.name}}"
-              class="childDevice">
+              class="row">
 
-            <div class="deviceIcon"></div>
+            <div class="childDevice">
+              <div class="deviceIcon"></div>
 
-            <div class="albumArt"></div>
+              <div class="albumArt"></div>
 
-            <div class="deviceDescription">
-              <div class="deviceName">
-                {{childDevice.server.name || childDevice.name}}
+              <div class="deviceDescription">
+                <div class="deviceName">
+                  {{childDevice.server.name || childDevice.name}}
+                </div>
               </div>
-            </div>
 
-            <div class="deviceVolume">
-              <button
-                  ng-click="multiRoomManager.removeChildDevice(device, childDevice)">
-                <i class="fa fa-trash-o"></i>
-              </button>
+              <div class="deviceVolume">
+                <button
+                    ng-click="multiRoomManager.removeChildDevice(device, childDevice)">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </div>
             </div>
 
           </div>
