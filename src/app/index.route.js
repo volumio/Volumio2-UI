@@ -89,7 +89,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider)
       url: 'multi-room',
       views: {
         'content@volumio': {
-          templateUrl: 'app/multi-room-manager/multi-room-manager.html',
+          templateUrl: 'app/themes/axiom/multi-room-manager/axiom-multi-room-manager.html',
           controller: 'MultiRoomManagerController',
           controllerAs: 'multiRoomManager'
         }

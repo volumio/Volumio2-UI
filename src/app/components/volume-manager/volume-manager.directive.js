@@ -1,10 +1,10 @@
 class VolumeManagerDirective {
-  constructor () {
+  constructor (themeManager) {
     'ngInject';
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/volume-manager/slider-volume-manager.html',
+      templateUrl: themeManager.getHtmlPath('volume-manager', 'components/volume-manager'),
       scope: false,
       controller: VolumeManagerController,
       controllerAs: 'volumeManager',

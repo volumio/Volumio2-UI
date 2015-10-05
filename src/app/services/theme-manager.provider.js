@@ -37,7 +37,8 @@ class ThemeManagerProvider {
 
   $get() {
     return {
-      getHtmlPath: this.getHtmlPath
+      getHtmlPath: this.getHtmlPath,
+      theme: this._theme
     };
   }
 }

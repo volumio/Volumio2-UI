@@ -5,7 +5,7 @@ class PlayerStatusDirective {
     let directive = {
       restrict: 'E',
       replace: false,
-      templateUrl: 'app/components/player-status/player-status.html',
+      templateUrl: 'app/themes/volumio/components/player-status/volumio-player-status.html',
       scope: false,
       controller: PlayerStatusController,
       controllerAs: 'playerStatus',

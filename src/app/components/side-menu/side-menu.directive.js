@@ -4,7 +4,7 @@ class PlayerButtonsDirective {
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/side-menu/side-menu.html',
+      templateUrl: 'app/themes/volumio/components/side-menu/volumio-side-menu.html',
       scope: false,
       controller: SideMenuController,
       controllerAs: 'sideMenu',

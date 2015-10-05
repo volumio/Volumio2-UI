@@ -3,7 +3,7 @@ class TrackInfoDirective {
     'ngInject';
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/track-info/track-info.html',
+      templateUrl: themeManager.getHtmlPath('track-info', 'components/track-info'),
       scope: false,
       controller: TrackInfoController,
       controllerAs: 'trackInfo',

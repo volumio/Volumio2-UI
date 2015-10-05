@@ -24,10 +24,10 @@ import VolumeManagerDirective from './components/volume-manager/volume-manager.d
 import TrackManagerDirective from './components/track-manager/track-manager.directive';
 import TrackInfoDirective from './components/track-info/track-info.directive';
 import PlayerStatusDirective from './components/player-status/player-status.directive';
-import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
 import KnobDirective from './components/knob/knob.directive';
 import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
+import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 
 import ModalController from './components/modal/modal.controller';
 import ModalService from './components/modal/modal.service';
@@ -102,15 +102,15 @@ angular.module('volumio', [
 
   .provider('themeManager', ThemeManagerProvider)
 
-  .directive('playerButtons', () => new PlayerButtonsDirective())
-  .directive('volumeManager', () => new VolumeManagerDirective())
-  .directive('trackManager', () => new TrackManagerDirective())
-  .directive('trackInfo', () => new TrackInfoDirective())
+  .directive('playerButtons', (themeManager) => new PlayerButtonsDirective(themeManager))
+  .directive('volumeManager', (themeManager) => new VolumeManagerDirective(themeManager))
+  .directive('trackManager', (themeManager) => new TrackManagerDirective(themeManager))
+  .directive('trackInfo', (themeManager) => new TrackInfoDirective(themeManager))
   .directive('playerStatus', () => new PlayerStatusDirective())
-  .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('sideMenu', () => new SideMenuDirective())
   .directive('knob', () => new KnobDirective())
   .directive('multiRoomDock', () => new MultiRoomDockDirective())
+  .directive('playerLogger', () => new PlayerLoggerDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())

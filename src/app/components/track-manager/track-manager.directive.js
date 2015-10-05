@@ -1,10 +1,10 @@
 class TrackManagerDirective {
-  constructor () {
+  constructor (themeManager) {
     'ngInject';
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/track-manager/slider-track-manager.html',
+      templateUrl: themeManager.getHtmlPath('track-manager', 'components/track-manager'),
       scope: false,
       link: linkFunc,
       controller: TrackManagerController,
