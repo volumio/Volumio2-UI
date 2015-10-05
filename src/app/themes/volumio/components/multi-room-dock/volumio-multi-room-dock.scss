@@ -1,0 +1,21 @@
+#volumio {
+  #multiRoomDockWrapper {
+    @include make-row();
+    @include noRowMargin;
+    margin-top:10px;
+    .device {
+      @include make-sm-column(3);
+      height:110px;
+      border: solid 1px #0A0;
+      background-color: #CCC;
+      button {
+        @extend .btn, .btn-success, .btn-xs;
+      }
+      &.selected {
+        .deviceName{
+          color: #0C0;
+        }
+      }
+    }
+  }
+}

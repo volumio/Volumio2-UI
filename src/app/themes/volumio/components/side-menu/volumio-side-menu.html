@@ -1,0 +1,15 @@
+<div id="sideMenu">
+  <button id="openMenuBtn" ng-click="sideMenu.toggleMenu()">
+    <i class="fa fa-bars"></i>
+  </button>
+  <div id="menuList" class="" role="group" ng-if="sideMenu.visible">
+    <button id="closeMenuBtn" ng-click="sideMenu.toggleMenu()">
+      <i class="fa fa-times"></i>
+    </button>
+    <button
+        ng-repeat="item in sideMenu.menuItems"
+        ng-click="sideMenu.itemClick(item)">
+          {{item.name}}
+    </button>
+  </div>
+</div>

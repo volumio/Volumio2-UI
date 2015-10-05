@@ -1,41 +1,43 @@
 class ThemeManagerProvider {
-  constructor () {
+  constructor() {
     'ngInject';
     this._theme = 'volumio';
-    this.setThemeBodyId();
+    this.setPageMetadata();
   }
 
   set theme(theme) {
     this._theme = theme;
-    this.setThemeBodyId();
+    this.setPageMetadata();
   }
 
   get theme() {
     return this._theme;
   }
 
-  setThemeBodyId() {
+  setPageMetadata() {
     angular.element('body').attr('id', this.theme);
+    document.title = this.theme;
+    // let link = document.createElement('link');
+    // link.type = 'image/x-icon';
+    // link.rel = 'shortcut icon';
+    // link.href = this._theme + '.ico';
+    // document.getElementsByTagName('head')[0].appendChild(link);
   }
 
   getHtmlPath(filename, folder) {
     if (folder === '') {
       folder = null;
-    } else if (!folder){
+    } else if (!folder) {
       folder = filename;
     }
-    if (this.theme === 'volumio') {
-      return 'app/' + ((folder)? folder + '/' : '' ) + filename + '.html';
-    } else {
-      return 'app/themes/' + this.theme + '/' +
-          ((folder)? folder + '/' : '' ) +
-          this.theme + '-' + filename + '.html';
-    }
+    return 'app/themes/' + this.theme + '/' +
+        ((folder) ? folder + '/' : '') +
+        this.theme + '-' + filename + '.html';
   }
 
   $get() {
     return {
-      getHtmlPath: this.getHtmlPath,
+      getHtmlPath: this.getHtmlPath
     };
   }
 }

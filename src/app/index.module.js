@@ -38,8 +38,6 @@ import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
 
 
 // Controllers
-import VolumioController from './volumio/volumio.controller';
-
 import HeaderController from './header/header.controller';
 import FooterController from './footer/footer.controller';
 
@@ -117,7 +115,6 @@ angular.module('volumio', [
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())
 
-  .controller('VolumioController', VolumioController)
   .controller('HeaderController', HeaderController)
   .controller('FooterController', FooterController)
 

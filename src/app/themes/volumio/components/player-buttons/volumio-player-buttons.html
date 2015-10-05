@@ -1,0 +1,21 @@
+<div id="playerButtons">
+  <button ng-click="playerButtons.playerService.prev()">
+    <i class="fa fa-fast-backward"></i>
+  </button>
+  <button
+      ng-if="playerButtons.playerService.state.status !== 'play'"
+      ng-click="playerButtons.playerService.play()">
+      <i class="fa fa-play"></i>
+  </button>
+  <button
+      ng-if="playerButtons.playerService.state.status === 'play'"
+      ng-click="playerButtons.playerService.pause()">
+    <i class="fa fa-pause"></i>
+  </button>
+  <!-- <button ng-click="playerButtons.playerService.stop()">
+    <i class="fa fa-stop"></i>
+  </button> -->
+  <button ng-click="playerButtons.playerService.next()">
+    <i class="fa fa-fast-forward"></i>
+  </button>
+</div>

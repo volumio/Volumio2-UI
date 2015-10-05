@@ -1,0 +1,23 @@
+<div id="multiRoomDockWrapper">
+  <div ng-repeat="device in multiRoomDock.multiRoomService.devices"
+      class="device"
+      ng-class="{'child': device.isChild}"
+      ng-if="{selected: device.host !== multiRoomDock.socketService.host}"
+      ng-dblclick="multiRoomDock.changeDevice(device)"
+      ng-if="device.host !== multiRoomDock.socketService.host">
+    <div class="deviceIcon">
+      <img ng-src="{{'assets/graphics/device-icon-' + (device.child.length || 1) + '.png'}}"/>
+    </div>
+    <div class="deviceDetails">
+      <div class="deviceName">
+        {{device.name}}
+      </div>
+      <div class="artist">
+        {{device.state.artist}}
+      </div>
+      <div class="track">
+        {{device.state.track}}
+      </div>
+    </div>
+  </div>
+</div>

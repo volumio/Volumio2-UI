@@ -1,0 +1,17 @@
+#playerLoggerWrapper {
+  @include make-row();
+  @include noRowMargin;
+  #playerLogger{
+    border: solid 0px red;
+    background-color: #999;
+    padding: 10px;
+    margin:10px 0px;
+    #log {
+      max-height: 300px;
+      overflow: scroll;
+    }
+    button {
+      @extend .btn, .btn-success, .btn-xs;
+    }
+  }
+}
