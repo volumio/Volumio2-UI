@@ -2,26 +2,15 @@ class ThemeManagerProvider {
   constructor() {
     'ngInject';
     this._theme = 'volumio';
-    this.setPageMetadata();
+
   }
 
   set theme(theme) {
     this._theme = theme;
-    this.setPageMetadata();
   }
 
   get theme() {
     return this._theme;
-  }
-
-  setPageMetadata() {
-    angular.element('body').attr('id', this.theme);
-    document.title = this.theme;
-    // let link = document.createElement('link');
-    // link.type = 'image/x-icon';
-    // link.rel = 'shortcut icon';
-    // link.href = this._theme + '.ico';
-    // document.getElementsByTagName('head')[0].appendChild(link);
   }
 
   getHtmlPath(filename, folder) {
@@ -35,10 +24,23 @@ class ThemeManagerProvider {
         this.theme + '-' + filename + '.html';
   }
 
-  $get() {
+  $get($rootScope) {
     return {
       getHtmlPath: this.getHtmlPath,
-      theme: this._theme
+      theme: this._theme,
+      setPageMetadata: () => {
+        angular.element('body').attr('id', this.theme);
+        document.title = this.theme;
+        $rootScope.faviconUrl = 'app/' + this.theme + '/favicon.ico';
+        $rootScope.theme = this.theme;
+        $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
+        console.log(this.theme);
+        // let link = document.createElement('link');
+        // link.type = 'image/x-icon';
+        // link.rel = 'shortcut icon';
+        // link.href = this._theme + '.ico';
+        // document.getElementsByTagName('head')[0].appendChild(link);
+      }
     };
   }
 }

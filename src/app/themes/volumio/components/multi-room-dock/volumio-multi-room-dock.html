@@ -6,7 +6,7 @@
       ng-dblclick="multiRoomDock.changeDevice(device)"
       ng-if="device.host !== multiRoomDock.socketService.host">
     <div class="deviceIcon">
-      <img ng-src="{{'assets/graphics/device-icon-' + (device.child.length || 1) + '.png'}}"/>
+      <img ng-src="{{assetsFolder + '/graphics/device-icon-' + (device.child.length || 1) + '.png'}}"/>
     </div>
     <div class="deviceDetails">
       <div class="deviceName">

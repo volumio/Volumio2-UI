@@ -16,7 +16,7 @@ class MultiRoomDockDirective {
 }
 
 class MultiRoomDockController {
-  constructor ($rootScope, socketService, multiRoomService) {
+  constructor ($rootScope, socketService, multiRoomService, themeManager) {
     'ngInject';
     this.socketService = socketService;
     this.multiRoomService = multiRoomService;
