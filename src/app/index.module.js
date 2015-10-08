@@ -41,7 +41,7 @@ import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
 import HeaderController from './header/header.controller';
 import FooterController from './footer/footer.controller';
 
-import SettingsController from './settings/settings.controller';
+import DebugController from './debug/debug.controller';
 import PluginController from './plugin/plugin.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
@@ -118,7 +118,7 @@ angular.module('volumio', [
   .controller('HeaderController', HeaderController)
   .controller('FooterController', FooterController)
 
-  .controller('SettingsController', SettingsController)
+  .controller('DebugController', DebugController)
   .controller('PluginController', PluginController)
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 

@@ -46,7 +46,7 @@ class SideMenuController {
       console.log(controllerName);
       let modalInstance = this.$modal.open({
         animation: true,
-        templateUrl: 'app/components/side-menu/elements/' +
+        templateUrl: 'app/themes/volumio/components/side-menu/elements/volumio-' +
             item.params.modalName +'.html',
         controller: controllerName + 'Controller',
         controllerAs: 'modal',

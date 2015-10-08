@@ -44,7 +44,7 @@ class BrowseController {
   addToPlaylist(item) {
     let modalInstance = this.$modal.open({
       animation: true,
-      templateUrl: 'app/browse/components/modal/modal-playlist.html',
+      templateUrl: 'app/themes/volumio/browse/components/modal/volumio-modal-playlist.html',
       controller: 'ModalPlaylistController',
       controllerAs: 'modalPlaylist',
       size: 'sm',

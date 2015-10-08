@@ -74,13 +74,13 @@ function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider)
       }
     })
 
-    .state('volumio.components', {
-      url: 'components',
+    .state('volumio.debug', {
+      url: 'debug',
       views: {
         'content@volumio': {
-          templateUrl: 'app/settings/components.html',
-          controller: 'SettingsController',
-          controllerAs: 'settings'
+          templateUrl: 'app/themes/volumio/debug/volumio-debug.html',
+          controller: 'DebugController',
+          controllerAs: 'debug'
         }
       }
     })
@@ -100,7 +100,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider)
       url: 'plugin/:pluginName',
       views: {
         'content@volumio': {
-          templateUrl: 'app/plugin/plugin.html',
+          templateUrl: 'app/themes/volumio/plugin/volumio-plugin.html',
           controller: 'PluginController',
           controllerAs: 'plugin'
         }

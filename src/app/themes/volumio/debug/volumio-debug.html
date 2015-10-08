@@ -1,7 +1,7 @@
 <div class="container">
   <h3>Host</h3>
-  <input type="text" name="name" value="" ng-model="settings.socketService.host" style="width:350px;">
-  <button ng-click="settings.socketService.changeHost(settings.socketService.host)" type="button" name="button">
+  <input type="text" name="name" value="" ng-model="debug.socketService.host" style="width:350px;">
+  <button ng-click="debug.socketService.changeHost(debug.socketService.host)" type="button" name="button">
     Change Host
   </button>
   <hr>
@@ -24,7 +24,7 @@
 
   <h3>Modal</h3>
   <button type="button" name="button"
-      ng-click="settings.modalService.openModal('default', {title: 'Title', message: 'Mesage'})">
+      ng-click="debug.modalService.openModal('default', {title: 'Title', message: 'Mesage'})">
     Open Modal
   </button>
 
@@ -32,19 +32,19 @@
   <h3>Toast Messages</h3>
   <div class="">
     <button type="button" name="button"
-        ng-click="settings.toastMessageService.showMessage('success', 'Messaggio', 'Success')">
+        ng-click="debug.toastMessageService.showMessage('success', 'Messaggio', 'Success')">
       Success
     </button>
     <button type="button" name="button" class="btn-info"
-        ng-click="settings.toastMessageService.showMessage('info', 'Messaggio', 'Info')">
+        ng-click="debug.toastMessageService.showMessage('info', 'Messaggio', 'Info')">
       Info
     </button>
     <button type="button" name="button" class="btn-warning"
-        ng-click="settings.toastMessageService.showMessage('warning', 'Messaggio', 'Warning')">
+        ng-click="debug.toastMessageService.showMessage('warning', 'Messaggio', 'Warning')">
       Warning
     </button>
     <button type="button" name="button" class="btn-danger"
-        ng-click="settings.toastMessageService.showMessage('error', 'Messaggio', 'Error')">
+        ng-click="debug.toastMessageService.showMessage('error', 'Messaggio', 'Error')">
       Error
     </button>
   </div>
@@ -55,10 +55,10 @@
 
   <div class="hide">
     <h3>Test API</h3>
-    <input type="text" ng-model="settings.apiMethod">
-    <input type="text" ng-model="settings.apiParams">
+    <input type="text" ng-model="debug.apiMethod">
+    <input type="text" ng-model="debug.apiParams">
     <button type="button" name="button" class="btn-danger"
-        ng-click="settings.callApi()">
+        ng-click="debug.callApi()">
       Call API
     </button>
     <br>

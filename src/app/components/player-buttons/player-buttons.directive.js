@@ -1,9 +1,9 @@
 class PlayerButtonsDirective {
-  constructor() {
+  constructor(themeManager) {
     'ngInject';
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/themes/volumio/components/player-status/volumio-player-status.html',
+      templateUrl: themeManager.getHtmlPath('player-buttons', 'components/player-buttons'),
       scope: false,
       controller: PlayerButtonsController,
       controllerAs: 'playerButtons',
