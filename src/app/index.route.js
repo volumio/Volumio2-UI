@@ -1,7 +1,9 @@
-function routerConfig ($stateProvider, $urlRouterProvider, themeManagerProvider) {
+function routerConfig ($stateProvider, $urlRouterProvider,
+      $locationProvider, themeManagerProvider) {
   'ngInject';
   console.info('[TEME]: ' + themeManagerProvider.theme);
 
+  $locationProvider.html5Mode(true);
   $stateProvider
     .state('volumio', {
       url: '/',
