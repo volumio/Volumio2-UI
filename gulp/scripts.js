@@ -5,6 +5,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var gutil = require('gulp-util');
 
 var browserSync = require('browser-sync');
 
@@ -52,4 +53,14 @@ gulp.task('scripts', function () {
 
 gulp.task('scripts:watch', ['scripts'], function (callback) {
   return webpack(true, callback);
+});
+
+gulp.task('constants', function () {
+  var theme = gutil.env.theme ? gutil.env.theme : 'volumio';
+  console.log(theme);
+  return $.ngConstant({
+      constants: {theme: 'asd'},
+      stream: true
+    })
+    .pipe(gulp.dest('../'));
 });

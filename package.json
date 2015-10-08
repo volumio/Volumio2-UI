@@ -25,6 +25,7 @@
     "gulp-load-plugins": "~0.10.0",
     "gulp-minify-html": "~1.0.3",
     "gulp-ng-annotate": "~1.0.0",
+    "gulp-ng-constant": "^1.1.0",
     "gulp-protractor": "~1.0.0",
     "gulp-rename": "~1.2.2",
     "gulp-replace": "~0.5.3",
