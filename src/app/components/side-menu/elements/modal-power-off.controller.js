@@ -1,9 +1,9 @@
 class ModalPowerOffController {
-  constructor ($modalInstance, socketService, params) {
+  constructor ($modalInstance, socketService, dataObj) {
     'ngInject';
     this.$modalInstance = $modalInstance;
     this.socketService = socketService;
-    this.params = params;
+    this.dataObj = dataObj;
   }
 
   powerOff() {

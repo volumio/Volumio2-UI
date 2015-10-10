@@ -1,10 +1,10 @@
 class ModalAlarmClockController {
-  constructor ($modalInstance, socketService, params) {
+  constructor($modalInstance, socketService, dataObj) {
     'ngInject';
     this.$modalInstance = $modalInstance;
     this.socketService = socketService;
-    this.params = params;
-    console.log(params);
+    this.dataObj = dataObj;
+    console.log(dataObj);
     this.init();
   }
 

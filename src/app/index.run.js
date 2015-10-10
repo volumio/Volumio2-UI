@@ -1,6 +1,5 @@
-function runBlock (themeManager) {
+function runBlock (themeManager, theme) {
   'ngInject';
-  //$log.debug('runBlock end');
   themeManager.setPageMetadata();
 }
 

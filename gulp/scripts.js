@@ -47,7 +47,7 @@ function webpack(watch, callback) {
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app')));
 }
 
-gulp.task('scripts', function () {
+gulp.task('scripts', ['angularConfig'], function () {
   return webpack(false);
 });
 
@@ -55,12 +55,12 @@ gulp.task('scripts:watch', ['scripts'], function (callback) {
   return webpack(true, callback);
 });
 
-gulp.task('constants', function () {
-  var theme = gutil.env.theme ? gutil.env.theme : 'volumio';
-  console.log(theme);
+gulp.task('angularConfig', function () {
+  var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
+
   return $.ngConstant({
-      constants: {theme: 'asd'},
-      stream: true
-    })
-    .pipe(gulp.dest('../'));
+    name: 'volumio.constant',
+    constants: {theme: themeSelected},
+    stream: true
+  }).pipe(gulp.dest('src/app'));
 });

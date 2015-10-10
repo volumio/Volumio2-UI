@@ -1,5 +1,5 @@
 class PlaylistService {
-  constructor ($rootScope, socketService) {
+  constructor($rootScope, socketService) {
     'ngInject';
     this.socketService = socketService;
     this.playlists = [];
@@ -16,10 +16,6 @@ class PlaylistService {
       uri: item.uri,
       service: (item.service || null)
     });
-  }
-
-  remove() {
-
   }
 
   addToFavourites(item) {
@@ -39,18 +35,6 @@ class PlaylistService {
   renamePlaylist() {
   }
 
-  start() {
-
-  }
-
-  getNext() {
-
-  }
-
-  getPrev() {
-
-  }
-
   init() {
     this.registerListner();
     this.initService();
@@ -59,7 +43,7 @@ class PlaylistService {
   registerListner() {
     this.socketService.on('pushListPlaylist', (data) => {
       console.log('pushListPlaylist', data);
-    	this.playlists = data;
+      this.playlists = data;
     });
   }
 

@@ -12,6 +12,8 @@ import PlayQueueService from './services/play-queue.service';
 import PlaylistService from './services/playlist.service';
 import MultiRoomService from './services/multi-room.service';
 import ToastMessageService from './services/toast-message.service';
+import UpdaterService from './services/updater.service';
+import ModalService from './services/modal.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 
@@ -30,7 +32,6 @@ import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 
 import ModalController from './components/modal/modal.controller';
-import ModalService from './components/modal/modal.service';
 
 //Directives
 import PluginAttributesDirective from './plugin/elements/plugin-attributes.directive';
@@ -54,11 +55,15 @@ import ModalPlaylistController from './browse/components/modal/modal-playlist.co
 import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
 import ModalAlarmClockController from './components/side-menu/elements/modal-alarm-clock.controller';
+import ModalUpdaterController from './components/modal-updater/modal-updater.controller';
 
 
 
 angular.module('volumio', [
-  //Vendor module
+  //custom modules
+  'volumio.constant',
+
+  //Vendor modules
   'ui.bootstrap-slider',
   'ui.bootstrap',
   'toastr',
@@ -82,11 +87,6 @@ angular.module('volumio', [
   .config(routerConfig)
 
   .run(runBlock)
-  // .service('githubContributor', GithubContributorService)
-  // .service('webDevTec', WebDevTecService)
-  // .controller('MainController', MainController)
-  // .directive('acmeNavbar', () => new NavbarDirective())
-  // .directive('acmeMalarkey', () => new MalarkeyDirective(malarkey))
 
   .service('socketService', SocketService)
   .service('playerService', PlayerService)
@@ -95,10 +95,10 @@ angular.module('volumio', [
   .service('playQueueService', PlayQueueService)
   .service('multiRoomService', MultiRoomService)
   .service('toastMessageService', ToastMessageService)
+  .service('updaterService', UpdaterService)
+  .service('modalService', ModalService)
   .service('loggerService', LoggerService)
   .service('mockService', MockService)
-
-  .service('modalService', ModalService)
 
   .provider('themeManager', ThemeManagerProvider)
 
@@ -132,4 +132,6 @@ angular.module('volumio', [
   .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalSleepController', ModalSleepController)
   .controller('ModalAlarmClockController', ModalAlarmClockController)
+  .controller('ModalUpdaterController', ModalUpdaterController)
+
   ;
