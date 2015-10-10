@@ -1,14 +1,14 @@
 class ModalService {
-  constructor ($modal) {
+  constructor ($uibModal) {
     'ngInject';
-    this.$modal = $modal;
+    this.$uibModal = $uibModal;
   }
   openModal(
       controller = 'ModalController',
       templateUrl = 'app/components/modal/default-modal.html',
       dataObj = null,
       size = 'sm') {
-    let modalInstance = this.$modal.open({
+    let modalInstance = this.$uibModal.open({
       animation: true,
       templateUrl: templateUrl,
       controller: controller,
