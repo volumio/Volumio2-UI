@@ -1,27 +1,27 @@
 <div id="modalPlaylist">
   <div class="modal-header">
-    <h3 class="modal-title">{{modalPlaylist.params.title}}</h3>
+    <h3 class="modal-title">{{modal.dataObj.title}}</h3>
   </div>
   <div class="modal-body">
-    <input type="text" ng-model="modalPlaylist.customPlaylist">
-    <button type="button" ng-click="modalPlaylist.addToCustomPlaylist()">
+    <input type="text" ng-model="modal.customPlaylist">
+    <button type="button" ng-click="modal.addToCustomPlaylist()">
       New
     </button>
     <ul class="list-group">
       <li class="list-group-item"
-          ng-click="modalPlaylist.addToFavourite()">
+          ng-click="modal.addToFavourite()">
         Favourites
       </li>
-      <li ng-repeat="playlist in modalPlaylist.params.playlists track by $index"
+      <li ng-repeat="playlist in modal.dataObj.playlists track by $index"
           class="list-group-item"
-          ng-click="modalPlaylist.addToPlaylist(playlist)">
+          ng-click="modal.addToPlaylist(playlist)">
         {{playlist}}
       </li>
     </ul>
   </div>
   <div class="modal-footer">
-    <!-- <button class="btn btn-primary" ng-click="modalPlaylist.ok()">Add</button> -->
-    <button class="btn btn-warning" ng-click="modalPlaylist.cancel()">
+    <!-- <button class="btn btn-primary" ng-click="modal.ok()">Add</button> -->
+    <button class="btn btn-warning" ng-click="modal.cancel()">
       Cancel
     </button>
   </div>

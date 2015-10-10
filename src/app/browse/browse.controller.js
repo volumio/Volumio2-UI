@@ -1,18 +1,11 @@
 class BrowseController {
-  constructor(browseService, playQueueService, playlistService, socketService, $modal) {
+  constructor(browseService, playQueueService, playlistService, socketService, modalService) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
     this.socketService = socketService;
-    // $window.document.find('.toggleItemMenu').addEventListener('cklick', () => {
-    //   console.log('asd');
-    // })
-    this.$modal = $modal;
-    // this.browseService.fetchLibrary({
-    //     name: "Music Library",
-    //     uri: "music-library"
-    //   });
+    this.modalService = modalService;
   }
 
   fetchLibrary(item) {
@@ -42,24 +35,19 @@ class BrowseController {
   }
 
   addToPlaylist(item) {
-    let modalInstance = this.$modal.open({
-      animation: true,
-      templateUrl: 'app/themes/volumio/browse/components/modal/volumio-modal-playlist.html',
-      controller: 'ModalPlaylistController',
-      controllerAs: 'modalPlaylist',
-      size: 'sm',
-      resolve: {
-        params: () => {
-          return {
-            title: 'Add to playlist',
-            playlists: this.playlistService.playlists,
-            item: item
-          };
-        }
-      }
-    });
-
-    modalInstance.result.then(() => {}, () => {});
+    let
+      templateUrl = 'app/themes/volumio/browse/components/modal/volumio-modal-playlist.html',
+      controller = 'ModalPlaylistController',
+      params = {
+        title: 'Add to playlist',
+        playlists: this.playlistService.playlists,
+        item: item
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
   }
 
   deletePlaylist(item) {
@@ -76,7 +64,6 @@ class BrowseController {
     console.log('search', this.searchField);
     this.socketService.emit('search', {value: this.searchField});
   }
-
 }
 
 export default BrowseController;
