@@ -37,7 +37,7 @@ class SideMenuController {
 
   itemClick(item) {
     this.toggleMenu();
-    console.log(item);
+    //console.log(item);
     if (item.id === 'modal') {
       let
         controllerName = item.params.modalName.split('-').map(
@@ -51,20 +51,7 @@ class SideMenuController {
         controllerName + 'Controller',
         templateUrl,
         item,
-        'sm');
-      // let modalInstance = this.$modal.open({
-      //   animation: true,
-      //   templateUrl: ,
-      //   controller: controllerName + 'Controller',
-      //   controllerAs: 'modal',
-      //   size: 'sm',
-      //   resolve: {
-      //     params: () => {
-      //       return item;
-      //     }
-      //   }
-      // });
-      // modalInstance.result.then(() => {}, () => {});
+        item.size);
     } else if (item.id === 'link') {
       window.open(item.params.url);
     } else if (item.params) {

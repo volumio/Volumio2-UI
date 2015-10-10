@@ -9,8 +9,9 @@ class PlayerService {
     this.trackInfo = null;
 
     this.seek = 0;
-    this._thick = 200;
+    this._thick = 1000;
     this._seekScale = 1000;
+    this.elapsedTimeString = '0:00';
 
     this._volume = 80;
     this._volumeStep = 10;
@@ -105,18 +106,23 @@ class PlayerService {
   }
 
   calculateElapsedTimeString() {
-    let elapsedSeconds = Math.ceil(this.elapsedTime / this._seekScale);
-    if (elapsedSeconds === 1) {
-      this.elapsedTimeString = '0:00';
-    } else {
-      let seconds = Math.floor(elapsedSeconds % 60);
-      if (seconds < 10) {
-        seconds = '0' + seconds;
-      }
-      this.elapsedTimeString = Math.floor(elapsedSeconds / 60).toFixed(0) + ':' +
-          seconds;
-    }
-
+    //let elapsedSeconds = Math.ceil(this.elapsedTime / this._seekScale);
+    console.log(this.elapsedTime);
+    let momentDuration = moment.duration(this.elapsedTime),
+      minutes = momentDuration.minutes(),
+      seconds = momentDuration.seconds();
+    this.elapsedTimeString = minutes + ':' +
+        ((seconds < 10) ? ('0' + seconds) : seconds);
+    // if (elapsedSeconds === 1) {
+    //   this.elapsedTimeString = '0:00';
+    // } else {
+    //   let seconds = Math.floor(elapsedSeconds % 60);
+    //   if (seconds < 10) {
+    //     seconds = '0' + seconds;
+    //   }
+    //   this.elapsedTimeString = Math.floor(elapsedSeconds / 60).toFixed(0) + ':' +
+    //       seconds;
+    // }
     //console.log(elapsedSeconds, this.elapsedTimeString);
   }
 
@@ -170,6 +176,9 @@ class PlayerService {
       this.state = data;
       if (this.state.status === 'play') {
         this.startSeek();
+      } else if (this.state.status === 'stop') {
+        this.stopSeek();
+        this.elapsedTimeString = '0:00';
       }
     });
     this.socketService.on('pushTrackInfo', (data) => {

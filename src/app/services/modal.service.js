@@ -1,5 +1,5 @@
 class ModalService {
-  constructor ($uibModal) {
+  constructor($uibModal) {
     'ngInject';
     this.$uibModal = $uibModal;
   }

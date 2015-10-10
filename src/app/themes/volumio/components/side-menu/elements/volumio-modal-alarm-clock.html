@@ -2,8 +2,53 @@
   <h3 class="modal-title">{{modal.dataObj.name}}</h3>
 </div>
 <div class="modal-body">
-
+  <div ng-repeat="alarm in modal.alarms track by $index" class="row">
+    <div class="col-xs-12 col-sm-6">
+      <uib-timepicker
+          ng-model="alarm.time"
+          hour-step="1"
+          minute-step="1"
+          show-meridian="modal.showMeridian">
+      </uib-timepicker>
+    </div>
+    <div class="col-xs-12 col-sm-6 pull-down">
+      <input
+          bs-switch
+          ng-model="alarm.enabled"
+          type="checkbox"
+          switch-size="medium"
+          switch-animate="false"
+          switch-on-text="On"
+          switch-off-text="Off"
+          ng-true-value="true"
+          ng-false-value="false">
+    </div>
+    <div class="clearfix visible-xs-block"></div>
+    <div class="col-xs-12 col-sm-6 pull-down">
+      <ui-select
+          id="{{alarm.id}}"
+          ng-model="alarm.playlist"
+          search-enabled="false"
+          append-to-body="false"
+          theme="bootstrap">
+        <ui-select-match placeholder="Choose playlist">
+          {{$select.selected}}
+        </ui-select-match>
+        <ui-select-choices
+            repeat="playlist in modal.playlistService.playlists track by $index">
+          <div ng-bind-html="playlist"></div>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <div class="col-xs-12 col-sm-6 pull-down">
+      <button
+          ng-click="modal.deleteAlarm(alarm)">
+        Delete
+      </button>
+    </div>
+  </div>
 </div>
+
 <div class="modal-footer">
   <button
       class="cancelBtn"
@@ -12,7 +57,12 @@
   </button>
   <button
       class="btn-info"
-      ng-click="modal.cancel()">
+      ng-click="modal.add()">
+    Add
+  </button>
+  <button
+      class="btn-info"
+      ng-click="modal.save()">
     Save
   </button>
 </div>

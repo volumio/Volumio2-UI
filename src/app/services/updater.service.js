@@ -7,6 +7,7 @@ class UpdaterService {
 
     //this.updateReady();
 
+
     $rootScope.$on('socket:init', () => {
       this.init();
     });

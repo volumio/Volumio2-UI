@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div id="timepicker">
+    <div class="col-xs-12">
       <uib-timepicker
           ng-model="modal.sleepTime"
           ng-change="modal.timeChanged()"
@@ -12,7 +12,7 @@
           show-meridian="modal.showMeridian">
       </uib-timepicker>
     </div>
-    <div id="toggle">
+    <div class="col-xs-12 pull-down">
       <input
           bs-switch
           ng-model="modal.sleepActive"

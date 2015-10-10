@@ -10,6 +10,10 @@ class SettingsController {
     //this.SettingsStructure = mockService.get('getSettingsStructure');
   }
 
+  openModal() {
+    this.modalService.openModal();
+  }
+
   callApi() {
     console.log('called', this.apiMethod);
     let listener = 'push' + this.apiMethod;

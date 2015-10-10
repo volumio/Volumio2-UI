@@ -1,11 +1,35 @@
 class ModalAlarmClockController {
-  constructor($modalInstance, socketService, dataObj) {
+  constructor($modalInstance, socketService, dataObj, playlistService) {
     'ngInject';
     this.$modalInstance = $modalInstance;
     this.socketService = socketService;
     this.dataObj = dataObj;
-    console.log(dataObj);
+    this.playlistService = playlistService;
+
     this.init();
+    this.alarms = [
+      {id: 1, enabled: true, time: '', playlist: 'Play one'},
+      {id: 2, enabled: false, time: '', playlist: 'Play Rock'}
+    ];
+  }
+
+  save() {
+    this.socketService.emit('getAlarms', this.alarms);
+    this.$modalInstance.close();
+  }
+
+  add() {
+    this.alarms.push(
+      {
+        enabled: true,
+        time: '',
+        playlist: ''
+      });
+    console.log(this.alarms);
+  }
+
+  deleteAlarm(index) {
+    this.alarms.splice(index, 1);
   }
 
   cancel() {
@@ -18,14 +42,14 @@ class ModalAlarmClockController {
   }
 
   registerListner() {
-    // this.socketService.on('pushSleep', (data) => {
-    //  console.warn('pushSleep', data);
-    //  //this.menuItems = data;
-    // });
+    this.socketService.on('pushAlarms', (data) => {
+      console.warn('pushAlarms', data);
+      //this.menuItems = data;
+    });
   }
 
   initService() {
-    //this.socketService.emit('getSleep');
+    this.socketService.emit('getAlarms');
   }
 }
 
