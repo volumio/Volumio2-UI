@@ -1,8 +1,7 @@
 class ThemeManagerProvider {
   constructor() {
     'ngInject';
-    this._theme = 'volumio';
-
+    this._theme = null;
   }
 
   set theme(theme) {
@@ -25,21 +24,23 @@ class ThemeManagerProvider {
   }
 
   $get($rootScope) {
+    'ngInject';
     return {
       getHtmlPath: this.getHtmlPath,
       theme: this._theme,
       setPageMetadata: () => {
         angular.element('body').attr('id', this.theme);
         document.title = this.theme;
-        $rootScope.faviconUrl = 'app/' + this.theme + '/favicon.ico';
+        $rootScope.favicon = 'app/' + this.theme + '/assets/favicon.png';
+        console.log($rootScope.favicon);
         $rootScope.theme = this.theme;
         $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
         console.log(this.theme);
-        // let link = document.createElement('link');
-        // link.type = 'image/x-icon';
-        // link.rel = 'shortcut icon';
-        // link.href = this._theme + '.ico';
-        // document.getElementsByTagName('head')[0].appendChild(link);
+        let link = document.createElement('link');
+        link.type = 'image/x-icon';
+        link.rel = 'shortcut icon';
+        link.href = 'app/themes/' + this.theme + '/assets/favicon.png';
+        document.getElementsByTagName('head')[0].appendChild(link);
       }
     };
   }

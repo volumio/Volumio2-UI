@@ -1,4 +1,4 @@
-function runBlock (themeManager, theme) {
+function runBlock (themeManager) {
   'ngInject';
   themeManager.setPageMetadata();
 }

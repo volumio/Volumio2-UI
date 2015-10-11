@@ -1,7 +1,6 @@
 class PlayerButtonsDirective {
   constructor() {
     'ngInject';
-
     let directive = {
       restrict: 'E',
       templateUrl: 'app/themes/volumio/components/side-menu/volumio-side-menu.html',
@@ -10,7 +9,6 @@ class PlayerButtonsDirective {
       controllerAs: 'sideMenu',
       bindToController: true
     };
-
     return directive;
   }
 }
@@ -51,7 +49,7 @@ class SideMenuController {
         controllerName + 'Controller',
         templateUrl,
         item,
-        item.size);
+        'lg');
     } else if (item.id === 'link') {
       window.open(item.params.url);
     } else if (item.params) {

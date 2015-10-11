@@ -78,7 +78,7 @@ class PlayerService {
       //   val = 1;
       // }
       let sec = Math.ceil(this.state.duration / this._seekScale * val);
-      console.log('val', val, 'seek', sec);
+      //console.log('val', val, 'seek', sec);
       this.socketService.emit('seek', sec);
     }
   }
@@ -107,7 +107,7 @@ class PlayerService {
 
   calculateElapsedTimeString() {
     //let elapsedSeconds = Math.ceil(this.elapsedTime / this._seekScale);
-    console.log(this.elapsedTime);
+    //console.log(this.elapsedTime);
     let momentDuration = moment.duration(this.elapsedTime),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();

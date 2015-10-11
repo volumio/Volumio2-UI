@@ -5,44 +5,45 @@ class UpdaterService {
     this.modalService = modalService;
     this.$timeout = $timeout;
 
-    //this.updateReady();
+    //this.openUpdateModal();
 
     $rootScope.$on('socket:init', () => {
       this.init();
     });
   }
 
-  updateReady() {
+  openUpdateModal() {
     this.status = 'updateReady';
-    this.modalService.openModal(
-      'ModalUpdaterController',
-      'app/components/modal-updater/modal-updater.html',
+    let mockUpdateReady =
       {
         title: 'Update v2.0',
         description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>'
-      },
+      };
+    this.modalService.openModal(
+      'ModalUpdaterController',
+      'app/components/modal-updater/modal-updater.html',
+      this.updateReady,
       'lg');
   }
 
   update(val) {
-    this.status = 'updateProgress';
     this.socketService.emit('update', {value: val});
 
-    this.updateProgress = {
-      progress: 90,
-      status: 'please wait',
-      downloadSpeed: '100',
-      eta: '40m 30s'
-    };
-
-    this.$timeout(() => {
-      this.updateDone();
-    }, 3000);
+    //this.status = 'updateProgress';
+    // this.updateProgress = {
+    //   progress: 90,
+    //   status: 'please wait',
+    //   downloadSpeed: '100',
+    //   eta: '40m 30s'
+    // };
+    //
+    // this.$timeout(() => {
+    //   this.updateDone();
+    // }, 3000);
   }
 
   updateDone() {
     this.status = 'updateDone';
-
     this.updateDone = {
       status: 'success',
       message: 'Update succes'
@@ -58,6 +59,7 @@ class UpdaterService {
     this.socketService.on('updateReady', (data) => {
       console.log('updateReady', data);
       this.updateReady = data;
+      this.openUpdateModal();
     });
     this.socketService.on('updateProgress', (data) => {
       console.log('updateProgress', data);
@@ -66,6 +68,7 @@ class UpdaterService {
     });
     this.socketService.on('updateDone', (data) => {
       console.log('updateDone', data);
+      this.status = 'updateDone';
       this.updateDone = data;
     });
   }
