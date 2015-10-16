@@ -1,24 +1,38 @@
-#volumio {
-  header {
-    @include make-row();
-    position: fixed;
-    top: 0;
-    z-index: 2;
-    width: 100%;
-    height: $headerHeight;
-    border: solid 0px red;
-    background-color: #EEE;
+header {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: $headerHeightPhone;
+  padding-top: 8px;
+  color: red;
 
-
-    #logo, #sideMenu {
-      @include make-sm-column(3);
+  .phoneHeaderWrapper {
+    @extend .visible-xs;
+  }
+  .headerWrapper {
+    @extend .hidden-xs;
+  }
+  #sideMenu {
+    @include make-xs-column(6);
+  }
+  #logo {
+    @include make-xs-column(18);
+    img {
+      margin-top: 5px;
+      width: 170px;
     }
-    #sideMenu {
-      text-align: right;
-    }
-    #playerButtons {
-      @include make-sm-column(6);
-      text-align: center;
-    }
+  }
+  #logo, #sideMenu {
+    @include make-sm-column(6);
+    border: solid 1px red;
+  }
+  #sideMenu {
+    text-align: right;
+  }
+  .playerButtons {
+    @include make-sm-column(12);
+    border: solid 1px blue;
+    text-align: center;
   }
 }

@@ -1,9 +1,28 @@
-<div id="logo">
-  Volumio
-</div>
-<div id="playerButtons">
+<div class="headerWrapper">
+  <div id="logo">
+    <img
+        src="app/themes/volumio/assets/graphics/volumio-logo.png"
+        alt="Axiom air"
+        ui-sref="volumio.playback"/>
+  </div>
+
   <player-buttons></player-buttons>
-</div>
-<div id="sideMenu">
+
   <side-menu></side-menu>
+</div>
+
+<div class="phoneHeaderWrapper">
+  <div class="row">
+    <div id="logo">
+      <img
+          src="app/themes/volumio/assets/graphics/volumio-logo.png"
+          alt="Axiom air"
+          ui-sref="volumio.playback"/>
+    </div>
+
+    <side-menu></side-menu>
+  </div>
+  <div class="row">
+    <player-buttons></player-buttons>
+  </div>
 </div>

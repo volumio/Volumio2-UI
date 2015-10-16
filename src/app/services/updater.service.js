@@ -5,7 +5,12 @@ class UpdaterService {
     this.modalService = modalService;
     this.$timeout = $timeout;
 
-    //this.openUpdateModal();
+    // this.updateReady =
+    //   {
+    //     title: 'Update v2.0',
+    //     description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>'
+    //   };
+    // this.openUpdateModal();
 
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -14,11 +19,6 @@ class UpdaterService {
 
   openUpdateModal() {
     this.status = 'updateReady';
-    let mockUpdateReady =
-      {
-        title: 'Update v2.0',
-        description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>'
-      };
     this.modalService.openModal(
       'ModalUpdaterController',
       'app/components/modal-updater/modal-updater.html',
@@ -29,7 +29,7 @@ class UpdaterService {
   update(val) {
     this.socketService.emit('update', {value: val});
 
-    //this.status = 'updateProgress';
+    // this.status = 'updateProgress';
     // this.updateProgress = {
     //   progress: 90,
     //   status: 'please wait',
@@ -56,6 +56,7 @@ class UpdaterService {
   }
 
   registerListner() {
+    console.log('socket lisner');
     this.socketService.on('updateReady', (data) => {
       console.log('updateReady', data);
       this.updateReady = data;

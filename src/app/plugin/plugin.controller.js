@@ -29,7 +29,12 @@ class PluginController {
 
   saveButton(item) {
     console.info(item.onClick);
-    this.socketService.emit('callMethod', item.onClick);
+    if (item.onClick.type === 'emit') {
+      console.log('emit', item.onClick.message, item.onClick.data);
+      this.socketService.emit('updateCheck', 'search-for-upgrade');
+    } else {
+      this.socketService.emit('callMethod', item.onClick);
+    }
   }
 
   init() {

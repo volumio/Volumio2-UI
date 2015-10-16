@@ -1,12 +1,14 @@
 #playbackPanelWrapper {
   @include make-row();
-  @include noRowMargin;
+    border:solid 1px blue;
+  .playerButtons {
+    @include make-sm-column(24);
+    text-align: center;
+  }
   #leftPanel, #rightPanel {
-    border:solid 0px blue;
-    @include make-sm-column(5);
+    @include make-sm-column(10);
   }
   #centerPanel {
-    border:solid 0px blue;
-    @include make-sm-column(2);
+    @include make-sm-column(4);
   }
 }

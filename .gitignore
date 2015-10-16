@@ -1,4 +1,5 @@
 src/app/themes/*
+src/app/ngConstants.js
 !src/app/themes/volumio/
 dist/
 node_modules/

@@ -1,4 +1,29 @@
-//$font-size-base: 10px;
+$brand-primary: #2965A8;
+$electric-blue: #069FD7;
+$text-color: #FFF;
+
+$link-hover-color: #FFF;
+$link-hover-decoration: none;
+
+$panel-bg: transparent;
+$panel-default-heading-bg: $panel-bg;
+$panel-border-radius: 0;
+
+$grid-columns: 24;
+$grid-gutter-width:30px;
+
+$btn-border-radius-base: 0;
+$btn-info-color: #069FD7;
+$btn-info-bg: #05344B;
+$btn-info-border: #069FD7;
+
+$modal-content-bg: #013363;
+// $modal-inner-padding: 10px;
+// $modal-title-padding: 10px;
+
+$list-group-bg: #013363;
+$list-group-border: $electric-blue;
+$list-group-border-radius: 0;
 
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -57,10 +82,8 @@
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
 
-
-
-
 $headerHeight: 50px;
+$headerHeightPhone: 100px;
 $footerHeight: 50px;
 
 #volumio {
@@ -69,10 +92,11 @@ $footerHeight: 50px;
     width: 100%;
     position: fixed;
     z-index: 1;
-    top: $headerHeight;
+    top: $headerHeightPhone;
     bottom: $footerHeight;
     overflow: scroll;
     border: solid 0 blue;
+    background-color: #EEE;
   }
 }
 
@@ -83,8 +107,4 @@ button {
 @mixin noRowMargin {
   margin-left: 0px !important;
   margin-right: 0px !important;
-}
-
-div {
-  border: solid 0px red;
 }

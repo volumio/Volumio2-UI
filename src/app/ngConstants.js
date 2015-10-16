@@ -1,5 +1,5 @@
 angular.module("volumio.constant", [])
 
-.constant("theme", "axiom")
+.constant("theme", "volumio")
 
 ;
