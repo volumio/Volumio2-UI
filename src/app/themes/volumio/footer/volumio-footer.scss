@@ -7,10 +7,17 @@ footer {
   border: solid 0px green;
   background-color: #EEE;
 
-  .footerBtn{
-    @include make-xs-column(8);
-  }
   button {
+    &.playbackBtn {
+      background-color: $volumio-accent-color;
+      &:focus {
+        background-color: $volumio-accent-color;
+      }
+    }
+    border-radius: 0px !important;
+    border: none !important;
+    height: $footerHeight;
+    @include make-xs-column(8, 0);
     span {
       margin-left: 10px;
       @extend .hidden-xs;

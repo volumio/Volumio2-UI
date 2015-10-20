@@ -5,14 +5,23 @@
       options="trackManager.knobOptions">
     </knob>
   </div>
-  <div>
-    <strong>repeatTrack</strong>: {{trackManager.playerService.repeatTrack}}
-    <strong>repeatAlbum</strong>: {{trackManager.playerService.repeatAlbum}}
-    <strong>shuffle</strong>: {{trackManager.playerService.shuffle}}
-  </div>
-  <div id="trackButtonBar">
-    <button ng-click="trackManager.playerService.shuffle()">Shuffle</button>
-    <button ng-click="trackManager.playerService.repeatTrack()">Repeat track</button>
-    <button ng-click="trackManager.playerService.repeatAlbum()">Repeat album</button>
+  <div id="trackButtonBar" class="btn-group">
+    <button
+        ng-click="trackManager.addToFavourites()"
+        class="btn btn-default">
+      <i class="fa fa-heart"></i>
+    </button>
+    <button
+        ng-class="{'active': trackManager.playerService.state.random}"
+        ng-click="trackManager.playerService.shuffle()"
+        class="btn btn-default">
+      <i class="fa fa-random"></i>
+    </button>
+    <button
+        ng-class="{'active': trackManager.playerService.state.repeat}"
+        ng-click="trackManager.playerService.repeatAlbum()"
+        class="btn btn-default">
+      <i class="fa fa-repeat"></i>
+    </button>
   </div>
 </div>

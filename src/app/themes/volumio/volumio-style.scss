@@ -1,29 +1,52 @@
-$brand-primary: #2965A8;
-$electric-blue: #069FD7;
-$text-color: #FFF;
+$headerHeight: 50px;
+$footerHeight: 33px;
 
-$link-hover-color: #FFF;
+$volumio-green-color: #4bbe87;
+$volumio-light-color: #7a848e;
+$volumio-dark-color: #535d67;
+$volumio-accent-color: #283a4e;
+$volumio-background-color: $volumio-dark-color;
+
+$body-bg: $volumio-background-color;
+$brand-primary: #222;
+$text-color: #DDD;
+$electric-blue: #069FD7;
+
+$link-color: #FFF;
+$link-hover-color: $volumio-green-color;
 $link-hover-decoration: none;
 
-$panel-bg: transparent;
-$panel-default-heading-bg: $panel-bg;
-$panel-border-radius: 0;
 
+
+//Grid
 $grid-columns: 24;
 $grid-gutter-width:30px;
 
-$btn-border-radius-base: 0;
+//Buttons
+$btn-default-color: #FFF;
+$btn-default-bg: $volumio-light-color;
+
 $btn-info-color: #069FD7;
 $btn-info-bg: #05344B;
 $btn-info-border: #069FD7;
 
+//Table
+$table-bg-hover: $volumio-light-color;
+
+//Panels
+$panel-bg: transparent;
+$panel-default-heading-bg: $panel-bg;
+$panel-border-radius: 0;
+
+//Modals
 $modal-content-bg: #013363;
 // $modal-inner-padding: 10px;
 // $modal-title-padding: 10px;
 
+//List group
 $list-group-bg: #013363;
 $list-group-border: $electric-blue;
-$list-group-border-radius: 0;
+//$list-group-border-radius: 0;
 
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -82,26 +105,89 @@ $list-group-border-radius: 0;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
 
-$headerHeight: 50px;
-$headerHeightPhone: 100px;
-$footerHeight: 50px;
+@import "volumio-mixins";
 
-#volumio {
-  #contentWrapper {
-    @include make-row();
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    top: $headerHeightPhone;
-    bottom: $footerHeight;
-    overflow: scroll;
-    border: solid 0 blue;
-    background-color: #EEE;
+
+body {
+  //background: $volumio-background-color;
+}
+
+.btn {
+  outline: none !important;
+  &.selected {
+    background-color: $volumio-green-color;
+  }
+  &:focus {
+    color: $link-color;
+    background-color: $btn-default-bg;
+  }
+  &.btn-default {
+    &:hover {
+      background-color: $volumio-green-color;
+    }
+  }
+}
+.btn-link {
+  border-radius: $btn-border-radius-base;
+  &.active {
+    background-color: $volumio-green-color;
+    color: #FFF;
   }
 }
 
-button {
-  @extend .btn, .btn-success;
+#contentWrapper {
+  @include make-row();
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: $headerHeight;
+  bottom: $footerHeight;
+  overflow: scroll;
+  #content {
+    @include make-sm-column(24);
+
+  }
+}
+
+//Common components
+
+//Table
+table {
+  font-size: 18px;
+  margin: 0;
+  tr {
+    cursor: pointer;
+    &.nohover{
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  th {
+    color: $volumio-accent-color;
+  }
+  td {
+    // vertical-align: middle;
+    &.image {
+      font-size:30px;
+      text-align: center;
+      width: 90px;
+      img {
+        margin-left: 10px;
+        margin-right: 10px;
+        @include square(70px);
+      }
+    }
+    &.icon-cover {
+      font-size: 26px;
+      color: $volumio-accent-color;
+    }
+    &.commandButtons {
+      width: 50px;
+      text-align: right;
+      padding-right:6px;
+    }
+  }
 }
 
 @mixin noRowMargin {

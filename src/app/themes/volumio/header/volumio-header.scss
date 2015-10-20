@@ -1,38 +1,36 @@
 header {
+  @include make-row();
   position: fixed;
   top: 0;
   z-index: 2;
   width: 100%;
-  height: $headerHeightPhone;
+  height: $headerHeight;
   padding-top: 8px;
-  color: red;
+  background-color: $volumio-light-color;
 
-  .phoneHeaderWrapper {
-    @extend .visible-xs;
-  }
-  .headerWrapper {
-    @extend .hidden-xs;
-  }
-  #sideMenu {
-    @include make-xs-column(6);
-  }
   #logo {
-    @include make-xs-column(18);
+    @include make-sm-column(6);
+    @extend .hidden-xs;
     img {
       margin-top: 5px;
       width: 170px;
     }
   }
-  #logo, #sideMenu {
-    @include make-sm-column(6);
-    border: solid 1px red;
-  }
   #sideMenu {
+    @include make-sm-column(6);
+    @include make-xs-column(4);
     text-align: right;
   }
-  .playerButtons {
+  #playerButtons {
     @include make-sm-column(12);
-    border: solid 1px blue;
+    @include make-xs-column(16);
+    @include make-xs-column-offset(4);
+    @include make-sm-column-offset(0);
+    @include make-md-column-offset(0);
+    @include make-lg-column-offset(0);
     text-align: center;
+    button {
+      
+    }
   }
 }

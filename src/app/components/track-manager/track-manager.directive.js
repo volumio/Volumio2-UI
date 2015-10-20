@@ -1,5 +1,5 @@
 class TrackManagerDirective {
-  constructor (themeManager) {
+  constructor(themeManager) {
     'ngInject';
 
     let directive = {
@@ -18,28 +18,28 @@ class TrackManagerDirective {
       setTimeout(() => {
         let test = el.find('.slider-handle');
         test[0].addEventListener('mousedown', () => {
-              console.log('down');
-              vm.playerService.stopSeek();
-            }, true);
+          console.log('down');
+          vm.playerService.stopSeek();
+        }, true);
         test[0].addEventListener('mouseup', () => {
-              console.log('up', vm.playerService.seekPercent);
-              vm.playerService.seek = vm.playerService.seekPercent;
-            }, true);
+          console.log('up', vm.playerService.seekPercent);
+          vm.playerService.seek = vm.playerService.seekPercent;
+        }, true);
       });
     }
   }
 }
 
 class TrackManagerController {
-  constructor ($element, playerService, playlistService) {
+  constructor($element, playerService, playlistService) {
     'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
 
     this.knobOptions = {
-      min:0,
-      max:101,
-      fgColor:'#FF0000',
+      min: 0,
+      max: 101,
+      fgColor: '#FF0000',
       width: 120,
       height: 120,
       displayInput: false,

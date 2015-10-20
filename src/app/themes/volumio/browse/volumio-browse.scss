@@ -1,30 +1,33 @@
-#volumio {
-  #browse{
-    #toolbarRow{
-      @include make-row();
-      #browseSources {
-        @include make-sm-column(8);
-      }
-      #searchBox {
-        @include make-sm-column(4);
-      }
-    }
-    #browseList{
-      //@include make-row();
-      .browseItemMenu{
-        position: relative;
-        .buttonsGroup{
-          position: absolute;
-          top: 34px;
-          right: 0;
-          left: auto;
-          z-index: 3;
-        }
-      }
-    }
-
-    #browseTable{
-      @include make-sm-column(12);
+#toolbarRow{
+  @include make-row();
+  padding-top: 10px;
+  #browseSources {
+    @include make-sm-column(16);
+    @include make-xs-column(24);
+  }
+  #searchBox {
+    @include make-sm-column(8);
+    @include make-xs-column(24);
+    @include breakpoint(xs) {
+      text-align: right;
+      padding-top: 10px;
     }
   }
+}
+#browseList {
+  //@include make-row();
+  .browseItemMenu{
+    position: relative;
+    .buttonsGroup{
+      position: absolute;
+      top: 34px;
+      right: 0;
+      left: auto;
+      z-index: 3;
+    }
+  }
+}
+
+#browseTable {
+  @include make-sm-column(24);
 }
