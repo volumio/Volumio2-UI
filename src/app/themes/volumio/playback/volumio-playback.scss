@@ -1,7 +1,7 @@
 #playbackPanelWrapper {
   @include make-row();
   margin-top: 10px;
-  border:solid 1px blue;
+  border:solid 0px blue;
   #leftPanel, #rightPanel {
     text-align: center;
     @include make-sm-column(8);

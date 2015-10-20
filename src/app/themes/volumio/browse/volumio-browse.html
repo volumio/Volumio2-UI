@@ -16,13 +16,13 @@
       </button>
     </div>
     <div id="searchBox">
-      <input type="text" ng-model="browse.searchField" ng-change="browse.search()">
+      <input type="text" ng-model="browse.searchField" ng-change="browse.search()" class="form-control">
     </div>
   </div>
 
 
   <br><br>
-  <div class="">
+  <div ng-if="browse.browseService.list.length">
     <button
         ng-repeat="breadcrumb in browse.browseService.breadcrumbs"
         ng-click="browse.fetchLibrary({uri: breadcrumb})"
@@ -30,8 +30,9 @@
       Back
     </button>
   </div>
+
   <br><br>
-  <div id="browseList">
+  <div id="browseList" ng-if="browse.browseService.list.length">
     <table id="browseTable" class="table table-hover table-condensed">
       <tr class="nohover">
         <th>Cover</th>
@@ -58,6 +59,7 @@
             <button
                 class="btn btn-default"
                 dropdown-toggle
+                onclick="event.stopPropagation();"
                 >
               <i class="fa fa-bars"></i>
             </button>

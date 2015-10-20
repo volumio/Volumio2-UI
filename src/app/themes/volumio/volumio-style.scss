@@ -17,7 +17,6 @@ $link-hover-color: $volumio-green-color;
 $link-hover-decoration: none;
 
 
-
 //Grid
 $grid-columns: 24;
 $grid-gutter-width:30px;
@@ -26,17 +25,25 @@ $grid-gutter-width:30px;
 $btn-default-color: #FFF;
 $btn-default-bg: $volumio-light-color;
 
-$btn-info-color: #069FD7;
-$btn-info-bg: #05344B;
-$btn-info-border: #069FD7;
+$btn-info-color: $volumio-green-color;
+$btn-info-bg: $volumio-accent-color;
+$btn-info-border: $volumio-green-color;
 
 //Table
 $table-bg-hover: $volumio-light-color;
 
 //Panels
-$panel-bg: transparent;
-$panel-default-heading-bg: $panel-bg;
-$panel-border-radius: 0;
+$panel-default-text: #FFF;
+$panel-bg: $volumio-light-color;
+$panel-default-heading-bg: $volumio-accent-color;
+$panel-default-border: $volumio-green-color;
+// $panel-border-radius: 0;
+
+//Inputs
+$input-bg: $volumio-accent-color;
+$input-color: $volumio-green-color;
+$input-border: $volumio-green-color;
+$input-border-focus: $volumio-green-color;
 
 //Modals
 $modal-content-bg: #013363;
@@ -115,7 +122,7 @@ body {
 .btn {
   outline: none !important;
   &.selected {
-    background-color: $volumio-green-color;
+    background-color: $volumio-green-color !important;
   }
   &:focus {
     color: $link-color;
@@ -156,15 +163,15 @@ table {
   font-size: 18px;
   margin: 0;
   tr {
-    cursor: pointer;
+    th {
+      color: $volumio-accent-color;
+      border: none !important;
+    }
     &.nohover{
       &:hover {
         background-color: transparent;
       }
     }
-  }
-  th {
-    color: $volumio-accent-color;
   }
   td {
     // vertical-align: middle;
@@ -188,6 +195,39 @@ table {
       padding-right:6px;
     }
   }
+}
+
+//panels
+.panel {
+  border: none;
+  margin-top: 20px;
+  .panel-heading {
+    border-bottom: solid 1px $volumio-green-color;
+    .panel-title {
+      color: #FFF;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+//Toggle
+.ui-select-toggle, .ui-select-container, .ui-select-match {
+  background-color: $volumio-accent-color;
+  border-color: $volumio-green-color;
+  color: $volumio-green-color;
+  border-radius: 3px;
+}
+.bootstrap-switch {
+  border-color: $volumio-green-color;
+}
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+  background-color: $volumio-accent-color;
+  color: $volumio-green-color;
+}
+.bootstrap-switch-label {
+  background-color: red;
+  color: $volumio-green-color;
 }
 
 @mixin noRowMargin {

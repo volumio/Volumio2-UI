@@ -22,11 +22,12 @@ class VolumeManagerController {
     this.playerService = playerService;
 
     this.knobOptions = {
-      min:0,
-      max:100,
-      fgColor:'#FF0000',
-      width: 120,
-      height: 120,
+      min: 0,
+      max: 100,
+      fgColor: '#4bbe87',
+      bgColor: '#283a4e',
+      width: 150,
+      height: 150,
       displayInput: false,
       step: 1,
       angleOffset: -125,

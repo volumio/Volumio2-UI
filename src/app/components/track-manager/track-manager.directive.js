@@ -39,9 +39,10 @@ class TrackManagerController {
     this.knobOptions = {
       min: 0,
       max: 101,
-      fgColor: '#FF0000',
-      width: 120,
-      height: 120,
+      fgColor: '#4bbe87',
+      bgColor: '#283a4e',
+      width: 150,
+      height: 150,
       displayInput: false,
       step: 1,
       angleOffset: -125,

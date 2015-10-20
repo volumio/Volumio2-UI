@@ -12,6 +12,7 @@ header {
     @include make-sm-column(6);
     @extend .hidden-xs;
     img {
+      cursor: pointer;
       margin-top: 5px;
       width: 170px;
     }
@@ -30,7 +31,7 @@ header {
     @include make-lg-column-offset(0);
     text-align: center;
     button {
-      
+
     }
   }
 }

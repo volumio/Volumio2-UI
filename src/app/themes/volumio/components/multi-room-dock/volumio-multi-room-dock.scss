@@ -1,21 +1,48 @@
-#volumio {
-  #multiRoomDockWrapper {
-    @include make-row();
-    @include noRowMargin;
-    margin-top:10px;
-    .device {
-      @include make-sm-column(3);
-      height:110px;
-      border: solid 1px #0A0;
-      background-color: #CCC;
-      button {
-        @extend .btn, .btn-success, .btn-xs;
+#multiRoomDockWrapper {
+  @include make-sm-column(24);
+  background-color: $volumio-light-color;
+  margin-top:20px;
+  .device {
+    @include make-sm-column(6);
+
+    background-color: $volumio-accent-color;
+    height:100px;
+    cursor: pointer;
+    text-transform: uppercase;
+    //border: solid 1px red;
+    .deviceName {
+      font-size:20px;
+    }
+    .artist {
+      color: $brand-primary;
+      font-size:16px;
+    }
+    .track {
+      font-size:16px;
+    }
+    &.child {
+      cursor: default;
+      .deviceName, .track {
+        color: darken($text-color, 50%);
       }
-      &.selected {
-        .deviceName{
-          color: #0C0;
-        }
+      .artist {
+        color: darken($brand-primary, 10%);
       }
+    }
+
+    .deviceIcon {
+      width: 20%;
+      text-align: center;
+      @extend .pull-left;
+      img {
+        margin-top:20px;
+        @extend .img-responsive;
+      }
+    }
+    .deviceDetails {
+      width: 80%;
+      padding-left: 10px;
+      @extend .pull-left;
     }
   }
 }
