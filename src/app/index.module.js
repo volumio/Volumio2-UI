@@ -29,6 +29,7 @@ import PlayerStatusDirective from './components/player-status/player-status.dire
 import SideMenuDirective from './components/side-menu/side-menu.directive';
 import KnobDirective from './components/knob/knob.directive';
 import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
+import AirplayScrimDirective from './components/airplay-scrim/airplay-scrim.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 
 import ModalController from './components/modal/modal.controller';
@@ -56,6 +57,7 @@ import ModalPowerOffController from './components/side-menu/elements/modal-power
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
 import ModalAlarmClockController from './components/side-menu/elements/modal-alarm-clock.controller';
 import ModalUpdaterController from './components/modal-updater/modal-updater.controller';
+import ModalGotitController from './components/modal-gotit/modal-gotit.controller';
 
 
 
@@ -110,6 +112,7 @@ angular.module('volumio', [
   .directive('sideMenu', () => new SideMenuDirective())
   .directive('knob', () => new KnobDirective())
   .directive('multiRoomDock', () => new MultiRoomDockDirective())
+  .directive('airplayScrim', () => new AirplayScrimDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
@@ -133,5 +136,6 @@ angular.module('volumio', [
   .controller('ModalSleepController', ModalSleepController)
   .controller('ModalAlarmClockController', ModalAlarmClockController)
   .controller('ModalUpdaterController', ModalUpdaterController)
+  .controller('ModalGotitController', ModalGotitController)
 
   ;
