@@ -8,8 +8,8 @@ class ModalAlarmClockController {
 
     this.init();
     this.alarms = [
-      {id: 1, enabled: true, time: '', playlist: 'Play one'},
-      {id: 2, enabled: false, time: '', playlist: 'Play Rock'}
+      {id: 1, enabled: true, time: '', playlist: 'Mock play 1'},
+      {id: 2, enabled: false, time: '', playlist: 'Mock play 2'}
     ];
   }
 

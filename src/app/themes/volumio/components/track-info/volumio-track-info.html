@@ -1,33 +1,38 @@
 <div id="trackInfo">
+  <div>
+    <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album">
+      {{trackInfo.playerService.state.album}}
+    </div>
+    <div id="trackInfo-title" ng-if="trackInfo.playerService.state.title">
+      {{trackInfo.playerService.state.title}}
+    </div>
+    <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist">
+      {{trackInfo.playerService.state.artist}}
+    </div>
+
+    <div id="trackInfo-techInfos" ng-if="trackInfo.playerService.state.samplerate ||
+        trackInfo.playerService.state.bitdepth ||
+        trackInfo.playerService.state.service">
+      <span ng-if="trackInfo.playerService.state.service">
+        {{trackInfo.playerService.state.service}}
+      </span>
+      <span ng-if="trackInfo.playerService.state.samplerate">
+        | {{trackInfo.playerService.state.samplerate}} Khz
+      </span>
+      <span ng-if="trackInfo.playerService.state.bitdepth">
+        | {{trackInfo.playerService.state.bitdepth}} bit
+      </span>
+    </div>
+  </div>
+
   <div ng-if="trackInfo.playerService.state.albumart">
     <img
         ng-if="trackInfo.playerService.state.albumart"
         ng-src="{{trackInfo.playerService.state.albumart}}"
-        alt="{{trackInfo.playerService.state.album}}"
-        style="height:100px;"/>
+        alt="{{trackInfo.playerService.state.album}}"/>
     <i
         ng-if="trackInfo.playerService.state.icon"
         class="{{trackInfo.playerService.state.icon}}">
     </i>
-  </div>
-  <br>
-  <div ng-if="trackInfo.playerService.state.artist">
-    <strong>Artist:</strong> {{trackInfo.playerService.state.artist}}
-  </div>
-  <div ng-if="trackInfo.playerService.state.title">
-    <strong>Title:</strong> {{trackInfo.playerService.state.title}}
-  </div>
-  <div ng-if="trackInfo.playerService.state.album">
-    <strong>Album:</strong> {{trackInfo.playerService.state.album}}
-  </div>
-
-  <div ng-if="trackInfo.playerService.state.service">
-    <strong>Service:</strong> {{trackInfo.playerService.state.service}}
-  </div>
-  <div ng-if="trackInfo.playerService.state.samplerate">
-    <strong>Samplerate:</strong> {{trackInfo.playerService.state.samplerate}}
-  </div>
-  <div ng-if="trackInfo.playerService.state.channels">
-    <strong>Channels:</strong> {{trackInfo.playerService.state.channels}}
   </div>
 </div>

@@ -22,7 +22,7 @@
 
 
   <br><br>
-  <div ng-if="browse.browseService.list.length">
+  <div ng-if="true || browse.browseService.list.length">
     <button
         ng-repeat="breadcrumb in browse.browseService.breadcrumbs"
         ng-click="browse.fetchLibrary({uri: breadcrumb})"
@@ -32,7 +32,7 @@
   </div>
 
   <br><br>
-  <div id="browseList" ng-if="browse.browseService.list.length">
+  <div id="browseList" ng-if="true || browse.browseService.list.length">
     <table id="browseTable" class="table table-hover table-condensed">
       <tr class="nohover">
         <th>Cover</th>

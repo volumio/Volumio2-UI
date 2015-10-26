@@ -29,6 +29,16 @@ $btn-info-color: $volumio-green-color;
 $btn-info-bg: $volumio-accent-color;
 $btn-info-border: $volumio-green-color;
 
+//used for cancel buttons
+$btn-warning-color: $volumio-light-color;
+$btn-warning-bg: $volumio-accent-color;
+$btn-warning-border: $volumio-light-color;
+
+//used for delet buttons
+$btn-danger-color: darken(red, 15%);
+$btn-danger-bg: $volumio-accent-color;
+$btn-danger-border: darken(red, 15%);
+
 //Table
 $table-bg-hover: $volumio-light-color;
 
@@ -46,7 +56,10 @@ $input-border: $volumio-green-color;
 $input-border-focus: $volumio-green-color;
 
 //Modals
-$modal-content-bg: #013363;
+$modal-content-bg: $volumio-light-color;
+$modal-content-border-color: $volumio-dark-color;
+$modal-header-border-color: $volumio-green-color;
+$modal-footer-border-color: $volumio-green-color;
 // $modal-inner-padding: 10px;
 // $modal-title-padding: 10px;
 
@@ -158,6 +171,13 @@ body {
 
 //Common components
 
+//Buttons
+.cancelBtn {
+  background-color: darken($volumio-accent-color, 5%);
+  color: $volumio-light-color;
+  border-color: $volumio-light-color;
+}
+
 //Table
 table {
   font-size: 18px;
@@ -211,15 +231,27 @@ table {
   }
 }
 
-//Toggle
+//Select override
 .ui-select-toggle, .ui-select-container, .ui-select-match {
   background-color: $volumio-accent-color;
   border-color: $volumio-green-color;
   color: $volumio-green-color;
   border-radius: 3px;
 }
+.ui-select-bootstrap .ui-select-choices-row.active>a {
+  background-color: $volumio-light-color;
+}
+.ui-select-bootstrap .btn.btn-default:hover {
+  background-color: $volumio-accent-color;
+}
+
+//Switch override
 .bootstrap-switch {
   border-color: $volumio-green-color;
+}
+.bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
+  .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
+  background-color: lighten($volumio-light-color, 10%);
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
   background-color: $volumio-accent-color;
@@ -228,9 +260,4 @@ table {
 .bootstrap-switch-label {
   background-color: red;
   color: $volumio-green-color;
-}
-
-@mixin noRowMargin {
-  margin-left: 0px !important;
-  margin-right: 0px !important;
 }

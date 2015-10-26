@@ -1,15 +1,15 @@
 #multiRoomDockWrapper {
   @include make-sm-column(24);
-  background-color: $volumio-light-color;
+  // background-color: $volumio-light-color;
   margin-top:20px;
   .device {
     @include make-sm-column(6);
 
-    background-color: $volumio-accent-color;
     height:100px;
     cursor: pointer;
     text-transform: uppercase;
-    //border: solid 1px red;
+    border: solid 1px $volumio-green-color;
+    border-radius: 4px;
     .deviceName {
       font-size:20px;
     }

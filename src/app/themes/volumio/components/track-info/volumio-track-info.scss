@@ -1,6 +1,24 @@
 #trackInfo {
+  @include make-xs-column(24);
   border: solid 0px #999;
+  text-align: center;
   // background-color: #999;
-  padding: 10px;
-  margin-bottom: 10px;
+  #trackInfo-album {
+    font-size: 12px;
+  }
+  #trackInfo-title {
+    font-size: 20px;
+    color: $volumio-green-color;
+  }
+  #trackInfo-artist {
+    font-size: 14px;
+  }
+  #trackInfo-techInfos {
+    margin-top: 5px;
+    color: darken($volumio-light-color, 0%);
+  }
+  img {
+    width:100%;
+    margin-top: 10px;
+  };
 }

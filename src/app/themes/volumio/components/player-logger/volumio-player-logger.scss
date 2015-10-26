@@ -1,6 +1,5 @@
 #playerLoggerWrapper {
   @include make-row();
-  @include noRowMargin;
   #playerLogger{
     border: solid 0px red;
     background-color: #999;
@@ -9,9 +8,6 @@
     #log {
       max-height: 300px;
       overflow: scroll;
-    }
-    button {
-      @extend .btn, .btn-success, .btn-xs;
     }
   }
 }

@@ -18,7 +18,8 @@ $sideMenuWidth: 220px;
     right: 0;
     width: $sideMenuWidth;
     padding: 20px 10px 0px 10px;
-    background: linear-gradient(to bottom, #666 0%, #333 50%, rgba(10, 10, 10, 0.6) 100%);
+    //background: linear-gradient(to bottom, #666 0%, #333 50%, rgba(10, 10, 10, 0.6) 100%);
+    background-color: rgba(80, 80, 80, 1);
     button {
       text-transform: uppercase;
       text-align: left;
