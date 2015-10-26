@@ -87,7 +87,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       url: 'debug',
       views: {
         'content@volumio': {
-          templateUrl: 'app/themes/volumio/debug/volumio-debug.html',
+          templateUrl: 'app/debug/volumio-debug.html',
           controller: 'DebugController',
           controllerAs: 'debug'
         }
@@ -109,7 +109,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       url: 'plugin/:pluginName',
       views: {
         'content@volumio': {
-          templateUrl: 'app/themes/volumio/plugin/volumio-plugin.html',
+          templateUrl: 'app/plugin/plugin.html',
           controller: 'PluginController',
           controllerAs: 'plugin'
         }

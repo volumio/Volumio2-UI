@@ -4,7 +4,7 @@ class MultiRoomDockDirective {
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/themes/volumio/components/multi-room-dock/volumio-multi-room-dock.html',
+      templateUrl: 'app/components/multi-room-dock/multi-room-dock.html',
       scope: false,
       controller: MultiRoomDockController,
       controllerAs: 'multiRoomDock',

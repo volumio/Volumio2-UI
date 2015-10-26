@@ -125,13 +125,6 @@ $list-group-border: $electric-blue;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
 
-@import "volumio-mixins";
-
-
-body {
-  //background: $volumio-background-color;
-}
-
 .btn {
   outline: none !important;
   &.selected {

@@ -4,7 +4,7 @@ class PlayerLoggerDirective {
 
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/themes/volumio/components/player-logger/volumio-player-logger.html',
+      templateUrl: 'app/components/player-logger/player-logger.html',
       scope: false,
       controller: PlayerLoggerController,
       controllerAs: 'playerLogger',

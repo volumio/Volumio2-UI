@@ -3,7 +3,7 @@ class PlayerButtonsDirective {
     'ngInject';
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/themes/volumio/components/side-menu/volumio-side-menu.html',
+      templateUrl: 'app/components/side-menu/side-menu.html',
       scope: false,
       controller: SideMenuController,
       controllerAs: 'sideMenu',

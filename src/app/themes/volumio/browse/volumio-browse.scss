@@ -9,7 +9,6 @@
     @include make-sm-column(8);
     @include make-xs-column(24);
     @include breakpoint(xs) {
-      text-align: right;
       padding-top: 10px;
     }
   }

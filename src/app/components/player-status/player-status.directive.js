@@ -1,11 +1,11 @@
 class PlayerStatusDirective {
-  constructor () {
+  constructor() {
     'ngInject';
 
     let directive = {
       restrict: 'E',
       replace: false,
-      templateUrl: 'app/themes/volumio/components/player-status/volumio-player-status.html',
+      templateUrl: 'app/components/player-status/player-status.html',
       scope: false,
       controller: PlayerStatusController,
       controllerAs: 'playerStatus',
@@ -17,7 +17,7 @@ class PlayerStatusDirective {
 }
 
 class PlayerStatusController {
-  constructor (playerService) {
+  constructor(playerService) {
     'ngInject';
     this.playerService = playerService;
     //console.log(this.playerService);
