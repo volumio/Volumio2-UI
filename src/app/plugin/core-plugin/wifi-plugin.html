@@ -1,0 +1,89 @@
+<div id="wifiPlugin" ng-controller="WifiPluginController as wifiPlugin"
+    class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Wireless network</h3>
+  </div>
+  <div class="panel-body">
+    <h4 ng-if="false" class="sectionDescription"></h4>
+
+    <table class="table">
+      <tr ng-if="wifiPlugin.wirelessNetworks.connectedTo">
+        <td>
+          {{wifiPlugin.wirelessNetworks.connectedTo.ssid}}
+        </td>
+        <td>
+          <i class="fa fa-wifi"></i>
+          <span ng-if="wifiPlugin.wirelessNetworks.connectedTo.signal === 1 || wifiPlugin.wirelessNetworks.connectedTo.signal === 2"> Low</span>
+          <span ng-if="wifiPlugin.wirelessNetworks.connectedTo.signal === 3 || wifiPlugin.wirelessNetworks.connectedTo.signal === 4"> Good</span>
+          <span ng-if="wifiPlugin.wirelessNetworks.connectedTo.signal === 5"> Strong</span>
+        </td>
+        <td>
+          <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.encryption === 'open'" class="fa fa-unlock-alt"></i>
+          <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.encryption !== 'open'" class="fa fa-lock"></i>
+        </td>
+        <td class="commandCol">
+          <button ng-click="wifi.disconnectFromWiFi()"
+              type="button"
+              class="btn btn-info">
+            Disconnect
+          </button>
+        </td>
+      </tr>
+
+      <tr ng-repeat="wifi in wifiPlugin.wirelessNetworks.available">
+        <td>
+          {{wifi.ssid}}
+        </td>
+        <td>
+          <i class="fa fa-wifi"></i>
+          <span ng-if="wifi.signal === 1 || wifi.signal === 2"> Low</span>
+          <span ng-if="wifi.signal === 3 || wifi.signal === 4"> Good</span>
+          <span ng-if="wifi.signal === 5"> Strong</span>
+        </td>
+        <td>
+          <i ng-if="wifi.encryption === 'open'" class="fa fa-unlock-alt"></i>
+          <i ng-if="wifi.encryption !== 'open'" class="fa fa-lock"></i>
+        </td>
+        <td class="commandCol">
+          <button ng-if="!wifi.insertPassword"
+              ng-click="wifi.insertPassword = true"
+              type="button"
+              class="btn btn-info">
+            Connect
+          </button>
+          <div class="" ng-if="wifi.insertPassword">
+            <div class="col-xs-16">
+              <input
+                  ng-model="wifi.password"
+                  type="text"
+                  placeholder="password">
+            </div>
+            <div class="col-xs-8 saveWifiBtn">
+              <button
+                  class="btn btn-info"
+                  ng-click="wifi.connectToWifi(wifi)"
+                  type="button"
+                  name="btn btn-info">
+                Save
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- <form class="form-horizontal">
+      <div class="form-group">
+        <label for="{{item.id}}"
+            class="control-label">Label
+        </label>
+        <div class="control-item">
+          <input id="{{item.id}}"
+              type="text"
+              ng-model="asd"
+              class="form-control">
+        </div>
+      </div>
+    </form> -->
+  </div>
+</div>

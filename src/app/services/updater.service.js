@@ -56,7 +56,6 @@ class UpdaterService {
   }
 
   registerListner() {
-    console.log('socket lisner');
     this.socketService.on('updateReady', (data) => {
       console.log('updateReady', data);
       this.updateReady = data;

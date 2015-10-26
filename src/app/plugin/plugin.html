@@ -1,3 +1,4 @@
+
 <div class="row">
   <div id="pluginWrapper">
     <div class="box">
@@ -13,12 +14,17 @@
 
       <div
           class="panel panel-default"
-          ng-repeat="section in plugin.pluginObj.sections">
-        <div class="panel-heading">
+          ng-repeat="section in plugin.pluginObj.sections track by $index">
+
+        <div ng-if="section.coreSection"
+            ng-include="'app/plugin/core-plugin/' + section.coreSection + '-plugin.html'">
+        </div>
+
+        <div ng-if="!section.coreSection" class="panel-heading">
           <h3 class="panel-title">{{section.label}}</h3>
         </div>
 
-        <div class="panel-body">
+        <div ng-if="!section.coreSection" class="panel-body">
           <h4 class="sectionDescription" ng-if="section.description">
             {{section.description}}
           </h4>
@@ -102,9 +108,7 @@
                 </div>
               </div>
             </form>
-
           </div>
-
         </div>
       </div>
     </div>

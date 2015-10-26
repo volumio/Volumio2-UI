@@ -60,6 +60,11 @@ import ModalUpdaterController from './components/modal-updater/modal-updater.con
 import ModalGotitController from './components/modal-gotit/modal-gotit.controller';
 
 
+//Core plugin controller
+import WifiPluginController from './plugin/core-plugin/wifi-plugin.controller';
+import NetworkStatusPluginController from './plugin/core-plugin/network-status-plugin.controller';
+
+
 
 angular.module('volumio', [
   //custom modules
@@ -137,5 +142,8 @@ angular.module('volumio', [
   .controller('ModalAlarmClockController', ModalAlarmClockController)
   .controller('ModalUpdaterController', ModalUpdaterController)
   .controller('ModalGotitController', ModalGotitController)
+
+  .controller('WifiPluginController',  WifiPluginController)
+  .controller('NetworkStatusPluginController', NetworkStatusPluginController)
 
   ;

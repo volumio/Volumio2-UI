@@ -1,22 +1,29 @@
 class BrowseController {
-  constructor(browseService, playQueueService, playlistService, socketService, modalService) {
+  constructor(browseService, playQueueService, playlistService, socketService,
+      modalService) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
     this.socketService = socketService;
     this.modalService = modalService;
+    this.isBrowsing = false;
   }
 
   fetchLibrary(item) {
     console.log(item);
     this.browseService.fetchLibrary(item);
+    this.isBrowsing = true;
+  }
+
+  backHome() {
+    this.isBrowsing = false;
+    this.browseService.list = [];
   }
 
   play(item) {
     this.playQueueService.addPlay(item);
   }
-
 
   addToQueue(item) {
     this.playQueueService.add(item);

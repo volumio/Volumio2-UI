@@ -5,6 +5,11 @@ class PluginController {
     //console.log($stateParams);
     this.$stateParams = $stateParams;
     //this.pluginObj = mockService.get('getSettings');
+    // this.pluginObj = {
+    //   sections: [
+    //     {coreSection:'wifi'},
+    //     {coreSection:'network-status'}
+    //   ]};
     //console.log(this.pluginObj);
     this.init();
   }
@@ -44,7 +49,9 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-     console.log(data);
+    //  data.sections.unshift({coreSection:'wifi'});
+    //  data.sections.unshift({coreSection:'network-status'});
+     console.log('pushUiConfig', data);
      this.pluginObj = data;
     });
   }

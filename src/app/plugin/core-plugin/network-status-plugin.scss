@@ -1,0 +1,8 @@
+.fa.fa-check {
+  &.online {
+    color: green;
+  }
+  &.offline {
+    color: red;
+  }
+}
