@@ -32,7 +32,7 @@ class AirplayScrimController {
 
   registerListner() {
     this.socketService.on('pushAirplay', (data) => {
-      if (data.service === 'airplay') {
+      if (data === 'airplay') {
         this.$document.querySelector('#airplayScrim').classList.add('showScrim');
       } else {
         this.$document.querySelector('#airplayScrim').classList.remove('showScrim');
