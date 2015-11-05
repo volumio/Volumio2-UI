@@ -1,0 +1,167 @@
+<div ng-controller="NetworkDrivesPluginController as networkDrives">
+  <div id="networkDrives"
+      class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Network Drives</h3>
+    </div>
+    <div class="panel-body">
+      <h4 ng-if="false" class="sectionDescription"></h4>
+      <table class="table" ng-if="networkDrives.infoShare">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Mounted</th>
+          <th>Size</th>
+        </tr>
+        <tr ng-repeat="drive in networkDrives.infoShare track by drive.id">
+          <td>
+            {{drive.id}}
+          </td>
+          <td>
+            {{drive.name}}
+          </td>
+          <td>
+            {{drive.mounted}}
+          </td>
+          <td>
+            {{drive.size}}
+          </td>
+
+          <td class="commandCol">
+            <button ng-click="networkDrives.deleteDrive($index)"
+                type="button"
+                class="btn btn-danger">
+              Delete
+            </button>
+            <button ng-click="networkDrives.editDrive(drive)"
+                type="button"
+                class="btn btn-info">
+              Edit
+            </button>
+            <div class="" ng-if="drive.insertPassword">
+              <div class="col-xs-16">
+                <input
+                    ng-model="drive.password"
+                    type="text"
+                    placeholder="password">
+              </div>
+              <div class="col-xs-8 saveWifiBtn">
+                <button
+                    class="btn btn-info"
+                    ng-click="networkDrives.connectToWifi(drive, $index)"
+                    type="button"
+                    name="btn btn-info">
+                  Save
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="{{networkDrives.drive.id}}"
+              class="control-label">Id
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.id}}"
+                type="text"
+                ng-model="networkDrives.drive.id"
+                placeholder="id"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{networkDrives.drive.name}}"
+              class="control-label">Name
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.name}}"
+                type="text"
+                ng-model="networkDrives.drive.name"
+                placeholder="name"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{networkDrives.drive.path}}"
+              class="control-label">Path
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.path}}"
+                type="text"
+                ng-model="networkDrives.drive.path"
+                placeholder="path"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{networkDrives.drive.ip}}"
+              class="control-label">Ip
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.ip}}"
+                type="text"
+                ng-model="networkDrives.drive.ip"
+                placeholder="ip"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{networkDrives.drive.fstype}}"
+              class="control-label">Fs type
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.fstype}}"
+                type="text"
+                ng-model="networkDrives.drive.fstype"
+                placeholder="fstype"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{networkDrives.drive.username}}"
+              class="control-label">Username
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.username}}"
+                type="text"
+                ng-model="networkDrives.drive.username"
+                placeholder="username"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{networkDrives.drive.password}}"
+              class="control-label">Password
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.password}}"
+                type="text"
+                ng-model="networkDrives.drive.password"
+                placeholder="password"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{networkDrives.drive.options}}"
+              class="control-label">Options
+          </label>
+          <div class="control-item">
+            <input id="{{networkDrives.drive.options}}"
+                type="text"
+                ng-model="networkDrives.drive.options"
+                placeholder="options"
+                class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <button ng-click="networkDrives.saveDrive()" type="button" class="btn btn-info">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

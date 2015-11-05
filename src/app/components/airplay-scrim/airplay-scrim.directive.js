@@ -1,14 +1,13 @@
 class AirplayScreemDirective {
   constructor() {
     'ngInject';
-
     let directive = {
       restrict: 'E',
       scope: false,
-      template: '<div id="airplayScrim"></div>',
-      controller: AirplayScrimController
+      template: '<div id="airplayScrim" ng-click="airplayScrim.openScrimModal()"></div>',
+      controller: AirplayScrimController,
+      controllerAs: 'airplayScrim'
     };
-
     return directive;
   }
 }
@@ -34,10 +33,6 @@ class AirplayScrimController {
   registerListner() {
     this.socketService.on('pushState', (data) => {
       if (data.service === 'airplay') {
-        this.modalService.openModal(
-          'ModalGotitController',
-          'app/components/modal-gotit/modal-gotit.html',
-          {title: 'Airplay', message: 'You are in airplay mode'});
         this.$document.querySelector('#airplayScrim').classList.add('showScrim');
       } else {
         this.$document.querySelector('#airplayScrim').classList.remove('showScrim');
@@ -45,7 +40,15 @@ class AirplayScrimController {
     });
   }
 
-  initService() {}
+  openScrimModal() {
+    this.modalService.openModal(
+      'ModalGotitController',
+      'app/components/modal-gotit/modal-gotit.html',
+      {title: 'Airplay', message: 'All functionalities will be resumed upon Airplay stop'});
+  }
+
+  initService() {
+  }
 }
 
 export default AirplayScreemDirective;

@@ -63,6 +63,8 @@ import ModalGotitController from './components/modal-gotit/modal-gotit.controlle
 //Core plugin controller
 import WifiPluginController from './plugin/core-plugin/wifi-plugin.controller';
 import NetworkStatusPluginController from './plugin/core-plugin/network-status-plugin.controller';
+import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.controller';
+import NetworkDrivesPluginController from './plugin/core-plugin/network-drives-plugin.controller';
 
 
 
@@ -145,5 +147,7 @@ angular.module('volumio', [
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)
+  .controller('MyMusicPluginController', MyMusicPluginController)
+  .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)
 
   ;
