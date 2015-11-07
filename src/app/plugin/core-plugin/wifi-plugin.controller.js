@@ -2,7 +2,7 @@ class WifiPluginController {
   constructor (socketService) {
     'ngInject';
     this.socketService = socketService;
-    this.wirelessNetworks = {
+    /*this.wirelessNetworks = {
       connectedTo: {
           signal: 5,
           encryption: 'wpa2',
@@ -29,7 +29,7 @@ class WifiPluginController {
           encryption: 'open',
           ssid: 'ASD'
       }]
-    };
+    };*/
 
     this.init();
   }
@@ -67,7 +67,7 @@ class WifiPluginController {
   registerListner() {
     this.socketService.on('pushWirelessNetworks', (data) => {
      console.log('pushWirelessNetworks', data);
-     //this.wirelessNetworks.available = data;
+     this.wirelessNetworks = data;
     });
   }
 

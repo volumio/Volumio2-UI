@@ -16,7 +16,7 @@ class NetworkDrivesPluginController {
         mounted: 'false',
         size: '450 GB',
       }
-    ]
+    ];
     this.listUsbDrives = [
       {
         name: 'Transcend',
@@ -62,7 +62,7 @@ class NetworkDrivesPluginController {
   }
 
   initService() {
-    this.socketService.emit('getInfoShare');
+    //this.socketService.emit('getInfoShare');
     this.socketService.emit('getListUsbDrives');
   }
 }
