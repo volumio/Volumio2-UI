@@ -16,7 +16,7 @@ class NetworkDrivesPluginController {
         mounted: 'false',
         size: '450 GB',
       }
-    ]
+    ];
     this.listUsbDrives = [
       {
         name: 'Transcend',

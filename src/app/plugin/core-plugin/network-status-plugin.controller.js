@@ -2,7 +2,7 @@ class NetworkStatusPluginController {
   constructor (socketService) {
     'ngInject';
     this.socketService = socketService;
-
+/*
     this.networkInfos = {
         type: 'wireless',
         ssid: 'Mare Nostrum',
@@ -12,7 +12,7 @@ class NetworkStatusPluginController {
         speed: '100M',
         online: false
     };
-
+*/
     this.init();
   }
 
@@ -29,7 +29,7 @@ class NetworkStatusPluginController {
 
     this.socketService.on('pushInfoNetwork', (data) => {
      console.log('pushInfoNetwork', data);
-     //this.networkInfos = data;
+     this.networkInfos = data;
     });
   }
 
