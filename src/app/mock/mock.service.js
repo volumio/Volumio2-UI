@@ -70,7 +70,8 @@ class MockService {
           name: 'SHARE su 192.168.10.35',
           id: 'suasianure 2',
           mounted: 'true',
-          size: '40 GB'
+          size: '40 GB',
+          fstype: 'cifs'
         },
         {
           name: 'SHARE su 192.168.10.99',

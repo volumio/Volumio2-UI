@@ -43,7 +43,7 @@ class AirplayScrimController {
   openScrimModal() {
     this.modalService.openModal(
       'ModalGotitController',
-      'app/components/modal-gotit/modal-gotit.html',
+      'app/components/modals/modal-gotit.html',
       {title: 'Airplay', message: 'All functionalities will be resumed upon Airplay stop'});
   }
 

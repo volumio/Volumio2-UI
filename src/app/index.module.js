@@ -32,7 +32,7 @@ import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock
 import AirplayScrimDirective from './components/airplay-scrim/airplay-scrim.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 
-import ModalController from './components/modal/modal.controller';
+import ModalController from './components/modals/modal.controller';
 
 //Directives
 import PluginAttributesDirective from './plugin/elements/plugin-attributes.directive';
@@ -56,8 +56,9 @@ import ModalPlaylistController from './browse/components/modal/modal-playlist.co
 import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
 import ModalAlarmClockController from './components/side-menu/elements/modal-alarm-clock.controller';
-import ModalUpdaterController from './components/modal-updater/modal-updater.controller';
-import ModalGotitController from './components/modal-gotit/modal-gotit.controller';
+import ModalUpdaterController from './components/modals/modal-updater.controller';
+import ModalGotitController from './components/modals/modal-gotit.controller';
+import ModalConfirmController from './components/modals/modal-confirm.controller';
 
 
 //Core plugin controller
@@ -144,6 +145,7 @@ angular.module('volumio', [
   .controller('ModalAlarmClockController', ModalAlarmClockController)
   .controller('ModalUpdaterController', ModalUpdaterController)
   .controller('ModalGotitController', ModalGotitController)
+  .controller('ModalConfirmController', ModalConfirmController)
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)

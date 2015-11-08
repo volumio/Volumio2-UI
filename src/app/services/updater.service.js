@@ -21,7 +21,7 @@ class UpdaterService {
     this.status = 'updateReady';
     this.modalService.openModal(
       'ModalUpdaterController',
-      'app/components/modal-updater/modal-updater.html',
+      'app/components/modals/modal-updater.html',
       this.updateReady,
       'lg');
   }

@@ -1,24 +1,54 @@
 class NetworkDrivesPluginController {
-  constructor(socketService, mockService) {
+  constructor(socketService, modalService, mockService) {
     'ngInject';
     this.drive = {};
     this.socketService = socketService;
-    //this.infoShare = mockService.get('infoShare');
-    //this.listUsbDrives = mockService.get('listUsbDrives');
+    this.modalService = modalService;
+    this.infoShare = mockService.get('infoShare');
+    this.listUsbDrives = mockService.get('listUsbDrives');
+    this.inAddDrive = false;
+    this.driveTypes = ['cifs', 'nifs'];
     this.init();
   }
 
-  saveDrive() {
-    console.log('newDrive', this.drive);
-    this.socketService.emit('addShare', this.drive);
+  saveAddEditDrive() {
+    if (this.inAddDrive) {
+      console.log('addShare', this.drive);
+      this.socketService.emit('addShare', this.drive);
+    } else {
+      console.log('editShare', this.drive);
+      this.socketService.emit('editShare', this.drive);
+    }
   }
 
-  editDrive(drive) {
+  cancelAddEditDrive() {
+    this.inAddDrive = false;
+    this.inEditDrive = false;
+  }
+
+  addDrive() {
+    this.drive = {};
+    this.inAddDrive = true;
+    this.inEditDrive = false;
+  }
+
+
+  editDrive(drive, index) {
+    console.log('edit', index);
+    this.inEditDrive = index;
+    this.inAddDrive = false;
     this.drive = drive;
   }
 
   deleteDrive(drive) {
-    this.socketService.emit('deleteShare', {id: drive.id});
+    let modalPromise = this.modalService.openModal(
+      'ModalConfirmController',
+      'app/components/modals/modal-confirm.html',
+      {title: 'Delete drive', message: 'Do you want to delete "' + drive.id + '" ?'});
+    modalPromise.then((yes) => {
+      console.log('deleteShare', {id: drive.id});
+      this.socketService.emit('deleteShare', {id: drive.id});
+    }, () => {});
   }
 
   init() {

@@ -1,0 +1,118 @@
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="{{networkDrives.drive.id}}"
+        class="control-label">Id
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.id}}"
+          type="text"
+          ng-model="networkDrives.drive.id"
+          placeholder="id"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.name}}"
+        class="control-label">Name
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.name}}"
+          type="text"
+          ng-model="networkDrives.drive.name"
+          placeholder="name"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.path}}"
+        class="control-label">Path
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.path}}"
+          type="text"
+          ng-model="networkDrives.drive.path"
+          placeholder="path"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.ip}}"
+        class="control-label">Ip
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.ip}}"
+          type="text"
+          ng-model="networkDrives.drive.ip"
+          placeholder="ip"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.fstype}}"
+        class="control-label">Fs type
+    </label>
+    <div class="control-item">
+      <ui-select
+          id="{{item.id}}"
+          ng-model="networkDrives.drive.fstype"
+          search-enabled="false"
+          append-to-body="true"
+          theme="bootstrap">
+        <ui-select-match placeholder="Fs type">
+          {{$select.selected}}
+        </ui-select-match>
+        <ui-select-choices repeat="option in networkDrives.driveTypes track by $index">
+          <div ng-bind-html="option"></div>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.username}}"
+        class="control-label">Username
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.username}}"
+          type="text"
+          ng-model="networkDrives.drive.username"
+          placeholder="username"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.password}}"
+        class="control-label">Password
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.password}}"
+          type="password"
+          ng-model="networkDrives.drive.password"
+          placeholder="password"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.options}}"
+        class="control-label">Options
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.options}}"
+          type="text"
+          ng-model="networkDrives.drive.options"
+          placeholder="options"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label"></label>
+    <div class="control-item">
+      <button ng-click="networkDrives.cancelAddEditDrive()" type="button" class="btn btn-warning">
+        Cancel
+      </button>
+      <button ng-click="networkDrives.saveAddEditDrive()" type="button"
+          class="btn btn-info saveAddEditDrive">
+        Save
+      </button>
+    </div>
+  </div>
+</form>

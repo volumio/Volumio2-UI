@@ -5,7 +5,7 @@ class ModalService {
   }
   openModal(
       controller = 'ModalController',
-      templateUrl = 'app/components/modal/default-modal.html',
+      templateUrl = 'app/components/modals/default-modal.html',
       dataObj = null,
       size = 'sm') {
     let modalInstance = this.$uibModal.open({
@@ -19,10 +19,11 @@ class ModalService {
       }
     });
 
-    modalInstance.result.then(function() {
-    }, function() {
-      //console.info('Modal dismissed at: ' + new Date());
-    });
+    // modalInstance.result.then(function() {
+    // }, function() {
+    //   //console.info('Modal dismissed at: ' + new Date());
+    // });
+    return modalInstance.result;
   }
 
 
