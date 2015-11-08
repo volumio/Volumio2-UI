@@ -1,34 +1,10 @@
 class NetworkDrivesPluginController {
-  constructor (socketService) {
+  constructor(socketService, mockService) {
     'ngInject';
     this.drive = {};
     this.socketService = socketService;
-    this.infoShare = [
-      {
-        name: 'SHARE su 192.168.10.35',
-        id: 'suasianure',
-        mounted: 'true',
-        size: '40 GB',
-      },
-      {
-        name: 'SHARE su 192.168.10.99',
-        id: 'id nuovo',
-        mounted: 'false',
-        size: '450 GB',
-      }
-    ];
-    this.listUsbDrives = [
-      {
-        name: 'Transcend',
-        size: '2gb',
-        freespace:'3gb'
-      },
-      {
-        name: 'Sandisk',
-        size: '2gb',
-        freespace:'3gb'
-      }
-    ];
+    //this.infoShare = mockService.get('infoShare');
+    //this.listUsbDrives = mockService.get('listUsbDrives');
     this.init();
   }
 
@@ -53,16 +29,16 @@ class NetworkDrivesPluginController {
   registerListner() {
     this.socketService.on('pushInfoShare', (data) => {
       console.log('infoShare', data);
-      //this.infoShare = data;
+      this.infoShare = data;
     });
     this.socketService.on('pushListUsbDrives', (data) => {
       console.log('listUsbDrives', data);
-      //this.listUsbDrives = data;
+      this.listUsbDrives = data;
     });
   }
 
   initService() {
-    //this.socketService.emit('getInfoShare');
+    this.socketService.emit('getInfoShare');
     this.socketService.emit('getListUsbDrives');
   }
 }

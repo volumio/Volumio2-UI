@@ -11,12 +11,17 @@
       <button
           ng-repeat="source in browse.browseService.sources"
           ng-click="browse.fetchLibrary(source)"
+          ng-class="{'selected': browse.selectedSource.name === source.name}"
           class="btn btn-default">
           {{source.name}}
       </button>
     </div>
     <div id="searchBox">
-      <input type="text" ng-model="browse.searchField" ng-change="browse.search()" class="form-control">
+      <input type="text"
+          placeholder="Search bt artist, album, song" 
+          ng-model="browse.searchField"
+          ng-change="browse.search()"
+          class="form-control">
     </div>
   </div>
 

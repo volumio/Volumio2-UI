@@ -6,21 +6,21 @@
   <div class="panel-body">
     <h4 ng-if="false" class="sectionDescription"></h4>
 
-    <table class="table">
+    <table ng-repeat="network in networkStatus.networkInfos track by $index" class="table">
       <tr>
         <th>
           Type
         </th>
-        <th ng-if="networkStatus.networkInfos.ssid">
+        <th ng-if="network.ssid">
           SSID
         </th>
-        <th ng-if="networkStatus.networkInfos.signal">
+        <th ng-if="network.signal">
           Signal
         </th>
         <th>
           IP
         </th>
-        <th ng-if="networkStatus.networkInfos.speed">
+        <th ng-if="network.speed">
           Speed
         </th>
         <th>
@@ -29,27 +29,28 @@
       </tr>
       <tr>
         <td>
-          {{networkStatus.networkInfos.type}}
+          {{network.type}}
         </td>
-        <td ng-if="networkStatus.networkInfos.ssid">
-          {{networkStatus.networkInfos.ssid}}
+        <td ng-if="network.ssid">
+          {{network.ssid}}
         </td>
-        <td ng-if="networkStatus.networkInfos.signal">
+        <td ng-if="network.signal">
           <i class="fa fa-wifi"></i>
-          <span ng-if="networkStatus.networkInfos.signal === 1 || networkStatus.networkInfos.signal === 2"> Low</span>
-          <span ng-if="networkStatus.networkInfos.signal === 3 || networkStatus.networkInfos.signal === 4"> Good</span>
-          <span ng-if="networkStatus.networkInfos.signal === 5"> Strong</span>
+          <span ng-if="network.signal === 1 || network.signal === 2"> Low</span>
+          <span ng-if="network.signal === 3 || network.signal === 4"> Good</span>
+          <span ng-if="network.signal === 5"> Strong</span>
         </td>
         <td>
-          {{networkStatus.networkInfos.ip}}
+          {{network.ip}}
         </td>
-        <td ng-if="networkStatus.networkInfos.speed">
-          {{networkStatus.networkInfos.speed}}
+        <td ng-if="network.speed">
+          {{network.speed}}
         </td>
         <td>
           <i class="fa fa-check"
-              ng-class="{online: networkStatus.networkInfos.online,
-              offline: !networkStatus.networkInfos.online}"></i>
+              ng-class="{online: network.online,
+              offline: !network.online}">
+          </i>
         </td>
       </tr>
     </table>

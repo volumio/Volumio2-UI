@@ -132,9 +132,17 @@ $list-group-border: $electric-blue;
   }
   &:focus {
     color: $link-color;
-    background-color: $btn-default-bg;
+    &.btn-info {
+      color: $volumio-green-color;
+      border-color: $volumio-green-color;
+      background-color: $btn-info-bg;
+    }
   }
   &.btn-default {
+    &:focus {
+      background-color: $volumio-light-color;
+      border-color: $btn-default-border;
+    }
     &:hover {
       background-color: $volumio-green-color;
     }

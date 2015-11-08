@@ -1,11 +1,11 @@
 class MockService {
-  constructor () {
+  constructor() {
     'ngInject';
     this.init();
   }
 
   get(requestName) {
-    if(this._mock[requestName]){
+    if (this._mock[requestName]) {
       return this._mock[requestName];
     }
     throw 'No mock data present';
@@ -13,19 +13,101 @@ class MockService {
 
   init() {
     this._mock = {
+      //Network status plugin
+      networkInfos: [{
+        type: 'wireless',
+        ssid: 'Mare Nostrum',
+        signal: 5,
+        status: 'connected',
+        ip: '192.168.1.12',
+        speed: '100M',
+        online: false
+      },
+      {
+        type: 'cable',
+        status: 'connected',
+        ip: '192.168.1.120',
+        speed: '1000M',
+        online: true
+      }],
+      //Wi fi plugin
+      wirelessNetworks: {
+        connectedTo: {
+          signal: 5,
+          encryption: 'wpa2',
+          ssid: 'Mare Nostrum'
+        },
+        available: [
+          {
+            signal: 5,
+            encryption: 'wpa2',
+            ssid: 'miarete1'
+          },
+          {
+            signal: 4,
+            encryption: 'wpa2',
+            ssid: 'AUAUAUA'
+          },
+          {
+            signal: 3,
+            encryption: 'wep',
+            ssid: 'Speck'
+          },
+          {
+            signal: 2,
+            encryption: 'open',
+            ssid: 'asd'
+          },
+          {
+            signal: 1,
+            encryption: 'open',
+            ssid: 'ASD'
+          }]
+      },
+      //Network drives plugin
+      infoShare: [
+        {
+          name: 'SHARE su 192.168.10.35',
+          id: 'suasianure 2',
+          mounted: 'true',
+          size: '40 GB'
+        },
+        {
+          name: 'SHARE su 192.168.10.99',
+          id: 'id nuovo',
+          mounted: 'false',
+          size: '450 GB'
+        }
+      ],
+      listUsbDrives: [
+        {
+          name: 'Transcend 2',
+          size: '2gb',
+          freespace: '3gb'
+        },
+        {
+          name: 'Sandisk',
+          size: '2gb',
+          freespace: '3gb'
+        }
+      ],
+      //My muisc plugin
+      myCollectionStats: {
+        artists: '120', albums: '23', songs: '67', playtime: '10h'
+      },
       //Browse
-      getBrowseFilters : [
-        {name:'Genres by Name', index: 'index:Genres by Name'},
-        {name:'Artists by Name', index: 'index:Artists by Name'},
-        {name:'Albums by Name', index: 'index:Albums by Name'},
-        {name:'Albums by Artist', index: 'index:Albums by Artist'},
-        {name:'Tracks by Name', index: 'index:Tracks by Name'}
+      getBrowseFilters: [
+        {name: 'Genres by Name', index: 'index:Genres by Name'},
+        {name: 'Artists by Name', index: 'index:Artists by Name'},
+        {name: 'Albums by Name', index: 'index:Albums by Name'},
+        {name: 'Albums by Artist', index: 'index:Albums by Artist'},
+        {name: 'Tracks by Name', index: 'index:Tracks by Name'}
       ],
       getBrowseSources: [
-        {name:'USB', uri: 'usb'},
-        {name:'NAS', uri: 'nas'},
-        {name:'Web Radio', uri: 'web-radio'},
-        {name:'Spotify', uri: 'spotify'}
+        {name: 'USB', uri: 'usb'},
+        {name: 'NAS', uri: 'nas'},
+        {name: 'Web Radio', uri: 'web-radio'},
+        {name: 'Spotify', uri: 'spotify'}
       ],
       getBrowseList: {
         pagination: {

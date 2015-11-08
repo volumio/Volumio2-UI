@@ -13,6 +13,7 @@ class BrowseController {
   fetchLibrary(item) {
     console.log(item);
     this.browseService.fetchLibrary(item);
+    this.selectedSource = item;
     this.isBrowsing = true;
   }
 

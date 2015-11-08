@@ -2,15 +2,7 @@ class PluginController {
   constructor($rootScope, $stateParams, socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
-    //console.log($stateParams);
     this.$stateParams = $stateParams;
-    //this.pluginObj = mockService.get('getSettings');
-    // this.pluginObj = {
-    //   sections: [
-    //     {coreSection:'wifi'},
-    //     {coreSection:'network-status'}
-    //   ]};
-    //console.log(this.pluginObj);
     this.init();
   }
 

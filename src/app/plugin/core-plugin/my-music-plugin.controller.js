@@ -1,8 +1,8 @@
 class MyMusicPluginController {
-  constructor (socketService) {
+  constructor(socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
-    //this.myCollectionStats = {artists: '12', albums: '23', songs: '67', playtime: '10h'};
+    //this.myCollectionStats = mockService.get('myCollectionStats');
     this.init();
   }
 
@@ -17,8 +17,8 @@ class MyMusicPluginController {
 
   registerListner() {
     this.socketService.on('pushMyCollectionStats', (data) => {
-     console.log('pushMyCollectionStats', data);
-     this.myCollectionStats = data;
+      console.log('pushMyCollectionStats', data);
+      this.myCollectionStats = data;
     });
   }
 
