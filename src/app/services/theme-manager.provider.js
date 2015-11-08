@@ -32,10 +32,10 @@ class ThemeManagerProvider {
         angular.element('body').attr('id', this.theme);
         document.title = this.theme;
         $rootScope.favicon = 'app/' + this.theme + '/assets/favicon.png';
-        console.log($rootScope.favicon);
+        //console.log($rootScope.favicon);
         $rootScope.theme = this.theme;
         $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
-        console.log(this.theme);
+        //console.log(this.theme);
         let link = document.createElement('link');
         link.type = 'image/x-icon';
         link.rel = 'shortcut icon';

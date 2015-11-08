@@ -62,7 +62,7 @@ class NetworkDrivesPluginController {
   }
 
   initService() {
-    this.socketService.emit('getInfoShare');
+    //this.socketService.emit('getInfoShare');
     this.socketService.emit('getListUsbDrives');
   }
 }

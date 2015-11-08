@@ -1,5 +1,5 @@
 class PluginController {
-  constructor ($rootScope, $stateParams, socketService, mockService) {
+  constructor($rootScope, $stateParams, socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
     //console.log($stateParams);
@@ -49,9 +49,9 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-    //  data.sections.unshift({coreSection:'wifi'});
-      data.sections.unshift({coreSection:'my-music'});
-      data.sections.unshift({coreSection:'network-drives'});
+      //data.sections.unshift({coreSection:'wifi'});
+      //data.sections.unshift({coreSection:'my-music'});
+      //data.sections.unshift({coreSection:'network-drives'});
       console.log('pushUiConfig', data);
       this.pluginObj = data;
     });
@@ -59,7 +59,7 @@ class PluginController {
 
   initService() {
     this.socketService.emit('getUiConfig',
-        {"page": this.$stateParams.pluginName.replace('-','/')});
+        {'page': this.$stateParams.pluginName.replace('-', '/')});
   }
 }
 

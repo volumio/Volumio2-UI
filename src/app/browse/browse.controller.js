@@ -17,6 +17,7 @@ class BrowseController {
   }
 
   backHome() {
+    this.searchField = '';
     this.isBrowsing = false;
     this.browseService.list = [];
   }
