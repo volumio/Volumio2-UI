@@ -145,21 +145,21 @@ class MockService {
                 host: 'http://192.168.0.18:3000',
                 model: 'xx',
                 signal: 'low',
-                name: 'Bedroom left',
+                name: 'Bedroom left'
               },
               {
                 id: 'device_4',
                 host: 'http://192.168.0.18:3000',
                 model: 'yy',
                 signal: 'low',
-                name: 'Bedroom right',
+                name: 'Bedroom right'
               },
               {
                 id: 'device_5',
                 host: 'http://192.168.0.18:3000',
                 model: 'zz',
                 signal: 'low',
-                name: 'Bedroom center',
+                name: 'Bedroom center'
               }
             ]
           },
@@ -276,197 +276,199 @@ class MockService {
       //Settings
       getSettings: {
         page: {
-          "label": "Settings",
-          "description": "If you mess up with this configuration, you can reset to default."
+          'label': 'Settings',
+          'description': 'If you mess up with this configuration, you can reset to default.'
         },
         sections: [
           {
-            "id": "section_player_name",
-            "element": "section",
-            "label": "Player name",
-            "plugin": "settings/playback_conf",
-            "onSave": {
-              "type":"plugin",
-              "endpoint":"music_services/spop",
-              "method":"saveSpopConf"
+            'id': 'section_player_name',
+            'element': 'section',
+            'label': 'Player name',
+            'plugin': 'settings/playback_conf',
+            'onSave': {
+              'type': 'plugin',
+              'endpoint': 'music_services/spop',
+              'method': 'saveSpopConf',
+              'askForConfirm': {'title': 'Confirm', 'message': 'Do you want to save this values?'}
             },
-            "saveButton": {
-              "label": "salva",
-              "data": [
-                "playerName"
+            'saveButton': {
+              'label': 'salva',
+              'data': [
+                'playerName'
               ]
             },
-            "content": [
+            'content': [
               {
-                "id": "playerName",
-                "element": "input",
-                "type": "text",
-                "label": "Player Name",
-                "attributes":[
-                  { "placeholder": "call me with a fancy name"}
+                'id': 'playerName',
+                'element': 'input',
+                'type': 'text',
+                'label': 'Player Name',
+                'attributes': [
+                  {'placeholder': 'call me with a fancy name'}
                 ],
-                "value": "Volumio"
+                'value': 'Volumio'
               }
             ]
           },
           {
-            "id": "section_services_management",
-            "element": "section",
-            "label": "Services management",
-            "description": "Enable or disable certain Volumio functionalities",
-            "onSave": {
-              "type":"plugin",
-              "endpoint":"music_services/spop",
-              "method":"saveSpopConf"
+            'id': 'section_services_management',
+            'element': 'section',
+            'label': 'Services management',
+            'description': 'Enable or disable certain Volumio functionalities',
+            'onSave': {
+              'type': 'plugin',
+              'endpoint': 'music_services/spop',
+              'method': 'saveSpopConf'
             },
-            "saveButton": {
-              "label": "salva",
-              "data": [
-                "airplay",
-                "upnp",
-                "upnp_dlna_indexing",
-                "dlna_library"
+            'saveButton': {
+              'label': 'salva',
+              'data': [
+                'airplay',
+                'upnp',
+                'upnp_dlna_indexing',
+                'dlna_library'
               ]
             },
-            "content": [
+            'content': [
               {
-                "id": "airplay",
-                "element": "switch",
-                "label": "Airplay",
-                "description": "Apple airplay",
-                "value": true
+                'id': 'airplay',
+                'element': 'switch',
+                'label': 'Airplay',
+                'description': 'Apple airplay',
+                'value': true
               },
               {
-                "id": "upnp",
-                "element": "switch",
-                "label": "UPNP Control",
-                "value": true
+                'id': 'upnp',
+                'element': 'switch',
+                'label': 'UPNP Control',
+                'value': true
               },
               {
-                "id": "upnp_dlna_indexing",
-                "element": "switch",
-                "label": "UPNP/DLNA Indexing",
-                "value": true
+                'id': 'upnp_dlna_indexing',
+                'element': 'switch',
+                'label': 'UPNP/DLNA Indexing',
+                'value': true
               },
               {
-                "id": "dlna_library",
-                "element": "switch",
-                "label": "DLNA Library Server",
-                "value": true
+                'id': 'dlna_library',
+                'element': 'switch',
+                'label': 'DLNA Library Server',
+                'value': true
               }
             ]
           },
           {
-            "id": "section_streaming_services",
-            "element": "section",
-            "label": "Streaming services",
-            "description": "Enable or disable Spotify Streaming services",
-            "onSave": {
-              "type":"plugin",
-              "endpoint":"music_services/spop",
-              "method":"saveSpopConf"
+            'id': 'section_streaming_services',
+            'element': 'section',
+            'label': 'Streaming services',
+            'description': 'Enable or disable Spotify Streaming services',
+            'onSave': {
+              'type': 'plugin',
+              'endpoint': 'music_services/spop',
+              'method': 'saveSpopConf'
             },
-            "saveButton": {
-              "label": "salva",
-              "data": [
-                "spotify_service",
-                "spotify_username",
-                "spotify_password",
-                "prefer_high_quality"
+            'saveButton': {
+              'label': 'salva',
+              'data': [
+                'spotify_service',
+                'spotify_username',
+                'spotify_password',
+                'prefer_high_quality'
               ]
             },
-            "content": [
+            'content': [
               {
-                "id": "spotify_service",
-                "element": "switch",
-                "label": "Spotify Service",
-                "value": true
+                'id': 'spotify_service',
+                'element': 'switch',
+                'label': 'Spotify Service',
+                'value': true
               },
               {
-                "id": "spotify_username",
-                "element": "input",
-                "attributes": [
-                  {"placeholder": "Type your spotify username"},
-                  {"maxlength": 5}
+                'id': 'spotify_username',
+                'element': 'input',
+                'attributes': [
+                  {'placeholder': 'Type your spotify username'},
+                  {'maxlength': 5}
                 ],
-                "label": "Username",
-                "value": "",
-                "visibleIf": {"field":"spotify_service", "value": true}
+                'label': 'Username',
+                'value': 'asd',
+                'visibleIf': {'field': 'spotify_service', 'value': true}
               },
               {
-                "id": "spotify_password",
-                "element": "input",
-                "type": "password",
-                "label": "Password",
-                "value": "dusdhsudhsu",
-                "visibleIf": {"field":"spotify_service", "value": true}
+                'id': 'spotify_password',
+                'element': 'input',
+                'type': 'password',
+                'label': 'Password',
+                'value': 'dusdhsudhsu',
+                'visibleIf': {'field': 'spotify_service', 'value': true}
               },
               {
-                "id": "prefer_high_quality",
-                "element": "switch",
-                "label": "Prefer high quality music",
-                "value": "false",
-                "visibleIf": {"field":"spotify_service", "value": true}
+                'id': 'prefer_high_quality',
+                'element': 'switch',
+                'label': 'Prefer high quality music',
+                'value': 'false',
+                'visibleIf': {'field': 'spotify_service', 'value': true}
               }
             ]
           },
           {
-            "id": "section_sound_quality",
-            "type": "section",
-            "label": "Sound quality tweaks",
-            "description": "These profiles??",
-            "onSave": {
-              "type":"plugin",
-              "endpoint":"music_services/spop",
-              "method":"saveSpopConf"
+            'id': 'section_sound_quality',
+            'type': 'section',
+            'label': 'Sound quality tweaks',
+            'description': 'These profiles??',
+            'onSave': {
+              'type': 'plugin',
+              'endpoint': 'music_services/spop',
+              'method': 'saveSpopConf'
             },
-            "saveButton": {
-              "label": "salva",
-              "data": [
-                "kernel_profile"
+            'saveButton': {
+              'label': 'salva',
+              'data': [
+                'kernel_profile'
               ]
             },
-            "content": [
+            'content': [
               {
-                "id": "kernel_profile",
-                "element": "select",
-                "label": "Kernel profile",
-                "value": {"value": 2 ,"label":"Less Jitter"},
-                "options": [
+                'id': 'kernel_profile',
+                'element': 'select',
+                'label': 'Kernel profile',
+                'value': {'value': 2 ,'label': 'Less Jitter'},
+                'options': [
                   {
-                    "value": 1,
-                    "label": "Default"
+                    'value': 1,
+                    'label': 'Default'
                   },
                   {
-                    "value": 2,
-                    "label": "Less Jitter"
+                    'value': 2,
+                    'label': 'Less Jitter'
                   },
                   {
-                    "value": 3,
-                    "label": "Jitter"
+                    'value': 3,
+                    'label': 'Jitter'
                   },
                   {
-                    "value": 4,
-                    "label": "Focus"
+                    'value': 4,
+                    'label': 'Focus'
                   }
                 ]
               }
             ]
           },
           {
-            "id": "section_updates",
-            "type": "section",
-            "label": "System updates",
-            "content": [
+            'id': 'section_updates',
+            'type': 'section',
+            'label': 'System updates',
+            'content': [
               {
-                "id": "update",
-                "element": "button",
-                "label": "System updates",
-                "description": "You can check?...",
-                "onSave": {
-                  "type": "plugin",
-                  "endpoint": "music_services/spop",
-                  "method": "saveSpopConf"
+                'id': 'update',
+                'element': 'button',
+                'label': 'System updates',
+                'description': 'You can check?...',
+                'onClick': {
+                  'type': 'emit',
+                  'data': 'search-for-upgrade',
+                  'message': 'updateCheck',
+                  'askForConfirm': {'title': 'Confirm', 'message': 'are you sure?'}
                 }
               }
             ]

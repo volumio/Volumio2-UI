@@ -31,7 +31,7 @@
       </tr>
 
       <tr ng-if="wifiPlugin.wirelessNetworks.available.length > 0"
-          ng-repeat="wifi in wifiPlugin.wirelessNetworks.available track by wifi.ssid">
+          ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available track by wifi.ssid">
         <td>
           {{wifi.ssid}}
         </td>
@@ -52,23 +52,30 @@
               class="btn btn-info">
             Connect
           </button>
-          <div class="" ng-if="wifi.insertPassword">
-            <div class="col-xs-16">
-              <input
-                  ng-model="wifi.password"
-                  type="password"
-                  placeholder="password">
-            </div>
-            <div class="col-xs-8 saveWifiBtn">
-              <button
-                  class="btn btn-info"
-                  ng-click="wifiPlugin.connectToWifi(wifi, $index)"
-                  type="button"
-                  name="btn btn-info">
-                Save
-              </button>
-            </div>
-          </div>
+        </td>
+      </tr>
+
+      <tr ng-repeat-end ng-if="wifi.insertPassword">
+        <td colspan="4" class="insertPasswordRow">
+            <input
+                class="form-control"
+                ng-model="wifi.password"
+                type="password"
+                placeholder="password">
+            <button
+                class="btn btn-info"
+                ng-click="wifiPlugin.connectToWifi(wifi, $index)"
+                type="button"
+                name="btn btn-info">
+              Save
+            </button>
+            <button
+                class="btn btn-warning"
+                ng-click="wifiPlugin.cancelConnectToWifi(wifi)"
+                type="button"
+                name="btn btn-info">
+              Cancel
+            </button>
         </td>
       </tr>
     </table>

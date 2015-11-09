@@ -32,6 +32,10 @@ class WifiPluginController {
     this.socketService.emit('saveWirelessNetworkSettings', saveWiFi);
   }
 
+  cancelConnectToWifi(wifi) {
+    wifi.insertPassword = undefined;
+  }
+
   disconnectFromWiFi() {}
 
   registerListner() {
