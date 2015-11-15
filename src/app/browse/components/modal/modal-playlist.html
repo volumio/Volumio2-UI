@@ -3,13 +3,14 @@
     <h3 class="modal-title">{{modal.dataObj.title}}</h3>
   </div>
   <div class="modal-body">
-    <input type="text" ng-model="modal.customPlaylist">
+    <input type="text" class="form-control pull-left" ng-model="modal.customPlaylist">
     <button
         type="button"
         ng-click="modal.addToCustomPlaylist()"
-        class="btn-info pull-right">
+        class="btn btn-info pull-right">
       New
     </button>
+    <div class="clearfix"></div>
     <ul class="list-group">
       <li class="list-group-item"
           ng-click="modal.addToFavourite()">

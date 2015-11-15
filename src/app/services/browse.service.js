@@ -1,5 +1,5 @@
 class BrowseService {
-  constructor ($rootScope, $log, socketService, mockService) {
+  constructor($rootScope, $log, socketService, mockService) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;

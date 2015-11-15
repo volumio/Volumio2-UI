@@ -1,5 +1,5 @@
 class SettingsController {
-  constructor (socketService, loggerService, mockService, toastMessageService, modalService) {
+  constructor(socketService, loggerService, mockService, toastMessageService, modalService) {
     'ngInject';
     this.socketService = socketService;
     this.loggerService = loggerService;

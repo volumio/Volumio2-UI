@@ -1,5 +1,5 @@
 class PluginAttributesDirective {
-  constructor () {
+  constructor() {
     'ngInject';
 
     let directive = {
@@ -17,7 +17,7 @@ class PluginAttributesDirective {
 }
 
 class PluginAttributesController {
-  constructor ($element) {
+  constructor($element) {
     'ngInject';
     if (this.pluginAttributes) {
       this.pluginAttributes.forEach((attribute) => {

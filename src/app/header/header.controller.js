@@ -1,5 +1,5 @@
 class HeaderController {
-  constructor () {
+  constructor() {
     'ngInject';
   }
 }

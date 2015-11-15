@@ -18,7 +18,7 @@
     </div>
     <div id="searchBox">
       <input type="text"
-          placeholder="Search bt artist, album, song" 
+          placeholder="Search bt artist, album, song"
           ng-model="browse.searchField"
           ng-change="browse.search()"
           class="form-control">
@@ -58,12 +58,12 @@
         <td>{{item.artist}}</td>
         <td class="commandButtons">
           <div
-              dropdown
+              uib-dropdown
               on-toggle="browse.toggledItem(open, $event)"
               class="browseItemMenu">
             <button
                 class="btn btn-default"
-                dropdown-toggle
+                uib-dropdown-toggle
                 onclick="event.stopPropagation();"
                 >
               <i class="fa fa-bars"></i>

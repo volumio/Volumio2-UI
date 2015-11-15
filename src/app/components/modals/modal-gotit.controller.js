@@ -1,5 +1,5 @@
 class ModalGotitController {
-  constructor ($modalInstance, dataObj) {
+  constructor($modalInstance, dataObj) {
     'ngInject';
     this.$modalInstance = $modalInstance;
     this.dataObj = dataObj;

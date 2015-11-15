@@ -1,5 +1,5 @@
 class ToastMessageService {
-  constructor ($rootScope, toastr, socketService) {
+  constructor($rootScope, toastr, socketService) {
     'ngInject';
     this.socketService = socketService;
     this.toastr = toastr;

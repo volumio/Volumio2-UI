@@ -1,5 +1,5 @@
 class PlayerLoggerDirective {
-  constructor () {
+  constructor() {
     'ngInject';
 
     let directive = {
@@ -16,7 +16,7 @@ class PlayerLoggerDirective {
 }
 
 class PlayerLoggerController {
-  constructor (loggerService) {
+  constructor(loggerService) {
     'ngInject';
     this.loggerService = loggerService;
   }

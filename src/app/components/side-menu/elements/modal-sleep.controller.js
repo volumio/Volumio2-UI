@@ -1,5 +1,5 @@
 class ModalSleepController {
-  constructor ($modalInstance, socketService, dataObj) {
+  constructor($modalInstance, socketService, dataObj) {
     'ngInject';
     this.$modalInstance = $modalInstance;
     this.socketService = socketService;

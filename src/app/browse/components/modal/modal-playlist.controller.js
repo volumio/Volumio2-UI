@@ -1,5 +1,5 @@
 class ModalController {
-  constructor (socketService, $modalInstance, playlistService, dataObj) {
+  constructor(socketService, $modalInstance, playlistService, dataObj) {
     'ngInject';
     this.socketService = socketService;
     this.$modalInstance = $modalInstance;
@@ -22,7 +22,7 @@ class ModalController {
     this.$modalInstance.close();
   }
 
-  doAddToPlaylist(playlist){
+  doAddToPlaylist(playlist) {
     this.playlistService.add(this.dataObj.item, playlist);
     this.$modalInstance.close();
   }

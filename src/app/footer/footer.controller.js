@@ -1,5 +1,5 @@
 class FooterController {
-  constructor () {
+  constructor() {
     'ngInject';
   }
 }

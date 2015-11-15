@@ -1,5 +1,5 @@
 class PluginVisibleDirective {
-  constructor () {
+  constructor() {
     'ngInject';
 
     let directive = {
@@ -18,7 +18,7 @@ class PluginVisibleDirective {
 }
 
 class PluginVisibleController {
-  constructor ($scope, $element) {
+  constructor($scope, $element) {
     'ngInject';
     if (this.pluginVisible) {
       let fieldToWatch = this.section.content.filter(

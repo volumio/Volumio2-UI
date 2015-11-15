@@ -1,5 +1,5 @@
 class PlayQueueController {
-  constructor (playQueueService) {
+  constructor(playQueueService) {
     'ngInject';
     this.playQueueService = playQueueService;
   }

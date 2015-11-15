@@ -1,5 +1,5 @@
 class MultiRoomManagerController {
-  constructor (socketService, multiRoomService) {
+  constructor(socketService, multiRoomService) {
     'ngInject';
     this.socketService = socketService;
     this.multiRoomService = multiRoomService;

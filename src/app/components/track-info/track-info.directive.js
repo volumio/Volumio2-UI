@@ -1,5 +1,5 @@
 class TrackInfoDirective {
-  constructor (themeManager) {
+  constructor(themeManager) {
     'ngInject';
     let directive = {
       restrict: 'E',
@@ -14,7 +14,7 @@ class TrackInfoDirective {
 }
 
 class TrackInfoController {
-  constructor (playerService) {
+  constructor(playerService) {
     'ngInject';
     this.playerService = playerService;
   }

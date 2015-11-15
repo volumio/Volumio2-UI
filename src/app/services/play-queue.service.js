@@ -1,5 +1,5 @@
 class PlayQueueService {
-  constructor ($rootScope, $log, socketService) {
+  constructor($rootScope, $log, socketService) {
     'ngInject';
     this.$log = $log;
     this._queue = null;

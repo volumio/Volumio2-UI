@@ -1,5 +1,5 @@
 class MalarkeyDirective {
-  constructor (malarkey) {
+  constructor(malarkey) {
     'ngInject';
 
     let directive = {
@@ -46,7 +46,7 @@ class MalarkeyDirective {
 }
 
 class MalarkeyController {
-  constructor ($log, githubContributor) {
+  constructor($log, githubContributor) {
     'ngInject';
 
     this.$log = $log;

@@ -45,7 +45,7 @@ class BrowseController {
 
   addToPlaylist(item) {
     let
-      templateUrl = 'app/themes/volumio/browse/components/modal/volumio-modal-playlist.html',
+      templateUrl = 'app/browse/components/modal/modal-playlist.html',
       controller = 'ModalPlaylistController',
       params = {
         title: 'Add to playlist',
