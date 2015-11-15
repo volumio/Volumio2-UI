@@ -4,10 +4,10 @@ class NetworkDrivesPluginController {
     this.drive = {};
     this.socketService = socketService;
     this.modalService = modalService;
-    // this.infoShare = mockService.get('infoShare');
-    // this.listUsbDrives = mockService.get('listUsbDrives');
+    //this.infoShare = mockService.get('infoShare');
+    //this.listUsbDrives = mockService.get('listUsbDrives');
     this.inAddDrive = false;
-    this.driveTypes = ['cifs', 'nifs'];
+    this.driveTypes = ['cifs', 'nfs'];
     this.init();
   }
 
@@ -57,7 +57,7 @@ class NetworkDrivesPluginController {
   }
 
   registerListner() {
-    this.socketService.on('pushInfoShare', (data) => {
+    this.socketService.on('pushListShares', (data) => {
       console.log('infoShare', data);
       this.infoShare = data;
     });
@@ -68,7 +68,7 @@ class NetworkDrivesPluginController {
   }
 
   initService() {
-    this.socketService.emit('getInfoShare');
+    this.socketService.emit('getListShares');
     this.socketService.emit('getListUsbDrives');
   }
 }
