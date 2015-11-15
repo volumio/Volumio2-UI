@@ -2,7 +2,7 @@ class NetworkStatusPluginController {
   constructor(socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
-    //this.networkInfos = mockService.get('networkInfos');
+    // this.networkInfos = mockService.get('networkInfos');
     this.init();
   }
 

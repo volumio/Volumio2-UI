@@ -1,6 +1,7 @@
 #toolbarRow{
   @include make-row();
   padding-top: 10px;
+  user-select: none;
   #browseSources {
     @include make-sm-column(16);
     @include make-xs-column(24);

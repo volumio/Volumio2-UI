@@ -12,9 +12,8 @@
           class="btn btn-info">
         <i class="fa fa-plus"></i> Add new drive
       </button>
-      <div class="clearfix">
-
-      </div>
+      <div class="clearfix"></div>
+      <br>
 
       <ng-include src="'app/plugin/core-plugin/elements/add-edit-drive.html'"
           ng-if="networkDrives.inAddDrive">
@@ -54,7 +53,7 @@
             </button>
           </td>
         </tr>
-        
+
         <tr ng-if="networkDrives.inEditDrive === $index" ng-repeat-end="">
           <td colspan="5">
             <div class="row">

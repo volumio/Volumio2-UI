@@ -4,8 +4,8 @@ class NetworkDrivesPluginController {
     this.drive = {};
     this.socketService = socketService;
     this.modalService = modalService;
-    this.infoShare = mockService.get('infoShare');
-    this.listUsbDrives = mockService.get('listUsbDrives');
+    // this.infoShare = mockService.get('infoShare');
+    // this.listUsbDrives = mockService.get('listUsbDrives');
     this.inAddDrive = false;
     this.driveTypes = ['cifs', 'nifs'];
     this.init();

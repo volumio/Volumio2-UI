@@ -32,7 +32,7 @@ class BrowseController {
   }
 
   clickListItem(item, event) {
-    console.log(event);
+    // console.log(event);
     if (event.target.tagName !== 'I' && item.type !== 'song') {
       this.fetchLibrary(item);
     }

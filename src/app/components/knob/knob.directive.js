@@ -1,5 +1,5 @@
 class KnobDirective {
-  constructor () {
+  constructor() {
     'ngInject';
     let directive = {
       restrict: 'E',
@@ -10,7 +10,9 @@ class KnobDirective {
       require: 'ngModel',
       bindToController: {
         value: '=',
-        options: '='
+        options: '=',
+        onChange: '&',
+        onRelease: '&'
       }
     };
     return directive;
@@ -18,7 +20,7 @@ class KnobDirective {
 }
 
 class KnobController {
-  constructor ($scope, $element, $timeout) {
+  constructor($scope, $element, $timeout) {
     'ngInject';
     this.timeoutHandler = null;
     let knobOptions = {
@@ -28,7 +30,19 @@ class KnobController {
           //console.log('change', value);
           value = parseInt(value, 10);
           this.value = value;
-        }, 200);
+          if (this.onChange) {
+            this.onChange({value: value});
+          }
+        }, 0);
+      },
+      release: (value) => {
+        $timeout.cancel(this.timeoutHandler2);
+        this.timeoutHandler2 = $timeout(() => {
+          if (this.onRelease) {
+            value = parseInt(value, 10);
+            this.onRelease({value: value});
+          }
+        }, 0);
       }
     };
     angular.extend(knobOptions, this.options);

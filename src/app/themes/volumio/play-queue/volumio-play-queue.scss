@@ -1,4 +1,5 @@
 #playQueue {
   @include make-xs-column(24);
   margin-top: 10px;
+  user-select: none;
 }

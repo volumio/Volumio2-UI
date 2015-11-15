@@ -4,31 +4,39 @@
     <h3 class="panel-title">My music</h3>
   </div>
   <div class="panel-body">
-    <h4 ng-if="false" class="sectionDescription"></h4>
-    <table class="table">
-      <tr>
-        <th>Artists</th>
-        <th>Albums</th>
-        <th>Songs</th>
-        <th>Playtime</th>
-      </tr>
-      <tr>
-        <td>
-          {{myMusic.myCollectionStats.artists}}
-        </td>
-        <td>
-          {{myMusic.myCollectionStats.albums}}
-        </td>
-        <td>
-          {{myMusic.myCollectionStats.songs}}
-        </td>
-        <td>
-          {{myMusic.myCollectionStats.playtime}}
-        </td>
-      </tr>
-    </table>
-  <button ng-click="myMusic.rescanLibrary()" type="button" class="btn btn-info">
-    Re scan
-  </button>
+    <div class="row">
+      <h4 ng-if="false" class="sectionDescription"></h4>
+      <table class="table">
+        <tr>
+          <th>Artists</th>
+          <th>Albums</th>
+          <th>Songs</th>
+          <th>
+            <span class="hidden-xs">Playtime</span>
+            <span class="visible-xs">Time</span>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            {{myMusic.myCollectionStats.artists}}
+          </td>
+          <td>
+            {{myMusic.myCollectionStats.albums}}
+          </td>
+          <td>
+            {{myMusic.myCollectionStats.songs}}
+          </td>
+          <td>
+            {{myMusic.myCollectionStats.playtime}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <br>
+      <button ng-click="myMusic.rescanLibrary()" type="button" class="btn btn-info">
+        Re scan
+      </button>
+    </div>
   </div>
 </div>

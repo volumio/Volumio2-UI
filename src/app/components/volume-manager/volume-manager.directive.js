@@ -1,11 +1,12 @@
 class VolumeManagerDirective {
-  constructor (themeManager) {
+  constructor(themeManager) {
     'ngInject';
-
     let directive = {
       restrict: 'E',
       templateUrl: themeManager.getHtmlPath('volume-manager', 'components/volume-manager'),
-      scope: false,
+      scope: {
+        type: '@'
+      },
       controller: VolumeManagerController,
       controllerAs: 'volumeManager',
       bindToController: true
@@ -16,23 +17,24 @@ class VolumeManagerDirective {
 }
 
 class VolumeManagerController {
-  constructor ($scope, playerService, $timeout) {
+  constructor($scope, playerService, $timeout) {
     'ngInject';
     this.timeoutHandler = null;
     this.playerService = playerService;
-
-    this.knobOptions = {
-      min: 0,
-      max: 100,
-      fgColor: '#4bbe87',
-      bgColor: '#283a4e',
-      width: 150,
-      height: 150,
-      displayInput: false,
-      step: 1,
-      angleOffset: -125,
-      angleArc: 250
-    };
+    if (this.type === 'knob') {
+      this.knobOptions = {
+        min: 0,
+        max: 100,
+        fgColor: '#4bbe87',
+        bgColor: '#283a4e',
+        width: 150,
+        height: 150,
+        displayInput: false,
+        step: 1,
+        angleOffset: -125,
+        angleArc: 250
+      };
+    }
 
     // NOTE this watches are for decouple the playerService.volume
     // from the knob value. The playerService.volume (getter) value
@@ -45,15 +47,8 @@ class VolumeManagerController {
           //console.log(value);
           playerService.volume = value;
         }, 300);
-
       }
     });
-
-    // TODO remove this commented code
-    // $timeout(() => {
-    //   this.volume = playerService.volume;
-    //   console.log('playerService.volume', playerService.volume);
-    // }, 300);
 
     $scope.$watch(() => playerService.volume,  (value) => {
       if (value) {
