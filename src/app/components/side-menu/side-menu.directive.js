@@ -14,23 +14,35 @@ class PlayerButtonsDirective {
 }
 
 class SideMenuController {
-  constructor($rootScope, socketService, mockService, $state, modalService) {
+  constructor($scope, $rootScope, socketService, mockService,
+    $state, modalService, playerService, themeManager) {
     'ngInject';
-    this.socketService = socketService;
     this.$state = $state;
+    this.socketService = socketService;
     this.modalService = modalService;
-
+    this.playerService = playerService;
     this.visible = false;
+    this.theme = themeManager.theme;
     //this.menuItems = mockService.get('getMenuItems');
 
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+
+    $scope.$watch('sideMenu.analogInput', (newVal) => {
+      if (newVal !== undefined) {
+        if (newVal !== this.playerService.state.analog) {
+          this.socketService.emit('setAnalogInput', newVal);
+          console.log('setAnalogInput', newVal);
+        }
+      }
+    });
   }
 
   toggleMenu() {
     this.visible = !this.visible;
+    this.analogInput = this.visible && this.playerService.state.analog || false;
   }
 
   itemClick(item) {
