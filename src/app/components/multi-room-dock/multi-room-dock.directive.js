@@ -1,16 +1,14 @@
 class MultiRoomDockDirective {
-  constructor() {
+  constructor(themeManager) {
     'ngInject';
-
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/multi-room-dock/multi-room-dock.html',
+      templateUrl: themeManager.getHtmlPath('multi-room-dock', 'components/multi-room-dock'),
       scope: false,
       controller: MultiRoomDockController,
       controllerAs: 'multiRoomDock',
       bindToController: true
     };
-
     return directive;
   }
 }

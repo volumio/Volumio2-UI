@@ -119,7 +119,7 @@ angular.module('volumio', [
   .directive('playerStatus', () => new PlayerStatusDirective())
   .directive('sideMenu', () => new SideMenuDirective())
   .directive('knob', () => new KnobDirective())
-  .directive('multiRoomDock', () => new MultiRoomDockDirective())
+  .directive('multiRoomDock', (themeManager) => new MultiRoomDockDirective(themeManager))
   .directive('airplayScrim', () => new AirplayScrimDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
 

@@ -1,7 +1,6 @@
 class TrackManagerDirective {
   constructor(themeManager) {
     'ngInject';
-
     let directive = {
       restrict: 'E',
       templateUrl: themeManager.getHtmlPath('track-manager', 'components/track-manager'),
@@ -11,7 +10,6 @@ class TrackManagerDirective {
       controllerAs: 'trackManager',
       bindToController: true
     };
-
     return directive;
 
     function linkFunc(scope, el, attr, vm) {

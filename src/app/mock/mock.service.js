@@ -225,50 +225,70 @@ class MockService {
           }
         }
       ],
-      multiRoom: [
+      multiRoomDevices: [
         {
           name: 'AxiomAir4',
           ip: 'http://192.168.1.159:3000',
-          volume: 0,
-          song: 'aa',
-          artist: 'bb',
-          albumart: ''
+          state: {
+            volume: 0,
+            track: 'aa',
+            artist: 'bb',
+            albumart: ''
+          }
         },
         {
           name: 'AxiomAir6',
           ip: 'http://192.168.1.129:3000',
-          volume: 0,
-          song: 'cc',
-          artist: 'dd',
-          albumart: ''
+          state: {
+            volume: 0,
+            track: 'aa',
+            artist: 'bb',
+            albumart: ''
+          }
+        },
+        {
+          name: 'AxiomAir6',
+          ip: 'http://192.168.1.129:3000',
+          state: {
+            volume: 0,
+            track: 'aa',
+            artist: 'bb',
+            albumart: ''
+          }
         },
         {
           type: 'GROUP',
-          name: 'PUPPA',
+          name: 'Kitchen',
           server: {
             name: 'AxiomAir',
             ip: 'http://192.168.1.111:3000',
-            volume: 100,
-            song: 'cazone',
-            artist: 'Artista',
-            albumart: ''
+            state: {
+              volume: 50,
+              track: 'Group track',
+              artist: 'art',
+              albumart: ''
+            }
           },
           clients: [
             {
               name: 'Child 1',
               ip: 'http://192.168.1.110:3000',
-              volume: 100,
-              song: '',
-              artist: '',
-              albumart: ''
+              state: {
+                volume: 0,
+                track: '',
+                artist: '',
+                albumart: ''
+              }
             },
             {
               name: 'Child 2',
               ip: 'http://192.168.1.116:3000',
-              volume: 100,
-              song: '',
-              artist: '',
-              albumart: ''
+              state: {
+                volume: 0,
+                track: 'aa',
+                artist: 'bb',
+                albumart: ''
+              }
             }
           ]
         }
