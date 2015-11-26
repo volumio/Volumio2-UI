@@ -1,53 +1,5 @@
 <form class="form-horizontal">
   <div class="form-group">
-    <label for="{{networkDrives.drive.id}}"
-        class="control-label">Id
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.id}}"
-          type="text"
-          ng-model="networkDrives.drive.id"
-          placeholder="id"
-          class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="{{networkDrives.drive.name}}"
-        class="control-label">Name
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.name}}"
-          type="text"
-          ng-model="networkDrives.drive.name"
-          placeholder="name"
-          class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="{{networkDrives.drive.path}}"
-        class="control-label">Path
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.path}}"
-          type="text"
-          ng-model="networkDrives.drive.path"
-          placeholder="path"
-          class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="{{networkDrives.drive.ip}}"
-        class="control-label">Ip
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.ip}}"
-          type="text"
-          ng-model="networkDrives.drive.ip"
-          placeholder="ip"
-          class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
     <label for="{{networkDrives.drive.fstype}}"
         class="control-label">Fs type
     </label>
@@ -65,6 +17,30 @@
           <div ng-bind-html="option"></div>
         </ui-select-choices>
       </ui-select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.name}}"
+        class="control-label">Name
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.name}}"
+          type="text"
+          ng-model="networkDrives.drive.name"
+          placeholder="name"
+          class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{networkDrives.drive.ip}}"
+        class="control-label">Ip
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.ip}}"
+          type="text"
+          ng-model="networkDrives.drive.ip"
+          placeholder="ip"
+          class="form-control">
     </div>
   </div>
   <div class="form-group">
