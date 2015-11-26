@@ -11,11 +11,12 @@ class PlayQueueService {
     });
   }
 
-  play(index) {
-    console.log('PlayQueueService play', index);
-    this.socketService.emit('play', {value: index});
-  }
+  // play(index) {
+  //   console.log('PlayQueueService play', index);
+  //   this.socketService.emit('play', {value: index});
+  // }
 
+  //play song and add to queue
   addPlay(item) {
     console.log('PlayQueueService addPlay', item);
     this.socketService.emit('addPlay', {
@@ -24,9 +25,21 @@ class PlayQueueService {
     });
   }
 
+  playPlaylist(index) {
+    console.log('PlayQueueService playPlaylist', index);
+    this.socketService.emit('playPlaylist', {name: index.title});
+  }
+
+  //add to queue for song
   add(item) {
-    console.log('addToQueue', item);
+    console.log('PlayQueueService addToQueue', item);
     this.socketService.emit('addToQueue', {uri: item.uri});
+  }
+
+  //add to queue method for playlist
+  enqueue(index) {
+    console.log('PlayQueueService enqueue', index);
+    this.socketService.emit('enqueue', {name: index.title});
   }
 
   remove(index) {

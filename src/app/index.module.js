@@ -30,6 +30,7 @@ import SideMenuDirective from './components/side-menu/side-menu.directive';
 import KnobDirective from './components/knob/knob.directive';
 import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
 import AirplayScrimDirective from './components/airplay-scrim/airplay-scrim.directive';
+import WaitBackendScrimDirective from './components/wait-backend-scrim/wait-backend-scrim.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 
 import ModalController from './components/modals/modal.controller';
@@ -121,6 +122,7 @@ angular.module('volumio', [
   .directive('knob', () => new KnobDirective())
   .directive('multiRoomDock', (themeManager) => new MultiRoomDockDirective(themeManager))
   .directive('airplayScrim', () => new AirplayScrimDirective())
+  .directive('waitBackendScrim', () => new WaitBackendScrimDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())

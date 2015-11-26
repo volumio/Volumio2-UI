@@ -12,6 +12,7 @@ class BrowseController {
 
   fetchLibrary(item) {
     console.log(item);
+    this.currentListType = item;
     this.browseService.fetchLibrary(item);
     this.selectedSource = item;
     this.isBrowsing = true;
@@ -24,11 +25,19 @@ class BrowseController {
   }
 
   play(item) {
-    this.playQueueService.addPlay(item);
+    if (this.currentListType.uri === 'playlists') {
+      this.playQueueService.playPlaylist(item);
+    } else {
+      this.playQueueService.addPlay(item);
+    }
   }
 
   addToQueue(item) {
-    this.playQueueService.add(item);
+    if (this.currentListType.uri === 'playlists') {
+      this.playQueueService.enqueue(item);
+    } else {
+      this.playQueueService.add(item);
+    }
   }
 
   clickListItem(item, event) {

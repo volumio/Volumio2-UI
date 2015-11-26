@@ -9,9 +9,7 @@ class SocketService {
 
   changeHost(host) {
     this.host = host;
-    this.$window.socket.disconnect();
-    this.$window.socket = undefined;
-    delete this.$window.socket;
+    this.disconnectMe();
     this.$window.socket = io(this.host);
     this.$rootScope.$emit('socket:init');
   }
@@ -42,6 +40,24 @@ class SocketService {
         }
       });
     });
+  }
+
+  connect(callback) {
+    socket.on('connect', () => {
+      callback();
+    });
+  }
+
+  disconnect(callback) {
+    socket.on('disconnect', (socket) => {
+      callback(socket);
+    });
+  }
+
+  disconnectMe() {
+    this.$window.socket.disconnect();
+    this.$window.socket = undefined;
+    delete this.$window.socket;
   }
 
   set host(host) {
