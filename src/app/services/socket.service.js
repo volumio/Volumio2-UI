@@ -5,9 +5,11 @@ class SocketService {
     this.$http = $http;
     this.$window = $window;
     this._host = null;
+    console.log('CONS');
   }
 
   changeHost(host) {
+    console.log('Change host');
     this.host = host;
     this.disconnectMe();
     this.$window.socket = io(this.host);
@@ -15,8 +17,10 @@ class SocketService {
   }
 
   on(eventName, callback) {
-    //console.log('on', eventName);
-    socket.on(eventName, (data) => {
+    console.log('on', eventName);
+    console.log(this.$window);
+    this.$window.socket.on(eventName, (data) => {
+      console.log('123');
       //console.log(arguments);
       //console.log(data);
       this.$rootScope.$apply(function() {
@@ -31,7 +35,7 @@ class SocketService {
 
   emit(eventName, data, callback) {
     //console.log('emit', eventName);
-    socket.emit(eventName, data, (data) => {
+    this.$window.socket.emit(eventName, data, (data) => {
       //let arg = arguments;
       this.$rootScope.$apply(function() {
         if (callback) {
