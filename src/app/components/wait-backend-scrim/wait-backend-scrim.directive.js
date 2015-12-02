@@ -31,8 +31,11 @@ class WaitBackendScrimController {
   }
 
   registerListner() {
+    this.socketService.connect(() => {
+      this.hideSrcrim();
+    });
     this.socketService.reconnect(() => {
-      this.$document.querySelector('#waitBackendScrim').classList.add('hideScrim');
+      this.hideSrcrim();
     });
     this.socketService.disconnect((socket) => {
       this.$document.querySelector('#waitBackendScrim').classList.remove('hideScrim');
@@ -42,8 +45,12 @@ class WaitBackendScrimController {
 
   initService() {
     if (this.socketService.isConnected) {
-      this.$document.querySelector('#waitBackendScrim').classList.add('hideScrim');
+      this.hideSrcrim();
     }
+  }
+
+  hideSrcrim() {
+    this.$document.querySelector('#waitBackendScrim').classList.add('hideScrim');
   }
 }
 
