@@ -1,12 +1,12 @@
 #waitBackendScrim {
   color: #FFF;
-  font-size: 22px;
+  font-size: 90px;
   position: relative;
   &.hideScrim {
     display: none;
   }
   #overlay {
-    background-color: rgba(100, 100, 100, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
     top: 0;
     right: 0;
@@ -14,9 +14,9 @@
     left: 0;
     z-index: 100;
   }
-  #waitBackendSrimMessage {
+  #waitBackendSpinner {
     display: inline-block;
-    width: 180px;
+    width: 100px;
     height: 100px;
     text-align: center;
     position: fixed;
@@ -26,9 +26,5 @@
     bottom: 0;
     left: 0;
     margin: auto;
-    >i {
-      font-size: 28px;
-      color: red;
-    }
   }
 }

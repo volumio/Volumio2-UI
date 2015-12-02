@@ -1,7 +1,13 @@
 class MyMusicPluginController {
-  constructor(socketService, mockService) {
+  constructor($scope, socketService, mockService, $interval) {
     'ngInject';
     this.socketService = socketService;
+    this.$interval = $interval;
+    $scope.$on('$destroy', () => {
+      if (this.intervalHandler) {
+        this.$interval.cancel(this.intervalHandler);
+      }
+    });
     //this.myCollectionStats = mockService.get('myCollectionStats');
     this.init();
   }
@@ -24,6 +30,9 @@ class MyMusicPluginController {
 
   initService() {
     this.socketService.emit('getMyCollectionStats');
+    this.intervalHandler = this.$interval(() => {
+      this.socketService.emit('getMyCollectionStats');
+    }, 4000);
   }
 }
 
