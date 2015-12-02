@@ -15,6 +15,9 @@ class BrowseService {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
   fetchLibrary(item) {

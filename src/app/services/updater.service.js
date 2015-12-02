@@ -4,7 +4,6 @@ class UpdaterService {
     this.socketService = socketService;
     this.modalService = modalService;
     this.$timeout = $timeout;
-
     // this.updateReady =
     //   {
     //     title: 'Update v2.0',
@@ -14,6 +13,9 @@ class UpdaterService {
 
     $rootScope.$on('socket:init', () => {
       this.init();
+    });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
     });
   }
 

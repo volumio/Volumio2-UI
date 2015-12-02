@@ -8,6 +8,9 @@ class PlaylistService {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
   add(item, playlist) {

@@ -14,9 +14,13 @@ class SocketService {
     this.$rootScope.$emit('socket:init');
   }
 
+  get isConnected() {
+    return this.$window.socket.connected;
+  }
+
   on(eventName, callback) {
     //console.log('on', eventName);
-    socket.on(eventName, (data) => {
+    this.$window.socket.on(eventName, (data) => {
       //console.log(arguments);
       //console.log(data);
       this.$rootScope.$apply(function() {
@@ -31,7 +35,7 @@ class SocketService {
 
   emit(eventName, data, callback) {
     //console.log('emit', eventName);
-    socket.emit(eventName, data, (data) => {
+    this.$window.socket.emit(eventName, data, (data) => {
       //let arg = arguments;
       this.$rootScope.$apply(function() {
         if (callback) {
@@ -43,13 +47,23 @@ class SocketService {
   }
 
   connect(callback) {
-    socket.on('connect', () => {
+    this.$window.socket.on('connect', () => {
+      console.log('Socket connect');
+      callback();
+    });
+  }
+
+  reconnect(callback) {
+    this.$window.socket.on('reconnect', () => {
+      console.log('Socket reconnect');
+      this.$rootScope.$emit('socket:reconnect');
       callback();
     });
   }
 
   disconnect(callback) {
-    socket.on('disconnect', (socket) => {
+    this.$window.socket.on('disconnect', (socket) => {
+      console.log('Socket disconnect');
       callback(socket);
     });
   }

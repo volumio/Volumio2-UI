@@ -116,7 +116,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       }
     });
 
-  $urlRouterProvider.otherwise('/browse');
+  $urlRouterProvider.otherwise('/playback');
 }
 
 export default routerConfig;

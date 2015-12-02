@@ -9,6 +9,9 @@ class PlayQueueService {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
   // play(index) {

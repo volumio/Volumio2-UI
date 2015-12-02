@@ -27,7 +27,7 @@ class NetworkDrivesPluginController {
   }
 
   addDrive() {
-    this.drive = {};
+    this.drive = {fstype: 'cifs'};
     this.inAddDrive = true;
     this.inEditDrive = false;
   }

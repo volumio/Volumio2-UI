@@ -77,7 +77,8 @@ class MockService {
           name: 'SHARE su 192.168.10.99',
           id: 'id nuovo',
           mounted: 'false',
-          size: '450 GB'
+          size: '450 GB',
+          fstype: 'nfs'
         }
       ],
       listUsbDrives: [
