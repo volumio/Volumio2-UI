@@ -35,7 +35,6 @@ class SideMenuController {
 
     $scope.$watch('sideMenu.analogInput', (newVal) => {
       if (newVal !== undefined) {
-        cl
         if (newVal !== this.playerService.state.analog) {
           this.socketService.emit('setAnalogInput', newVal);
           console.log('setAnalogInput', newVal);
