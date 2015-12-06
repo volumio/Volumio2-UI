@@ -15,10 +15,10 @@ class PlaylistDirective {
 
 class PlaylistController {
   constructor($rootScope, $http, $log, playerService, socketService, mockService) {
+    'ngInject';
     this.socketService = socketService;
     this.playerService = playerService;
     console.log(this.playerService);
-    'ngInject';
     let endpoint = 'http://sublinode.gestiolink.ch/client/constellation1';
     if ($rootScope.initConfig && $rootScope.initConfig.restendpoint) {
       endpoint = $rootScope.initConfig.restendpoint;
