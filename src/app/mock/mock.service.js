@@ -13,6 +13,39 @@ class MockService {
 
   init() {
     this._mock = {
+      //Playlist component
+      playlist: [
+        {
+          'order': 2,
+          'prettyname': 'Bar Day',
+          'path': 'bergues-bar-day',
+          'intensity': 2,
+          'description': 'Une ambiance sphistiquée aux influences jazzy.',
+          'styles': 'jazzy, soul, lounge',
+          'ambienticons': [
+            'fa-building',
+            'fa-glass'
+          ],
+          'createdAt': '2015-11-28T09:44:14.319Z',
+          'updatedAt': '2015-11-28T09:44:14.326Z',
+          'id': 'playlist-test1'
+        },
+        {
+          'ambienticons': [
+            'fa-building',
+            'fa-glass'
+          ],
+          'createdAt': '2015-11-28T09:40:07.313Z',
+          'description': 'Im too lazy to go on the web to copy and .....',
+          'intensity': 1,
+          'order': 1,
+          'path': 'bergues-bar-morning',
+          'prettyname': 'Bar Morning',
+          'styles': 'jazzy, hip, world',
+          'updatedAt': '2015-11-28T09:48:54.036Z',
+          'id': 'test3'
+        }
+      ],
       //Network status plugin
       networkInfos: [{
         type: 'wireless',
