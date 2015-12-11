@@ -46,8 +46,7 @@ class MultiRoomService {
   }
 
   initService() {
-    console.log('Commented out getMultiRoomDevices');
-    //this.socketService.emit('getMultiRoomDevices');
+    this.socketService.emit('getMultiRoomDevices');
     this.socketService.emit('getMultiroom');
   }
 

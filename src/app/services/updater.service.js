@@ -9,7 +9,7 @@ class UpdaterService {
     //     title: 'Update v2.0',
     //     description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>'
     //   };
-    // this.openUpdateModal();
+    //this.openUpdateModal();
 
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -38,10 +38,9 @@ class UpdaterService {
     //   downloadSpeed: '100',
     //   eta: '40m 30s'
     // };
-    //
     // this.$timeout(() => {
     //   this.updateDone();
-    // }, 3000);
+    // }, 3000000);
   }
 
   updateDone() {

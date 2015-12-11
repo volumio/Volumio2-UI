@@ -43,8 +43,8 @@ function routerConfig ($stateProvider, $urlRouterProvider,
             }, () => {
               //console.log(reason);
               //Fallback socket
-              $window.socket = io('http://constellation1.box.gestiolink.ch');
-              socketService.host  = 'http://constellation1.box.gestiolink.ch';
+              $window.socket = io('http://192.168.0.172');
+              socketService.host  = 'http://192.168.0.172';
               toastMessageService.init();
               updaterService.init();
             });

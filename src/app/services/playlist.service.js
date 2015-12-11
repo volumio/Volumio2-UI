@@ -1,7 +1,8 @@
 class PlaylistService {
-  constructor($rootScope, socketService) {
+  constructor($rootScope, socketService, $timeout) {
     'ngInject';
     this.socketService = socketService;
+    this.$timeout = $timeout;
     this.playlists = [];
 
     this.init();
@@ -19,6 +20,11 @@ class PlaylistService {
       uri: item.uri,
       service: (item.service || null)
     });
+    //NOTE the BE should send a new pushListPlaylist after creating a new playlist
+    let tHandler = this.$timeout(() => {
+      this.initService();
+      this.$timeout.cancel(tHandler);
+    }, 3000);
   }
 
   addToFavourites(item) {

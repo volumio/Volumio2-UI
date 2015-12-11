@@ -5,9 +5,9 @@ class PluginController {
     this.$stateParams = $stateParams;
     this.modalService = modalService;
     this.mockService = mockService;
-    // this.pluginObj = this.mockService.get('getSettings');
-    // console.log(this.pluginObj);
-    // this.pluginObj.sections.unshift({coreSection: 'network-drives'});
+    //this.pluginObj = this.mockService.get('getSettings');
+    //console.log(this.pluginObj);
+    //this.pluginObj.sections.unshift({coreSection: 'system-version'});
     this.init();
   }
 

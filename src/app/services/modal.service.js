@@ -7,13 +7,15 @@ class ModalService {
       controller = 'ModalController',
       templateUrl = 'app/components/modals/default-modal.html',
       dataObj = null,
-      size = 'sm') {
+      size = 'sm',
+      backdrop = 'static') {
     let modalInstance = this.$uibModal.open({
       animation: true,
       templateUrl: templateUrl,
       controller: controller,
       controllerAs: 'modal',
       size: size,
+      backdrop: backdrop,
       resolve: {
         dataObj: () => dataObj
       }
