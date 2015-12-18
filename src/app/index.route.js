@@ -43,8 +43,8 @@ function routerConfig ($stateProvider, $urlRouterProvider,
             }, () => {
               //console.log(reason);
               //Fallback socket
-              $window.socket = io('http://192.168.0.172');
-              socketService.host  = 'http://192.168.0.172';
+              $window.socket = io('http://192.168.0.4');
+              socketService.host  = 'http://192.168.0.4';
               toastMessageService.init();
               updaterService.init();
             });
@@ -89,7 +89,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       url: 'debug',
       views: {
         'content@volumio': {
-          templateUrl: 'app/debug/volumio-debug.html',
+          templateUrl: 'app/components/debug/volumio-debug.html',
           controller: 'DebugController',
           controllerAs: 'debug'
         }

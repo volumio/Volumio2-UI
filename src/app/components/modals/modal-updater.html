@@ -22,8 +22,24 @@
 </div>
 <div class="modal-footer">
   <div ng-if="modal.updaterService.status === 'updateReady'" >
-    <button class="btn btn-warning" ng-click="modal.cancel()">Cancel</button>
-    <button class="btn btn-primary" ng-click="modal.update('now')">Update Now</button>
+    <button
+        ng-if="modal.updaterService.updateReady.updateavailable"
+        class="btn btn-warning"
+        ng-click="modal.cancel()">
+      Cancel
+    </button>
+    <button
+        ng-if="modal.updaterService.updateReady.updateavailable"
+        class="btn btn-primary"
+        ng-click="modal.update('now')">
+      Update Now
+    </button>
+    <button
+        ng-if="!modal.updaterService.updateReady.updateavailable"
+        class="btn btn-primary"
+        ng-click="modal.cancel()">
+      OK
+    </button>
   </div>
 
   <div ng-if="modal.updaterService.status === 'updateDone'" >

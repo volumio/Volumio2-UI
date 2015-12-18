@@ -32,9 +32,11 @@ class WaitBackendScrimController {
 
   registerListner() {
     this.socketService.connect(() => {
+      console.log('connect');
       this.hideSrcrim();
     });
     this.socketService.reconnect(() => {
+      console.log('reconnect');
       this.hideSrcrim();
     });
     this.socketService.disconnect((socket) => {

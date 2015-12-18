@@ -11,6 +11,7 @@ class SocketService {
     this.host = host;
     this.disconnectMe();
     this.$window.socket = io(this.host);
+    console.info('connected to', this.host);
     this.$rootScope.$emit('socket:init');
   }
 
@@ -48,14 +49,14 @@ class SocketService {
 
   connect(callback) {
     this.$window.socket.on('connect', () => {
-      console.log('Socket connect');
+      console.info('Socket connect');
       callback();
     });
   }
 
   reconnect(callback) {
     this.$window.socket.on('reconnect', () => {
-      console.log('Socket reconnect');
+      console.info('Socket reconnect');
       this.$rootScope.$emit('socket:reconnect');
       callback();
     });
@@ -63,7 +64,7 @@ class SocketService {
 
   disconnect(callback) {
     this.$window.socket.on('disconnect', (socket) => {
-      console.log('Socket disconnect');
+      console.info('Socket disconnect');
       callback(socket);
     });
   }
@@ -71,7 +72,7 @@ class SocketService {
   disconnectMe() {
     this.$window.socket.disconnect();
     this.$window.socket = undefined;
-    delete this.$window.socket;
+    // delete this.$window.socket;
   }
 
   set host(host) {

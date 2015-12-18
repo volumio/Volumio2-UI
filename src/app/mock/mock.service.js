@@ -263,6 +263,7 @@ class MockService {
         {
           name: 'AxiomAir4',
           ip: 'http://192.168.1.159:3000',
+          isSelf: true,
           state: {
             volume: 0,
             track: 'aa',

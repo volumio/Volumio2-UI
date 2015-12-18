@@ -8,6 +8,7 @@ class ModalSleepController {
 
     this.init();
     this.sleepTime = new Date();
+    this.sleepTime.setHours(0, 0);
     this.sleepActive = false;
   }
 

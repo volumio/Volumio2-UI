@@ -3,12 +3,8 @@ class BrowseService {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
-
-    this._listBy = 'track';
-
     //this._filters = mockService.get('getBrowseFilters');
     //this._sources = mockService.get('getBrowseSources');
-
     //this._list = mockService.get('getBrowseList');
 
     this.init();
@@ -50,6 +46,14 @@ class BrowseService {
     this._list = list;
   }
 
+  get isBrowsing() {
+    return this._isBrowsing;
+  }
+
+  set isBrowsing(val) {
+    this._isBrowsing = val;
+  }
+
   get breadcrumbs() {
     return this._breadcrumbs;
   }
@@ -82,6 +86,8 @@ class BrowseService {
   initService() {
     this.socketService.emit('getBrowseFilters');
     this.socketService.emit('getBrowseSources');
+    this._isBrowsing = false;
+    this._listBy = 'track';
     //this.socketService.emit('browseLibrary', {});
   }
 
