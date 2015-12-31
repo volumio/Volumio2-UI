@@ -27,11 +27,30 @@ class PlaylistService {
     }, 3000);
   }
 
-  addToFavourites(item) {
-    this.socketService.emit('addToFavourites', {
-      uri: item.uri,
-      service: (item.service || null)
+  remove(item, playlist) {
+    console.log('removeFromPlaylist', item, playlist);
+    this.socketService.emit('removeFromPlaylist', {
+      name: playlist,
+      uri: item.uri
     });
+  }
+
+  addToFavourites(item) {
+    if (item && item.uri) {
+      this.socketService.emit('addToFavourites', {
+        uri: item.uri,
+        service: (item.service || null)
+      });
+    }
+  }
+
+  removeFromFavourites(item) {
+    if (item && item.uri) {
+      this.socketService.emit('removeFromFavourites', {
+        uri: item.uri,
+        service: (item.service || null)
+      });
+    }
   }
 
   savePlaylist() {

@@ -7,9 +7,10 @@ class UpdaterService {
     // this.updateReady =
     //   {
     //     title: 'Update v2.0',
-    //     description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>'
+    //     description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>',
+    //     updateavailable: true
     //   };
-    //this.openUpdateModal();
+    // this.openUpdateModal();
 
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -30,7 +31,6 @@ class UpdaterService {
 
   update(val) {
     this.socketService.emit('update', {value: val});
-
     // this.status = 'updateProgress';
     // this.updateProgress = {
     //   progress: 90,

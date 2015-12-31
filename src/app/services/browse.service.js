@@ -18,7 +18,8 @@ class BrowseService {
 
   fetchLibrary(item) {
     let obj = {uri: item.uri};
-    //console.log('CALL', obj);
+    // console.log('fetchLibrary', item);
+    this.currentFetchRequest = item;
     this.socketService.emit('browseLibrary', obj);
   }
 

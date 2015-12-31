@@ -43,8 +43,8 @@ function routerConfig ($stateProvider, $urlRouterProvider,
             }, () => {
               //console.log(reason);
               //Fallback socket
-              $window.socket = io('http://192.168.0.4');
-              socketService.host  = 'http://192.168.0.4';
+              $window.socket = io('http://192.168.0.3');
+              socketService.host  = 'http://192.168.0.3';
               toastMessageService.init();
               updaterService.init();
             });

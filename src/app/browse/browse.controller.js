@@ -1,5 +1,5 @@
 class BrowseController {
-  constructor(browseService, playQueueService, playlistService, socketService,
+  constructor(browseService, playQueueService, playlistService, socketService, boxTableMaxHeightOffset,
       modalService) {
     'ngInject';
     this.browseService = browseService;
@@ -8,8 +8,9 @@ class BrowseController {
     this.socketService = socketService;
     this.modalService = modalService;
     let boxTable = angular.element('.boxTable')[0];
+    console.log(boxTable);
     let boxTableTop = boxTable.getBoundingClientRect().top;
-    let boxTableMaxHeight = window.innerHeight - boxTableTop - 60;
+    let boxTableMaxHeight = window.innerHeight - boxTableTop - boxTableMaxHeightOffset;
     boxTable.style.height = boxTableMaxHeight + 'px';
   }
 
@@ -70,6 +71,10 @@ class BrowseController {
       'sm');
   }
 
+  deleteFromPlaylist(item) {
+    this.playlistService.remove(item, this.browseService.currentFetchRequest.title);
+  }
+
   deletePlaylist(item) {
     console.log('browse - deletePlaylist', item);
     this.playlistService.deletePlaylist(item.title);
@@ -78,6 +83,11 @@ class BrowseController {
   addToFavourites(item) {
     console.log('browse - addToFavourites', item);
     this.playlistService.addToFavourites(item);
+  }
+
+  removeFromFavourites(item) {
+    console.log('browse - removeFromFavourites', item);
+    this.playlistService.removeFromFavourites(item);
   }
 
   search() {
