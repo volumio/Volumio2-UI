@@ -7,6 +7,9 @@ class ToastMessageService {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
   showMessage(type, message, title) {

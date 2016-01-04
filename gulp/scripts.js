@@ -57,10 +57,15 @@ gulp.task('scripts:watch', ['scripts'], function (callback) {
 
 gulp.task('angularConfig', function () {
   var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
-
-  return $.ngConstant({
+  var obj = {
     name: 'volumio.constant',
     constants: {theme: themeSelected},
     stream: true
-  }).pipe(gulp.dest('src/app'));
+  };
+  if (gutil.env.theme === 'volumio') {
+    obj.constants.boxTableMaxHeightOffset = 130;
+  } else if (gutil.env.theme === 'axiom') {
+    obj.constants.boxTableMaxHeightOffset = 60;
+  }
+  return $.ngConstant(obj).pipe(gulp.dest('src/app'));
 });

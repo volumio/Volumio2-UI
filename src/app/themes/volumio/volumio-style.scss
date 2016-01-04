@@ -34,7 +34,7 @@ $btn-warning-color: $volumio-light-color;
 $btn-warning-bg: $volumio-accent-color;
 $btn-warning-border: $volumio-light-color;
 
-//used for delet buttons
+//used for delete buttons
 $btn-danger-color: darken(red, 15%);
 $btn-danger-bg: $volumio-accent-color;
 $btn-danger-border: darken(red, 15%);
@@ -67,6 +67,10 @@ $modal-footer-border-color: $volumio-green-color;
 $list-group-bg: $volumio-dark-color;
 $list-group-border: $volumio-green-color;
 //$list-group-border-radius: 0;
+
+//Progress
+$progress-bg: $volumio-dark-color;
+$progress-bar-bg: $volumio-green-color;
 
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -107,7 +111,7 @@ $list-group-border: $volumio-green-color;
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/jumbotron";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/thumbnails";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts";
-//@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/progress-bars";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/progress-bars";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/media";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/list-group";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/panels";
@@ -143,7 +147,7 @@ $list-group-border: $volumio-green-color;
       background-color: $volumio-light-color;
       border-color: $btn-default-border;
     }
-    &:hover {
+    &:hover, &.active {
       background-color: $volumio-green-color;
     }
   }
@@ -230,6 +234,14 @@ table {
       text-transform: uppercase;
     }
   }
+}
+
+//progress
+.progress {
+  height: 18px;
+}
+.progress-bar.active, .progress.active .progress-bar, .progress-bar.active{
+  animation-direction: reverse !important;
 }
 
 //Select override

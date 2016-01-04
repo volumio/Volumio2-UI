@@ -7,7 +7,7 @@
       height:100px;
       cursor: pointer;
       text-transform: uppercase;
-      border: solid 1px $volumio-green-color;
+      border: solid 1px $volumio-accent-color;
       border-radius: 4px;
       margin-bottom: 10px;
     }
@@ -21,7 +21,11 @@
     .track {
       font-size:16px;
     }
-    &.child {
+    .isSelf {
+      border-color: $volumio-green-color;
+      background-color: $volumio-dark-color;
+    }
+    .child {
       cursor: default;
       .deviceName, .track {
         color: darken($text-color, 50%);

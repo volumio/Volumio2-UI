@@ -21,7 +21,7 @@ class MultiRoomDockController {
   }
 
   changeDevice(device) {
-    if (!device.isChild) {
+    if (!device.isChild && !device.isSelf) {
       this.socketService.changeHost(device.host);
     }
   }

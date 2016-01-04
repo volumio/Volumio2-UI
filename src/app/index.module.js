@@ -32,6 +32,7 @@ import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock
 import AirplayScrimDirective from './components/airplay-scrim/airplay-scrim.directive';
 import WaitBackendScrimDirective from './components/wait-backend-scrim/wait-backend-scrim.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
+import PlaylistDirective from './components/playlist/playlist.directive';
 
 import ModalController from './components/modals/modal.controller';
 
@@ -67,6 +68,7 @@ import WifiPluginController from './plugin/core-plugin/wifi-plugin.controller';
 import NetworkStatusPluginController from './plugin/core-plugin/network-status-plugin.controller';
 import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.controller';
 import NetworkDrivesPluginController from './plugin/core-plugin/network-drives-plugin.controller';
+import SystemVersionPluginController from './plugin/core-plugin/system-version-plugin.controller';
 
 
 
@@ -113,6 +115,7 @@ angular.module('volumio', [
 
   .provider('themeManager', ThemeManagerProvider)
 
+  // Components
   .directive('playerButtons', (themeManager) => new PlayerButtonsDirective(themeManager))
   .directive('volumeManager', (themeManager) => new VolumeManagerDirective(themeManager))
   .directive('trackManager', (themeManager) => new TrackManagerDirective(themeManager))
@@ -124,6 +127,7 @@ angular.module('volumio', [
   .directive('airplayScrim', () => new AirplayScrimDirective())
   .directive('waitBackendScrim', () => new WaitBackendScrimDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
+  .directive('playlist', (themeManager) => new PlaylistDirective(themeManager))
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())
@@ -153,5 +157,6 @@ angular.module('volumio', [
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)
   .controller('MyMusicPluginController', MyMusicPluginController)
   .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)
+  .controller('SystemVersionPluginController', SystemVersionPluginController)
 
   ;

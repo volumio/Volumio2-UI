@@ -1,5 +1,5 @@
 class BrowseController {
-  constructor(browseService, playQueueService, playlistService, socketService,
+  constructor(browseService, playQueueService, playlistService, socketService, boxTableMaxHeightOffset,
       modalService) {
     'ngInject';
     this.browseService = browseService;
@@ -7,25 +7,29 @@ class BrowseController {
     this.playlistService = playlistService;
     this.socketService = socketService;
     this.modalService = modalService;
-    this.isBrowsing = false;
+    let boxTable = angular.element('.boxTable')[0];
+    console.log(boxTable);
+    let boxTableTop = boxTable.getBoundingClientRect().top;
+    let boxTableMaxHeight = window.innerHeight - boxTableTop - boxTableMaxHeightOffset;
+    boxTable.style.height = boxTableMaxHeight + 'px';
   }
 
   fetchLibrary(item) {
     console.log(item);
-    this.currentListType = item;
+    this.browseService.currentList = item;
     this.browseService.fetchLibrary(item);
     this.selectedSource = item;
-    this.isBrowsing = true;
+    this.browseService.isBrowsing = true;
   }
 
   backHome() {
     this.searchField = '';
-    this.isBrowsing = false;
+    this.browseService.isBrowsing = false;
     this.browseService.list = [];
   }
 
   play(item) {
-    if (this.currentListType.uri === 'playlists') {
+    if (this.browseService.currentList.uri === 'playlists') {
       this.playQueueService.playPlaylist(item);
     } else {
       this.playQueueService.addPlay(item);
@@ -33,21 +37,20 @@ class BrowseController {
   }
 
   addToQueue(item) {
-    if (this.currentListType.uri === 'playlists') {
+    if (this.browseService.currentList.uri === 'playlists') {
       this.playQueueService.enqueue(item);
     } else {
       this.playQueueService.add(item);
     }
   }
 
-  clickListItem(item, event) {
-    // console.log(event);
-    if (event.target.tagName !== 'I' && item.type !== 'song') {
+  clickListItem(item) {
+    if (item.type !== 'song') {
       this.fetchLibrary(item);
     }
   }
-  dblClickListItem(item, event) {
-    if (event.target.tagName !== 'I' && item.type === 'song') {
+  dblClickListItem(item) {
+    if ( item.type === 'song') {
       this.play(item);
     }
   }
@@ -68,6 +71,10 @@ class BrowseController {
       'sm');
   }
 
+  deleteFromPlaylist(item) {
+    this.playlistService.remove(item, this.browseService.currentFetchRequest.title);
+  }
+
   deletePlaylist(item) {
     console.log('browse - deletePlaylist', item);
     this.playlistService.deletePlaylist(item.title);
@@ -76,6 +83,11 @@ class BrowseController {
   addToFavourites(item) {
     console.log('browse - addToFavourites', item);
     this.playlistService.addToFavourites(item);
+  }
+
+  removeFromFavourites(item) {
+    console.log('browse - removeFromFavourites', item);
+    this.playlistService.removeFromFavourites(item);
   }
 
   search() {

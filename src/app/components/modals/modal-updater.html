@@ -9,8 +9,9 @@
   <div ng-if="modal.updaterService.status === 'updateProgress'">
     <h3>{{modal.updaterService.updateProgress.status}}</h3>
     <uib-progressbar
+        class="progress-striped active"
         value="modal.updaterService.updateProgress.progress"
-        type="warning">{{modal.updaterService.updateProgress.progress}}%
+        type="default">{{modal.updaterService.updateProgress.progress}}%
     </uib-progressbar>
     Download speed: {{modal.updaterService.updateProgress.downloadSpeed}} |
     Eta: {{modal.updaterService.updateProgress.eta}}
@@ -22,17 +23,31 @@
 </div>
 <div class="modal-footer">
   <div ng-if="modal.updaterService.status === 'updateReady'" >
-    <button class="btn btn-warning" ng-click="modal.cancel()">No</button>
-    <button class="btn btn-primary" ng-click="modal.update('later')">Later</button>
-    <button class="btn btn-primary" ng-click="modal.update('now')">Yes</button>
+    <button
+        ng-if="modal.updaterService.updateReady.updateavailable"
+        class="btn btn-warning"
+        ng-click="modal.cancel()">
+      Cancel
+    </button>
+    <button
+        ng-if="modal.updaterService.updateReady.updateavailable"
+        class="btn btn-primary"
+        ng-click="modal.update('now')">
+      Update Now
+    </button>
+    <button
+        ng-if="!modal.updaterService.updateReady.updateavailable"
+        class="btn btn-primary"
+        ng-click="modal.cancel()">
+      OK
+    </button>
   </div>
 
   <div ng-if="modal.updaterService.status === 'updateDone'" >
-    <button class="btn btn-warning" ng-click="modal.cancel()">Ok</button>
     <button
         ng-if="modal.updaterService.updateDone.status === 'success'"
         class="btn btn-primary" ng-click="modal.reboot()">
-      Reboot
+      Restart System
     </button>
     <button
         ng-if="modal.updaterService.updateDone.status === 'error'"

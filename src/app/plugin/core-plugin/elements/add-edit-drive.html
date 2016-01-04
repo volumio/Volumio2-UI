@@ -43,42 +43,52 @@
           class="form-control">
     </div>
   </div>
-  <div class="form-group">
-    <label for="{{networkDrives.drive.username}}"
-        class="control-label">Username
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.username}}"
-          type="text"
-          ng-model="networkDrives.drive.username"
-          placeholder="username"
-          class="form-control">
+
+  <div ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true">
+    <a href>Advanced Options</a>
+  </div>
+  <!-- <div ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false">
+    <a href>Hide advanced Options</a><br>
+  </div> -->
+  <div ng-show="networkDrives.advancedVisible">
+    <div class="form-group">
+      <label for="{{networkDrives.drive.username}}"
+          class="control-label">Username
+      </label>
+      <div class="control-item">
+        <input id="{{networkDrives.drive.username}}"
+            type="text"
+            ng-model="networkDrives.drive.username"
+            placeholder="username"
+            class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="{{networkDrives.drive.password}}"
+          class="control-label">Password
+      </label>
+      <div class="control-item">
+        <input id="{{networkDrives.drive.password}}"
+            type="password"
+            ng-model="networkDrives.drive.password"
+            placeholder="password"
+            class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="{{networkDrives.drive.options}}"
+          class="control-label">Options
+      </label>
+      <div class="control-item">
+        <input id="{{networkDrives.drive.options}}"
+            type="text"
+            ng-model="networkDrives.drive.options"
+            placeholder="options"
+            class="form-control">
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="{{networkDrives.drive.password}}"
-        class="control-label">Password
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.password}}"
-          type="password"
-          ng-model="networkDrives.drive.password"
-          placeholder="password"
-          class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="{{networkDrives.drive.options}}"
-        class="control-label">Options
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.options}}"
-          type="text"
-          ng-model="networkDrives.drive.options"
-          placeholder="options"
-          class="form-control">
-    </div>
-  </div>
+
   <div class="form-group">
     <label class="control-label"></label>
     <div class="control-item">

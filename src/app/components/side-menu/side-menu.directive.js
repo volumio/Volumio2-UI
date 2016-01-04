@@ -29,12 +29,18 @@ class SideMenuController {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
 
     $scope.$watch('sideMenu.analogInput', (newVal) => {
       if (newVal !== undefined) {
         if (newVal !== this.playerService.state.analog) {
-          this.socketService.emit('setAnalogInput', newVal);
-          console.log('setAnalogInput', newVal);
+          this.socketService.emit('callMethod', {
+            endpoint: 'system_controller/gpios',
+            method:'DASwitchPress'
+          });
+          console.log('switch analogInput');
         }
       }
     });
@@ -42,7 +48,9 @@ class SideMenuController {
 
   toggleMenu() {
     this.visible = !this.visible;
-    this.analogInput = this.visible && this.playerService.state.analog || false;
+    if (this.analogInput !== undefined) {
+      this.analogInput = this.visible && this.playerService.state.analog || false;
+    }
   }
 
   itemClick(item) {
@@ -54,7 +62,7 @@ class SideMenuController {
           (item) => {
             return item[0].toUpperCase() + item.slice(1, item.length);
           }).join(''),
-        templateUrl ='app/themes/volumio/components/side-menu/elements/volumio-' +
+        templateUrl = 'app/components/side-menu/elements/' +
             item.params.modalName + '.html'  ;
       console.log(controllerName);
       this.modalService.openModal(

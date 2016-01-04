@@ -1,12 +1,16 @@
 class PlaylistService {
-  constructor($rootScope, socketService) {
+  constructor($rootScope, socketService, $timeout) {
     'ngInject';
     this.socketService = socketService;
+    this.$timeout = $timeout;
     this.playlists = [];
 
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
+    });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
     });
   }
 
@@ -16,13 +20,37 @@ class PlaylistService {
       uri: item.uri,
       service: (item.service || null)
     });
+    //NOTE the BE should send a new pushListPlaylist after creating a new playlist
+    let tHandler = this.$timeout(() => {
+      this.initService();
+      this.$timeout.cancel(tHandler);
+    }, 3000);
+  }
+
+  remove(item, playlist) {
+    console.log('removeFromPlaylist', item, playlist);
+    this.socketService.emit('removeFromPlaylist', {
+      name: playlist,
+      uri: item.uri
+    });
   }
 
   addToFavourites(item) {
-    this.socketService.emit('addToFavourites', {
-      uri: item.uri,
-      service: (item.service || null)
-    });
+    if (item && item.uri) {
+      this.socketService.emit('addToFavourites', {
+        uri: item.uri,
+        service: (item.service || null)
+      });
+    }
+  }
+
+  removeFromFavourites(item) {
+    if (item && item.uri) {
+      this.socketService.emit('removeFromFavourites', {
+        uri: item.uri,
+        service: (item.service || null)
+      });
+    }
   }
 
   savePlaylist() {

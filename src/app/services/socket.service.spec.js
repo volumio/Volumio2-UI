@@ -5,9 +5,9 @@ describe('socketService', function() {
     socket: {
       on: function(eventName, cb) {
         console.log('QUESTO E MOCK', eventName);
-        if (cb) {
-          cb('payload');
-        }
+        // if (cb) {
+        //   cb('payload');
+        // }
       }
     }
   };
@@ -15,7 +15,7 @@ describe('socketService', function() {
   beforeEach(angular.mock.module('volumio'));
 
   beforeEach(module(function($provide) {
-    $provide.value("$window", mockWindow);
+    $provide.value('$window', mockWindow);
   }));
 
   beforeEach(inject(function(_socketService_) {
@@ -34,10 +34,11 @@ describe('socketService', function() {
         console.log(data, 'KKK');
       }
     };
-    spyOn(cb, 'fn');
+    spyOn(cb, 'fn').and.callThrough();
+    //cb.fn('x');
+    // console.log(cb.fn());
     socketService.on('test on message', cb.fn);
     // console.log(socket);
     expect(cb.fn).toHaveBeenCalled();
   });
-
 });

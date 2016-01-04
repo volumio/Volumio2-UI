@@ -26,23 +26,25 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       resolve: {
         //NOTE this resolver init also global services like toast
         socketResolver: (
+          $rootScope,
           $http,
           $window,
           socketService,
           toastMessageService,
           updaterService) => {
-            let apiHost = 'http://' + $window.location.hostname + ':3000/api/host';
-            return $http.get(apiHost).then((response) => {
-              //console.log(res);
+            let localhostApiURL = 'http://' + $window.location.hostname + ':3000/api';
+            return $http.get(localhostApiURL + '/host').then((response) => {
+              //console.log(response);
+              $rootScope.initConfig = response.data;
               $window.socket = io(response.data.host + ':3000');
               socketService.host  = response.data.host + ':3000';
               toastMessageService.init();
               updaterService.init();
             }, () => {
               //console.log(reason);
-              //Fallback broken socket
-              $window.socket = io('http://192.168.0.172:3000');
-              socketService.host  = 'http://192.168.0.172:3000';
+              //Fallback socket
+              $window.socket = io('http://192.168.0.3');
+              socketService.host  = 'http://192.168.0.3';
               toastMessageService.init();
               updaterService.init();
             });
@@ -87,7 +89,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       url: 'debug',
       views: {
         'content@volumio': {
-          templateUrl: 'app/debug/volumio-debug.html',
+          templateUrl: 'app/components/debug/volumio-debug.html',
           controller: 'DebugController',
           controllerAs: 'debug'
         }
@@ -116,7 +118,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       }
     });
 
-  $urlRouterProvider.otherwise('/browse');
+  $urlRouterProvider.otherwise('/playback');
 }
 
 export default routerConfig;

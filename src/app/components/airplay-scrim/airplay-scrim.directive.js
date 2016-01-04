@@ -13,15 +13,19 @@ class AirplayScreemDirective {
 }
 
 class AirplayScrimController {
-  constructor($rootScope, socketService, $document, modalService) {
+  constructor($rootScope, socketService, $document, modalService, $state) {
     'ngInject';
     this.socketService = socketService;
     this.$document = $document[0];
     this.modalService = modalService;
+    this.$state = $state;
 
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
+    });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
     });
   }
 
@@ -33,6 +37,7 @@ class AirplayScrimController {
   registerListner() {
     this.socketService.on('pushState', (data) => {
       if (data.service === 'airplay') {
+        this.$state.go('volumio.playback');
         this.$document.querySelector('#airplayScrim').classList.add('showScrim');
       } else {
         this.$document.querySelector('#airplayScrim').classList.remove('showScrim');

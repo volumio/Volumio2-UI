@@ -9,12 +9,15 @@ class PlayQueueService {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
-  // play(index) {
-  //   console.log('PlayQueueService play', index);
-  //   this.socketService.emit('play', {value: index});
-  // }
+  play(index) {
+    console.log('PlayQueueService play', index);
+    this.socketService.emit('play', {value: index});
+  }
 
   //play song and add to queue
   addPlay(item) {

@@ -4,16 +4,19 @@ class UpdaterService {
     this.socketService = socketService;
     this.modalService = modalService;
     this.$timeout = $timeout;
-
     // this.updateReady =
     //   {
     //     title: 'Update v2.0',
-    //     description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>'
+    //     description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>',
+    //     updateavailable: true
     //   };
     // this.openUpdateModal();
 
     $rootScope.$on('socket:init', () => {
       this.init();
+    });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
     });
   }
 
@@ -28,7 +31,6 @@ class UpdaterService {
 
   update(val) {
     this.socketService.emit('update', {value: val});
-
     // this.status = 'updateProgress';
     // this.updateProgress = {
     //   progress: 90,
@@ -36,10 +38,9 @@ class UpdaterService {
     //   downloadSpeed: '100',
     //   eta: '40m 30s'
     // };
-    //
     // this.$timeout(() => {
     //   this.updateDone();
-    // }, 3000);
+    // }, 3000000);
   }
 
   updateDone() {

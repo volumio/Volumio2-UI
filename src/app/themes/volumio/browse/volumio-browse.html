@@ -25,9 +25,8 @@
     </div>
   </div>
 
-
   <br><br>
-  <div ng-if="true || browse.browseService.list.length">
+  <div>
     <button
         ng-repeat="breadcrumb in browse.browseService.breadcrumbs"
         ng-click="browse.fetchLibrary({uri: breadcrumb})"
@@ -37,7 +36,7 @@
   </div>
 
   <br><br>
-  <div id="browseList" ng-if="true || browse.browseService.list.length">
+  <div id="browseList" class="boxTable">
     <table id="browseTable" class="table table-hover table-condensed">
       <tr class="nohover">
         <th>Cover</th>
@@ -46,16 +45,28 @@
         <th><span>Artist</span></th>
         <th></th>
       </tr>
-      <tr ng-repeat="item in browse.browseService.list track by $index"
-          ng-click="browse.clickListItem(item, $event)"
-          ng-dblclick="browse.dblClickListItem(item, $event)">
-        <td class="icon-cover">
+      <tr ng-repeat="item in browse.browseService.list track by $index">
+        <td class="icon-cover"
+            ng-click="browse.clickListItem(item, $event)"
+            ng-dblclick="browse.dblClickListItem(item, $event)">
           <img ng-if="item.image" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
           <i ng-if="item.icon" class="{{item.icon}}"></i>
         </td>
-        <td>{{item.title}}</td>
-        <td>{{item.album}}</td>
-        <td>{{item.artist}}</td>
+        <td
+            ng-click="browse.clickListItem(item, $event)"
+            ng-dblclick="browse.dblClickListItem(item, $event)">
+          {{item.title}}
+        </td>
+        <td
+            ng-click="browse.clickListItem(item, $event)"
+            ng-dblclick="browse.dblClickListItem(item, $event)">
+          {{item.album}}
+        </td>
+        <td
+            ng-click="browse.clickListItem(item, $event)"
+            ng-dblclick="browse.dblClickListItem(item, $event)">
+          {{item.artist}}
+        </td>
         <td class="commandButtons">
           <div
               uib-dropdown
@@ -68,7 +79,7 @@
                 >
               <i class="fa fa-bars"></i>
             </button>
-            <ul class="dropdown-menu buttonsGroup">
+            <ul class="dropdown-menu buttonsGroup" ng-class="{'last': $last && $index > 2}">
               <li ng-click="browse.play(item)">
                 <a href>Play</a>
               </li>
@@ -78,16 +89,24 @@
               <li ng-if="item.type !== 'playlist'" ng-click="browse.addToPlaylist(item)">
                 <a href>Add to playlist</a>
               </li>
+              <li ng-if="browse.browseService.currentFetchRequest.type === 'playlist'"
+                  ng-click="browse.deleteFromPlaylist(item)">
+                <a href>Remove from playlist</a>
+              </li>
               <li ng-if="item.type === 'playlist'" ng-click="browse.deletePlaylist(item)">
                 <a href>Delete playlist</a>
               </li>
-              <li ng-if="item.type === 'song'" ng-click="browse.addToFavourites(item)">
+              <li ng-if="item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"
+                  ng-click="browse.addToFavourites(item)">
                 <a href>Add to favourites</a>
+              </li>
+              <li ng-if="browse.browseService.currentFetchRequest.uri === 'favourites'"
+                  ng-click="browse.removeFromFavourites(item)">
+                <a href>Remove from favourites</a>
               </li>
             </ul>
           </div>
         </td>
       </tr>
     </table>
-
   </div>

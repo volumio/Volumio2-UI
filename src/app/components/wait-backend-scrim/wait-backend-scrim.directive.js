@@ -4,7 +4,7 @@ class WaitBackendScrimDirective {
     let directive = {
       restrict: 'E',
       scope: false,
-      template: '<div id="waitBackendScrim"></div>',
+      templateUrl: 'app/components/wait-backend-scrim/wait-backend-scrim.html',
       controller: WaitBackendScrimController,
       controllerAs: 'waitBackendScrim'
     };
@@ -13,11 +13,12 @@ class WaitBackendScrimDirective {
 }
 
 class WaitBackendScrimController {
-  constructor($rootScope, socketService, $document) {
+  constructor($rootScope, socketService, $document, $state, $window) {
     'ngInject';
     this.socketService = socketService;
     this.$document = $document[0];
-
+    this.$state = $state;
+    this.$window = $window;
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -31,16 +32,27 @@ class WaitBackendScrimController {
 
   registerListner() {
     this.socketService.connect(() => {
-      console.log('Socket connected');
-      this.$document.querySelector('#waitBackendScrim').classList.add('hideScrim');
+      console.log('connect');
+      this.hideSrcrim();
+    });
+    this.socketService.reconnect(() => {
+      console.log('reconnect');
+      this.hideSrcrim();
     });
     this.socketService.disconnect((socket) => {
-      console.log('Socket disconnected', socket);
       this.$document.querySelector('#waitBackendScrim').classList.remove('hideScrim');
+      this.$state.go('volumio.playback');
     });
   }
 
   initService() {
+    if (this.socketService.isConnected) {
+      this.hideSrcrim();
+    }
+  }
+
+  hideSrcrim() {
+    this.$document.querySelector('#waitBackendScrim').classList.add('hideScrim');
   }
 }
 

@@ -10,6 +10,9 @@ class MultiRoomService {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
   mapDevices(devices) {

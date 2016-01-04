@@ -5,7 +5,6 @@ class SocketService {
     this.$http = $http;
     this.$window = $window;
     this._host = null;
-    console.log('CONS');
   }
 
   changeHost(host) {
@@ -13,16 +12,17 @@ class SocketService {
     this.host = host;
     this.disconnectMe();
     this.$window.socket = io(this.host);
+    console.info('connected to', this.host);
     this.$rootScope.$emit('socket:init');
+  }
+
+  get isConnected() {
+    return this.$window.socket.connected;
   }
 
   on(eventName, callback) {
     console.log('on', eventName);
-    console.log(this.$window);
     this.$window.socket.on(eventName, (data) => {
-      console.log('123');
-      //console.log(arguments);
-      //console.log(data);
       this.$rootScope.$apply(function() {
         if (callback) {
           //console.log(data);
@@ -47,13 +47,23 @@ class SocketService {
   }
 
   connect(callback) {
-    socket.on('connect', () => {
+    this.$window.socket.on('connect', () => {
+      console.info('Socket connect');
+      callback();
+    });
+  }
+
+  reconnect(callback) {
+    this.$window.socket.on('reconnect', () => {
+      console.info('Socket reconnect');
+      this.$rootScope.$emit('socket:reconnect');
       callback();
     });
   }
 
   disconnect(callback) {
-    socket.on('disconnect', (socket) => {
+    this.$window.socket.on('disconnect', (socket) => {
+      console.info('Socket disconnect');
       callback(socket);
     });
   }
@@ -61,7 +71,7 @@ class SocketService {
   disconnectMe() {
     this.$window.socket.disconnect();
     this.$window.socket = undefined;
-    delete this.$window.socket;
+    // delete this.$window.socket;
   }
 
   set host(host) {

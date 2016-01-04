@@ -7,10 +7,11 @@ class ModalAlarmClockController {
     this.playlistService = playlistService;
 
     this.init();
-    this.alarms = [
-      {id: 1, enabled: true, time: '', playlist: 'Mock play 1'},
-      {id: 2, enabled: false, time: '', playlist: 'Mock play 2'}
-    ];
+    // this.alarms = [
+    //   {id: 1, enabled: true, time: '', playlist: 'Mock play 1'},
+    //   {id: 2, enabled: false, time: '', playlist: 'Mock play 2'}
+    // ];
+    this.alarms = [];
   }
 
   save() {

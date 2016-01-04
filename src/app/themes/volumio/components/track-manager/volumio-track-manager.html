@@ -8,7 +8,8 @@
   </div>
   <div id="trackButtonBar" class="btn-group">
     <button
-        ng-click="trackManager.addToFavourites()"
+        ng-class="{'active': trackManager.playerService.state.favourite}"
+        ng-click="trackManager.toggleFavouriteTrack()"
         class="btn btn-default">
       <i class="fa fa-heart"></i>
     </button>

@@ -24,6 +24,9 @@ class PlayerService {
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
   // PLAYER --------------------------------------------------------------------
@@ -157,6 +160,9 @@ class PlayerService {
   }
 
   set volume(volume) {
+    if (this.state.mute) {
+      volume += this.lastVolume;
+    }
     if (volume < 0) {
       volume = 0;
     } else if (volume > 100) {
@@ -172,8 +178,11 @@ class PlayerService {
 
   registerListner() {
     this.socketService.on('pushState', (data) => {
-      // console.log('pushState', data);
+      console.log('pushState', data);
       this.state = data;
+      if (!this.state.mute && this.state.volume) {
+        this.lastVolume = this.state.volume;
+      }
       if (this.state.status === 'play') {
         this.startSeek();
       } else if (this.state.status === 'stop') {

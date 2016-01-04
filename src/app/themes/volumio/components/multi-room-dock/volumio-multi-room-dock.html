@@ -8,11 +8,8 @@
     <div class="panel-body">
       <div ng-repeat="device in multiRoomDock.multiRoomService.devices"
           class="device"
-          ng-class="{'child': device.isChild}"
-          ng-if="{selected: device.host !== multiRoomDock.socketService.host}"
-          ng-dblclick="multiRoomDock.changeDevice(device)"
-          ng-if="device.host !== multiRoomDock.socketService.host">
-        <div>
+          ng-dblclick="multiRoomDock.changeDevice(device)">
+        <div ng-class="{'child': device.isChild, 'isSelf': device.isSelf}">
           <div class="deviceIcon">
             <img ng-src="{{assetsFolder + '/graphics/device-icon-' + (device.child.length || 1) + '.png'}}"/>
           </div>

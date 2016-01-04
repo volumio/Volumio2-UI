@@ -3,23 +3,23 @@ class BrowseService {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
-
-    this._listBy = 'track';
-
     //this._filters = mockService.get('getBrowseFilters');
     //this._sources = mockService.get('getBrowseSources');
-
     //this._list = mockService.get('getBrowseList');
 
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
     });
+    $rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
   }
 
   fetchLibrary(item) {
     let obj = {uri: item.uri};
-    //console.log('CALL', obj);
+    // console.log('fetchLibrary', item);
+    this.currentFetchRequest = item;
     this.socketService.emit('browseLibrary', obj);
   }
 
@@ -45,6 +45,14 @@ class BrowseService {
 
   set list(list) {
     this._list = list;
+  }
+
+  get isBrowsing() {
+    return this._isBrowsing;
+  }
+
+  set isBrowsing(val) {
+    this._isBrowsing = val;
   }
 
   get breadcrumbs() {
@@ -79,6 +87,8 @@ class BrowseService {
   initService() {
     this.socketService.emit('getBrowseFilters');
     this.socketService.emit('getBrowseSources');
+    this._isBrowsing = false;
+    this._listBy = 'track';
     //this.socketService.emit('browseLibrary', {});
   }
 
