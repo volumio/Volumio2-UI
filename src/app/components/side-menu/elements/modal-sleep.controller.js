@@ -6,19 +6,19 @@ class ModalSleepController {
     this.dataObj = dataObj;
     this.showMeridian = false;
 
-    this.init();
     this.sleepTime = new Date();
     this.sleepTime.setHours(0, 0);
-    this.sleepActive = false;
+    this.enabled = false;
+    this.init();
   }
 
   setSleep() {
     let obj = {
-      enabled: this.sleepActive,
+      enabled: this.enabled,
       time: this.sleepTime.getHours() + ':' + this.sleepTime.getMinutes()
     };
     this.socketService.emit('setSleep', obj);
-    console.log('setSleep', obj, this.sleepTime, this.sleepActive);
+    console.log('setSleep', obj, this.sleepTime, this.enabled);
     this.$modalInstance.close();
   }
 
@@ -33,8 +33,13 @@ class ModalSleepController {
 
   registerListner() {
     this.socketService.on('pushSleep', (data) => {
-     console.warn('pushSleep', data);
-     //this.menuItems = data;
+      console.log('pushSleep', data);
+      this.enabled = data.enabled;
+      if (data.time) {
+        let newDate = new Date();
+        newDate.setHours(...data.time.split(':'));
+        this.sleepTime = newDate;
+      }
     });
   }
 

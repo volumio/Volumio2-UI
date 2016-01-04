@@ -62,7 +62,7 @@ class SideMenuController {
           (item) => {
             return item[0].toUpperCase() + item.slice(1, item.length);
           }).join(''),
-        templateUrl = 'app/themes/volumio/components/side-menu/elements/volumio-' +
+        templateUrl = 'app/components/side-menu/elements/' +
             item.params.modalName + '.html'  ;
       console.log(controllerName);
       this.modalService.openModal(
