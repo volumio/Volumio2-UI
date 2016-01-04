@@ -62,9 +62,9 @@ gulp.task('angularConfig', function () {
     constants: {theme: themeSelected},
     stream: true
   };
-  if (gutil.env.theme === 'volumio') {
+  if (themeSelected === 'volumio') {
     obj.constants.boxTableMaxHeightOffset = 130;
-  } else if (gutil.env.theme === 'axiom') {
+  } else if (themeSelected === 'axiom') {
     obj.constants.boxTableMaxHeightOffset = 60;
   }
   return $.ngConstant(obj).pipe(gulp.dest('src/app'));
