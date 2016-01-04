@@ -10,7 +10,7 @@ First clone it
 
 ```shell
 git clone https://github.com/volumio/Volumio2-UI.git
-```shell
+```
 
 
 Then, install its depencencies 
@@ -19,19 +19,19 @@ Then, install its depencencies
 cd Volumio2-UI
 npm install
 bower install
-```shell
+```
 
 To run a local browser with dinamically generated UI do
 
 ```shell
 gulp
-```shell
+```
 
 To build it and deploy
 
 ```shell
 gulp --theme="volumio"
-```shell
+```
 
 
 This repo is used as a git submodule in [Volumio2](https://github.com/volumio/Volumio2).  
@@ -42,4 +42,4 @@ To update the dist branch with the latest changes, run:
 ```shell
 git subtree split --prefix dist -b dist
 git push origin dist:dist
-```shell
+```
