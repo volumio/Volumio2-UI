@@ -1,0 +1,50 @@
+<li ng-click="browse.play(item)">
+  <a href>Play</a>
+</li>
+<li ng-click="browse.addToQueue(item)">
+  <a href>Add to queue</a>
+</li>
+
+<li ng-if="item.type !== 'playlist'"
+    ng-click="browse.playlistService.addToPlaylist(item)">
+  <a href>Add to playlist</a>
+</li>
+<li ng-if="browse.browseService.currentFetchRequest.type === 'playlist'"
+    ng-click="browse.playlistService.removeFromPlaylist(item, this.browseService.currentFetchRequest.title)">
+  <a href>Remove from playlist</a>
+</li>
+<li ng-if="item.type === 'playlist'"
+    ng-click="browse.playlistService.deletePlaylist(item.title)">
+  <a href>Delete playlist</a>
+</li>
+
+<li ng-if="item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"
+    ng-click="browse.playlistService.addToFavourites(item)">
+  <a href>Add to favourites</a>
+</li>
+<li ng-if="browse.browseService.currentFetchRequest.uri === 'favourites'"
+    ng-click="browse.playlistService.removeFromFavourites(item)">
+  <a href>Remove from favourites</a>
+</li>
+
+<li ng-if="true"
+    ng-click="browse.addWebRadio()">
+  <a href>Add web radio</a>
+</li>
+<li ng-if="true"
+    ng-click="browse.editWebRadio(item)">
+  <a href>Edit web radio</a>
+</li>
+<li ng-if="true"
+    ng-click="browse.playlistService.deleteWebRadio(item)">
+  <a href>Delete web radio</a>
+</li>
+
+<li ng-if="true"
+    ng-click="browse.playlistService.addWebRadioToFavourites(item)">
+  <a href>Add to radio favourites</a>
+</li>
+<li ng-if="true"
+    ng-click="browse.playlistService.removeWebRadioFromFavourites(item)">
+  <a href>Remove from radio favourites</a>
+</li>

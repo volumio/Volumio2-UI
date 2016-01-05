@@ -14,7 +14,8 @@ class PlaylistService {
     });
   }
 
-  add(item, playlist) {
+  //Playlist
+  addToPlaylist(item, playlist) {
     this.socketService.emit('addToPlaylist', {
       name: playlist,
       uri: item.uri,
@@ -27,7 +28,7 @@ class PlaylistService {
     }, 3000);
   }
 
-  remove(item, playlist) {
+  removeFromPlaylist(item, playlist) {
     console.log('removeFromPlaylist', item, playlist);
     this.socketService.emit('removeFromPlaylist', {
       name: playlist,
@@ -35,6 +36,11 @@ class PlaylistService {
     });
   }
 
+  deletePlaylist(playlist) {
+    this.socketService.emit('deletePlaylist', {value: playlist});
+  }
+
+  //Favourites
   addToFavourites(item) {
     if (item && item.uri) {
       this.socketService.emit('addToFavourites', {
@@ -53,14 +59,39 @@ class PlaylistService {
     }
   }
 
-  savePlaylist() {
+  //Web radio
+  addWebRadio(item) {
+    console.log('addWebRadio', item);
+    if (item && item.name && item.url) {
+      console.log('emit');
+      this.socketService.emit('addWebRadio', {
+        name: item.name,
+        url: item.url
+      });
+    }
   }
 
-  deletePlaylist(playlist) {
-    this.socketService.emit('deletePlaylist', {value: playlist});
+  editWebRadio(item) {
+    console.log('editWebRadio', item);
+    this.addWebRadio(item);
   }
 
-  renamePlaylist() {
+  deleteWebRadio(item) {
+    console.log('browse - removeWebRadio', item);
+    if (item && item.name) {
+      this.socketService.emit('removeWebRadio', {
+        name: item.name
+      });
+    }
+  }
+
+  addWebRadioToFavourites(item) {
+    console.log('addWebRadioToFavourites', item);
+    this.addToFavourites(item);
+  }
+  removeWebRadioFromFavourites(item) {
+    console.log('removeWebRadioFromFavourites', item);
+    this.removeFromFavourites(item);
   }
 
   init() {

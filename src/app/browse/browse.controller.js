@@ -50,7 +50,7 @@ class BrowseController {
     }
   }
   dblClickListItem(item) {
-    if ( item.type === 'song') {
+    if (item.type === 'song') {
       this.play(item);
     }
   }
@@ -71,23 +71,28 @@ class BrowseController {
       'sm');
   }
 
-  deleteFromPlaylist(item) {
-    this.playlistService.remove(item, this.browseService.currentFetchRequest.title);
+
+  addWebRadio(item) {
+    let
+      templateUrl = 'app/browse/components/modal/modal-web-radio.html',
+      controller = 'ModalWebRadioController',
+      params = {
+        title: 'Add web radio',
+        item: item
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
   }
 
-  deletePlaylist(item) {
-    console.log('browse - deletePlaylist', item);
-    this.playlistService.deletePlaylist(item.title);
-  }
-
-  addToFavourites(item) {
-    console.log('browse - addToFavourites', item);
-    this.playlistService.addToFavourites(item);
-  }
-
-  removeFromFavourites(item) {
-    console.log('browse - removeFromFavourites', item);
-    this.playlistService.removeFromFavourites(item);
+  editWebRadio(item) {
+    item = {
+      name: 'Radio test',
+      url: 'http://radio.test.it'
+    };
+    this.addWebRadio(item);
   }
 
   search() {

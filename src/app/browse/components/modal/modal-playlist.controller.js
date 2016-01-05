@@ -1,4 +1,4 @@
-class ModalController {
+class ModalPlaylistController {
   constructor(socketService, $modalInstance, playlistService, dataObj) {
     'ngInject';
     this.socketService = socketService;
@@ -32,4 +32,4 @@ class ModalController {
   }
 }
 
-export default ModalController;
+export default ModalPlaylistController;

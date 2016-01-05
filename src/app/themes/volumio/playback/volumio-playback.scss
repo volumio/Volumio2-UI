@@ -4,9 +4,9 @@
   border:solid 0px blue;
   #leftPanel, #rightPanel {
     text-align: center;
-    @include make-sm-column(8);
+    @include make-sm-column(9);
   }
   #centerPanel {
-    @include make-sm-column(8);
+    @include make-sm-column(6);
   }
 }

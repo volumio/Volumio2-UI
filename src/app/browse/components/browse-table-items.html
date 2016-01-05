@@ -1,0 +1,37 @@
+<tr ng-repeat="item in browse.browseService.list">
+  <td class="image"
+      ng-click="browse.clickListItem(item, $event)"
+      ng-dblclick="browse.dblClickListItem(item, $event)">
+    <img ng-if="item.image" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
+    <i ng-if="item.icon" class="{{item.icon}}"></i>
+  </td>
+  <td
+      ng-click="browse.clickListItem(item, $event)"
+      ng-dblclick="browse.dblClickListItem(item, $event)">
+    <div class="title">
+      {{item.title}}
+    </div>
+    <div ng-if="item.album">
+       {{item.album}}
+    </div>
+    <div ng-if="item.artist">
+      {{item.artist}}
+    </div>
+  </td>
+
+  <td class="commandButtons">
+    <div
+        uib-dropdown
+        on-toggle="browse.toggledItem(open, $event)"
+        class="browseItemMenu">
+      <button class="dropdownToggle btn-link" uib-dropdown-toggle>
+        <i class="fa fa-bars"></i>
+      </button>
+      <ul
+          class="dropdown-menu buttonsGroup"
+          ng-class="{'last': $last && $index > 2}"
+          ng-include src="'app/browse/components/browse-hamburger-menu.html'">
+      </ul>
+    </div>
+  </td>
+</tr>

@@ -18,7 +18,7 @@
     </div>
     <div id="searchBox">
       <input type="text"
-          placeholder="Search bt artist, album, song"
+          placeholder="Search by artist, album, song"
           ng-model="browse.searchField"
           ng-change="browse.search()"
           class="form-control">
@@ -37,6 +37,7 @@
 
   <br><br>
   <div id="browseList" class="boxTable">
+    {{browse.browseService.currentFetchRequest}}
     <table id="browseTable" class="table table-hover table-condensed">
       <tr class="nohover">
         <th>Cover</th>
@@ -79,32 +80,7 @@
                 >
               <i class="fa fa-bars"></i>
             </button>
-            <ul class="dropdown-menu buttonsGroup" ng-class="{'last': $last && $index > 2}">
-              <li ng-click="browse.play(item)">
-                <a href>Play</a>
-              </li>
-              <li ng-click="browse.addToQueue(item)">
-                <a href>Add to queue</a>
-              </li>
-              <li ng-if="item.type !== 'playlist'" ng-click="browse.addToPlaylist(item)">
-                <a href>Add to playlist</a>
-              </li>
-              <li ng-if="browse.browseService.currentFetchRequest.type === 'playlist'"
-                  ng-click="browse.deleteFromPlaylist(item)">
-                <a href>Remove from playlist</a>
-              </li>
-              <li ng-if="item.type === 'playlist'" ng-click="browse.deletePlaylist(item)">
-                <a href>Delete playlist</a>
-              </li>
-              <li ng-if="item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"
-                  ng-click="browse.addToFavourites(item)">
-                <a href>Add to favourites</a>
-              </li>
-              <li ng-if="browse.browseService.currentFetchRequest.uri === 'favourites'"
-                  ng-click="browse.removeFromFavourites(item)">
-                <a href>Remove from favourites</a>
-              </li>
-            </ul>
+            <ng-include src="'app/browse/components/browse-hamburger-menu.html'" include-replace></ng-include>
           </div>
         </td>
       </tr>

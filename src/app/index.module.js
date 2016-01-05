@@ -55,6 +55,7 @@ import PlayQueueController from './play-queue/play-queue.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
+import ModalWebRadioController from './browse/components/modal/modal-web-radio.controller';
 import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
 import ModalAlarmClockController from './components/side-menu/elements/modal-alarm-clock.controller';
@@ -146,6 +147,7 @@ angular.module('volumio', [
 
   .controller('ModalController', ModalController)
   .controller('ModalPlaylistController', ModalPlaylistController)
+  .controller('ModalWebRadioController', ModalWebRadioController)
   .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalSleepController', ModalSleepController)
   .controller('ModalAlarmClockController', ModalAlarmClockController)

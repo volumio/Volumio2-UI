@@ -167,7 +167,6 @@ $progress-bar-bg: $volumio-green-color;
   z-index: 1;
   top: $headerHeight;
   bottom: $footerHeight;
-  overflow-y: scroll;
   #content {
     @include make-sm-column(24);
 
