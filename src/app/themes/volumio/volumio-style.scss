@@ -167,9 +167,11 @@ $progress-bar-bg: $volumio-green-color;
   z-index: 1;
   top: $headerHeight;
   bottom: $footerHeight;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   #content {
     @include make-sm-column(24);
-
   }
 }
 
@@ -187,25 +189,27 @@ table {
   font-size: 18px;
   margin: 0;
   tr {
-    th {
-      color: $volumio-accent-color;
-      border: none !important;
-    }
     &.nohover{
       &:hover {
         background-color: transparent;
       }
     }
   }
+  th {
+    color: $volumio-accent-color;
+    border: none !important;
+  }
   td {
-    // vertical-align: middle;
+    vertical-align: middle;
+    padding: 5px 10px;
     &.image {
+      padding-left: 6px;
       font-size:30px;
       text-align: center;
-      width: 90px;
+      width: 70px;
       img {
-        margin-left: 10px;
-        margin-right: 10px;
+        // margin-left: 10px;
+        // margin-right: 10px;
         @include square(70px);
       }
     }
@@ -217,6 +221,20 @@ table {
       width: 50px;
       text-align: right;
       padding-right:6px;
+    }
+  }
+  .hamburgerMenu{
+    position: relative;
+    .buttonsGroup{
+      position: absolute;
+      top: 34px;
+      right: 0;
+      left: auto;
+      z-index: 3;
+      &.last {
+        top: auto;
+        bottom: 38px;
+      }
     }
   }
 }

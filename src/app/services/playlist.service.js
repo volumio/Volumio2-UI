@@ -21,11 +21,6 @@ class PlaylistService {
       uri: item.uri,
       service: (item.service || null)
     });
-    //NOTE the BE should send a new pushListPlaylist after creating a new playlist
-    let tHandler = this.$timeout(() => {
-      this.initService();
-      this.$timeout.cancel(tHandler);
-    }, 3000);
   }
 
   removeFromPlaylist(item, playlist) {
@@ -62,11 +57,10 @@ class PlaylistService {
   //Web radio
   addWebRadio(item) {
     console.log('addWebRadio', item);
-    if (item && item.name && item.url) {
-      console.log('emit');
+    if (item && item.title && item.uri) {
       this.socketService.emit('addWebRadio', {
-        name: item.name,
-        url: item.url
+        name: item.title,
+        uri: item.uri
       });
     }
   }
@@ -77,10 +71,10 @@ class PlaylistService {
   }
 
   deleteWebRadio(item) {
-    console.log('browse - removeWebRadio', item);
-    if (item && item.name) {
+    console.log('removeWebRadio', item);
+    if (item && item.title) {
       this.socketService.emit('removeWebRadio', {
-        name: item.name
+        name: item.title
       });
     }
   }
@@ -92,6 +86,11 @@ class PlaylistService {
   removeWebRadioFromFavourites(item) {
     console.log('removeWebRadioFromFavourites', item);
     this.removeFromFavourites(item);
+  }
+
+  //TODO: this should be not necessary, should pushed from BE
+  refreshPlaylists() {
+    this.socketService.emit('listPlaylist');
   }
 
   init() {

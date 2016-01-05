@@ -16,7 +16,7 @@
           ng-click="modal.addToFavourite()">
         Favourites
       </li>
-      <li ng-repeat="playlist in modal.dataObj.playlists track by $index"
+      <li ng-repeat="playlist in modal.playlistService.playlists track by $index"
           class="list-group-item"
           ng-click="modal.addToPlaylist(playlist)">
         {{playlist}}

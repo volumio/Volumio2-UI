@@ -29,8 +29,10 @@ class TrackManagerDirective {
       if (vm.type === 'slider') {
         setTimeout(() => {
           trackManagerHandler = el.find('.slider-handle')[0];
-          trackManagerHandler.addEventListener('mousedown', mousedownListener, true);
-          trackManagerHandler.addEventListener('mouseup', mouseupListener, true);
+          if (trackManagerHandler) {
+            trackManagerHandler.addEventListener('mousedown', mousedownListener, true);
+            trackManagerHandler.addEventListener('mouseup', mouseupListener, true);
+          }
         });
       } else if (vm.type === 'knob') {
 
@@ -38,7 +40,7 @@ class TrackManagerDirective {
 
       scope.$on('$destroy', () => {
         console.log('destroyed');
-        if (vm.type === 'slider') {
+        if (trackManagerHandler && vm.type === 'slider') {
           trackManagerHandler.removeEventListener('mousedown', mousedownListener, true);
           trackManagerHandler.removeEventListener('mouseup', mouseupListener, true);
         }

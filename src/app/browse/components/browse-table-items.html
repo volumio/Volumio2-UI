@@ -21,15 +21,16 @@
 
   <td class="commandButtons">
     <div
+        ng-if="browse.showHamburgerMenu(item)"
         uib-dropdown
         on-toggle="browse.toggledItem(open, $event)"
-        class="browseItemMenu">
+        class="hamburgerMenu">
       <button class="dropdownToggle btn-link" uib-dropdown-toggle>
         <i class="fa fa-bars"></i>
       </button>
       <ul
           class="dropdown-menu buttonsGroup"
-          ng-class="{'last': $last && $index > 2}"
+          ng-class="{'last': ($index > 2 && browse.browseService.listLength - $index < 3)}"
           ng-include src="'app/browse/components/browse-hamburger-menu.html'">
       </ul>
     </div>

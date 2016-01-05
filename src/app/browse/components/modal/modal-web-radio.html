@@ -9,7 +9,11 @@
           Name
         </label>
         <div class="control-item">
-          <input type="text" id="web-radio-name" ng-model="modal.dataObj.item.name" placeholder="name">
+          <input type="text" 
+              id="web-radio-name"
+              class="form-control"
+              ng-model="modal.dataObj.item.title"
+              placeholder="name">
         </div>
       </div>
       <div class="form-group">
@@ -17,7 +21,11 @@
           Url
         </label>
         <div class="control-item">
-          <input type="text" id="web-radio-url" ng-model="modal.dataObj.item.url"  placeholder="url">
+          <input type="text"
+              id="web-radio-url"
+              class="form-control"
+              ng-model="modal.dataObj.item.uri"
+              placeholder="url">
           <div>The URL can be either a stream URL or a M3U or PLS remote file</div>
         </div>
       </div>
@@ -28,8 +36,7 @@
       Cancel
     </button>
     <button class="btn btn-success" ng-click="modal.addWebradio()">
-      {{modal.addOrEdit}}
-      <span ng-if="modal.addOrEdit === 'edit'">Edit</span>
+      <span ng-if="modal.addOrEdit === 'edit'">Save</span>
       <span ng-if="modal.addOrEdit === 'add'">Add</span>
     </button>
   </div>

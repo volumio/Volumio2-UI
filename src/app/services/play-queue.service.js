@@ -50,17 +50,6 @@ class PlayQueueService {
     this.socketService.emit('removeFromQueue', {value: index});
   }
 
-  clearAll() {
-  }
-
-  isFirst() {
-
-  }
-
-  isLast() {
-
-  }
-
   get queue() {
     return this._queue;
   }

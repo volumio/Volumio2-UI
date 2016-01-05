@@ -1,44 +1,39 @@
-#toolbarRow{
-  @include make-row();
-  padding-top: 10px;
+#navButtons {
+  @include make-sm-column(3, 0);
+  @include make-xs-column(8, 0);
+  font-size: 18px;
+}
 
-  #browseSources {
-    @include make-sm-column(16);
-    @include make-xs-column(24);
-  }
-  #searchBox {
-    @include make-sm-column(8);
-    @include make-xs-column(24);
-    @include breakpoint(xs) {
-      padding-top: 10px;
-    }
+#searchBox {
+  @include make-sm-column(7, 0);
+  @include make-xs-column(16, 0);
+}
+
+#browseTitle {
+  padding-top: 7px;
+  @include make-sm-column(14, 0);
+  @include breakpoint(xs) {
+    display: none;
   }
 }
 
-.boxTable {
+#browseTableSources {
+  td {
+    text-transform: uppercase;
+    padding-left: 10px;
+  }
+}
+
+#browseTablesWrapper {
   overflow-y: scroll;
-}
-
-#browseList {
-  //@include make-row();
-  user-select: none;
-  cursor: pointer;
-  .browseItemMenu{
-    position: relative;
-    .buttonsGroup{
-      position: absolute;
-      top: 34px;
-      right: 0;
-      left: auto;
-      z-index: 3;
-      &.last {
-        top: auto;
-        bottom: 38px;
+  table {
+    user-select: none;
+    cursor: pointer;
+    tr:first-of-type {
+      td {
+        border-top: none;
       }
     }
+    
   }
-}
-
-#browseTable {
-  @include make-sm-column(24);
 }

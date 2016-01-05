@@ -1,16 +1,18 @@
-<li ng-click="browse.play(item)">
+<li ng-click="browse.play(item)"
+    ng-if="browse.showPlayButton(item)">
   <a href>Play</a>
 </li>
-<li ng-click="browse.addToQueue(item)">
+<li ng-click="browse.addToQueue(item)"
+    ng-if="browse.showAddToQueueButton(item)">
   <a href>Add to queue</a>
 </li>
 
-<li ng-if="item.type !== 'playlist'"
-    ng-click="browse.playlistService.addToPlaylist(item)">
+<li ng-if="browse.showAddToPlaylist(item)"
+    ng-click="browse.addToPlaylist(item)">
   <a href>Add to playlist</a>
 </li>
 <li ng-if="browse.browseService.currentFetchRequest.type === 'playlist'"
-    ng-click="browse.playlistService.removeFromPlaylist(item, this.browseService.currentFetchRequest.title)">
+    ng-click="browse.playlistService.removeFromPlaylist(item, browse.browseService.currentFetchRequest.title)">
   <a href>Remove from playlist</a>
 </li>
 <li ng-if="item.type === 'playlist'"
@@ -27,24 +29,24 @@
   <a href>Remove from favourites</a>
 </li>
 
-<li ng-if="true"
+<li ng-if="item.type === 'mywebradio-category'"
     ng-click="browse.addWebRadio()">
   <a href>Add web radio</a>
 </li>
-<li ng-if="true"
+<li ng-if="item.type === 'mywebradio'"
     ng-click="browse.editWebRadio(item)">
   <a href>Edit web radio</a>
 </li>
-<li ng-if="true"
+<li ng-if="item.type === 'mywebradio' && browse.browseService.currentFetchRequest.uri === 'radio/myWebRadio'"
     ng-click="browse.playlistService.deleteWebRadio(item)">
   <a href>Delete web radio</a>
 </li>
 
-<li ng-if="true"
+<li ng-if="item.type === 'webradio' || item.type === 'mywebradio'"
     ng-click="browse.playlistService.addWebRadioToFavourites(item)">
   <a href>Add to radio favourites</a>
 </li>
-<li ng-if="true"
+<li ng-if="browse.browseService.currentFetchRequest.uri === 'radio/favourites' && (item.type === 'webradio' || item.type === 'mywebradio')"
     ng-click="browse.playlistService.removeWebRadioFromFavourites(item)">
   <a href>Remove from radio favourites</a>
 </li>

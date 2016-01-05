@@ -80,6 +80,7 @@ class BrowseService {
     this.socketService.on('pushBrowseLibrary', (data) => {
       console.log('pushBrowseLibrary', data);
       this.list = data.navigation.list;
+      this.listLength = this.list.length;
       this.breadcrumbs = data.navigation.prev;
     });
   }

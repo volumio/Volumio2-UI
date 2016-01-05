@@ -5,8 +5,7 @@ class ModalWebRadioController {
     this.$modalInstance = $modalInstance;
     this.playlistService = playlistService;
     this.dataObj = dataObj;
-    this.addOrEdit = (dataObj.item) ? 'add': 'edit';
-    console.log(dataObj.item);
+    this.addOrEdit = (dataObj.item) ? 'edit' : 'add';
   }
 
   addWebradio() {

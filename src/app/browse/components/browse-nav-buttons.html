@@ -1,0 +1,11 @@
+<button
+    class="btn-link"
+    ng-click="browse.backHome()">
+    <i class="fa fa-home"></i>
+</button>
+<button
+    class="btn-link backButton"
+    ng-if="browse.browseService.breadcrumbs.uri"
+    ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri})">
+    <i class="fa fa-arrow-circle-left"></i>
+</button>

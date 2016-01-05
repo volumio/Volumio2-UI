@@ -1,0 +1,9 @@
+<div id="browseSources" class="btn-group">
+  <button
+      ng-repeat="source in browse.browseService.sources"
+      ng-click="browse.fetchLibrary(source)"
+      ng-class="{'selected': browse.selectedSource.name === source.name}"
+      class="btn btn-default">
+      {{source.name}}
+  </button>
+</div>

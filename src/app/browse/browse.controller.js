@@ -1,17 +1,29 @@
 class BrowseController {
-  constructor(browseService, playQueueService, playlistService, socketService, boxTableMaxHeightOffset,
-      modalService) {
+  constructor($scope, browseService, playQueueService, playlistService, socketService, boxTableMaxHeightOffset,
+      modalService, $timeout) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
     this.socketService = socketService;
     this.modalService = modalService;
-    let boxTable = angular.element('.boxTable')[0];
-    console.log(boxTable);
-    let boxTableTop = boxTable.getBoundingClientRect().top;
+    //Setup height browseTablesWrapper
+    let contentWrapper = angular.element('#contentWrapper')[0];
+    contentWrapper.style.overflowY = 'hidden';
+    contentWrapper.scrollTo(0, 0);
+    let browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
+    let boxTableTop = browseTablesWrapper.getBoundingClientRect().top;
     let boxTableMaxHeight = window.innerHeight - boxTableTop - boxTableMaxHeightOffset;
-    boxTable.style.height = boxTableMaxHeight + 'px';
+    browseTablesWrapper.style.height = boxTableMaxHeight + 'px';
+    if (this.browseService.scrollTop) {
+      $timeout(() => {
+        browseTablesWrapper.scrollTo(0, this.browseService.scrollTop);
+      }, 10, false);
+    }
+    $scope.$on('$destroy', () => {
+      this.browseService.scrollTop = browseTablesWrapper.scrollTop;
+      contentWrapper.style.overflowY = 'scroll';
+    });
   }
 
   fetchLibrary(item) {
@@ -50,18 +62,19 @@ class BrowseController {
     }
   }
   dblClickListItem(item) {
-    if (item.type === 'song') {
+    if (item.type === 'song' || item.type === 'mywebradio') {
       this.play(item);
     }
   }
 
   addToPlaylist(item) {
+    //TODO this is not necessary
+    this.playlistService.refreshPlaylists();
     let
       templateUrl = 'app/browse/components/modal/modal-playlist.html',
       controller = 'ModalPlaylistController',
       params = {
         title: 'Add to playlist',
-        playlists: this.playlistService.playlists,
         item: item
       };
     this.modalService.openModal(
@@ -88,16 +101,35 @@ class BrowseController {
   }
 
   editWebRadio(item) {
-    item = {
-      name: 'Radio test',
-      url: 'http://radio.test.it'
-    };
     this.addWebRadio(item);
   }
 
   search() {
     console.log('search', this.searchField);
     this.socketService.emit('search', {value: this.searchField});
+  }
+
+  //Hamburger menu visibility filters
+  showHamburgerMenu(item) {
+    let ret = item.type === 'radio-favourites' || item.type === 'radio-category';
+    return !ret;
+  }
+
+  showPlayButton(item) {
+    let ret = item.type === 'folder' || item.type === 'song' ||
+        item.type === 'mywebradio' || item.type === 'webradio' ||
+        item.type === 'playlist';
+    return ret;
+  }
+  showAddToQueueButton(item) {
+    let ret = item.type === 'folder' || item.type === 'song' ||
+        item.type === 'mywebradio' || item.type === 'webradio' ||
+        item.type === 'playlist';
+    return ret;
+  }
+  showAddToPlaylist(item) {
+    let ret = item.type === 'folder' || item.type === 'song';
+    return ret;
   }
 }
 

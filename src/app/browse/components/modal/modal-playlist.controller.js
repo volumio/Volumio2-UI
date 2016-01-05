@@ -23,7 +23,7 @@ class ModalPlaylistController {
   }
 
   doAddToPlaylist(playlist) {
-    this.playlistService.add(this.dataObj.item, playlist);
+    this.playlistService.addToPlaylist(this.dataObj.item, playlist);
     this.$modalInstance.close();
   }
 
