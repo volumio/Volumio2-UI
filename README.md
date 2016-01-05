@@ -1,19 +1,19 @@
 ## Volumio Web Interface
 
-This UI is meant to be used as a standalone Web User Interface communicating via Volumio2 Backend via Socket.io API, see [Volumio2 WebSocket API reference](https://github.com/volumio/Volumio2/wiki/WebSockets-API-Reference) 
+This UI is meant to be used as a standalone Web User Interface communicating via Volumio2 Backend via Socket.io API, see [Volumio2 WebSocket API reference](https://github.com/volumio/Volumio2/wiki/WebSockets-API-Reference)
 
-Currently the UI is served via Express Static Server, and resides at /volumio/http/www 
+Currently the UI is served via Express Static Server, and resides at /volumio/http/www
 
-## Development 
+## Development
 
-First clone it 
+First clone it
 
 ```shell
 git clone https://github.com/volumio/Volumio2-UI.git
 ```
 
 
-Then, install its depencencies 
+Then, install its depencencies
 
 ```shell
 cd Volumio2-UI
@@ -24,13 +24,13 @@ bower install
 To run a local browser with dinamically generated UI do
 
 ```shell
-gulp
+gulp serve --theme="volumio"
 ```
 
 To build it and deploy
 
 ```shell
-gulp --theme="volumio"
+gulp build --theme="volumio"
 ```
 
 
