@@ -8,21 +8,34 @@ class BrowseController {
     this.socketService = socketService;
     this.modalService = modalService;
     //Setup height browseTablesWrapper
-    let contentWrapper = angular.element('#contentWrapper')[0];
-    contentWrapper.style.overflowY = 'hidden';
-    contentWrapper.scrollTo(0, 0);
-    let browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
-    let boxTableTop = browseTablesWrapper.getBoundingClientRect().top;
-    let boxTableMaxHeight = window.innerHeight - boxTableTop - boxTableMaxHeightOffset;
-    browseTablesWrapper.style.height = boxTableMaxHeight + 'px';
-    if (this.browseService.scrollTop) {
-      $timeout(() => {
-        browseTablesWrapper.scrollTo(0, this.browseService.scrollTop);
-      }, 10, false);
-    }
+    let contentWrapper, browseTablesWrapper, browsePanelHeading, footer;
+    $timeout(() => {
+      contentWrapper = angular.element('#contentWrapper')[0];
+      contentWrapper.style.overflowY = 'hidden';
+      console.log(contentWrapper);
+      contentWrapper.scrollTop = 0;
+      browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
+      browsePanelHeading = angular.element('#browsePanelHeading')[0];
+      footer = angular.element('#footer')[0];
+      // console.log(browseTablesWrapper, browsePanelHeading, footer);
+      // console.log(footer.getBoundingClientRect(), browsePanelHeading.getBoundingClientRect());
+      browseTablesWrapper.style.height =
+          footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
+          browsePanelHeading.getBoundingClientRect().bottom + 'px';
+      if (this.browseService.scrollTop) {
+        console.log(this.browseService.scrollTop);
+        browseTablesWrapper.scrollTop = this.browseService.scrollTop;
+        // $timeout(() => {
+        // }, 10, false);
+      }
+    }, 100, false);
+
+    // let boxTableTop = browseTablesWrapper.getBoundingClientRect().top;
+    // // let boxTableMaxHeight = window.innerHeight - boxTableTop - boxTableMaxHeightOffset;
+
     $scope.$on('$destroy', () => {
       this.browseService.scrollTop = browseTablesWrapper.scrollTop;
-      contentWrapper.style.overflowY = 'scroll';
+      contentWrapper.style.overflowY = 'auto';
     });
   }
 

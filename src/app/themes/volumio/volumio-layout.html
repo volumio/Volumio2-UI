@@ -3,9 +3,9 @@
 <div class="container-fluid">
     <header ui-view="header"></header>
 
-    <div id="contentWrapper" >
-      <div id="content" ui-view="content"></div>
+    <div id="contentWrapper" ng-class="state.current.url">
+      <div id="content" ng-class="state.current.url" ui-view="content"></div>
     </div>
 
-    <footer ui-view="footer"></footer>
+    <footer id="footer" ui-view="footer"></footer>
 </div>

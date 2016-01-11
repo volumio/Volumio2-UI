@@ -47,7 +47,7 @@ $panel-default-text: #FFF;
 $panel-bg: $volumio-light-color;
 $panel-default-heading-bg: $volumio-accent-color;
 $panel-default-border: $volumio-green-color;
-// $panel-border-radius: 0;
+$panel-border-radius: 0;
 
 //Inputs
 $input-bg: $volumio-accent-color;
@@ -129,6 +129,24 @@ $progress-bar-bg: $volumio-green-color;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
 
+#contentWrapper {
+  @include make-row();
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: $headerHeight;
+  bottom: $footerHeight;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  #content {
+    @include make-sm-column(24);
+    &.browse {
+      padding: 0px;
+    }
+  }
+}
+
 .btn {
   outline: none !important;
   &.selected {
@@ -157,21 +175,6 @@ $progress-bar-bg: $volumio-green-color;
   &.active {
     background-color: $volumio-green-color;
     color: #FFF;
-  }
-}
-
-#contentWrapper {
-  @include make-row();
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  top: $headerHeight;
-  bottom: $footerHeight;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  #content {
-    @include make-sm-column(24);
   }
 }
 
