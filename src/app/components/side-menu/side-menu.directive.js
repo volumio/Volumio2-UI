@@ -15,7 +15,7 @@ class PlayerButtonsDirective {
 
 class SideMenuController {
   constructor($scope, $rootScope, socketService, mockService,
-    $state, modalService, playerService, themeManager) {
+      $state, modalService, playerService, themeManager) {
     'ngInject';
     this.$state = $state;
     this.socketService = socketService;
@@ -32,25 +32,18 @@ class SideMenuController {
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
     });
+  }
 
-    $scope.$watch('sideMenu.analogInput', (newVal) => {
-      if (newVal !== undefined) {
-        if (newVal !== this.playerService.state.analog) {
-          this.socketService.emit('callMethod', {
-            endpoint: 'system_controller/gpios',
-            method:'DASwitchPress'
-          });
-          console.log('switch analogInput');
-        }
-      }
+  toggleAnalogInput() {
+    this.socketService.emit('callMethod', {
+      endpoint: 'system_controller/gpios',
+      method: 'DASwitchPress'
     });
   }
 
   toggleMenu() {
     this.visible = !this.visible;
-    if (this.analogInput !== undefined) {
-      this.analogInput = this.visible && this.playerService.state.analog || false;
-    }
+    this.analogIn = this.playerService.state.service === 'analogin';
   }
 
   itemClick(item) {

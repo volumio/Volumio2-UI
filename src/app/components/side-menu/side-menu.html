@@ -19,7 +19,9 @@
           {{item.name}}
     </button>
     <div id="analogInput" ng-if="sideMenu.theme === 'axiom'">
-      <input type="checkbox" ng-model="sideMenu.analogInput"> ANALOG INPUT
+      <input type="checkbox"
+          ng-model="sideMenu.analogIn"
+          ng-click="sideMenu.toggleAnalogInput()"> ANALOG INPUT
     </div>
 
   </div>
