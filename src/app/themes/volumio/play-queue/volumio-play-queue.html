@@ -2,26 +2,25 @@
   <div id="playQueue">
     <table class="table table-hover table-condensed"
         ng-if="true || playQueue.playQueueService.queue.length">
-      <tr>
-        <th>Cover</th>
-        <th>Track</th>
-        <th>Album</th>
-        <th>Artist</th>
-        <th></th>
-      </tr>
       <tr
         ng-repeat="item in playQueue.playQueueService.queue"
         ng-dblclick="playQueue.playQueueService.play($index)">
-        <td>
-          <img ng-if="item.albumart" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
+        <td class="image">
+          <img ng-if="item.albumart" ng-src="{{item.albumart}}" alt="{{item.name}}"/>
           <i ng-if="item.icon" class="{{item.icon}}"></i>
         </td>
-        <td>{{item.name}}</td>
-        <td>{{item.album}}</td>
-        <td>{{item.artist}}</td>
         <td>
+          <div class="title">
+            {{item.name}}
+          </div>
+          <div class="artist-album" ng-if="item.artist || item.album">
+            {{item.artist}}<span ng-if="item.artist && item.album"> - {{item.album}}</span>
+          </div>
+        </td>
+        <td class="deleteBtn">
           <button class="btn btn-danger" ng-click="playQueue.playQueueService.remove($index)">
-            Remove
+            <i class="fa fa-trash visible-xs"></i>
+            <span class="hidden-xs">Remove</span>
           </button>
         </td>
       </tr>

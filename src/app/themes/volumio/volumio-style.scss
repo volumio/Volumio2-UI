@@ -141,7 +141,7 @@ $progress-bar-bg: $volumio-green-color;
   -webkit-overflow-scrolling: touch;
   #content {
     @include make-sm-column(24);
-    &.browse {
+    &.browse, &.queue {
       padding: 0px;
     }
   }
