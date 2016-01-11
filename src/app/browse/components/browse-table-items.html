@@ -11,11 +11,8 @@
     <div class="title">
       {{item.title}}
     </div>
-    <div ng-if="item.album">
-       {{item.album}}
-    </div>
-    <div ng-if="item.artist">
-      {{item.artist}}
+    <div class="artist-album" ng-if="item.artist || item.album">
+      {{item.artist}}<span ng-if="item.artist && item.album"> - {{item.album}}</span>
     </div>
   </td>
 
