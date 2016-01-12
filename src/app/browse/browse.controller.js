@@ -1,5 +1,5 @@
 class BrowseController {
-  constructor($scope, browseService, playQueueService, playlistService, socketService, boxTableMaxHeightOffset,
+  constructor($scope, browseService, playQueueService, playlistService, socketService,
       modalService, $timeout) {
     'ngInject';
     this.browseService = browseService;
