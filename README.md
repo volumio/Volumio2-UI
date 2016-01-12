@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/volumio/Volumio2-UI.svg?branch=master)](https://travis-ci.org/volumio/Volumio2-UI)
+[![dependencies](https://david-dm.org/volumio/Volumio2-UI.svg)](https://david-dm.org/volumio/Volumio2-UI)
+[![bitHound Dependencies](https://www.bithound.io/github/volumio/Volumio2-UI/badges/dependencies.svg)](https://www.bithound.io/github/volumio/Volumio2-UI/master/dependencies/npm)
+[![bitHound Score](https://www.bithound.io/github/volumio/Volumio2-UI/badges/score.svg)](https://www.bithound.io/github/volumio/Volumio2-UI)
 
 
 ## Volumio Web Interface
