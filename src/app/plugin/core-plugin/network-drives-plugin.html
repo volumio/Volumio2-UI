@@ -22,6 +22,7 @@
       <table class="table" ng-if="networkDrives.infoShare">
         <tr>
           <th>Name</th>
+          <th>Path</th>
           <th>Mounted</th>
           <th>Size</th>
           <th></th>
@@ -29,6 +30,9 @@
         <tr ng-repeat-start="drive in networkDrives.infoShare track by drive.id">
           <td>
             {{drive.name}}
+          </td>
+          <td>
+            {{drive.ip}}:{{drive.path}}
           </td>
           <td>
             {{drive.mounted}}
