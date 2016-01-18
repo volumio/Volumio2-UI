@@ -2,7 +2,10 @@
   <td class="image"
       ng-click="browse.clickListItem(item, $event)"
       ng-dblclick="browse.dblClickListItem(item, $event)">
-    <img ng-if="item.image" ng-src="{{item.albumart}}" alt="" style="height:80px;"/>
+    <img
+        ng-if="item.albumart"
+        ng-src="{{browse.socketService.host + item.albumart}}"
+        alt="{{item.title}}"/>
     <i ng-if="item.icon" class="{{item.icon}}"></i>
   </td>
   <td

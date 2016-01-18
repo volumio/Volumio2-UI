@@ -43,10 +43,12 @@ function routerConfig ($stateProvider, $urlRouterProvider,
             }, () => {
               //console.log(reason);
               //Fallback socket
-              $window.socket = io('http://192.168.0.3');
-              socketService.host  = 'http://192.168.0.3';
-              toastMessageService.init();
-              updaterService.init();
+              return $http.get('/app/local-config.json').then((response) => {
+                $window.socket = io(response.data.localhost);
+                socketService.host  = response.data.localhost;
+                toastMessageService.init();
+                updaterService.init();
+              });
             });
           }
       }

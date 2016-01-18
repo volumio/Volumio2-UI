@@ -7,20 +7,15 @@
 #navButtons {
   @include make-sm-column(3, 0);
   @include make-xs-column(8, 0);
-  font-size: 18px;
+  button {
+    font-size: 22px;
+  }
 }
 
 #searchBox {
-  @include make-sm-column(7, 0);
+  @include make-sm-column(9, 0);
+  @include make-sm-column-offset(12);
   @include make-xs-column(16, 0);
-}
-
-#browseTitle {
-  padding-top: 7px;
-  @include make-sm-column(14, 0);
-  @include breakpoint(xs) {
-    display: none;
-  }
 }
 
 #browseTableSources {
@@ -41,6 +36,12 @@
     .artist-album {
       font-size: 13px;
       color: $volumio-accent-color;
+    }
+    .image {
+      img {
+        width: 45px;
+        height: 45px;
+      }
     }
     tr:first-of-type {
       td {

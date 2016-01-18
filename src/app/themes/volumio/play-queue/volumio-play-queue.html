@@ -6,7 +6,7 @@
         ng-repeat="item in playQueue.playQueueService.queue"
         ng-dblclick="playQueue.playQueueService.play($index)">
         <td class="image">
-          <img ng-if="item.albumart" ng-src="{{item.albumart}}" alt="{{item.name}}"/>
+          <img ng-if="item.albumart" ng-src="{{playQueue.playQueueService.socketService.host + item.albumart}}" alt="{{item.name}}"/>
           <i ng-if="item.icon" class="{{item.icon}}"></i>
         </td>
         <td>
