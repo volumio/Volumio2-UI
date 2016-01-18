@@ -1,12 +1,18 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 branches:
   only:
-    - master
+  - master
 before_script:
-  - npm install -g bower
-  - npm install -g gulp
-  - npm install phantomjs
-  - npm install -g karma
-  - bower install
+- npm install -g bower
+- npm install -g gulp
+- npm install phantomjs
+- npm install -g karma
+- npm install
+- bower install
+script: bash ./deploy.sh
+env:
+  global:
+    - GH_REF: github.com/volumio/Volumio2-UI.git
+    - secure: ZT1QA2d3NEc2IouC2GlyIm5rS/wI4NM31wgquEvu4lniy1Z2E9Wj+6p+4QeV3vWiLxjWzZnrLRaszT4A6SbtfbiDLUyPdGieArgnUAOuNWthFUDmk7m84opD5qR6/HaA+chou12JDNcr/CsnMLcXjG8r0gAraJobMDlQDQt0MuK4fX/FdJILjWfCfkK1OyN/zWbIw9w39jtSIGDdOTjKwQaqAVgPU2b1UIhCmn17E/AxuY/pmGh14DXI8rAEDJuM2H2cg5jHTpq1AUDX8IF1pGXAtpPNrVdZwj9JxYYN4biRYIt8wYihA709g/rT7qtgXhjIjr5kOyLPeycy8yi3Gd/ji7PtHqk1/f4Hby/O3LFYFHd5p8FV3OuJ9y39BgFOiDZ59JtU1GpbrAw4b8W0eZ/BZcXHx/E/BdpXbD9z1Cv8BanrISO87JSpSbGnjmaNKVcaky4F74arj2Kv5yHcyKtGiADUGSqP4k31HBsBZ7z9/ei8U0LrVYpLZ3sBdoGupF9PCFGjF6bA31LECNDH02a76Sqpbc9ZQwX8jKDzZS+Ef9Jlv5sE06i4WqD8eWUrde0R1s7zxlwCGgkH1OxeH0xDzYzBSdzWlU0mvpb4/HsfP4VGvc9JqmL00C76gMS+0Qgf4lWR+zEL7oMaJjNbaZL4AB+2MTRw8KF82szm4UA=
