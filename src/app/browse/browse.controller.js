@@ -7,6 +7,7 @@ class BrowseController {
     this.playlistService = playlistService;
     this.socketService = socketService;
     this.modalService = modalService;
+    this.$timeout = $timeout;
   }
 
   fetchLibrary(item) {
@@ -88,8 +89,15 @@ class BrowseController {
   }
 
   search() {
-    console.log('search', this.searchField);
-    this.socketService.emit('search', {value: this.searchField});
+    if (this.searchField.length >= 3) {
+      if (this.searchTimeoutHandler) {
+        this.$timeout.cancel(this.searchTimeoutHandler);
+      }
+      this.searchTimeoutHandler = this.$timeout(() => {
+        console.log('search', this.searchField);
+        this.socketService.emit('search', {value: this.searchField});
+      }, 300, false);
+    }
   }
 
   //Hamburger menu visibility filters

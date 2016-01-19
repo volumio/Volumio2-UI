@@ -1,4 +1,7 @@
-<div id="wifiPlugin" ng-controller="WifiPluginController as wifiPlugin"
+<div
+    id="wifiPlugin"
+    ng-controller="WifiPluginController as wifiPlugin"
+    ng-show="wifiPlugin.wirelessNetworks.available || wifiPlugin.wirelessNetworks.connectedTo"
     class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Wireless network</h3>

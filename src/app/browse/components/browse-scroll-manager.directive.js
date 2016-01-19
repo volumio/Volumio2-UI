@@ -1,7 +1,6 @@
 class BrowseScrollManagerDirective {
   constructor(browseService) {
     'ngInject';
-    console.log(browseService);
     this.browseService = browseService;
 
     let directive = {
@@ -14,12 +13,11 @@ class BrowseScrollManagerDirective {
   }
 
   linkFn(scope) {
-    console.log('link', scope);
     let contentWrapper, browseTablesWrapper, browsePanelHeading, footer;
     setTimeout(() => {
       contentWrapper = angular.element('#contentWrapper')[0];
       contentWrapper.style.overflowY = 'hidden';
-      console.log(contentWrapper);
+      // console.log(contentWrapper);
       contentWrapper.scrollTop = 0;
       browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
       browsePanelHeading = angular.element('#browsePanelHeading')[0];
@@ -31,7 +29,7 @@ class BrowseScrollManagerDirective {
         console.log(this.browseService.scrollTop);
         browseTablesWrapper.scrollTop = this.browseService.scrollTop;
       }
-    }, 80);
+    }, 120);
 
     scope.$on('$destroy', () => {
       this.browseService.scrollTop = browseTablesWrapper.scrollTop;

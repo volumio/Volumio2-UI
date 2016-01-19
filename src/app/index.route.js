@@ -32,17 +32,17 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           socketService,
           toastMessageService,
           updaterService) => {
-            let localhostApiURL = 'http://' + $window.location.hostname + ':3000/api';
+            let localhostApiURL = `http://${$window.location.hostname }/api`;
             return $http.get(localhostApiURL + '/host').then((response) => {
-              //console.log(response);
+              console.info('IP from API', response);
               $rootScope.initConfig = response.data;
-              $window.socket = io(response.data.host + ':3000');
-              socketService.host  = response.data.host + ':3000';
+              $window.socket = io(response.data.host);
+              socketService.host  = response.data.host;
               toastMessageService.init();
               updaterService.init();
             }, () => {
-              //console.log(reason);
               //Fallback socket
+              console.info('IP from fallback');
               return $http.get('/app/local-config.json').then((response) => {
                 $window.socket = io(response.data.localhost);
                 socketService.host  = response.data.localhost;

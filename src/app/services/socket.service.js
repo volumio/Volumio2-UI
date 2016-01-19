@@ -9,9 +9,10 @@ class SocketService {
 
   changeHost(host) {
     this.host = host;
-    this.disconnectMe();
+    this.$window.socket.disconnect();
+    this.$window.socket.removeAllListeners();
     this.$window.socket = io(this.host);
-    console.info('connected to', this.host);
+    this.$window.socket.open();
     this.$rootScope.$emit('socket:init');
   }
 
@@ -69,15 +70,9 @@ class SocketService {
     });
   }
 
-  disconnectMe() {
-    this.$window.socket.disconnect();
-    this.$window.socket = undefined;
-    // delete this.$window.socket;
-  }
-
   set host(host) {
     this._host = host;
-    console.info('The socket host is:', this._host);
+    console.info('New host:', this._host);
   }
 
   get host() {

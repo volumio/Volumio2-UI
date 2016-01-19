@@ -39,7 +39,6 @@ class TrackManagerDirective {
       }
 
       scope.$on('$destroy', () => {
-        console.log('destroyed');
         if (trackManagerHandler && vm.type === 'slider') {
           trackManagerHandler.removeEventListener('mousedown', mousedownListener, true);
           trackManagerHandler.removeEventListener('mouseup', mouseupListener, true);
