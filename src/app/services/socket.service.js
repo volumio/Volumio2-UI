@@ -12,7 +12,7 @@ class SocketService {
     this.$window.socket.disconnect();
     this.$window.socket.removeAllListeners();
     this.$window.socket = io(this.host);
-    this.$window.socket.open();
+    this.$window.socket.connect();
     this.$rootScope.$emit('socket:init');
   }
 
