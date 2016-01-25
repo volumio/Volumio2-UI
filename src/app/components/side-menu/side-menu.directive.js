@@ -15,15 +15,16 @@ class PlayerButtonsDirective {
 
 class SideMenuController {
   constructor($scope, $rootScope, socketService, mockService,
-      $state, modalService, playerService, themeManager) {
+      $state, modalService, playerService, themeManager, $log, $http, $window) {
     'ngInject';
     this.$state = $state;
+    this.$window = $window;
     this.socketService = socketService;
     this.modalService = modalService;
     this.playerService = playerService;
     this.visible = false;
     this.theme = themeManager.theme;
-    //this.menuItems = mockService.get('getMenuItems');
+    // this.menuItems = mockService.get('getMenuItems');
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -48,7 +49,7 @@ class SideMenuController {
 
   itemClick(item) {
     this.toggleMenu();
-    //console.log(item);
+    console.log(item);
     if (item.id === 'modal') {
       let
         controllerName = item.params.modalName.split('-').map(
@@ -64,7 +65,10 @@ class SideMenuController {
         item,
         'lg');
     } else if (item.id === 'link') {
-      window.open(item.params.url);
+      this.$window.open(item.params.url);
+    } else if (item.id === 'static-page') {
+      console.log('REDORECT', item);
+      this.$state.go(item.state, {pageName: item.pageName});
     } else if (item.params) {
       for (let param in item.params) {
         item.params[param] = String(item.params[param]).replace('/', '-');

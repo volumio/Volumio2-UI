@@ -48,6 +48,7 @@ import FooterController from './footer/footer.controller';
 
 import DebugController from './debug/debug.controller';
 import PluginController from './plugin/plugin.controller';
+import StaticPageController from './static-pages/static-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
@@ -140,6 +141,7 @@ angular.module('volumio', [
 
   .controller('DebugController', DebugController)
   .controller('PluginController', PluginController)
+  .controller('StaticPageController', StaticPageController)
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 
   .controller('BrowseController', BrowseController)

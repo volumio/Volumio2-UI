@@ -227,6 +227,7 @@ class MockService {
           }
         ]
       },
+      //Sidemenu
       getMenuItems: [
         {
           id: 'home',
@@ -257,6 +258,12 @@ class MockService {
           params: {
             modalName: 'modal-power-off'
           }
+        },
+        {
+          id: 'static-page',
+          name: 'Credits',
+          state: 'volumio.static-page',
+          pageName: 'test-static-page'
         }
       ],
       multiRoomDevices: [

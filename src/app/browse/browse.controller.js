@@ -41,12 +41,12 @@ class BrowseController {
   }
 
   clickListItem(item) {
-    if (item.type !== 'song') {
+    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio') {
       this.fetchLibrary(item);
     }
   }
   dblClickListItem(item) {
-    if (item.type === 'song' || item.type === 'mywebradio') {
+    if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
       this.play(item);
     }
   }

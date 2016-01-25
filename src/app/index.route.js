@@ -36,7 +36,6 @@ function routerConfig ($stateProvider, $urlRouterProvider,
             return $http.get(localhostApiURL + '/host').then((response) => {
               console.info('IP from API', response);
               $rootScope.initConfig = response.data;
-              $window.socket = io(response.data.host);
               socketService.host  = response.data.host;
               toastMessageService.init();
               updaterService.init();
@@ -44,7 +43,6 @@ function routerConfig ($stateProvider, $urlRouterProvider,
               //Fallback socket
               console.info('IP from fallback');
               return $http.get('/app/local-config.json').then((response) => {
-                $window.socket = io(response.data.localhost);
                 socketService.host  = response.data.localhost;
                 toastMessageService.init();
                 updaterService.init();
@@ -116,6 +114,17 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           templateUrl: 'app/plugin/plugin.html',
           controller: 'PluginController',
           controllerAs: 'plugin'
+        }
+      }
+    })
+
+    .state('volumio.static-page', {
+      url: 'static-page/:pageName',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/static-pages/static-page.html',
+          controller: 'StaticPageController',
+          controllerAs: 'staticPage'
         }
       }
     });

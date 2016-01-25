@@ -8,9 +8,10 @@ class SocketService {
   }
 
   changeHost(host) {
-    this.host = host;
-    this.$window.socket.disconnect();
-    this.$window.socket.removeAllListeners();
+    if (this.$window.socket) {
+      this.$window.socket.disconnect();
+      this.$window.socket.removeAllListeners();
+    }
     this.$window.socket = io(this.host);
     this.$window.socket.connect();
     this.$rootScope.$emit('socket:init');
@@ -72,6 +73,7 @@ class SocketService {
 
   set host(host) {
     this._host = host;
+    this.changeHost(host);
     console.info('New host:', this._host);
   }
 
