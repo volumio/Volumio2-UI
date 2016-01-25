@@ -19,6 +19,7 @@
   }
   .control-description {
     @include make-sm-column(10);
+    padding-top: 6px;
   }
   .control-buttons {
     @include make-sm-column-offset(8);
