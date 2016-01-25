@@ -262,7 +262,6 @@ class MockService {
         {
           id: 'static-page',
           name: 'Credits',
-          state: 'volumio.static-page',
           pageName: 'test-static-page'
         }
       ],

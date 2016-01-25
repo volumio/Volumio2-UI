@@ -67,8 +67,7 @@ class SideMenuController {
     } else if (item.id === 'link') {
       this.$window.open(item.params.url);
     } else if (item.id === 'static-page') {
-      console.log('REDORECT', item);
-      this.$state.go(item.state, {pageName: item.pageName});
+      this.$state.go('volumio.static-page', {pageName: item.pageName});
     } else if (item.params) {
       for (let param in item.params) {
         item.params[param] = String(item.params[param]).replace('/', '-');
