@@ -1,14 +1,18 @@
 #trackInfo {
   @include make-xs-column(24);
-  border: solid 0px #999;
+  // border: solid 1px #999;
   text-align: center;
-  // background-color: #999;
+  #trackDetails {
+    height: 100px;
+  }
   #trackInfo-album {
     font-size: 12px;
   }
   #trackInfo-title {
     font-size: 20px;
     color: $volumio-green-color;
+    max-height: 60px;
+    overflow: hidden;
   }
   #trackInfo-artist {
     font-size: 14px;

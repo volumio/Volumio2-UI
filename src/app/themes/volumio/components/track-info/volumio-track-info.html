@@ -1,5 +1,5 @@
 <div id="trackInfo">
-  <div>
+  <div id="trackDetails">
     <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album">
       {{trackInfo.playerService.state.album}}
     </div>
@@ -8,20 +8,6 @@
     </div>
     <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist">
       {{trackInfo.playerService.state.artist}}
-    </div>
-
-    <div id="trackInfo-techInfos" ng-if="trackInfo.playerService.state.samplerate ||
-        trackInfo.playerService.state.bitdepth ||
-        trackInfo.playerService.state.service">
-      <span ng-if="trackInfo.playerService.state.service">
-        {{trackInfo.playerService.state.service}}
-      </span>
-      <span ng-if="trackInfo.playerService.state.samplerate">
-        | {{trackInfo.playerService.state.samplerate}} Khz
-      </span>
-      <span ng-if="trackInfo.playerService.state.bitdepth">
-        | {{trackInfo.playerService.state.bitdepth}} bit
-      </span>
     </div>
   </div>
   <div ng-if="trackInfo.playerService.state.albumart">
@@ -35,3 +21,4 @@
     </i>
   </div>
 </div>
+<div class="clearfix"></div>

@@ -1,6 +1,31 @@
 $headerHeight: 50px;
 $footerHeight: 33px;
 
+@font-face {
+    font-family: 'roboto_condensedregular';
+    src: url('#{$fonts-path}/RobotoCondensed-Regular-webfont.eot');
+    src: url('#{$fonts-path}/RobotoCondensed-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$fonts-path}/RobotoCondensed-Regular-webfont.woff') format('woff'),
+         url('#{$fonts-path}/RobotoCondensed-Regular-webfont.ttf') format('truetype'),
+         url('#{$fonts-path}/RobotoCondensed-Regular-webfont.svg#roboto_condensedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'existencelight';
+    src: url('#{$fonts-path}/Existence-Light-webfont.eot');
+    src: url('#{$fonts-path}/Existence-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$fonts-path}/Existence-Light-webfont.woff') format('woff'),
+         url('#{$fonts-path}/Existence-Light-webfont.ttf') format('truetype'),
+         url('#{$fonts-path}/Existence-Light-webfont.svg#existencelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// $font-family-sans-serif: "roboto_condensedregular";
+$font-family-sans-serif: "existencelight";
+
 $volumio-green-color: #4bbe87;
 $volumio-light-color: #7a848e;
 $volumio-dark-color: #535d67;
@@ -85,7 +110,7 @@ $progress-bar-bg: $volumio-green-color;
 // Reset and dependencies
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
-@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
+// @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
 
 // Core CSS
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding";
@@ -298,6 +323,56 @@ table {
 .bootstrap-switch-label {
   background-color: red;
   color: $volumio-green-color;
+}
+
+//Knob
+.knobWrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0px auto 15px auto;
+}
+
+.knob {
+  position: relative;
+  z-index: 10;
+}
+
+.knobInfosWrapper {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  bottom: 0px;
+  top: 0px;
+  width: 140px;
+  height: 140px;
+  background-color: #333;
+  border-radius: 150px;
+  pointer-events: none;
+  z-index: 10;
+  .headerText {
+    padding-top: 25px;
+    height: 35px;
+    font-size: 11px;
+    &.green {
+      color: $volumio-green-color;
+    }
+  }
+  .bigText {
+    height: 48px;
+    font-size: 40px;
+    font-weight: normal;
+  }
+  .smallText {
+    height: 20px;
+    color: $volumio-green-color;
+    font-size: 16px;
+  }
+  .footerText {
+    padding-top: 5px;
+    font-size: 14px;
+  }
 }
 
 //Scrollbars

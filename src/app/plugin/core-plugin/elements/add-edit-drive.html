@@ -1,25 +1,5 @@
 <form class="form-horizontal">
   <div class="form-group">
-    <label for="{{networkDrives.drive.fstype}}"
-        class="control-label">Fs type
-    </label>
-    <div class="control-item">
-      <ui-select
-          id="{{item.id}}"
-          ng-model="networkDrives.drive.fstype"
-          search-enabled="false"
-          append-to-body="true"
-          theme="bootstrap">
-        <ui-select-match placeholder="Fs type">
-          {{$select.selected}}
-        </ui-select-match>
-        <ui-select-choices repeat="option in networkDrives.driveTypes track by $index">
-          <div ng-bind-html="option"></div>
-        </ui-select-choices>
-      </ui-select>
-    </div>
-  </div>
-  <div class="form-group">
     <label for="{{networkDrives.drive.name}}"
         class="control-label">Name
     </label>
@@ -34,18 +14,7 @@
       Name of your share, example: music
     </div>
   </div>
-  <div class="form-group">
-    <label for="{{networkDrives.drive.path}}"
-        class="control-label">Path
-    </label>
-    <div class="control-item">
-      <input id="{{networkDrives.drive.path}}"
-          type="text"
-          ng-model="networkDrives.drive.path"
-          placeholder="Path"
-          class="form-control">
-    </div>
-  </div>
+
   <div class="form-group">
     <label for="{{networkDrives.drive.ip}}"
         class="control-label">Ip
@@ -62,6 +31,19 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label for="{{networkDrives.drive.path}}"
+        class="control-label">Path
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.path}}"
+          type="text"
+          ng-model="networkDrives.drive.path"
+          placeholder="Path"
+          class="form-control">
+    </div>
+  </div>
+
   <div ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true">
     <a href>Advanced Options</a>
   </div>
@@ -69,6 +51,27 @@
     <a href>Hide advanced Options</a><br>
   </div> -->
   <div ng-show="networkDrives.advancedVisible">
+    <div class="form-group">
+      <label for="{{networkDrives.drive.fstype}}"
+          class="control-label">Fs type
+      </label>
+      <div class="control-item">
+        <ui-select
+            id="{{item.id}}"
+            ng-model="networkDrives.drive.fstype"
+            search-enabled="false"
+            append-to-body="true"
+            theme="bootstrap">
+          <ui-select-match placeholder="Fs type">
+            {{$select.selected}}
+          </ui-select-match>
+          <ui-select-choices repeat="option in networkDrives.driveTypes track by $index">
+            <div ng-bind-html="option"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="{{networkDrives.drive.username}}"
           class="control-label">Username
@@ -81,6 +84,7 @@
             class="form-control">
       </div>
     </div>
+
     <div class="form-group">
       <label for="{{networkDrives.drive.password}}"
           class="control-label">Password
@@ -93,6 +97,7 @@
             class="form-control">
       </div>
     </div>
+
     <div class="form-group">
       <label for="{{networkDrives.drive.options}}"
           class="control-label">Options

@@ -101,7 +101,12 @@ class PlayerService {
   }
 
   toggleMute() {
-    this.socketService.emit('volume', 'mute');
+    console.log('toggle mute');
+    if (this.state.mute) {
+      this.socketService.emit('setVolume', {mute: false});
+    } else {
+      this.socketService.emit('setVolume', {mute: true});
+    }
   }
 
   calculateSeekPercent() {
@@ -188,6 +193,10 @@ class PlayerService {
       } else if (this.state.status === 'stop') {
         this.stopSeek();
         this.elapsedTimeString = '0:00';
+      }
+      if (this.state.duration) {
+        this.songLength = Math.floor(this.state.duration / 60);
+        this.songLength += `:${this.state.duration % 60}`;
       }
     });
     this.socketService.on('pushTrackInfo', (data) => {

@@ -1,5 +1,21 @@
 <div id="trackManager">
-  <div>
+  <div class="knobWrapper">
+    <div class="knobInfosWrapper">
+      <div class="headerText">
+        <div id="trackInfo-techInfos" ng-if="trackManager.playerService.state.samplerate ||
+            trackManager.playerService.state.bitdepth">
+          <span ng-if="trackManager.playerService.state.samplerate">
+            {{trackManager.playerService.state.samplerate}} Khz
+          </span>
+          <span ng-if="trackManager.playerService.state.bitdepth">
+            | {{trackManager.playerService.state.bitdepth}} bit
+          </span>
+        </div>
+      </div>
+      <div class="bigText">{{trackManager.playerService.elapsedTimeString}}</div>
+      <div class="smallText">{{trackManager.playerService.songLength}}</div>
+      <div class="footerText">{{trackManager.playerService.state.service}}</div>
+    </div>
     <knob
       value="trackManager.playerService.seekPercent"
       on-change="trackManager.onChange(value)"

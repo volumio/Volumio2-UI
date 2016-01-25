@@ -25,14 +25,14 @@ class VolumeManagerController {
       this.knobOptions = {
         min: 0,
         max: 100,
-        fgColor: '#4bbe87',
-        bgColor: '#283a4e',
-        width: 150,
-        height: 150,
+        fgColor: '#CCC',
+        bgColor: '#444',
+        width: 200,
+        height: 200,
         displayInput: false,
         step: 1,
-        angleOffset: -125,
-        angleArc: 250
+        angleOffset: -160,
+        angleArc: 320
       };
     }
 
