@@ -49,10 +49,11 @@ class TrackManagerDirective {
 }
 
 class TrackManagerController {
-  constructor($element, playerService, playlistService, $timeout) {
+  constructor($element, playerService, playlistService, $timeout, modalService) {
     'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
+    this.modalService = modalService;
     if (this.type === 'knob') {
       this.knobOptions = {
         min: 0,
@@ -85,6 +86,24 @@ class TrackManagerController {
     } else {
       this.playlistService.removeFromFavourites(this.playerService.state);
     }
+  }
+
+  addToPlaylist() {
+    let item = {
+      uri: 'tmp'
+    };
+    let
+      templateUrl = 'app/browse/components/modal/modal-playlist.html',
+      controller = 'ModalPlaylistController',
+      params = {
+        title: 'Add to playlist',
+        item: item
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
   }
 }
 

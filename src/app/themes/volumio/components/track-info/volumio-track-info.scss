@@ -3,19 +3,28 @@
   // border: solid 1px #999;
   text-align: center;
   #trackDetails {
-    height: 100px;
+    border: solid 1px #999;
+    @include breakpoint(sm) {
+      margin-top: 20px;
+    }
+    @include breakpoint(xs) {
+      margin-top: 20px;
+    }
   }
   #trackInfo-album {
-    font-size: 12px;
+    font-size: 18px;
   }
   #trackInfo-title {
-    font-size: 20px;
+    font-size: 24px;
+    // border: solid 1px #999;
+    font-weight: bold;
     color: $volumio-green-color;
-    max-height: 60px;
-    overflow: hidden;
+    @include breakpoint(lg) {
+      font-size: 28px;
+    }
   }
   #trackInfo-artist {
-    font-size: 14px;
+    font-size: 16px;
   }
   #trackInfo-techInfos {
     margin-top: 5px;

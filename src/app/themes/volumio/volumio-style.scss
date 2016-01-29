@@ -375,6 +375,16 @@ table {
   }
 }
 
+//Button groups
+.btn-group {
+  background-color: #333;
+  padding: 0px 10px;
+  button {
+    font-size: 26px;
+    padding: 8px 20px
+  }
+}
+
 //Scrollbars
 ::-webkit-scrollbar {
   width: 10px;
