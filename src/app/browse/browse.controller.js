@@ -12,7 +12,7 @@ class BrowseController {
 
   fetchLibrary(item) {
     console.log(item);
-    this.browseService.currentList = item;
+    this.browseService.currentItem = item;
     this.browseService.fetchLibrary(item);
     this.selectedSource = item;
     this.browseService.isBrowsing = true;
@@ -25,7 +25,7 @@ class BrowseController {
   }
 
   play(item) {
-    if (this.browseService.currentList.uri === 'playlists') {
+    if (this.browseService.currentItem && this.browseService.currentItem.uri === 'playlists') {
       this.playQueueService.playPlaylist(item);
     } else {
       this.playQueueService.addPlay(item);
@@ -33,7 +33,7 @@ class BrowseController {
   }
 
   addToQueue(item) {
-    if (this.browseService.currentList.uri === 'playlists') {
+    if (this.browseService.currentItem.uri === 'playlists') {
       this.playQueueService.enqueue(item);
     } else {
       this.playQueueService.add(item);
@@ -46,6 +46,7 @@ class BrowseController {
     }
   }
   dblClickListItem(item) {
+    console.log(item);
     if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
       this.play(item);
     }
@@ -95,6 +96,7 @@ class BrowseController {
       }
       this.searchTimeoutHandler = this.$timeout(() => {
         console.log('search', this.searchField);
+        this.browseService.startPerf = performance.now();
         this.socketService.emit('search', {value: this.searchField});
       }, 300, false);
     }

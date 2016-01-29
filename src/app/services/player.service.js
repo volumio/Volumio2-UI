@@ -1,9 +1,11 @@
 class PlayerService {
-  constructor($rootScope, $log, $interval, socketService) {
+  constructor($rootScope, $log, $interval, socketService, themeManager) {
     'ngInject';
     this.$log = $log;
     this.$interval = $interval;
     this.socketService = socketService;
+    this.themeManager = themeManager;
+    this.$rootScope = $rootScope;
 
     this.state = null;
     this.trackInfo = null;
@@ -181,6 +183,20 @@ class PlayerService {
     this.initService();
   }
 
+  updatePageTitle() {
+    let pageTitle = '';
+    if (this.state.artist) {
+      pageTitle = this.state.artist;
+    }
+    if (this.state.title) {
+      pageTitle += (pageTitle) ? ` - ${this.state.title}` : this.state.title;
+    }
+    if (!this.state.artist && !this.state.title) {
+      pageTitle = this.themeManager.defaultPageTitle;
+    }
+    this.$rootScope.pageTitle = pageTitle;
+  }
+
   registerListner() {
     this.socketService.on('pushState', (data) => {
       console.log('pushState', data);
@@ -196,8 +212,11 @@ class PlayerService {
       }
       if (this.state.duration) {
         this.songLength = Math.floor(this.state.duration / 60);
-        this.songLength += `:${this.state.duration % 60}`;
+        let sec = this.state.duration % 60;
+        sec = String(sec).length === 1 ? `${sec}0` : sec;
+        this.songLength += `:${sec}`;
       }
+      this.updatePageTitle();
     });
     this.socketService.on('pushTrackInfo', (data) => {
       console.log('pushTrackInfo', data);

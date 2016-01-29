@@ -37,15 +37,11 @@ function routerConfig ($stateProvider, $urlRouterProvider,
               console.info('IP from API', response);
               $rootScope.initConfig = response.data;
               socketService.host  = response.data.host;
-              toastMessageService.init();
-              updaterService.init();
             }, () => {
               //Fallback socket
               console.info('IP from fallback');
               return $http.get('/app/local-config.json').then((response) => {
                 socketService.host  = response.data.localhost;
-                toastMessageService.init();
-                updaterService.init();
               });
             });
           }

@@ -12,7 +12,9 @@
     <table class="table">
       <tr ng-if="wifiPlugin.wirelessNetworks.connectedTo">
         <td class="wifiIcon">
-          <img ng-src="{{assetsFolder + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+          <img
+              ng-if="wifiPlugin.wirelessNetworks.connectedTo.signal" 
+              ng-src="{{assetsFolder + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
           <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock"></i>

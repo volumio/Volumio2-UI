@@ -85,6 +85,7 @@
     "_satellite",
     "picturefill",
     "io",
-    "socket"
+    "socket",
+    "performance"
   ]
 }
