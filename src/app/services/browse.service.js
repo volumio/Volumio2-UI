@@ -1,12 +1,14 @@
 class BrowseService {
-  constructor($rootScope, $log, socketService, mockService) {
+  constructor($rootScope, $log, socketService, mockService, $interval, $window) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
+    this.$interval = $interval;
+    this.$window = $window;
     //this._filters = mockService.get('getBrowseFilters');
     //this._sources = mockService.get('getBrowseSources');
     //this._list = mockService.get('getBrowseList');
-
+    this.limiter = 10;
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -20,6 +22,7 @@ class BrowseService {
     let obj = {uri: item.uri};
     // console.log('fetchLibrary', item);
     this.currentFetchRequest = item;
+    this.startPerf = performance.now();
     this.socketService.emit('browseLibrary', obj);
   }
 
@@ -68,6 +71,14 @@ class BrowseService {
     this.initService();
   }
 
+  //TODO remove requestAnimationFrame func
+  // incLimiter() {
+  //   if (this.limiter < this.listLength) {
+  //     this.limiter += 8;
+  //     this.$window.requestAnimationFrame(this.incLimiter.bind(this));
+  //   }
+  // }
+
   registerListner() {
     this.socketService.on('pushBrowseFilters', (data) => {
       console.log('pushBrowseFilters', data);
@@ -78,10 +89,24 @@ class BrowseService {
     	this.sources = data;
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
-      console.log('pushBrowseLibrary', data);
+      this.endPerf = performance.now();
+      console.log('pushBrowseLibrary', data, 'BE wait time: ', this.endPerf - this.startPerf);
       this.list = data.navigation.list;
       this.listLength = this.list.length;
       this.breadcrumbs = data.navigation.prev;
+      //TODO remove requestAnimationFrame
+      // this.$window.requestAnimationFrame(this.incLimiter.bind(this));
+      this.limiter = 10;
+      if (this.limiterHandler) {
+        this.$interval.cancel(this.limiterHandler);
+      }
+      this.limiterHandler = this.$interval(() => {
+        if (this.limiter < this.listLength) {
+          this.limiter += 2;
+        } else {
+          this.$interval.cancel(this.limiterHandler);
+        }
+      }, 30);
     });
   }
 

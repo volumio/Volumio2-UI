@@ -1,27 +1,27 @@
-<tr ng-repeat="item in browse.browseService.list">
+<tr ng-repeat="item in browse.browseService.list  | limitTo: browse.browseService.limiter">
   <td class="image"
       ng-click="browse.clickListItem(item, $event)"
       ng-dblclick="browse.dblClickListItem(item, $event)">
     <img
-        ng-if="item.albumart"
+        ng-if="::item.albumart"
         ng-src="{{browse.socketService.host + item.albumart}}"
         alt="{{item.title}}"/>
-    <i ng-if="item.icon" class="{{item.icon}}"></i>
+    <i ng-if="::item.icon" ng-class="::item.icon"></i>
   </td>
   <td
       ng-click="browse.clickListItem(item, $event)"
       ng-dblclick="browse.dblClickListItem(item, $event)">
     <div class="title">
-      {{item.title}}
+      {{::item.title}}
     </div>
-    <div class="artist-album" ng-if="item.artist || item.album">
-      {{item.artist}}<span ng-if="item.artist && item.album"> - {{item.album}}</span>
+    <div class="artist-album" ng-if="::item.artist || item.album">
+      {{::item.artist}}<span ng-if="::item.artist && item.album"> - {{::item.album}}</span>
     </div>
   </td>
 
   <td class="commandButtons">
     <div
-        ng-if="browse.showHamburgerMenu(item)"
+        ng-if="::browse.showHamburgerMenu(item)"
         uib-dropdown
         on-toggle="browse.toggledItem(open, $event)"
         class="hamburgerMenu">
