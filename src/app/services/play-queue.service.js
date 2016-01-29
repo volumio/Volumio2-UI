@@ -45,6 +45,11 @@ class PlayQueueService {
     this.socketService.emit('enqueue', {name: index.title});
   }
 
+  addPlayCue(item) {
+    console.log('addPlayCue', item);
+    this.socketService.emit('addPlayCue', {uri: item.uri, number: item.number});
+  }
+
   remove(index) {
     console.log('removeFromQueue', index);
     this.socketService.emit('removeFromQueue', {value: index});

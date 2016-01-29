@@ -41,14 +41,15 @@ class BrowseController {
   }
 
   clickListItem(item) {
-    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio') {
+    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong') {
       this.fetchLibrary(item);
     }
   }
   dblClickListItem(item) {
-    console.log(item);
     if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
       this.play(item);
+    } else if (item.type === 'cuesong') {
+      this.playQueueService.addPlayCue(item);
     }
   }
 
