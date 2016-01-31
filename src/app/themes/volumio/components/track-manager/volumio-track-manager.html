@@ -26,20 +26,25 @@
     <button
         ng-class="{'active': trackManager.playerService.state.favourite}"
         ng-click="trackManager.toggleFavouriteTrack()"
-        class="btn btn-default">
+        class="btn btn-link">
       <i class="fa fa-heart"></i>
     </button>
     <button
         ng-class="{'active': trackManager.playerService.state.random}"
         ng-click="trackManager.playerService.shuffle()"
-        class="btn btn-default">
+        class="btn btn-link">
       <i class="fa fa-random"></i>
     </button>
     <button
         ng-class="{'active': trackManager.playerService.state.repeat}"
         ng-click="trackManager.playerService.repeatAlbum()"
-        class="btn btn-default">
+        class="btn btn-link">
       <i class="fa fa-repeat"></i>
+    </button>
+    <button
+        ng-click="trackManager.addToPlaylist()"
+        class="btn btn-link">
+      <i class="fa fa-plus"></i>
     </button>
   </div>
 </div>

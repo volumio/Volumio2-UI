@@ -16,18 +16,18 @@
   </div>
 
   <div id="volumeButtonBar" class="btn-group">
-    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-default">
+    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link">
       <i class="fa fa-volume-down"></i>
     </button>
     <button
         ng-click="volumeManager.playerService.toggleMute()"
-        class="btn btn-default"
+        class="btn btn-link"
         ng-class="{selected: volumeManager.playerService.state.mute}">
         <i class="fa fa-volume-off"></i>
       <span ng-if="volumeManager.playerService.state.mute"></span>
       <span ng-if="!volumeManager.playerService.state.mute"></span>
     </button>
-    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-default">
+    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link">
       <i class="fa fa-volume-up"></i>
     </button>
   </div>
