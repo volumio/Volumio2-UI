@@ -1,7 +1,7 @@
 <div id="logo">
   <img
-      src="app/themes/volumio/assets/graphics/volumio-logo.png"
-      alt="Axiom air"
+      ng-src="{{'app/themes/'+header.themeManager.theme + '/assets/graphics/' + header.themeManager.theme + '-logo.png'}}"
+      alt="{{header.themeManager.theme}}"
       ui-sref="volumio.playback"/>
 </div>
 

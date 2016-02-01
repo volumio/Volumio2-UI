@@ -34,6 +34,7 @@ import WaitBackendScrimDirective from './components/wait-backend-scrim/wait-back
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import PlaylistDirective from './components/playlist/playlist.directive';
 import BrowseScrollManagerDirective from './browse/components/browse-scroll-manager.directive';
+import BrowseHamburgerMenuDirective from './browse/components/browse-hamburger-menu.directive';
 
 import ModalController from './components/modals/modal.controller';
 
@@ -90,8 +91,8 @@ angular.module('volumio', [
   'ui.router',
 
   //Angular core modules
-  'ngAnimate',
-  'ngCookies',
+  // 'ngAnimate',
+  // 'ngCookies',
   //'ngTouch',
   'ngSanitize'
   ])
@@ -132,6 +133,7 @@ angular.module('volumio', [
   .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('playlist', (themeManager) => new PlaylistDirective(themeManager))
   .directive('browseScrollManager', (browseService) => new BrowseScrollManagerDirective(browseService))
+  .directive('browseHamburgerMenu', () => new BrowseHamburgerMenuDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())

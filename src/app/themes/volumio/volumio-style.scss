@@ -1,5 +1,6 @@
 $headerHeight: 50px;
 $footerHeight: 33px;
+$fonts-path: "/app/themes/volumio/assets/fonts";
 
 @font-face {
     font-family: 'roboto_condensedregular';
@@ -382,6 +383,28 @@ table {
   button {
     font-size: 26px;
     padding: 8px 20px
+  }
+}
+
+//Dropdown menu
+ul {
+  &.dropdown-menu {
+    width: 180px;
+    background-color: $volumio-accent-color;
+    border: solid 1px $volumio-green-color;
+    i {
+      width: 24px;
+      text-align: center;
+      padding-right: 4px;
+    }
+    a {
+      display: block;
+      color: #FFF;
+      padding: 4px 0px 4px 6px;
+      &:hover {
+        color: $volumio-green-color;
+      }
+    }
   }
 }
 

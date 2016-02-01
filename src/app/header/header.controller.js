@@ -1,6 +1,7 @@
 class HeaderController {
-  constructor() {
+  constructor(themeManager) {
     'ngInject';
+    this.themeManager = themeManager;
   }
 }
 

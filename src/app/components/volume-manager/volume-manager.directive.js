@@ -17,7 +17,7 @@ class VolumeManagerDirective {
 }
 
 class VolumeManagerController {
-  constructor($scope, playerService, $timeout) {
+  constructor($scope, playerService, $timeout, knobFgColor, knobBgColor) {
     'ngInject';
     this.timeoutHandler = null;
     this.playerService = playerService;
@@ -25,8 +25,8 @@ class VolumeManagerController {
       this.knobOptions = {
         min: 0,
         max: 100,
-        fgColor: '#CCC',
-        bgColor: '#444',
+        fgColor: knobFgColor,
+        bgColor: knobBgColor,
         width: 200,
         height: 200,
         displayInput: false,

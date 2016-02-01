@@ -1,11 +1,11 @@
-<tr ng-repeat="item in browse.browseService.list  | limitTo: browse.browseService.limiter">
+<tr ng-repeat="item in browse.browseService.list">
   <td class="image"
       ng-click="browse.clickListItem(item, $event)"
       ng-dblclick="browse.dblClickListItem(item, $event)">
     <img
         ng-if="::item.albumart"
         ng-src="{{browse.socketService.host + item.albumart}}"
-        alt="{{item.title}}"/>
+        alt="{{::item.title}}"/>
     <i ng-if="::item.icon" ng-class="::item.icon"></i>
   </td>
   <td
@@ -30,8 +30,8 @@
       </button>
       <ul
           class="dropdown-menu buttonsGroup"
-          ng-class="{'last': ($index > 2 && browse.browseService.listLength - $index < 3)}"
-          ng-include src="'app/browse/components/browse-hamburger-menu.html'">
+          ng-class="{'last': ($index > 2 && browse.browseService.listLength - $index < 3)}">
+        <browse-hamburger-menu item="item" browse="browse"></browse-hamburger-menu>
       </ul>
     </div>
   </td>
