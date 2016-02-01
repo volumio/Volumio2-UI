@@ -3,7 +3,7 @@
   // border: solid 1px #999;
   text-align: center;
   #trackDetails {
-    border: solid 1px #999;
+    // border: solid 1px #999;
     @include breakpoint(sm) {
       margin-top: 20px;
     }

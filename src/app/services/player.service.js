@@ -213,7 +213,7 @@ class PlayerService {
       if (this.state.duration) {
         this.songLength = Math.floor(this.state.duration / 60);
         let sec = this.state.duration % 60;
-        sec = String(sec).length === 1 ? `${sec}0` : sec;
+        sec = String(sec).length === 1 ? `0${sec}` : sec;
         this.songLength += `:${sec}`;
       }
       this.updatePageTitle();
