@@ -62,10 +62,14 @@
             search-enabled="false"
             append-to-body="true"
             theme="bootstrap">
-          <ui-select-match placeholder="Fs type">
+          <ui-select-match
+              class="ui-select-match"
+              placeholder="Fs type">
             {{$select.selected}}
           </ui-select-match>
-          <ui-select-choices repeat="option in networkDrives.driveTypes track by $index">
+          <ui-select-choices
+              class="ui-select-choices"
+              repeat="option in networkDrives.driveTypes track by $index">
             <div ng-bind-html="option"></div>
           </ui-select-choices>
         </ui-select>

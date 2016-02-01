@@ -66,10 +66,14 @@
                           search-enabled="false"
                           append-to-body="true"
                           theme="bootstrap">
-                        <ui-select-match placeholder="Enter an address...">
+                        <ui-select-match
+                            class="ui-select-match"
+                            placeholder="Enter an address...">
                           {{$select.selected.label}}
                         </ui-select-match>
-                        <ui-select-choices repeat="option in item.options track by $index">
+                        <ui-select-choices
+                            class="ui-select-choices"
+                            repeat="option in item.options track by $index">
                           <div ng-bind-html="option.label"></div>
                         </ui-select-choices>
                       </ui-select>

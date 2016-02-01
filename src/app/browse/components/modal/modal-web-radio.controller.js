@@ -1,8 +1,8 @@
 class ModalWebRadioController {
-  constructor(socketService, $modalInstance, playlistService, dataObj) {
+  constructor(socketService, $uibModalInstance, playlistService, dataObj) {
     'ngInject';
     this.socketService = socketService;
-    this.$modalInstance = $modalInstance;
+    this.$uibModalInstance = $uibModalInstance;
     this.playlistService = playlistService;
     this.dataObj = dataObj;
     this.addOrEdit = (dataObj.item) ? 'edit' : 'add';
@@ -10,11 +10,11 @@ class ModalWebRadioController {
 
   addWebradio() {
     this.playlistService.addWebRadio(this.dataObj.item);
-    this.$modalInstance.close();
+    this.$uibModalInstance.close();
   }
 
   cancel() {
-    this.$modalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss('cancel');
   }
 }
 
