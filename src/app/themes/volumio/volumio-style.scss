@@ -3,29 +3,18 @@ $footerHeight: 33px;
 $fonts-path: "/app/themes/volumio/assets/fonts";
 
 @font-face {
-    font-family: 'roboto_condensedregular';
-    src: url('#{$fonts-path}/RobotoCondensed-Regular-webfont.eot');
-    src: url('#{$fonts-path}/RobotoCondensed-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('#{$fonts-path}/RobotoCondensed-Regular-webfont.woff') format('woff'),
-         url('#{$fonts-path}/RobotoCondensed-Regular-webfont.ttf') format('truetype'),
-         url('#{$fonts-path}/RobotoCondensed-Regular-webfont.svg#roboto_condensedregular') format('svg');
-    font-weight: normal;
+    font-family: 'LatoWeb';
+    src: url('#{$fonts-path}/Lato-Regular.eot'); /* IE9 Compat Modes */
+    src: url('#{$fonts-path}/Lato-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('#{$fonts-path}/Lato-Regular.woff2') format('woff2'), /* Modern Browsers */
+         url('#{$fonts-path}/Lato-Regular.woff') format('woff'), /* Modern Browsers */
+         url('#{$fonts-path}/Lato-Regular.ttf') format('truetype');
     font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
 }
 
-@font-face {
-    font-family: 'existencelight';
-    src: url('#{$fonts-path}/Existence-Light-webfont.eot');
-    src: url('#{$fonts-path}/Existence-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('#{$fonts-path}/Existence-Light-webfont.woff') format('woff'),
-         url('#{$fonts-path}/Existence-Light-webfont.ttf') format('truetype'),
-         url('#{$fonts-path}/Existence-Light-webfont.svg#existencelight') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-// $font-family-sans-serif: "roboto_condensedregular";
-$font-family-sans-serif: "existencelight";
+$font-family-sans-serif: "LatoWeb";
 
 $volumio-green-color: #4bbe87;
 $volumio-light-color: #7a848e;
