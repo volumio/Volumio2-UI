@@ -1,7 +1,7 @@
 <form class="form-horizontal">
   <div class="form-group">
     <label for="{{networkDrives.drive.name}}"
-        class="control-label">Name
+        class="control-label">Alias
     </label>
     <div class="control-item">
       <input id="{{networkDrives.drive.name}}"
@@ -11,13 +11,13 @@
           class="form-control">
     </div>
     <div class="control-description">
-      Name of your share, example: music
+      Choose an Alias that will be displayed in NAS Mounts
     </div>
   </div>
 
   <div class="form-group">
     <label for="{{networkDrives.drive.ip}}"
-        class="control-label">Ip
+        class="control-label">NAS IP Address
     </label>
     <div class="control-item">
       <input id="{{networkDrives.drive.ip}}"
@@ -27,7 +27,7 @@
           class="form-control">
     </div>
     <div class="control-description">
-       Your NAS IP
+       IP Address of your Network Drive
     </div>
   </div>
 
@@ -41,6 +41,9 @@
           ng-model="networkDrives.drive.path"
           placeholder="Path"
           class="form-control">
+    </div>
+    <div class="control-description">
+       Network Share Name or subfolder path
     </div>
   </div>
 

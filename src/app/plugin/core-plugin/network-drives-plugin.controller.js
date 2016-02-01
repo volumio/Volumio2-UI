@@ -1,9 +1,10 @@
 class NetworkDrivesPluginController {
-  constructor(socketService, modalService, mockService) {
+  constructor(socketService, modalService, mockService, toastMessageService) {
     'ngInject';
     this.drive = {};
     this.socketService = socketService;
     this.modalService = modalService;
+    this.toastMessageService = toastMessageService;
     //this.infoShare = mockService.get('infoShare');
     //this.listUsbDrives = mockService.get('listUsbDrives');
     this.inAddDrive = false;
@@ -64,6 +65,26 @@ class NetworkDrivesPluginController {
     this.socketService.on('pushListUsbDrives', (data) => {
       console.log('listUsbDrives', data);
       this.listUsbDrives = data;
+    });
+    this.socketService.on('pushAddShare', (data) => {
+      console.log('pushAddShare', data);
+    	if(data.success){ 
+   			this.toastMessageService.showMessage("success","Share successfully mounted...","");
+				 this.socketService.emit('getListShares');
+ 			}else{
+   			this.toastMessageService.showMessage("error","An error occured during adding share","");
+      	console.log('addShare failed',data);
+			}
+    });
+    this.socketService.on('pushDeleteShare', (data) => {
+      console.log('pushDeleteShare', data);
+    	if(data.success){ 
+   			this.toastMessageService.showMessage("success","Share successfully unmounted...","");
+   			this.socketService.emit('getListShares');
+ 			}else{
+   			this.toastMessageService.showMessage("error","An error occured during deleting share","");
+      	console.log('deleteShare failed', data);
+			 }
     });
   }
 
