@@ -45,7 +45,7 @@ class NetworkDrivesPluginController {
     let modalPromise = this.modalService.openModal(
       'ModalConfirmController',
       'app/components/modals/modal-confirm.html',
-      {title: 'Delete drive', message: 'Do you want to delete "' + drive.id + '" ?'});
+      {title: 'Delete drive', message: 'Do you want to delete "' + drive.id + '"?'});
     modalPromise.then((yes) => {
       console.log('deleteShare', {id: drive.id});
       this.socketService.emit('deleteShare', {id: drive.id});
@@ -68,23 +68,23 @@ class NetworkDrivesPluginController {
     });
     this.socketService.on('pushAddShare', (data) => {
       console.log('pushAddShare', data);
-    	if(data.success){ 
-   			this.toastMessageService.showMessage("success","Share successfully mounted...","");
-				 this.socketService.emit('getListShares');
- 			}else{
-   			this.toastMessageService.showMessage("error","An error occured during adding share","");
-      	console.log('addShare failed',data);
-			}
+      if(data.success){
+        this.toastMessageService.showMessage('success','Share successfully mounted...','');
+        this.socketService.emit('getListShares');
+      }else{
+        this.toastMessageService.showMessage('error','An error occured during adding share','');
+        console.log('addShare failed',data);
+      }
     });
     this.socketService.on('pushDeleteShare', (data) => {
       console.log('pushDeleteShare', data);
-    	if(data.success){ 
-   			this.toastMessageService.showMessage("success","Share successfully unmounted...","");
-   			this.socketService.emit('getListShares');
- 			}else{
-   			this.toastMessageService.showMessage("error","An error occured during deleting share","");
-      	console.log('deleteShare failed', data);
-			 }
+      if(data.success){
+        this.toastMessageService.showMessage('success','Share successfully unmounted...','');
+        this.socketService.emit('getListShares');
+      }else{
+        this.toastMessageService.showMessage('error','An error occured during deleting share','');
+        console.log('deleteShare failed', data);
+      }
     });
   }
 
