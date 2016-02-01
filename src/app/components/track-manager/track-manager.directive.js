@@ -15,18 +15,18 @@ class TrackManagerDirective {
     };
     return directive;
 
-    function linkFunc(scope, el, attr, vm) {
+    function linkFunc(scope, el, attr, controller) {
       let
         mouseupListener = () => {
-          console.log('up', vm.playerService.seekPercent);
-          vm.playerService.seek = vm.playerService.seekPercent;
+          console.log('up', controller.playerService.seekPercent);
+          controller.playerService.seek = controller.playerService.seekPercent;
         },
         mousedownListener = () => {
           console.log('down');
-          vm.playerService.stopSeek();
+          controller.playerService.stopSeek();
         },
         trackManagerHandler;
-      if (vm.type === 'slider') {
+      if (controller.type === 'slider') {
         setTimeout(() => {
           trackManagerHandler = el.find('.slider-handle')[0];
           if (trackManagerHandler) {
@@ -34,12 +34,12 @@ class TrackManagerDirective {
             trackManagerHandler.addEventListener('mouseup', mouseupListener, true);
           }
         });
-      } else if (vm.type === 'knob') {
+      } else if (controller.type === 'knob') {
 
       }
 
       scope.$on('$destroy', () => {
-        if (trackManagerHandler && vm.type === 'slider') {
+        if (trackManagerHandler && controller.type === 'slider') {
           trackManagerHandler.removeEventListener('mousedown', mousedownListener, true);
           trackManagerHandler.removeEventListener('mouseup', mouseupListener, true);
         }
@@ -89,15 +89,12 @@ class TrackManagerController {
   }
 
   addToPlaylist() {
-    let item = {
-      uri: 'tmp'
-    };
     let
       templateUrl = 'app/browse/components/modal/modal-playlist.html',
       controller = 'ModalPlaylistController',
       params = {
         title: 'Add to playlist',
-        item: item
+        item: this.playerService.state
       };
     this.modalService.openModal(
       controller,

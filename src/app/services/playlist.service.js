@@ -16,6 +16,7 @@ class PlaylistService {
 
   //Playlist
   addToPlaylist(item, playlist) {
+    console.log('addToPlaylist', item, playlist);
     this.socketService.emit('addToPlaylist', {
       name: playlist,
       uri: item.uri,

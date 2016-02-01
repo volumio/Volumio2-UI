@@ -226,6 +226,10 @@ class PlayerService {
       console.log('pushGetSeek', data);
       this.seek = data;
     });
+    this.socketService.on('urifavourites', (data) => {
+      console.log('urifavourites', data);
+      this.favourite = data;
+    });
   }
 
   initService() {
