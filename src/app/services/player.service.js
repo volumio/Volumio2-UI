@@ -9,7 +9,9 @@ class PlayerService {
 
     this.state = null;
     this.trackInfo = null;
-    this.favourite = null;
+    this.favourite = {
+      favourite: false
+    };
 
     this.seek = 0;
     this._thick = 1000;

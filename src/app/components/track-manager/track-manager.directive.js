@@ -80,12 +80,12 @@ class TrackManagerController {
   }
 
   toggleFavouriteTrack() {
-    if (this.playerService.state.uri !== this.playerService.favourite.uri) {
-      console.log('Add to favourite');
-      this.playlistService.addToFavourites(this.playerService.state);
-    } else {
+    if (this.playerService.favourite.favourite) {
       console.log('Remove from favourite');
       this.playlistService.removeFromFavourites(this.playerService.state);
+    } else {
+      console.log('Add to favourite');
+      this.playlistService.addToFavourites(this.playerService.state);
     }
   }
 
