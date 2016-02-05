@@ -195,8 +195,7 @@ $progress-bar-bg: $volumio-green-color;
 .btn-link {
   border-radius: $btn-border-radius-base;
   &.active {
-    background-color: $volumio-green-color;
-    color: #FFF;
+    color: $volumio-green-color;
   }
 }
 

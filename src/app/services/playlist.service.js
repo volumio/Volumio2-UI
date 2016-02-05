@@ -39,6 +39,7 @@ class PlaylistService {
   //Favourites
   addToFavourites(item) {
     if (item && item.uri) {
+      console.log('addToFavourites', item);
       this.socketService.emit('addToFavourites', {
         uri: item.uri,
         service: (item.service || null)
@@ -48,6 +49,7 @@ class PlaylistService {
 
   removeFromFavourites(item) {
     if (item && item.uri) {
+      console.log('removeFromFavourites', item);
       this.socketService.emit('removeFromFavourites', {
         uri: item.uri,
         service: (item.service || null)
