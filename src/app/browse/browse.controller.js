@@ -10,22 +10,18 @@ class BrowseController {
     this.$timeout = $timeout;
   }
 
-  fetchLibrary(item) {
+  fetchLibrary(item, back = false) {
     console.log(item);
-    this.browseService.currentItem = item;
-    this.browseService.fetchLibrary(item);
-    this.selectedSource = item;
-    this.browseService.isBrowsing = true;
+    this.browseService.fetchLibrary(item, back);
   }
 
   backHome() {
     this.searchField = '';
-    this.browseService.isBrowsing = false;
-    this.browseService.list = [];
+    this.browseService.backHome();
   }
 
   play(item) {
-    if (this.browseService.currentItem && this.browseService.currentItem.uri === 'playlists') {
+    if (this.browseService.currentFetchRequest && this.browseService.currentFetchRequest.uri === 'playlists') {
       this.playQueueService.playPlaylist(item);
     } else {
       this.playQueueService.addPlay(item);
@@ -33,7 +29,7 @@ class BrowseController {
   }
 
   addToQueue(item) {
-    if (this.browseService.currentItem.uri === 'playlists') {
+    if (this.browseService.currentFetchRequest.uri === 'playlists') {
       this.playQueueService.enqueue(item);
     } else {
       this.playQueueService.add(item);
@@ -69,7 +65,6 @@ class BrowseController {
       params,
       'sm');
   }
-
 
   addWebRadio(item) {
     let

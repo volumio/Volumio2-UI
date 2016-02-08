@@ -34,10 +34,10 @@ class ThemeManagerProvider {
       $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
       $rootScope.favicon = '/app/themes/' + this.theme + '/assets/favicon.png';
       if (this.theme === 'axiom') {
-      this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';
+        this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';
       } else {
-      this.defaultPageTitle = `${this.theme.charAt(0).toUpperCase()}${this.theme.slice(1)} - Audiophile Music Player`;
-    }
+        this.defaultPageTitle = `${this.theme.charAt(0).toUpperCase()}${this.theme.slice(1)} - Audiophile Music Player`;
+      }
       $rootScope.pageTitle = this.defaultPageTitle;
     };
 

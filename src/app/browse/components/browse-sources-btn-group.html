@@ -2,7 +2,7 @@
   <button
       ng-repeat="source in browse.browseService.sources"
       ng-click="browse.fetchLibrary(source)"
-      ng-class="{'selected': browse.selectedSource.name === source.name}"
+      ng-class="{'selected': browse.browseService.currentFetchRequest.name === source.name}"
       class="btn btn-default">
       {{source.name}}
   </button>

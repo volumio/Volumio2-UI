@@ -1,7 +1,8 @@
 class SystemVersionPluginController {
-  constructor(socketService) {
+  constructor($scope, socketService) {
     'ngInject';
     this.socketService = socketService;
+    this.$scope = $scope;
     this.init();
   }
 
@@ -14,6 +15,9 @@ class SystemVersionPluginController {
     this.socketService.on('pushSystemVersion', (data) => {
       console.log('pushSystemVersion', data);
       this.systemVersion = data;
+    });
+    this.$scope.$on('$destroy', () => {
+      this.socketService.off('pushSystemVersion');
     });
   }
 

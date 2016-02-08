@@ -12,28 +12,61 @@ class BrowseScrollManagerDirective {
     return directive;
   }
 
+  setScrollTop() {
+    // console.log(this.browseService.scrollPositions);
+    let currentFetchRequest = this.browseService.currentFetchRequest;
+    if (currentFetchRequest && currentFetchRequest.uri &&
+      this.browseService.scrollPositions.get(currentFetchRequest.uri)) {
+      // console.log('Scroll to', currentFetchRequest.uri,
+      //     this.browseService.scrollPositions.get(currentFetchRequest.uri));
+      this.browseTablesWrapper.scrollTop = this.browseService.scrollPositions.get(currentFetchRequest.uri);
+    } else {
+      this.browseTablesWrapper.scrollTop = 0;
+    }
+  }
+
   linkFn(scope) {
     let contentWrapper, browseTablesWrapper, browsePanelHeading, footer;
+
+    let browseService = this.browseService;
+    function scrollHandler() {
+      /*jshint validthis:true */
+      // console.log(browseService.currentFetchRequest.uri, this.scrollTop);
+      browseService.scrollPositions.set(browseService.currentFetchRequest.uri, this.scrollTop);
+    }
+
     setTimeout(() => {
-      contentWrapper = angular.element('#contentWrapper')[0];
-      contentWrapper.style.overflowY = 'hidden';
+      this.contentWrapper = angular.element('#contentWrapper')[0];
+      this.contentWrapper.style.overflowY = 'hidden';
       // console.log(contentWrapper);
-      contentWrapper.scrollTop = 0;
-      browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
+      this.contentWrapper.scrollTop = 0;
+
+      //Add listener to browseTablesWrapper on scroll
+      this.browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
+      // this.browseTablesWrapper.scrollTop = 0;
+      // console.log(this.browseTablesWrapper);
+      this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
+
       browsePanelHeading = angular.element('#browsePanelHeading')[0];
       footer = angular.element('#footer')[0];
-      browseTablesWrapper.style.height =
+      this.browseTablesWrapper.style.height =
           footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
           browsePanelHeading.getBoundingClientRect().bottom + 'px';
-      if (this.browseService.scrollTop) {
-        console.log(this.browseService.scrollTop);
-        browseTablesWrapper.scrollTop = this.browseService.scrollTop;
-      }
-    }, 120);
+
+      this.setScrollTop();
+    }, 100);
+
+    scope.$on('browseService:fetchEnd', () => {
+      this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
+      setTimeout(() => {
+        this.setScrollTop();
+        this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
+      }, 100);
+    });
 
     scope.$on('$destroy', () => {
-      this.browseService.scrollTop = browseTablesWrapper.scrollTop;
-      contentWrapper.style.overflowY = 'auto';
+      this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
+      this.contentWrapper.style.overflowY = 'auto';
     });
   }
 }

@@ -23,7 +23,7 @@ class SocketService {
 
   on(eventName, callback) {
     //console.log('on', eventName);
-    this.$window.socket.on(eventName, (data) => {
+    return this.$window.socket.on(eventName, (data) => {
       //console.log(arguments);
       //console.log(data);
       this.$rootScope.$apply(function() {
@@ -34,6 +34,11 @@ class SocketService {
         }
       });
     });
+  }
+
+  off(eventName, fn) {
+    // console.log('off', eventName);
+    this.$window.socket.off(eventName, fn);
   }
 
   emit(eventName, data, callback) {
