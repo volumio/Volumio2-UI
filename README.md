@@ -1,3 +1,4 @@
+[![Join the chat at https://gitter.im/volumio/Volumio2-UI](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/volumio/Volumio2-UI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/volumio/Volumio2-UI.svg?branch=master)](https://travis-ci.org/volumio/Volumio2-UI)
 [![devDependency Status](https://david-dm.org/volumio/Volumio2-UI/dev-status.svg)](https://david-dm.org/volumio/Volumio2-UI#info=devDependencies)
 [![bitHound Score](https://www.bithound.io/github/volumio/Volumio2-UI/badges/score.svg)](https://www.bithound.io/github/volumio/Volumio2-UI)
