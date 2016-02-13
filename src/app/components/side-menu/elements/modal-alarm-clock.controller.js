@@ -15,7 +15,7 @@ class ModalAlarmClockController {
   }
 
   save() {
-    this.socketService.emit('getAlarms', this.alarms);
+    this.socketService.emit('saveAlarm', this.alarms);
     this.$uibModalInstance.close();
   }
 
@@ -43,8 +43,8 @@ class ModalAlarmClockController {
   }
 
   registerListner() {
-    this.socketService.on('pushAlarms', (data) => {
-      console.warn('pushAlarms', data);
+    this.socketService.on('pushAlarm', (data) => {
+      console.warn('pushAlarm', data);
       //this.menuItems = data;
     });
   }
