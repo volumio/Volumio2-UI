@@ -44,8 +44,8 @@ class ModalAlarmClockController {
 
   registerListner() {
     this.socketService.on('pushAlarm', (data) => {
-      console.warn('pushAlarm', data);
-      //this.menuItems = data;
+      this.alarms = data;
+      //console.log('pushAlarm', data);
     });
   }
 
