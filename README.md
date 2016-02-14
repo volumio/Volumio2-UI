@@ -10,7 +10,23 @@ This UI is meant to be used as a standalone Web User Interface communicating via
 
 Currently the UI is served via Express Static Server, and resides at /volumio/http/www
 
-## Development
+
+## Repo information
+
+This repo is used as a git submodule in [Volumio2](https://github.com/volumio/Volumio2).  
+Only the `dist/` directory is needed by Volumio2, so there is a [dist branch](https://github.com/volumio/Volumio2-UI/tree/dist) which contains just that.
+
+To update the dist branch with the latest changes, run:
+
+```shell
+git subtree split --prefix dist -b dist
+git push origin dist:dist
+```
+
+
+## Set up development environment
+
+You must have Node.js, Npm and Bower installed 
 
 First clone it
 
@@ -27,25 +43,37 @@ npm install
 bower install
 ```
 
-To run a local browser with dinamically generated UI do
+Now, you can develop on it, while retrieving data from Volumio2 backend (you must have a Volumio2 device on your network and know its IP address).
+To tell the UI where to find Volumio 2 backend, create a file with the IP of Volumio2 in 
+
+```shell
+/src/app/local-config.json
+```
+
+The file will look like
+
+```shell
+{
+  "localhost": "http://192.168.31.234"
+}
+```
+
+
+Now, feel free to edit and see live changes on a local browser with dinamically generated UI. To do so:
 
 ```shell
 gulp serve --theme="volumio"
 ```
 
-To build it and deploy
+Once finished, to deploy on Volumio 2, first build it 
 
 ```shell
 gulp build --theme="volumio"
 ```
 
-
-This repo is used as a git submodule in [Volumio2](https://github.com/volumio/Volumio2).  
-Only the `dist/` directory is needed by Volumio2, so there is a [dist branch](https://github.com/volumio/Volumio2-UI/tree/dist) which contains just that.
-
-To update the dist branch with the latest changes, run:
+And deploy by copying the content of dist directory on Volumio2 device to:
 
 ```shell
-git subtree split --prefix dist -b dist
-git push origin dist:dist
+/volumio/http/www
 ```
+
