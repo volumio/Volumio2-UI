@@ -2,30 +2,8 @@
   @include make-xs-column(24);
   // border: solid 1px #999;
   text-align: center;
-  #trackDetails {
-    // border: solid 1px #999;
-    @include breakpoint(sm) {
-      margin-top: 20px;
-    }
-    @include breakpoint(xs) {
-      margin-top: 20px;
-    }
-  }
-  #trackInfo-album {
-    font-size: 18px;
-  }
-  #trackInfo-title {
-    font-size: 24px;
-    // border: solid 1px #999;
-    font-weight: bold;
-    color: $volumio-green-color;
-    @include breakpoint(lg) {
-      font-size: 28px;
-    }
-  }
-  #trackInfo-artist {
-    font-size: 16px;
-  }
+  margin-top: 40px;
+
   #trackInfo-techInfos {
     margin-top: 5px;
     color: darken($volumio-light-color, 0%);
@@ -34,4 +12,29 @@
     width:100%;
     margin: 10px auto;
   };
+}
+
+#trackDetails {
+  > div {
+    padding: 3px 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+#trackInfo-album {
+  font-size: 18px;
+  display: inline-block;
+}
+
+#trackInfo-title {
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+  @include breakpoint(lg) {
+    font-size: 28px;
+  }
+}
+#trackInfo-artist {
+  font-size: 16px;
+  display: inline-block;
 }

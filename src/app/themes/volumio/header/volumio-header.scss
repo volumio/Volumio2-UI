@@ -1,37 +1,22 @@
-header {
+#header {
   @include make-row();
   position: fixed;
   top: 0;
   z-index: 2;
   width: 100%;
   height: $headerHeight;
-  padding-top: 8px;
   background-color: $volumio-light-color;
+  button {
+    font-size: 24px;
+  }
 
   #logo {
     @include make-sm-column(6);
     @extend .hidden-xs;
     img {
       cursor: pointer;
-      margin-top: 5px;
+      margin-top: 16px;
       width: 170px;
-    }
-  }
-  #sideMenu {
-    @include make-sm-column(6);
-    @include make-xs-column(4);
-    text-align: right;
-  }
-  #playerButtons {
-    @include make-sm-column(12);
-    @include make-xs-column(16);
-    @include make-xs-column-offset(4);
-    @include make-sm-column-offset(0);
-    @include make-md-column-offset(0);
-    @include make-lg-column-offset(0);
-    text-align: center;
-    button {
-
     }
   }
 }

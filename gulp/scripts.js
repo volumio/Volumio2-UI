@@ -67,7 +67,7 @@ gulp.task('angularConfig', function () {
     constants.knobBgColor = '#444';
   } else {
     constants.knobFgColor = '#CCC';
-    constants.knobBgColor = '#444';
+    constants.knobBgColor = '#000';
   }
 
   var obj = {

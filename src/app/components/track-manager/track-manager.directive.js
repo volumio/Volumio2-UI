@@ -15,18 +15,18 @@ class TrackManagerDirective {
     };
     return directive;
 
-    function linkFunc(scope, el, attr, controller) {
+    function linkFunc(scope, el, attr, trackManagerController) {
       let
         mouseupListener = () => {
-          console.log('up', controller.playerService.seekPercent);
-          controller.playerService.seek = controller.playerService.seekPercent;
+          console.log('up', trackManagerController.playerService.seekPercent);
+          trackManagerController.playerService.seek = trackManagerController.playerService.seekPercent;
         },
         mousedownListener = () => {
           console.log('down');
-          controller.playerService.stopSeek();
+          trackManagerController.playerService.stopSeek();
         },
         trackManagerHandler;
-      if (controller.type === 'slider') {
+      if (trackManagerController.type === 'slider') {
         setTimeout(() => {
           trackManagerHandler = el.find('.slider-handle')[0];
           if (trackManagerHandler) {
@@ -34,12 +34,14 @@ class TrackManagerDirective {
             trackManagerHandler.addEventListener('mouseup', mouseupListener, true);
           }
         });
-      } else if (controller.type === 'knob') {
-
-      }
+      } else if (trackManagerController.type === 'knob') {}
 
       scope.$on('$destroy', () => {
-        if (trackManagerHandler && controller.type === 'slider') {
+        if (trackManagerController.matchMediaHandler) {
+          trackManagerController.matchMediaHandler();
+          console.log('destroyedMatchmedia');
+        }
+        if (trackManagerHandler && trackManagerController.type === 'slider') {
           trackManagerHandler.removeEventListener('mousedown', mousedownListener, true);
           trackManagerHandler.removeEventListener('mouseup', mouseupListener, true);
         }
@@ -49,17 +51,34 @@ class TrackManagerDirective {
 }
 
 class TrackManagerController {
-  constructor($element, playerService, playlistService, $timeout, modalService) {
+  constructor(
+      $element,
+      playerService,
+      playlistService,
+      $timeout,
+      modalService,
+      matchmedia,
+      socketService,
+      $scope,
+      knobFgColor,
+      knobBgColor,
+      matchmediaService) {
     'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
     this.modalService = modalService;
+    this.socketService = socketService;
+    this.matchmediaService = matchmediaService;
+    this.$scope = $scope;
+    this.initWatchers();
+    // this.initMatchmedia();
+
     if (this.type === 'knob') {
       this.knobOptions = {
         min: 0,
         max: 1001,
-        fgColor: '#CCC',
-        bgColor: '#444',
+        fgColor: knobFgColor,
+        bgColor: knobBgColor,
         width: 200,
         height: 200,
         displayInput: false,
@@ -103,6 +122,51 @@ class TrackManagerController {
       params,
       'sm');
   }
+
+  initWatchers() {
+    this.$scope.$watch(() => {
+      return this.playerService.state && this.playerService.state.albumart;
+    }, (newVal) => {
+      if (this.matchmediaService.isPhone) {
+        let albumArtUrl = `url('${this.socketService.host}${newVal}')`;
+        this.backgroundAlbumArtStyle = {
+          'background-image': albumArtUrl
+        };
+      } else {
+        this.backgroundAlbumArtStyle = {};
+      }
+    });
+
+    this.$scope.$watch(() => this.matchmediaService.isPhone, (newVal) => {
+      if (this.matchmediaService.isPhone) {
+        let albumart = this.playerService.state && this.playerService.state.albumart;
+        if (albumart) {
+          let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
+          this.backgroundAlbumArtStyle = {
+            'background-image': albumArtUrl
+          };
+        }
+      } else {
+        this.backgroundAlbumArtStyle = {};
+      }
+    });
+  }
+
+  // initMatchmedia() {
+  //   this.matchMediaHandler = this.matchmedia.onPhone((mediaQueryList) => {
+  //     if (mediaQueryList.matches) {
+  //       let albumart = this.playerService.state && this.playerService.state.albumart;
+  //       if (albumart) {
+  //         let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
+  //         this.backgroundAlbumArtStyle = {
+  //           'background-image': albumArtUrl
+  //         };
+  //       }
+  //     } else {
+  //       this.backgroundAlbumArtStyle = {};
+  //     }
+  //   });
+  // }
 }
 
 

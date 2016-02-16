@@ -1,10 +1,12 @@
 $sideMenuWidth: 220px;
 #sideMenu{
   position: relative;
+  @include make-sm-column(6);
+  @include make-xs-column(4);
+  opacity: 0.8;
+  text-align: right;
   #openMenuBtn {
     color: #FFF;
-    font-size: 16px;
-    margin-top: -2px;
     &:hover {
       background-color: $volumio-green-color;
     }

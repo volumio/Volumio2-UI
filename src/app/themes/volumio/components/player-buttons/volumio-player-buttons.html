@@ -2,21 +2,26 @@
   <button
       ng-click="playerButtons.playerService.prev()"
       class="btn btn-link">
-    <i class="fa fa-fast-backward"></i>
+    <i class="fa fa-step-backward"></i>
   </button>
-  <button
-      ng-if="playerButtons.playerService.state.status !== 'play'"
-      ng-click="playerButtons.playerService.play()"
-      class="btn btn-link">
-    <i class="fa fa-play"></i>
-  </button>
-  <button
-      ng-if="playerButtons.playerService.state.status === 'play'"
-      ng-click="playerButtons.playerService.pause()"
-      class="btn btn-link"
-      ng-class="{active: playerButtons.playerService.state.status === 'play'}">
-    <i class="fa fa-pause"></i>
-  </button>
+
+  <div class="playPauseBtnWrapper">
+    <div class="playPauseBtnGreyWrapper">
+      <button
+          ng-if="playerButtons.playerService.state.status !== 'play'"
+          ng-click="playerButtons.playerService.play()"
+          class="btn btn-link playPause play">
+        <i class="fa fa-play"></i>
+      </button>
+      <button
+          ng-if="playerButtons.playerService.state.status === 'play'"
+          ng-click="playerButtons.playerService.pause()"
+          class="btn btn-link playPause"
+          ng-class="{active: playerButtons.playerService.state.status === 'play'}">
+        <i class="fa fa-pause"></i>
+      </button>
+    </div>
+  </div>
   <!-- <button
       ng-click="playerButtons.playerService.stop()"
       class="btn btn-link"
@@ -26,6 +31,6 @@
   <button
       ng-click="playerButtons.playerService.next()"
       class="btn btn-link">
-    <i class="fa fa-fast-forward"></i>
+    <i class="fa fa-step-forward"></i>
   </button>
 </div>

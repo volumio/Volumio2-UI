@@ -1,10 +1,17 @@
-<div id="logo">
-  <img
-      ng-src="{{'app/themes/'+header.themeManager.theme + '/assets/graphics/' + header.themeManager.theme + '-logo.png'}}"
-      alt="{{header.themeManager.theme}}"
-      ui-sref="volumio.playback"/>
+<div ng-if="!header.matchmediaService.isPhone">
+  <div id="logo">
+    <img
+        ng-src="{{'app/themes/'+header.themeManager.theme + '/assets/graphics/' + header.themeManager.theme + '-logo.png'}}"
+        alt="{{header.themeManager.theme}}"
+        ui-sref="volumio.playback"/>
+  </div>
+
+  <player-buttons></player-buttons>
+
+  <side-menu></side-menu>
 </div>
 
-<player-buttons></player-buttons>
-
-<side-menu></side-menu>
+<ng-include
+    src="'app/themes/volumio/partials/tab-bar.html'"
+    ng-if="header.matchmediaService.isPhone">
+</ng-include>

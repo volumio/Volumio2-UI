@@ -1,5 +1,5 @@
 $headerHeight: 50px;
-$footerHeight: 33px;
+$footerHeight: 50px;
 $fonts-path: "/app/themes/volumio/assets/fonts";
 
 @font-face {
@@ -16,15 +16,17 @@ $fonts-path: "/app/themes/volumio/assets/fonts";
 
 $font-family-sans-serif: "LatoWeb";
 
-$volumio-green-color: #4bbe87;
+$volumio-green-color: #54C698;
 $volumio-light-color: #7a848e;
 $volumio-dark-color: #535d67;
-$volumio-accent-color: #283a4e;
+$volumio-accent-color: #393939;
+$volumio-text-color: #DDD;
+$volumio-dark-text-color: #AAA;
 $volumio-background-color: $volumio-dark-color;
 
 $body-bg: $volumio-background-color;
 $brand-primary: #222;
-$text-color: #DDD;
+$text-color: $volumio-text-color;
 $electric-blue: #069FD7;
 
 $link-color: #FFF;
@@ -155,7 +157,14 @@ $progress-bar-bg: $volumio-green-color;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   #content {
-    @include make-sm-column(24);
+    // @include make-sm-column(24);
+    // border: solid 15px black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     &.browse, &.queue {
       padding: 0px;
     }
@@ -326,6 +335,9 @@ table {
   position: relative;
   z-index: 10;
 }
+.knobOpacity {
+  opacity: 0.6;
+}
 
 .knobInfosWrapper {
   position: absolute;
@@ -336,7 +348,7 @@ table {
   top: 0px;
   width: 140px;
   height: 140px;
-  background-color: #333;
+  background-color: #222;
   border-radius: 150px;
   pointer-events: none;
   z-index: 10;
@@ -350,12 +362,12 @@ table {
   }
   .bigText {
     height: 48px;
+    color: $volumio-green-color;
     font-size: 40px;
     font-weight: normal;
   }
   .smallText {
     height: 20px;
-    color: $volumio-green-color;
     font-size: 16px;
   }
   .footerText {
@@ -364,9 +376,30 @@ table {
   }
 }
 
+//Slider
+.slider.slider-vertical .slider-track {
+  width: 15px;
+  border-radius: 16px;
+}
+.slider-track {
+  border: solid 1px #555;
+  height: 30px;
+  background-image: linear-gradient(to top, #CCC 0%, #CCC 100%);
+}
+.slider-selection {
+  background-image: linear-gradient(to bottom, $volumio-green-color 0%, $volumio-green-color 100%)
+}
+.slider-handle {
+  background-image: linear-gradient(to bottom, #FFF 0%, #EEE 100%);
+  border: solid 1px #CCC;
+  margin-left: -4px !important;
+  width: 22px;
+  height: 22px;
+}
+
 //Button groups
 .btn-group {
-  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 0px 10px;
   button {
     font-size: 26px;

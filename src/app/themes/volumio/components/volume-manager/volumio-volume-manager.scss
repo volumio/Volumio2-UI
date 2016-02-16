@@ -1,4 +1,27 @@
-#volumeManager {
+.volumeManager {
   margin-top: 110px;
+  position: relative;
   // border: solid 1px red;
+  @include breakpoint(xs) {
+    margin-top: 0px;
+    height: $footerHeight;
+    @include make-xs-column(4);
+    .volumeSliderWrapper {
+      position: absolute;
+      bottom: $footerHeight;
+      left: 0px;
+      width: 60px;
+      background-color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      .volumeSlider {
+        margin: 14px 0px;
+        transform: rotate(180deg);
+      }
+      .bigText {
+        color: $volumio-green-color;
+        font-size: 28px;
+        padding-top: 10px;
+      }
+    }
+  }
 }

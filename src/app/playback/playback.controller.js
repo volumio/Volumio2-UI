@@ -1,7 +1,8 @@
 class PlaybackController {
-  constructor(playerService) {
+  constructor(playerService, matchmediaService) {
     'ngInject';
     this.playerService = playerService;
+    this.matchmediaService = matchmediaService;
   }
 }
 

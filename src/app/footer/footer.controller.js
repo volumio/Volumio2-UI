@@ -1,6 +1,8 @@
 class FooterController {
-  constructor() {
+  constructor(themeManager, matchmediaService) {
     'ngInject';
+    this.themeManager = themeManager;
+    this.matchmediaService = matchmediaService;
   }
 }
 

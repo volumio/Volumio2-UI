@@ -1,7 +1,8 @@
 class HeaderController {
-  constructor(themeManager) {
+  constructor(themeManager, matchmediaService) {
     'ngInject';
     this.themeManager = themeManager;
+    this.matchmediaService = matchmediaService;
   }
 }
 

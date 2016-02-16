@@ -6,22 +6,11 @@ footer {
   width: 100%;
   height: $footerHeight;
   border: solid 0px green;
-  background-color: #EEE;
+  background-color: $volumio-accent-color;
+}
 
+#phoneFooter {
   button {
-    &.playbackBtn {
-      background-color: $volumio-accent-color;
-      &:focus {
-        background-color: $volumio-accent-color;
-      }
-    }
-    border-radius: 0px !important;
-    border: none !important;
-    height: $footerHeight;
-    @include make-xs-column(8, 0);
-    span {
-      margin-left: 10px;
-      @extend .hidden-xs;
-    }
+    font-size: 22px;
   }
 }

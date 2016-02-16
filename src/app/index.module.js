@@ -14,6 +14,7 @@ import MultiRoomService from './services/multi-room.service';
 import ToastMessageService from './services/toast-message.service';
 import UpdaterService from './services/updater.service';
 import ModalService from './services/modal.service';
+import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 
@@ -89,6 +90,7 @@ angular.module('volumio', [
   'frapontillo.bootstrap-switch',
   'ui.bootstrap',
   'ui.router',
+  'matchmedia-ng',
 
   //Angular core modules
   // 'ngAnimate',
@@ -114,7 +116,8 @@ angular.module('volumio', [
   .service('toastMessageService', ToastMessageService)
   .service('updaterService', UpdaterService)
   .service('modalService', ModalService)
-  .service('loggerService', LoggerService)
+  .service('modalService', ModalService)
+  .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
 
   .provider('themeManager', ThemeManagerProvider)
