@@ -13,14 +13,14 @@
   margin-top: 110px;
   // border: solid 10px red;
   @include breakpoint(xs) {
-    margin-top: 0px;
     position: absolute;
-    height: 440px;
-    margin-top: -220px;
+    height: 380px;
+    margin-top: -190px;
     top: 50%;
     bottom: 0;
     left: 0;
     right: 0;
+    overflow: hidden;
     // border: solid 1px yellow;
   }
   #trackDetails {
