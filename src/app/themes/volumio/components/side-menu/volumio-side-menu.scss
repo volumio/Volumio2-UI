@@ -1,9 +1,9 @@
 $sideMenuWidth: 220px;
 #sideMenu{
   position: relative;
+  opacity: 0.9;
   @include make-sm-column(6);
   @include make-xs-column(4);
-  opacity: 0.8;
   text-align: right;
   #openMenuBtn {
     color: #FFF;
@@ -14,7 +14,6 @@ $sideMenuWidth: 220px;
 
   #menuList {
     position: fixed;
-    z-index: 3;
     top: 0;
     bottom: 0;
     right: 0;

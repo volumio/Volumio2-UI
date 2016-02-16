@@ -2,7 +2,6 @@
   @include make-row();
   position: fixed;
   top: 0;
-  z-index: 2;
   width: 100%;
   height: $headerHeight;
   background-color: $volumio-light-color;
