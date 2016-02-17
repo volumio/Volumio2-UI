@@ -157,7 +157,7 @@ $progress-bar-bg: $volumio-green-color;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   #content {
-    // @include make-sm-column(24);
+    @include make-sm-column(24);
     // border: solid 15px black;
     position: absolute;
     top: 0;
