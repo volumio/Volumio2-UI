@@ -42,6 +42,7 @@ class PlaylistService {
       console.log('addToFavourites', item);
       this.socketService.emit('addToFavourites', {
         uri: item.uri,
+        title: item.title,
         service: (item.service || null)
       });
     }
