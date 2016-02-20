@@ -23,6 +23,8 @@ $volumio-accent-color: #393939;
 $volumio-text-color: #DDD;
 $volumio-dark-text-color: #AAA;
 $volumio-background-color: $volumio-dark-color;
+$volumio-dark-opaque: rgba(0,0,0,0.5);
+$volumio-roundplay-gradient: top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0.5) 100%; 
 
 $body-bg: $volumio-background-color;
 $brand-primary: #222;
