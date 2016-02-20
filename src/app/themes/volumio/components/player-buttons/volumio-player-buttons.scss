@@ -19,9 +19,7 @@
     border-radius: 100px;
     height: 80px;
     width: 80px;
-    background: -moz-linear-gradient($volumio-roundplay-gradient); 
-	background: -webkit-linear-gradient($volumio-roundplay-gradient); 
-	background: linear-gradient($volumio-roundplay-gradient); 
+	background: linear-gradient($volumio-playbtn-gradient); 
     top: -35px;
     @include breakpoint(xs) {
       background-color: $volumio-accent-color;
@@ -36,8 +34,8 @@
     right: 0;
     margin: auto;
     border: solid 3px $volumio-green-color;
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     border-radius: 100px;
     &.play i{
       padding-left: 4px;
