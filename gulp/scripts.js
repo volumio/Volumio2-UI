@@ -63,11 +63,11 @@ gulp.task('angularConfig', function () {
   };
 
   if (themeSelected === 'opera') {
-    constants.knobFgColor = '#952531';
-    constants.knobBgColor = '#444';
+    constants.knobFgColor = '#54C698';
+    constants.knobBgColor = 'rgba(0,0,0,0.2)';
   } else {
-    constants.knobFgColor = '#CCC';
-    constants.knobBgColor = '#000';
+    constants.knobFgColor = '#54C698';
+    constants.knobBgColor = 'rgba(0,0,0,0.2)';
   }
 
   var obj = {

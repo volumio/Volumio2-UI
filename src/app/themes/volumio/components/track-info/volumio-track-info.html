@@ -1,15 +1,15 @@
 <div id="trackInfo">
   <div id="trackDetails">
-    <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album">
-      {{trackInfo.playerService.state.album}}
-    </div>
-    <br/>
     <div id="trackInfo-title" ng-if="trackInfo.playerService.state.title">
       {{trackInfo.playerService.state.title}}
     </div>
     <br/>
     <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist">
       {{trackInfo.playerService.state.artist}}
+    </div>
+	<br/>
+	<div id="trackInfo-album" ng-if="trackInfo.playerService.state.album">
+      {{trackInfo.playerService.state.album}}
     </div>
   </div>
   <div ng-if="trackInfo.playerService.state.albumart">

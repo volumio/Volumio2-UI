@@ -25,14 +25,14 @@
               | {{trackManager.playerService.state.bitdepth}} bit
             </span>
           </div>
+		  <div
+            ng-if="trackManager.playerService.state.trackType"
+            class="trackTypeText">
+            {{trackManager.playerService.state.trackType}}
+		  </div>
         </div>
         <div class="bigText">{{trackManager.playerService.elapsedTimeString}}</div>
         <div class="smallText">{{trackManager.playerService.songLength}}</div>
-        <div
-            ng-if="trackManager.playerService.state.trackType"
-            class="footerText">
-          {{trackManager.playerService.state.trackType}}
-        </div>
       </div>
       <div class="knobOpacity">
         <knob

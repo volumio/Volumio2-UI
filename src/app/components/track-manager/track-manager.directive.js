@@ -79,12 +79,13 @@ class TrackManagerController {
         max: 1001,
         fgColor: knobFgColor,
         bgColor: knobBgColor,
-        width: 200,
-        height: 200,
+        width: 250,
+        height: 250,
         displayInput: false,
         step: 1,
         angleOffset: 0,
-        angleArc: 360
+        angleArc: 360,
+		thickness: 0.05
       };
 
       this.onChange = (value) => {

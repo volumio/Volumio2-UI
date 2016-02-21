@@ -19,7 +19,7 @@
     border-radius: 100px;
     height: 80px;
     width: 80px;
-    background-color: $volumio-light-color;
+	background: $volumio-playbtn-gradient; 
     top: -35px;
     @include breakpoint(xs) {
       background-color: $volumio-accent-color;
@@ -33,11 +33,10 @@
     left: 0;
     right: 0;
     margin: auto;
-    border: solid 4px $volumio-green-color;
+    border: solid 3px $volumio-green-color;
     height: 55px;
     width: 55px;
     border-radius: 100px;
-    background-color: $volumio-light-color;
     &.play i{
       padding-left: 4px;
     }
