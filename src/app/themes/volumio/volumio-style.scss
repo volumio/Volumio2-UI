@@ -45,7 +45,7 @@ $volumio-text-color: #FFF;
 $volumio-dark-text-color: #AAA;
 $volumio-background-color: $volumio-dark-color;
 $volumio-black-trans-dark: rgba(0,0,0,0.6);
-$volumio-playbtn-gradient: top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.6) 72%, rgba(0,0,0,0.6) 100%; 
+$volumio-playbtn-gradient: linear-gradient(top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.6) 72%, rgba(0,0,0,0.6) 100%); 
 
 $body-bg: transparent;
 $brand-primary: #222;
@@ -171,10 +171,6 @@ $progress-bar-bg: $volumio-green-color;
 
 html { 
   background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
 #contentWrapper {

@@ -19,7 +19,7 @@
     border-radius: 100px;
     height: 80px;
     width: 80px;
-	background: linear-gradient($volumio-playbtn-gradient); 
+	background: $volumio-playbtn-gradient; 
     top: -35px;
     @include breakpoint(xs) {
       background-color: $volumio-accent-color;
