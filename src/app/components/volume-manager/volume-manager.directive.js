@@ -30,12 +30,13 @@ class VolumeManagerController {
         max: 100,
         fgColor: knobFgColor,
         bgColor: knobBgColor,
-        width: 200,
-        height: 200,
+        width: 250,
+        height: 250,
         displayInput: false,
         step: 1,
         angleOffset: -160,
-        angleArc: 320
+        angleArc: 320,
+		thickness: 0.05
       };
     }
 

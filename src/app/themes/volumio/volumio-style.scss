@@ -3,18 +3,39 @@ $footerHeight: 50px;
 $fonts-path: "/app/themes/volumio/assets/fonts";
 
 @font-face {
-    font-family: 'LatoWeb';
-    src: url('#{$fonts-path}/Lato-Regular.eot'); /* IE9 Compat Modes */
-    src: url('#{$fonts-path}/Lato-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('#{$fonts-path}/Lato-Regular.woff2') format('woff2'), /* Modern Browsers */
-         url('#{$fonts-path}/Lato-Regular.woff') format('woff'), /* Modern Browsers */
+    font-family: 'Lato';
+    src: url('#{$fonts-path}/Lato-Regular.eot');
+    src: url('#{$fonts-path}/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+         url('#{$fonts-path}/Lato-Regular.woff') format('woff'),
          url('#{$fonts-path}/Lato-Regular.ttf') format('truetype');
+    font-weight: 400;
     font-style: normal;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
 }
 
-$font-family-sans-serif: "LatoWeb";
+@font-face {
+    font-family: 'Lato';
+    src: url('#{$fonts-path}/Lato-Light.eot');
+    src: url('#{$fonts-path}/Lato-Light.eot?#iefix') format('embedded-opentype'),
+         url('#{$fonts-path}/Lato-Light.woff') format('woff'),
+         url('#{$fonts-path}/Lato-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+	text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('#{$fonts-path}/Lato-Bold.eot');
+    src: url('#{$fonts-path}/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+         url('#{$fonts-path}/Lato-Bold.woff') format('woff'),
+         url('#{$fonts-path}/Lato-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+	text-rendering: optimizeLegibility;
+}
+
+$font-family-sans-serif: "Lato";
 
 $volumio-green-color: #54C698;
 $volumio-light-color: #7a848e;
@@ -23,10 +44,10 @@ $volumio-accent-color: #393939;
 $volumio-text-color: #DDD;
 $volumio-dark-text-color: #AAA;
 $volumio-background-color: $volumio-dark-color;
-$volumio-black-trans-dark: rgba(0,0,0,0.75);
-$volumio-playbtn-gradient: top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.75) 72%, rgba(0,0,0,0.75) 100%; 
+$volumio-black-trans-dark: rgba(0,0,0,0.6);
+$volumio-playbtn-gradient: top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.6) 72%, rgba(0,0,0,0.6) 100%; 
 
-$body-bg: $volumio-background-color;
+$body-bg: transparent;
 $brand-primary: #222;
 $text-color: $volumio-text-color;
 $electric-blue: #069FD7;
@@ -147,6 +168,14 @@ $progress-bar-bg: $volumio-green-color;
 // Utility classes
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
+
+html { 
+  background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 #contentWrapper {
   @include make-row();
@@ -328,8 +357,8 @@ table {
 //Knob
 .knobWrapper {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   margin: 0px auto 15px auto;
 }
 
@@ -337,9 +366,9 @@ table {
   position: relative;
   z-index: 10;
 }
-.knobOpacity {
-  opacity: 0.6;
-}
+//.knobOpacity {
+//  opacity: 0.6;
+//}
 
 .knobInfosWrapper {
   position: absolute;
@@ -348,31 +377,33 @@ table {
   margin: auto;
   bottom: 0px;
   top: 0px;
-  width: 140px;
-  height: 140px;
-  background-color: #222;
+  width: 238px;
+  height: 238px;
+  background-color: $volumio-black-trans-dark;
   border-radius: 150px;
   pointer-events: none;
   z-index: 10;
   .headerText {
-    padding-top: 25px;
-    height: 35px;
-    font-size: 11px;
+    padding-top: 30px;
+    height: 45px;
+    font-size: 14px;
     &.green {
       color: $volumio-green-color;
     }
   }
   .bigText {
-    height: 48px;
-    color: $volumio-green-color;
-    font-size: 40px;
-    font-weight: normal;
+    height: 115px;
+	padding-top: 25px;
+    font-size: 80px;
+    font-weight: 300;
   }
   .smallText {
-    height: 20px;
-    font-size: 16px;
+    height: 30px;
+    font-size: 25px;
+	font-weight: 300;
+	color: $volumio-green-color;
   }
-  .footerText {
+  .trackTypeText {
     padding-top: 5px;
     font-size: 14px;
   }
