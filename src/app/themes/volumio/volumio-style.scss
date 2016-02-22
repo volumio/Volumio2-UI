@@ -18,11 +18,11 @@ $font-family-sans-serif: "LatoWeb";
 
 $volumio-green-color: #54C698;
 $volumio-light-color: #7a848e;
-$volumio-dark-color: #535d67;
+$volumio-dark-color: #3C3C3C;
 $volumio-accent-color: #393939;
 $volumio-text-color: #DDD;
 $volumio-dark-text-color: #AAA;
-$volumio-background-color: $volumio-dark-color;
+$volumio-background-color: #555;
 
 $body-bg: $volumio-background-color;
 $brand-primary: #222;
@@ -36,7 +36,7 @@ $link-hover-decoration: none;
 
 //Grid
 $grid-columns: 24;
-$grid-gutter-width:30px;
+$grid-gutter-width: 30px;
 
 //Buttons
 $btn-default-color: #FFF;
@@ -58,6 +58,8 @@ $btn-danger-border: darken(red, 15%);
 
 //Table
 $table-bg-hover: $volumio-light-color;
+$table-bg: $volumio-dark-color;
+$table-border-color: #7C7C7C;
 
 //Panels
 $panel-default-text: #FFF;
@@ -159,12 +161,13 @@ $progress-bar-bg: $volumio-green-color;
   #content {
     @include make-sm-column(24);
     // border: solid 15px black;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // margin: auto;
+    // overflow: auto;
     &.browse, &.queue {
       padding: 0px;
     }
@@ -222,6 +225,11 @@ table {
   font-size: 18px;
   margin: 0;
   tr {
+    background-color: #666;
+    // border-top: solid 6px;
+    // border-bottom: solid 6px;
+    // border-left: solid 10px;
+    // border-right: solid 10px;
     &.nohover{
       &:hover {
         background-color: transparent;
@@ -380,19 +388,20 @@ table {
 .slider.slider-vertical .slider-track {
   width: 15px;
   border-radius: 16px;
+  margin-left: -10px;
 }
 .slider-track {
   border: solid 1px #555;
   height: 30px;
-  background-image: linear-gradient(to top, #CCC 0%, #CCC 100%);
+  background-image: linear-gradient(to top, $volumio-green-color 0%, $volumio-green-color 100%);
 }
 .slider-selection {
-  background-image: linear-gradient(to bottom, $volumio-green-color 0%, $volumio-green-color 100%)
+  background-image: linear-gradient(to bottom, #CCC  0%, #CCC  100%)
 }
 .slider-handle {
   background-image: linear-gradient(to bottom, #FFF 0%, #EEE 100%);
   border: solid 1px #CCC;
-  margin-left: -4px !important;
+  margin-left: -5px !important;
   width: 22px;
   height: 22px;
 }

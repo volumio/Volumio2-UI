@@ -22,6 +22,10 @@
   td {
     text-transform: uppercase;
     padding-left: 10px;
+    height: 45px;
+    .info {
+      text-transform: none;
+    }
   }
 }
 
@@ -35,7 +39,7 @@
     }
     .artist-album {
       font-size: 13px;
-      color: $volumio-dark-text-color;
+      color: $volumio-green-color;
     }
     .image {
       img {

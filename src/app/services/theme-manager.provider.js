@@ -28,7 +28,6 @@ class ThemeManagerProvider {
     'ngInject';
     let setPageMetadata = function() {
       angular.element('body').attr('id', this.theme);
-      $rootScope.favicon = 'app/' + this.theme + '/assets/favicon.png';
       //console.log($rootScope.favicon);
       $rootScope.theme = this.theme;
       $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';

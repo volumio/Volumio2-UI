@@ -12,7 +12,9 @@ class BrowseController {
 
   fetchLibrary(item, back = false) {
     console.log(item);
-    this.browseService.fetchLibrary(item, back);
+    if (item.uri !== 'cd') {
+      this.browseService.fetchLibrary(item, back);
+    }
   }
 
   backHome() {
@@ -119,6 +121,12 @@ class BrowseController {
   showAddToPlaylist(item) {
     let ret = item.type === 'folder' || item.type === 'song';
     return ret;
+  }
+
+  //Browse services hamburger menu
+  browseServiceHamburgerClick(item) {
+    console.log('browseServiceHamburgerClick', item);
+    this.socketService.emit(item.emit, item.payload);
   }
 }
 

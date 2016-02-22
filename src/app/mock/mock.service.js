@@ -142,7 +142,48 @@ class MockService {
         {name: 'USB', uri: 'usb'},
         {name: 'NAS', uri: 'nas'},
         {name: 'Web Radio', uri: 'web-radio'},
-        {name: 'Spotify', uri: 'spotify'}
+        {name: 'Spotify', uri: 'spotify'},
+        {
+          name: 'CD Player',
+          pluginName: 'cd_controller',
+          pluginType: 'music_service',
+          uri: 'cd',
+          info: 'Pink Floyd - Wish you were Here',
+          menuItems: [
+            {
+              name: 'play',
+              socketCall: {
+                emit: 'callMethod',
+                payload: {
+                  endpoint: 'music_service/cd_controller',
+                  method: 'playCD',
+                  data: ''
+                }
+              }
+            },
+            {
+              name: 'rip',
+              socketCall: {
+                emit: 'callMethod',
+                payload: {
+                  endpoint: 'music_service/cd_controller',
+                  method: 'ripCD',
+                  data: ''
+                }
+              }
+            },
+            {
+              name: 'eject',
+              socketCall: {
+                emit: 'callMethod',
+                payload: {
+                  endpoint: 'music_service/cd_controller',
+                  method: 'ejectCD',
+                  data: ''
+                }
+              }
+            }
+          ]}
       ],
       getBrowseList: {
         pagination: {

@@ -3,9 +3,9 @@
   position: relative;
   // border: solid 1px red;
   @include breakpoint(xs) {
+    @include make-xs-column(4, 0);
     margin-top: 0px;
     height: $footerHeight;
-    @include make-xs-column(4);
     .volumeSliderWrapper {
       position: absolute;
       bottom: $footerHeight;
@@ -15,7 +15,7 @@
       text-align: center;
       .volumeSlider {
         margin: 14px 0px;
-        transform: rotate(180deg);
+        transform: rotate(0deg);
       }
       .bigText {
         color: $volumio-green-color;
