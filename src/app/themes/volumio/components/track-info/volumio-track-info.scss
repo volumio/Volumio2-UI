@@ -11,30 +11,35 @@
   img {
     width:100%;
     margin: 10px auto;
+    max-width: 400px;
+    max-height: 400px;
+    border: 10px solid rgba(0,0,0,0.5);
   };
 }
 
 #trackDetails {
   > div {
-    padding: 0px 8px;
+    padding: 2px 8px 0 8px;
     background-color: rgba(0, 0, 0, 0.6);
   }
 }
 
 #trackInfo-album {
   font-size: 18px;
+  font-weight: 300;
   display: inline-block;
 }
 
 #trackInfo-title {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
   display: inline-block;
   @include breakpoint(lg) {
     font-size: 28px;
   }
 }
 #trackInfo-artist {
-  font-size: 16px;
+  font-size: 20px;
+  color: $volumio-green-color;
   display: inline-block;
 }
