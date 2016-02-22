@@ -41,7 +41,7 @@ $volumio-green-color: #54C698;
 $volumio-light-color: #7a848e;
 $volumio-dark-color: #3C3C3C;
 $volumio-deep-dark-color: #090909;
-$volumio-accent-color: #393939;
+$volumio-accent-color: #333;
 $volumio-text-color: #FFF;
 $volumio-dark-text-color: #AAA;
 $volumio-background-color: #555;
@@ -52,6 +52,7 @@ $volumio-playbtn-gradient: linear-gradient(top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0
 $body-bg: transparent;
 $brand-primary: #222;
 $text-color: $volumio-text-color;
+$text-grey-color: #999;
 $electric-blue: #069FD7;
 
 $link-color: #FFF;
@@ -68,21 +69,21 @@ $btn-default-color: #FFF;
 $btn-default-bg: $volumio-light-color;
 
 $btn-info-color: $volumio-green-color;
-$btn-info-bg: $volumio-accent-color;
+$btn-info-bg: $volumio-grey-trans-dark;
 $btn-info-border: $volumio-green-color;
 
 //used for cancel buttons
 $btn-warning-color: $volumio-light-color;
-$btn-warning-bg: $volumio-accent-color;
+$btn-warning-bg: $volumio-grey-trans-dark;
 $btn-warning-border: $volumio-light-color;
 
 //used for delete buttons
 $btn-danger-color: darken(red, 15%);
-$btn-danger-bg: $volumio-accent-color;
+$btn-danger-bg: $volumio-grey-trans-dark;
 $btn-danger-border: darken(red, 15%);
 
 //Table
-$table-bg-hover: $volumio-light-color;
+$table-bg-hover: $volumio-accent-color;
 $table-bg: transparent;
 $table-border-color: #7C7C7C;
 
@@ -261,7 +262,7 @@ table {
     }
   }
   th {
-    color: $volumio-accent-color;
+    color: $text-grey-color;
     border: none !important;
   }
   td {
@@ -307,7 +308,7 @@ table {
   border: none;
   margin-top: 20px;
   .panel-body {
-    background-color: $volumio-light-color;
+    background-color: $volumio-grey-trans-dark;
   }
   .panel-heading {
     border-bottom: solid 1px $volumio-green-color;
@@ -361,8 +362,8 @@ table {
 //Knob
 .knobWrapper {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 210px;
+  height: 210px;
   margin: 0px auto 15px auto;
 }
 

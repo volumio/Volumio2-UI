@@ -16,7 +16,7 @@
       font-size:20px;
     }
     .artist {
-      color: $brand-primary;
+      color: $text-grey-color;
       font-size:16px;
     }
     .track {
@@ -24,7 +24,7 @@
     }
     .isSelf {
       border-color: $volumio-green-color;
-      background-color: $volumio-dark-color;
+      background-color: $volumio-black-trans-dark;
     }
     .child {
       cursor: default;
