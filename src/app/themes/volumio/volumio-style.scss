@@ -40,10 +40,12 @@ $font-family-sans-serif: "Lato";
 $volumio-green-color: #54C698;
 $volumio-light-color: #7a848e;
 $volumio-dark-color: #3C3C3C;
+$volumio-deep-dark-color: #090909;
 $volumio-accent-color: #393939;
 $volumio-text-color: #FFF;
 $volumio-dark-text-color: #AAA;
 $volumio-background-color: #555;
+$volumio-grey-trans-dark: rgba(20,20,20,0.6);
 $volumio-black-trans-dark: rgba(0,0,0,0.6);
 $volumio-playbtn-gradient: linear-gradient(top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.6) 72%, rgba(0,0,0,0.6) 100%);
 
@@ -387,20 +389,18 @@ table {
   z-index: 10;
   .headerText {
     padding-top: 25px;
-    height: 35px;
     font-size: 11px;
     &.green {
       color: $volumio-green-color;
     }
   }
   .bigText {
-    height: 48px;
     color: $volumio-green-color;
+    padding-top: 10px;
     font-size: 40px;
-    font-weight: normal;
+    line-height: 45px;
   }
   .smallText {
-    height: 20px;
     font-size: 16px;
   }
   .footerText {

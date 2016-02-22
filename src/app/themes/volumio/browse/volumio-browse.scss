@@ -6,7 +6,7 @@
 }
 #navButtons {
   @include make-sm-column(3, 0);
-  @include make-xs-column(8, 0);
+  @include make-xs-column(10, 0);
   button {
     font-size: 22px;
   }
@@ -15,7 +15,7 @@
 #searchBox {
   @include make-sm-column(9, 0);
   @include make-sm-column-offset(12);
-  @include make-xs-column(16, 0);
+  @include make-xs-column(14, 0);
 }
 
 #browseTableSources {

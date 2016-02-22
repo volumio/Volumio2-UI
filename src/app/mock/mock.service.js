@@ -152,6 +152,7 @@ class MockService {
           menuItems: [
             {
               name: 'play',
+              icon: 'fa fa-folder-open-o',
               socketCall: {
                 emit: 'callMethod',
                 payload: {
@@ -163,6 +164,7 @@ class MockService {
             },
             {
               name: 'rip',
+              icon: 'fa fa-folder-open-o',
               socketCall: {
                 emit: 'callMethod',
                 payload: {
@@ -174,6 +176,7 @@ class MockService {
             },
             {
               name: 'eject',
+              icon: 'fa fa-folder-open-o',
               socketCall: {
                 emit: 'callMethod',
                 payload: {

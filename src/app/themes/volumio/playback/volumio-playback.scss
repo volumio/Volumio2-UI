@@ -4,13 +4,6 @@
   margin: auto;
   // border:solid 10px red;
   @include breakpoint(xs) {
-    // position: absolute;
-    // top: 0;
-    // bottom: 0;
-    // left: 0;
-    // right: 0;
-    // border:solid 10px red;
-    // height: 100vh;
     margin: 0px;
   }
   #leftPanel, #rightPanel {
@@ -18,13 +11,7 @@
     text-align: center;
     @include make-sm-column(8);
     @include breakpoint(xs) {
-      // border:solid 10px red;
       height: calc(100vh - 100px);
-      // position: absolute;
-      // top: $headerHeight;
-      // bottom: $footerHeight;
-      // left: 0;
-      // right: 0;
     }
   }
   #centerPanel {

@@ -17,7 +17,7 @@
           ng-class="{'last': ($index > 2 && browse.browseService.sources.length - $index < 3)}">
         <li ng-repeat="item in source.menuItems"
             ng-click="browse.browseServiceHamburgerClick(item.socketCall)">
-          <a href>{{::item.name}}</a>
+          <a href><i ng-if="::item.icon" ng-class="::item.icon"></i>{{::item.name}}</a>
         </li>
       </ul>
     </div>

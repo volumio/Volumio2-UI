@@ -1,5 +1,6 @@
 #playQueue {
   @include make-xs-column(24);
+  background-color: $volumio-black-trans-dark;
   user-select: none;
   cursor: pointer;
   .title {

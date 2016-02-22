@@ -7,6 +7,8 @@ class BrowseService {
     this.$window = $window;
     this.isBrowsing = false;
     this.$rootScope = $rootScope;
+
+    this.isPhone = false;
     //this._filters = mockService.get('getBrowseFilters');
     // this._sources = mockService.get('getBrowseSources');
     // console.log(this._sources);

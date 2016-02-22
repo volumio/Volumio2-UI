@@ -1,11 +1,14 @@
 #header {
   @include make-row();
   position: fixed;
-  z-index: 2;
+  z-index: 3;
+  @include breakpoint(xs) {
+    z-index: 2;
+  }
   top: 0;
   width: 100%;
   height: $headerHeight;
-  background-color: $volumio-black-trans-dark;
+  background-color: $volumio-deep-dark-color;
   button {
     font-size: 24px;
   }

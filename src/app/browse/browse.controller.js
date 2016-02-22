@@ -1,6 +1,6 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout) {
+      modalService, $timeout, matchmediaService) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
@@ -8,6 +8,7 @@ class BrowseController {
     this.socketService = socketService;
     this.modalService = modalService;
     this.$timeout = $timeout;
+    this.matchmediaService = matchmediaService;
   }
 
   fetchLibrary(item, back = false) {

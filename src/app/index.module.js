@@ -36,6 +36,7 @@ import PlayerLoggerDirective from './components/player-logger/player-logger.dire
 import PlaylistDirective from './components/playlist/playlist.directive';
 import BrowseScrollManagerDirective from './browse/components/browse-scroll-manager.directive';
 import BrowseHamburgerMenuDirective from './browse/components/browse-hamburger-menu.directive';
+import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.directive';
 
 import ModalController from './components/modals/modal.controller';
 
@@ -137,6 +138,7 @@ angular.module('volumio', [
   .directive('playlist', (themeManager) => new PlaylistDirective(themeManager))
   .directive('browseScrollManager', (browseService) => new BrowseScrollManagerDirective(browseService))
   .directive('browseHamburgerMenu', () => new BrowseHamburgerMenuDirective())
+  .directive('trackInfoBar', () => new TrackInfoBarDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())
