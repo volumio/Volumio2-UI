@@ -1,12 +1,12 @@
 #browse {
   .panel {
     margin-top: 0px;
-    background-color: transparent;
+    background-color: $volumio-black-trans-dark;
   }
 }
 #navButtons {
   @include make-sm-column(3, 0);
-  @include make-xs-column(8, 0);
+  @include make-xs-column(10, 0);
   button {
     font-size: 22px;
   }
@@ -15,13 +15,17 @@
 #searchBox {
   @include make-sm-column(9, 0);
   @include make-sm-column-offset(12);
-  @include make-xs-column(16, 0);
+  @include make-xs-column(14, 0);
 }
 
 #browseTableSources {
   td {
     text-transform: uppercase;
     padding-left: 10px;
+    height: 45px;
+    .info {
+      text-transform: none;
+    }
   }
 }
 
@@ -35,7 +39,7 @@
     }
     .artist-album {
       font-size: 13px;
-      color: $volumio-dark-text-color;
+      color: $volumio-green-color;
     }
     .image {
       img {

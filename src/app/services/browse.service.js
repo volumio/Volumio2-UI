@@ -7,8 +7,11 @@ class BrowseService {
     this.$window = $window;
     this.isBrowsing = false;
     this.$rootScope = $rootScope;
+
+    this.isPhone = false;
     //this._filters = mockService.get('getBrowseFilters');
-    //this._sources = mockService.get('getBrowseSources');
+    // this._sources = mockService.get('getBrowseSources');
+    // console.log(this._sources);
     //this._list = mockService.get('getBrowseList');
     this.limiter = 10;
     this.scrollPositions = new Map();

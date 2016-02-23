@@ -200,6 +200,18 @@ class PlayerService {
     this.$rootScope.pageTitle = pageTitle;
   }
 
+  updateFavicon() {
+    if (this.themeManager.theme === 'volumio') {
+      if (this.state.status === 'play') {
+        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon-play.png';
+      } else if (this.state.status === 'pause') {
+        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon-pause.png';
+      } else {
+        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon.png';
+      }
+    }
+  }
+
   registerListner() {
     this.socketService.on('pushState', (data) => {
       console.log('pushState', data);
@@ -220,6 +232,7 @@ class PlayerService {
         this.songLength += `:${sec}`;
       }
       this.updatePageTitle();
+      this.updateFavicon();
     });
     this.socketService.on('pushTrackInfo', (data) => {
       console.log('pushTrackInfo', data);

@@ -1,10 +1,14 @@
-$sideMenuWidth: 220px;
+$sideMenuWidth: 230px;
 #sideMenu{
   position: relative;
-  opacity: 0.9;
+  // border: solid 1px red;
+  height: $headerHeight;
   @include make-sm-column(6);
-  @include make-xs-column(4);
+  @include make-xs-column(4, 0);
   text-align: right;
+  @include breakpoint(xs) {
+    text-align: center;
+  }
   #openMenuBtn {
     color: #FFF;
     &:hover {
@@ -19,14 +23,13 @@ $sideMenuWidth: 220px;
     right: 0;
     width: $sideMenuWidth;
     padding: 20px 10px 0px 10px;
-    //background: linear-gradient(to bottom, #666 0%, #333 50%, rgba(10, 10, 10, 0.6) 100%);
-    background-color: rgba(80, 80, 80, 1);
+    background-color: rgba(30, 30, 30, 0.95);
     button {
       text-transform: uppercase;
       text-align: left;
       font-size: 18px;
       color: #FFF;
-      padding-top: 10px;
+      padding: 10px 0px 10px 5px;
       border-bottom: solid 1px #333;
       &:hover {
         color: $volumio-green-color;
@@ -51,7 +54,7 @@ $sideMenuWidth: 220px;
     #closeMenuBtn {
       position: absolute;
       top: 0px;
-      right: 0px;
+      right: 10px;
       width: auto;
       border-bottom: none;
       background-color: none;

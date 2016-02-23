@@ -64,10 +64,10 @@ gulp.task('angularConfig', function () {
 
   if (themeSelected === 'opera') {
     constants.knobFgColor = '#952531';
-    constants.knobBgColor = '#444';
+    constants.knobBgColor = 'rgba(50,50,50,0.8)';
   } else {
-    constants.knobFgColor = '#CCC';
-    constants.knobBgColor = '#000';
+    constants.knobFgColor = '#54C698';
+    constants.knobBgColor = 'rgba(0,0,0,0.2)';
   }
 
   var obj = {

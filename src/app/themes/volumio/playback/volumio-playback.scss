@@ -1,24 +1,17 @@
 #playbackPanelWrapper {
   @include make-row();
   margin-top: 10px;
-  // border:solid 10px red;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   margin: auto;
+  // border:solid 10px red;
+  @include breakpoint(xs) {
+    margin: 0px;
+  }
   #leftPanel, #rightPanel {
     // position: relative;
     text-align: center;
     @include make-sm-column(8);
     @include breakpoint(xs) {
-      position: absolute;
-      top: 0;
-      bottom: 0px;
-      left: 0;
-      right: 0;
-      // border:solid 10px blue;
+      height: calc(100vh - 100px);
     }
   }
   #centerPanel {

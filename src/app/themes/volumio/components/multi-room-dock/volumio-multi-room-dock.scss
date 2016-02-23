@@ -2,9 +2,10 @@
   @include make-sm-column(24);
   margin-top:20px;
   .device {
-    @include make-sm-column(6);
+    @include make-sm-column(8);
     >div {
       height:100px;
+      overflow: hidden;
       cursor: pointer;
       text-transform: uppercase;
       border: solid 1px $volumio-accent-color;
@@ -15,7 +16,7 @@
       font-size:20px;
     }
     .artist {
-      color: $brand-primary;
+      color: $text-grey-color;
       font-size:16px;
     }
     .track {
@@ -23,7 +24,7 @@
     }
     .isSelf {
       border-color: $volumio-green-color;
-      background-color: $volumio-dark-color;
+      background-color: $volumio-black-trans-dark;
     }
     .child {
       cursor: default;
@@ -36,16 +37,18 @@
     }
 
     .deviceIcon {
-      width: 20%;
+      width: 25%;
       text-align: center;
+      padding: 5px 0px 0px 6px;
       @extend .pull-left;
       img {
-        margin-top:20px;
+        max-width: 80px;
+        width: 100%;
         @extend .img-responsive;
       }
     }
     .deviceDetails {
-      width: 80%;
+      width: 75%;
       padding-left: 10px;
       @extend .pull-left;
     }

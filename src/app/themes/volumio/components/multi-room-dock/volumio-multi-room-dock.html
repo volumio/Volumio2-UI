@@ -11,7 +11,7 @@
           ng-click="multiRoomDock.changeDevice(device)">
         <div ng-class="{'child': device.isChild, 'isSelf': device.isSelf}">
           <div class="deviceIcon">
-            <img ng-src="{{assetsFolder + '/graphics/device-icon-' + (device.child.length || 1) + '.png'}}"/>
+            <img ng-src="{{device.state.albumart}}"/>
           </div>
           <div class="deviceDetails">
             <div class="deviceName">

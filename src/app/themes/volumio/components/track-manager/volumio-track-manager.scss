@@ -8,6 +8,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  // border: solid 10px red;
+  @include breakpoint(xs) {
+    left: -$grid-gutter-width;
+    right: -$grid-gutter-width;
+  }
 }
 #trackManager {
   margin-top: 110px;
