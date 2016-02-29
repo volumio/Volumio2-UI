@@ -47,6 +47,7 @@ import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
+import LayoutController from './layout/layout.controller';
 import FooterController from './footer/footer.controller';
 
 import DebugController from './debug/debug.controller';
@@ -92,6 +93,7 @@ angular.module('volumio', [
   'ui.bootstrap',
   'ui.router',
   'matchmedia-ng',
+  'hmTouchEvents',
 
   //Angular core modules
   // 'ngAnimate',
@@ -144,6 +146,7 @@ angular.module('volumio', [
   .directive('pluginVisible', () => new PluginVisibleDirective())
 
   .controller('HeaderController', HeaderController)
+  .controller('LayoutController', LayoutController)
   .controller('FooterController', FooterController)
 
   .controller('DebugController', DebugController)

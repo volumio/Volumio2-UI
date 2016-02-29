@@ -10,7 +10,9 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       abstract: true,
       views: {
         'layout': {
-          templateUrl: themeManagerProvider.getHtmlPath('layout', '')
+          templateUrl: themeManagerProvider.getHtmlPath('layout'),
+          controller: 'LayoutController',
+          controllerAs: 'layout'
         },
         'header@volumio': {
           templateUrl: themeManagerProvider.getHtmlPath('header'),
