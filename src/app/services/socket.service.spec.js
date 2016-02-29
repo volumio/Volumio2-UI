@@ -1,44 +1,70 @@
 describe('socketService', function() {
-  var socketService, mockWindow;
+  var socketService, mockWindow, mockRootScope;
 
   mockWindow = {
     socket: {
       on: function(eventName, cb) {
-        console.log('QUESTO E MOCK', eventName);
-        // if (cb) {
-        //   cb('payload');
-        // }
-      }
+        cb('payload ON');
+      },
+      emit: function(eventName, cb) {
+        cb('payload EMIT');
+      },
+      disconnect: angular.noop,
+      removeAllListeners: angular.noop
     }
   };
 
   beforeEach(angular.mock.module('volumio'));
 
-  beforeEach(module(function($provide) {
-    $provide.value('$window', mockWindow);
-  }));
+  beforeEach(
+    function() {
+      module(function($provide) {
+        $provide.value('$window', mockWindow);
+      });
+      inject(function(_$rootScope_) {
+        var $rootScope = _$rootScope_;
+        $rootScope.$apply = function(fn) {
+          fn();
+        };
+      });
+    }
+  );
 
   beforeEach(inject(function(_socketService_) {
-    // spyOn(webDevTec, 'getTec').and.returnValue([{}, {}, {}, {}, {}]);
-    // spyOn(toastr, 'info').and.callThrough();
     socketService = _socketService_;
+    socketService.changeHost = angular.noop;
   }));
 
   it('Should exist', function() {
     expect(socketService).toEqual(jasmine.anything());
   });
 
+  it('Should change host', function() {
+    expect(socketService.host).toEqual(null);
+    var newHost = 'http:192.168.0.1';
+    socketService.host = newHost;
+    expect(socketService.host).toEqual(newHost);
+  });
+
   it('Should trigger callback on socket -on-', function() {
     var cb = {
       fn: function(data) {
-        console.log(data, 'KKK');
+        console.log('socket on, payload ->', data);
       }
     };
     spyOn(cb, 'fn').and.callThrough();
-    //cb.fn('x');
-    // console.log(cb.fn());
-    socketService.on('test on message', cb.fn);
-    // console.log(socket);
-    expect(cb.fn).toHaveBeenCalled();
+    socketService.on('handlerEvent', cb.fn);
+    expect(cb.fn).toHaveBeenCalledWith('payload ON');
+  });
+
+  it('Should emit a socket event', function() {
+    var cb = {
+      fn: function(data) {
+        console.log('socket emit, payload ->', data);
+      }
+    };
+    spyOn(cb, 'fn').and.callThrough();
+    socketService.emit('event', cb.fn);
+    expect(cb.fn).toHaveBeenCalledWith('payload EMIT');
   });
 });

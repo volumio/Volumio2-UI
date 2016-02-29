@@ -22,7 +22,7 @@ class SocketService {
   }
 
   on(eventName, callback) {
-    //console.log('on', eventName);
+    // console.log('on', eventName);
     return this.$window.socket.on(eventName, (data) => {
       //console.log(arguments);
       //console.log(data);

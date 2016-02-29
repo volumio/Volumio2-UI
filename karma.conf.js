@@ -14,11 +14,12 @@ function listFiles() {
 
   return wiredep(wiredepOptions).js
     .concat([
+      path.join('node_modules/babel-polyfill/dist/polyfill.min.js'),
       path.join(conf.paths.tmp, '/serve/app/index.module.js'),
       // path.join(conf.paths.src, '/app/lib/utils/test-utils.js'),
       path.join(conf.paths.src, '/app/ngConstants.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
-      path.join(conf.paths.src, '/**/*.mock.js'),
+      // path.join(conf.paths.src, '/**/*.mock.js'),
       path.join(conf.paths.src, '/**/*.html')
     ]);
 }
