@@ -34,15 +34,12 @@
           {{trackManager.playerService.state.trackType}}
         </div>
       </div>
-      <div class="knobOpacity">
-        <knob
-          value="trackManager.playerService.seekPercent"
-          on-change="trackManager.onChange(value)"
-          options="trackManager.knobOptions"
-          type="track">
-        </knob>
-      </div>
-
+      <knob
+        value="trackManager.playerService.seekPercent"
+        on-change="trackManager.onChange(value)"
+        options="trackManager.knobOptions"
+        type="track">
+      </knob>
     </div>
     <div
         id="trackButtonBar"

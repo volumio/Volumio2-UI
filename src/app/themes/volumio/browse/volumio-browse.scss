@@ -16,6 +16,9 @@
   @include make-sm-column(9, 0);
   @include make-sm-column-offset(12);
   @include make-xs-column(14, 0);
+  input {
+    color: $volumio-text-color;
+  }
 }
 
 #browseTableSources {
@@ -46,6 +49,9 @@
         width: 45px;
         height: 45px;
       }
+    }
+    .breakMe{
+      word-break: break-all;
     }
     tr:first-of-type {
       td {
