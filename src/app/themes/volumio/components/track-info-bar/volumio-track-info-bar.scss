@@ -1,6 +1,7 @@
 .trackInfoBar {
   @include make-row();
   background-color: $volumio-grey-trans-dark;
+  height: 35px;
   margin-bottom: 15px;
   .leftInfo {
     @include make-xs-column(24);
@@ -8,7 +9,9 @@
     font-size: 14px;
     font-weight: 700;
     span {
-      font-weight: 300;
+      &.small {
+        font-weight: 300;
+      }
       &.green {
         font-weight: 700;
         color: $volumio-green-color;
