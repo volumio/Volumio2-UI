@@ -5,7 +5,7 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme) {
   $logProvider.debugEnabled(true);
 
   angular.extend(toastrConfig, {
-    timeOut: 20000
+    timeOut: 2000
   });
 }
 
