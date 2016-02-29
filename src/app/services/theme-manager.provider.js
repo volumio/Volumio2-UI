@@ -32,6 +32,7 @@ class ThemeManagerProvider {
       $rootScope.theme = this.theme;
       $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
       $rootScope.favicon = '/app/themes/' + this.theme + '/assets/favicon.png';
+      $rootScope.touchicons = '/app/themes/' + this.theme + '/assets/icons';
       if (this.theme === 'axiom') {
         this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';
       } else {
