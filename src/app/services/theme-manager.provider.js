@@ -1,7 +1,8 @@
 class ThemeManagerProvider {
   constructor() {
     'ngInject';
-    this._theme = null;
+    this._theme = undefined;
+    this._defaultPageTitle = undefined;
   }
 
   set theme(theme) {
@@ -23,25 +24,31 @@ class ThemeManagerProvider {
         this.theme + '-' + filename + '.html';
   }
 
-  $get($rootScope) {
+  $get($rootScope, $document) {
     'ngInject';
-    return {
-      getHtmlPath: this.getHtmlPath,
-      theme: this._theme,
-      setPageMetadata: () => {
-        angular.element('body').attr('id', this.theme);
-        document.title = this.theme;
-        $rootScope.favicon = 'app/' + this.theme + '/assets/favicon.png';
-        //console.log($rootScope.favicon);
-        $rootScope.theme = this.theme;
-        $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
-        //console.log(this.theme);
-        let link = document.createElement('link');
-        link.type = 'image/x-icon';
-        link.rel = 'shortcut icon';
-        link.href = 'app/themes/' + this.theme + '/assets/favicon.png';
-        document.getElementsByTagName('head')[0].appendChild(link);
+    let setPageMetadata = function() {
+      angular.element('body').attr('id', this.theme);
+      //console.log($rootScope.favicon);
+      $rootScope.theme = this.theme;
+      $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
+      $rootScope.favicon = '/app/themes/' + this.theme + '/assets/favicon.png';
+      if (this.theme === 'axiom') {
+        this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';
+      } else {
+        this.defaultPageTitle = `${this.theme.charAt(0).toUpperCase()}${this.theme.slice(1)} - Audiophile Music Player`;
       }
+      $rootScope.pageTitle = this.defaultPageTitle;
+    };
+
+    let getDefaultPageTitle = function() {
+      return this.defaultPageTitle;
+    };
+
+    return {
+      theme: this._theme,
+      getHtmlPath: this.getHtmlPath,
+      setPageMetadata: setPageMetadata,
+      getDefaultPageTitle: getDefaultPageTitle
     };
   }
 }

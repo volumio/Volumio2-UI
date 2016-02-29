@@ -36,7 +36,10 @@ class PlayQueueService {
   //add to queue for song
   add(item) {
     console.log('PlayQueueService addToQueue', item);
-    this.socketService.emit('addToQueue', {uri: item.uri});
+    this.socketService.emit('addToQueue', {
+      uri: item.uri,
+      service: (item.service || null)
+    });
   }
 
   //add to queue method for playlist
@@ -45,20 +48,18 @@ class PlayQueueService {
     this.socketService.emit('enqueue', {name: index.title});
   }
 
+  addPlayCue(item) {
+    console.log('addPlayCue', item);
+    this.socketService.emit('addPlayCue', {
+      uri: item.uri,
+      number: item.number,
+      service: (item.service || null)
+    });
+  }
+
   remove(index) {
     console.log('removeFromQueue', index);
     this.socketService.emit('removeFromQueue', {value: index});
-  }
-
-  clearAll() {
-  }
-
-  isFirst() {
-
-  }
-
-  isLast() {
-
   }
 
   get queue() {

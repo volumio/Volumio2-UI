@@ -8,9 +8,20 @@ tr {
       }
       text-align: center;
     }
+    &.commandCol {
+      max-width: 210px;
+      text-align: right;
+    }
+    &.wifiIcon {
+      width: 36px;
+      text-align: center;
+      img {
+        width: 20px;
+      }
+    }
+    &.lockIcon {
+      width: 30px;
+      text-align: center;
+    }
   }
-}
-.commandCol {
-  max-width: 210px;
-  text-align: right;
 }

@@ -1,7 +1,7 @@
 class ModalUpdaterController {
-  constructor($modalInstance, dataObj, updaterService, socketService) {
+  constructor($uibModalInstance, dataObj, updaterService, socketService) {
     'ngInject';
-    this.$modalInstance = $modalInstance;
+    this.$uibModalInstance = $uibModalInstance;
     this.updaterService = updaterService;
     this.socketService = socketService;
     this.dataObj = dataObj;
@@ -10,17 +10,17 @@ class ModalUpdaterController {
   update(val) {
     this.updaterService.update(val);
     if (val === 'later') {
-      this.$modalInstance.close();
+      this.$uibModalInstance.close();
     }
   }
 
   reboot() {
     this.socketService.emit('reboot');
-    this.$modalInstance.close();
+    this.$uibModalInstance.close();
   }
 
   cancel() {
-    this.$modalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss('cancel');
   }
 }
 

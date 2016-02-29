@@ -10,7 +10,9 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       abstract: true,
       views: {
         'layout': {
-          templateUrl: themeManagerProvider.getHtmlPath('layout', '')
+          templateUrl: themeManagerProvider.getHtmlPath('layout'),
+          controller: 'LayoutController',
+          controllerAs: 'layout'
         },
         'header@volumio': {
           templateUrl: themeManagerProvider.getHtmlPath('header'),
@@ -32,21 +34,17 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           socketService,
           toastMessageService,
           updaterService) => {
-            let localhostApiURL = 'http://' + $window.location.hostname + ':3000/api';
+            let localhostApiURL = `http://${$window.location.hostname }/api`;
             return $http.get(localhostApiURL + '/host').then((response) => {
-              //console.log(response);
+              console.info('IP from API', response);
               $rootScope.initConfig = response.data;
-              $window.socket = io(response.data.host + ':3000');
-              socketService.host  = response.data.host + ':3000';
-              toastMessageService.init();
-              updaterService.init();
+              socketService.host  = response.data.host;
             }, () => {
-              //console.log(reason);
               //Fallback socket
-              $window.socket = io('http://192.168.0.3');
-              socketService.host  = 'http://192.168.0.3';
-              toastMessageService.init();
-              updaterService.init();
+              console.info('IP from fallback');
+              return $http.get('/app/local-config.json').then((response) => {
+                socketService.host  = response.data.localhost;
+              });
             });
           }
       }
@@ -114,6 +112,17 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           templateUrl: 'app/plugin/plugin.html',
           controller: 'PluginController',
           controllerAs: 'plugin'
+        }
+      }
+    })
+
+    .state('volumio.static-page', {
+      url: 'static-page/:pageName',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/static-pages/static-page.html',
+          controller: 'StaticPageController',
+          controllerAs: 'staticPage'
         }
       }
     });

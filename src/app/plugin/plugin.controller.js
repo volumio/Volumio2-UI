@@ -1,10 +1,11 @@
 class PluginController {
-  constructor($rootScope, $stateParams, socketService, modalService, mockService) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
     this.modalService = modalService;
     this.mockService = mockService;
+    this.$scope = $scope;
     //this.pluginObj = this.mockService.get('getSettings');
     //console.log(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -79,6 +80,9 @@ class PluginController {
       // data.sections.unshift({coreSection: 'network-drives'});
       console.log('pushUiConfig', data);
       this.pluginObj = data;
+    });
+    this.$scope.$on('$destroy', () => {
+      this.socketService.off('pushUiConfig');
     });
   }
 

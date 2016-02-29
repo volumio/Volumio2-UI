@@ -14,20 +14,17 @@ class PlaylistService {
     });
   }
 
-  add(item, playlist) {
+  //Playlist
+  addToPlaylist(item, playlist) {
+    console.log('addToPlaylist', item, playlist);
     this.socketService.emit('addToPlaylist', {
       name: playlist,
       uri: item.uri,
       service: (item.service || null)
     });
-    //NOTE the BE should send a new pushListPlaylist after creating a new playlist
-    let tHandler = this.$timeout(() => {
-      this.initService();
-      this.$timeout.cancel(tHandler);
-    }, 3000);
   }
 
-  remove(item, playlist) {
+  removeFromPlaylist(item, playlist) {
     console.log('removeFromPlaylist', item, playlist);
     this.socketService.emit('removeFromPlaylist', {
       name: playlist,
@@ -35,10 +32,17 @@ class PlaylistService {
     });
   }
 
+  deletePlaylist(playlist) {
+    this.socketService.emit('deletePlaylist', {value: playlist});
+  }
+
+  //Favourites
   addToFavourites(item) {
     if (item && item.uri) {
+      console.log('addToFavourites', item);
       this.socketService.emit('addToFavourites', {
         uri: item.uri,
+        title: item.title,
         service: (item.service || null)
       });
     }
@@ -46,6 +50,7 @@ class PlaylistService {
 
   removeFromFavourites(item) {
     if (item && item.uri) {
+      console.log('removeFromFavourites', item);
       this.socketService.emit('removeFromFavourites', {
         uri: item.uri,
         service: (item.service || null)
@@ -53,14 +58,43 @@ class PlaylistService {
     }
   }
 
-  savePlaylist() {
+  //Web radio
+  addWebRadio(item) {
+    console.log('addWebRadio', item);
+    if (item && item.title && item.uri) {
+      this.socketService.emit('addWebRadio', {
+        name: item.title,
+        uri: item.uri
+      });
+    }
   }
 
-  deletePlaylist(playlist) {
-    this.socketService.emit('deletePlaylist', {value: playlist});
+  editWebRadio(item) {
+    console.log('editWebRadio', item);
+    this.addWebRadio(item);
   }
 
-  renamePlaylist() {
+  deleteWebRadio(item) {
+    console.log('removeWebRadio', item);
+    if (item && item.title) {
+      this.socketService.emit('removeWebRadio', {
+        name: item.title
+      });
+    }
+  }
+
+  addWebRadioToFavourites(item) {
+    console.log('addWebRadioToFavourites', item);
+    this.addToFavourites(item);
+  }
+  removeWebRadioFromFavourites(item) {
+    console.log('removeWebRadioFromFavourites', item);
+    this.removeFromFavourites(item);
+  }
+
+  //TODO: this should be not necessary, should pushed from BE
+  refreshPlaylists() {
+    this.socketService.emit('listPlaylist');
   }
 
   init() {

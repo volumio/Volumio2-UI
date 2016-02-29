@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row" ng-if="multiRoomDock.multiRoomService.devices.length > 1">
   <div id="multiRoomDockWrapper">
     <div class="panel panel-default">
     <div class="panel-heading">
@@ -8,10 +8,10 @@
     <div class="panel-body">
       <div ng-repeat="device in multiRoomDock.multiRoomService.devices"
           class="device"
-          ng-dblclick="multiRoomDock.changeDevice(device)">
+          ng-click="multiRoomDock.changeDevice(device)">
         <div ng-class="{'child': device.isChild, 'isSelf': device.isSelf}">
           <div class="deviceIcon">
-            <img ng-src="{{assetsFolder + '/graphics/device-icon-' + (device.child.length || 1) + '.png'}}"/>
+            <img ng-src="{{device.state.albumart}}"/>
           </div>
           <div class="deviceDetails">
             <div class="deviceName">

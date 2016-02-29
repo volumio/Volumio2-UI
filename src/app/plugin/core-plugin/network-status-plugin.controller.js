@@ -1,7 +1,8 @@
 class NetworkStatusPluginController {
-  constructor(socketService, mockService) {
+  constructor($scope, socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
+    this.$scope = $scope;
     //this.networkInfos = mockService.get('networkInfos');
     //console.log(this.networkInfos);
     this.init();
@@ -18,6 +19,9 @@ class NetworkStatusPluginController {
     this.socketService.on('pushInfoNetwork', (data) => {
       console.log('pushInfoNetwork', data);
       this.networkInfos = data;
+    });
+    this.$scope.$on('$destroy', () => {
+      this.socketService.off('pushInfoNetwork');
     });
   }
 

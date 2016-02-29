@@ -8,11 +8,12 @@ class SocketService {
   }
 
   changeHost(host) {
-    console.log('Change host');
-    this.host = host;
-    this.disconnectMe();
+    if (this.$window.socket) {
+      this.$window.socket.disconnect();
+      this.$window.socket.removeAllListeners();
+    }
     this.$window.socket = io(this.host);
-    console.info('connected to', this.host);
+    this.$window.socket.connect();
     this.$rootScope.$emit('socket:init');
   }
 
@@ -21,8 +22,10 @@ class SocketService {
   }
 
   on(eventName, callback) {
-    console.log('on', eventName);
-    this.$window.socket.on(eventName, (data) => {
+    //console.log('on', eventName);
+    return this.$window.socket.on(eventName, (data) => {
+      //console.log(arguments);
+      //console.log(data);
       this.$rootScope.$apply(function() {
         if (callback) {
           //console.log(data);
@@ -31,6 +34,11 @@ class SocketService {
         }
       });
     });
+  }
+
+  off(eventName, fn) {
+    // console.log('off', eventName);
+    this.$window.socket.off(eventName, fn);
   }
 
   emit(eventName, data, callback) {
@@ -68,15 +76,10 @@ class SocketService {
     });
   }
 
-  disconnectMe() {
-    this.$window.socket.disconnect();
-    this.$window.socket = undefined;
-    // delete this.$window.socket;
-  }
-
   set host(host) {
     this._host = host;
-    console.info('The socket host is:', this._host);
+    this.changeHost(host);
+    console.info('New host:', this._host);
   }
 
   get host() {

@@ -36,7 +36,7 @@ class ToastMessageService {
 
   registerListner() {
     this.socketService.on('pushToastMessage', (data) => {
-      //console.log(data);
+      // console.info('pushToastMessage', data);
       this.showMessage(data.type, data.message, data.title);
     });
   }

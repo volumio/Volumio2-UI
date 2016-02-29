@@ -1,44 +1,62 @@
-#toolbarRow{
-  @include make-row();
-  padding-top: 10px;
-
-  #browseSources {
-    @include make-sm-column(16);
-    @include make-xs-column(24);
+#browse {
+  .panel {
+    margin-top: 0px;
+    background-color: $volumio-black-trans-dark;
   }
-  #searchBox {
-    @include make-sm-column(8);
-    @include make-xs-column(24);
-    @include breakpoint(xs) {
-      padding-top: 10px;
+}
+#navButtons {
+  @include make-sm-column(3, 0);
+  @include make-xs-column(10, 0);
+  button {
+    font-size: 22px;
+  }
+}
+
+#searchBox {
+  @include make-sm-column(9, 0);
+  @include make-sm-column-offset(12);
+  @include make-xs-column(14, 0);
+  input {
+    color: $volumio-text-color;
+  }
+}
+
+#browseTableSources {
+  td {
+    text-transform: uppercase;
+    padding-left: 10px;
+    height: 45px;
+    .info {
+      text-transform: none;
     }
   }
 }
 
-.boxTable {
-  overflow-y: scroll;
-}
-
-#browseList {
-  //@include make-row();
-  user-select: none;
-  cursor: pointer;
-  .browseItemMenu{
-    position: relative;
-    .buttonsGroup{
-      position: absolute;
-      top: 34px;
-      right: 0;
-      left: auto;
-      z-index: 3;
-      &.last {
-        top: auto;
-        bottom: 38px;
+#browseTablesWrapper {
+  overflow-y: auto;
+  table {
+    user-select: none;
+    cursor: pointer;
+    .title {
+      font-size: 16px;
+    }
+    .artist-album {
+      font-size: 13px;
+      color: $volumio-green-color;
+    }
+    .image {
+      img {
+        width: 45px;
+        height: 45px;
+      }
+    }
+    .breakMe{
+      word-break: break-all;
+    }
+    tr:first-of-type {
+      td {
+        border-top: none;
       }
     }
   }
-}
-
-#browseTable {
-  @include make-sm-column(24);
 }

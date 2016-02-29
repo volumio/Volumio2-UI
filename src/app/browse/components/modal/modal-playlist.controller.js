@@ -1,35 +1,35 @@
-class ModalController {
-  constructor(socketService, $modalInstance, playlistService, dataObj) {
+class ModalPlaylistController {
+  constructor(socketService, $uibModalInstance, playlistService, dataObj) {
     'ngInject';
     this.socketService = socketService;
-    this.$modalInstance = $modalInstance;
+    this.$uibModalInstance = $uibModalInstance;
     this.playlistService = playlistService;
     this.dataObj = dataObj;
   }
 
   addToFavourites() {
     this.playlistService.addToFavourites(this.dataObj.item);
-    this.$modalInstance.close();
+    this.$uibModalInstance.close();
   }
 
   addToPlaylist(playlist) {
     this.doAddToPlaylist(playlist);
-    this.$modalInstance.close();
+    this.$uibModalInstance.close();
   }
 
   addToCustomPlaylist() {
     this.doAddToPlaylist(this.customPlaylist);
-    this.$modalInstance.close();
+    this.$uibModalInstance.close();
   }
 
   doAddToPlaylist(playlist) {
-    this.playlistService.add(this.dataObj.item, playlist);
-    this.$modalInstance.close();
+    this.playlistService.addToPlaylist(this.dataObj.item, playlist);
+    this.$uibModalInstance.close();
   }
 
   cancel() {
-    this.$modalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss('cancel');
   }
 }
 
-export default ModalController;
+export default ModalPlaylistController;

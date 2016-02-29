@@ -1,7 +1,27 @@
-#volumio {
-  #volumeManager {
-    border: solid 0px purple;
-    // background-color: #999;
-    padding: 10px;
+.volumeManager {
+  margin-top: 110px;
+  position: relative;
+  // border: solid 1px red;
+  @include breakpoint(xs) {
+    @include make-xs-column(4, 0);
+    margin-top: 0px;
+    height: $footerHeight;
+    .volumeSliderWrapper {
+      position: absolute;
+      bottom: $footerHeight;
+      left: 0px;
+      width: 60px;
+      background-color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      .volumeSlider {
+        margin: 14px 0px;
+        transform: rotate(0deg);
+      }
+      .bigText {
+        color: $volumio-green-color;
+        font-size: 28px;
+        padding-top: 10px;
+      }
+    }
   }
 }

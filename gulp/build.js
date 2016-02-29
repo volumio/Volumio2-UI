@@ -92,8 +92,20 @@ gulp.task('other', function () {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
+gulp.task('static-pages', function () {
+  var fileFilter = $.filter(function (file) {
+    return file.stat.isFile();
+  });
+
+  return gulp.src([
+    path.join(conf.paths.src, '/**/themes/**/static-pages/*')
+  ])
+    .pipe(fileFilter)
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+});
+
 gulp.task('clean', function (done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('build', ['html', 'fonts', 'other', 'static-pages']);

@@ -1,23 +1,11 @@
-  <button
-      ui-sref="volumio.browse"
-      class="btn btn-default"
-      ng-class="{selected: state.current.name === 'volumio.browse'}">
-    <i class="fa fa-server"></i>
-    <span>Browse</span>
-  </button>
+<ng-include
+    src="'app/themes/volumio/partials/tab-bar.html'"
+    ng-if="!footer.matchmediaService.isPhone">
+</ng-include>
+<div ng-if="footer.matchmediaService.isPhone" id="phoneFooter">
+  <volume-manager type="slider"></volume-manager>
 
-  <button
-      ui-sref="volumio.playback"
-      class="btn btn-default playbackBtn"
-      ng-class="{selected: state.current.name === 'volumio.playback'}">
-    <i class="fa fa-play"></i>
-    <span>Playback</span>
-  </button>
+  <player-buttons></player-buttons>
 
-  <button
-      ui-sref="volumio.play-queue"
-      class="btn btn-default"
-      ng-class="{selected: state.current.name === 'volumio.play-queue'}">
-    <i class="fa fa-list-ul"></i>
-    <span>Queue</span>
-  </button>
+  <side-menu></side-menu>
+</div>

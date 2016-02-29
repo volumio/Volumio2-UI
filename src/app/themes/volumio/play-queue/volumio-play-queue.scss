@@ -1,6 +1,16 @@
 #playQueue {
   @include make-xs-column(24);
-  margin-top: 10px;
+  background-color: $volumio-black-trans-dark;
   user-select: none;
   cursor: pointer;
+  .title {
+    font-size: 16px;
+  }
+  .artist-album {
+    font-size: 13px;
+    color: $volumio-green-color;
+  }
+  .deleteBtn {
+    text-align: right;
+  }
 }

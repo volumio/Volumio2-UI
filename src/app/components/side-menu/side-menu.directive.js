@@ -15,15 +15,16 @@ class PlayerButtonsDirective {
 
 class SideMenuController {
   constructor($scope, $rootScope, socketService, mockService,
-    $state, modalService, playerService, themeManager) {
+      $state, modalService, playerService, themeManager, $log, $http, $window) {
     'ngInject';
     this.$state = $state;
+    this.$window = $window;
     this.socketService = socketService;
     this.modalService = modalService;
     this.playerService = playerService;
     this.visible = false;
     this.theme = themeManager.theme;
-    //this.menuItems = mockService.get('getMenuItems');
+    // this.menuItems = mockService.get('getMenuItems');
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -32,30 +33,23 @@ class SideMenuController {
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
     });
+  }
 
-    $scope.$watch('sideMenu.analogInput', (newVal) => {
-      if (newVal !== undefined) {
-        if (newVal !== this.playerService.state.analog) {
-          this.socketService.emit('callMethod', {
-            endpoint: 'system_controller/gpios',
-            method:'DASwitchPress'
-          });
-          console.log('switch analogInput');
-        }
-      }
+  toggleAnalogInput() {
+    this.socketService.emit('callMethod', {
+      endpoint: 'system_controller/gpios',
+      method: 'DASwitchPress'
     });
   }
 
   toggleMenu() {
     this.visible = !this.visible;
-    if (this.analogInput !== undefined) {
-      this.analogInput = this.visible && this.playerService.state.analog || false;
-    }
+    this.analogIn = this.playerService.state.service === 'analogin';
   }
 
   itemClick(item) {
     this.toggleMenu();
-    //console.log(item);
+    console.log(item);
     if (item.id === 'modal') {
       let
         controllerName = item.params.modalName.split('-').map(
@@ -71,7 +65,9 @@ class SideMenuController {
         item,
         'lg');
     } else if (item.id === 'link') {
-      window.open(item.params.url);
+      this.$window.open(item.params.url);
+    } else if (item.id === 'static-page') {
+      this.$state.go('volumio.static-page', {pageName: item.pageName});
     } else if (item.params) {
       for (let param in item.params) {
         item.params[param] = String(item.params[param]).replace('/', '-');

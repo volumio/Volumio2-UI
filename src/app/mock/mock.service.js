@@ -142,7 +142,51 @@ class MockService {
         {name: 'USB', uri: 'usb'},
         {name: 'NAS', uri: 'nas'},
         {name: 'Web Radio', uri: 'web-radio'},
-        {name: 'Spotify', uri: 'spotify'}
+        {name: 'Spotify', uri: 'spotify'},
+        {
+          name: 'CD Player',
+          pluginName: 'cd_controller',
+          pluginType: 'music_service',
+          uri: 'cd',
+          info: 'Pink Floyd - Wish you were Here',
+          menuItems: [
+            {
+              name: 'play',
+              icon: 'fa fa-folder-open-o',
+              socketCall: {
+                emit: 'callMethod',
+                payload: {
+                  endpoint: 'music_service/cd_controller',
+                  method: 'playCD',
+                  data: ''
+                }
+              }
+            },
+            {
+              name: 'rip',
+              icon: 'fa fa-folder-open-o',
+              socketCall: {
+                emit: 'callMethod',
+                payload: {
+                  endpoint: 'music_service/cd_controller',
+                  method: 'ripCD',
+                  data: ''
+                }
+              }
+            },
+            {
+              name: 'eject',
+              icon: 'fa fa-folder-open-o',
+              socketCall: {
+                emit: 'callMethod',
+                payload: {
+                  endpoint: 'music_service/cd_controller',
+                  method: 'ejectCD',
+                  data: ''
+                }
+              }
+            }
+          ]}
       ],
       getBrowseList: {
         pagination: {
@@ -227,6 +271,7 @@ class MockService {
           }
         ]
       },
+      //Sidemenu
       getMenuItems: [
         {
           id: 'home',
@@ -257,6 +302,11 @@ class MockService {
           params: {
             modalName: 'modal-power-off'
           }
+        },
+        {
+          id: 'static-page',
+          name: 'Credits',
+          pageName: 'test-static-page'
         }
       ],
       multiRoomDevices: [

@@ -1,7 +1,8 @@
 class WifiPluginController {
-  constructor(socketService, mockService) {
+  constructor($scope, socketService, mockService) {
     'ngInject';
     this.socketService = socketService;
+    this.$scope = $scope;
     //this.wirelessNetworks = mockService.get('wirelessNetworks');
     this.init();
   }
@@ -42,6 +43,9 @@ class WifiPluginController {
     this.socketService.on('pushWirelessNetworks', (data) => {
       console.log('pushWirelessNetworks', data);
       this.wirelessNetworks = data;
+    });
+    this.$scope.$on('$destroy', () => {
+      this.socketService.off('pushWirelessNetworks');
     });
   }
 

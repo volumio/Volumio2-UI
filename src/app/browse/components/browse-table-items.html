@@ -1,0 +1,39 @@
+<tr ng-repeat="item in browse.browseService.list">
+  <td class="image"
+      ng-click="browse.clickListItem(item, $event)"
+      ng-dblclick="browse.dblClickListItem(item, $event)">
+    <img
+        ng-if="::item.albumart"
+        ng-src="{{browse.socketService.host + item.albumart}}"
+        alt="{{::item.title}}"/>
+    <i ng-if="::item.icon" ng-class="::item.icon"></i>
+  </td>
+  <td
+      ng-click="browse.clickListItem(item, $event)"
+      ng-dblclick="browse.dblClickListItem(item, $event)"
+      class="breakMe">
+    <div class="title">
+      {{::item.title}}
+    </div>
+    <div class="artist-album" ng-if="::item.artist || item.album">
+      {{::item.artist}}<span ng-if="::item.artist && item.album"> - {{::item.album}}</span>
+    </div>
+  </td>
+
+  <td class="commandButtons">
+    <div
+        ng-if="::browse.showHamburgerMenu(item)"
+        uib-dropdown
+        on-toggle="browse.toggledItem(open, $event)"
+        class="hamburgerMenu">
+      <button class="dropdownToggle btn-link" uib-dropdown-toggle>
+        <i class="fa fa-bars"></i>
+      </button>
+      <ul
+          class="dropdown-menu buttonsGroup"
+          ng-class="{'last': ($index > 2 && browse.browseService.listLength - $index < 3)}">
+        <browse-hamburger-menu item="item" browse="browse"></browse-hamburger-menu>
+      </ul>
+    </div>
+  </td>
+</tr>

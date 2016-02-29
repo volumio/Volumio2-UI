@@ -1,11 +1,20 @@
 class BrowseService {
-  constructor($rootScope, $log, socketService, mockService) {
+  constructor($rootScope, $log, socketService, mockService, $interval, $window) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
+    this.$interval = $interval;
+    this.$window = $window;
+    this.isBrowsing = false;
+    this.$rootScope = $rootScope;
+
+    this.isPhone = false;
     //this._filters = mockService.get('getBrowseFilters');
-    //this._sources = mockService.get('getBrowseSources');
+    // this._sources = mockService.get('getBrowseSources');
+    // console.log(this._sources);
     //this._list = mockService.get('getBrowseList');
+    this.limiter = 10;
+    this.scrollPositions = new Map();
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -16,11 +25,22 @@ class BrowseService {
     });
   }
 
-  fetchLibrary(item) {
+  fetchLibrary(item, back) {
     let obj = {uri: item.uri};
-    // console.log('fetchLibrary', item);
+    console.log('fetchLibrary', item);
     this.currentFetchRequest = item;
+    this.startPerf = performance.now();
     this.socketService.emit('browseLibrary', obj);
+    this.isBrowsing = true;
+    if (!back) {
+      this.scrollPositions.delete(item.uri);
+    }
+  }
+
+  backHome() {
+    this.isBrowsing = false;
+    this.list = [];
+    this.scrollPositions.clear();
   }
 
   get filters() {
@@ -68,19 +88,43 @@ class BrowseService {
     this.initService();
   }
 
+  //TODO remove requestAnimationFrame func
+  // incLimiter() {
+  //   if (this.limiter < this.listLength) {
+  //     this.limiter += 8;
+  //     this.$window.requestAnimationFrame(this.incLimiter.bind(this));
+  //   }
+  // }
+
   registerListner() {
     this.socketService.on('pushBrowseFilters', (data) => {
       console.log('pushBrowseFilters', data);
-    	this.filters = data;
+      this.filters = data;
     });
     this.socketService.on('pushBrowseSources', (data) => {
       console.log('pushBrowseSources', data);
-    	this.sources = data;
+      this.sources = data;
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
-      console.log('pushBrowseLibrary', data);
+      this.endPerf = performance.now();
+      console.log('pushBrowseLibrary', data, 'BE wait time: ', this.endPerf - this.startPerf);
       this.list = data.navigation.list;
+      this.listLength = this.list.length;
       this.breadcrumbs = data.navigation.prev;
+      this.$rootScope.$broadcast('browseService:fetchEnd');
+      //TODO remove this code, was intented to increment progressively the list limit
+      // this.$window.requestAnimationFrame(this.incLimiter.bind(this));
+      // this.limiter = 10;
+      // if (this.limiterHandler) {
+      //   this.$interval.cancel(this.limiterHandler);
+      // }
+      // this.limiterHandler = this.$interval(() => {
+      //   if (this.limiter < this.listLength) {
+      //     this.limiter += 2;
+      //   } else {
+      //     this.$interval.cancel(this.limiterHandler);
+      //   }
+      // }, 30);
     });
   }
 

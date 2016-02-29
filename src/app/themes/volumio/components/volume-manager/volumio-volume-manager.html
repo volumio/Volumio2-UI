@@ -1,25 +1,56 @@
-<div id="volumeManager">
-  <div>
+<div ng-if="!volumeManager.matchmediaService.isPhone" class="volumeManager">
+  <div class="knobWrapper">
+    <div class="knobInfosWrapper">
+      <div class="headerText green">
+        <span ng-if="volumeManager.playerService.state.mute">Muted</span>
+      </div>
+      <div class="bigText">{{volumeManager.playerService.state.volume}}</div>
+      <div class="smallText">/100</div>
+    </div>
     <knob
       value="volumeManager.volume"
-      options="volumeManager.knobOptions">
+      options="volumeManager.knobOptions"
+      type="volume">
     </knob>
   </div>
 
   <div id="volumeButtonBar" class="btn-group">
-    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-default">
+    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link">
       <i class="fa fa-volume-down"></i>
     </button>
     <button
         ng-click="volumeManager.playerService.toggleMute()"
-        class="btn btn-default"
+        class="btn btn-link"
         ng-class="{selected: volumeManager.playerService.state.mute}">
         <i class="fa fa-volume-off"></i>
       <span ng-if="volumeManager.playerService.state.mute"></span>
       <span ng-if="!volumeManager.playerService.state.mute"></span>
     </button>
-    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-default">
+    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link">
       <i class="fa fa-volume-up"></i>
     </button>
   </div>
+</div>
+
+<div ng-if="volumeManager.matchmediaService.isPhone" class="volumeManager">
+  <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
+    <div class="bigText">{{volumeManager.playerService.state.volume}}</div>
+    <div class="smallText">/100</div>
+    <slider
+        class="volumeSlider"
+        ng-model="volumeManager.volume"
+        min="0"
+        step="1"
+        max="100"
+        slider-tooltip="hide"
+        reversed="true"
+        orientation="vertical">
+    </slider>
+  </div>
+  <button
+      id="openVolumeVerticalSlider"
+      ng-click="volumeManager.showVerticalSlider = !volumeManager.showVerticalSlider"
+      class="btn btn-link">
+    <i class="fa fa-volume-up"></i>
+  </button>
 </div>

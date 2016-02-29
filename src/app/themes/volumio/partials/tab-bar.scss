@@ -1,0 +1,36 @@
+.tabBar {
+  button {
+    @include make-xs-column(8, 0);
+    font-size: 18px;
+    border-radius: 0px !important;
+    border: none !important;
+    height: $footerHeight;
+    img {
+      width:25px;
+      height:25px;
+      @include breakpoint(xs) {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &.browseBtn {
+      background-color: $volumio-black-trans-dark;
+    }
+    &.playbackBtn {
+      background-color: $volumio-light-color;
+      &:focus {
+        background-color: $volumio-black-trans-dark;
+      }
+    }
+    &.queueBtn {
+      background-color: $volumio-black-trans-dark;
+    }
+    @include breakpoint(xs) {
+      font-size: 26px;
+    }
+    span {
+      margin-left: 10px;
+      @extend .hidden-xs;
+    }
+  }
+}

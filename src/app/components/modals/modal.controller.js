@@ -1,16 +1,16 @@
 class ModalController {
-  constructor($modalInstance, dataObj) {
+  constructor($uibModalInstance, dataObj) {
     'ngInject';
-    this.$modalInstance = $modalInstance;
+    this.$uibModalInstance = $uibModalInstance;
     this.dataObj = dataObj;
   }
 
   ok() {
-    this.$modalInstance.close();
+    this.$uibModalInstance.close();
   }
 
   cancel() {
-    this.$modalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss('cancel');
   }
 }
 

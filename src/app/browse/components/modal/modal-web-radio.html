@@ -1,0 +1,43 @@
+<div id="modalWebRadio">
+  <div class="modal-header">
+    <h3 class="modal-title">{{modal.dataObj.title}}</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="web-radio-name" class="control-label">
+          Name
+        </label>
+        <div class="control-item">
+          <input type="text" 
+              id="web-radio-name"
+              class="form-control"
+              ng-model="modal.dataObj.item.title"
+              placeholder="name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="web-radio-url" class="control-label">
+          Url
+        </label>
+        <div class="control-item">
+          <input type="text"
+              id="web-radio-url"
+              class="form-control"
+              ng-model="modal.dataObj.item.uri"
+              placeholder="url">
+          <div>The URL can be either a stream URL or a M3U or PLS remote file</div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" ng-click="modal.cancel()">
+      Cancel
+    </button>
+    <button class="btn btn-success" ng-click="modal.addWebradio()">
+      <span ng-if="modal.addOrEdit === 'edit'">Save</span>
+      <span ng-if="modal.addOrEdit === 'add'">Add</span>
+    </button>
+  </div>
+</div>

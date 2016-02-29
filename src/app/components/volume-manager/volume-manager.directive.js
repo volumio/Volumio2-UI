@@ -17,22 +17,25 @@ class VolumeManagerDirective {
 }
 
 class VolumeManagerController {
-  constructor($scope, playerService, $timeout) {
+  constructor($rootScope, $scope, playerService, $timeout, knobFgColor, knobBgColor, matchmediaService) {
     'ngInject';
     this.timeoutHandler = null;
     this.playerService = playerService;
+    this.matchmediaService = matchmediaService;
+    this.showVerticalSlider = false;
+
     if (this.type === 'knob') {
       this.knobOptions = {
         min: 0,
         max: 100,
-        fgColor: '#4bbe87',
-        bgColor: '#283a4e',
-        width: 150,
-        height: 150,
+        fgColor: knobFgColor,
+        bgColor: knobBgColor,
+        width: 210,
+        height: 210,
         displayInput: false,
         step: 1,
-        angleOffset: -125,
-        angleArc: 250
+        angleOffset: -160,
+        angleArc: 320
       };
     }
 

@@ -57,15 +57,25 @@ gulp.task('scripts:watch', ['scripts'], function (callback) {
 
 gulp.task('angularConfig', function () {
   var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
+  var themeColor, constants;
+  constants = {
+    theme: themeSelected
+  };
+
+  if (themeSelected === 'opera') {
+    constants.knobFgColor = '#952531';
+    constants.knobBgColor = 'rgba(50,50,50,0.8)';
+  } else {
+    constants.knobFgColor = '#54C698';
+    constants.knobBgColor = 'rgba(0,0,0,0.2)';
+  }
+
   var obj = {
     name: 'volumio.constant',
-    constants: {theme: themeSelected},
+    constants: constants,
     stream: true
   };
-  if (gutil.env.theme === 'volumio') {
-    obj.constants.boxTableMaxHeightOffset = 130;
-  } else if (gutil.env.theme === 'axiom') {
-    obj.constants.boxTableMaxHeightOffset = 60;
-  }
+
+
   return $.ngConstant(obj).pipe(gulp.dest('src/app'));
 });

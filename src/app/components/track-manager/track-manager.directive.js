@@ -15,30 +15,33 @@ class TrackManagerDirective {
     };
     return directive;
 
-    function linkFunc(scope, el, attr, vm) {
+    function linkFunc(scope, el, attr, trackManagerController) {
       let
         mouseupListener = () => {
-          console.log('up', vm.playerService.seekPercent);
-          vm.playerService.seek = vm.playerService.seekPercent;
+          console.log('up', trackManagerController.playerService.seekPercent);
+          trackManagerController.playerService.seek = trackManagerController.playerService.seekPercent;
         },
         mousedownListener = () => {
           console.log('down');
-          vm.playerService.stopSeek();
+          trackManagerController.playerService.stopSeek();
         },
         trackManagerHandler;
-      if (vm.type === 'slider') {
+      if (trackManagerController.type === 'slider') {
         setTimeout(() => {
           trackManagerHandler = el.find('.slider-handle')[0];
-          trackManagerHandler.addEventListener('mousedown', mousedownListener, true);
-          trackManagerHandler.addEventListener('mouseup', mouseupListener, true);
+          if (trackManagerHandler) {
+            trackManagerHandler.addEventListener('mousedown', mousedownListener, true);
+            trackManagerHandler.addEventListener('mouseup', mouseupListener, true);
+          }
         });
-      } else if (vm.type === 'knob') {
-
-      }
+      } else if (trackManagerController.type === 'knob') {}
 
       scope.$on('$destroy', () => {
-        console.log('destroyed');
-        if (vm.type === 'slider') {
+        if (trackManagerController.matchMediaHandler) {
+          trackManagerController.matchMediaHandler();
+          console.log('destroyedMatchmedia');
+        }
+        if (trackManagerHandler && trackManagerController.type === 'slider') {
           trackManagerHandler.removeEventListener('mousedown', mousedownListener, true);
           trackManagerHandler.removeEventListener('mouseup', mouseupListener, true);
         }
@@ -48,22 +51,40 @@ class TrackManagerDirective {
 }
 
 class TrackManagerController {
-  constructor($element, playerService, playlistService, $timeout) {
+  constructor(
+      $element,
+      playerService,
+      playlistService,
+      $timeout,
+      modalService,
+      matchmedia,
+      socketService,
+      $scope,
+      knobFgColor,
+      knobBgColor,
+      matchmediaService) {
     'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
+    this.modalService = modalService;
+    this.socketService = socketService;
+    this.matchmediaService = matchmediaService;
+    this.$scope = $scope;
+    this.initWatchers();
+    // this.initMatchmedia();
+
     if (this.type === 'knob') {
       this.knobOptions = {
         min: 0,
         max: 1001,
-        fgColor: '#4bbe87',
-        bgColor: '#283a4e',
-        width: 150,
-        height: 150,
+        fgColor: knobFgColor,
+        bgColor: knobBgColor,
+        width: 210,
+        height: 210,
         displayInput: false,
         step: 1,
-        angleOffset: -125,
-        angleArc: 250
+        angleOffset: 0,
+        angleArc: 360
       };
 
       this.onChange = (value) => {
@@ -78,13 +99,74 @@ class TrackManagerController {
   }
 
   toggleFavouriteTrack() {
-    console.log('toggleFavouriteTrack', this.playerService.state);
-    if (true) {
-      this.playlistService.addToFavourites(this.playerService.state);
-    } else {
+    if (this.playerService.favourite.favourite) {
+      console.log('Remove from favourite');
       this.playlistService.removeFromFavourites(this.playerService.state);
+    } else {
+      console.log('Add to favourite');
+      this.playlistService.addToFavourites(this.playerService.state);
     }
   }
+
+  addToPlaylist() {
+    let
+      templateUrl = 'app/browse/components/modal/modal-playlist.html',
+      controller = 'ModalPlaylistController',
+      params = {
+        title: 'Add to playlist',
+        item: this.playerService.state
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
+  }
+
+  initWatchers() {
+    this.$scope.$watch(() => {
+      return this.playerService.state && this.playerService.state.albumart;
+    }, (newVal) => {
+      if (this.matchmediaService.isPhone) {
+        let albumArtUrl = `url('${this.socketService.host}${newVal}')`;
+        this.backgroundAlbumArtStyle = {
+          'background-image': albumArtUrl
+        };
+      } else {
+        this.backgroundAlbumArtStyle = {};
+      }
+    });
+
+    this.$scope.$watch(() => this.matchmediaService.isPhone, (newVal) => {
+      if (this.matchmediaService.isPhone) {
+        let albumart = this.playerService.state && this.playerService.state.albumart;
+        if (albumart) {
+          let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
+          this.backgroundAlbumArtStyle = {
+            'background-image': albumArtUrl
+          };
+        }
+      } else {
+        this.backgroundAlbumArtStyle = {};
+      }
+    });
+  }
+
+  // initMatchmedia() {
+  //   this.matchMediaHandler = this.matchmedia.onPhone((mediaQueryList) => {
+  //     if (mediaQueryList.matches) {
+  //       let albumart = this.playerService.state && this.playerService.state.albumart;
+  //       if (albumart) {
+  //         let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
+  //         this.backgroundAlbumArtStyle = {
+  //           'background-image': albumArtUrl
+  //         };
+  //       }
+  //     } else {
+  //       this.backgroundAlbumArtStyle = {};
+  //     }
+  //   });
+  // }
 }
 
 

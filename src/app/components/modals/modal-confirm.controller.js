@@ -1,16 +1,16 @@
 class ModalConfirmController {
-  constructor($modalInstance, dataObj) {
+  constructor($uibModalInstance, dataObj) {
     'ngInject';
-    this.$modalInstance = $modalInstance;
+    this.$uibModalInstance = $uibModalInstance;
     this.dataObj = dataObj;
   }
 
   yes() {
-    this.$modalInstance.close('yes');
+    this.$uibModalInstance.close('yes');
   }
 
   no() {
-    this.$modalInstance.dismiss('no');
+    this.$uibModalInstance.dismiss('no');
   }
 }
 

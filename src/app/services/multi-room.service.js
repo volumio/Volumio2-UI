@@ -29,6 +29,48 @@ class MultiRoomService {
     return mappedDevices;
   }
 
+  addChild(from, to) {
+    let obj = {
+      ip: from.ip,
+      set: 'client'
+    };
+    console.log('setClient', obj);
+    this.socketService.emit('setMultiroom', obj);
+    obj = {
+      ip: to.ip,
+      set: 'server'
+    };
+    console.log('setServer', obj);
+    this.socketService.emit('setMultiroom', obj);
+  }
+
+  removeChildDevice(ip) {
+    let obj = {
+      ip: ip,
+      set: 'single'
+    };
+    console.log('removeChildDevice', obj);
+    this.socketService.emit('setMultiroom', obj);
+  }
+
+  changeGroupVolume(ip, volume) {
+    let obj = {
+      ip: ip,
+      groupvolume: volume
+    };
+    console.log('changeGroupVolume', obj);
+    this.socketService.emit('setMultiroom', obj);
+  }
+
+  changeChildVolume(ip, volume) {
+    let obj = {
+      ip: ip,
+      volume: volume
+    };
+    console.log('changeChildVolume', obj);
+    this.socketService.emit('setMultiroom', obj);
+  }
+
   init() {
     this.registerListner();
     this.initService();

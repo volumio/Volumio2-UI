@@ -14,6 +14,7 @@ import MultiRoomService from './services/multi-room.service';
 import ToastMessageService from './services/toast-message.service';
 import UpdaterService from './services/updater.service';
 import ModalService from './services/modal.service';
+import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 
@@ -33,6 +34,9 @@ import AirplayScrimDirective from './components/airplay-scrim/airplay-scrim.dire
 import WaitBackendScrimDirective from './components/wait-backend-scrim/wait-backend-scrim.directive';
 import PlayerLoggerDirective from './components/player-logger/player-logger.directive';
 import PlaylistDirective from './components/playlist/playlist.directive';
+import BrowseScrollManagerDirective from './browse/components/browse-scroll-manager.directive';
+import BrowseHamburgerMenuDirective from './browse/components/browse-hamburger-menu.directive';
+import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.directive';
 
 import ModalController from './components/modals/modal.controller';
 
@@ -43,10 +47,12 @@ import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
+import LayoutController from './layout/layout.controller';
 import FooterController from './footer/footer.controller';
 
 import DebugController from './debug/debug.controller';
 import PluginController from './plugin/plugin.controller';
+import StaticPageController from './static-pages/static-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
@@ -55,6 +61,7 @@ import PlayQueueController from './play-queue/play-queue.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
+import ModalWebRadioController from './browse/components/modal/modal-web-radio.controller';
 import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
 import ModalAlarmClockController from './components/side-menu/elements/modal-alarm-clock.controller';
@@ -85,10 +92,12 @@ angular.module('volumio', [
   'frapontillo.bootstrap-switch',
   'ui.bootstrap',
   'ui.router',
+  'matchmedia-ng',
+  'hmTouchEvents',
 
   //Angular core modules
-  'ngAnimate',
-  'ngCookies',
+  // 'ngAnimate',
+  // 'ngCookies',
   //'ngTouch',
   'ngSanitize'
   ])
@@ -110,7 +119,8 @@ angular.module('volumio', [
   .service('toastMessageService', ToastMessageService)
   .service('updaterService', UpdaterService)
   .service('modalService', ModalService)
-  .service('loggerService', LoggerService)
+  .service('modalService', ModalService)
+  .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
 
   .provider('themeManager', ThemeManagerProvider)
@@ -128,15 +138,20 @@ angular.module('volumio', [
   .directive('waitBackendScrim', () => new WaitBackendScrimDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('playlist', (themeManager) => new PlaylistDirective(themeManager))
+  .directive('browseScrollManager', (browseService) => new BrowseScrollManagerDirective(browseService))
+  .directive('browseHamburgerMenu', () => new BrowseHamburgerMenuDirective())
+  .directive('trackInfoBar', () => new TrackInfoBarDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())
 
   .controller('HeaderController', HeaderController)
+  .controller('LayoutController', LayoutController)
   .controller('FooterController', FooterController)
 
   .controller('DebugController', DebugController)
   .controller('PluginController', PluginController)
+  .controller('StaticPageController', StaticPageController)
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 
   .controller('BrowseController', BrowseController)
@@ -146,6 +161,7 @@ angular.module('volumio', [
 
   .controller('ModalController', ModalController)
   .controller('ModalPlaylistController', ModalPlaylistController)
+  .controller('ModalWebRadioController', ModalWebRadioController)
   .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalSleepController', ModalSleepController)
   .controller('ModalAlarmClockController', ModalAlarmClockController)

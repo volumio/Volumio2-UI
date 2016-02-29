@@ -31,10 +31,13 @@
           search-enabled="false"
           append-to-body="false"
           theme="bootstrap">
-        <ui-select-match placeholder="Choose playlist">
+        <ui-select-match
+            class="ui-select-match"
+            placeholder="Choose playlist">
           {{$select.selected}}
         </ui-select-match>
         <ui-select-choices
+            class="ui-select-choices"
             repeat="playlist in modal.playlistService.playlists track by $index">
           <div ng-bind-html="playlist"></div>
         </ui-select-choices>

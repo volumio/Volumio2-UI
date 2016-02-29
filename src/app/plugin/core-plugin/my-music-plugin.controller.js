@@ -3,11 +3,7 @@ class MyMusicPluginController {
     'ngInject';
     this.socketService = socketService;
     this.$interval = $interval;
-    $scope.$on('$destroy', () => {
-      if (this.intervalHandler) {
-        this.$interval.cancel(this.intervalHandler);
-      }
-    });
+    this.$scope = $scope;
     //this.myCollectionStats = mockService.get('myCollectionStats');
     this.init();
   }
@@ -25,6 +21,12 @@ class MyMusicPluginController {
     this.socketService.on('pushMyCollectionStats', (data) => {
       console.log('pushMyCollectionStats', data);
       this.myCollectionStats = data;
+    });
+    this.$scope.$on('$destroy', () => {
+      this.socketService.off('pushMyCollectionStats');
+      if (this.intervalHandler) {
+        this.$interval.cancel(this.intervalHandler);
+      }
     });
   }
 

@@ -19,9 +19,18 @@
   }
   .control-description {
     @include make-sm-column(10);
+    padding-top: 6px;
   }
   .control-buttons {
     @include make-sm-column-offset(8);
     @include make-sm-column(16);
   }
+}
+.title h2 {
+  background-color: $volumio-black-trans-dark;
+  padding: 6px 10px;
+  display: inline-block;
+  font-size: 35px;
+  font-weight: 300;
+  margin-bottom: 0px;
 }

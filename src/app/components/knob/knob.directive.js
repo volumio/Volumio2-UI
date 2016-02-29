@@ -11,8 +11,9 @@ class KnobDirective {
       bindToController: {
         value: '=',
         options: '=',
-        onChange: '&',
-        onRelease: '&'
+        type: '@',
+        onChange: '&?',
+        onRelease: '&?'
       }
     };
     return directive;
@@ -23,39 +24,42 @@ class KnobController {
   constructor($scope, $element, $timeout) {
     'ngInject';
     this.timeoutHandler = null;
+    this.$timeout = $timeout;
+    this.$element = $element;
     let knobOptions = {
       change: (value) => {
         $timeout.cancel(this.timeoutHandler);
         this.timeoutHandler = $timeout(() => {
-          //console.log('change', value);
           value = parseInt(value, 10);
           this.value = value;
           if (this.onChange) {
             this.onChange({value: value});
           }
-        }, 0);
+        }, 0, false);
       },
-      release: (value) => {
+      release: (value, e) => {
         $timeout.cancel(this.timeoutHandler2);
+        this.isChanging = true;
         this.timeoutHandler2 = $timeout(() => {
-          if (this.onRelease) {
+          if (this.type === 'volume') {
             value = parseInt(value, 10);
+            this.value = value;
+          }
+          if (this.onRelease) {
             this.onRelease({value: value});
           }
-        }, 0);
+          this.isChanging = false;
+        }, 300, false);
       }
     };
     angular.extend(knobOptions, this.options);
     $element.knob(knobOptions);
 
     // NOTE live update value
-    $scope.$watch(() => this.value,  (value) => {
-      if (value) {
-        $timeout.cancel(this.timeoutHandler2);
-        this.timeoutHandler2 = $timeout(() => {
-          //console.log('this.value', this.value);
-          $element.val(this.value).trigger('change');
-        }, 0);
+    $scope.$watch(() => this.value,  (newVal, oldVal) => {
+      if (newVal !== oldVal) {
+        $timeout.cancel(this.timeoutHandler3);
+        this.timeoutHandler3 = this.updateValue();
       }
     });
 
@@ -66,6 +70,19 @@ class KnobController {
         $element.trigger('configure', options);
       }
     }, true);
+  }
+
+  updateValue() {
+    return this.$timeout(() => {
+      let timeoutHandler;
+      //console.log('this.value', this.value);
+      if (!this.isChanging) {
+        this.$element.val(parseInt(this.value, 10)).trigger('change');
+      } else {
+        this.$timeout.cancel(timeoutHandler);
+        timeoutHandler = this.updateValue();
+      }
+    }, 800);
   }
 }
 

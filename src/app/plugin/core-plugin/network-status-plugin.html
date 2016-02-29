@@ -1,11 +1,10 @@
 <div id="networkStatus" ng-controller="NetworkStatusPluginController as networkStatus"
     class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Network status</h3>
+    <h3 class="panel-title"><i class="fa fa-tachometer"></i> Network status</h3>
   </div>
   <div class="panel-body">
     <h4 ng-if="false" class="sectionDescription"></h4>
-
     <table ng-repeat="network in networkStatus.networkInfos track by $index" class="table hidden-xs">
       <tr>
         <th>

@@ -3,9 +3,9 @@
       id="openMenuBtn"
       ng-click="sideMenu.toggleMenu()"
       class="btn btn-link">
-    <i class="fa fa-bars"></i>
+    <i class="fa fa-cog"></i>
   </button>
-  <div id="menuList" class="" role="group" ng-if="sideMenu.visible">
+  <div id="menuList" role="group" ng-if="sideMenu.visible">
     <button
         id="closeMenuBtn"
         ng-click="sideMenu.toggleMenu()"
@@ -19,7 +19,9 @@
           {{item.name}}
     </button>
     <div id="analogInput" ng-if="sideMenu.theme === 'axiom'">
-      <input type="checkbox" ng-model="sideMenu.analogInput"> ANALOG INPUT
+      <input type="checkbox"
+          ng-model="sideMenu.analogIn"
+          ng-click="sideMenu.toggleAnalogInput()"> ANALOG INPUT
     </div>
 
   </div>

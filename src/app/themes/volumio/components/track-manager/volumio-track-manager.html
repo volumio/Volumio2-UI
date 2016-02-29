@@ -1,29 +1,50 @@
-<div id="trackManager">
-  <div>
-    <knob
-      value="trackManager.playerService.seekPercent"
-      on-change="trackManager.onChange(value)"
-      options="trackManager.knobOptions">
-    </knob>
-  </div>
-  <div id="trackButtonBar" class="btn-group">
-    <button
-        ng-class="{'active': trackManager.playerService.state.favourite}"
-        ng-click="trackManager.toggleFavouriteTrack()"
-        class="btn btn-default">
-      <i class="fa fa-heart"></i>
-    </button>
-    <button
-        ng-class="{'active': trackManager.playerService.state.random}"
-        ng-click="trackManager.playerService.shuffle()"
-        class="btn btn-default">
-      <i class="fa fa-random"></i>
-    </button>
-    <button
-        ng-class="{'active': trackManager.playerService.state.repeat}"
-        ng-click="trackManager.playerService.repeatAlbum()"
-        class="btn btn-default">
-      <i class="fa fa-repeat"></i>
-    </button>
+<div id="trackManagerWrapper" ng-style="trackManager.backgroundAlbumArtStyle">
+  <div id="trackManager">
+    <div ng-if="trackManager.matchmediaService.isPhone" id="trackDetails">
+      <div id="trackInfo-album" ng-if="trackManager.playerService.state.album">
+        {{trackManager.playerService.state.album}}
+      </div>
+      <br>
+      <div id="trackInfo-title" ng-if="trackManager.playerService.state.title">
+        {{trackManager.playerService.state.title}}
+      </div>
+      <br>
+      <div id="trackInfo-artist" ng-if="trackManager.playerService.state.artist">
+        {{trackManager.playerService.state.artist}}
+      </div>
+    </div>
+    <div class="knobWrapper">
+      <div class="knobInfosWrapper">
+        <div class="headerText">
+          <div id="trackInfo-techInfos" ng-if="trackManager.playerService.state.samplerate ||
+              trackManager.playerService.state.bitdepth">
+            <span ng-if="trackManager.playerService.state.samplerate">
+              {{trackManager.playerService.state.samplerate}}
+            </span>
+            <span ng-if="trackManager.playerService.state.bitdepth">
+              | {{trackManager.playerService.state.bitdepth}} bit
+            </span>
+          </div>
+        </div>
+        <div class="bigText">{{trackManager.playerService.elapsedTimeString}}</div>
+        <div class="smallText">{{trackManager.playerService.songLength}}</div>
+        <div
+            ng-if="trackManager.playerService.state.trackType"
+            class="footerText">
+          {{trackManager.playerService.state.trackType}}
+        </div>
+      </div>
+      <knob
+        value="trackManager.playerService.seekPercent"
+        on-change="trackManager.onChange(value)"
+        options="trackManager.knobOptions"
+        type="track">
+      </knob>
+    </div>
+    <div
+        id="trackButtonBar"
+        class="btn-group"
+        ng-include src="'app/components/track-manager/elements/track-manager-button-bar.html'">
+    </div>
   </div>
 </div>

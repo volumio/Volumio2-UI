@@ -1,15 +1,59 @@
 $headerHeight: 50px;
-$footerHeight: 33px;
+$footerHeight: 50px;
+$fonts-path: "/app/themes/volumio/assets/fonts";
 
-$volumio-green-color: #4bbe87;
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Regular.eot');
+  src: url('#{$fonts-path}/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Regular.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Light.eot');
+  src: url('#{$fonts-path}/Lato-Light.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Light.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Bold.eot');
+  src: url('#{$fonts-path}/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Bold.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+$font-family-sans-serif: "Lato";
+
+$volumio-green-color: #54C698;
+$volumio-red-color: #DF4649;
 $volumio-light-color: #7a848e;
-$volumio-dark-color: #535d67;
-$volumio-accent-color: #283a4e;
-$volumio-background-color: $volumio-dark-color;
+$volumio-dark-color: #3C3C3C;
+$volumio-deep-dark-color: #090909;
+$volumio-accent-color: #333;
+$volumio-text-color: #FFF;
+$volumio-dark-text-color: #AAA;
+$volumio-background-color: #555;
+$volumio-grey-trans-dark: rgba(20,20,20,0.6);
+$volumio-black-trans-dark: rgba(0,0,0,0.6);
+$volumio-playbtn-gradient: linear-gradient(top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.6) 72%, rgba(0,0,0,0.6) 100%);
 
-$body-bg: $volumio-background-color;
+$body-bg: transparent;
 $brand-primary: #222;
-$text-color: #DDD;
+$text-color: $volumio-text-color;
+$text-grey-color: #999;
 $electric-blue: #069FD7;
 
 $link-color: #FFF;
@@ -19,35 +63,36 @@ $link-hover-decoration: none;
 
 //Grid
 $grid-columns: 24;
-$grid-gutter-width:30px;
+$grid-gutter-width: 30px;
 
 //Buttons
 $btn-default-color: #FFF;
 $btn-default-bg: $volumio-light-color;
 
-$btn-info-color: $volumio-green-color;
-$btn-info-bg: $volumio-accent-color;
+$btn-info-color: #FFF;
+$btn-info-bg: $volumio-green-color;
 $btn-info-border: $volumio-green-color;
 
 //used for cancel buttons
 $btn-warning-color: $volumio-light-color;
-$btn-warning-bg: $volumio-accent-color;
+$btn-warning-bg: $volumio-grey-trans-dark;
 $btn-warning-border: $volumio-light-color;
 
 //used for delete buttons
-$btn-danger-color: darken(red, 15%);
-$btn-danger-bg: $volumio-accent-color;
-$btn-danger-border: darken(red, 15%);
+$btn-danger-color: #FFF;
+$btn-danger-bg: $volumio-red-color;
+$btn-danger-border: $volumio-red-color;
 
 //Table
-$table-bg-hover: $volumio-light-color;
+$table-bg-hover: $volumio-accent-color;
+$table-bg: transparent;
+$table-border-color: #7C7C7C;
 
 //Panels
-$panel-default-text: #FFF;
-$panel-bg: $volumio-light-color;
-$panel-default-heading-bg: $volumio-accent-color;
+$panel-bg: transparent;
+$panel-default-heading-bg: $volumio-black-trans-dark;
 $panel-default-border: $volumio-green-color;
-// $panel-border-radius: 0;
+$panel-border-radius: 0;
 
 //Inputs
 $input-bg: $volumio-accent-color;
@@ -56,8 +101,8 @@ $input-border: $volumio-green-color;
 $input-border-focus: $volumio-green-color;
 
 //Modals
-$modal-content-bg: $volumio-light-color;
-$modal-content-border-color: $volumio-dark-color;
+$modal-content-bg: #000;
+$modal-content-border-color: $volumio-black-trans-dark;
 $modal-header-border-color: $volumio-green-color;
 $modal-footer-border-color: $volumio-green-color;
 // $modal-inner-padding: 10px;
@@ -85,7 +130,7 @@ $progress-bar-bg: $volumio-green-color;
 // Reset and dependencies
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
-@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
+// @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
 
 // Core CSS
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding";
@@ -129,35 +174,8 @@ $progress-bar-bg: $volumio-green-color;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
 
-.btn {
-  outline: none !important;
-  &.selected {
-    background-color: $volumio-green-color !important;
-  }
-  &:focus {
-    color: $link-color;
-    &.btn-info {
-      color: $volumio-green-color;
-      border-color: $volumio-green-color;
-      background-color: $btn-info-bg;
-    }
-  }
-  &.btn-default {
-    &:focus {
-      background-color: $volumio-light-color;
-      border-color: $btn-default-border;
-    }
-    &:hover, &.active {
-      background-color: $volumio-green-color;
-    }
-  }
-}
-.btn-link {
-  border-radius: $btn-border-radius-base;
-  &.active {
-    background-color: $volumio-green-color;
-    color: #FFF;
-  }
+html {
+  background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
 }
 
 #contentWrapper {
@@ -167,10 +185,72 @@ $progress-bar-bg: $volumio-green-color;
   z-index: 1;
   top: $headerHeight;
   bottom: $footerHeight;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   #content {
     @include make-sm-column(24);
+    // border: solid 15px black;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // margin: auto;
+    // overflow: auto;
+    &.browse, &.queue {
+      padding: 0px;
+    }
+  }
+}
 
+#footer {
+  > button {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+.btn {
+  outline: none !important;
+  border-radius: 0;
+  font-size: 16px;
+  &.selected {
+    background-color: $volumio-green-color !important;
+  }
+  &:focus {
+    color: $link-color;
+    &.btn-info {
+      // color: $volumio-green-color;
+      border-color: $volumio-green-color;
+      background-color: $btn-info-bg;
+    }
+  }
+  &.btn-default {
+    // &:focus {
+    //   background-color: $volumio-light-color;
+    //   border-color: $btn-default-border;
+    // }
+    &:hover{
+      background-color: $volumio-green-color;
+    }
+    &.active {
+      background-color: transparent;
+    }
+    @include breakpoint(xs) {
+      &:hover{
+        background-color: transparent;
+      }
+    }
+  }
+}
+.btn-link {
+  border-radius: $btn-border-radius-base;
+  &.active {
+    color: $volumio-green-color;
+  }
+  i {
+    font-size: 20px;
   }
 }
 
@@ -188,26 +268,27 @@ table {
   font-size: 18px;
   margin: 0;
   tr {
-    th {
-      color: $volumio-accent-color;
-      border: none !important;
-    }
+    // background-color: rgba(50, 50, 50, 0.2);
     &.nohover{
       &:hover {
         background-color: transparent;
       }
     }
   }
+  th {
+    color: $text-grey-color;
+    border: none !important;
+  }
   td {
-    // vertical-align: middle;
+    vertical-align: middle !important;
+    padding: 5px 10px;
     &.image {
+      padding-left: 6px;
       font-size:30px;
       text-align: center;
-      width: 90px;
+      width: 45px;
       img {
-        margin-left: 10px;
-        margin-right: 10px;
-        @include square(70px);
+        @include square(45px);
       }
     }
     &.icon-cover {
@@ -220,12 +301,29 @@ table {
       padding-right:6px;
     }
   }
+  .hamburgerMenu{
+    position: relative;
+    .buttonsGroup{
+      position: absolute;
+      top: 34px;
+      right: 0;
+      left: auto;
+      z-index: 3;
+      &.last {
+        top: auto;
+        bottom: 38px;
+      }
+    }
+  }
 }
 
 //panels
 .panel {
   border: none;
   margin-top: 20px;
+  .panel-body {
+    background-color: $volumio-grey-trans-dark;
+  }
   .panel-heading {
     border-bottom: solid 1px $volumio-green-color;
     .panel-title {
@@ -233,6 +331,17 @@ table {
       font-size: 18px;
       text-transform: uppercase;
     }
+  }
+}
+
+//modals
+.modal-content {
+  background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
+  .modal-header, .modal-footer {
+    background-color: $volumio-black-trans-dark;
+  }
+  .modal-body {
+    background-color: $volumio-grey-trans-dark;
   }
 }
 
@@ -249,10 +358,14 @@ table {
   background-color: $volumio-accent-color;
   border-color: $volumio-green-color;
   color: $volumio-green-color;
-  border-radius: 3px;
+  border-radius: 0;
 }
-.ui-select-bootstrap .ui-select-choices-row.active>a {
+.ui-select-bootstrap .ui-select-choices-row.active > a {
   background-color: $volumio-light-color;
+  color: $volumio-text-color;
+}
+.ui-select-bootstrap .ui-select-choices-row > a {
+  color: $volumio-green-color;
 }
 .ui-select-bootstrap .btn.btn-default:hover {
   background-color: $volumio-accent-color;
@@ -261,16 +374,159 @@ table {
 //Switch override
 .bootstrap-switch {
   border-color: $volumio-green-color;
+  border-radius: 0;
 }
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
   .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
-  background-color: lighten($volumio-light-color, 10%);
+  background-color: $volumio-accent-color;
+  border-radius: 0;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-  background-color: $volumio-accent-color;
-  color: $volumio-green-color;
+  background-color: $volumio-green-color;
+  color: #FFF;
+  border-radius: 0;
+}
+.bootstrap-switch .bootstrap-switch-handle-off {
+  border-radius: 0;
 }
 .bootstrap-switch-label {
   background-color: red;
   color: $volumio-green-color;
+}
+
+//Form override
+.form-control {
+  border-radius: 0;
+}
+
+//List override
+li.list-group-item {
+  border-radius: 0;
+}
+
+
+//Knob
+.knobWrapper {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  margin: 0px auto 15px auto;
+}
+
+.knob {
+  position: relative;
+  z-index: 10;
+}
+
+.knobInfosWrapper {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  bottom: 0px;
+  top: 0px;
+  width: 170px;
+  height: 170px;
+  background-color: #222;
+  border-radius: 150px;
+  pointer-events: none;
+  z-index: 10;
+  .headerText {
+    padding-top: 25px;
+    font-size: 11px;
+    &.green {
+      color: $volumio-green-color;
+    }
+  }
+  .bigText {
+    color: $volumio-green-color;
+    padding-top: 25px;
+    font-size: 50px;
+    line-height: 45px;
+    font-weight: 300;
+  }
+  .smallText {
+    font-size: 16px;
+  }
+  .footerText {
+    padding-top: 5px;
+    font-size: 14px;
+  }
+}
+
+//Slider
+.slider.slider-vertical .slider-track {
+  width: 15px;
+  border-radius: 16px;
+  margin-left: -10px;
+}
+.slider-track {
+  border: solid 1px #555;
+  height: 30px;
+  background-image: linear-gradient(to top, $volumio-green-color 0%, $volumio-green-color 100%);
+}
+.slider-selection {
+  background-image: linear-gradient(to bottom, #CCC  0%, #CCC  100%)
+}
+.slider-handle {
+  background-image: linear-gradient(to bottom, #FFF 0%, #EEE 100%);
+  border: solid 1px #CCC;
+  margin-left: -5px !important;
+  width: 22px;
+  height: 22px;
+}
+
+//Button groups
+.btn-group {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0px 10px;
+  button {
+    font-size: 26px;
+    padding: 8px 20px 5px 20px
+  }
+}
+
+//Dropdown menu
+ul {
+  &.dropdown-menu {
+    width: 180px;
+    background-color: $volumio-accent-color;
+    border: solid 1px $volumio-green-color;
+    i {
+      width: 24px;
+      text-align: center;
+      padding-right: 4px;
+    }
+    a {
+      display: block;
+      color: #FFF;
+      padding: 4px 0px 4px 6px;
+      &:hover {
+        color: $volumio-green-color;
+      }
+    }
+  }
+}
+
+//Toast
+.toast-success {
+  background-color: rgba(84, 198, 152, 0.8);
+}
+
+//Scrollbars
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background: darken($volumio-dark-color, 6%);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: darken($volumio-accent-color, 0%);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }

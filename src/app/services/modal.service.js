@@ -27,8 +27,6 @@ class ModalService {
     // });
     return modalInstance.result;
   }
-
-
 }
 
 export default ModalService;

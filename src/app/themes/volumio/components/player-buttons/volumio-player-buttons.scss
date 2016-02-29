@@ -1,4 +1,47 @@
 #playerButtons {
-  // display: inline-block;
-  // margin: 0px auto;
+  @include make-sm-column(12);
+  @include make-xs-column(16);
+  // @include make-xs-column-offset(4);
+  @include make-sm-column-offset(0);
+  @include make-md-column-offset(0);
+  @include make-lg-column-offset(0);
+  height: $footerHeight;
+  text-align: center;
+
+  .playPauseBtnWrapper {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+  }
+  .playPauseBtnGreyWrapper {
+    // border: solid 1px red;
+    position: absolute;
+    margin: auto;
+    border-radius: 100px;
+    height: 80px;
+    width: 80px;
+    top: -35px;
+    background: $volumio-deep-dark-color;
+    @include breakpoint(xs) {
+      top: -50px;
+    }
+  }
+  .playPause {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: solid 3px $volumio-green-color;
+    height: 55px;
+    width: 55px;
+    border-radius: 100px;
+    &.play i{
+      padding-left: 4px;
+    }
+    @include breakpoint(xs) {
+      background: $volumio-black-trans-dark;
+    }
+  }
 }

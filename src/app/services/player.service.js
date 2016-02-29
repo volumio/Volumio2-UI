@@ -1,12 +1,17 @@
 class PlayerService {
-  constructor($rootScope, $log, $interval, socketService) {
+  constructor($rootScope, $log, $interval, socketService, themeManager) {
     'ngInject';
     this.$log = $log;
     this.$interval = $interval;
     this.socketService = socketService;
+    this.themeManager = themeManager;
+    this.$rootScope = $rootScope;
 
     this.state = null;
     this.trackInfo = null;
+    this.favourite = {
+      favourite: false
+    };
 
     this.seek = 0;
     this._thick = 1000;
@@ -101,7 +106,12 @@ class PlayerService {
   }
 
   toggleMute() {
-    this.socketService.emit('volume', 'mute');
+    console.log('toggle mute');
+    if (this.state.mute) {
+      this.socketService.emit('setVolume', {mute: false});
+    } else {
+      this.socketService.emit('setVolume', {mute: true});
+    }
   }
 
   calculateSeekPercent() {
@@ -131,16 +141,19 @@ class PlayerService {
 
   startSeek() {
     this.stopSeek();
-    this.elapsedTime = this.state.seek;
     this.intervalHandler = this.$interval(() => {
-      this.elapsedTime = (this.elapsedTime + this._thick);
-      this.seekPercent = this.calculateSeekPercent();
-      this.calculateElapsedTimeString();
-      if (this.seekPercent >= this._seekScale) {
-        this.stopSeek();
-        this.seekPercent = 0;
-      }
+      this.elapsedTime += this._thick;
+      this.updateSeek();
     }, this._thick);
+  }
+
+  updateSeek() {
+    this.seekPercent = this.calculateSeekPercent();
+    this.calculateElapsedTimeString();
+    if (this.seekPercent >= this._seekScale) {
+      this.stopSeek();
+      this.seekPercent = 0;
+    }
   }
 
   stopSeek() {
@@ -176,6 +189,32 @@ class PlayerService {
     this.initService();
   }
 
+  updatePageTitle() {
+    let pageTitle = '';
+    if (this.state.artist) {
+      pageTitle = this.state.artist;
+    }
+    if (this.state.title) {
+      pageTitle += (pageTitle) ? ` - ${this.state.title}` : this.state.title;
+    }
+    if (!this.state.artist && !this.state.title) {
+      pageTitle = this.themeManager.defaultPageTitle;
+    }
+    this.$rootScope.pageTitle = pageTitle;
+  }
+
+  updateFavicon() {
+    if (this.themeManager.theme === 'volumio') {
+      if (this.state.status === 'play') {
+        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon-play.png';
+      } else if (this.state.status === 'pause') {
+        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon-pause.png';
+      } else {
+        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon.png';
+      }
+    }
+  }
+
   registerListner() {
     this.socketService.on('pushState', (data) => {
       console.log('pushState', data);
@@ -183,12 +222,25 @@ class PlayerService {
       if (!this.state.mute && this.state.volume) {
         this.lastVolume = this.state.volume;
       }
+      this.elapsedTime = this.state.seek;
       if (this.state.status === 'play') {
         this.startSeek();
       } else if (this.state.status === 'stop') {
         this.stopSeek();
         this.elapsedTimeString = '0:00';
+        this.updateSeek();
+      } else if (this.state.status === 'pause') {
+        this.stopSeek();
+        this.updateSeek();
       }
+      if (this.state.duration) {
+        this.songLength = Math.floor(this.state.duration / 60);
+        let sec = this.state.duration % 60;
+        sec = String(sec).length === 1 ? `0${sec}` : sec;
+        this.songLength += `:${sec}`;
+      }
+      this.updatePageTitle();
+      this.updateFavicon();
     });
     this.socketService.on('pushTrackInfo', (data) => {
       console.log('pushTrackInfo', data);
@@ -197,6 +249,10 @@ class PlayerService {
     this.socketService.on('pushGetSeek', (data) => {
       console.log('pushGetSeek', data);
       this.seek = data;
+    });
+    this.socketService.on('urifavourites', (data) => {
+      console.log('urifavourites', data);
+      this.favourite = data;
     });
   }
 
