@@ -227,12 +227,20 @@ html {
     }
   }
   &.btn-default {
-    &:focus {
-      background-color: $volumio-light-color;
-      border-color: $btn-default-border;
-    }
-    &:hover, &.active {
+    // &:focus {
+    //   background-color: $volumio-light-color;
+    //   border-color: $btn-default-border;
+    // }
+    &:hover{
       background-color: $volumio-green-color;
+    }
+    &.active {
+      background-color: transparent;
+    }
+    @include breakpoint(xs) {
+      &:hover{
+        background-color: transparent;
+      }
     }
   }
 }
