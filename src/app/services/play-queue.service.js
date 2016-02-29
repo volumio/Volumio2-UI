@@ -36,7 +36,10 @@ class PlayQueueService {
   //add to queue for song
   add(item) {
     console.log('PlayQueueService addToQueue', item);
-    this.socketService.emit('addToQueue', {uri: item.uri});
+    this.socketService.emit('addToQueue', {
+      uri: item.uri,
+      service: (item.service || null)
+    });
   }
 
   //add to queue method for playlist
@@ -47,7 +50,11 @@ class PlayQueueService {
 
   addPlayCue(item) {
     console.log('addPlayCue', item);
-    this.socketService.emit('addPlayCue', {uri: item.uri, number: item.number});
+    this.socketService.emit('addPlayCue', {
+      uri: item.uri,
+      number: item.number,
+      service: (item.service || null)
+    });
   }
 
   remove(index) {
