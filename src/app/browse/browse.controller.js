@@ -26,6 +26,8 @@ class BrowseController {
   play(item) {
     if (this.browseService.currentFetchRequest && this.browseService.currentFetchRequest.uri === 'playlists') {
       this.playQueueService.playPlaylist(item);
+    } else if (item.type === 'cuesong') {
+      this.playQueueService.addPlayCue(item);
     } else {
       this.playQueueService.addPlay(item);
     }
@@ -110,7 +112,7 @@ class BrowseController {
   showPlayButton(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
-        item.type === 'playlist';
+        item.type === 'playlist' || item.type === 'cuesong';
     return ret;
   }
   showAddToQueueButton(item) {

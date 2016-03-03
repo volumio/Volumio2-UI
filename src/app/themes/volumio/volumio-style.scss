@@ -38,6 +38,7 @@ $fonts-path: "/app/themes/volumio/assets/fonts";
 $font-family-sans-serif: "Lato";
 
 $volumio-green-color: #54C698;
+$volumio-red-color: #DF4649;
 $volumio-light-color: #7a848e;
 $volumio-dark-color: #3C3C3C;
 $volumio-deep-dark-color: #090909;
@@ -68,8 +69,8 @@ $grid-gutter-width: 30px;
 $btn-default-color: #FFF;
 $btn-default-bg: $volumio-light-color;
 
-$btn-info-color: $volumio-green-color;
-$btn-info-bg: $volumio-grey-trans-dark;
+$btn-info-color: #FFF;
+$btn-info-bg: $volumio-green-color;
 $btn-info-border: $volumio-green-color;
 
 //used for cancel buttons
@@ -78,9 +79,9 @@ $btn-warning-bg: $volumio-grey-trans-dark;
 $btn-warning-border: $volumio-light-color;
 
 //used for delete buttons
-$btn-danger-color: darken(red, 15%);
-$btn-danger-bg: $volumio-grey-trans-dark;
-$btn-danger-border: darken(red, 15%);
+$btn-danger-color: #FFF;
+$btn-danger-bg: $volumio-red-color;
+$btn-danger-border: $volumio-red-color;
 
 //Table
 $table-bg-hover: $volumio-accent-color;
@@ -100,8 +101,8 @@ $input-border: $volumio-green-color;
 $input-border-focus: $volumio-green-color;
 
 //Modals
-$modal-content-bg: $volumio-light-color;
-$modal-content-border-color: $volumio-dark-color;
+$modal-content-bg: #000;
+$modal-content-border-color: $volumio-black-trans-dark;
 $modal-header-border-color: $volumio-green-color;
 $modal-footer-border-color: $volumio-green-color;
 // $modal-inner-padding: 10px;
@@ -212,24 +213,34 @@ html {
 
 .btn {
   outline: none !important;
+  border-radius: 0;
+  font-size: 16px;
   &.selected {
     background-color: $volumio-green-color !important;
   }
   &:focus {
     color: $link-color;
     &.btn-info {
-      color: $volumio-green-color;
+      // color: $volumio-green-color;
       border-color: $volumio-green-color;
       background-color: $btn-info-bg;
     }
   }
   &.btn-default {
-    &:focus {
-      background-color: $volumio-light-color;
-      border-color: $btn-default-border;
-    }
-    &:hover, &.active {
+    // &:focus {
+    //   background-color: $volumio-light-color;
+    //   border-color: $btn-default-border;
+    // }
+    &:hover{
       background-color: $volumio-green-color;
+    }
+    &.active {
+      background-color: transparent;
+    }
+    @include breakpoint(xs) {
+      &:hover{
+        background-color: transparent;
+      }
     }
   }
 }
@@ -320,6 +331,17 @@ table {
   }
 }
 
+//modals
+.modal-content {
+  background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
+  .modal-header, .modal-footer {
+    background-color: $volumio-black-trans-dark;
+  }
+  .modal-body {
+    background-color: $volumio-grey-trans-dark;
+  }
+}
+
 //progress
 .progress {
   height: 18px;
@@ -333,10 +355,14 @@ table {
   background-color: $volumio-accent-color;
   border-color: $volumio-green-color;
   color: $volumio-green-color;
-  border-radius: 3px;
+  border-radius: 0;
 }
-.ui-select-bootstrap .ui-select-choices-row.active>a {
+.ui-select-bootstrap .ui-select-choices-row.active > a {
   background-color: $volumio-light-color;
+  color: $volumio-text-color;
+}
+.ui-select-bootstrap .ui-select-choices-row > a {
+  color: $volumio-green-color;
 }
 .ui-select-bootstrap .btn.btn-default:hover {
   background-color: $volumio-accent-color;
@@ -345,19 +371,36 @@ table {
 //Switch override
 .bootstrap-switch {
   border-color: $volumio-green-color;
+  border-radius: 0;
 }
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
   .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
-  background-color: lighten($volumio-light-color, 10%);
+  background-color: $volumio-accent-color;
+  border-radius: 0;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-  background-color: $volumio-accent-color;
-  color: $volumio-green-color;
+  background-color: $volumio-green-color;
+  color: #FFF;
+  border-radius: 0;
+}
+.bootstrap-switch .bootstrap-switch-handle-off {
+  border-radius: 0;
 }
 .bootstrap-switch-label {
   background-color: red;
   color: $volumio-green-color;
 }
+
+//Form override
+.form-control {
+  border-radius: 0;
+}
+
+//List override
+li.list-group-item {
+  border-radius: 0;
+}
+
 
 //Knob
 .knobWrapper {
@@ -370,9 +413,6 @@ table {
 .knob {
   position: relative;
   z-index: 10;
-}
-.knobOpacity {
-  opacity: 0.6;
 }
 
 .knobInfosWrapper {
@@ -397,9 +437,10 @@ table {
   }
   .bigText {
     color: $volumio-green-color;
-    padding-top: 10px;
-    font-size: 40px;
+    padding-top: 25px;
+    font-size: 50px;
     line-height: 45px;
+    font-weight: 300;
   }
   .smallText {
     font-size: 16px;
@@ -438,7 +479,7 @@ table {
   padding: 0px 10px;
   button {
     font-size: 26px;
-    padding: 8px 20px
+    padding: 8px 20px 5px 20px
   }
 }
 
@@ -462,6 +503,11 @@ ul {
       }
     }
   }
+}
+
+//Toast
+.toast-success {
+  background-color: rgba(84, 198, 152, 0.8);
 }
 
 //Scrollbars

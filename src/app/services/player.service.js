@@ -141,16 +141,19 @@ class PlayerService {
 
   startSeek() {
     this.stopSeek();
-    this.elapsedTime = this.state.seek;
     this.intervalHandler = this.$interval(() => {
-      this.elapsedTime = (this.elapsedTime + this._thick);
-      this.seekPercent = this.calculateSeekPercent();
-      this.calculateElapsedTimeString();
-      if (this.seekPercent >= this._seekScale) {
-        this.stopSeek();
-        this.seekPercent = 0;
-      }
+      this.elapsedTime += this._thick;
+      this.updateSeek();
     }, this._thick);
+  }
+
+  updateSeek() {
+    this.seekPercent = this.calculateSeekPercent();
+    this.calculateElapsedTimeString();
+    if (this.seekPercent >= this._seekScale) {
+      this.stopSeek();
+      this.seekPercent = 0;
+    }
   }
 
   stopSeek() {
@@ -219,11 +222,16 @@ class PlayerService {
       if (!this.state.mute && this.state.volume) {
         this.lastVolume = this.state.volume;
       }
+      this.elapsedTime = this.state.seek;
       if (this.state.status === 'play') {
         this.startSeek();
       } else if (this.state.status === 'stop') {
         this.stopSeek();
         this.elapsedTimeString = '0:00';
+        this.updateSeek();
+      } else if (this.state.status === 'pause') {
+        this.stopSeek();
+        this.updateSeek();
       }
       if (this.state.duration) {
         this.songLength = Math.floor(this.state.duration / 60);

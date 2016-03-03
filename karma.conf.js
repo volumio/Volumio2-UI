@@ -14,9 +14,12 @@ function listFiles() {
 
   return wiredep(wiredepOptions).js
     .concat([
+      path.join('node_modules/babel-polyfill/dist/polyfill.min.js'),
       path.join(conf.paths.tmp, '/serve/app/index.module.js'),
+      // path.join(conf.paths.src, '/app/lib/utils/test-utils.js'),
+      path.join(conf.paths.src, '/app/ngConstants.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
-      path.join(conf.paths.src, '/**/*.mock.js'),
+      // path.join(conf.paths.src, '/**/*.mock.js'),
       path.join(conf.paths.src, '/**/*.html')
     ]);
 }
@@ -30,6 +33,8 @@ module.exports = function(config) {
 
     autoWatch: false,
 
+    logLevel: 'WARN',
+
     frameworks: ['jasmine'],
 
     ngHtml2JsPreprocessor: {
@@ -37,9 +42,9 @@ module.exports = function(config) {
       moduleName: 'volumio'
     },
 
-    browsers : ['PhantomJS'],
+    browsers: ['PhantomJS'],
 
-    plugins : [
+    plugins: [
       'karma-phantomjs-launcher',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'
@@ -54,7 +59,7 @@ module.exports = function(config) {
   // If you ever plan to use Chrome and Travis, you can keep it
   // If not, you can safely remove it
   // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
-  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
+  if (configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
     configuration.customLaunchers = {
       'chrome-travis-ci': {
         base: 'Chrome',

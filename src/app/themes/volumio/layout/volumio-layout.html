@@ -3,7 +3,10 @@
 <div class="container-fluid">
     <header id="header" ui-view="header"></header>
 
-    <div id="contentWrapper" ng-class="state.current.url">
+    <div id="contentWrapper" ng-class="state.current.url"
+        hm-swipeleft="layout.swipeLeft()"
+        hm-swiperight="layout.swipeRight()"
+        hm-recognizer-options='[{"directions":"DIRECTION_LEFT|DIRECTION_RIGHT", "threshold": 50}]'>
       <div id="content" ng-class="state.current.url" ui-view="content"></div>
     </div>
 
