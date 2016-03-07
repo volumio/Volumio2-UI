@@ -22,7 +22,7 @@ class RipperService {
       'ModalRipperController',
       `app/themes/${this.themeManager.theme}/components/modals/modal-ripper.html`,
       this.modalDataObj,
-      'sm');
+      'lg');
   }
 
   startToRipCd() {
@@ -48,7 +48,8 @@ class RipperService {
   registerListner() {
     this.socketService.on('cdRipStart', (data) => {
       console.log('cdRipStart', data);
-      this.cdRipStart(data);
+      this.modalDataObj = data;
+      this.cdRipStart(this.modalDataObj);
     });
   }
 
