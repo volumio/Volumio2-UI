@@ -32,6 +32,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           $http,
           $window,
           socketService,
+          ripperService,
           toastMessageService,
           updaterService) => {
             let localhostApiURL = `http://${$window.location.hostname }/api`;
