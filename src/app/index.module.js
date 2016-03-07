@@ -17,6 +17,7 @@ import ModalService from './services/modal.service';
 import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
+import RipperService from './services/ripper.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -68,6 +69,7 @@ import ModalAlarmClockController from './components/side-menu/elements/modal-ala
 import ModalUpdaterController from './components/modals/modal-updater.controller';
 import ModalGotitController from './components/modals/modal-gotit.controller';
 import ModalConfirmController from './components/modals/modal-confirm.controller';
+import ModalRipperController from './components/modals/modal-ripper.controller';
 
 
 //Core plugin controller
@@ -122,6 +124,8 @@ angular.module('volumio', [
   .service('modalService', ModalService)
   .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
+  .service('ripperService', RipperService)
+
 
   .provider('themeManager', ThemeManagerProvider)
 
@@ -168,6 +172,7 @@ angular.module('volumio', [
   .controller('ModalUpdaterController', ModalUpdaterController)
   .controller('ModalGotitController', ModalGotitController)
   .controller('ModalConfirmController', ModalConfirmController)
+  .controller('ModalRipperController', ModalRipperController)
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)

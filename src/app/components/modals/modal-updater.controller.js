@@ -8,6 +8,7 @@ class ModalUpdaterController {
   }
 
   update(val) {
+    console.log('start update');
     this.updaterService.update(val);
     if (val === 'later') {
       this.$uibModalInstance.close();
