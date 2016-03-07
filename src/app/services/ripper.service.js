@@ -1,17 +1,12 @@
 class RipperService {
-  constructor($rootScope, socketService, modalService, themeManager) {
+  constructor($rootScope, socketService, modalService, themeManager, mockService) {
     'ngInject';
     this.socketService = socketService;
     this.modalService = modalService;
     this.themeManager = themeManager;
     this.modalDataObj = {};
-    // this.modalDataObj = {
-    //   content: '<strong>Content</strong> of ripper',
-    //   title: 'Rip Cd',
-    //   artist: 'Noep',
-    //   album: 'Move'
-    // };
-    //
+
+    // this.modalDataObj = mockService.get('ripper');
     // this.cdRipStart(this.modalDataObj);
 
     $rootScope.$on('socket:init', () => {
@@ -37,6 +32,9 @@ class RipperService {
     }
     if (this.modalDataObj.album) {
       obj.album = this.modalDataObj.album;
+    }
+    if (this.modalDataObj.tracks) {
+      obj.tracks = this.modalDataObj.tracks;
     }
     console.log('emit ripCD', obj);
     this.socketService.emit('ripCD', obj);
