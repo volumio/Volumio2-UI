@@ -1,8 +1,9 @@
 class RipperService {
-  constructor($rootScope, socketService, modalService, $timeout) {
+  constructor($rootScope, socketService, modalService, themeManager) {
     'ngInject';
     this.socketService = socketService;
     this.modalService = modalService;
+    this.themeManager = themeManager;
     this.modalDataObj = {};
     // this.modalDataObj = {
     //   content: '<strong>Content</strong> of ripper',
@@ -10,7 +11,7 @@ class RipperService {
     //   artist: 'Noep',
     //   album: 'Move'
     // };
-
+    //
     // this.cdRipStart(this.modalDataObj);
 
     $rootScope.$on('socket:init', () => {
@@ -24,7 +25,7 @@ class RipperService {
   cdRipStart(modalData) {
     this.modalService.openModal(
       'ModalRipperController',
-      'app/components/modals/modal-ripper.html',
+      `app/themes/${this.themeManager.theme}/components/modals/modal-ripper.html`,
       this.modalDataObj,
       'sm');
   }
