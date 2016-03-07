@@ -28,7 +28,7 @@ class RipperService {
   startToRipCd() {
     let ripDataObj = angular.copy(this.modalDataObj);
     console.log('emit ripCD', ripDataObj);
-    this.socketService.emit('ripCD', ripDataObj);
+    this.socketService.emit('callMethod', {'endpoint':'music_service/cd_controller','method':'ripCD','data':ripDataObj});
   }
 
   init() {
