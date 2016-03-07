@@ -5,6 +5,8 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var gutil = require('gulp-util');
+var exec = require('child_process').exec;
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -108,4 +110,13 @@ gulp.task('clean', function (done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('build', ['html', 'fonts', 'other', 'static-pages']);
+gulp.task('credits', function (cb) {
+  var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
+  exec('node src/app/themes/' + themeSelected + '/scripts/credits.js ' + themeSelected, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+})
+
+gulp.task('build', ['credits','html', 'fonts', 'other', 'static-pages']);
