@@ -12,7 +12,7 @@
     <table class="table">
       <tr ng-if="wifiPlugin.wirelessNetworks.connectedTo">
         <td class="wifiIcon" ng-if="wifiPlugin.wirelessNetworks.connectedTo.signal">
-          <img ng-src="{{assetsFolder + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+          <img ng-src="{{assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
           <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock"></i>
@@ -34,7 +34,7 @@
           ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available
           track by wifi.ssid + $index">
         <td class="wifiIcon" ng-if="wifi.signal">
-          <img ng-src="{{assetsFolder + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+          <img ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
           <i ng-if="wifi.security !== 'open'" class="fa fa-lock"></i>
