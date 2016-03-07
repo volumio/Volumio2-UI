@@ -26,18 +26,9 @@ class RipperService {
   }
 
   startToRipCd() {
-    let obj = {};
-    if (this.modalDataObj.artist) {
-      obj.artist = this.modalDataObj.artist;
-    }
-    if (this.modalDataObj.album) {
-      obj.album = this.modalDataObj.album;
-    }
-    if (this.modalDataObj.tracks) {
-      obj.tracks = this.modalDataObj.tracks;
-    }
-    console.log('emit ripCD', obj);
-    this.socketService.emit('ripCD', obj);
+    let ripDataObj = angular.copy(this.modalDataObj);
+    console.log('emit ripCD', ripDataObj);
+    this.socketService.emit('ripCD', ripDataObj);
   }
 
   init() {
