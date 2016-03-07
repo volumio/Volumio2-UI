@@ -30,7 +30,8 @@ class ThemeManagerProvider {
       angular.element('body').attr('id', this.theme);
       //console.log($rootScope.favicon);
       $rootScope.theme = this.theme;
-      $rootScope.assetsFolder = 'app/themes/' + this.theme + '/assets';
+      $rootScope.assetsUrl = 'app/themes/' + this.theme + '/assets';
+      $rootScope.touchIconsUrl = `${$rootScope.assetsUrl}/touch-icons`;
       $rootScope.favicon = '/app/themes/' + this.theme + '/assets/favicon.png';
       if (this.theme === 'axiom') {
         this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';

@@ -13,6 +13,23 @@ class MockService {
 
   init() {
     this._mock = {
+      //Ripper
+      ripper: {
+        content: '<strong>Content</strong> of ripper',
+        title: 'Rip Cd',
+        artist: 'Noep',
+        album: 'Movee',
+        tracks: [
+          {
+            number: 1,
+            title: 'titolo traccia 1'
+          },
+          {
+            number: 2,
+            title: 'titolo traccia 2'
+          }
+        ]
+      },
       //Playlist component
       playlist: [
         {
