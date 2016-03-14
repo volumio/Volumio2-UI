@@ -448,7 +448,35 @@ li.list-group-item {
   .footerText {
     padding-top: 5px;
     font-size: 14px;
+    &.webRadio {
+      padding-top: 64px;
+      font-size: 24px;
+    }
   }
+}
+
+.fakePulsingKnob {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  bottom: 0px;
+  top: 0px;
+  width: 210px;
+  height: 210px;
+  background-color: $volumio-green-color;
+  border-radius: 150px;
+  pointer-events: none;
+  z-index: 9;
+  animation-name: pulse;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+    0%   {opacity: 0.8}
+    50% {opacity: 1}
+    100% {opacity: 0.8}
 }
 
 //Slider
