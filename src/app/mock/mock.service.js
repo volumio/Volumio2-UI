@@ -13,6 +13,30 @@ class MockService {
 
   init() {
     this._mock = {
+      //Custom modals
+      customModals: {
+        'title': 'titolo in alto della modale',
+        'message': 'contenuto html <p>paragraph</p>',
+        'size': 'lg',
+        'buttons': [
+          {
+            'name': 'Nome bottone',
+            'class': 'btn btn-primary',
+            'emit': 'emit',
+            'payload': 'payload emit'
+          },
+          {
+            'name': 'Nome bottone 2',
+            'class': 'btn btn-primary',
+            'emit': 'emit 2',
+            'payload': 'payload emit 2'
+          },
+          {
+            'name': 'Close',
+            'class': 'btn btn-warning'
+          }
+        ]
+      },
       //Ripper
       ripper: {
         content: '<strong>Content</strong> of ripper',
