@@ -109,7 +109,14 @@ class BrowseService {
       this.endPerf = performance.now();
       console.log('pushBrowseLibrary', data, 'BE wait time: ', this.endPerf - this.startPerf);
       this.list = data.navigation.list;
+      // this.list = [];
+      // for (let i = 0; i < 1000; i++) {
+      //   this.list[i] = angular.copy(data.navigation.list[0]);
+      //   this.list[i].diff = i;
+      // }
       this.listLength = this.list.length;
+      console.info('List len', this.listLength);
+
       this.breadcrumbs = data.navigation.prev;
       this.$rootScope.$broadcast('browseService:fetchEnd');
       //TODO remove this code, was intented to increment progressively the list limit

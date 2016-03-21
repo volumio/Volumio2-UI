@@ -1,6 +1,6 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService) {
+      modalService, $timeout, matchmediaService, $sce, $compile) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
@@ -9,6 +9,61 @@ class BrowseController {
     this.modalService = modalService;
     this.$timeout = $timeout;
     this.matchmediaService = matchmediaService;
+    this.$compile = $compile;
+    this.$scope = $scope;
+
+
+
+    $scope.$on('browseService:fetchEnd', () => {
+      // console.log('end', this.browseService.list);
+      this.startPerf = performance.now();
+      this.table = '';
+      for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
+        this.table += `
+        <tr>
+          <td class="image">
+            <i class="${this.browseService.list[i].icon}"></i>
+          </td>
+          <td
+              ng-click="browse.clickListItem(browse.browseService.list[${i}], $event)"
+              ng-dblclick="browse.dblClickListItem(browse.browseService.list[${i}], $event)"
+              class="breakMe">
+            <div class="title">
+              ${this.browseService.list[i].title}
+            </div>
+            <div class="artist-album">
+              ${this.browseService.list[i].artist} - ${this.browseService.list[i].album}
+            </div>
+          </td>
+          <td class="commandButtons">
+            <div
+                class="hamburgerMenu">
+              <button class="dropdownToggle btn-link" >
+                <i class="fa fa-bars"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        `;
+      }
+      // console.log(this.table);
+      // console.log(this.$scope);
+      console.info('List created',  performance.now() - this.startPerf);
+      this.table = this.$compile(this.table)(this.$scope);
+      console.info('List compi',  performance.now() - this.startPerf);
+      // console.dir(this.table);
+      // console.log(angular.element('#testTable'));
+      let tbody = document.createElement('tbody');
+      window.requestAnimationFrame(() => {
+        angular.element(tbody).append(this.table);
+        angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
+        console.info('List rendered',  performance.now() - this.startPerf);
+      });
+    });
+  }
+
+  hamburgerMenuClick(item, ev) {
+    console.log('hamburgerMenuClick', item);
   }
 
   fetchLibrary(item, back = false) {
