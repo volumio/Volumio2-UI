@@ -52,11 +52,10 @@ class BrowseScrollManagerDirective {
       this.browseTablesWrapper.style.height =
           footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
           browsePanelHeading.getBoundingClientRect().bottom + 'px';
-
       this.setScrollTop();
     }, 100);
 
-    scope.$on('browseService:fetchEnd', () => {
+    scope.$on('browseController:listRendered', () => {
       this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
       setTimeout(() => {
         this.setScrollTop();
