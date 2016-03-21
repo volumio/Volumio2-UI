@@ -114,6 +114,7 @@ class BrowseService {
       //   this.list[i] = angular.copy(data.navigation.list[0]);
       //   this.list[i].diff = i;
       // }
+      // console.log(this.list);
       this.listLength = this.list.length;
       console.info('List len', this.listLength);
 

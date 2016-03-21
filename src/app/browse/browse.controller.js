@@ -1,6 +1,6 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService, $sce, $compile) {
+      modalService, $timeout, matchmediaService, $compile, $document) {
     'ngInject';
     this.browseService = browseService;
     this.playQueueService = playQueueService;
@@ -10,6 +10,7 @@ class BrowseController {
     this.$timeout = $timeout;
     this.matchmediaService = matchmediaService;
     this.$compile = $compile;
+    this.$document = $document;
     this.$scope = $scope;
 
 
@@ -18,27 +19,30 @@ class BrowseController {
       // console.log('end', this.browseService.list);
       this.startPerf = performance.now();
       this.table = '';
+      let angularThis = `angular.element('#browseTableItems').scope().browse`;
       for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
+        let item = this.browseService.list[i];
         this.table += `
         <tr>
           <td class="image">
-            <i class="${this.browseService.list[i].icon}"></i>
+            <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
           </td>
           <td
-              ng-click="browse.clickListItem(browse.browseService.list[${i}], $event)"
-              ng-dblclick="browse.dblClickListItem(browse.browseService.list[${i}], $event)"
+              onclick="${angularThis}.clickListItemByIndex(${i})"
+              ondblclick="${angularThis}.dblClickListItemByIndex(${i})"
               class="breakMe">
             <div class="title">
-              ${this.browseService.list[i].title}
+              ${item.title}
             </div>
-            <div class="artist-album">
-              ${this.browseService.list[i].artist} - ${this.browseService.list[i].album}
+            <div class="artist-album
+                ${(item.artist || item.album) ? '' : 'hidden'}">
+              ${item.artist} - ${item.album}
             </div>
           </td>
           <td class="commandButtons">
-            <div
-                class="hamburgerMenu">
-              <button class="dropdownToggle btn-link" >
+            <div class="hamburgerMenu
+                ${(item.type === 'radio-favourites' || item.type === 'radio-category') ? 'hidden' : ''}">
+              <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})">
                 <i class="fa fa-bars"></i>
               </button>
             </div>
@@ -49,8 +53,8 @@ class BrowseController {
       // console.log(this.table);
       // console.log(this.$scope);
       console.info('List created',  performance.now() - this.startPerf);
-      this.table = this.$compile(this.table)(this.$scope);
-      console.info('List compi',  performance.now() - this.startPerf);
+      // this.table = this.$compile(this.table)(this.$scope);
+      console.info('List compiled',  performance.now() - this.startPerf);
       // console.dir(this.table);
       // console.log(angular.element('#testTable'));
       let tbody = document.createElement('tbody');
@@ -60,10 +64,6 @@ class BrowseController {
         console.info('List rendered',  performance.now() - this.startPerf);
       });
     });
-  }
-
-  hamburgerMenuClick(item, ev) {
-    console.log('hamburgerMenuClick', item);
   }
 
   fetchLibrary(item, back = false) {
@@ -101,12 +101,44 @@ class BrowseController {
       this.fetchLibrary(item);
     }
   }
+  clickListItemByIndex(index) {
+    let item = this.browseService.list[index];
+    this.clickListItem(item);
+  }
+
   dblClickListItem(item) {
     if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
       this.play(item);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     }
+  }
+  dblClickListItemByIndex(index) {
+    let item = this.browseService.list[index];
+    this.dblClickListItem(item);
+  }
+
+  hamburgerMenuClick(button, index) {
+    console.log('hamburgerMenuClick', button, index);
+    let hamburgerMenuMarkup = `
+      <div
+          uib-dropdown
+          on-toggle="browse.toggledItem(open, $event)"
+          class="hamburgerMenu">
+        <button id="hamburgerMenuBtn-${index}" class="dropdownToggle btn-link" uib-dropdown-toggle>
+          <i class="fa fa-bars"></i>
+        </button>
+        <ul class="dropdown-menu buttonsGroup">
+          <browse-hamburger-menu item="browse.browseService.list[${index}]" browse="browse"></browse-hamburger-menu>
+        </ul>
+      </div>
+    `;
+    hamburgerMenuMarkup = this.$compile(hamburgerMenuMarkup)(this.$scope);
+    let buttonParent = angular.element(button).parent();
+    buttonParent.replaceWith(hamburgerMenuMarkup);
+    this.$timeout(() => {
+      document.querySelector(`#hamburgerMenuBtn-${index}`).click();
+    }, 0);
   }
 
   addToPlaylist(item) {

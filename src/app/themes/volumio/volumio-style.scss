@@ -552,6 +552,6 @@ ul {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: darken($volumio-accent-color, 0%);
+  background: $text-grey-color;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
