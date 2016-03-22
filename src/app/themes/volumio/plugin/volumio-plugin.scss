@@ -29,9 +29,10 @@
     font-size: 25px;
     color: $volumio-dark-color;
     vertical-align: center;
+    @include make-sm-column(1);
     &:hover {
         color: $volumio-green-color;
-      }
+    }
   }
 }
 .title h2 {

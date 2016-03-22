@@ -95,10 +95,10 @@
                   </div>
                 </div>
 
-                <div ng-if="item.doc" class="control-doc">
-                  <a href="#" rel="popover" data-toggle="popover" title="{{item.label}}" data-content="{{item.doc}}">
-                    <i class="fa fa-info-circle"></i>
-                  </a>
+                <div ng-if="item.doc" class="control-doc"> 
+                  <a href="#" uib-popover="{{item.doc}}" popover-title="{{item.label}}" popover-is-open="popoverIsOpen" ng-click="popoverIsOpen = !popoverIsOpen">
+                    <i class="fa fa-info-circle"></i> 
+                  </a> 
                 </div>
                 
                 <div ng-if="item.description" class="control-description">
