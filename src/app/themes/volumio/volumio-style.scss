@@ -386,6 +386,10 @@ table {
 .bootstrap-switch .bootstrap-switch-handle-off {
   border-radius: 0;
 }
+.bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
+  background-color: $volumio-black-trans-dark;
+  color: $volumio-text-color;
+}
 .bootstrap-switch-label {
   background-color: red;
   color: $volumio-green-color;
