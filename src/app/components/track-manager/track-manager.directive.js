@@ -109,18 +109,20 @@ class TrackManagerController {
   }
 
   addToPlaylist() {
-    let
+    if (this.playerService.state.trackType !== 'webradio') {
+      let
       templateUrl = 'app/browse/components/modal/modal-playlist.html',
       controller = 'ModalPlaylistController',
       params = {
         title: 'Add to playlist',
         item: this.playerService.state
       };
-    this.modalService.openModal(
-      controller,
-      templateUrl,
-      params,
-      'sm');
+      this.modalService.openModal(
+        controller,
+        templateUrl,
+        params,
+        'sm');
+    }
   }
 
   initWatchers() {
