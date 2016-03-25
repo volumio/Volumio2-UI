@@ -2,7 +2,6 @@
   @include make-row();
   background-color: $volumio-grey-trans-dark;
   height: 35px;
-  margin-bottom: 15px;
   .leftInfo {
     @include make-xs-column(24);
     padding: 8px 0px 9px 26px;

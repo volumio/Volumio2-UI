@@ -326,7 +326,7 @@ table {
     .panel-title {
       color: #FFF;
       font-size: 18px;
-      text-transform: uppercase;
+      //text-transform: uppercase;
     }
   }
 }
@@ -385,6 +385,10 @@ table {
 }
 .bootstrap-switch .bootstrap-switch-handle-off {
   border-radius: 0;
+}
+.bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
+  background-color: $volumio-black-trans-dark;
+  color: $volumio-text-color;
 }
 .bootstrap-switch-label {
   background-color: red;
@@ -552,6 +556,6 @@ ul {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: darken($volumio-accent-color, 0%);
+  background: $text-grey-color;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
