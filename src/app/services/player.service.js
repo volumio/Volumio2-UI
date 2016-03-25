@@ -55,20 +55,28 @@ class PlayerService {
   }
 
   prev() {
-    this.socketService.emit('prev');
+    if (this.state.trackType !== 'webradio') {
+      this.socketService.emit('prev');
+    }
   }
 
   next() {
-    this.socketService.emit('next');
+    if (this.state.trackType !== 'webradio') {
+      this.socketService.emit('next');
+    }
   }
 
   shuffle() {
-    console.log(!this.state.random);
-    this.socketService.emit('setRandom', {value: !this.state.random});
+    if (this.state.trackType !== 'webradio') {
+      console.log(!this.state.random);
+      this.socketService.emit('setRandom', {value: !this.state.random});
+    }
   }
 
   repeatAlbum() {
-    this.socketService.emit('setRepeat', {value: !this.state.repeat});
+    if (this.state.trackType !== 'webradio') {
+      this.socketService.emit('setRepeat', {value: !this.state.repeat});
+    }
   }
 
   rebuildSpopLibrary() {

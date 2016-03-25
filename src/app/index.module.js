@@ -14,6 +14,7 @@ import MultiRoomService from './services/multi-room.service';
 import ToastMessageService from './services/toast-message.service';
 import UpdaterService from './services/updater.service';
 import ModalService from './services/modal.service';
+import ModalListenerService from './services/modal-listener.service';
 import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
@@ -70,6 +71,7 @@ import ModalUpdaterController from './components/modals/modal-updater.controller
 import ModalGotitController from './components/modals/modal-gotit.controller';
 import ModalConfirmController from './components/modals/modal-confirm.controller';
 import ModalRipperController from './components/modals/modal-ripper.controller';
+import ModalCustomController from './components/modals/modal-custom.controller';
 
 
 //Core plugin controller
@@ -122,6 +124,7 @@ angular.module('volumio', [
   .service('updaterService', UpdaterService)
   .service('modalService', ModalService)
   .service('modalService', ModalService)
+  .service('modalListenerService', ModalListenerService)
   .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
   .service('ripperService', RipperService)
@@ -173,6 +176,7 @@ angular.module('volumio', [
   .controller('ModalGotitController', ModalGotitController)
   .controller('ModalConfirmController', ModalConfirmController)
   .controller('ModalRipperController', ModalRipperController)
+  .controller('ModalCustomController', ModalCustomController)
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)

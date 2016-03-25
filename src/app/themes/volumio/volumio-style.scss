@@ -326,7 +326,7 @@ table {
     .panel-title {
       color: #FFF;
       font-size: 18px;
-      text-transform: uppercase;
+      //text-transform: uppercase;
     }
   }
 }
@@ -385,6 +385,10 @@ table {
 }
 .bootstrap-switch .bootstrap-switch-handle-off {
   border-radius: 0;
+}
+.bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
+  background-color: $volumio-black-trans-dark;
+  color: $volumio-text-color;
 }
 .bootstrap-switch-label {
   background-color: red;
@@ -448,7 +452,35 @@ li.list-group-item {
   .footerText {
     padding-top: 5px;
     font-size: 14px;
+    &.webRadio {
+      padding-top: 64px;
+      font-size: 24px;
+    }
   }
+}
+
+.fakePulsingKnob {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  bottom: 0px;
+  top: 0px;
+  width: 210px;
+  height: 210px;
+  background-color: $volumio-green-color;
+  border-radius: 150px;
+  pointer-events: none;
+  z-index: 9;
+  animation-name: pulse;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+    0%   {opacity: 0.3}
+    50% {opacity: 1}
+    100% {opacity: 0.3}
 }
 
 //Slider
@@ -524,6 +556,6 @@ ul {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: darken($volumio-accent-color, 0%);
+  background: $text-grey-color;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
