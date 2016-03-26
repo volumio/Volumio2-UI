@@ -12,5 +12,12 @@ footer {
 #phoneFooter {
   button {
     font-size: 22px;
+    &:active{
+      color: $volumio-green-color;
+    } 
   }
+}
+
+#openVolumeVerticalSlider:focus {
+    color: $volumio-green-color;
 }
