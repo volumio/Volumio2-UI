@@ -47,7 +47,6 @@ class VolumeManagerController {
       if (value) {
         $timeout.cancel(this.timeoutHandler);
         this.timeoutHandler = $timeout(() => {
-          //console.log(value);
           playerService.volume = value;
         }, 300);
       }
