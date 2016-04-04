@@ -3,52 +3,57 @@
     <div class="box">
       <div class="boxHeader">
         <div class="title">
-          <h2>{{plugin.pluginObj.page.label}}</h2>
+          <h2>{{::plugin.pluginObj.page.label}}</h2>
         </div>
       </div>
 
       <h4 class="pluginDescription" ng-if="plugin.pluginObj.page.description">
-        {{plugin.pluginObj.page.description}}
+        {{::plugin.pluginObj.page.description}}
       </h4>
 
       <div
           class="panel panel-default"
-          ng-repeat="section in plugin.pluginObj.sections track by $index">
+          ng-if="::!section.visible"
+          ng-repeat="section in ::plugin.pluginObj.sections track by $index">
 
-        <div ng-if="section.coreSection"
+        <div ng-if="::section.coreSection"
             ng-include="'app/plugin/core-plugin/' + section.coreSection + '-plugin.html'">
         </div>
 
-        <div ng-if="!section.coreSection" class="panel-heading">
-          <h3 class="panel-title"><i class="fa {{section.icon}}"></i> {{section.label}}</h3>
+        <div ng-if="::!section.coreSection" class="panel-heading">
+          <h3 class="panel-title">
+            <i class="fa {{::section.icon}}"></i> {{::section.label}}
+          </h3>
         </div>
 
-        <div ng-if="!section.coreSection" class="panel-body">
-          <h4 class="sectionDescription" ng-if="section.description">
-            {{section.description}}
+        <div ng-if="::!section.coreSection" class="panel-body">
+          <h4 class="sectionDescription" ng-if="::section.description">
+            {{::section.description}}
           </h4>
 
           <div ng-if="section.content">
             <form class="form-horizontal">
               <div
-                  ng-repeat="item in section.content"
+                  ng-repeat="item in section.content track by $index"
                   plugin-visible="item.visibleIf"
                   section="section"
                   class="form-group">
 
-                <label for="{{item.id}}" class="control-label">{{item.label}}</label>
+                <label for="{{::item.id}}" class="control-label">
+                  {{::item.label}}
+                </label>
 
                 <div ng-switch="item.element" class="control-item">
                   <div class="">
                     <input ng-switch-when="input"
-                        id="{{item.id}}"
-                        type="{{item.type}}"
+                        id="{{::item.id}}"
+                        type="{{::item.type}}"
                         plugin-attributes="item.attributes"
                         ng-model="item.value"
                         class="form-control">
 
                     <input ng-switch-when="switch"
-                        id="{{item.id}}"
+                        id="{{::item.id}}"
                         bs-switch
                         ng-model="item.value"
                         type="checkbox"
@@ -61,7 +66,7 @@
 
                     <div ng-switch-when="select">
                       <ui-select
-                          id="{{item.id}}"
+                          id="{{::item.id}}"
                           ng-model="item.value"
                           search-enabled="false"
                           append-to-body="true"
@@ -86,7 +91,7 @@
                         name="{{item.id}}"
                         plugin-attributes="item.attributes"
                         ng-click="plugin.saveButton(item)">
-                      {{item.label}}
+                      {{::item.label}}
                     </button>
 
                     <div ng-switch-default>
@@ -99,13 +104,13 @@
                 </div>
               </div>
 
-              <div ng-if="section.saveButton" class="form-group">
+              <div ng-if="::section.saveButton" class="form-group">
                 <div class="control-buttons">
                   <button
                       type="button"
                       class="btn btn-info"
                       ng-click="plugin.saveSection(section)">
-                    {{section.saveButton.label}}
+                    {{::section.saveButton.label}}
                   </button>
                 </div>
               </div>
