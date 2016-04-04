@@ -95,23 +95,12 @@
                     </button>
 
                     <div ng-switch-default>
-                      Woops I can't display this item!
                     </div>
                   </div>
                 </div>
 
-                <div ng-if="::item.doc" class="control-doc">
-                  <a href
-                      uib-popover="{{::item.doc}}"
-                      popover-title="{{::item.label}}"
-                      popover-is-open="popoverIsOpen"
-                      ng-click="popoverIsOpen = !popoverIsOpen">
-                    <i class="fa fa-info-circle"></i>
-                  </a>
-                </div>
-
-                <div ng-if="::item.description" class="control-description">
-                  {{::item.description}}
+                <div ng-if="item.description" class="control-description">
+                  {{item.description}}
                 </div>
               </div>
 
