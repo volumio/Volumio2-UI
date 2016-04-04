@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h3 class="modal-title">Karaoke</h3>
+</div>
+<div class="modal-body">
+  <h4>Karaoke function will work only with Karaoke Hardware.</h4>
+  <div class="row karaoke">
+    <div class="col-sm-8">
+      <h4>KARAOKE MODE</h4>
+      <input
+          bs-switch
+          ng-model="modal.karaokeEnabled"
+          type="checkbox"
+          switch-size="medium"
+          switch-animate="false"
+          switch-on-text="On"
+          switch-off-text="Off"
+          ng-true-value="true"
+          ng-false-value="false">
+    </div>
+    <div class="col-sm-8">
+      <h4>MUSIC VOLUME</h4>
+      <button
+          class="btn btn-info"
+          ng-click="modal.musicVolumePlus()">
+        +
+      </button>
+      <button
+          class="btn btn-info"
+          ng-click="modal.musicVolumeMinus()">
+        -
+      </button>
+    </div>
+    <div class="col-sm-8">
+      <h4>MIC VOLUME</h4>
+      <button
+          class="btn btn-info"
+          ng-click="modal.micVolumePlus()">
+        +
+      </button>
+      <button
+          class="btn btn-info"
+          ng-click="modal.micVolumeMinus()">
+        -
+      </button>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+      class="btn btn-warning"
+      ng-click="modal.cancel()">
+    Cancel
+  </button>
+  <button
+      class="btn btn-info"
+      ng-click="modal.save()">
+    Save
+  </button>
+</div>

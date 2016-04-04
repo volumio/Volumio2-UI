@@ -72,6 +72,7 @@ import ModalGotitController from './components/modals/modal-gotit.controller';
 import ModalConfirmController from './components/modals/modal-confirm.controller';
 import ModalRipperController from './components/modals/modal-ripper.controller';
 import ModalCustomController from './components/modals/modal-custom.controller';
+import ModalKaraokeController from './components/side-menu/elements/modal-karaoke.controller';
 
 
 //Core plugin controller
@@ -102,7 +103,7 @@ angular.module('volumio', [
   //Angular core modules
   // 'ngAnimate',
   // 'ngCookies',
-  //'ngTouch',
+  'ngTouch',
   'ngSanitize'
   ])
 
@@ -177,6 +178,7 @@ angular.module('volumio', [
   .controller('ModalConfirmController', ModalConfirmController)
   .controller('ModalRipperController', ModalRipperController)
   .controller('ModalCustomController', ModalCustomController)
+  .controller('ModalKaraokeController', ModalKaraokeController)
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)
