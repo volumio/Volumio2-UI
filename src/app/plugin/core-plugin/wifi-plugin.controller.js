@@ -43,6 +43,12 @@ class WifiPluginController {
     this.socketService.on('pushWirelessNetworks', (data) => {
       console.log('pushWirelessNetworks', data);
       this.wirelessNetworks = data;
+      this.wirelessNetworks.available.push({
+        security: '',
+        signal: -1,
+        ssid: 'Network Name',
+        ssidHidden: true
+      });
     });
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushWirelessNetworks');
