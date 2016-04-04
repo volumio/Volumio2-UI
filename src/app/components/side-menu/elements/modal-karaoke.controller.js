@@ -15,7 +15,7 @@ class ModalKaraokeController {
 
   karaokeSwitch() {
     let emitPayload = {
-      'endpoint': 'system_controller/gpio',
+      'endpoint': 'system_controller/gpios',
       'method': 'KaraokeSwitchPress',
       'data': 'off'
     };
@@ -27,7 +27,7 @@ class ModalKaraokeController {
 
   musicVolumePlus() {
     let emitPayload = {
-      'endpoint': 'system_controller/gpio',
+      'endpoint': 'system_controller/gpios',
       'method': 'MusicPlusPress',
       'data': ''
     };
@@ -36,7 +36,7 @@ class ModalKaraokeController {
 
   musicVolumeMinus() {
     let emitPayload = {
-      'endpoint': 'system_controller/gpio',
+      'endpoint': 'system_controller/gpios',
       'method': 'MusicMinusPress',
       'data': ''
     };
@@ -45,7 +45,7 @@ class ModalKaraokeController {
 
   micVolumePlus() {
     let emitPayload = {
-      'endpoint': 'system_controller/gpio',
+      'endpoint': 'system_controller/gpios',
       'method': 'MicPlusPress',
       'data': ''
     };
@@ -54,7 +54,7 @@ class ModalKaraokeController {
 
   micVolumeMinus() {
     let emitPayload = {
-      'endpoint': 'system_controller/gpio',
+      'endpoint': 'system_controller/gpios',
       'method': 'MicMinusPress',
       'data': ''
     };
