@@ -13,7 +13,7 @@
 
       <div
           class="panel panel-default"
-          ng-if="::section.visible"
+          ng-if="::!section.visible"
           ng-repeat="section in ::plugin.pluginObj.sections track by $index">
 
         <div ng-if="::section.coreSection"
