@@ -130,7 +130,7 @@ $progress-bar-bg: $volumio-green-color;
 // Reset and dependencies
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
-// @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
 
 // Core CSS
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding";
