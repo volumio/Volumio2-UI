@@ -2,7 +2,8 @@
   <button
       ui-sref="volumio.browse"
       class="btn btn-default browseBtn"
-      ng-class="{selected: state.current.name === 'volumio.browse'}">
+      ng-class="{selected: state.current.name === 'volumio.browse'}"
+      title="Browse">
     <img src="/app/themes/volumio/assets/icons/volumio_icon_note.svg" alt="Browse"/>
     <span>Browse</span>
   </button>
@@ -10,7 +11,8 @@
   <button
       ui-sref="volumio.playback"
       class="btn btn-default playbackBtn"
-      ng-class="{selected: state.current.name === 'volumio.playback'}">
+      ng-class="{selected: state.current.name === 'volumio.playback'}"
+      title="Playback">
     <img src="/app/themes/volumio/assets/icons/volumio_icon_volumio-icon.svg" alt="Playback"/>
     <span>Playback</span>
   </button>
@@ -18,7 +20,8 @@
   <button
       ui-sref="volumio.play-queue"
       class="btn btn-default queueBtn"
-      ng-class="{selected: state.current.name === 'volumio.play-queue'}">
+      ng-class="{selected: state.current.name === 'volumio.play-queue'}"
+      title="Queue">
     <img src="/app/themes/volumio/assets/icons/volumio_icon_queue.svg" alt="Queue"/>
     <span>Queue</span>
   </button>

@@ -1,0 +1,14 @@
+.karaoke {
+  button {
+    font-size: 22px;
+    padding-top: 2px;
+    width: 40px;
+    height: 40px;
+  }
+  button + button {
+    margin-left: 10px;
+  }
+  > div {
+    text-align: center;
+  }
+}

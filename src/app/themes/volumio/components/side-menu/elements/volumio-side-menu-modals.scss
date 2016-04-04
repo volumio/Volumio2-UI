@@ -1,5 +1,12 @@
 .modal-body{
-  .pull-down {
-    margin-top: 32px;
+  &.sleep {
+    h4 {
+      margin-top: 28px;
+      margin-bottom: 5px;
+      color: $volumio-green-color;
+    }
+  }
+  .glyphicon, .uib-separator {
+    color: $volumio-green-color;
   }
 }

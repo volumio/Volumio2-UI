@@ -19,11 +19,11 @@
     "components-font-awesome": "~4.4.0",
     "jquery": "~2.1.4",
     "moment": "~2.10.3",
-    "ngDraggable": "~0.1.8",
     "socket.io": "~1.4.0",
     "ui-router-extras": "~0.1.0",
     "matchmedia-ng": "^1.0.5",
-    "AngularHammer": "ryanmullins-angular-hammer#^2.1.10"
+    "AngularHammer": "ryanmullins-angular-hammer#^2.1.10",
+    "ngDraggable": "git://github.com/fatlinesofcode/ngDraggable.git#92bacff"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"

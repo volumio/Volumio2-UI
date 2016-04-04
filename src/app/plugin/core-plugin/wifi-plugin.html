@@ -3,19 +3,24 @@
     ng-controller="WifiPluginController as wifiPlugin"
     ng-show="wifiPlugin.wirelessNetworks.available || wifiPlugin.wirelessNetworks.connectedTo"
     class="panel panel-default">
-  <div class="panel-heading">
+  <!-- <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-wifi"></i> Wireless network</h3>
-  </div>
+  </div> -->
 
   <div class="panel-body">
-    <h4 ng-if="false" class="sectionDescription"></h4>
+    <!-- <h4 ng-if="false" class="sectionDescription"></h4> -->
     <table class="table">
       <tr ng-if="wifiPlugin.wirelessNetworks.connectedTo">
-        <td class="wifiIcon" ng-if="wifiPlugin.wirelessNetworks.connectedTo.signal">
-          <img ng-src="{{assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+        <td class="wifiIcon">
+          <img
+              ng-if="::wifiPlugin.wirelessNetworks.connectedTo.signal >= 0"
+              ng-src="{{assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
-          <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock"></i>
+          <span ng-if="::wifi.security">
+            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security == 'open'" class="fa fa-unlock" title="Open Netork"></i>
+            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock" title="Secured Network"></i>
+          </span>
         </td>
         <td>
           {{wifiPlugin.wirelessNetworks.connectedTo.ssid}}
@@ -30,20 +35,24 @@
           </button> -->
         </td>
       </tr>
-      <tr ng-if="wifiPlugin.wirelessNetworks.available.length > 0"
-          ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available
-          track by wifi.ssid + $index">
-        <td class="wifiIcon" ng-if="wifi.signal">
-          <img ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+      <tr ng-if="::wifiPlugin.wirelessNetworks.available.length > 0"
+          ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available track by $index">
+        <td class="wifiIcon">
+          <img
+              ng-if="::wifi.signal >= 0"
+              ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
-          <i ng-if="wifi.security !== 'open'" class="fa fa-lock"></i>
+          <span ng-if="::wifi.security">
+            <i ng-if="::wifi.security == 'open'" class="fa fa-unlock" title="Open Network"></i>
+            <i ng-if="::wifi.security !== 'open'" class="fa fa-lock" title="Secured Network"></i>
+          </span>
         </td>
         <td>
           {{wifi.ssid}}
         </td>
         <td class="commandCol">
-          <button ng-if="!wifi.insertPassword"
+          <button ng-if="::!wifi.insertPassword"
               ng-click="wifiPlugin.insertPassword($index)"
               type="button"
               class="btn btn-info">
@@ -55,6 +64,12 @@
 
       <tr ng-repeat-end ng-if="wifi.insertPassword">
         <td colspan="4" class="insertPasswordRow">
+            <input
+                class="form-control"
+                ng-if="::wifi.ssidHidden"
+                ng-model="wifi.ssid"
+                type="input"
+                placeholder="ssid">
             <input
                 class="form-control"
                 ng-model="wifi.password"
