@@ -63,7 +63,7 @@ class SideMenuController {
         controllerName + 'Controller',
         templateUrl,
         item,
-        'lg');
+        item.params.modalSize || 'lg');
     } else if (item.id === 'link') {
       this.$window.open(item.params.url);
     } else if (item.id === 'static-page') {

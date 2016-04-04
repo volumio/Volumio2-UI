@@ -1,5 +1,8 @@
-function config ($logProvider, toastrConfig, themeManagerProvider, theme) {
+function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touchProvider) {
   'ngInject';
+
+  $touchProvider.enabled = true;
+
   themeManagerProvider.theme = theme;
 
   $logProvider.debugEnabled(true);
