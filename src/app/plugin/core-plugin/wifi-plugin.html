@@ -15,7 +15,8 @@
           <img ng-src="{{assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
-          <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock"></i>
+          <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.security == 'open'" class="fa fa-unlock" title="Open Netork"></i>
+          <i ng-if="wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock" title="Secured Network"></i>
         </td>
         <td>
           {{wifiPlugin.wirelessNetworks.connectedTo.ssid}}
@@ -37,7 +38,8 @@
           <img ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
-          <i ng-if="wifi.security !== 'open'" class="fa fa-lock"></i>
+          <i ng-if="wifi.security == 'open'" class="fa fa-unlock" title="Open Network"></i>
+          <i ng-if="wifi.security !== 'open'" class="fa fa-lock" title="Secured Network"></i>
         </td>
         <td>
           {{wifi.ssid}}

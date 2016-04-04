@@ -37,9 +37,9 @@
     }
 
     .deviceIcon {
-      width: 25%;
+      min-width: 98px;
       text-align: center;
-      padding: 5px 0px 0px 6px;
+      padding: 9px;
       @extend .pull-left;
       img {
         max-width: 80px;
@@ -49,7 +49,7 @@
     }
     .deviceDetails {
       width: 75%;
-      padding-left: 10px;
+      padding: 13px 9px 13px 0px;
       @extend .pull-left;
     }
   }
