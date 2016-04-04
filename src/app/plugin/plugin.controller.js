@@ -79,6 +79,14 @@ class PluginController {
       // data.sections.unshift({coreSection: 'network-status'});
       // data.sections.unshift({coreSection: 'network-drives'});
       console.log('pushUiConfig', data);
+      if (data.sections) {
+        data.sections = data.sections.map((item) => {
+          if (!item.visible) {
+            item.visible = true;
+          }
+          return item;
+        });
+      }
       this.pluginObj = data;
     });
     this.$scope.$on('$destroy', () => {
