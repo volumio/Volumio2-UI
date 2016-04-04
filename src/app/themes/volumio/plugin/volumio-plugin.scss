@@ -25,14 +25,6 @@
     @include make-sm-column-offset(8);
     @include make-sm-column(16);
   }
-  .control-doc a {
-    font-size: 25px;
-    color: $volumio-dark-color;
-    vertical-align: center;
-    &:hover {
-        color: $volumio-green-color;
-      }
-  }
 }
 .title h2 {
   background-color: $volumio-black-trans-dark;
