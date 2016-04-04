@@ -9,7 +9,11 @@ class ModalKaraokeController {
     this.init();
   }
 
-  save() {
+  exit() {
+    this.$uibModalInstance.close();
+  }
+
+  karaokeSwitch() {
     let emitPayload = {
       'endpoint': 'system_controller/gpio',
       'method': 'KaraokeSwitchPress',
@@ -19,8 +23,6 @@ class ModalKaraokeController {
       emitPayload.data = 'on';
     }
     this.socketService.emit('callMethod', emitPayload);
-    console.log('callMethod', emitPayload);
-    this.$uibModalInstance.close();
   }
 
   musicVolumePlus() {

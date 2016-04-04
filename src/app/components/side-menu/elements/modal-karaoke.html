@@ -9,6 +9,7 @@
       <input
           bs-switch
           ng-model="modal.karaokeEnabled"
+          ng-change="modal.karaokeSwitch()"
           type="checkbox"
           switch-size="medium"
           switch-animate="false"
@@ -47,13 +48,8 @@
 </div>
 <div class="modal-footer">
   <button
-      class="btn btn-warning"
-      ng-click="modal.cancel()">
-    Cancel
-  </button>
-  <button
       class="btn btn-info"
-      ng-click="modal.save()">
-    Save
+      ng-click="modal.exit()">
+    Exit
   </button>
 </div>
