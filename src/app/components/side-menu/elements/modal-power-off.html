@@ -13,6 +13,7 @@
     Power off
   </button>
   <button
+      ng-if="modal.themeManager.theme !== 'opera'"
       class="btn btn-info"
       ng-click="modal.reboot()">
     Reboot
