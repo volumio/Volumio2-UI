@@ -1,0 +1,12 @@
+.modal-body {
+  .ui-select-bootstrap .ui-select-toggle {
+    background-color: $btn-warning-bg;
+  }
+
+  &.sleep {
+    h4 {
+      margin-bottom: 5px;
+      color: $electric-blue;
+    }
+  }
+}

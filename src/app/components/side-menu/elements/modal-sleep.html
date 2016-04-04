@@ -1,9 +1,29 @@
 <div class="modal-header">
   <h3 class="modal-title">{{modal.dataObj.name}}</h3>
 </div>
-<div class="modal-body">
+<div class="modal-body sleep">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-8">
+      <h4>Action</h4>
+      <ui-select
+          id="whenSleep"
+          ng-model="modal.action"
+          search-enabled="false"
+          append-to-body="false"
+          theme="bootstrap">
+        <ui-select-match
+            class="ui-select-match"
+            placeholder="">
+          {{$select.selected.text}}
+        </ui-select-match>
+        <ui-select-choices
+            class="ui-select-choices"
+            repeat="item in modal.whenSleepSelect track by $index">
+          <div ng-bind-html="item.text"></div>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <div class="col-xs-8">
       <uib-timepicker
           ng-model="modal.sleepTime"
           ng-change="modal.timeChanged()"
@@ -12,7 +32,8 @@
           show-meridian="modal.showMeridian">
       </uib-timepicker>
     </div>
-    <div class="col-xs-12 pull-down">
+    <div class="col-xs-8">
+      <h4>Active</h4>
       <input
           bs-switch
           ng-model="modal.enabled"
