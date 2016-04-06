@@ -20,6 +20,16 @@
   input {
     color: $volumio-text-color;
   }
+  .form-control-feedback {
+    color: $volumio-text-color;
+  }
+  .clear-search {
+    cursor: pointer;
+    pointer-events: auto;
+    &:hover {
+      color: $volumio-green-color;
+    }
+  }
 }
 
 #browseTableSources {
