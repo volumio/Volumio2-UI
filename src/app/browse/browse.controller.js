@@ -206,7 +206,7 @@ class BrowseController {
         <td class="commandButtons">
           <div class="hamburgerMenu
               ${(item.type === 'radio-favourites' || item.type === 'radio-category') ? 'hidden' : ''}">
-            <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})">
+            <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})" title="Options...">
               <i class="fa fa-bars"></i>
             </button>
           </div>
