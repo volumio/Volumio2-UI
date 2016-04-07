@@ -1,7 +1,7 @@
 <tr ng-repeat="source in browse.browseService.sources track by source.uri"
     ng-click="browse.fetchLibrary(source)">
   <td>
-    {{::source.name}}
+    <i class="fa {{::source.icon}}"></i> {{::source.name}}
     <span ng-if="::source.info" class="info"> - {{::source.info}}</span>
   </td>
   <td class="commandButtons">
