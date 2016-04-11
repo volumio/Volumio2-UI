@@ -39,6 +39,11 @@
         <div class="smallText">
           {{trackManager.playerService.songLength}}
         </div>
+        <div class="footerText">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+            {{trackManager.playerService.state.trackType}}
+          </span>
+        </div>
       </div>
       <div ng-if="trackManager.playerService.state.trackType === 'webradio'" class="fakePulsingKnob"></div>
       <knob
