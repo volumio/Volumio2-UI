@@ -23,7 +23,7 @@ class ModalService {
 
     // modalInstance.result.then(function() {
     // }, function() {
-    //   //console.info('Modal dismissed at: ' + new Date());
+    //   //this.$log.debug('Modal dismissed at: ' + new Date());
     // });
     return modalInstance.result;
   }

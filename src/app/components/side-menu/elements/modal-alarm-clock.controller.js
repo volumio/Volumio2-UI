@@ -1,10 +1,11 @@
 class ModalAlarmClockController {
-  constructor($uibModalInstance, socketService, dataObj, playlistService) {
+  constructor($uibModalInstance, socketService, dataObj, playlistService, $log) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.socketService = socketService;
     this.dataObj = dataObj;
     this.playlistService = playlistService;
+    this.$log = $log;
 
     this.init();
     // this.alarms = [
@@ -26,7 +27,7 @@ class ModalAlarmClockController {
         time: '',
         playlist: ''
       });
-    console.log(this.alarms);
+    this.$log.debug(this.alarms);
   }
 
   deleteAlarm(index) {
@@ -45,7 +46,7 @@ class ModalAlarmClockController {
   registerListner() {
     this.socketService.on('pushAlarm', (data) => {
       this.alarms = data;
-      //console.log('pushAlarm', data);
+      //this.$log.debug('pushAlarm', data);
     });
   }
 

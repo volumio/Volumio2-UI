@@ -136,7 +136,7 @@ angular.module('volumio', [
   // Components
   .directive('playerButtons', (themeManager) => new PlayerButtonsDirective(themeManager))
   .directive('volumeManager', (themeManager) => new VolumeManagerDirective(themeManager))
-  .directive('trackManager', (themeManager) => new TrackManagerDirective(themeManager))
+  .directive('trackManager', (themeManager, $log) => new TrackManagerDirective(themeManager, $log))
   .directive('trackInfo', (themeManager) => new TrackInfoDirective(themeManager))
   .directive('playerStatus', () => new PlayerStatusDirective())
   .directive('sideMenu', () => new SideMenuDirective())

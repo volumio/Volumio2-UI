@@ -1,5 +1,5 @@
 class TrackManagerDirective {
-  constructor(themeManager) {
+  constructor(themeManager, $log) {
     'ngInject';
 
     let directive = {
@@ -18,11 +18,11 @@ class TrackManagerDirective {
     function linkFunc(scope, el, attr, trackManagerController) {
       let
         mouseupListener = () => {
-          console.log('up', trackManagerController.playerService.seekPercent);
+          $log.debug('up', trackManagerController.playerService.seekPercent);
           trackManagerController.playerService.seek = trackManagerController.playerService.seekPercent;
         },
         mousedownListener = () => {
-          console.log('down');
+          $log.debug('down');
           trackManagerController.playerService.stopSeek();
         },
         trackManagerHandler;
@@ -39,7 +39,7 @@ class TrackManagerDirective {
       scope.$on('$destroy', () => {
         if (trackManagerController.matchMediaHandler) {
           trackManagerController.matchMediaHandler();
-          console.log('destroyedMatchmedia');
+          $log.debug('destroyedMatchmedia');
         }
         if (trackManagerHandler && trackManagerController.type === 'slider') {
           trackManagerHandler.removeEventListener('mousedown', mousedownListener, true);
@@ -62,7 +62,8 @@ class TrackManagerController {
       $scope,
       knobFgColor,
       knobBgColor,
-      matchmediaService) {
+      matchmediaService,
+      $log) {
     'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
@@ -70,6 +71,8 @@ class TrackManagerController {
     this.socketService = socketService;
     this.matchmediaService = matchmediaService;
     this.$scope = $scope;
+    this.$log = $log;
+
     this.initWatchers();
     // this.initMatchmedia();
 
@@ -90,7 +93,7 @@ class TrackManagerController {
       this.onChange = (value) => {
         $timeout.cancel(this.timeoutHandler);
         this.timeoutHandler = $timeout(() => {
-          console.log('track manager', value);
+          this.$log.debug('track manager', value);
           this.playerService.stopSeek();
           this.playerService.seek = value;
         }, 200, false);
@@ -100,10 +103,10 @@ class TrackManagerController {
 
   toggleFavouriteTrack() {
     if (this.playerService.favourite.favourite) {
-      console.log('Remove from favourite');
+      this.$log.debug('Remove from favourite');
       this.playlistService.removeFromFavourites(this.playerService.state);
     } else {
-      console.log('Add to favourite');
+      this.$log.debug('Add to favourite');
       this.playlistService.addToFavourites(this.playerService.state);
     }
   }

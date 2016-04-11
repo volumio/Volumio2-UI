@@ -1,5 +1,5 @@
 class PlayerStatusDirective {
-  constructor() {
+  constructor($log) {
     'ngInject';
 
     let directive = {
@@ -20,7 +20,7 @@ class PlayerStatusController {
   constructor(playerService) {
     'ngInject';
     this.playerService = playerService;
-    //console.log(this.playerService);
+    //$log.debug(this.playerService);
   }
 }
 

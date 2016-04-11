@@ -17,9 +17,9 @@
         ng-repeat="item in sideMenu.menuItems track by $index"
         ng-click="sideMenu.itemClick(item)"
         class="btn-link btn-block">
-          {{item.name}}
+          {{::item.name}}
     </button>
-    <div id="analogInput" ng-if="sideMenu.theme === 'axiom'">
+    <div id="analogInput" ng-if="::sideMenu.theme === 'axiom'">
       <input type="checkbox"
           ng-model="sideMenu.analogIn"
           ng-click="sideMenu.toggleAnalogInput()"> ANALOG INPUT

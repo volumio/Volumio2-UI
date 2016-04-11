@@ -13,12 +13,14 @@ class WaitBackendScrimDirective {
 }
 
 class WaitBackendScrimController {
-  constructor($rootScope, socketService, $document, $state, $window) {
+  constructor($rootScope, socketService, $document, $state, $window, $log) {
     'ngInject';
     this.socketService = socketService;
     this.$document = $document[0];
     this.$state = $state;
     this.$window = $window;
+    this.$log = $log;
+
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -32,11 +34,11 @@ class WaitBackendScrimController {
 
   registerListner() {
     this.socketService.connect(() => {
-      console.log('connect');
+      this.$log.debug('connect');
       this.hideSrcrim();
     });
     this.socketService.reconnect(() => {
-      console.log('reconnect');
+      this.$log.debug('reconnect');
       this.hideSrcrim();
     });
     this.socketService.disconnect((socket) => {

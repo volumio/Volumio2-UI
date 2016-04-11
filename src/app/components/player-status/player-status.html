@@ -1,7 +1,7 @@
 <div id="playerStatusWrapper" class="">
   <div id="playerStatus">
-   <span ng-repeat="(key, val) in playerStatus.playerService.state">
-     <strong>{{key}}: </strong> {{val}}
+   <span ng-repeat="(key, val) in playerStatus.playerService.state track by $index">
+     <strong>{{::key}}: </strong> {{::val}}
    </span>
   </div>
 </div>

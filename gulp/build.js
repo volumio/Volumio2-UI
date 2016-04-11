@@ -88,19 +88,35 @@ gulp.task('other', function () {
 
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
+    path.join('!' + conf.paths.src, '/app/themes/**/*'),
     path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
-gulp.task('static-pages', function () {
+gulp.task('theme', function () {
   var fileFilter = $.filter(function (file) {
     return file.stat.isFile();
   });
 
+  var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
   return gulp.src([
-    path.join(conf.paths.src, '/**/themes/**/static-pages/*')
+    path.join(conf.paths.src, '/app/themes/' + themeSelected + '/**/*'),
+    path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
+  ])
+    .pipe(fileFilter)
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected)));
+});
+
+gulp.task('static-pages', function () {
+  var fileFilter = $.filter(function (file) {
+    return file.stat.isFile();
+  });
+  var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
+
+  return gulp.src([
+    path.join(conf.paths.src, '/**/themes/' + themeSelected + '/static-pages/*')
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
@@ -119,4 +135,4 @@ gulp.task('credits', function (cb) {
   });
 })
 
-gulp.task('build', ['credits','html', 'fonts', 'other', 'static-pages']);
+gulp.task('build', ['credits','html', 'fonts', 'other', 'static-pages', 'theme']);
