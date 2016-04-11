@@ -27,21 +27,22 @@
           </div>
         </div>
         <div class="bigText">
-          {{trackManager.playerService.elapsedTimeString}}
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+            {{trackManager.playerService.elapsedTimeString}}
+          </span>
+          <div
+              ng-if="trackManager.playerService.state.trackType === 'webradio'"
+              class="webRadioLabel">
+            {{trackManager.playerService.state.trackType}}
+          </div>
         </div>
         <div class="smallText">
           {{trackManager.playerService.songLength}}
         </div>
-        <div
-            ng-if="trackManager.playerService.state.trackType"
-            class="footerText"
-            ng-class="{'webRadio': trackManager.playerService.state.duration === 0}">
-          {{trackManager.playerService.state.trackType}}
-        </div>
       </div>
-      <div ng-if="trackManager.playerService.state.duration === 0" class="fakePulsingKnob"></div>
+      <div ng-if="trackManager.playerService.state.trackType === 'webradio'" class="fakePulsingKnob"></div>
       <knob
-        ng-if="trackManager.playerService.state.duration"
+        ng-if="trackManager.playerService.state.trackType !== 'webradio'"
         value="trackManager.playerService.seekPercent"
         on-change="trackManager.onChange(value)"
         options="trackManager.knobOptions"

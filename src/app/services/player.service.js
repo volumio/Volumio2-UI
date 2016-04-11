@@ -106,15 +106,17 @@ class PlayerService {
   // VOLUME --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
   volumeUp() {
-    this.volume += this._volumeStep;
+    // this.volume += this._volumeStep;
+    this.socketService.emit('volume', '+');
   }
 
   volumeDown() {
-    this.volume -= this._volumeStep;
+    // this.volume -= this._volumeStep;
+    this.socketService.emit('volume', '-');
   }
 
   toggleMute() {
-    this.$log.debug('toggle mute');
+    this.$log.debug('toggle mute', this.state.mute);
     if (this.state.mute) {
       this.socketService.emit('setVolume', {mute: false});
     } else {
@@ -127,24 +129,12 @@ class PlayerService {
   }
 
   calculateElapsedTimeString() {
-    //let elapsedSeconds = Math.ceil(this.elapsedTime / this._seekScale);
     //this.$log.debug(this.elapsedTime);
     let momentDuration = moment.duration(this.elapsedTime),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
     this.elapsedTimeString = minutes + ':' +
         ((seconds < 10) ? ('0' + seconds) : seconds);
-    // if (elapsedSeconds === 1) {
-    //   this.elapsedTimeString = '0:00';
-    // } else {
-    //   let seconds = Math.floor(elapsedSeconds % 60);
-    //   if (seconds < 10) {
-    //     seconds = '0' + seconds;
-    //   }
-    //   this.elapsedTimeString = Math.floor(elapsedSeconds / 60).toFixed(0) + ':' +
-    //       seconds;
-    // }
-    //this.$log.debug(elapsedSeconds, this.elapsedTimeString);
   }
 
   startSeek() {

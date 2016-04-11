@@ -450,6 +450,10 @@ li.list-group-item {
     font-size: 50px;
     line-height: 45px;
     font-weight: 300;
+    .webRadioLabel {
+      padding-top: 5px;
+      font-size: 30px;
+    }
   }
   .smallText {
     margin-top: 8px;
@@ -496,7 +500,15 @@ li.list-group-item {
   width: 15px;
   border-radius: 16px;
   margin-left: -10px;
+
 }
+
+.volumeSlider.disabled {
+  .slider-track{
+    background-image: linear-gradient(to top, #666 0%, #666 100%);
+  }
+}
+
 .slider-track {
   border: solid 1px #555;
   height: 30px;
@@ -516,10 +528,10 @@ li.list-group-item {
 //Button groups
 .btn-group {
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 0px 10px;
+  padding: 0px;
   button {
     font-size: 26px;
-    padding: 8px 20px 5px 20px
+    padding: 8px 18px 5px 18px
   }
 }
 
