@@ -432,25 +432,33 @@ li.list-group-item {
   border-radius: 150px;
   pointer-events: none;
   z-index: 10;
+  div {
+
+  }
   .headerText {
-    padding-top: 25px;
+    height: 20px;
+    margin-top: 24px;
     font-size: 11px;
     &.green {
       color: $volumio-green-color;
     }
   }
   .bigText {
+    margin-top: 8px;
+    height: 45px;
     color: $volumio-green-color;
-    padding-top: 25px;
     font-size: 50px;
     line-height: 45px;
     font-weight: 300;
   }
   .smallText {
+    margin-top: 8px;
     font-size: 16px;
+    height: 22px;
   }
   .footerText {
-    padding-top: 5px;
+    height: 19px;
+    margin-top: 5px;
     font-size: 14px;
     &.webRadio {
       padding-top: 64px;

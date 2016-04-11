@@ -246,6 +246,9 @@ class PlayerService {
         let sec = this.state.duration % 60;
         sec = String(sec).length === 1 ? `0${sec}` : sec;
         this.songLength += `:${sec}`;
+      } else {
+        this.elapsedTimeString = undefined;
+        this.songLength = undefined;
       }
       this.updatePageTitle();
       this.updateFavicon();

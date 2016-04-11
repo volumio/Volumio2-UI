@@ -43,6 +43,9 @@ class WifiPluginController {
     this.socketService.on('pushWirelessNetworks', (data) => {
       console.log('pushWirelessNetworks', data);
       this.wirelessNetworks = data;
+      if (!this.wirelessNetworks.available) {
+        this.wirelessNetworks.available = [];
+      }
       this.wirelessNetworks.available.push({
         security: '',
         signal: -1,
