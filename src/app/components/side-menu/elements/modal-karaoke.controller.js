@@ -1,10 +1,11 @@
 class ModalKaraokeController {
-  constructor($uibModalInstance, socketService, dataObj) {
+  constructor($uibModalInstance, socketService, dataObj, $log) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.socketService = socketService;
     this.dataObj = dataObj;
     this.karaokeEnabled = false;
+    this.$log = $log;
 
     this.init();
   }
@@ -72,7 +73,7 @@ class ModalKaraokeController {
 
   registerListner() {
     this.socketService.on('pushKaraokeStatus', (data) => {
-      console.log('pushKaraokeStatus', data);
+      this.$log.debug('pushKaraokeStatus', data);
       this.karaokeEnabled = data === 'off' ? false : true;
     });
   }

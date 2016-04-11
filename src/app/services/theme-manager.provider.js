@@ -24,11 +24,11 @@ class ThemeManagerProvider {
         this.theme + '-' + filename + '.html';
   }
 
-  $get($rootScope, $document) {
+  $get($rootScope, $document, $log) {
     'ngInject';
     let setPageMetadata = function() {
       angular.element('body').attr('id', this.theme);
-      //console.log($rootScope.favicon);
+      //$log.debug($rootScope.favicon);
       $rootScope.theme = this.theme;
       $rootScope.assetsUrl = 'app/themes/' + this.theme + '/assets';
       $rootScope.touchIconsUrl = `${$rootScope.assetsUrl}/touch-icons`;

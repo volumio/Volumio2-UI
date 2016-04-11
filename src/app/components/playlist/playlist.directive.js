@@ -18,7 +18,9 @@ class PlaylistController {
     'ngInject';
     this.socketService = socketService;
     this.playerService = playerService;
-    console.log(this.playerService);
+    this.$log = $log;
+    
+    $log.debug(this.playerService);
     let endpoint = 'http://sublinode.gestiolink.ch/client/constellation1';
     if ($rootScope.initConfig && $rootScope.initConfig.restendpoint) {
       endpoint = $rootScope.initConfig.restendpoint;
@@ -34,7 +36,7 @@ class PlaylistController {
   }
 
   playPlaylist(playlist) {
-    console.log('playPlaylist', playlist.prettyname);
+    this.$log.debug('playPlaylist', playlist.prettyname);
     this.socketService.emit('playPlaylist', {name: playlist.prettyname});
   }
 }

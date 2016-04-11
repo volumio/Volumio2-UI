@@ -1,19 +1,20 @@
 class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
     this.modalService = modalService;
     this.mockService = mockService;
     this.$scope = $scope;
+    this.$log = $log;
     //this.pluginObj = this.mockService.get('getSettings');
-    //console.log(this.pluginObj);
+    //this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
     this.init();
   }
 
   saveSection(section) {
-    console.info(section);
+    this.$log.debug(section);
     let saveObj = section.onSave;
     if (section.saveButton.data) {
       let data = {};
@@ -27,7 +28,7 @@ class PluginController {
       });
       saveObj.data = data;
     }
-    console.log(saveObj);
+    this.$log.debug(saveObj);
     if (section.onSave.askForConfirm) {
       let modalPromise = this.modalService.openModal(
         'ModalConfirmController',
@@ -43,7 +44,7 @@ class PluginController {
   }
 
   saveButton(item) {
-    console.info(item);
+    this.$log.debug(item);
     if (item.onClick.askForConfirm) {
       let modalPromise = this.modalService.openModal(
         'ModalConfirmController',
@@ -51,7 +52,7 @@ class PluginController {
         item.onClick.askForConfirm);
       modalPromise.then((yes) => {
         if (item.onClick.type === 'emit') {
-          console.log('emit', item.onClick.message, item.onClick.data);
+          this.$log.debug('emit', item.onClick.message, item.onClick.data);
           this.socketService.emit(item.onClick.message, item.onClick.data);
         } else {
           this.socketService.emit('callMethod', item.onClick);
@@ -59,7 +60,7 @@ class PluginController {
       }, () => {});
     } else {
       if (item.onClick.type === 'emit') {
-        console.log('emit', item.onClick.message, item.onClick.data);
+        this.$log.debug('emit', item.onClick.message, item.onClick.data);
         this.socketService.emit(item.onClick.message, item.onClick.data);
       } else {
         this.socketService.emit('callMethod', item.onClick);
@@ -78,7 +79,7 @@ class PluginController {
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
       // data.sections.unshift({coreSection: 'network-drives'});
-      console.log('pushUiConfig', data);
+      this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
     });
     this.$scope.$on('$destroy', () => {

@@ -1,7 +1,8 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService, $compile, $document, $rootScope) {
+      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log) {
     'ngInject';
+    this.$log = $log;
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
@@ -21,7 +22,7 @@ class BrowseController {
   }
 
   fetchLibrary(item, back = false) {
-    console.log(item);
+    this.$log.debug(item);
     if (item.uri !== 'cd') {
       this.browseService.fetchLibrary(item, back);
     }
@@ -137,7 +138,7 @@ class BrowseController {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
-        console.log('search', this.searchField);
+        this.$log.debug('search', this.searchField);
         this.browseService.startPerf = performance.now();
         this.socketService.emit('search', {value: this.searchField});
       }, 300, false);
@@ -169,7 +170,7 @@ class BrowseController {
 
   //Browse services hamburger menu
   browseServiceHamburgerClick(item) {
-    console.log('browseServiceHamburgerClick', item);
+    this.$log.debug('browseServiceHamburgerClick', item);
     this.socketService.emit(item.emit, item.payload);
   }
 

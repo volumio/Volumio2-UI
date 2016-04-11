@@ -24,6 +24,7 @@ class SideMenuController {
     this.playerService = playerService;
     this.visible = false;
     this.theme = themeManager.theme;
+    this.$log = $log;
     // this.menuItems = mockService.get('getMenuItems');
 
     this.init();
@@ -49,7 +50,7 @@ class SideMenuController {
 
   itemClick(item) {
     this.toggleMenu();
-    console.log(item);
+    this.$log.debug(item);
     if (item.id === 'modal') {
       let
         controllerName = item.params.modalName.split('-').map(
@@ -58,7 +59,7 @@ class SideMenuController {
           }).join(''),
         templateUrl = 'app/components/side-menu/elements/' +
             item.params.modalName + '.html'  ;
-      console.log(controllerName);
+      this.$log.debug(controllerName);
       this.modalService.openModal(
         controllerName + 'Controller',
         templateUrl,
@@ -72,7 +73,7 @@ class SideMenuController {
       for (let param in item.params) {
         item.params[param] = String(item.params[param]).replace('/', '-');
       }
-      console.log(item.state, item.params);
+      this.$log.debug(item.state, item.params);
       this.$state.go(item.state, item.params);
     } else {
       this.$state.go(item.state);
@@ -86,7 +87,7 @@ class SideMenuController {
 
   registerListner() {
     this.socketService.on('pushMenuItems', (data) => {
-      console.log('pushMenuItems', data);
+      this.$log.debug('pushMenuItems', data);
       this.menuItems = data;
     });
   }

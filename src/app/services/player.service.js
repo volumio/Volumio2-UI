@@ -37,7 +37,7 @@ class PlayerService {
   // PLAYER --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
   play() {
-    console.log('play');
+    this.$log.debug('play');
     this.socketService.emit('play');
   }
 
@@ -68,7 +68,7 @@ class PlayerService {
 
   shuffle() {
     if (this.state.trackType !== 'webradio') {
-      console.log(!this.state.random);
+      this.$log.debug(!this.state.random);
       this.socketService.emit('setRandom', {value: !this.state.random});
     }
   }
@@ -94,7 +94,7 @@ class PlayerService {
       //   val = 1;
       // }
       let sec = Math.ceil(this.state.duration / this._seekScale * val);
-      //console.log('val', val, 'seek', sec);
+      //this.$log.debug('val', val, 'seek', sec);
       this.socketService.emit('seek', sec);
     }
   }
@@ -114,7 +114,7 @@ class PlayerService {
   }
 
   toggleMute() {
-    console.log('toggle mute');
+    this.$log.debug('toggle mute');
     if (this.state.mute) {
       this.socketService.emit('setVolume', {mute: false});
     } else {
@@ -128,7 +128,7 @@ class PlayerService {
 
   calculateElapsedTimeString() {
     //let elapsedSeconds = Math.ceil(this.elapsedTime / this._seekScale);
-    //console.log(this.elapsedTime);
+    //this.$log.debug(this.elapsedTime);
     let momentDuration = moment.duration(this.elapsedTime),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
@@ -144,7 +144,7 @@ class PlayerService {
     //   this.elapsedTimeString = Math.floor(elapsedSeconds / 60).toFixed(0) + ':' +
     //       seconds;
     // }
-    //console.log(elapsedSeconds, this.elapsedTimeString);
+    //this.$log.debug(elapsedSeconds, this.elapsedTimeString);
   }
 
   startSeek() {
@@ -225,7 +225,7 @@ class PlayerService {
 
   registerListner() {
     this.socketService.on('pushState', (data) => {
-      console.log('pushState', data);
+      this.$log.debug('pushState', data);
       this.state = data;
       if (!this.state.mute && this.state.volume) {
         this.lastVolume = this.state.volume;
@@ -254,15 +254,15 @@ class PlayerService {
       this.updateFavicon();
     });
     this.socketService.on('pushTrackInfo', (data) => {
-      console.log('pushTrackInfo', data);
+      this.$log.debug('pushTrackInfo', data);
       this.trackInfo = data;
     });
     this.socketService.on('pushGetSeek', (data) => {
-      console.log('pushGetSeek', data);
+      this.$log.debug('pushGetSeek', data);
       this.seek = data;
     });
     this.socketService.on('urifavourites', (data) => {
-      console.log('urifavourites', data);
+      this.$log.debug('urifavourites', data);
       this.favourite = data;
     });
   }
