@@ -1,4 +1,4 @@
-class PlayerButtonsDirective {
+class SideMenuDirective {
   constructor() {
     'ngInject';
     let directive = {
@@ -97,4 +97,4 @@ class SideMenuController {
   }
 }
 
-export default PlayerButtonsDirective;
+export default SideMenuDirective;
