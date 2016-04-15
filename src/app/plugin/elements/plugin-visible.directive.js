@@ -18,7 +18,7 @@ class PluginVisibleDirective {
 }
 
 class PluginVisibleController {
-  constructor($scope, $element) {
+  constructor($scope, $element, $log) {
     'ngInject';
     if (this.pluginVisible) {
       let fieldToWatch = this.section.content.filter(
@@ -27,7 +27,7 @@ class PluginVisibleController {
       $scope.$watch(() => {
         return fieldToWatch.value;
       }, (val) => {
-        //console.log(typeof val, val, typeof this.pluginVisible.value, this.pluginVisible.value);
+        //$log.debug(typeof val, val, typeof this.pluginVisible.value, this.pluginVisible.value);
         if (val === this.pluginVisible.value) {
           $element.fadeIn(300);
         } else {

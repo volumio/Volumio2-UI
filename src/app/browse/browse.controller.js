@@ -1,7 +1,8 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService, $compile, $document, $rootScope) {
+      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log) {
     'ngInject';
+    this.$log = $log;
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
@@ -21,7 +22,7 @@ class BrowseController {
   }
 
   fetchLibrary(item, back = false) {
-    console.log(item);
+    this.$log.debug(item);
     if (item.uri !== 'cd') {
       this.browseService.fetchLibrary(item, back);
     }
@@ -137,14 +138,12 @@ class BrowseController {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
-        console.log('search', this.searchField);
-        this.browseService.startPerf = performance.now();
+        this.$log.debug('search', this.searchField);
         this.socketService.emit('search', {value: this.searchField});
       }, 300, false);
     }
   }
 
-  //NOTE handled in renderBrowseTable
   showHamburgerMenu(item) {
     let ret = item.type === 'radio-favourites' || item.type === 'radio-category';
     return !ret;
@@ -169,7 +168,7 @@ class BrowseController {
 
   //Browse services hamburger menu
   browseServiceHamburgerClick(item) {
-    console.log('browseServiceHamburgerClick', item);
+    this.$log.debug('browseServiceHamburgerClick', item);
     this.socketService.emit(item.emit, item.payload);
   }
 
@@ -177,7 +176,6 @@ class BrowseController {
     if (!this.browseService.list || this.browseService.list.length.length === 0) {
       return false;
     }
-    this.startPerf = performance.now();
     this.table = '';
     let angularThis = `angular.element('#browseTableItems').scope().browse`;
     for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
@@ -214,13 +212,11 @@ class BrowseController {
       </tr>
       `;
     }
-    console.info('List created',  performance.now() - this.startPerf);
     let tbody = document.createElement('tbody');
     window.requestAnimationFrame(() => {
       angular.element(tbody).append(this.table);
       angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
       this.$rootScope.$broadcast('browseController:listRendered');
-      console.info('List rendered',  performance.now() - this.startPerf);
     });
   }
 }

@@ -19,7 +19,7 @@
       <i class="fa fa-volume-down"></i>
     </button>
     <button
-        ng-click="volumeManager.playerService.toggleMute()"
+        ng-click="volumeManager.toggleMute()"
         class="btn btn-link"
         ng-class="{selected: volumeManager.playerService.state.mute}"
         title="Mute">
@@ -39,6 +39,7 @@
     <div class="smallText">/100</div>
     <slider
         class="volumeSlider"
+        ng-class="{disabled: volumeManager.playerService.state.mute}"
         ng-model="volumeManager.volume"
         min="0"
         step="1"

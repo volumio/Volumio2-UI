@@ -1,16 +1,17 @@
 class MultiRoomManagerController {
-  constructor(socketService, multiRoomService, $timeout) {
+  constructor(socketService, multiRoomService, $timeout, $log) {
     'ngInject';
     this.socketService = socketService;
     this.multiRoomService = multiRoomService;
     this.$timeout = $timeout;
+    this.$log = $log;
   }
 
   // onDragComplete(data,event){
   // }
 
   onDropComplete(from, to, event) {
-    console.log(from, to);
+    this.$log.debug(from, to);
     this.multiRoomService.addChild(from, to);
   }
 

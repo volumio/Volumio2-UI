@@ -1,8 +1,9 @@
 class ModalListenerService {
-  constructor($rootScope, socketService, modalService, mockService) {
+  constructor($rootScope, socketService, modalService, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.modalService = modalService;
+    this.$log = $log;
 
     // const mockModal = mockService.get('customModals');
     // this.openModal(mockModal);
@@ -30,7 +31,7 @@ class ModalListenerService {
 
   registerListner() {
     this.socketService.on('openModal', (data) => {
-      console.log('openModal', data);
+      this.$log.debug('openModal', data);
       this.openModal(data);
     });
   }

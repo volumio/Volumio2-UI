@@ -23,6 +23,7 @@ class VolumeManagerController {
     this.playerService = playerService;
     this.matchmediaService = matchmediaService;
     this.showVerticalSlider = false;
+    this.knobFgColor = knobFgColor;
 
     if (this.type === 'knob') {
       this.knobOptions = {
@@ -61,6 +62,16 @@ class VolumeManagerController {
       }
     });
   }
+
+  toggleMute() {
+    if (this.playerService.state.mute) {
+      this.knobOptions.fgColor = this.knobFgColor;
+    } else {
+      this.knobOptions.fgColor = "#999";
+    }
+    this.playerService.toggleMute();
+  }
+
 }
 
 export default VolumeManagerDirective;

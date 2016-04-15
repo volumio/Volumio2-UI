@@ -1,9 +1,10 @@
 class UpdaterService {
-  constructor($rootScope, socketService, modalService, $timeout) {
+  constructor($rootScope, socketService, modalService, $timeout, $log) {
     'ngInject';
     this.socketService = socketService;
     this.modalService = modalService;
     this.$timeout = $timeout;
+    this.$log = $log;
     // this.updateReady =
     //   {
     //     title: 'Update v2.0',
@@ -58,17 +59,17 @@ class UpdaterService {
 
   registerListner() {
     this.socketService.on('updateReady', (data) => {
-      console.log('updateReady', data);
+      this.$log.debug('updateReady', data);
       this.updateReady = data;
       this.openUpdateModal();
     });
     this.socketService.on('updateProgress', (data) => {
-      console.log('updateProgress', data);
+      this.$log.debug('updateProgress', data);
       this.status = 'updateProgress';
       this.updateProgress = data;
     });
     this.socketService.on('updateDone', (data) => {
-      console.log('updateDone', data);
+      this.$log.debug('updateDone', data);
       this.status = 'updateDone';
       this.updateDone = data;
     });

@@ -1,8 +1,10 @@
 class PlaylistService {
-  constructor($rootScope, socketService, $timeout) {
+  constructor($rootScope, socketService, $timeout, $log) {
     'ngInject';
     this.socketService = socketService;
     this.$timeout = $timeout;
+    this.$log = $log;
+    
     this.playlists = [];
 
     this.init();
@@ -16,7 +18,7 @@ class PlaylistService {
 
   //Playlist
   addToPlaylist(item, playlist) {
-    console.log('addToPlaylist', item, playlist);
+    this.$log.debug('addToPlaylist', item, playlist);
     this.socketService.emit('addToPlaylist', {
       name: playlist,
       uri: item.uri,
@@ -25,7 +27,7 @@ class PlaylistService {
   }
 
   removeFromPlaylist(item, playlist) {
-    console.log('removeFromPlaylist', item, playlist);
+    this.$log.debug('removeFromPlaylist', item, playlist);
     this.socketService.emit('removeFromPlaylist', {
       name: playlist,
       uri: item.uri
@@ -39,7 +41,7 @@ class PlaylistService {
   //Favourites
   addToFavourites(item) {
     if (item && item.uri) {
-      console.log('addToFavourites', item);
+      this.$log.debug('addToFavourites', item);
       this.socketService.emit('addToFavourites', {
         uri: item.uri,
         title: item.title,
@@ -50,7 +52,7 @@ class PlaylistService {
 
   removeFromFavourites(item) {
     if (item && item.uri) {
-      console.log('removeFromFavourites', item);
+      this.$log.debug('removeFromFavourites', item);
       this.socketService.emit('removeFromFavourites', {
         uri: item.uri,
         service: (item.service || null)
@@ -60,7 +62,7 @@ class PlaylistService {
 
   //Web radio
   addWebRadio(item) {
-    console.log('addWebRadio', item);
+    this.$log.debug('addWebRadio', item);
     if (item && item.title && item.uri) {
       this.socketService.emit('addWebRadio', {
         name: item.title,
@@ -70,12 +72,12 @@ class PlaylistService {
   }
 
   editWebRadio(item) {
-    console.log('editWebRadio', item);
+    this.$log.debug('editWebRadio', item);
     this.addWebRadio(item);
   }
 
   deleteWebRadio(item) {
-    console.log('removeWebRadio', item);
+    this.$log.debug('removeWebRadio', item);
     if (item && item.title) {
       this.socketService.emit('removeWebRadio', {
         name: item.title
@@ -84,11 +86,11 @@ class PlaylistService {
   }
 
   addWebRadioToFavourites(item) {
-    console.log('addWebRadioToFavourites', item);
+    this.$log.debug('addWebRadioToFavourites', item);
     this.addToFavourites(item);
   }
   removeWebRadioFromFavourites(item) {
-    console.log('removeWebRadioFromFavourites', item);
+    this.$log.debug('removeWebRadioFromFavourites', item);
     this.removeFromFavourites(item);
   }
 
@@ -104,7 +106,7 @@ class PlaylistService {
 
   registerListner() {
     this.socketService.on('pushListPlaylist', (data) => {
-      console.log('pushListPlaylist', data);
+      this.$log.debug('pushListPlaylist', data);
       this.playlists = data;
     });
   }

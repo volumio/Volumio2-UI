@@ -15,13 +15,13 @@ class PlayQueueService {
   }
 
   play(index) {
-    console.log('PlayQueueService play', index);
+    this.$log.debug('PlayQueueService play', index);
     this.socketService.emit('play', {value: index});
   }
 
   //play song and add to queue
   addPlay(item) {
-    console.log('PlayQueueService addPlay', item);
+    this.$log.debug('PlayQueueService addPlay', item);
     this.socketService.emit('addPlay', {
       uri: item.uri,
       service: (item.service || null)
@@ -29,13 +29,13 @@ class PlayQueueService {
   }
 
   playPlaylist(index) {
-    console.log('PlayQueueService playPlaylist', index);
+    this.$log.debug('PlayQueueService playPlaylist', index);
     this.socketService.emit('playPlaylist', {name: index.title});
   }
 
   //add to queue for song
   add(item) {
-    console.log('PlayQueueService addToQueue', item);
+    this.$log.debug('PlayQueueService addToQueue', item);
     this.socketService.emit('addToQueue', {
       uri: item.uri,
       service: (item.service || null)
@@ -44,12 +44,12 @@ class PlayQueueService {
 
   //add to queue method for playlist
   enqueue(index) {
-    console.log('PlayQueueService enqueue', index);
+    this.$log.debug('PlayQueueService enqueue', index);
     this.socketService.emit('enqueue', {name: index.title});
   }
 
   addPlayCue(item) {
-    console.log('addPlayCue', item);
+    this.$log.debug('addPlayCue', item);
     this.socketService.emit('addPlayCue', {
       uri: item.uri,
       number: item.number,
@@ -58,7 +58,7 @@ class PlayQueueService {
   }
 
   remove(index) {
-    console.log('removeFromQueue', index);
+    this.$log.debug('removeFromQueue', index);
     this.socketService.emit('removeFromQueue', {value: index});
   }
 
@@ -77,7 +77,7 @@ class PlayQueueService {
 
   registerListner() {
     this.socketService.on('pushQueue', (data) => {
-      console.log('pushQueue', data);
+      this.$log.debug('pushQueue', data);
       this._queue = data;
     });
   }

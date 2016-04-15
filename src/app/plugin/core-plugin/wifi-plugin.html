@@ -7,10 +7,16 @@
     <h3 class="panel-title"><i class="fa fa-wifi"></i> Wireless network</h3>
   </div> -->
 
+
+  <button type="button" class="btn btn-link pull-right" ng-click="wifiPlugin.refreshWifiNetworks()">
+    <i class="fa fa-refresh" title="Refresh wifi networkw"></i>
+  </button>
+
+
   <div class="panel-body">
     <!-- <h4 ng-if="false" class="sectionDescription"></h4> -->
     <table class="table">
-      <tr ng-if="wifiPlugin.wirelessNetworks.connectedTo">
+      <tr ng-if="::wifiPlugin.wirelessNetworks.connectedTo">
         <td class="wifiIcon">
           <img
               ng-if="::wifiPlugin.wirelessNetworks.connectedTo.signal >= 0"
@@ -23,7 +29,7 @@
           </span>
         </td>
         <td>
-          {{wifiPlugin.wirelessNetworks.connectedTo.ssid}}
+          {{::wifiPlugin.wirelessNetworks.connectedTo.ssid}}
         </td>
         <td>
         </td>
@@ -36,7 +42,7 @@
         </td>
       </tr>
       <tr ng-if="::wifiPlugin.wirelessNetworks.available.length > 0"
-          ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available track by $index">
+          ng-repeat-start="wifi in ::wifiPlugin.wirelessNetworks.available track by wifi.ssid">
         <td class="wifiIcon">
           <img
               ng-if="::wifi.signal >= 0"
@@ -49,7 +55,7 @@
           </span>
         </td>
         <td>
-          {{wifi.ssid}}
+          {{::wifi.ssid}}
         </td>
         <td class="commandCol">
           <button ng-if="::!wifi.insertPassword"

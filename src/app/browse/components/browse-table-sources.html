@@ -15,7 +15,7 @@
       <ul
           class="dropdown-menu buttonsGroup"
           ng-class="{'last': ($index > 2 && browse.browseService.sources.length - $index < 3)}">
-        <li ng-repeat="item in source.menuItems"
+        <li ng-repeat="item in source.menuItems track by $index"
             ng-click="browse.browseServiceHamburgerClick(item.socketCall)">
           <a href><i ng-if="::item.icon" ng-class="::item.icon"></i>{{::item.name}}</a>
         </li>
