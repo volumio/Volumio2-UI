@@ -20,11 +20,22 @@
   input {
     color: $volumio-text-color;
   }
+  .form-control-feedback {
+    color: $volumio-text-color;
+    font-size: 18px;
+  }
+  .clear-search {
+    cursor: pointer;
+    pointer-events: auto;
+    &:hover {
+      color: $volumio-green-color;
+    }
+  }
 }
 
 #browseTableSources {
   td {
-    text-transform: uppercase;
+    text-transform: capitalize;
     padding-left: 10px;
     height: 45px;
     .info {

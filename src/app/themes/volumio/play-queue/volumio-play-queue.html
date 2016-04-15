@@ -1,3 +1,4 @@
+<track-info-bar ng-if="!browse.matchmediaService.isPhone"></track-info-bar>
 <div class="row">
   <div id="playQueue">
     <table class="table table-hover table-condensed"
@@ -7,9 +8,9 @@
           ng-dblclick="playQueue.playQueueService.play($index)"
           hm-doubletap="playQueue.playQueueService.play($index)">
         <td class="image">
-          <img ng-if="::item.albumart" ng-src="{{::playQueue.playQueueService.socketService.host + item.albumart}}"
-              alt="{{::item.name}}"/>
-          <i ng-if="::item.icon" ng-class="::item.icon"></i>
+          <span ng-click="playQueue.playQueueService.play($index)" class="rollover" ></span>
+            <img ng-if="::item.albumart" ng-src="{{::playQueue.playQueueService.socketService.host + item.albumart}}" alt="{{::item.name}}"/>
+            <i ng-if="::item.icon" ng-class="::item.icon"></i>
         </td>
         <td>
           <div class="title">

@@ -16,4 +16,27 @@
       font-size: 20px;
     }
   }
+  span.rollover {
+    font-family: FontAwesome;
+    font-size: 18px;
+    padding-top: 10px;
+    -webkit-transition: .3s;
+    background: rgba(0,0,0,0);
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    z-index: 10;
+    &:hover {
+      background: rgba(0,0,0,.5);
+      -webkit-transition: .3s;
+      box-shadow: 0px 0px 2px #000;
+      &:before {
+        content: '\f04b';
+      }
+      &:active {
+        color: $volumio-green-color;
+      }
+    }
+  }
 }
