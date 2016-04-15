@@ -39,12 +39,7 @@ class WifiPluginController {
   }
 
   refreshWifiNetworks() {
-    let emitPayload = {
-      'endpoint': 'system_controller/network',
-      'method': 'refreshWirelessNetworks',
-      'data': ''
-    };
-    this.socketService.emit('callMethod', emitPayload);
+    this.socketService.emit('getWirelessNetworks', '');
   }
 
   disconnectFromWiFi() {}
