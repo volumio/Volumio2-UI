@@ -9,8 +9,9 @@
       <button ng-click="networkDrives.addDrive()"
           id="addNewDrive"
           type="button"
-          class="btn btn-info">
-        <i class="fa fa-plus"></i> Add new drive
+          class="btn btn-info"
+          title="Add new drive">
+        <i class="fa fa-plus"></i> Add New Drive
       </button>
       <div class="clearfix"></div>
       <br>
@@ -43,12 +44,14 @@
           <td class="commandCol">
             <button ng-click="networkDrives.deleteDrive(drive)"
                 type="button"
-                class="btn btn-danger">
+                class="btn btn-danger"
+                title="Delete Drive">
               <i class="fa fa-trash-o"></i>
             </button>
             <button ng-click="networkDrives.editDrive(drive, $index)"
                 type="button"
-                class="btn btn-info">
+                class="btn btn-info"
+                title="Edit Drive">
               <i class="fa fa-pencil"></i>
             </button>
           </td>
