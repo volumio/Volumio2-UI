@@ -1,0 +1,33 @@
+<table class="table noFirstRowBorder">
+  <tr ng-repeat-start="plugin in pluginsPlugin.installedPlugins track by $index">
+    <td>
+      {{::plugin.name}}
+    </td>
+    <td>
+      <input
+          bs-switch
+          ng-model="plugin.active"
+          type="checkbox"
+          switch-size="medium"
+          switch-animate="false"
+          switch-on-text="On"
+          switch-off-text="Off"
+          ng-true-value="true"
+          ng-false-value="false"
+          ng-change="pluginsPlugin.enableDisablePlugin(plugin)">
+    </td>
+    <td>
+      <button
+          ng-click="plugin.showSettings = !plugin.showSettings"
+          type="button"
+          class="btn btn-info pull-right">
+        <i class="fa fa-cog"></i>
+      </button>
+    </td>
+  </tr>
+  <tr ng-repeat-end ng-show="plugin.showSettings">
+    <td>
+      settings values
+    </td>
+  </tr>
+</table>

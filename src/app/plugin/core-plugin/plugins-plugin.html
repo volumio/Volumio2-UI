@@ -1,0 +1,22 @@
+<div
+    id="pluginsPlugin"
+    ng-controller="PluginsPluginController as pluginsPlugin"
+    class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Plugins Management</h3>
+    </div>
+
+    <div class="panel-body">
+      <uib-tabset active="active">
+        <uib-tab index="0" heading="Installed plugins">
+          <ng-include src="'app/plugin/core-plugin/elements/plugins-installed-plugin.html'"></ng-include>
+        </uib-tab>
+        <uib-tab index="1" heading="Search plugins">
+          <ng-include src="'app/plugin/core-plugin/elements/plugins-search-plugin.html'"></ng-include>
+        </uib-tab>
+        <uib-tab index="2" heading="Upload plugin">
+          <ng-include src="'app/plugin/core-plugin/elements/plugins-upload-plugin.html'"></ng-include>
+        </uib-tab>
+      </uib-tabset>
+    </div>
+</div>

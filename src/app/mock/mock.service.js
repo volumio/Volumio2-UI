@@ -13,6 +13,69 @@ class MockService {
 
   init() {
     this._mock = {
+      //installedPlugins
+      installedPlugins: [
+        {
+          name: 'Nome Plugin 1',
+          active: true,
+          path: 'path1'
+        },
+        {
+          name: 'Nome Plugin 2',
+          active: false,
+          path: 'path2'
+        },
+      ],
+      //installablePlugins
+      installablePlugins: {
+        metaData: {
+          repoUlr: 'fetching ulr',
+          repoStatus: 'Up'
+        },
+        categories: [
+          {
+            name: 'Categoria 1',
+            id: 'CAT1',
+            description: 'Descrizione categoria',
+            plugins: [
+              {
+                name: 'Nome plugin available 1',
+                version: 'v1',
+                url: 'url to zip',
+                license: 'license',
+                description: 'plugin 1 desc',
+                author: 'plugin 1 author',
+                updated: 'plugin 1 date update'
+              },
+              {
+                name: 'Nome plugin available 2',
+                version: 'v2',
+                url: 'url to zip',
+                license: 'license',
+                description: 'plugin 2 desc',
+                author: 'plugin 2 author',
+                updated: 'plugin 2 date update'
+              }
+            ]
+          },
+          {
+            name: 'Categoria 2',
+            id: 'CAT2',
+            description: 'Descrizione categoria 2',
+            plugins: [
+              {
+                name: 'Nome plugin available 3',
+                version: 'v3',
+                url: 'url to zip',
+                license: 'license',
+                description: 'plugin 3 desc',
+                author: 'plugin 3 author',
+                updated: 'plugin 3 date update'
+              }
+            ]
+          }
+        ]
+      },
       //Custom modals
       customModals: {
         'title': 'titolo in alto della modale',

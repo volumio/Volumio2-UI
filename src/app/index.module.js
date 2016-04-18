@@ -81,6 +81,7 @@ import NetworkStatusPluginController from './plugin/core-plugin/network-status-p
 import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.controller';
 import NetworkDrivesPluginController from './plugin/core-plugin/network-drives-plugin.controller';
 import SystemVersionPluginController from './plugin/core-plugin/system-version-plugin.controller';
+import PluginsPluginController from './plugin/core-plugin/plugins-plugin.controller';
 
 
 
@@ -185,5 +186,6 @@ angular.module('volumio', [
   .controller('MyMusicPluginController', MyMusicPluginController)
   .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)
   .controller('SystemVersionPluginController', SystemVersionPluginController)
+  .controller('PluginsPluginController', PluginsPluginController)
 
   ;

@@ -49,6 +49,7 @@ $volumio-background-color: #555;
 $volumio-grey-trans-dark: rgba(20,20,20,0.6);
 $volumio-black-trans-dark: rgba(0,0,0,0.6);
 $volumio-playbtn-gradient: linear-gradient(top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.6) 72%, rgba(0,0,0,0.6) 100%);
+$volumio-table-border-color: #7C7C7C;
 
 $body-bg: transparent;
 $brand-primary: #222;
@@ -86,7 +87,7 @@ $btn-danger-border: $volumio-red-color;
 //Table
 $table-bg-hover: $volumio-accent-color;
 $table-bg: transparent;
-$table-border-color: #7C7C7C;
+$table-border-color: $volumio-table-border-color;
 
 //Panels
 $panel-bg: transparent;
@@ -117,6 +118,15 @@ $list-group-border: $volumio-green-color;
 $progress-bg: $volumio-dark-color;
 $progress-bar-bg: $volumio-green-color;
 
+//Tabs
+$nav-link-hover-bg: $volumio-black-trans-dark;
+$nav-tabs-border-color: $volumio-green-color;
+$nav-tabs-link-hover-border-color: $volumio-green-color;
+
+$nav-tabs-active-link-hover-bg: $volumio-black-trans-dark;
+$nav-tabs-active-link-hover-color: $volumio-green-color;
+$nav-tabs-active-link-hover-border-color:  $volumio-green-color;
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -146,7 +156,7 @@ $progress-bar-bg: $volumio-green-color;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/dropdowns";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/button-groups";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups";
-//@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navs";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navs";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navbar";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/breadcrumbs";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/pagination";
@@ -264,6 +274,11 @@ html {
 table {
   font-size: 18px;
   margin: 0;
+  &.noFirstRowBorder {
+    tr:first-of-type td {
+      border-top: none;
+    }
+  }
   tr {
     // background-color: rgba(50, 50, 50, 0.2);
     &.nohover{
