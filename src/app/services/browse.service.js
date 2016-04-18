@@ -101,7 +101,7 @@ class BrowseService {
       this.list = data.navigation.list;
 
       this.listLength = this.list.length;
-      this.$log.debug('List len', this.listLength);
+      this.$log.debug('pushBrowseLibrary', this.listLength, this.list);
 
       this.breadcrumbs = data.navigation.prev;
       this.$rootScope.$broadcast('browseService:fetchEnd');

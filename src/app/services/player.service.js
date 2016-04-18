@@ -116,11 +116,12 @@ class PlayerService {
   }
 
   toggleMute() {
-    this.$log.debug('toggle mute', this.state.mute);
     if (this.state.mute) {
-      this.socketService.emit('setVolume', {mute: false});
+      this.$log.debug('unmute', this.state.mute);
+      this.socketService.emit('unmute');
     } else {
-      this.socketService.emit('setVolume', {mute: true});
+      this.$log.debug('mute', this.state.mute);
+      this.socketService.emit('mute');
     }
   }
 
@@ -179,6 +180,7 @@ class PlayerService {
     } else if (volume > 100) {
       volume = 100;
     }
+    console.log('volume', volume);
     this.socketService.emit('volume', volume);
   }
 
