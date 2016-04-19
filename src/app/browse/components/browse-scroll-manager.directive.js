@@ -1,5 +1,5 @@
 class BrowseScrollManagerDirective {
-  constructor(browseService) {
+  constructor(browseService, $log) {
     'ngInject';
     this.browseService = browseService;
 
@@ -13,11 +13,11 @@ class BrowseScrollManagerDirective {
   }
 
   setScrollTop() {
-    // console.log(this.browseService.scrollPositions);
+    // $log.debug(this.browseService.scrollPositions);
     let currentFetchRequest = this.browseService.currentFetchRequest;
     if (currentFetchRequest && currentFetchRequest.uri &&
       this.browseService.scrollPositions.get(currentFetchRequest.uri)) {
-      // console.log('Scroll to', currentFetchRequest.uri,
+      // $log.debug('Scroll to', currentFetchRequest.uri,
       //     this.browseService.scrollPositions.get(currentFetchRequest.uri));
       this.browseTablesWrapper.scrollTop = this.browseService.scrollPositions.get(currentFetchRequest.uri);
     } else {
@@ -31,20 +31,20 @@ class BrowseScrollManagerDirective {
     let browseService = this.browseService;
     function scrollHandler() {
       /*jshint validthis:true */
-      // console.log(browseService.currentFetchRequest.uri, this.scrollTop);
+      // $log.debug(browseService.currentFetchRequest.uri, this.scrollTop);
       browseService.scrollPositions.set(browseService.currentFetchRequest.uri, this.scrollTop);
     }
 
     setTimeout(() => {
       this.contentWrapper = angular.element('#contentWrapper')[0];
       this.contentWrapper.style.overflowY = 'hidden';
-      // console.log(contentWrapper);
+      // $log.debug(contentWrapper);
       this.contentWrapper.scrollTop = 0;
 
       //Add listener to browseTablesWrapper on scroll
       this.browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
       // this.browseTablesWrapper.scrollTop = 0;
-      // console.log(this.browseTablesWrapper);
+      // $log.debug(this.browseTablesWrapper);
       this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
 
       browsePanelHeading = angular.element('#browsePanelHeading')[0];

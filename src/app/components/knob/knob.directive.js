@@ -1,5 +1,5 @@
 class KnobDirective {
-  constructor() {
+  constructor($log) {
     'ngInject';
     let directive = {
       restrict: 'E',
@@ -29,13 +29,13 @@ class KnobController {
     let knobOptions = {
       change: (value) => {
         $timeout.cancel(this.timeoutHandler);
-        this.timeoutHandler = $timeout(() => {
-          value = parseInt(value, 10);
-          this.value = value;
-          if (this.onChange) {
-            this.onChange({value: value});
-          }
-        }, 0, false);
+        // this.timeoutHandler = $timeout(() => {
+        //   value = parseInt(value, 10);
+        //   this.value = value;
+        //   if (this.onChange) {
+        //     this.onChange({value: value});
+        //   }
+        // }, 0, false);
       },
       release: (value, e) => {
         $timeout.cancel(this.timeoutHandler2);
@@ -66,7 +66,7 @@ class KnobController {
     // NOTE live update configurations
     $scope.$watch(() => this.options,  (options) => {
       if (options) {
-        //console.log('option changed', options);
+        //$log.debug('option changed', options);
         $element.trigger('configure', options);
       }
     }, true);
@@ -75,7 +75,7 @@ class KnobController {
   updateValue() {
     return this.$timeout(() => {
       let timeoutHandler;
-      //console.log('this.value', this.value);
+      //$log.debug('this.value', this.value);
       if (!this.isChanging) {
         this.$element.val(parseInt(this.value, 10)).trigger('change');
       } else {

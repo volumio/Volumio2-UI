@@ -7,6 +7,7 @@
     margin-top: 0px;
     height: $footerHeight;
     .volumeSliderWrapper {
+      pointer-events: none;
       position: absolute;
       bottom: $footerHeight;
       left: 0px;
@@ -14,6 +15,7 @@
       background-color: rgba(0, 0, 0, 0.6);
       text-align: center;
       .volumeSlider {
+        pointer-events: auto;
         margin: 14px 0px;
         transform: rotate(0deg);
       }

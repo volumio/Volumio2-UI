@@ -2,11 +2,13 @@
   @include make-row();
   background-color: $volumio-grey-trans-dark;
   height: 35px;
+  overflow: hidden;
   .leftInfo {
     @include make-xs-column(24);
     padding: 8px 0px 9px 26px;
     font-size: 14px;
     font-weight: 700;
+    white-space: nowrap;
     span {
       &.small {
         font-weight: 300;

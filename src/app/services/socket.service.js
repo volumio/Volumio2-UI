@@ -1,9 +1,11 @@
 class SocketService {
-  constructor($rootScope, $http, $window) {
+  constructor($rootScope, $http, $window, $log) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$http = $http;
     this.$window = $window;
+    this.$log = $log;
+
     this._host = null;
   }
 
@@ -22,13 +24,13 @@ class SocketService {
   }
 
   on(eventName, callback) {
-    // console.log('on', eventName);
+    // this.$log.debug('on', eventName);
     return this.$window.socket.on(eventName, (data) => {
-      //console.log(arguments);
-      //console.log(data);
+      //this.$log.debug(arguments);
+      //this.$log.debug(data);
       this.$rootScope.$apply(function() {
         if (callback) {
-          //console.log(data);
+          //this.$log.debug(data);
           //callback.apply(socket, data);
           callback(data);
         }
@@ -37,12 +39,12 @@ class SocketService {
   }
 
   off(eventName, fn) {
-    // console.log('off', eventName);
+    // this.$log.debug('off', eventName);
     this.$window.socket.off(eventName, fn);
   }
 
   emit(eventName, data, callback) {
-    //console.log('emit', eventName);
+    //this.$log.debug('emit', eventName);
     this.$window.socket.emit(eventName, data, (data) => {
       //let arg = arguments;
       this.$rootScope.$apply(function() {
@@ -56,14 +58,14 @@ class SocketService {
 
   connect(callback) {
     this.$window.socket.on('connect', () => {
-      console.info('Socket connect');
+      this.$log.debug('Socket connect');
       callback();
     });
   }
 
   reconnect(callback) {
     this.$window.socket.on('reconnect', () => {
-      console.info('Socket reconnect');
+      this.$log.debug('Socket reconnect');
       this.$rootScope.$emit('socket:reconnect');
       callback();
     });
@@ -71,7 +73,7 @@ class SocketService {
 
   disconnect(callback) {
     this.$window.socket.on('disconnect', (socket) => {
-      console.info('Socket disconnect');
+      this.$log.debug('Socket disconnect');
       callback(socket);
     });
   }
@@ -79,7 +81,7 @@ class SocketService {
   set host(host) {
     this._host = host;
     this.changeHost(host);
-    console.info('New host:', this._host);
+    this.$log.debug('New host:', this._host);
   }
 
   get host() {

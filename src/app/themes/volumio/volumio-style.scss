@@ -74,9 +74,9 @@ $btn-info-bg: $volumio-green-color;
 $btn-info-border: $volumio-green-color;
 
 //used for cancel buttons
-$btn-warning-color: $volumio-light-color;
+$btn-warning-color: $volumio-green-color;
 $btn-warning-bg: $volumio-grey-trans-dark;
-$btn-warning-border: $volumio-light-color;
+$btn-warning-border: $volumio-green-color;
 
 //used for delete buttons
 $btn-danger-color: #FFF;
@@ -388,7 +388,7 @@ table {
 }
 .bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
   background-color: $volumio-black-trans-dark;
-  color: $volumio-text-color;
+  color: $volumio-green-color;
 }
 .bootstrap-switch-label {
   background-color: red;
@@ -432,30 +432,38 @@ li.list-group-item {
   border-radius: 150px;
   pointer-events: none;
   z-index: 10;
+  div {
+
+  }
   .headerText {
-    padding-top: 25px;
+    height: 20px;
+    margin-top: 24px;
     font-size: 11px;
     &.green {
       color: $volumio-green-color;
     }
   }
   .bigText {
+    margin-top: 8px;
+    height: 45px;
     color: $volumio-green-color;
-    padding-top: 25px;
     font-size: 50px;
     line-height: 45px;
     font-weight: 300;
+    .webRadioLabel {
+      padding-top: 5px;
+      font-size: 30px;
+    }
   }
   .smallText {
+    margin-top: 8px;
     font-size: 16px;
+    height: 22px;
   }
   .footerText {
-    padding-top: 5px;
+    height: 19px;
+    margin-top: 5px;
     font-size: 14px;
-    &.webRadio {
-      padding-top: 64px;
-      font-size: 24px;
-    }
   }
 }
 
@@ -488,7 +496,15 @@ li.list-group-item {
   width: 15px;
   border-radius: 16px;
   margin-left: -10px;
+
 }
+
+.volumeSlider.disabled {
+  .slider-track{
+    background-image: linear-gradient(to top, #666 0%, #666 100%);
+  }
+}
+
 .slider-track {
   border: solid 1px #555;
   height: 30px;
@@ -508,10 +524,10 @@ li.list-group-item {
 //Button groups
 .btn-group {
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 0px 10px;
+  padding: 0px;
   button {
     font-size: 26px;
-    padding: 8px 20px 5px 20px
+    padding: 8px 18px 5px 18px
   }
 }
 

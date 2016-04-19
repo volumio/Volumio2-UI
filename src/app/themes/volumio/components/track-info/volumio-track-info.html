@@ -1,14 +1,14 @@
 <div id="trackInfo">
   <div id="trackDetails">
-    <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album">
+    <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album" title="Album">
       {{trackInfo.playerService.state.album}}
     </div>
     <br/>
-    <div id="trackInfo-title" ng-if="trackInfo.playerService.state.title">
+    <div id="trackInfo-title" ng-if="trackInfo.playerService.state.title" title="Track Title">
       {{trackInfo.playerService.state.title}}
     </div>
     <br/>
-    <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist">
+    <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist" title="Artist">
       {{trackInfo.playerService.state.artist}}
     </div>
   </div>
@@ -19,7 +19,7 @@
         alt="{{trackInfo.playerService.state.album}}"/>
     <i
         ng-if="trackInfo.playerService.state.icon"
-        class="{{trackInfo.playerService.state.icon}}">
+        ng-class="trackInfo.playerService.state.icon">
     </i>
   </div>
 </div>

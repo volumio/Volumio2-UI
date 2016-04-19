@@ -1,10 +1,11 @@
 class ModalSleepController {
-  constructor($uibModalInstance, socketService, dataObj) {
+  constructor($uibModalInstance, socketService, dataObj, $log) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.socketService = socketService;
     this.dataObj = dataObj;
     this.showMeridian = false;
+    this.$log = $log;
 
     this.sleepTime = new Date();
     this.sleepTime.setHours(0, 0);
@@ -23,7 +24,7 @@ class ModalSleepController {
       action: this.action.val
     };
     this.socketService.emit('setSleep', obj);
-    console.log('setSleep', obj, this.sleepTime, this.enabled);
+    this.$log.debug('setSleep', obj, this.sleepTime, this.enabled);
     this.$uibModalInstance.close();
   }
 
@@ -38,7 +39,7 @@ class ModalSleepController {
 
   registerListner() {
     this.socketService.on('pushSleep', (data) => {
-      console.log('pushSleep', data);
+      this.$log.debug('pushSleep', data);
       this.enabled = data.enabled;
       this.action = data.action;
       if (data.time) {

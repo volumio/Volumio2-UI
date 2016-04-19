@@ -1,9 +1,10 @@
 class RipperService {
-  constructor($rootScope, socketService, modalService, themeManager, mockService) {
+  constructor($rootScope, socketService, modalService, themeManager, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.modalService = modalService;
     this.themeManager = themeManager;
+    this.$log = $log;
     this.modalDataObj = {};
 
     // this.modalDataObj = mockService.get('ripper');
@@ -27,7 +28,7 @@ class RipperService {
 
   startToRipCd() {
     let ripDataObj = angular.copy(this.modalDataObj);
-    console.log('emit ripCD', ripDataObj);
+    this.$log.debug('emit ripCD', ripDataObj);
     this.socketService.emit('callMethod', {'endpoint':'music_service/cd_controller','method':'ripCD','data':ripDataObj});
   }
 
@@ -38,7 +39,7 @@ class RipperService {
 
   registerListner() {
     this.socketService.on('cdRipStart', (data) => {
-      console.log('cdRipStart', data);
+      this.$log.debug('cdRipStart', data);
       this.modalDataObj = data;
       this.cdRipStart(this.modalDataObj);
     });

@@ -1,10 +1,11 @@
 class MultiRoomService {
-  constructor($rootScope, socketService, mockService) {
+  constructor($rootScope, socketService, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.mockService = mockService;
+    this.$log = $log;
     // this.multiRoomDevices = mockService.get('multiRoomDevices');
-    // console.log(this.multiRoomDevices);
+    // this.$log.debug(this.multiRoomDevices);
     // this.devices = this.mapDevices(this.multiRoomDevices);
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -34,13 +35,13 @@ class MultiRoomService {
       ip: from.ip,
       set: 'client'
     };
-    console.log('setClient', obj);
+    this.$log.debug('setClient', obj);
     this.socketService.emit('setMultiroom', obj);
     obj = {
       ip: to.ip,
       set: 'server'
     };
-    console.log('setServer', obj);
+    this.$log.debug('setServer', obj);
     this.socketService.emit('setMultiroom', obj);
   }
 
@@ -49,7 +50,7 @@ class MultiRoomService {
       ip: ip,
       set: 'single'
     };
-    console.log('removeChildDevice', obj);
+    this.$log.debug('removeChildDevice', obj);
     this.socketService.emit('setMultiroom', obj);
   }
 
@@ -58,7 +59,7 @@ class MultiRoomService {
       ip: ip,
       groupvolume: volume
     };
-    console.log('changeGroupVolume', obj);
+    this.$log.debug('changeGroupVolume', obj);
     this.socketService.emit('setMultiroom', obj);
   }
 
@@ -67,7 +68,7 @@ class MultiRoomService {
       ip: ip,
       volume: volume
     };
-    console.log('changeChildVolume', obj);
+    this.$log.debug('changeChildVolume', obj);
     this.socketService.emit('setMultiroom', obj);
   }
 
@@ -78,11 +79,11 @@ class MultiRoomService {
 
   registerListner() {
     this.socketService.on('pushMultiRoomDevices', (data) => {
-      console.log('pushMultiRoomDevices', data);
+      this.$log.debug('pushMultiRoomDevices', data);
       this.devices = this.mapDevices(data.list);
     });
     this.socketService.on('pushMultiroom', (data) => {
-      console.log('pushMultiRoom', data);
+      this.$log.debug('pushMultiRoom', data);
       this.multiRoomDevices = data;
     });
   }

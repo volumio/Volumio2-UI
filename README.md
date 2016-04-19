@@ -26,7 +26,7 @@ git push origin dist:dist
 
 ## Set up development environment
 
-You must have Node.js, Npm and Bower installed 
+You must have Node.js, Npm and Bower installed
 
 First clone it
 
@@ -44,7 +44,7 @@ bower install
 ```
 
 Now, you can develop on it, while retrieving data from Volumio2 backend (you must have a Volumio2 device on your network and know its IP address).
-To tell the UI where to find Volumio 2 backend, create a file with the IP of Volumio2 in 
+To tell the UI where to find Volumio 2 backend, create a file with the IP of Volumio2 in
 
 ```shell
 /src/app/local-config.json
@@ -65,10 +65,10 @@ Now, feel free to edit and see live changes on a local browser with dinamically 
 gulp serve --theme="volumio"
 ```
 
-Once finished, to deploy on Volumio 2, first build it 
+Once finished, to deploy on Volumio 2, first build it. if you want production optimization use --env="production"
 
 ```shell
-gulp build --theme="volumio"
+gulp build --theme="volumio" --env="production"
 ```
 
 And deploy by copying the content of dist directory on Volumio2 device to:
@@ -76,4 +76,3 @@ And deploy by copying the content of dist directory on Volumio2 device to:
 ```shell
 /volumio/http/www
 ```
-

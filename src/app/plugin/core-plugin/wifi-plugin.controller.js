@@ -1,8 +1,9 @@
 class WifiPluginController {
-  constructor($scope, socketService, mockService) {
+  constructor($scope, socketService, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
+    this.$log = $log;
     //this.wirelessNetworks = mockService.get('wirelessNetworks');
     this.init();
   }
@@ -29,7 +30,7 @@ class WifiPluginController {
       password: wifi.password
     };
     this.wirelessNetworks.available[index].insertPassword = undefined;
-    console.log('connect to', wifi, saveWiFi);
+    this.$log.debug('connect to', wifi, saveWiFi);
     this.socketService.emit('saveWirelessNetworkSettings', saveWiFi);
   }
 
@@ -37,12 +38,19 @@ class WifiPluginController {
     wifi.insertPassword = undefined;
   }
 
+  refreshWifiNetworks() {
+    this.socketService.emit('getWirelessNetworks', '');
+  }
+
   disconnectFromWiFi() {}
 
   registerListner() {
     this.socketService.on('pushWirelessNetworks', (data) => {
-      console.log('pushWirelessNetworks', data);
+      this.$log.debug('pushWirelessNetworks', data);
       this.wirelessNetworks = data;
+      if (!this.wirelessNetworks.available) {
+        this.wirelessNetworks.available = [];
+      }
       this.wirelessNetworks.available.push({
         security: '',
         signal: -1,

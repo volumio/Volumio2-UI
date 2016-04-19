@@ -1,29 +1,10 @@
+<track-info-bar ng-if="!browse.matchmediaService.isPhone"></track-info-bar>
 <div class="row">
   <div id="playQueue">
-    <table class="table table-hover table-condensed"
-        ng-if="true || playQueue.playQueueService.queue.length">
-      <tr
-          ng-repeat="item in playQueue.playQueueService.queue"
-          ng-dblclick="playQueue.playQueueService.play($index)"
-          hm-doubletap="playQueue.playQueueService.play($index)">
-        <td class="image">
-          <img ng-if="item.albumart" ng-src="{{playQueue.playQueueService.socketService.host + item.albumart}}" alt="{{item.name}}"/>
-          <i ng-if="item.icon" class="{{item.icon}}"></i>
-        </td>
-        <td>
-          <div class="title">
-            {{item.name}}
-          </div>
-          <div class="artist-album" ng-if="item.artist || item.album">
-            {{item.artist}}<span ng-if="item.artist && item.album"> - {{item.album}}</span>
-          </div>
-        </td>
-        <td class="deleteBtn">
-          <button class="btn btn-link" ng-click="playQueue.playQueueService.remove($index)">
-            <i class="fa fa-times-circle"></i>
-          </button>
-        </td>
-      </tr>
+    <table
+        id="playQueueTable"
+        class="table table-hover table-condensed"
+        ng-include src="'app/play-queue/elements/play-queue-table-items.html'">
     </table>
   </div>
 </div>

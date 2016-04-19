@@ -47,9 +47,6 @@
     </div>
   </div>
 
-  <div ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true">
-    <a href>Advanced Options</a>
-  </div>
   <!-- <div ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false">
     <a href>Hide advanced Options</a><br>
   </div> -->
@@ -118,15 +115,26 @@
       </div>
     </div>
   </div>
-
   <div class="form-group">
     <label class="control-label"></label>
     <div class="control-item">
-      <button ng-click="networkDrives.cancelAddEditDrive()" type="button" class="btn btn-warning">
+      <button ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true" type="button" class="btn btn-info" title="Show Advanced Options">
+        Show Advanced Options
+      </button>
+      <button ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false" type="button" class="btn btn-warning" title="Close Advanced Options">
+        Close Advanced Options
+      </button>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label"></label>
+    <div class="control-item">
+      <button ng-click="networkDrives.cancelAddEditDrive()" type="button" class="btn btn-warning" title="Cancel">
         Cancel
       </button>
       <button ng-click="networkDrives.saveAddEditDrive()" type="button"
-          class="btn btn-info saveAddEditDrive">
+          class="btn btn-info saveAddEditDrive" title="Save">
         Save
       </button>
     </div>

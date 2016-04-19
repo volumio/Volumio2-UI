@@ -6,22 +6,22 @@
     </div>
 
     <div class="panel-body">
-      <div ng-repeat="device in multiRoomDock.multiRoomService.devices"
+      <div ng-repeat="device in multiRoomDock.multiRoomService.devices track by $index"
           class="device"
           ng-click="multiRoomDock.changeDevice(device)">
-        <div ng-class="{'child': device.isChild, 'isSelf': device.isSelf}">
+        <div ng-class="::{'child': device.isChild, 'isSelf': device.isSelf}">
           <div class="deviceIcon">
-            <img ng-src="{{device.state.albumart}}"/>
+            <img ng-src="{{::device.state.albumart}}"/>
           </div>
           <div class="deviceDetails">
             <div class="deviceName">
-              {{device.name}}
+              {{::device.name}}
             </div>
             <div class="artist">
-              {{device.state.artist}}
+              {{::device.state.artist}}
             </div>
             <div class="track">
-              {{device.state.track}}
+              {{::device.state.track}}
             </div>
           </div>
         </div>

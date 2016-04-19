@@ -34,7 +34,7 @@
           <div ng-if="section.content">
             <form class="form-horizontal">
               <div
-                  ng-repeat="item in section.content track by $index"
+                  ng-repeat="item in ::section.content track by $index"
                   plugin-visible="item.visibleIf"
                   section="section"
                   class="form-group">
@@ -69,6 +69,7 @@
                           id="{{::item.id}}"
                           ng-model="item.value"
                           search-enabled="false"
+                          ng-readonly="true"
                           append-to-body="true"
                           theme="bootstrap">
                         <ui-select-match
@@ -100,7 +101,7 @@
                 </div>
 
                 <div ng-if="item.description" class="control-description">
-                  {{item.description}}
+                  {{::item.description}}
                 </div>
               </div>
 

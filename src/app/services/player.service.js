@@ -37,7 +37,7 @@ class PlayerService {
   // PLAYER --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
   play() {
-    console.log('play');
+    this.$log.debug('play');
     this.socketService.emit('play');
   }
 
@@ -68,7 +68,7 @@ class PlayerService {
 
   shuffle() {
     if (this.state.trackType !== 'webradio') {
-      console.log(!this.state.random);
+      this.$log.debug(!this.state.random);
       this.socketService.emit('setRandom', {value: !this.state.random});
     }
   }
@@ -94,7 +94,7 @@ class PlayerService {
       //   val = 1;
       // }
       let sec = Math.ceil(this.state.duration / this._seekScale * val);
-      //console.log('val', val, 'seek', sec);
+      //this.$log.debug('val', val, 'seek', sec);
       this.socketService.emit('seek', sec);
     }
   }
@@ -106,19 +106,22 @@ class PlayerService {
   // VOLUME --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
   volumeUp() {
-    this.volume += this._volumeStep;
+    // this.volume += this._volumeStep;
+    this.socketService.emit('volume', '+');
   }
 
   volumeDown() {
-    this.volume -= this._volumeStep;
+    // this.volume -= this._volumeStep;
+    this.socketService.emit('volume', '-');
   }
 
   toggleMute() {
-    console.log('toggle mute');
     if (this.state.mute) {
-      this.socketService.emit('setVolume', {mute: false});
+      this.$log.debug('unmute', this.state.mute);
+      this.socketService.emit('unmute');
     } else {
-      this.socketService.emit('setVolume', {mute: true});
+      this.$log.debug('mute', this.state.mute);
+      this.socketService.emit('mute');
     }
   }
 
@@ -127,24 +130,12 @@ class PlayerService {
   }
 
   calculateElapsedTimeString() {
-    //let elapsedSeconds = Math.ceil(this.elapsedTime / this._seekScale);
-    //console.log(this.elapsedTime);
+    //this.$log.debug(this.elapsedTime);
     let momentDuration = moment.duration(this.elapsedTime),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
     this.elapsedTimeString = minutes + ':' +
         ((seconds < 10) ? ('0' + seconds) : seconds);
-    // if (elapsedSeconds === 1) {
-    //   this.elapsedTimeString = '0:00';
-    // } else {
-    //   let seconds = Math.floor(elapsedSeconds % 60);
-    //   if (seconds < 10) {
-    //     seconds = '0' + seconds;
-    //   }
-    //   this.elapsedTimeString = Math.floor(elapsedSeconds / 60).toFixed(0) + ':' +
-    //       seconds;
-    // }
-    //console.log(elapsedSeconds, this.elapsedTimeString);
   }
 
   startSeek() {
@@ -189,6 +180,7 @@ class PlayerService {
     } else if (volume > 100) {
       volume = 100;
     }
+    console.log('volume', volume);
     this.socketService.emit('volume', volume);
   }
 
@@ -225,7 +217,7 @@ class PlayerService {
 
   registerListner() {
     this.socketService.on('pushState', (data) => {
-      console.log('pushState', data);
+      this.$log.debug('pushState', data);
       this.state = data;
       if (!this.state.mute && this.state.volume) {
         this.lastVolume = this.state.volume;
@@ -246,20 +238,23 @@ class PlayerService {
         let sec = this.state.duration % 60;
         sec = String(sec).length === 1 ? `0${sec}` : sec;
         this.songLength += `:${sec}`;
+      } else {
+        this.elapsedTimeString = undefined;
+        this.songLength = undefined;
       }
       this.updatePageTitle();
       this.updateFavicon();
     });
     this.socketService.on('pushTrackInfo', (data) => {
-      console.log('pushTrackInfo', data);
+      this.$log.debug('pushTrackInfo', data);
       this.trackInfo = data;
     });
     this.socketService.on('pushGetSeek', (data) => {
-      console.log('pushGetSeek', data);
+      this.$log.debug('pushGetSeek', data);
       this.seek = data;
     });
     this.socketService.on('urifavourites', (data) => {
-      console.log('urifavourites', data);
+      this.$log.debug('urifavourites', data);
       this.favourite = data;
     });
   }

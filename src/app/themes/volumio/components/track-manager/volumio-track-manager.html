@@ -16,33 +16,38 @@
 
     <div class="knobWrapper">
       <div class="knobInfosWrapper">
-        <div ng-if="trackManager.playerService.state.duration" class="headerText">
-          <div id="trackInfo-techInfos" ng-if="trackManager.playerService.state.samplerate ||
-              trackManager.playerService.state.bitdepth">
-            <span ng-if="trackManager.playerService.state.samplerate">
+        <div class="headerText">
+          <div>
+            <span>
               {{trackManager.playerService.state.samplerate}}
             </span>
             <span ng-if="trackManager.playerService.state.bitdepth">
-              | {{trackManager.playerService.state.bitdepth}} bit
+              | {{trackManager.playerService.state.bitdepth}}
             </span>
           </div>
         </div>
-        <div ng-if="trackManager.playerService.state.duration" class="bigText">
-          {{trackManager.playerService.elapsedTimeString}}
+        <div class="bigText">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+            {{trackManager.playerService.elapsedTimeString}}
+          </span>
+          <div
+              ng-if="trackManager.playerService.state.trackType === 'webradio'"
+              class="webRadioLabel">
+            {{trackManager.playerService.state.trackType}}
+          </div>
         </div>
-        <div ng-if="trackManager.playerService.state.duration" class="smallText">
+        <div class="smallText">
           {{trackManager.playerService.songLength}}
         </div>
-        <div
-            ng-if="trackManager.playerService.state.trackType"
-            class="footerText"
-            ng-class="{'webRadio': trackManager.playerService.state.duration === 0}">
-          {{trackManager.playerService.state.trackType}}
+        <div class="footerText">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+            {{trackManager.playerService.state.trackType}}
+          </span>
         </div>
       </div>
-      <div ng-if="trackManager.playerService.state.duration === 0" class="fakePulsingKnob"></div>
+      <div ng-if="trackManager.playerService.state.trackType === 'webradio'" class="fakePulsingKnob"></div>
       <knob
-        ng-if="trackManager.playerService.state.duration"
+        ng-if="trackManager.playerService.state.trackType !== 'webradio'"
         value="trackManager.playerService.seekPercent"
         on-change="trackManager.onChange(value)"
         options="trackManager.knobOptions"
