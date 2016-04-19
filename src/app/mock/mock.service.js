@@ -16,14 +16,18 @@ class MockService {
       //installedPlugins
       installedPlugins: [
         {
-          name: 'Nome Plugin 1',
+          prettyName: 'Nome Plugin 1',
+          enabled: true,
           active: true,
-          path: 'path1'
+          category: "Category 1"
+          name: 'name'
         },
         {
-          name: 'Nome Plugin 2',
-          active: false,
-          path: 'path2'
+          prettyName: 'Nome Plugin 2',
+          enabled: true,
+          active: true,
+          category: "Category 2"
+          name: 'name2'
         },
       ],
       //installablePlugins
