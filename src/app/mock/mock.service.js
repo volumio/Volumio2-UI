@@ -19,14 +19,14 @@ class MockService {
           prettyName: 'Nome Plugin 1',
           enabled: true,
           active: true,
-          category: "Category 1"
+          category: "Category 1",
           name: 'name'
         },
         {
           prettyName: 'Nome Plugin 2',
           enabled: true,
           active: true,
-          category: "Category 2"
+          category: "Category 2",
           name: 'name2'
         },
       ],
