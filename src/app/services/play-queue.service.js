@@ -2,9 +2,10 @@ class PlayQueueService {
   constructor($rootScope, $log, socketService) {
     'ngInject';
     this.$log = $log;
-    this._queue = null;
     this.socketService = socketService;
+    this.$rootScope = $rootScope;
 
+    this._queue = null;
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -79,6 +80,7 @@ class PlayQueueService {
     this.socketService.on('pushQueue', (data) => {
       this.$log.debug('pushQueue', data);
       this._queue = data;
+      this.$rootScope.$broadcast('playQueueService:pushQueue');
     });
   }
 

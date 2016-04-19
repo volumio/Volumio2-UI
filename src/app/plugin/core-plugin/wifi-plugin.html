@@ -42,7 +42,7 @@
         </td>
       </tr>
       <tr ng-if="::wifiPlugin.wirelessNetworks.available.length > 0"
-          ng-repeat-start="wifi in ::wifiPlugin.wirelessNetworks.available track by wifi.ssid">
+          ng-repeat-start="wifi in ::wifiPlugin.wirelessNetworks.available track by $index">
         <td class="wifiIcon">
           <img
               ng-if="::wifi.signal >= 0"

@@ -173,7 +173,7 @@ class BrowseController {
   }
 
   renderBrowseTable() {
-    if (!this.browseService.list || this.browseService.list.length.length === 0) {
+    if (!this.browseService.list || this.browseService.list.length === 0) {
       return false;
     }
     this.table = '';
