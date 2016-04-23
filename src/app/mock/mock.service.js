@@ -19,14 +19,14 @@ class MockService {
           prettyName: 'Nome Plugin 1',
           enabled: true,
           active: true,
-          category: "Category 1",
+          category: 'Category 1',
           name: 'name'
         },
         {
           prettyName: 'Nome Plugin 2',
           enabled: true,
           active: true,
-          category: "Category 2",
+          category: 'Category 2',
           name: 'name2'
         },
       ],
@@ -38,43 +38,59 @@ class MockService {
         },
         categories: [
           {
-            name: 'Categoria 1',
-            id: 'CAT1',
-            description: 'Descrizione categoria',
+            name: 'Music Services ',
+            id: 'cat1',
+            description: 'Plugins for Adding Music Sources to Volumio',
             plugins: [
               {
-                name: 'Nome plugin available 1',
-                version: 'v1',
-                url: 'url to zip',
-                license: 'license',
+                name: 'Spotify',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'Free for non commercial USE',
                 description: 'plugin 1 desc',
-                author: 'plugin 1 author',
-                updated: 'plugin 1 date update'
+                author: 'Volumio Team',
+                updated: '23-04-2016'
               },
               {
-                name: 'Nome plugin available 2',
-                version: 'v2',
-                url: 'url to zip',
-                license: 'license',
-                description: 'plugin 2 desc',
-                author: 'plugin 2 author',
-                updated: 'plugin 2 date update'
+                name: 'Another WebRadio Plugin',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Adding other WebRadios',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
               }
             ]
           },
           {
-            name: 'Categoria 2',
-            id: 'CAT2',
-            description: 'Descrizione categoria 2',
+            name: 'Miscelleanea',
+            id: 'cat2',
+            description: 'Things that cannot go in other categories',
             plugins: [
               {
-                name: 'Nome plugin available 3',
-                version: 'v3',
-                url: 'url to zip',
-                license: 'license',
-                description: 'plugin 3 desc',
-                author: 'plugin 3 author',
-                updated: 'plugin 3 date update'
+                name: 'Random thing',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Something Random',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              }
+            ]
+          },
+          {
+            name: 'System Tools',
+            id: 'cat3',
+            description: 'Volumio System Tools',
+            plugins: [
+              {
+                name: 'Touchscreen display',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Use the 7 inches pi display',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
               }
             ]
           }
