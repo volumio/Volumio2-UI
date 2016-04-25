@@ -75,7 +75,6 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-      data.sections.unshift({coreSection: 'plugins'});
       // data.sections.unshift({coreSection: 'wifi'});
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
@@ -89,6 +88,7 @@ class PluginController {
   }
 
   initService() {
+    this.$log.debug('init', this.$stateParams);
     this.socketService.emit('getUiConfig',
         {'page': this.$stateParams.pluginName.replace('-', '/')});
   }

@@ -1,0 +1,19 @@
+<div ng-if="!pluginsManager.uploadPercentage">
+  <button
+      type="button"
+      class="btn btn-info"
+      ngf-select
+      ng-model="pluginsManager.pluginFile"
+      name="plugin">
+    Select Plugin
+  </button>
+</div>
+
+{{pluginsManager.uploadPercentage}}
+<div ng-if="pluginsManager.uploadPercentage > 0">
+  <uib-progressbar
+      class="progress-striped active"
+      value="pluginsManager.uploadPercentage"
+      type="default">{{pluginsManager.uploadPercentage}}%
+  </uib-progressbar>
+</div>

@@ -43,9 +43,8 @@ import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.di
 import ModalController from './components/modals/modal.controller';
 
 //Directives
-import PluginAttributesDirective from './plugin/elements/plugin-attributes.directive';
-import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
-
+import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
+import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -53,13 +52,15 @@ import LayoutController from './layout/layout.controller';
 import FooterController from './footer/footer.controller';
 
 import DebugController from './debug/debug.controller';
-import PluginController from './plugin/plugin.controller';
 import StaticPageController from './static-pages/static-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
 import PlaybackController from './playback/playback.controller';
 import PlayQueueController from './play-queue/play-queue.controller';
+
+import PluginController from './plugin/plugin.controller';
+import PluginManagerController from './plugin-manager/plugin-manager.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -74,14 +75,12 @@ import ModalRipperController from './components/modals/modal-ripper.controller';
 import ModalCustomController from './components/modals/modal-custom.controller';
 import ModalKaraokeController from './components/side-menu/elements/modal-karaoke.controller';
 
-
 //Core plugin controller
 import WifiPluginController from './plugin/core-plugin/wifi-plugin.controller';
 import NetworkStatusPluginController from './plugin/core-plugin/network-status-plugin.controller';
 import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.controller';
 import NetworkDrivesPluginController from './plugin/core-plugin/network-drives-plugin.controller';
 import SystemVersionPluginController from './plugin/core-plugin/system-version-plugin.controller';
-import PluginsPluginController from './plugin/core-plugin/plugins-plugin.controller';
 
 
 
@@ -100,6 +99,7 @@ angular.module('volumio', [
   'ui.router',
   'matchmedia-ng',
   'hmTouchEvents',
+  'ngFileUpload',
 
   //Angular core modules
   // 'ngAnimate',
@@ -159,12 +159,13 @@ angular.module('volumio', [
   .controller('FooterController', FooterController)
 
   .controller('DebugController', DebugController)
-  .controller('PluginController', PluginController)
   .controller('StaticPageController', StaticPageController)
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 
-  .controller('BrowseController', BrowseController)
+  .controller('PluginController', PluginController)
+  .controller('PluginManagerController', PluginManagerController)
 
+  .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
 
@@ -186,6 +187,5 @@ angular.module('volumio', [
   .controller('MyMusicPluginController', MyMusicPluginController)
   .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)
   .controller('SystemVersionPluginController', SystemVersionPluginController)
-  .controller('PluginsPluginController', PluginsPluginController)
 
   ;

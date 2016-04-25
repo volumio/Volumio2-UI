@@ -1,12 +1,12 @@
 <table class="table noFirstRowBorder">
-  <tr ng-repeat-start="plugin in pluginsPlugin.installedPlugins track by $index">
+  <tr ng-repeat-start="plugin in pluginManager.installedPlugins track by $index">
     <td>
-      {{::plugin.name}}
+      {{::plugin.prettyName}}
     </td>
     <td>
       <input
           bs-switch
-          ng-model="plugin.active"
+          ng-model="plugin.enabled"
           type="checkbox"
           switch-size="medium"
           switch-animate="false"
@@ -14,11 +14,18 @@
           switch-off-text="Off"
           ng-true-value="true"
           ng-false-value="false"
-          ng-change="pluginsPlugin.enableDisablePlugin(plugin)">
+          ng-change="pluginManager.enableDisablePlugin(plugin)">
+    </td>
+    <td>
+      <span
+          class="pluginDotStatus"
+          ng-class="{'active': plugin.active, 'inactive': !plugin.active}"></span>
+      <span ng-if="plugin.active">Active</span>
+      <span ng-if="!plugin.active">Inactive</span>
     </td>
     <td>
       <button
-          ng-click="plugin.showSettings = !plugin.showSettings"
+          ng-click="pluginManager.showPluginSettings(plugin)"
           type="button"
           class="btn btn-info pull-right">
         <i class="fa fa-cog"></i>

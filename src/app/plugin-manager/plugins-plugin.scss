@@ -1,0 +1,25 @@
+.pluginCategoryBtn{
+
+}
+
+.btn.marginLeft{
+  margin-left: 16px;
+}
+
+.pluginDetailsRow{
+  color: #999;
+}
+
+.pluginDotStatus {
+  border-radius: 10px;
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  margin-right: 5px;
+  &.inactive {
+    background-color: #DF4649;
+  }
+  &.active {
+    background-color: #54C698;
+  }
+}

@@ -24,14 +24,14 @@ class MockService {
         },
         {
           prettyName: 'Nome Plugin 2',
-          enabled: true,
-          active: true,
+          enabled: false,
+          active: false,
           category: 'Category 2',
           name: 'name2'
         },
       ],
-      //installablePlugins
-      installablePlugins: {
+      //availablePlugins
+      availablePlugins: {
         metaData: {
           repoUlr: 'fetching ulr',
           repoStatus: 'Up'

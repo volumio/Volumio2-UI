@@ -4,6 +4,11 @@
       <div class="boxHeader">
         <div class="title">
           <h2>{{::plugin.pluginObj.page.label}}</h2>
+          <span
+              ng-if="plugin.$stateParams.isPluginSettings"
+              ui-sref="volumio.plugin-manager">
+            back to plugins
+          </span>
         </div>
       </div>
 
