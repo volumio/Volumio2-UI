@@ -74,6 +74,7 @@ import ModalConfirmController from './components/modals/modal-confirm.controller
 import ModalRipperController from './components/modals/modal-ripper.controller';
 import ModalCustomController from './components/modals/modal-custom.controller';
 import ModalKaraokeController from './components/side-menu/elements/modal-karaoke.controller';
+import ModalPluginInstallerController from './plugin-manager/components/modals/modal-plugin-installer.controller';
 
 //Core plugin controller
 import WifiPluginController from './plugin/core-plugin/wifi-plugin.controller';
@@ -181,6 +182,7 @@ angular.module('volumio', [
   .controller('ModalRipperController', ModalRipperController)
   .controller('ModalCustomController', ModalCustomController)
   .controller('ModalKaraokeController', ModalKaraokeController)
+  .controller('ModalPluginInstallerController', ModalPluginInstallerController)
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)

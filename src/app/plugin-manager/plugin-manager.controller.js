@@ -1,12 +1,14 @@
 class PluginManagerController {
-  constructor($scope, socketService, mockService, $log, Upload, $state) {
+  constructor($scope, socketService, mockService, $log, Upload, $state, modalService) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
     this.$log = $log;
     this.Upload = Upload;
     this.$state = $state;
+    this.modalService = modalService;
 
+    this.activeTab = 0;
     // this.installedPlugins = mockService.get('installedPlugins');
     // console.log(this.installedPlugins);
     // this.availablePlugins = mockService.get('availablePlugins');
@@ -24,10 +26,11 @@ class PluginManagerController {
   enableDisablePlugin(plugin) {
     let emitPayload = {
       name: plugin.name,
-      active: plugin.active
+      category: plugin.category,
+      action: plugin.active ? 'disable' : 'enable'
     };
-    this.$log.debug('emit enableDisablePlugin', emitPayload);
-    this.socketService.emit('enableDisablePlugin', emitPayload);
+    this.$log.debug('emit pluginManager', emitPayload);
+    this.socketService.emit('pluginManager', emitPayload);
   }
 
   showPluginSettings(plugin) {
@@ -86,18 +89,36 @@ class PluginManagerController {
 
   //TAB UPLOAD PLUGIN
   uploadPlugin() {
-    console.log(this.pluginFile);
     this.Upload.upload({
-        url: 'upload/url',
-        data: {plugin: this.pluginFile}
-    }).then(function (resp) {
-        console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-    }, function (resp) {
-        console.log('Error status: ' + resp.status);
-    }, function (evt) {
+        url: `${this.socketService.host}/plugin-upload`,
+        data: {filename: this.pluginFile}
+    }).then((resp) => {
+      this.uploadPercentage = false;
+    }, (resp) => {
+      this.uploadPercentage = false;
+      this.$log.debug('Error status: ' + resp.status);
+    }, (evt)  =>{
         this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        console.log('progress: ' + this.uploadPercentage + '% ' + evt.config.data.file.name);
+        if (this.uploadPercentage === 100) {
+          this.uploadPercentage = false;
+          this.activeTab = 0;
+        }
     });
+  }
+
+  openInstallerModal(data) {
+    if (!this.installerModalIsOpen) {
+      this.modalService.openModal(
+        'ModalPluginInstallerController',
+        'app/plugin-manager/components/modals/modal-plugin-installer.html',
+        data,
+        'lg').then(() => {
+          this.installerModalIsOpen = false;
+        }, () => {
+          this.installerModalIsOpen = false;
+        });
+      this.installerModalIsOpen = true;
+    }
   }
 
   registerListner() {
@@ -112,6 +133,7 @@ class PluginManagerController {
     });
     this.socketService.on('installPluginStatus', (data) => {
       this.$log.debug('installPluginStatus', data);
+      this.openInstallerModal(data);
     });
 
     this.$scope.$on('$destroy', () => {

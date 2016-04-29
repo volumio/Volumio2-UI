@@ -4,11 +4,13 @@
       <div class="boxHeader">
         <div class="title">
           <h2>{{::plugin.pluginObj.page.label}}</h2>
-          <span
+          <button
+              type="button"
+              class="btn btn-info btn-xs"
               ng-if="plugin.$stateParams.isPluginSettings"
               ui-sref="volumio.plugin-manager">
-            back to plugins
-          </span>
+            <i class="fa fa-angle-left" aria-hidden="true"></i> Back to plugins
+          </button>
         </div>
       </div>
 

@@ -25,6 +25,7 @@
     </td>
     <td>
       <button
+          ng-if="plugin.active"
           ng-click="pluginManager.showPluginSettings(plugin)"
           type="button"
           class="btn btn-info pull-right">

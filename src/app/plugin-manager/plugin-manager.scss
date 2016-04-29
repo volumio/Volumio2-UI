@@ -1,5 +1,21 @@
-.pluginCategoryBtn{
+#uploadPluginDroppableArea {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding: 40px 0px;
+  border: dotted 1px grey;
+  &.dragover {
+    border: dotted 1px #54C698;
+  }
+}
 
+#installProgressBar {
+  margin-top: 20px;
+}
+
+#advancedLogWrapper{
+  height: 120px;
+  overflow: scroll;
 }
 
 .btn.marginLeft{
