@@ -116,10 +116,10 @@ gulp.task('static-pages', function () {
   var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
 
   return gulp.src([
-    path.join(conf.paths.src, '/**/themes/' + themeSelected + '/static-pages/*')
+    path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/static-pages/*')
   ])
-    .pipe(fileFilter)
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+  // .pipe(fileFilter)
+  .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected + '/assets/static-pages')));
 });
 
 gulp.task('clean', function (done) {
