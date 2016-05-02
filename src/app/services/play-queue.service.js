@@ -1,9 +1,10 @@
 class PlayQueueService {
-  constructor($rootScope, $log, socketService) {
+  constructor($rootScope, $log, socketService, playerService) {
     'ngInject';
     this.$log = $log;
     this._queue = null;
     this.socketService = socketService;
+    this.playerService = playerService;
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -60,6 +61,11 @@ class PlayQueueService {
   remove(index) {
     this.$log.debug('removeFromQueue', index);
     this.socketService.emit('removeFromQueue', {value: index});
+  }
+
+  toggleConsume() {
+    this.$log.debug('setConsume', !this.playerService.state.consume);
+    this.socketService.emit('setConsume', {value: !this.playerService.state.consume});
   }
 
   get queue() {

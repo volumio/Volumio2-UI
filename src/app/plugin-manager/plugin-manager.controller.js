@@ -66,16 +66,17 @@ class PluginManagerController {
   }
 
   unInstallPlugin(plugin) {
-    let response = confirm(`Do you want to delete this plugin: ${plugin.name} ?`);
-    if (!response) {
-        return false;
-    }
+    // let response = confirm(`Do you want to delete this plugin: ${plugin.name} ?`);
+    // if (!response) {
+    //     return false;
+    // }
     let emitPayload = {
       name: plugin.name,
       category: this.selectedCategory.name
     };
-    this.$log.debug('emit unInstallPlugin', emitPayload);
-    this.socketService.emit('unInstallPlugin', emitPayload);
+    this.$log.debug('emit preUninstallPlugin', emitPayload);
+    this.socketService.emit('preUninstallPlugin', emitPayload);
+    // this.socketService.emit('unInstallPlugin', emitPayload);
   }
 
   showPluginDetails(plugin) {

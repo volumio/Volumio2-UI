@@ -1,8 +1,9 @@
 class ModalPluginInstallerController {
-  constructor($uibModalInstance, dataObj, socketService, $scope) {
+  constructor($uibModalInstance, dataObj, socketService, $scope, $timeout) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.$scope = $scope;
+    this.$timeout = $timeout;
 
     this.dataObj = dataObj;
     this.socketService = socketService;
@@ -23,14 +24,17 @@ class ModalPluginInstallerController {
     }
     this.$uibModalInstance.close();
   }
-  btnClick2(button) {
-    this.$uibModalInstance.close();
-  }
 
   registerListner() {
     this.socketService.on('installPluginStatus', (data) => {
       console.log('in modal', data);
       this.dataObj = data;
+      let advancedLogWrapper = document.querySelector('#advancedLogWrapper');
+      if (advancedLogWrapper) {
+        this.$timeout(() => {
+          advancedLogWrapper.scrollTop = advancedLogWrapper.scrollHeight;
+        }, 300, false);
+      }
     });
 
     this.$scope.$on('$destroy', () => {

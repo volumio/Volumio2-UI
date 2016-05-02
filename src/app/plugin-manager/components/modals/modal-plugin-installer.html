@@ -12,6 +12,8 @@
   </div>
   <div ng-if="modal.dataObj.advancedLog">
     <a href ng-click="modal.showAdvancedLog = !modal.showAdvancedLog">
+      <span ng-if="!modal.showAdvancedLog">+</span>
+      <span ng-if="modal.showAdvancedLog">-</span>
       Show Details
     </a>
     <div ng-show="modal.showAdvancedLog" id="advancedLogWrapper">

@@ -3,7 +3,8 @@
   background-color: $volumio-grey-trans-dark;
   height: 35px;
   .leftInfo {
-    @include make-xs-column(24);
+    @include make-sm-column(18);
+    // border: solid 1px red;
     padding: 8px 0px 9px 26px;
     font-size: 14px;
     font-weight: 700;
@@ -18,6 +19,8 @@
     }
   }
   .rightInfo {
-    @include make-xs-column(12);
+    // border: solid 1px red;
+    text-align: right;
+    @include make-sm-column(6);
   }
 }

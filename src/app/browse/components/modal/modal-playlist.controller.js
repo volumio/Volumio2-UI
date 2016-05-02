@@ -14,16 +14,18 @@ class ModalPlaylistController {
 
   addToPlaylist(playlist) {
     this.doAddToPlaylist(playlist);
-    this.$uibModalInstance.close();
   }
 
   addToCustomPlaylist() {
     this.doAddToPlaylist(this.customPlaylist);
-    this.$uibModalInstance.close();
   }
 
   doAddToPlaylist(playlist) {
-    this.playlistService.addToPlaylist(this.dataObj.item, playlist);
+    if (this.dataObj.addQueue) {
+      this.playlistService.addQueueToPlaylist(playlist);
+    } else {
+      this.playlistService.addToPlaylist(this.dataObj.item, playlist);
+    }
     this.$uibModalInstance.close();
   }
 
