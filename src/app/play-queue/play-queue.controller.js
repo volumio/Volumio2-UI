@@ -26,6 +26,7 @@ class PlayQueueController {
         <td
             class="image"
             onclick="${angularThis}.playQueueService.play(${i})">
+          <span class="rollover" ></span>
           <img
               class="${(!item.icon) ? '' : 'hidden'}"
               ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
