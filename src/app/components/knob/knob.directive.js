@@ -29,13 +29,13 @@ class KnobController {
     let knobOptions = {
       change: (value) => {
         $timeout.cancel(this.timeoutHandler);
-        this.timeoutHandler = $timeout(() => {
-          value = parseInt(value, 10);
-          this.value = value;
-          if (this.onChange) {
-            this.onChange({value: value});
-          }
-        }, 0, false);
+        // this.timeoutHandler = $timeout(() => {
+        //   value = parseInt(value, 10);
+        //   this.value = value;
+        //   if (this.onChange) {
+        //     this.onChange({value: value});
+        //   }
+        // }, 0, false);
       },
       release: (value, e) => {
         $timeout.cancel(this.timeoutHandler2);

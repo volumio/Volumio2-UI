@@ -47,7 +47,9 @@ class VolumeManagerController {
     $scope.$watch(() => this.volume,  (value) => {
       if (value) {
         $timeout.cancel(this.timeoutHandler);
+        $timeout.cancel(this.timeoutHandler2);
         this.timeoutHandler = $timeout(() => {
+          // console.log('knob volume', value);
           playerService.volume = value;
         }, 300);
       }
@@ -55,10 +57,12 @@ class VolumeManagerController {
 
     $scope.$watch(() => playerService.volume,  (value) => {
       if (value) {
+        $timeout.cancel(this.timeoutHandler2);
         $timeout.cancel(this.timeoutHandler);
-        this.timeoutHandler = $timeout(() => {
+        // console.log('player service volume', value);
+        this.timeoutHandler2 = $timeout(() => {
           this.volume = value;
-        }, 100);
+        }, 220, false);
       }
     });
   }
