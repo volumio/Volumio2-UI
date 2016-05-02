@@ -1,7 +1,8 @@
 class PlayQueueController {
-  constructor($scope, playQueueService, socketService) {
+  constructor($scope, playQueueService, socketService, matchmediaService) {
     'ngInject';
     this.playQueueService = playQueueService;
+    this.matchmediaService = matchmediaService;
     this.socketService = socketService;
 
     this.renderPlayQueueTable();

@@ -13,6 +13,89 @@ class MockService {
 
   init() {
     this._mock = {
+      //installedPlugins
+      installedPlugins: [
+        {
+          prettyName: 'Nome Plugin 1',
+          enabled: true,
+          active: true,
+          category: 'Category 1',
+          name: 'name'
+        },
+        {
+          prettyName: 'Nome Plugin 2',
+          enabled: false,
+          active: false,
+          category: 'Category 2',
+          name: 'name2'
+        },
+      ],
+      //availablePlugins
+      availablePlugins: {
+        metaData: {
+          repoUlr: 'fetching ulr',
+          repoStatus: 'Up'
+        },
+        categories: [
+          {
+            name: 'Music Services ',
+            id: 'cat1',
+            description: 'Plugins for Adding Music Sources to Volumio',
+            plugins: [
+              {
+                name: 'Spotify',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'Free for non commercial USE',
+                description: 'plugin 1 desc',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              },
+              {
+                name: 'Another WebRadio Plugin',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Adding other WebRadios',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              }
+            ]
+          },
+          {
+            name: 'Miscelleanea',
+            id: 'cat2',
+            description: 'Things that cannot go in other categories',
+            plugins: [
+              {
+                name: 'Random thing',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Something Random',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              }
+            ]
+          },
+          {
+            name: 'System Tools',
+            id: 'cat3',
+            description: 'Volumio System Tools',
+            plugins: [
+              {
+                name: 'Touchscreen display',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Use the 7 inches pi display',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              }
+            ]
+          }
+        ]
+      },
       //Custom modals
       customModals: {
         'title': 'titolo in alto della modale',

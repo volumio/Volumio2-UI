@@ -69,12 +69,16 @@ class SideMenuController {
       this.$window.open(item.params.url);
     } else if (item.id === 'static-page') {
       this.$state.go('volumio.static-page', {pageName: item.pageName});
-    } else if (item.params) {
-      for (let param in item.params) {
-        item.params[param] = String(item.params[param]).replace('/', '-');
-      }
+    } else if (item.state) {
       this.$log.debug(item.state, item.params);
-      this.$state.go(item.state, item.params);
+      if (item.params) {
+        for (let param in item.params) {
+          item.params[param] = String(item.params[param]).replace('/', '-');
+        }
+        this.$state.go(item.state, item.params);
+      } else {
+        this.$state.go(item.state);
+      }
     } else {
       this.$state.go(item.state);
     }

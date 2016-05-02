@@ -4,7 +4,7 @@ class PlaylistService {
     this.socketService = socketService;
     this.$timeout = $timeout;
     this.$log = $log;
-    
+
     this.playlists = [];
 
     this.init();
@@ -18,12 +18,18 @@ class PlaylistService {
 
   //Playlist
   addToPlaylist(item, playlist) {
-    this.$log.debug('addToPlaylist', item, playlist);
-    this.socketService.emit('addToPlaylist', {
+    const emitPayload = {
       name: playlist,
       uri: item.uri,
       service: (item.service || null)
-    });
+    };
+    this.$log.debug('addToPlaylist', emitPayload);
+    this.socketService.emit('addToPlaylist', emitPayload);
+  }
+
+  addQueueToPlaylist(playlist) {
+    this.$log.debug('saveQueueToPlaylist', {name: playlist});
+    this.socketService.emit('saveQueueToPlaylist', {name: playlist});
   }
 
   removeFromPlaylist(item, playlist) {
