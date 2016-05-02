@@ -107,6 +107,7 @@ class PluginManagerController {
         if (this.uploadPercentage === 100) {
           this.uploadPercentage = false;
           this.activeTab = 0;
+          this._openInstallerModal();
         }
     });
   }
