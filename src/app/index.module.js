@@ -19,6 +19,7 @@ import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 import RipperService from './services/ripper.service';
+import UiSettingsService from './services/ui-settings.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -131,6 +132,7 @@ angular.module('volumio', [
   .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
   .service('ripperService', RipperService)
+  .service('uiSettingsService', UiSettingsService)
 
 
   .provider('themeManager', ThemeManagerProvider)
