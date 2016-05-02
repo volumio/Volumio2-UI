@@ -1,5 +1,5 @@
 class PluginManagerController {
-  constructor($scope, socketService, mockService, $log, Upload, $state, modalService) {
+  constructor($scope, socketService, mockService, $log, Upload, $state, modalService, $timeout) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
@@ -7,6 +7,7 @@ class PluginManagerController {
     this.Upload = Upload;
     this.$state = $state;
     this.modalService = modalService;
+    this.$timeout = $timeout;
 
     this.activeTab = 0;
     // this.installedPlugins = mockService.get('installedPlugins');
@@ -51,8 +52,11 @@ class PluginManagerController {
       name: plugin.name,
       category: this.selectedCategory.name
     };
-    this.$log.debug('emit installPlugin', emitPayload);
-    this.socketService.emit('installPlugin', emitPayload);
+    this._openInstallerModal();
+    this.$timeout(() => {
+      this.$log.debug('emit installPlugin', emitPayload);
+      this.socketService.emit('installPlugin', emitPayload);
+    }, 300);
   }
 
   updatePlugin(plugin) {
@@ -66,17 +70,17 @@ class PluginManagerController {
   }
 
   unInstallPlugin(plugin) {
-    // let response = confirm(`Do you want to delete this plugin: ${plugin.name} ?`);
-    // if (!response) {
-    //     return false;
-    // }
     let emitPayload = {
       name: plugin.name,
       category: this.selectedCategory.name
     };
     this.$log.debug('emit preUninstallPlugin', emitPayload);
     this.socketService.emit('preUninstallPlugin', emitPayload);
-    // this.socketService.emit('unInstallPlugin', emitPayload);
+
+    this.socketService.on('installPluginStatus', (data) => {
+      this.socketService.off('installPluginStatus');
+      this._openInstallerModal(data);
+    });
   }
 
   showPluginDetails(plugin) {
@@ -107,19 +111,12 @@ class PluginManagerController {
     });
   }
 
-  openInstallerModal(data) {
-    if (!this.installerModalIsOpen) {
-      this.modalService.openModal(
-        'ModalPluginInstallerController',
-        'app/plugin-manager/components/modals/modal-plugin-installer.html',
-        data,
-        'lg').then(() => {
-          this.installerModalIsOpen = false;
-        }, () => {
-          this.installerModalIsOpen = false;
-        });
-      this.installerModalIsOpen = true;
-    }
+  _openInstallerModal(data) {
+    this.modalService.openModal(
+      'ModalPluginInstallerController',
+      'app/plugin-manager/components/modals/modal-plugin-installer.html',
+      data,
+      'lg');
   }
 
   registerListner() {
@@ -132,15 +129,10 @@ class PluginManagerController {
       this.availablePlugins = data;
       this.selectedCategory = this.availablePlugins.categories[0];
     });
-    this.socketService.on('installPluginStatus', (data) => {
-      this.$log.debug('installPluginStatus', data);
-      this.openInstallerModal(data);
-    });
 
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushInstalledPlugins');
       this.socketService.off('pushAvailablePlugins');
-      this.socketService.off('installPluginStatus');
     });
   }
 

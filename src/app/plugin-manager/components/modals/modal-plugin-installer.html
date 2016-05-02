@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
 </div>
-<div class="modal-body">
+<div class="modal-body" ng-if="modal.dataObj">
   <p ng-bind-html="modal.dataObj.message"></p>
   <div>
     <uib-progressbar
@@ -11,7 +11,7 @@
     </uib-progressbar>
   </div>
   <div ng-if="modal.dataObj.advancedLog">
-    <a href ng-click="modal.showAdvancedLog = !modal.showAdvancedLog">
+    <a href ng-click="modal.toggleAdvancedLog()">
       <span ng-if="!modal.showAdvancedLog">+</span>
       <span ng-if="modal.showAdvancedLog">-</span>
       Show Details

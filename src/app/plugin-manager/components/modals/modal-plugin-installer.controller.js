@@ -25,21 +25,29 @@ class ModalPluginInstallerController {
     this.$uibModalInstance.close();
   }
 
+  toggleAdvancedLog() {
+    this.showAdvancedLog = !this.showAdvancedLog;
+    this._scrollLog();
+  }
+
   registerListner() {
     this.socketService.on('installPluginStatus', (data) => {
-      console.log('in modal', data);
       this.dataObj = data;
-      let advancedLogWrapper = document.querySelector('#advancedLogWrapper');
-      if (advancedLogWrapper) {
-        this.$timeout(() => {
-          advancedLogWrapper.scrollTop = advancedLogWrapper.scrollHeight;
-        }, 300, false);
-      }
+      this._scrollLog();
     });
 
     this.$scope.$on('$destroy', () => {
       this.socketService.off('installPluginStatus');
     });
+  }
+
+  _scrollLog() {
+    let advancedLogWrapper = document.querySelector('#advancedLogWrapper');
+    if (advancedLogWrapper) {
+      this.$timeout(() => {
+        advancedLogWrapper.scrollTop = advancedLogWrapper.scrollHeight;
+      }, 300, false);
+    }
   }
 }
 

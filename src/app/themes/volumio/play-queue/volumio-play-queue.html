@@ -1,6 +1,7 @@
 <track-info-bar ng-if="!playQueue.matchmediaService.isPhone"></track-info-bar>
-<div ng-if="playQueue.matchmediaService.isPhone">
-  asd
+<div
+    ng-include="'app/components/track-info-bar/elements/track-info-bar-buttons.html'"
+    ng-if="playQueue.matchmediaService.isPhone">
 </div>
 <div class="row">
   <div id="playQueue">

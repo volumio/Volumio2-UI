@@ -69,6 +69,11 @@ class PlayQueueService {
     this.socketService.emit('setConsume', {value: !this.playerService.state.consume});
   }
 
+  clearQueue() {
+    this.$log.debug('clearQueue');
+    this.socketService.emit('clearQueue');
+  }
+
   get queue() {
     return this._queue;
   }

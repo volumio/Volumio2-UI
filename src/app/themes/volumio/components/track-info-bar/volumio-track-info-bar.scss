@@ -4,7 +4,7 @@
   height: 35px;
   overflow: hidden;
   .leftInfo {
-    @include make-sm-column(18);
+    @include make-sm-column(14);
     // border: solid 1px red;
     padding: 8px 0px 9px 26px;
     font-size: 14px;
@@ -23,6 +23,6 @@
   .rightInfo {
     // border: solid 1px red;
     text-align: right;
-    @include make-sm-column(6);
+    @include make-sm-column(10);
   }
 }
