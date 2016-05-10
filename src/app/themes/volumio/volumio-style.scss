@@ -534,7 +534,7 @@ li.list-group-item {
 //Dropdown menu
 ul {
   &.dropdown-menu {
-    width: 180px;
+    width: 200px;
     background-color: $volumio-accent-color;
     border: solid 1px $volumio-green-color;
     i {
@@ -545,7 +545,8 @@ ul {
     a {
       display: block;
       color: #FFF;
-      padding: 4px 0px 4px 6px;
+      padding: 6px 0px 6px 6px;
+      font-size: 16px;
       &:hover {
         color: $volumio-green-color;
       }
