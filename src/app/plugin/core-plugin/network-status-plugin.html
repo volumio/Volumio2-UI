@@ -46,10 +46,8 @@
           {{::network.speed}}
         </td>
         <td>
-          <i class="fa fa-check"
-              ng-class="::{online: network.online,
-              offline: !network.online}">
-          </i>
+          <i class="fa fa-check true" ng-if="network.online"></i>
+          <i class="fa fa-remove false" ng-if="!network.online"></i>
         </td>
       </tr>
     </table>

@@ -575,3 +575,12 @@ ul {
   background: $text-grey-color;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
+
+//Checks and Crosses
+.true {
+  color: $volumio-green-color;
+}
+
+.false {
+  color: $volumio-red-color;
+}

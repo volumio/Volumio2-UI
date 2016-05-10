@@ -36,7 +36,8 @@
             {{drive.ip}}:{{drive.path}}
           </td>
           <td>
-            {{drive.mounted}}
+            <i class="fa fa-check true" ng-if="drive.mounted"></i>
+            <i class="fa fa-remove false" ng-if="!drive.mounted"></i>
           </td>
           <td>
             {{drive.size}}
