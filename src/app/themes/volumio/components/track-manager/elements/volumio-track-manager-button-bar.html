@@ -1,0 +1,16 @@
+<button
+    ng-class="{'active': trackManager.playerService.favourite.favourite}"
+    ng-click="trackManager.toggleFavouriteTrack()"
+    ng-mouseover="trackManager.hoverHeart = true"
+    ng-mouseleave="trackManager.hoverHeart = false"
+    class="btn btn-link"
+    title="Add to favourites">
+  <i ng-hide="trackManager.playerService.favourite.favourite || trackManager.hoverHeart" class="fa fa-heart-o"></i>
+  <i ng-show="trackManager.playerService.favourite.favourite || trackManager.hoverHeart" class="fa fa-heart"></i>
+</button>
+<button
+    ng-click="trackManager.addToPlaylist()"
+    class="btn btn-link"
+    title="Add to playlist">
+  <i class="fa fa-plus"></i>
+</button>

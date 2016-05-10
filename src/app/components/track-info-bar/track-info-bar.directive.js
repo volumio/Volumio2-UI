@@ -14,9 +14,27 @@ class TrackInfoBarDirective {
 }
 
 class TrackInfoBarController {
-  constructor(playerService) {
+  constructor(playerService, playQueueService, modalService, $state) {
     'ngInject';
     this.playerService = playerService;
+    this.playQueueService = playQueueService;
+    this.modalService = modalService;
+    this.$state = $state;
+  }
+
+  addToPlaylist() {
+    let
+    templateUrl = 'app/browse/components/modal/modal-playlist.html',
+    controller = 'ModalPlaylistController',
+    params = {
+      title: 'Add to playlist',
+      addQueue: true
+    };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
   }
 }
 

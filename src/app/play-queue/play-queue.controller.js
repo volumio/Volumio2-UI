@@ -1,7 +1,8 @@
 class PlayQueueController {
-  constructor($scope, playQueueService, socketService) {
+  constructor($scope, playQueueService, socketService, matchmediaService) {
     'ngInject';
     this.playQueueService = playQueueService;
+    this.matchmediaService = matchmediaService;
     this.socketService = socketService;
 
     this.renderPlayQueueTable();
@@ -25,6 +26,7 @@ class PlayQueueController {
         <td
             class="image"
             onclick="${angularThis}.playQueueService.play(${i})">
+          <span class="rollover" ></span>
           <img
               class="${(!item.icon) ? '' : 'hidden'}"
               ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
