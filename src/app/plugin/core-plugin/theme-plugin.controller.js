@@ -8,8 +8,10 @@ class ThemePluginController {
     this.themeManager = themeManager;
     this.Upload = Upload;
     //this.wirelessNetworks = mockService.get('wirelessNetworks');
+    this.defaultThumbnailBackgroundUrl =
+        `${socketService.host}/app/themes/${themeManager.theme}/assets/graphics/thumb-${themeManager.theme}-bg.jpg`;
     this.defaultBackgroundUrl =
-        `${socketService.host}/app/themes/${themeManager.theme}/assets/graphics/${themeManager.theme}-bg.png`;
+        `${socketService.host}/app/themes/${themeManager.theme}/assets/graphics/${themeManager.theme}-bg.jpg`;
     console.log(this.defaultBackgroundUrl);
     this.init();
   }
@@ -53,7 +55,7 @@ class ThemePluginController {
       this.backgrounds = data;
       this.backgrounds.list = [{
         path: this.defaultBackgroundUrl,
-        thumbnail: this.defaultBackgroundUrl,
+        thumbnail: this.defaultThumbnailBackgroundUrl,
         notDeletable: true,
         name: 'Default'}]
         .concat(data.available.map((background) => {
