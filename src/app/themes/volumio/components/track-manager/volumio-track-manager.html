@@ -41,7 +41,11 @@
         </div>
         <div class="footerText">
           <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
-            {{trackManager.playerService.state.trackType}}
+            <img
+                ng-if="trackManager.playerService.state.fileFormat"
+                ng-src="{{'/app/themes/volumio/assets/format-icons/' +
+                  trackManager.playerService.state.fileFormat.url + '.svg'}}"
+                alt="{{trackManager.playerService.state.fileFormat.name}}" />
           </span>
         </div>
       </div>
