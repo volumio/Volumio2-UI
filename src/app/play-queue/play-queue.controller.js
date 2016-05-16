@@ -61,7 +61,8 @@ class PlayQueueController {
           };
           console.log('moveQueue', emitPayload);
           this.socketService.emit('moveQueue', emitPayload);
-        }
+        },
+        animation: 250
       });
     });
   }
