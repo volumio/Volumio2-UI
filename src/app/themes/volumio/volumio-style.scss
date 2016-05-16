@@ -549,7 +549,7 @@ li.list-group-item {
 //Dropdown menu
 ul {
   &.dropdown-menu {
-    width: 180px;
+    width: 200px;
     background-color: $volumio-accent-color;
     border: solid 1px $volumio-green-color;
     i {
@@ -560,7 +560,8 @@ ul {
     a {
       display: block;
       color: #FFF;
-      padding: 4px 0px 4px 6px;
+      padding: 6px 0px 6px 6px;
+      font-size: 16px;
       &:hover {
         color: $volumio-green-color;
       }
@@ -589,4 +590,13 @@ ul {
   border-radius: 10px;
   background: $text-grey-color;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+//Checks and Crosses
+.true {
+  color: $volumio-green-color;
+}
+
+.false {
+  color: $volumio-red-color;
 }
