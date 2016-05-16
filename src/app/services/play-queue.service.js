@@ -26,6 +26,7 @@ class PlayQueueService {
     this.$log.debug('PlayQueueService addPlay', item);
     this.socketService.emit('addPlay', {
       uri: item.uri,
+      title: item.title,
       service: (item.service || null)
     });
   }
@@ -40,6 +41,7 @@ class PlayQueueService {
     this.$log.debug('PlayQueueService addToQueue', item);
     this.socketService.emit('addToQueue', {
       uri: item.uri,
+      title: item.title,
       service: (item.service || null)
     });
   }
