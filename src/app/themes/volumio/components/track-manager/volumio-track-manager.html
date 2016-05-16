@@ -39,21 +39,9 @@
         <div class="smallText">
           {{trackManager.playerService.songLength}}
         </div>
-        <div class="footerText" title="Audio Format">
-          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'" ng-switch on="trackManager.playerService.state.trackType">
-            <img ng-switch-when="aac" src="app/themes/volumio/assets/format-icons/aac.svg" alt="aac">
-            <img ng-switch-when="dff" src="app/themes/volumio/assets/format-icons/dsd.svg" alt="dff dsd">
-            <img ng-switch-when="dsf" src="app/themes/volumio/assets/format-icons/dsd.svg" alt="dsf dsd">
-            <img ng-switch-when="flac" src="app/themes/volumio/assets/format-icons/flac.svg" alt="flac">
-            <img ng-switch-when="mp3" src="app/themes/volumio/assets/format-icons/mp3.svg" alt="mp3">
-            <img ng-switch-when="m4a" src="app/themes/volumio/assets/format-icons/m4a.svg" alt="m4a">
-            <img ng-switch-when="mp4" src="app/themes/volumio/assets/format-icons/mp4.svg" alt="mp4">
-            <img ng-switch-when="ogg" src="app/themes/volumio/assets/format-icons/ogg.svg" alt="oga vorbis">
-            <img ng-switch-when="oga" src="app/themes/volumio/assets/format-icons/ogg.svg" alt="ogg vorbis">
-            <img ng-switch-when="opus" src="app/themes/volumio/assets/format-icons/opus.svg" alt="opus">
-            <img ng-switch-when="wv" src="app/themes/volumio/assets/format-icons/wavpack.svg" alt="wavpack">
-            <img ng-switch-when="wav" src="app/themes/volumio/assets/format-icons/wav.svg" alt="wav">
-            <span ng-switch-default>{{trackManager.playerService.state.trackType}}</span>
+        <div class="footerText">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+            {{trackManager.playerService.state.trackType}}
           </span>
         </div>
       </div>
