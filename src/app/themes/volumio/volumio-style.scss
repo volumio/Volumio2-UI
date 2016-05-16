@@ -274,6 +274,13 @@ body {
 
 //Table
 table {
+  &.table-hover {
+    tr {
+      &:hover {
+        background-color: rgba(30, 30, 30, 0.8);
+      }
+    }
+  }
   font-size: 18px;
   margin: 0;
   &.noFirstRowBorder {
@@ -282,7 +289,6 @@ table {
     }
   }
   tr {
-    // background-color: rgba(50, 50, 50, 0.2);
     &.nohover{
       &:hover {
         background-color: transparent;
