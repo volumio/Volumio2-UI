@@ -75,6 +75,7 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
+      data.sections.unshift({coreSection: 'theme'});
       // data.sections.unshift({coreSection: 'wifi'});
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});

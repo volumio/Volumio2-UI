@@ -1,0 +1,61 @@
+<div id="myMusic" ng-controller="ThemePluginController as themePlugin"
+    class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-paint-brush"></i> Theme settings</h3>
+  </div>
+  <div class="panel-body">
+    <h4 class="sectionDescription">Upload new background</h4>
+    <div ng-if="!themePlugin.uploadPercentage">
+      <div
+          class="uploadDroppableArea"
+          ngf-drop="themePlugin.uploadBackground()"
+          ngf-select="themePlugin.uploadBackground()"
+          ngf-drag-over-class="'dragover'"
+          ng-model="themePlugin.backgroundFile"
+          name="plugin">
+        Click and select new background or drop it here.
+      </div>
+    </div>
+
+    <div id="installProgressBar" ng-if="themePlugin.uploadPercentage > 0">
+      <h3>Upload progress:</h3>
+      <uib-progressbar
+          class="progress-striped active"
+          value="themePlugin.uploadPercentage"
+          type="default">{{themePlugin.uploadPercentage}}%
+      </uib-progressbar>
+    </div>
+
+    <hr>
+
+    <h4 class="sectionDescription">Select background</h4>
+    <div id="backgroundSelector" class="row">
+      <div class="col-sm-6" ng-repeat-start="background in themePlugin.backgrounds.list track by $index">
+        <div class="background">
+          <img
+              ng-click="themePlugin.selectBackground(background)"
+              ng-class="{'current': themePlugin.backgrounds.current.name === background.name}"
+              ng-src="{{background.path}}"
+              alt="{{background.name}}"/>
+          <div class="backgroundName">
+            <span ng-class="{'current': themePlugin.backgrounds.current.name === background.name}">
+              {{background.name}}
+            </span>
+            <p ng-if="themePlugin.backgrounds.current.name !== background.name">
+              <a href
+                   ng-click="themePlugin.selectBackground(background)">
+                Select
+              </a>
+              <a
+                  ng-if="!background.notDeletable"
+                  href ng-click="themePlugin.deleteBackground(background)">
+                | Delete
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div ng-repeat-end ng-if="($index + 1) % 4 === 0" class="clearfix"></div>
+    </div>
+  </div>
+</div>

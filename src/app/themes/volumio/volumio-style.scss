@@ -184,8 +184,10 @@ $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
 
-html {
-  background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
+body {
+  height: 100vh;
+  width: 100%;
+  background: #333;
 }
 
 #contentWrapper {
@@ -566,6 +568,18 @@ ul {
         color: $volumio-green-color;
       }
     }
+  }
+}
+
+//Upload droppable area
+.uploadDroppableArea {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding: 40px 0px;
+  border: dotted 1px grey;
+  &.dragover {
+    border: dotted 1px #54C698;
   }
 }
 
