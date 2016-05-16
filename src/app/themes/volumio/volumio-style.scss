@@ -479,6 +479,9 @@ li.list-group-item {
     height: 19px;
     margin-top: 5px;
     font-size: 14px;
+    & img {
+        width: 32px;
+    }
   }
 }
 
