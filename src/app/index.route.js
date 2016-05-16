@@ -35,6 +35,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           ripperService,
           modalListenerService,
           toastMessageService,
+          uiSettingsService,
           updaterService) => {
             let localhostApiURL = `http://${$window.location.hostname }/api`;
             return $http.get(localhostApiURL + '/host').then((response) => {
