@@ -1,4 +1,4 @@
-class ThemePluginController {
+class UiSettingsPluginController {
   constructor($scope, socketService, mockService, $log, themeManager, $document, Upload) {
     'ngInject';
     this.socketService = socketService;
@@ -7,12 +7,11 @@ class ThemePluginController {
     this.$document = $document;
     this.themeManager = themeManager;
     this.Upload = Upload;
-    //this.wirelessNetworks = mockService.get('wirelessNetworks');
+
     this.defaultThumbnailBackgroundUrl =
         `${socketService.host}/app/themes/${themeManager.theme}/assets/graphics/thumb-${themeManager.theme}-bg.jpg`;
     this.defaultBackgroundUrl =
         `${socketService.host}/app/themes/${themeManager.theme}/assets/graphics/${themeManager.theme}-bg.jpg`;
-    console.log(this.defaultBackgroundUrl);
     this.init();
   }
 
@@ -36,7 +35,6 @@ class ThemePluginController {
       this.uploadPercentage = false;
       this.$log.debug('Error status: ' + resp.status);
     }, (evt)  => {
-      console.log(evt, 'aa');
         this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
         if (this.uploadPercentage === 100) {
           this.uploadPercentage = false;
@@ -63,18 +61,15 @@ class ThemePluginController {
           background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
           return background;
         }));
-      console.log(this.backgrounds.list);
       if (data.current.name === 'Default') {
         this.backgroundUrl = this.defaultBackgroundUrl;
         this.$document[0].body.style.background = `#333 url(${this.defaultBackgroundUrl}) repeat top left`;
+        this.$document[0].body.style.backgroundSize = 'auto';
       } else {
         this.backgroundUrl = data.current.path;
-        console.log(`${data.current.path}`);
         this.$document[0].body.style.background = `#333 url(${data.current.path}) no-repeat center center`;
         this.$document[0].body.style.backgroundSize = 'cover';
       }
-      // this.$document[0].body.style.background = `#333 url(${this.defaultBackgroundUrl}) repeat top left`;
-      // this.$document[0].body.style.backgroundSize = 'cover';
     });
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushBackgrounds');
@@ -86,4 +81,4 @@ class ThemePluginController {
   }
 }
 
-export default ThemePluginController;
+export default UiSettingsPluginController;

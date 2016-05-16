@@ -1,28 +1,28 @@
-<div id="myMusic" ng-controller="ThemePluginController as themePlugin"
+<div id="myMusic" ng-controller="UiSettingsPluginController as uiSettingsPlugin"
     class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-paint-brush"></i> Theme settings</h3>
   </div>
   <div class="panel-body">
     <h4 class="sectionDescription">Upload new background</h4>
-    <div ng-if="!themePlugin.uploadPercentage">
+    <div ng-if="!uiSettingsPlugin.uploadPercentage">
       <div
           class="uploadDroppableArea"
-          ngf-drop="themePlugin.uploadBackground()"
-          ngf-select="themePlugin.uploadBackground()"
+          ngf-drop="uiSettingsPlugin.uploadBackground()"
+          ngf-select="uiSettingsPlugin.uploadBackground()"
           ngf-drag-over-class="'dragover'"
-          ng-model="themePlugin.backgroundFile"
+          ng-model="uiSettingsPlugin.backgroundFile"
           name="plugin">
         Click and select new background or drop it here.
       </div>
     </div>
 
-    <div id="installProgressBar" ng-if="themePlugin.uploadPercentage > 0">
+    <div id="installProgressBar" ng-if="uiSettingsPlugin.uploadPercentage > 0">
       <h3>Upload progress:</h3>
       <uib-progressbar
           class="progress-striped active"
-          value="themePlugin.uploadPercentage"
-          type="default">{{themePlugin.uploadPercentage}}%
+          value="uiSettingsPlugin.uploadPercentage"
+          type="default">{{uiSettingsPlugin.uploadPercentage}}%
       </uib-progressbar>
     </div>
 
@@ -30,25 +30,25 @@
 
     <h4 class="sectionDescription">Select background</h4>
     <div id="backgroundSelector" class="row">
-      <div class="col-sm-6" ng-repeat-start="background in themePlugin.backgrounds.list track by $index">
+      <div class="col-sm-6" ng-repeat-start="background in uiSettingsPlugin.backgrounds.list track by $index">
         <div class="background">
           <img
-              ng-click="themePlugin.selectBackground(background)"
-              ng-class="{'current': themePlugin.backgrounds.current.name === background.name}"
+              ng-click="uiSettingsPlugin.selectBackground(background)"
+              ng-class="{'current': uiSettingsPlugin.backgrounds.current.name === background.name}"
               ng-src="{{background.thumbnail}}"
               alt="{{background.name}}"/>
           <div class="backgroundName">
-            <span ng-class="{'current': themePlugin.backgrounds.current.name === background.name}">
+            <span ng-class="{'current': uiSettingsPlugin.backgrounds.current.name === background.name}">
               {{background.name}}
             </span>
-            <p ng-if="themePlugin.backgrounds.current.name !== background.name">
+            <p ng-if="uiSettingsPlugin.backgrounds.current.name !== background.name">
               <a href
-                   ng-click="themePlugin.selectBackground(background)">
+                   ng-click="uiSettingsPlugin.selectBackground(background)">
                 Select
               </a>
               <a
                   ng-if="!background.notDeletable"
-                  href ng-click="themePlugin.deleteBackground(background)">
+                  href ng-click="uiSettingsPlugin.deleteBackground(background)">
                 | Delete
               </a>
             </p>
