@@ -215,6 +215,50 @@ class PlayerService {
     }
   }
 
+  loadFileFormatIcon() {
+    if (this.state.trackType) {
+      switch (this.state.trackType) {
+        case 'dff':
+          this.state.fileFormat = {
+            url: 'dsd',
+            name: 'dff dsd'
+          };
+          break;
+        case 'dsf':
+          this.state.fileFormat = {
+            url: 'dsd',
+            name: 'dsf dsd'
+          };
+          break;
+        case 'ogg':
+          this.state.fileFormat = {
+            url: 'ogg',
+            name: 'oga vorbis'
+          };
+          break;
+        case 'oga':
+          this.state.fileFormat = {
+            url: 'ogg',
+            name: 'ogg vorbis'
+          };
+          break;
+        case 'wv':
+          this.state.fileFormat = {
+            url: 'wavpack',
+            name: 'wavpack'
+          };
+          break;
+        default:
+          this.state.fileFormat = {
+            url: this.state.trackType,
+            name: this.state.trackType
+          };
+      }
+    } else {
+      this.state.fileFormat = null;
+    }
+  }
+
   registerListner() {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
@@ -244,6 +288,7 @@ class PlayerService {
       }
       this.updatePageTitle();
       this.updateFavicon();
+      this.loadFileFormatIcon();
     });
     this.socketService.on('pushTrackInfo', (data) => {
       this.$log.debug('pushTrackInfo', data);
