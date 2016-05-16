@@ -1,0 +1,17 @@
+#backgroundSelector {
+  .backgroundName {
+    margin: 5px auto 10px auto;
+    text-align: center;
+    span.current {
+      color: #54C698;
+    }
+  }
+  img {
+    width: 100%;
+    border: solid 1px #999;
+    cursor: pointer;
+    &.current {
+      border: solid 1px #54C698;
+    }
+  }
+}

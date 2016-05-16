@@ -1,12 +1,12 @@
 <div ng-if="!pluginManager.uploadPercentage">
   <div
-      id="uploadPluginDroppableArea"
+      class="uploadDroppableArea"
       ngf-drop="pluginManager.uploadPlugin()"
       ngf-select="pluginManager.uploadPlugin()"
       ngf-drag-over-class="'dragover'"
       ng-model="pluginManager.pluginFile"
       name="plugin">
-    Click and select a plugin or Drop it here.
+    Click and select a plugin or drop it here.
   </div>
 </div>
 

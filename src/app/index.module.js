@@ -19,6 +19,7 @@ import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 import RipperService from './services/ripper.service';
+import UiSettingsService from './services/ui-settings.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -82,6 +83,7 @@ import NetworkStatusPluginController from './plugin/core-plugin/network-status-p
 import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.controller';
 import NetworkDrivesPluginController from './plugin/core-plugin/network-drives-plugin.controller';
 import SystemVersionPluginController from './plugin/core-plugin/system-version-plugin.controller';
+import UiSettingsPluginController from './plugin/core-plugin/ui-settings-plugin.controller';
 
 
 
@@ -131,6 +133,7 @@ angular.module('volumio', [
   .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
   .service('ripperService', RipperService)
+  .service('uiSettingsService', UiSettingsService)
 
 
   .provider('themeManager', ThemeManagerProvider)
@@ -189,5 +192,6 @@ angular.module('volumio', [
   .controller('MyMusicPluginController', MyMusicPluginController)
   .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)
   .controller('SystemVersionPluginController', SystemVersionPluginController)
+  .controller('UiSettingsPluginController', UiSettingsPluginController)
 
   ;
