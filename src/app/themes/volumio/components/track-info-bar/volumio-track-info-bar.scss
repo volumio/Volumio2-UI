@@ -24,5 +24,9 @@
     // border: solid 1px red;
     text-align: right;
     @include make-sm-column(10);
+    button {
+      font-size: 22px;
+      padding: 1px 10px;
+    }
   }
 }
