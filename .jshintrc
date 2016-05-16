@@ -86,6 +86,7 @@
     "picturefill",
     "io",
     "socket",
-    "performance"
+    "performance",
+    "Sortable"
   ]
 }

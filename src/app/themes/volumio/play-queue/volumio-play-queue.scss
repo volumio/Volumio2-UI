@@ -3,7 +3,43 @@
   background-color: $volumio-black-trans-dark;
   user-select: none;
   cursor: pointer;
+
+  ul {
+    padding: 0;
+  }
+  li {
+    &:hover {
+      background-color: rgba(30, 30, 30, 0.8);
+    }
+    margin: 0px;
+    list-style: none;
+    padding: 8px 0px;
+    border-top: solid 1px #CCC;
+  }
+
+  .image {
+    display: table-cell;
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+  }
+
+  .titleArtist {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+  }
+
+  .commandButtons {
+    display: table-cell;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
   .title {
+    margin-top: -5px;
     font-size: 16px;
   }
   .artist-album {
