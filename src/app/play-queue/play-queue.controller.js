@@ -1,9 +1,10 @@
 class PlayQueueController {
-  constructor($scope, playQueueService, socketService, matchmediaService) {
+  constructor($scope, $log, playQueueService, socketService, matchmediaService) {
     'ngInject';
     this.playQueueService = playQueueService;
     this.matchmediaService = matchmediaService;
     this.socketService = socketService;
+    this.$log = $log;
 
     this.renderPlayQueueTable();
     $scope.$on('playQueueService:pushQueue', () => {
@@ -52,19 +53,23 @@ class PlayQueueController {
     window.requestAnimationFrame(() => {
       angular.element(ul).append(this.list);
       angular.element('#playQueueList ul').replaceWith(ul);
+      this.$log.debug('playQueueList ul', angular.element('#playQueueList ul')[0]);
       let ulHandler = document.querySelector('#playQueueList ul');
-      let sortable = Sortable.create(ulHandler, {
-        onEnd: (evt) => {
-          let emitPayload = {
-            from: evt.oldIndex,
-            to: evt.newIndex
-          };
-          console.log('moveQueue', emitPayload);
-          this.socketService.emit('moveQueue', emitPayload);
-        },
-        animation: 250,
-        delay: 150
-      });
+      setTimeout(function () {
+        if (ulHandler) {
+          let sortable = Sortable.create(ulHandler, {
+            onEnd: (evt) => {
+              let emitPayload = {
+                from: evt.oldIndex,
+                to: evt.newIndex
+              };
+              this.socketService.emit('moveQueue', emitPayload);
+            },
+            animation: 250,
+            delay: 150
+          });
+        }
+      }, 300);
     });
   }
 }

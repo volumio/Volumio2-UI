@@ -138,13 +138,24 @@ class BrowseController {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
-        this.$log.debug('search', this.searchField);
-        this.socketService.emit('search', {value: this.searchField});
+        let emitPayload = {
+          type: this.browseService.filterBy,
+          value: this.searchField
+        };
+        this.$log.debug('search', emitPayload);
+        this.socketService.emit('search', emitPayload);
       }, 300, false);
     }
     if (this.searchField === '') {
       this.browseService.list = [];
     }
+  }
+
+  filterBy(filter) {
+    if (this.browseService.filterBy === filter) {
+      filter = 'all';
+    }
+    this.browseService.filterBy = filter;
   }
 
   showHamburgerMenu(item) {
@@ -220,6 +231,7 @@ class BrowseController {
       window.requestAnimationFrame(() => {
         angular.element(tbody).append(this.table);
         angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
+        this.$log.debug(angular.element('#browseTableItems tbody')[0]);
         this.$rootScope.$broadcast('browseController:listRendered');
       });
     }, 0);

@@ -13,8 +13,8 @@ class ModalTrackManagerActionsController {
   }
 
   goTo(type) {
-    this.browseService.backHome();
     this.$state.go('volumio.browse');
+    this.browseService.backHome();
     let emitPayload = {
       type: type,
       value: this.playerService.state[type]
@@ -22,8 +22,7 @@ class ModalTrackManagerActionsController {
     this.$log.debug('goTo', emitPayload);
     this.$timeout(() => {
       this.socketService.emit('goTo', emitPayload);
-      // this.socketService.emit('search', {value: this.playerService.state[type]});
-    }, 50, false);
+    }, 1000, true);
     this.closeModal();
   }
 

@@ -10,6 +10,7 @@ class BrowseService {
     this.$log = $log;
 
     this.isPhone = false;
+    this.filterBy = 'all';
     //this._filters = mockService.get('getBrowseFilters');
     // this._sources = mockService.get('getBrowseSources');
     // this.$log.debug(this._sources);
