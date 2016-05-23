@@ -55,8 +55,9 @@ class PlayQueueController {
       angular.element('#playQueueList ul').replaceWith(ul);
       this.$log.debug('playQueueList ul', angular.element('#playQueueList ul')[0]);
       let ulHandler = document.querySelector('#playQueueList ul');
-      setTimeout(function () {
+      setTimeout(() => {
         if (ulHandler) {
+          console.log('init');
           let sortable = Sortable.create(ulHandler, {
             onEnd: (evt) => {
               let emitPayload = {

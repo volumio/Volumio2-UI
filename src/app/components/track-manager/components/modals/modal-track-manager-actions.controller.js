@@ -22,7 +22,7 @@ class ModalTrackManagerActionsController {
     this.$log.debug('goTo', emitPayload);
     this.$timeout(() => {
       this.socketService.emit('goTo', emitPayload);
-    }, 1000, true);
+    }, 0, true);
     this.closeModal();
   }
 
