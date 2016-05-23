@@ -158,13 +158,17 @@ class TrackManagerController {
   }
 
   trackActions() {
+    if (!this.playerService.state.title && !this.playerService.album && !this.playerService.artist) {
+      return false;
+    }
     let templateUrl = 'app/components/track-manager/components/modals/modal-track-manager-actions.html';
     let controller = 'ModalTrackManagerActionsController';
     this.modalService.openModal(
       controller,
       templateUrl,
       null,
-      'sm'
+      'sm',
+      true
     );
   }
 

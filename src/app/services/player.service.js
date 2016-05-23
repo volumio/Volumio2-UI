@@ -180,7 +180,7 @@ class PlayerService {
     } else if (volume > 100) {
       volume = 100;
     }
-    console.log('volume', volume);
+    this.$log.log('volume', volume);
     this.socketService.emit('volume', volume);
   }
 

@@ -14,15 +14,11 @@ class ModalTrackManagerActionsController {
 
   goTo(type) {
     this.$state.go('volumio.browse');
-    this.browseService.backHome();
     let emitPayload = {
       type: type,
       value: this.playerService.state[type]
     };
-    this.$log.debug('goTo', emitPayload);
-    this.$timeout(() => {
-      this.socketService.emit('goTo', emitPayload);
-    }, 0, true);
+    this.browseService.goTo(emitPayload);
     this.closeModal();
   }
 
@@ -35,7 +31,6 @@ class ModalTrackManagerActionsController {
     shareQuerystring += '&via=volumio';
     shareQuerystring += '&url=http://www.volumio.com';
     let shareUrl = `${twitterUrl}${shareQuerystring}`;
-    console.log(shareUrl);
     let width  = 500,
         height = 400,
         left   = Math.ceil((windowWidth  - width)  / 2),
