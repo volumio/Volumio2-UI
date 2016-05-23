@@ -1,0 +1,20 @@
+<div class="modal-body trackManagerActionSheet">
+  <button class="btn btn-info btn-block"
+      ng-if="modal.playerService.state.artist"
+      ng-click="modal.goTo('artist')">
+    Go to artist
+  </button>
+  <button class="btn btn-info btn-block"
+      ng-if="modal.playerService.state.album"
+      ng-click="modal.goTo('album')">
+    Go to album
+  </button>
+  <button class="btn btn-twitter btn-block"
+      ng-if="modal.playerService.state.album"
+      ng-click="modal.tweetTrack()">
+    <i class="fa fa-twitter"></i> Tweet track
+  </button>
+  <button class="btn btn-warning btn-block" ng-click="modal.cancel()">
+    Cancel
+  </button>
+</div>

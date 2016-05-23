@@ -15,11 +15,11 @@
 
     <div id="browseTablesWrapper">
       <table id="browseTableSources" class="table table-hover table-condensed sourcesTable"
-          ng-if="!browse.browseService.isBrowsing && (!browse.searchField || browse.searchField.length < 3)"
+          ng-if="!browse.browseService.isBrowsing && !browse.browseService.list.length"
           ng-include src="'app/browse/components/browse-table-sources.html'">
       </table>
       <table id="browseTableItems" class="table table-hover table-condensed"
-          ng-if="browse.browseService.isBrowsing || browse.searchField.length > 2"
+          ng-if="browse.browseService.isBrowsing || browse.browseService.list.length"
           ng-include src="'app/browse/components/browse-table-items.html'">
       </table>
     </div>

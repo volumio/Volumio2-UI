@@ -157,6 +157,17 @@ class TrackManagerController {
     });
   }
 
+  trackActions() {
+    let templateUrl = 'app/components/track-manager/components/modals/modal-track-manager-actions.html';
+    let controller = 'ModalTrackManagerActionsController';
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      null,
+      'sm'
+    );
+  }
+
   // initMatchmedia() {
   //   this.matchMediaHandler = this.matchmedia.onPhone((mediaQueryList) => {
   //     if (mediaQueryList.matches) {
