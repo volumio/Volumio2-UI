@@ -15,47 +15,55 @@ class PlayQueueController {
     if (!this.playQueueService.queue || this.playQueueService.queue.length === 0) {
       return false;
     }
-    console.log(this.playQueueService.queue);
-    this.table = '';
-    let angularThis = `angular.element('#playQueueTable').scope().playQueue`;
-    console.log(angularThis);
+    this.list = '';
+    let angularThis = `angular.element('#playQueueList').scope().playQueue`;
     for (var i = 0, ll = this.playQueueService.queue.length ; i < ll; i++) {
       let item = this.playQueueService.queue[i];
-      this.table += `
-      <tr>
-        <td
-            class="image"
+      this.list += `
+      <li>
+        <div class="image"
             onclick="${angularThis}.playQueueService.play(${i})">
-          <span class="rollover" ></span>
+          <span class="rollover"></span>
           <img
               class="${(!item.icon) ? '' : 'hidden'}"
               ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
               alt="${item.title}"/>
           <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
-        </td>
-        <td onclick="${angularThis}.playQueueService.play(${i})">
+        </div>
+        <div class="titleArtist" onclick="${angularThis}.playQueueService.play(${i})">
           <div class="title">
             ${item.name}
           </div>
           <div class="artist-album ${(item.artist || item.album) ? '' : 'hidden'}">
             ${item.artist} - ${item.album}
           </div>
-        </td>
-        <td class="commandButtons">
+        </div>
+        <div class="commandButtons">
           <button
               class="btn-link"
               onclick="${angularThis}.playQueueService.remove(${i})">
             <i class="fa fa-times-circle"></i>
           </button>
-        </td>
-      </tr>
+        </div>
+      </li>
       `;
     }
-    let tbody = document.createElement('tbody');
+    let ul = document.createElement('ul');
     window.requestAnimationFrame(() => {
-      angular.element(tbody).append(this.table);
-      console.log(angular.element('#playQueueTable'));
-      angular.element('#playQueueTable tbody').replaceWith(tbody);
+      angular.element(ul).append(this.list);
+      angular.element('#playQueueList ul').replaceWith(ul);
+      let ulHandler = document.querySelector('#playQueueList ul');
+      let sortable = Sortable.create(ulHandler, {
+        onEnd: (evt) => {
+          let emitPayload = {
+            from: evt.oldIndex,
+            to: evt.newIndex
+          };
+          console.log('moveQueue', emitPayload);
+          this.socketService.emit('moveQueue', emitPayload);
+        },
+        animation: 250
+      });
     });
   }
 }

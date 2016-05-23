@@ -623,3 +623,18 @@ ul {
 .false {
   color: $volumio-red-color;
 }
+
+//Credits
+.credits {
+  img {
+    float: left;
+    padding-right: 10px;
+  }
+  span{
+    font-size: 16px;
+    font-weight: 700;
+  }
+  p {
+    color: $volumio-green-color;
+  }
+}

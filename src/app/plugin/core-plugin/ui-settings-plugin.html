@@ -36,21 +36,18 @@
               ng-click="uiSettingsPlugin.selectBackground(background)"
               ng-class="{'current': uiSettingsPlugin.backgrounds.current.name === background.name}"
               ng-src="{{background.thumbnail}}"
-              alt="{{background.name}}"/>
+              alt="{{background.name}}" />
           <div class="backgroundName">
             <span ng-class="{'current': uiSettingsPlugin.backgrounds.current.name === background.name}">
               {{background.name}}
             </span>
             <p ng-if="uiSettingsPlugin.backgrounds.current.name !== background.name">
-              <a href
-                   ng-click="uiSettingsPlugin.selectBackground(background)">
-                Select
-              </a>
-              <a
-                  ng-if="!background.notDeletable"
-                  href ng-click="uiSettingsPlugin.deleteBackground(background)">
-                | Delete
-              </a>
+              <button type="button" class="btn btn-info" ng-click="uiSettingsPlugin.selectBackground(background)" title="Apply Background">
+                <i class="fa fa-check"></i>
+              </button>
+              <button type="button" class="btn btn-danger" ng-if="!background.notDeletable" ng-click="uiSettingsPlugin.deleteBackground(background)" title="Delete Background">
+                <i class="fa fa-trash"></i>
+              </button>
             </p>
           </div>
         </div>
