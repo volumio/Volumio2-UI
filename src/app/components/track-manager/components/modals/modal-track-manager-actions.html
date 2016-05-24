@@ -2,12 +2,12 @@
   <button class="btn btn-info btn-block"
       ng-if="modal.playerService.state.artist"
       ng-click="modal.goTo('artist')">
-    Go to Artist
+    <i class="fa fa-user"></i> Go to Artist
   </button>
   <button class="btn btn-info btn-block"
       ng-if="modal.playerService.state.album"
       ng-click="modal.goTo('album')">
-    Go to Album
+    <i class="fa fa-bullseye"></i> Go to Album
   </button>
   <button class="btn btn-twitter btn-block"
       ng-if="modal.playerService.state.album"
@@ -15,6 +15,6 @@
     <i class="fa fa-twitter"></i> Tweet Track
   </button>
   <button class="btn btn-warning btn-block" ng-click="modal.cancel()">
-    Cancel
+    Close
   </button>
 </div>
