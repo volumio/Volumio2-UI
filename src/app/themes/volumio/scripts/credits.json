@@ -1,0 +1,13 @@
+{
+  "utilities":[
+      {"name":"Upmpdcli","author":"Justin Maggard","link":"http"},
+      {"name":"Upmpdcli","author":"Justin Maggard","link":"http"}
+      ],
+    "backgrounds":[
+        {"name":"Tide","author":"AuthorName","link":"http"},
+        {"name":"Tide","author":"AuthorName","link":"http"}
+    ],
+    "services":[
+        {"name":"Tide","logo":"logourl","link":"http"}
+        ]
+}
