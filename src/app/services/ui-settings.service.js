@@ -30,6 +30,7 @@ class UiSettingsService {
       this.$log.debug('pushUiSettings', data);
       this.uiSettings = data;
       if (data.background.title === 'Default') {
+        data.background.path = `${this.socketService.host}/app/themes/${this.themeManager.theme}/assets/graphics/${this.themeManager.theme}-bg.jpg`;
         this.$document[0].body.style.background = `#333 url(${data.background.path}) repeat top left`;
         this.$document[0].body.style.backgroundSize = 'auto';
       } else {
