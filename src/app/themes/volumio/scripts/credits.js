@@ -7,9 +7,9 @@ var repos = [];
 
 var theme = process.argv.slice(2)[0];
 
-var itemHTML = '<p><strong>${NAME}</strong> </a>by ${AUTHOR} - ${LICENSENAME} - ${LINKREPO}</p>\n';
-var shortItemHTML = '<p><strong>${NAME}</strong></p>\n';
-var commitHTML = '<p><a href="${USERHOME}" target="_blank"><img src="${IMG}" width=50> ${NAME}</a> ${N} Commits</p>\n';
+var itemHTML = '<strong>${NAME}</strong> </a>by ${AUTHOR} - ${LICENSENAME} - ${LINKREPO}<br>\n';
+var shortItemHTML = '<strong>${NAME}</strong>';
+var commitHTML = '<a href="${USERHOME}" target="_blank"><img src="${IMG}" width=50> ${NAME}</a> ${N} Commits<br>\n';
 
 var Repo = function (sectionName, url, statsUrl) {
 	this.name = sectionName;
@@ -27,8 +27,8 @@ var User = function (gitUser) {
 
 var array = [
 	new Repo("Volumio2","https://raw.githubusercontent.com/volumio/Volumio2/master/package.json","https://api.github.com/repos/volumio/Volumio2/contributors"),
-	new Repo("Volumio2-UI","https://raw.githubusercontent.com/volumio/Volumio2-UI/master/package.json","https://api.github.com/repos/volumio/Volumio2/contributors"),
-	new Repo("Volumio2-UI Bower","https://raw.githubusercontent.com/volumio/Volumio2-UI/master/bower.json","")
+	new Repo("Volumio2-UI Bower","https://raw.githubusercontent.com/volumio/Volumio2-UI/master/bower.json",""),
+	new Repo("Volumio2-UI","https://raw.githubusercontent.com/volumio/Volumio2-UI/master/package.json","https://api.github.com/repos/volumio/Volumio2-UI/contributors")
 		];
 
 var finishCount=0;
@@ -142,7 +142,7 @@ function addPackages(deps) {
 		repo = repos[item];
 		try {
 		myHTML += itemHTML.replace("${NAME}",item)
-						  .replace("${LINKREPO}",repo.repo)
+						  .replace("${LINKREPO}",'<a href="'+repo.repo+'"target="_blank">'+repo.repo+'</a>')
 						  .replace("${AUTHOR}",repo.author)
 						  .replace("${LINKLIC}",item)
 						  .replace("${LICENSENAME}",repo.license);
@@ -156,19 +156,31 @@ function addPackages(deps) {
 }
 
 function addAuthors(authors) {
-	var myHTML = '';
+	var authorsnum = 0;
+	for (authorN in authors) {
+		authorsnum++;
+	}
+	var columnitems = Math.round((authorsnum/6));
+	console.log("Items per Column:"+ columnitems);
+	var myHTML = '<div class="row">';
 	for (authorN in authors) {
 		var author = authors[authorN];
+			myHTML += '<div class="col-md-4 col-xs-24">'
+
 		myHTML += commitHTML.replace("${USERHOME}",author.html_url)
 							.replace("${IMG}",author.avatar_url)
 							.replace("${NAME}",author.login)
 							.replace("${N}",author.contributions);
-	}
-	return myHTML;
+
+	myHTML += '</div>';
+
+}
+myHTML += '</div>';
+return myHTML;
 }
 
 function addSection(name) {
-	return  "<h1>" + name + "</h1>";
+	return '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-user"></i> '+name+'</h3></div><div class="panel-body">';
 }
 
 function finished() {
@@ -180,15 +192,33 @@ function finished() {
 }
 
 function writeHTML() {
-	var html = "";
+	var html = '<div class="box"><div class="boxHeader"><div class="title"><h2>Credits</h2></div></div>	';
 	for (itemN in array) {
-		var item = array[itemN];
+			var item = array[itemN];
+		console.log(item.name);
+		if (item.name == 'Volumio2-UI Bower') {
+			var htmlbower = addPackages(item.deps);
+			htmlbower += addPackages(item.devDeps);
+		} else  if (item.name == 'Volumio2-UI'){
 		html += addSection(item.name);
 		html += addPackages(item.deps);
 		html += addPackages(item.devDeps);
-
+		html += htmlbower;
+		html += '</div></div>';
+		html += addSection(item.name+' Contributors');
 		html += addAuthors(item.authors);
+		html += '</div></div>';
+	} else {
+		html += addSection(item.name);
+		html += addPackages(item.deps);
+		html += addPackages(item.devDeps);
+		html += '</div></div>';
+		html += addSection(item.name+' Contributors');
+		html += addAuthors(item.authors);
+		html += '</div></div>';
 	}
+	}
+	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> License</h3></div><div class="panel-body"><p>License Information</p></div></div>'
   var creditsPath = "src/app/themes/" + theme + "/assets/static-pages/credits.html";
   console.log(creditsPath);
 	fs.writeFile(creditsPath, html);
