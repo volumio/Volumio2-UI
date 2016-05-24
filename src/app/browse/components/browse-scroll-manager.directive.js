@@ -32,7 +32,11 @@ class BrowseScrollManagerDirective {
     function scrollHandler() {
       /*jshint validthis:true */
       // $log.debug(browseService.currentFetchRequest.uri, this.scrollTop);
-      browseService.scrollPositions.set(browseService.currentFetchRequest.uri, this.scrollTop);
+      if ( browseService.currentFetchRequest && browseService.currentFetchRequest.uri) {
+        browseService.scrollPositions.set(browseService.currentFetchRequest.uri, this.scrollTop);
+      } else {
+        browseService.scrollPositions.set({}, this.scrollTop);
+      }
     }
 
     setTimeout(() => {
@@ -56,11 +60,13 @@ class BrowseScrollManagerDirective {
     }, 100);
 
     scope.$on('browseController:listRendered', () => {
-      this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
-      setTimeout(() => {
-        this.setScrollTop();
-        this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
-      }, 100);
+      if (this.browseTablesWrapper) {
+        this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
+        setTimeout(() => {
+          this.setScrollTop();
+          this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
+        }, 100);
+      }
     });
 
     scope.$on('$destroy', () => {

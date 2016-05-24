@@ -1,5 +1,5 @@
 class BrowseService {
-  constructor($rootScope, $log, socketService, mockService, $interval, $window) {
+  constructor($rootScope, $timeout, $log, socketService, mockService, $interval, $window) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
@@ -8,8 +8,12 @@ class BrowseService {
     this.isBrowsing = false;
     this.$rootScope = $rootScope;
     this.$log = $log;
+    this.$timeout = $timeout;
 
     this.isPhone = false;
+    this.filterBy = 'all';
+    this.isBrowsing = false;
+    this.isSearching = false;
     //this._filters = mockService.get('getBrowseFilters');
     // this._sources = mockService.get('getBrowseSources');
     // this.$log.debug(this._sources);
@@ -39,8 +43,27 @@ class BrowseService {
 
   backHome() {
     this.isBrowsing = false;
+    this.isSearching = false;
     this.list = [];
     this.scrollPositions.clear();
+  }
+
+  goTo(emitPayload) {
+    this.backHome();
+    this.isSearching = true;
+    this.isBrowsing = false;
+    this.$log.debug('goTo', emitPayload);
+    this.$timeout(() => {
+      this.socketService.emit('goTo', emitPayload);
+      // this.socketService.emit('search', emitPayload);
+    }, 0);
+  }
+
+  filterBy(filter) {
+    if (this.filterBy === filter) {
+      filter = 'all';
+    }
+    this.filterBy = filter;
   }
 
   get filters() {

@@ -134,13 +134,21 @@ class BrowseController {
 
   search() {
     if (this.searchField.length >= 3) {
+      this.browseService.isSearching = true;
       if (this.searchTimeoutHandler) {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
-        this.$log.debug('search', this.searchField);
-        this.socketService.emit('search', {value: this.searchField});
+        let emitPayload = {
+          type: this.browseService.filterBy,
+          value: this.searchField
+        };
+        this.$log.debug('search', emitPayload);
+        this.socketService.emit('search', emitPayload);
       }, 300, false);
+    } else {
+      this.browseService.isSearching = false;
+      this.browseService.list = [];
     }
   }
 
@@ -173,51 +181,53 @@ class BrowseController {
   }
 
   renderBrowseTable() {
-    if (!this.browseService.list || this.browseService.list.length === 0) {
+    if (!this.browseService.list) {
       return false;
     }
-    this.table = '';
-    let angularThis = `angular.element('#browseTableItems').scope().browse`;
-    for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
-      let item = this.browseService.list[i];
-      this.table += `
-      <tr>
-        <td class="image">
-          <img
-              class="${(!item.icon) ? '' : 'hidden'}"
-              ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
-              alt="${item.title}"/>
-          <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
-        </td>
-        <td
-            onclick="${angularThis}.clickListItemByIndex(${i})"
-            ondblclick="${angularThis}.dblClickListItemByIndex(${i})"
-            class="breakMe">
-          <div class="title">
-            ${item.title}
-          </div>
-          <div class="artist-album
-              ${(item.artist || item.album) ? '' : 'hidden'}">
-            ${item.artist} - ${item.album}
-          </div>
-        </td>
-        <td class="commandButtons">
-          <div class="hamburgerMenu
-              ${(item.type === 'radio-favourites' || item.type === 'radio-category') ? 'hidden' : ''}">
-            <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})" title="Options...">
-              <i class="fa fa-bars"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
-      `;
-    }
-    let tbody = document.createElement('tbody');
-    window.requestAnimationFrame(() => {
-      angular.element(tbody).append(this.table);
-      angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
-      this.$rootScope.$broadcast('browseController:listRendered');
-    });
+    this.$timeout(() => {
+      this.table = '';
+      let angularThis = `angular.element('#browseTableItems').scope().browse`;
+      for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
+        let item = this.browseService.list[i];
+        this.table += `
+        <tr>
+          <td class="image">
+            <img
+                class="${(!item.icon) ? '' : 'hidden'}"
+                ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
+                alt="${item.title}"/>
+            <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
+          </td>
+          <td
+              onclick="${angularThis}.clickListItemByIndex(${i})"
+              ondblclick="${angularThis}.dblClickListItemByIndex(${i})"
+              class="breakMe">
+            <div class="title">
+              ${item.title}
+            </div>
+            <div class="artist-album
+                ${(item.artist || item.album) ? '' : 'hidden'}">
+              ${item.artist} - ${item.album}
+            </div>
+          </td>
+          <td class="commandButtons">
+            <div class="hamburgerMenu
+                ${(item.type === 'radio-favourites' || item.type === 'radio-category') ? 'hidden' : ''}">
+              <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})" title="Options...">
+                <i class="fa fa-bars"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        `;
+      }
+      let tbody = document.createElement('tbody');
+      window.requestAnimationFrame(() => {
+        angular.element(tbody).append(this.table);
+        angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
+        this.$rootScope.$broadcast('browseController:listRendered');
+      });
+    }, 0);
   }
 }
 

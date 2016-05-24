@@ -1,9 +1,10 @@
 class PlayQueueController {
-  constructor($scope, playQueueService, socketService, matchmediaService) {
+  constructor($scope, $log, playQueueService, socketService, matchmediaService) {
     'ngInject';
     this.playQueueService = playQueueService;
     this.matchmediaService = matchmediaService;
     this.socketService = socketService;
+    this.$log = $log;
 
     this.renderPlayQueueTable();
     $scope.$on('playQueueService:pushQueue', () => {
@@ -16,6 +17,7 @@ class PlayQueueController {
       return false;
     }
     this.list = '';
+
     let angularThis = `angular.element('#playQueueList').scope().playQueue`;
     for (var i = 0, ll = this.playQueueService.queue.length ; i < ll; i++) {
       let item = this.playQueueService.queue[i];
@@ -49,21 +51,23 @@ class PlayQueueController {
       `;
     }
     let ul = document.createElement('ul');
+    angular.element(ul).append(this.list);
     window.requestAnimationFrame(() => {
-      angular.element(ul).append(this.list);
       angular.element('#playQueueList ul').replaceWith(ul);
       let ulHandler = document.querySelector('#playQueueList ul');
-      let sortable = Sortable.create(ulHandler, {
-        onEnd: (evt) => {
-          let emitPayload = {
-            from: evt.oldIndex,
-            to: evt.newIndex
-          };
-          console.log('moveQueue', emitPayload);
-          this.socketService.emit('moveQueue', emitPayload);
-        },
-        animation: 250
-      });
+      if (ulHandler) {
+        let sortable = Sortable.create(ulHandler, {
+          onEnd: (evt) => {
+            let emitPayload = {
+              from: evt.oldIndex,
+              to: evt.newIndex
+            };
+            this.socketService.emit('moveQueue', emitPayload);
+          },
+          animation: 250,
+          delay: 150
+        });
+      }
     });
   }
 }
