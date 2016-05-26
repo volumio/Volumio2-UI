@@ -132,10 +132,16 @@ class PlayerService {
   calculateElapsedTimeString() {
     //this.$log.debug(this.elapsedTime);
     let momentDuration = moment.duration(this.elapsedTime),
+      hours = momentDuration.hours(),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
-    this.elapsedTimeString = minutes + ':' +
+    if (this.hours > 0) {
+      this.elapsedTimeString = hours + ':' + minutes + ':' +
         ((seconds < 10) ? ('0' + seconds) : seconds);
+    } else {
+        this.elapsedTimeString = minutes + ':' +
+          ((seconds < 10) ? ('0' + seconds) : seconds);
+      }
   }
 
   startSeek() {
