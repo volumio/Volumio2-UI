@@ -25,6 +25,7 @@ class SideMenuController {
     this.visible = false;
     this.theme = themeManager.theme;
     this.$log = $log;
+    this.$scope = $scope;
     // this.menuItems = mockService.get('getMenuItems');
 
     this.init();
@@ -93,6 +94,10 @@ class SideMenuController {
     this.socketService.on('pushMenuItems', (data) => {
       this.$log.debug('pushMenuItems', data);
       this.menuItems = data;
+    });
+
+    this.$scope.$on('$destroy', () => {
+      this.socketService.off('pushMenuItems');
     });
   }
 

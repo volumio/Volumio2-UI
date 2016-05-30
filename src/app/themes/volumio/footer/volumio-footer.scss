@@ -7,11 +7,14 @@ footer {
   height: $footerHeight;
   // border: solid 10px green;
   background-color: $volumio-deep-dark-color;
+}
 
-  .tabBar {
-    button {
-      i {
-        font-size: 25px;
+.tabBar {
+  button {
+    i {
+      font-size: 25px;
+      @include breakpoint(xs) {
+        font-size: 28px;
       }
     }
   }
