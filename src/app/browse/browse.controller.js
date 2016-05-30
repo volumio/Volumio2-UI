@@ -191,17 +191,19 @@ class BrowseController {
         let item = this.browseService.list[i];
         this.table += `
         <tr>
-          <td class="image">
+          <td class="rowTitle ${(item.type !== 'title') ? 'hidden' : ''}" colspan="3">
+            <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
+          </td>
+          <td class="image ${(item.type === 'title') ? 'hidden' : ''}">
             <img
                 class="${(!item.icon) ? '' : 'hidden'}"
                 ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
                 alt="${item.title}"/>
             <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
           </td>
-          <td
+          <td class="breakMe ${(item.type === 'title') ? 'hidden' : ''}"
               onclick="${angularThis}.clickListItemByIndex(${i})"
-              ondblclick="${angularThis}.dblClickListItemByIndex(${i})"
-              class="breakMe">
+              ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
             <div class="title">
               ${item.title}
             </div>
@@ -210,9 +212,9 @@ class BrowseController {
               ${item.artist} - ${item.album}
             </div>
           </td>
-          <td class="commandButtons">
+          <td class="commandButtons ${(item.type === 'title') ? 'hidden' : ''}">
             <div class="hamburgerMenu
-                ${(item.type === 'radio-favourites' || item.type === 'radio-category') ? 'hidden' : ''}">
+                ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ? 'hidden' : ''}">
               <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})" title="Options...">
                 <i class="fa fa-bars"></i>
               </button>

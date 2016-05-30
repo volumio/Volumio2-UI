@@ -59,6 +59,15 @@
   table {
     user-select: none;
     cursor: pointer;
+    .rowTitle {
+      font-size: 18px;
+      padding: 5px 10px;
+      color: $volumio-green-color;
+      cursor: auto;
+      i {
+        margin-right: 10px;
+      }
+    }
     .title {
       font-size: 16px;
     }
