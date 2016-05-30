@@ -309,6 +309,11 @@ class PlayerService {
       this.$log.debug('urifavourites', data);
       this.favourite = data;
     });
+
+    this.socketService.on('dbUpdate', (data) => {
+      this.dbUpdate = data;
+      this.$log.error('dbUpdate', data);
+    });
   }
 
   initService() {

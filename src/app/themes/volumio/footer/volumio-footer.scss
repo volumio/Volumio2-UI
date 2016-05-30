@@ -7,6 +7,14 @@ footer {
   height: $footerHeight;
   // border: solid 10px green;
   background-color: $volumio-deep-dark-color;
+
+  .tabBar {
+    button {
+      i {
+        font-size: 25px;
+      }
+    }
+  }
 }
 
 #phoneFooter {
@@ -14,7 +22,7 @@ footer {
     font-size: 22px;
     &:active{
       color: $volumio-green-color;
-    } 
+    }
   }
 }
 
