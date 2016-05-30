@@ -67,13 +67,22 @@
     width: 45px;
     position: absolute;
   }
-  li:hover span.rollover, li.isPlaying span.rollover{
-    background: rgba(0, 0, 0, .3);
-    -webkit-transition: .3s;
-    &:before {
-      content: '\f04b';
+
+  li{
+    &.sorting span.rollover{
+      transform: rotate(90deg);
+      &:before {
+        content: '\f0ec' !important;
+      }
     }
-    &:active {
+    &:hover span.rollover, &.isPlaying span.rollover{
+      background: rgba(0, 0, 0, .3);
+      -webkit-transition: .3s;
+      &:before {
+        content: '\f04b';
+      }
+    }
+    &.isPlaying span.rollover {
       color: $volumio-green-color;
     }
   }
