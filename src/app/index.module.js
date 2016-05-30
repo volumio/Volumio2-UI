@@ -153,7 +153,8 @@ angular.module('volumio', [
   .directive('waitBackendScrim', () => new WaitBackendScrimDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('playlist', (themeManager) => new PlaylistDirective(themeManager))
-  .directive('browseScrollManager', (browseService) => new BrowseScrollManagerDirective(browseService))
+  .directive('browseScrollManager',
+      (browseService, matchmediaService) => new BrowseScrollManagerDirective(browseService, matchmediaService))
   .directive('browseHamburgerMenu', () => new BrowseHamburgerMenuDirective())
   .directive('trackInfoBar', () => new TrackInfoBarDirective())
 
