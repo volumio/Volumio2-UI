@@ -320,9 +320,45 @@ class MockService {
           totPages: 2
         },
         list: [
-          {track: 'track a', artist: 'artist a', uri: 'uri'},
-          {track: 'track b', artist: 'artist b', uri: 'uri'},
-          {track: 'track c', artist: 'artist c', uri: 'uri'}
+          {
+            "type": "title",
+            "title": "Artist"
+          },
+          {
+            "type": "folder",
+            "title": "Musica",
+            "icon": "fa fa-folder-open-o",
+            "uri": "music-library/USB/KINGSTON/Musica"
+          },
+          {
+            "type": "folder",
+            "title": "Lezioni_AIS_3°_Livello_2014_PDF",
+            "icon": "fa fa-folder-open-o",
+            "uri": "music-library/USB/KINGSTON/Lezioni_AIS_3°_Livello_2014_PDF"
+          },
+          {
+            "type": "title",
+            "title": "Album",
+            "icon": "fa fa-folder-open-o"
+          },
+          {
+            "type": "folder",
+            "title": "Fotografie falegnameria e falegnami - CB interni",
+            "icon": "fa fa-folder-open-o",
+            "uri": "music-library/USB/KINGSTON/Fotografie falegnameria e falegnami - CB interni"
+          },
+          {
+            "type": "folder",
+            "title": ".Trashes",
+            "icon": "fa fa-folder-open-o",
+            "uri": "music-library/USB/KINGSTON/.Trashes"
+          },
+          {
+            "type": "folder",
+            "title": ".Spotlight-V100",
+            "icon": "fa fa-folder-open-o",
+            "uri": "music-library/USB/KINGSTON/.Spotlight-V100"
+          }
         ]
       },
       getMultiRoomDevices: {

@@ -17,7 +17,8 @@ class BrowseService {
     //this._filters = mockService.get('getBrowseFilters');
     // this._sources = mockService.get('getBrowseSources');
     // this.$log.debug(this._sources);
-    //this._list = mockService.get('getBrowseList');
+    // this.list = mockService.get('getBrowseList').list;
+    console.log(this.list);
     this.limiter = 10;
     this.scrollPositions = new Map();
 
