@@ -28,7 +28,7 @@ class PlayQueueController {
     for (var i = 0, ll = this.playQueueService.queue.length ; i < ll; i++) {
       let item = this.playQueueService.queue[i];
       this.list += `
-      <li id="itemQueue-${i}">
+      <li id="itemQueue-${i}" class="">
         <div class="image"
             onclick="${angularThis}.playQueueService.play(${i})">
           <span class="rollover"></span>
@@ -69,7 +69,15 @@ class PlayQueueController {
               from: evt.oldIndex,
               to: evt.newIndex
             };
+            let sortingElement = this.$document[0].getElementById(`itemQueue-${evt.oldIndex}`);
+            sortingElement.classList.remove('sorting');
             this.socketService.emit('moveQueue', emitPayload);
+          },
+          onStart: (evt) => {
+           console.log(evt.oldIndex);
+           let sortingElement = this.$document[0].getElementById(`itemQueue-${evt.oldIndex}`);
+           console.log(sortingElement);
+           sortingElement.classList.add('sorting');
           },
           animation: 250,
           delay: 150
