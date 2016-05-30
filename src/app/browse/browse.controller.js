@@ -19,6 +19,8 @@ class BrowseController {
     $scope.$on('browseService:fetchEnd', () => {
       this.renderBrowseTable();
     });
+
+    this.initController();
   }
 
   fetchLibrary(item, back = false) {
@@ -230,6 +232,42 @@ class BrowseController {
         this.$rootScope.$broadcast('browseController:listRendered');
       });
     }, 0);
+  }
+
+  initController() {
+    let bindedBackListener = this.backListener.bind(this);
+    this.$document[0].addEventListener('keydown', bindedBackListener, false);
+    this.$scope.$on('$destroy', () => {
+      this.$document[0].removeEventListener('keydown', bindedBackListener, false);
+    });
+  }
+
+  backListener() {
+    let prventDefault;
+    if (event.keyCode === 8) {
+      let d = event.srcElement || event.target;
+      if ((d.tagName.toUpperCase() === 'INPUT' &&
+          (
+             d.type.toUpperCase() === 'TEXT' ||
+             d.type.toUpperCase() === 'PASSWORD' ||
+             d.type.toUpperCase() === 'FILE' ||
+             d.type.toUpperCase() === 'SEARCH' ||
+             d.type.toUpperCase() === 'EMAIL' ||
+             d.type.toUpperCase() === 'NUMBER' ||
+             d.type.toUpperCase() === 'DATE' )
+          ) ||
+          d.tagName.toUpperCase() === 'TEXTAREA') {
+        prventDefault = d.readOnly || d.disabled;
+      } else {
+        prventDefault = true;
+      }
+    }
+    if (prventDefault) {
+      event.preventDefault();
+      if (this.browseService.breadcrumbs) {
+        this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
+      }
+    }
   }
 }
 
