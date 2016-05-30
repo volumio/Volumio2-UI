@@ -1,7 +1,9 @@
 class BrowseScrollManagerDirective {
-  constructor(browseService, $log) {
+  constructor(browseService, matchmediaService) {
     'ngInject';
     this.browseService = browseService;
+    this.matchmediaService = matchmediaService;
+    console.log(matchmediaService);
 
     let directive = {
       restrict: 'A',
@@ -50,14 +52,17 @@ class BrowseScrollManagerDirective {
       // this.browseTablesWrapper.scrollTop = 0;
       // $log.debug(this.browseTablesWrapper);
       this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
+      setbrowseTablesWrapperHeight();
+      this.setScrollTop();
+    }, 100);
 
+    let setbrowseTablesWrapperHeight = () => {
       browsePanelHeading = angular.element('#browsePanelHeading')[0];
       footer = angular.element('#footer')[0];
       this.browseTablesWrapper.style.height =
           footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
           browsePanelHeading.getBoundingClientRect().bottom + 'px';
-      this.setScrollTop();
-    }, 100);
+    };
 
     scope.$on('browseController:listRendered', () => {
       if (this.browseTablesWrapper) {
@@ -72,6 +77,13 @@ class BrowseScrollManagerDirective {
     scope.$on('$destroy', () => {
       this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
       this.contentWrapper.style.overflowY = 'auto';
+    });
+
+    this.matchmediaService.onPortrait((data) => {
+      console.log(data);
+      setTimeout(function () {
+        setbrowseTablesWrapperHeight();
+      }, 50);
     });
   }
 }
