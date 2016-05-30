@@ -3,7 +3,6 @@ class BrowseScrollManagerDirective {
     'ngInject';
     this.browseService = browseService;
     this.matchmediaService = matchmediaService;
-    console.log(matchmediaService);
 
     let directive = {
       restrict: 'A',
@@ -59,9 +58,11 @@ class BrowseScrollManagerDirective {
     let setbrowseTablesWrapperHeight = () => {
       browsePanelHeading = angular.element('#browsePanelHeading')[0];
       footer = angular.element('#footer')[0];
-      this.browseTablesWrapper.style.height =
-          footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
-          browsePanelHeading.getBoundingClientRect().bottom + 'px';
+      if (this.browseTablesWrapper && footer && browsePanelHeading) {
+        this.browseTablesWrapper.style.height =
+            footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
+            browsePanelHeading.getBoundingClientRect().bottom + 'px';
+      }
     };
 
     scope.$on('browseController:listRendered', () => {
@@ -80,7 +81,6 @@ class BrowseScrollManagerDirective {
     });
 
     this.matchmediaService.onPortrait((data) => {
-      console.log(data);
       setTimeout(function () {
         setbrowseTablesWrapperHeight();
       }, 50);
