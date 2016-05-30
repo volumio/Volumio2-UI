@@ -1,0 +1,17 @@
+{
+  "utilities":[
+      {"name":"Upmpdcli","author":"Justin Maggard","link":"http"},
+      {"name":"Upmpdcli","author":"Justin Maggard","link":"http"}
+      ],
+    "backgrounds":[
+        {"name":"Galaxy","author":"ESA/Hubble","link":"https://www.spacetelescope.org"},
+        {"name":"Darkness","author":"Jarred Decker","link":"http://www.jdphotopdx.com"},
+        {"name":"Aurora","author":"Alfrfrey","link":"https://www.flickr.com/photos/alfrfrey"},
+        {"name":"Morning","author":"Justin Thomas","link":"https://www.flickr.com/photos/reddodger123"},
+        {"name":"Stars","author":"Andrew King","link":"http://andrewking.info"},
+        {"name":"Yosemite","author":"Wasim Muklashy","link":"http://www.wasimofnazareth.com"}
+    ],
+    "services":[
+        {"name":"Tide","logo":"logourl","link":"http"}
+        ]
+}
