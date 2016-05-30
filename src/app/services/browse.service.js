@@ -11,14 +11,13 @@ class BrowseService {
     this.$timeout = $timeout;
 
     this.isPhone = false;
-    this.filterBy = 'all';
+    this.filterBy = 'any';
     this.isBrowsing = false;
     this.isSearching = false;
     //this._filters = mockService.get('getBrowseFilters');
     // this._sources = mockService.get('getBrowseSources');
     // this.$log.debug(this._sources);
     // this.list = mockService.get('getBrowseList').list;
-    console.log(this.list);
     this.limiter = 10;
     this.scrollPositions = new Map();
 
@@ -122,13 +121,15 @@ class BrowseService {
       this.sources = data;
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
-      this.list = data.navigation.list;
+      if (data.navigation) {
+        this.list = data.navigation.list;
 
-      this.listLength = this.list.length;
-      this.$log.debug('pushBrowseLibrary', this.listLength, this.list);
+        this.listLength = this.list.length;
+        this.$log.debug('pushBrowseLibrary', this.listLength, this.list);
 
-      this.breadcrumbs = data.navigation.prev;
-      this.$rootScope.$broadcast('browseService:fetchEnd');
+        this.breadcrumbs = data.navigation.prev;
+        this.$rootScope.$broadcast('browseService:fetchEnd');
+      }
     });
   }
 
