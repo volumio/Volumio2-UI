@@ -67,7 +67,7 @@
     width: 45px;
     position: absolute;
   }
-  li:hover span.rollover {
+  li:hover span.rollover, li.isPlaying span.rollover{
     background: rgba(0, 0, 0, .3);
     -webkit-transition: .3s;
     &:before {

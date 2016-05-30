@@ -286,18 +286,25 @@ class PlayerService {
         this.elapsedTimeString = undefined;
         this.songLength = undefined;
       }
+
+      //Forward emit event
+      this.$rootScope.$broadcast('socket:pushState', data);
+
       this.updatePageTitle();
       this.updateFavicon();
       this.loadFileFormatIcon();
     });
+
     this.socketService.on('pushTrackInfo', (data) => {
       this.$log.debug('pushTrackInfo', data);
       this.trackInfo = data;
     });
+
     this.socketService.on('pushGetSeek', (data) => {
       this.$log.debug('pushGetSeek', data);
       this.seek = data;
     });
+
     this.socketService.on('urifavourites', (data) => {
       this.$log.debug('urifavourites', data);
       this.favourite = data;
