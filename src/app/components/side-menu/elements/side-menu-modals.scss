@@ -1,5 +1,8 @@
 .modal-body{
   .pull-down {
-    margin-top: 50px;
+    margin-top: 33px;
+    @include breakpoint(xs) {
+      margin-bottom: 50px;
+    }
   }
 }
