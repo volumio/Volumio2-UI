@@ -46,6 +46,9 @@
                 ng-src="{{'/app/themes/volumio/assets/format-icons/' +
                   trackManager.playerService.state.fileFormat.url + '.svg'}}"
                 alt="{{trackManager.playerService.state.fileFormat.name}}" />
+            <span ng-if="!trackManager.playerService.state.fileFormat">
+              {{trackManager.playerService.state.trackType}}
+            </span>
           </span>
         </div>
       </div>
