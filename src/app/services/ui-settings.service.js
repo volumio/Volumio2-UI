@@ -55,9 +55,13 @@ class UiSettingsService {
 
     this.socketService.on('pushUiSettings', (data) => {
       this.$log.debug('pushUiSettings', data);
+      //Check for language switch
+      if (this.uiSettings && this.uiSettings.language !== data.language) {
+        location.reload();
+      }
       this.uiSettings = data;
-      this.setBackground();
       this.setLanguage();
+      this.setBackground();
     });
 
     this.socketService.on('pushBackgrounds', (data) => {
