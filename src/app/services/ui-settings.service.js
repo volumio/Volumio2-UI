@@ -1,10 +1,11 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, mockService, $log, themeManager, $document) {
+  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
     this.$document = $document;
     this.$log = $log;
+    this.$translate = $translate;
 
     this.currentTheme = themeManager.theme;
     this.defaultUiSettings = {
@@ -45,6 +46,10 @@ class UiSettingsService {
     }
   }
 
+  setLanguage() {
+    this.$translate.use(this.uiSettings.language);
+  }
+
   registerListner() {
     this.$log.debug('UiSettingsService is listening');
 
@@ -52,6 +57,7 @@ class UiSettingsService {
       this.$log.debug('pushUiSettings', data);
       this.uiSettings = data;
       this.setBackground();
+      this.setLanguage();
     });
 
     this.socketService.on('pushBackgrounds', (data) => {
