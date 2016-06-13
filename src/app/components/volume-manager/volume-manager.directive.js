@@ -49,7 +49,6 @@ class VolumeManagerController {
         $timeout.cancel(this.timeoutHandler);
         $timeout.cancel(this.timeoutHandler2);
         this.timeoutHandler = $timeout(() => {
-          // console.log('knob volume', value);
           playerService.volume = value;
         }, 300);
       }
@@ -59,7 +58,6 @@ class VolumeManagerController {
       if (value) {
         $timeout.cancel(this.timeoutHandler2);
         $timeout.cancel(this.timeoutHandler);
-        // console.log('player service volume', value);
         this.timeoutHandler2 = $timeout(() => {
           this.volume = value;
         }, 220, false);

@@ -9,8 +9,7 @@ class NetworkDrivesPluginController {
     this.$log = $log;
     //this.infoShare = mockService.get('infoShare');
     //this.listUsbDrives = mockService.get('listUsbDrives');
-    this.networkShares = mockService.get('networkSharesDiscovery');
-    console.log(this.networkShares);
+    // this.networkShares = mockService.get('networkSharesDiscovery');
 
     this.inAddDrive = false;
     this.driveTypes = ['cifs', 'nfs'];
@@ -39,6 +38,7 @@ class NetworkDrivesPluginController {
     this.inAddDrive = true;
     this.inEditDrive = false;
     this.socketService.emit('getNetworkSharesDiscovery');
+    this.$log.debug('emit getNetworkSharesDiscovery');
   }
 
 
@@ -61,7 +61,6 @@ class NetworkDrivesPluginController {
   }
 
   selectShare(share, disk) {
-    console.log(share, disk);
     this.drive.ip = share.name;
     this.drive.name = disk.sharename;
     this.drive.path = disk.path;
