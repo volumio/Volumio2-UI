@@ -9,6 +9,9 @@ class NetworkDrivesPluginController {
     this.$log = $log;
     //this.infoShare = mockService.get('infoShare');
     //this.listUsbDrives = mockService.get('listUsbDrives');
+    this.networkShares = mockService.get('networkSharesDiscovery');
+    console.log(this.networkShares);
+
     this.inAddDrive = false;
     this.driveTypes = ['cifs', 'nfs'];
     this.init();
@@ -33,6 +36,7 @@ class NetworkDrivesPluginController {
     this.drive = {fstype: 'cifs'};
     this.inAddDrive = true;
     this.inEditDrive = false;
+    this.socketService.emit('getNetworkSharesDiscovery');
   }
 
 
@@ -87,11 +91,18 @@ class NetworkDrivesPluginController {
         this.$log.debug('deleteShare failed', data);
       }
     });
+
+    this.socketService.on('pushNetworkSharesDiscovery', (data) => {
+      this.$log.debug('pushNetworkSharesDiscovery', data);
+      this.networkShares = data;
+    });
+
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushListShares');
       this.socketService.off('pushListUsbDrives');
       this.socketService.off('pushAddShare');
       this.socketService.off('pushDeleteShare');
+      this.socketService.off('pushNetworkSharesDiscovery');
     });
   }
 
