@@ -25,6 +25,8 @@ class NetworkDrivesPluginController {
       this.$log.debug('editShare', this.drive);
       this.socketService.emit('editShare', this.drive);
     }
+    this.inAddDrive = false;
+    this.inEditDrive = false;
   }
 
   cancelAddEditDrive() {
@@ -56,6 +58,17 @@ class NetworkDrivesPluginController {
       this.$log.debug('deleteShare', {id: drive.name});
       this.socketService.emit('deleteShare', {id: drive.id});
     }, () => {});
+  }
+
+  selectShare(share, disk) {
+    console.log(share, disk);
+    this.drive.ip = share.name;
+    this.drive.name = disk.sharename;
+    this.drive.path = disk.path;
+  }
+
+  showNasHelper() {
+    this.socketService.emit('showNasHelper');
   }
 
   init() {
