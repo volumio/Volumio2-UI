@@ -1,0 +1,14 @@
+{
+  "UI_SETTINGS": {
+    "THEME_SETTINGS": "Theme Settings",
+    "UPLOAD_BACKGROUND": "Upload new background",
+    "UPLOAD_BACKGROUND_FILE": "Click and select new background or drop it here.",
+    "UPLOAD_PROGRESS": "Upload progress:",
+    "SELECT_BACKGROUND": "Select background",
+    "SELECT_BACKGROUND_COLOR": "Select background color"
+  },
+  "COMMON": {
+    "SAVE": "Save",
+    "CANCEL": "Cancel"
+  }
+}
