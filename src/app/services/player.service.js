@@ -255,10 +255,7 @@ class PlayerService {
           };
           break;
         default:
-          this.state.fileFormat = {
-            url: this.state.trackType,
-            name: this.state.trackType
-          };
+          this.state.fileFormat = null;
       }
     } else {
       this.state.fileFormat = null;

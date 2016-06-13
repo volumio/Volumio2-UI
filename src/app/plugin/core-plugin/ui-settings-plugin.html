@@ -30,22 +30,34 @@
 
     <h4 class="sectionDescription">Select background</h4>
     <div id="backgroundSelector" class="row">
-      <div class="col-sm-6" ng-repeat-start="background in uiSettingsPlugin.backgrounds.list track by $index">
+      <div class="col-sm-6"
+          ng-repeat-start="background in uiSettingsPlugin.uiSettingsService.backgrounds.list track by $index">
         <div class="background">
           <img
               ng-click="uiSettingsPlugin.selectBackground(background)"
-              ng-class="{'current': uiSettingsPlugin.backgrounds.current.name === background.name}"
+              ng-class="{'current': uiSettingsPlugin.uiSettingsService.uiSettings.background.title === background.name}"
               ng-src="{{background.thumbnail}}"
-              alt="{{background.name}}" />
+              alt="{{background.name}}"/>
           <div class="backgroundName">
-            <span ng-class="{'current': uiSettingsPlugin.backgrounds.current.name === background.name}">
+            <span
+                ng-class="{'current':
+                  uiSettingsPlugin.uiSettingsService.uiSettings.background.title === background.name}">
               {{background.name}}
             </span>
-            <p ng-if="uiSettingsPlugin.backgrounds.current.name !== background.name">
-              <button type="button" class="btn btn-info" ng-click="uiSettingsPlugin.selectBackground(background)" title="Apply Background">
+            <p ng-if="uiSettingsPlugin.uiSettingsService.uiSettings.background.title !== background.name">
+              <button
+                  type="button"
+                  class="btn btn-info"
+                  ng-click="uiSettingsPlugin.selectBackground(background)"
+                  title="Apply Background">
                 <i class="fa fa-check"></i>
               </button>
-              <button type="button" class="btn btn-danger" ng-if="!background.notDeletable" ng-click="uiSettingsPlugin.deleteBackground(background)" title="Delete Background">
+              <button
+                  type="button"
+                  class="btn btn-danger"
+                  ng-if="!background.notDeletable"
+                  ng-click="uiSettingsPlugin.deleteBackground(background)"
+                  title="Delete Background">
                 <i class="fa fa-trash"></i>
               </button>
             </p>
@@ -53,6 +65,39 @@
         </div>
       </div>
       <div ng-repeat-end ng-if="($index + 1) % 4 === 0" class="clearfix"></div>
+    </div>
+
+    <hr>
+
+    <h4 class="sectionDescription">Select background color</h4>
+    <div id="backgroundColorSelector" class="row">
+      <div class="col-xs-24" id="colorPalette">
+        <div
+            ng-repeat="color in uiSettingsPlugin.backgroundColorSet track by color"
+            ng-class="{selected: color === uiSettingsPlugin.uiSettingsService.uiSettings.color}"
+            ng-style="{backgroundColor: uiSettingsPlugin.backgroundColorSet[$index]}">
+          <button type="button" class="btn btn-info"
+              ng-click="uiSettingsPlugin.selectBackgroundColor(uiSettingsPlugin.backgroundColorSet[$index])"
+              title="Apply Background color">
+            <i class="fa fa-check"></i>
+          </button>
+        </div>
+
+        <div
+            ng-style="{backgroundColor: uiSettingsPlugin.customBackgroundColor}"
+            ng-class="{selected: (uiSettingsPlugin.uiSettingsService.uiSettings.color &&
+              uiSettingsPlugin.customBackgroundColor === uiSettingsPlugin.uiSettingsService.uiSettings.color)}">
+          <button type="button" class="btn btn-info customColor"
+              ng-click="uiSettingsPlugin.selectBackgroundColor(uiSettingsPlugin.customBackgroundColor)"
+              title="Apply Background color">
+            <i class="fa fa-check"></i>
+          </button>
+          <input
+              type="text"
+              class="form-control"
+              ng-model="uiSettingsPlugin.customBackgroundColor">
+        </div>
+      </div>
     </div>
   </div>
 </div>
