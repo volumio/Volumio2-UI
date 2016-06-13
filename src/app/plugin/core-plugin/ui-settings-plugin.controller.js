@@ -18,7 +18,7 @@ class UiSettingsPluginController {
   }
 
   selectBackgroundColor(color) {
-    if (color.length === 4) {
+    if (color.length >= 4) {
       this.socketService.emit('setBackgrounds', {color});
     }
   }
@@ -48,7 +48,7 @@ class UiSettingsPluginController {
   init() {
     this.registerListner();
     this.initService();
-    this.backgroundColorSet = ['#CCC', '#999', '#333', '#C44', '#CAF', '#388'];
+    this.backgroundColorSet = ['#000', '#999', '#CCC', '#C44', '#CAF', '#388'];
     let isCustomColor = !this.backgroundColorSet.find((color) => {
       return this.uiSettingsService.uiSettings.color && color === this.uiSettingsService.uiSettings.color;
     });
