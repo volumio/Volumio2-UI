@@ -1,5 +1,5 @@
 class UiSettingsPluginController {
-  constructor($scope, socketService, mockService, $log, themeManager, $document, Upload) {
+  constructor($scope, socketService, mockService, $log, themeManager, $document, Upload, uiSettingsService) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
@@ -7,17 +7,20 @@ class UiSettingsPluginController {
     this.$document = $document;
     this.themeManager = themeManager;
     this.Upload = Upload;
+    this.uiSettingsService = uiSettingsService;
 
-    this.defaultThumbnailBackgroundUrl =
-        `${socketService.host}/app/themes/${themeManager.theme}/assets/graphics/thumb-${themeManager.theme}-bg.jpg`;
-    this.defaultBackgroundUrl =
-        `${socketService.host}/app/themes/${themeManager.theme}/assets/graphics/${themeManager.theme}-bg.jpg`;
     this.init();
   }
 
   selectBackground(background) {
     this.$log.debug('setBackgrounds', background);
     this.socketService.emit('setBackgrounds', background);
+  }
+
+  selectBackgroundColor(color) {
+    if (color.length >= 4) {
+      this.socketService.emit('setBackgrounds', {color});
+    }
   }
 
   deleteBackground(background) {
@@ -45,35 +48,18 @@ class UiSettingsPluginController {
   init() {
     this.registerListner();
     this.initService();
+    this.backgroundColorSet = ['#000', '#999', '#CCC', '#C44', '#CAF', '#388'];
+    let isCustomColor = !this.backgroundColorSet.find((color) => {
+      return this.uiSettingsService.uiSettings.color && color === this.uiSettingsService.uiSettings.color;
+    });
+    if (this.uiSettingsService.uiSettings.color && isCustomColor) {
+      this.customBackgroundColor = this.uiSettingsService.uiSettings.color;
+    } else {
+      this.customBackgroundColor = '#DDD';
+    }
   }
 
   registerListner() {
-    this.socketService.on('pushBackgrounds', (data) => {
-      this.$log.debug('pushBackgrounds', data);
-      this.backgrounds = data;
-      this.backgrounds.list = [{
-        path: this.defaultBackgroundUrl,
-        thumbnail: this.defaultThumbnailBackgroundUrl,
-        notDeletable: true,
-        name: 'Default'}]
-        .concat(data.available.map((background) => {
-          background.path = `${this.socketService.host}/backgrounds/${background.path}`;
-          background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
-          return background;
-        }));
-      if (data.current.name === 'Default') {
-        this.backgroundUrl = this.defaultBackgroundUrl;
-        this.$document[0].body.style.background = `#333 url(${this.defaultBackgroundUrl}) repeat top left`;
-        this.$document[0].body.style.backgroundSize = 'auto';
-      } else {
-        this.backgroundUrl = data.current.path;
-        this.$document[0].body.style.background = `#333 url(${data.current.path}) no-repeat center center`;
-        this.$document[0].body.style.backgroundSize = 'cover';
-      }
-    });
-    this.$scope.$on('$destroy', () => {
-      this.socketService.off('pushBackgrounds');
-    });
   }
 
   initService() {

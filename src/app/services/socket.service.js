@@ -85,7 +85,7 @@ class SocketService {
   }
 
   get host() {
-    return this._host;
+    return `${this._host}`;
   }
 }
 
