@@ -26,12 +26,18 @@
     @include make-sm-column(16);
   }
 }
-.title h2 {
-  background-color: $volumio-black-trans-dark;
-  padding: 6px 10px;
-  display: inline-block;
-  font-size: 35px;
-  font-weight: 300;
-  margin-bottom: 0px;
-  text-transform: capitalize;
+.title {
+  button {
+    display: block;
+    margin-top: 10px;
+  }
+  h2 {
+    background-color: $volumio-black-trans-dark;
+    padding: 6px 10px;
+    display: inline-block;
+    font-size: 35px;
+    font-weight: 300;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+  }
 }
