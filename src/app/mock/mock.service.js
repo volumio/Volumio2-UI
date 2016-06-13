@@ -13,6 +13,98 @@ class MockService {
 
   init() {
     this._mock = {
+      //networkSharesDiscovery
+      networkSharesDiscovery: {
+        "nas": [
+          {
+            "name": "VOLUMIO",
+            "shares": [
+              {
+                "sharename": "IPC$",
+                "path": "VOLUMIO/IPC$"
+              },
+              {
+                "sharename": "NAS",
+                "path": "VOLUMIO/NAS"
+              },
+              {
+                "sharename": "USB",
+                "path": "VOLUMIO/USB"
+              }
+            ]
+          },
+          {
+            "name": "FRITZ-NAS",
+            "shares": [
+              {
+                "sharename": "IPC$",
+                "path": "FRITZ-NAS/IPC$"
+              },
+              {
+                "sharename": "FRITZ.NAS",
+                "path": "FRITZ-NAS/FRITZ.NAS"
+              }
+            ]
+          },
+          {
+            "name": "DISKSTATION",
+            "shares": [
+              {
+                "sharename": "IPC$",
+                "path": "DISKSTATION/IPC$"
+              },
+              {
+                "sharename": "video",
+                "path": "DISKSTATION/video"
+              },
+              {
+                "sharename": "Torrent",
+                "path": "DISKSTATION/Torrent"
+              },
+              {
+                "sharename": "Programmi",
+                "path": "DISKSTATION/Programmi"
+              },
+              {
+                "sharename": "photo",
+                "path": "DISKSTATION/photo"
+              },
+              {
+                "sharename": "NetBackup",
+                "path": "DISKSTATION/NetBackup"
+              },
+              {
+                "sharename": "music",
+                "path": "DISKSTATION/music"
+              },
+              {
+                "sharename": "Mi",
+                "path": "DISKSTATION/Mi"
+              },
+              {
+                "sharename": "IMGs",
+                "path": "DISKSTATION/IMGs"
+              },
+              {
+                "sharename": "homes",
+                "path": "DISKSTATION/homes"
+              },
+              {
+                "sharename": "FLAC",
+                "path": "DISKSTATION/FLAC"
+              },
+              {
+                "sharename": "Film",
+                "path": "DISKSTATION/Film"
+              },
+              {
+                "sharename": "Backup",
+                "path": "DISKSTATION/Backup"
+              }
+            ]
+          }
+        ]
+      },
       //installedPlugins
       installedPlugins: [
         {
