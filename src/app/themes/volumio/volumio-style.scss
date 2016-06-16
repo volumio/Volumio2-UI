@@ -638,3 +638,18 @@ ul {
     color: $volumio-green-color;
   }
 }
+//Alerts
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  font-size: 16px;
+}
+.alert-info {
+  color: darken($volumio-green-color, 20%);
+  background-color: lighten($volumio-green-color, 30%);
+}
+.alert-warning {
+  color: darken($volumio-red-color, 20%);
+  background-color: lighten($volumio-red-color, 30%);
+}
