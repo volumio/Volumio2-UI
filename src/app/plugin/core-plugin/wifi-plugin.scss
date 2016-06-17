@@ -1,5 +1,7 @@
 tr {
   td{
+    border-top: 0 !important;
+    border-bottom: 1px solid #7C7C7C;
     &.insertPasswordRow {
       input {
         width: 150px;

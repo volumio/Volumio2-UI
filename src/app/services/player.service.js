@@ -254,11 +254,27 @@ class PlayerService {
             name: 'wavpack'
           };
           break;
-        default:
+        case 'aac':
+        case 'aiff':
+        case 'alac':
+        case 'dsd':
+        case 'dts':
+        case 'flac':
+        case 'm4a':
+        case 'mp3':
+        case 'mp4':
+        case 'opus':
+        case 'spotify':
+        case 'wav':
+        case 'wawpack':
+        case 'wma':
           this.state.fileFormat = {
             url: this.state.trackType,
             name: this.state.trackType
           };
+          break;
+        default:
+          this.state.fileFormat = null;
       }
     } else {
       this.state.fileFormat = null;

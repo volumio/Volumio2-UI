@@ -105,6 +105,7 @@ angular.module('volumio', [
   'matchmedia-ng',
   'hmTouchEvents',
   'ngFileUpload',
+  'pascalprecht.translate',
 
   //Angular core modules
   // 'ngAnimate',
