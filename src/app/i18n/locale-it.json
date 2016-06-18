@@ -34,7 +34,8 @@
     "TIME":"Tempo",
     "RESCAN":"Scansiona Nuovamente",
     "SYSTEM_VERSION":"Versione del Sistema",
-    "RELEASED":"Rilasciata"
+    "RELEASED":"Rilasciata",
+    "CLOSE":"Chiudi"
   },
   "BROWSER": {
     "PLAY": "Riproduci",
