@@ -39,7 +39,7 @@
   "BROWSER": {
     "PLAY": "Lecture",
     "ADD_TO_QUEUE":"Ajouter à la queue",
-    "ADD_TO_PLAYLIST":"Add à la Playlist",
+    "ADD_TO_PLAYLIST":"Ajouter à la Playlist",
     "REMOVE_FROM_PLAYLIST":"Supprimer de la Playlist",
     "ADD_TO_FAVOURITES":"Ajouter aux Favoris",
     "REMOVE_FROM_FAVOURITES":"Supprimer des Favoris",
