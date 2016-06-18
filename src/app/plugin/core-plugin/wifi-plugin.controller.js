@@ -55,7 +55,7 @@ class WifiPluginController {
       this.wirelessNetworks.available.push({
         security: '',
         signal: -1,
-        ssid: 'Network Name',
+        ssid: 'Connect to Hidden Network',
         ssidHidden: true
       });
     });
