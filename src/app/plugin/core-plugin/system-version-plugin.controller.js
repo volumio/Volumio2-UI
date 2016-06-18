@@ -1,9 +1,10 @@
 class SystemVersionPluginController {
-  constructor($scope, socketService, $log) {
+  constructor($scope, socketService, $log, $translate) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
     this.$log = $log;
+    this.$translate = $translate;
     this.init();
   }
 

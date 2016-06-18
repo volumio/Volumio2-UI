@@ -1,16 +1,16 @@
 <div class="trackInfoBar">
   <div class="leftInfo" >
     <div ng-show="trackInfoBar.playerService.state.status === 'play'">
-      <span class="green">Playing:</span>
+      <span class="green" translate="TRACK_INFO_BAR.PLAYING">:</span>
       {{trackInfoBar.playerService.state.title}}
 
       <span ng-if="trackInfoBar.playerService.state.artist">
-        <span class="small">by</span>
+        <span class="small" translate="TRACK_INFO_BAR.BY"></span>
         {{trackInfoBar.playerService.state.artist}}
       </span>
 
       <span ng-if="trackInfoBar.playerService.state.album">
-        <span class="small">from</span>
+        <span class="small" translate="TRACK_INFO_BAR.FROM"></span>
         {{trackInfoBar.playerService.state.album}}
       </span>
     </div>

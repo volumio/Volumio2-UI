@@ -1,5 +1,5 @@
 class ModalSleepController {
-  constructor($uibModalInstance, socketService, dataObj, $log) {
+  constructor($uibModalInstance, socketService, dataObj, $log, $translate) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.socketService = socketService;
@@ -14,6 +14,7 @@ class ModalSleepController {
       {val: 'poweroff', text: 'Power Off'},
       {val: 'stop', text: 'Stop Music'}
     ];
+    this.$translate = $translate;
     this.init();
   }
 

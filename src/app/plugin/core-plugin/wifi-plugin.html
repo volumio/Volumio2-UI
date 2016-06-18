@@ -57,7 +57,7 @@
               type="button"
               class="btn btn-info">
             <i class="fa fa-link"></i>
-            <span class="hidden-xs"> Connect</span>
+            <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
           </button>
         </td>
       </tr>
@@ -87,14 +87,14 @@
                 ng-click="wifiPlugin.connectToWifi(wifi, $index)"
                 type="button"
                 name="btn btn-info">
-              Connect
+              <span translate="NETWORK.CONNECT"></span>
             </button>
         </td>
       </tr>
     </table>
     <button type="button" class="btn btn-info" ng-click="wifiPlugin.refreshWifiNetworks()">
       <i class="fa fa-refresh" title="Refresh WiFi Networks"></i>
-      Refresh
+      <span translate="NETWORK.REFRESH"></span>
     </button>
   </div>
 </div>
