@@ -1,5 +1,5 @@
 class ModalPluginInstallerController {
-  constructor($uibModalInstance, dataObj, socketService, $scope, $timeout) {
+  constructor($uibModalInstance, dataObj, socketService, $scope, $timeout, $translate) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.$scope = $scope;
@@ -7,6 +7,7 @@ class ModalPluginInstallerController {
 
     this.dataObj = dataObj;
     this.socketService = socketService;
+    this.$translate = $translate;
     this.registerListner();
   }
 

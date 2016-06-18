@@ -1,4 +1,5 @@
 <div ng-if="!networkDrives.networkShares || networkDrives.networkShares.nas.length === 0" class="text-center">
+<<<<<<< HEAD
   <div class="alert alert-warning" role="alert">
     <i class="fa fa-exclamation-circle"></i> <span translate="NETWORKFS.NO_DRIVES_FOUND"></span>
   </div>
@@ -41,7 +42,7 @@
     <div ng-show="networkDrives.advancedVisible">
       <div class="form-group">
         <label for="{{networkDrives.drive.name}}"
-            class="control-label">Alias
+            class="control-label"><span translate="NETWORKFS.ALIAS"></span>
         </label>
         <div class="control-item">
           <input id="{{networkDrives.drive.name}}"
@@ -51,13 +52,13 @@
               class="form-control">
         </div>
         <div class="control-description">
-          Choose an Alias that will be displayed in NAS Mounts
+          <span translate="NETWORKFS.ALIAS_DOC"></span>
         </div>
       </div>
 
       <div class="form-group">
         <label for="{{networkDrives.drive.ip}}"
-            class="control-label">NAS IP Address
+            class="control-label"><span translate="NETWORKFS.NAS_IP_ADDRESS"></span>
         </label>
         <div class="control-item">
           <input id="{{networkDrives.drive.ip}}"
@@ -67,13 +68,13 @@
               class="form-control">
         </div>
         <div class="control-description">
-           IP Address of your Network Drive
+           <span translate="NETWORKFS.NAS_IP_ADDRESS_DOC"></span>
         </div>
       </div>
 
       <div class="form-group">
         <label for="{{networkDrives.drive.path}}"
-            class="control-label">Path
+            class="control-label"><span translate="NETWORKFS.PATH"></span>
         </label>
         <div class="control-item">
           <input id="{{networkDrives.drive.path}}"
@@ -83,13 +84,13 @@
               class="form-control">
         </div>
         <div class="control-description">
-           Network Share Name or subfolder path
+           <span translate="NETWORKFS.PATH_DOC"></span>
         </div>
       </div>
 
       <div class="form-group">
         <label for="{{networkDrives.drive.fstype}}"
-            class="control-label">File Share Type
+            class="control-label"><span translate="NETWORKFS.SHARE_TYPE"></span>
         </label>
         <div class="control-item">
           <ui-select
@@ -114,7 +115,7 @@
 
       <div class="form-group">
         <label for="{{networkDrives.drive.username}}"
-            class="control-label">Username
+            class="control-label"><span translate="NETWORKFS.USERNAME"></span>
         </label>
         <div class="control-item">
           <input id="{{networkDrives.drive.username}}"
@@ -127,7 +128,7 @@
 
       <div class="form-group">
         <label for="{{networkDrives.drive.password}}"
-            class="control-label">Password
+            class="control-label"><span translate="NETWORKFS.PASSWORD"></span>
         </label>
         <div class="control-item">
           <input id="{{networkDrives.drive.password}}"
@@ -140,7 +141,7 @@
 
       <div class="form-group">
         <label for="{{networkDrives.drive.options}}"
-            class="control-label">Options
+            class="control-label"><span translate="NETWORKFS.OPTIONS"></span>
         </label>
         <div class="control-item">
           <input id="{{networkDrives.drive.options}}"
@@ -155,10 +156,10 @@
       <label class="control-label"></label>
       <div class="control-item">
         <button ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true" type="button" class="btn btn-info" title="Show Advanced Options">
-          Show Advanced Options
+          <span translate="NETWORKFS.SHOW_OPTIONS"></span>
         </button>
         <button ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false" type="button" class="btn btn-warning" title="Close Advanced Options">
-          Close Advanced Options
+          <span translate="NETWORKFS.HIDE_OPTIONS"></span>
         </button>
       </div>
     </div>
@@ -167,11 +168,11 @@
       <label class="control-label"></label>
       <div class="control-item">
         <button ng-click="networkDrives.cancelAddEditDrive()" type="button" class="btn btn-warning" title="Cancel">
-          Cancel
+          <span translate="COMMON.CANCEL"></span>
         </button>
         <button ng-click="networkDrives.saveAddEditDrive()" type="button"
             class="btn btn-info saveAddEditDrive" title="Save">
-          Save
+          <span translate="COMMON.SAVE"></span>
         </button>
       </div>
     </div>

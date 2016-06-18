@@ -1,5 +1,5 @@
 class ModalTrackManagerActionsController {
-  constructor($uibModalInstance, dataObj, playerService, $state, socketService, $log, $timeout, browseService) {
+  constructor($uibModalInstance, dataObj, playerService, $state, socketService, $log, $timeout, browseService, $translate) {
     'ngInject';
 
     this.$log = $log;
@@ -10,6 +10,7 @@ class ModalTrackManagerActionsController {
     this.socketService = socketService;
     this.$timeout = $timeout;
     this.browseService = browseService;
+    this.$translate = $translate;
   }
 
   goTo(type) {

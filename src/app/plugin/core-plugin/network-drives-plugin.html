@@ -2,7 +2,7 @@
   <div id="networkDrives"
       class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><i class="fa fa-hdd-o"></i> Network Drives
+      <h3 class="panel-title"><i class="fa fa-hdd-o"></i> <span translate="NETWORKFS.NETWORK_DRIVES"></span>
         <i class="fa fa-info-circle pull-right" ng-click="networkDrives.showNasHelper()"></i>
       </h3>
     </div>
@@ -13,7 +13,7 @@
           type="button"
           class="btn btn-info"
           title="Add new drive">
-        <i class="fa fa-plus"></i> Add New Drive
+        <i class="fa fa-plus"></i> <span translate="NETWORKFS.ADD_DRIVE"></span>
       </button>
       <div class="clearfix"></div>
       <br>
@@ -24,10 +24,10 @@
 
       <table class="table" ng-if="networkDrives.infoShare">
         <tr>
-          <th>Name</th>
-          <th>Path</th>
-          <th>Mounted</th>
-          <th>Size</th>
+          <th><span translate="NETWORKFS.NAME"></span></th>
+          <th><span translate="NETWORKFS.PATH"></span></th>
+          <th><span translate="NETWORKFS.MOUNTED"></span></th>
+          <th><span translate="NETWORKFS.SIZE"></span></th>
           <th></th>
         </tr>
         <tr ng-repeat-start="drive in networkDrives.infoShare track by drive.id">

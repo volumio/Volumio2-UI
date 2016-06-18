@@ -1,6 +1,6 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log) {
+      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, $translate) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -14,6 +14,7 @@ class BrowseController {
     this.$document = $document;
     this.$scope = $scope;
     this.$rootScope = $rootScope;
+    this.$translate = $translate;
 
     this.renderBrowseTable();
     $scope.$on('browseService:fetchEnd', () => {

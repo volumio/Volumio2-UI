@@ -37,27 +37,27 @@
                 ng-click="pluginManager.installPlugin(plugin)"
                 type="button"
                 class="btn btn-info pull-right marginLeft">
-              Install
+              <span translate="PLUGINS.INSTALL"></span>
             </button>
             <button
                 ng-if="false"
                 ng-click="pluginManager.updatePlugin(plugin)"
                 type="button"
                 class="btn btn-info pull-right marginLeft">
-              Update
+              <span translate="PLUGINS.UPDATE"></span>
             </button>
             <button
                 ng-if="plugin.installed"
                 ng-click="pluginManager.unInstallPlugin(plugin)"
                 type="button"
                 class="btn btn-info pull-right marginLeft">
-              Uninstall
+              <span translate="PLUGINS.UNINSTALL"></span>
             </button>
             <button
                 ng-click="pluginManager.showPluginDetails(plugin)"
                 type="button"
                 class="btn btn-info pull-right">
-              Details
+              <span translate="PLUGINS.DETAILS"></span>
             </button>
           </div>
         </div>
