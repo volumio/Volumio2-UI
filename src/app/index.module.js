@@ -77,6 +77,7 @@ import ModalCustomController from './components/modals/modal-custom.controller';
 import ModalKaraokeController from './components/side-menu/elements/modal-karaoke.controller';
 import ModalPluginInstallerController from './plugin-manager/components/modals/modal-plugin-installer.controller';
 import ModalTrackManagerActionsController from './components/track-manager/components/modals/modal-track-manager-actions.controller';
+import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/modal-network-drive-password.controller';
 
 
 //Core plugin controller
@@ -191,6 +192,7 @@ angular.module('volumio', [
   .controller('ModalKaraokeController', ModalKaraokeController)
   .controller('ModalPluginInstallerController', ModalPluginInstallerController)
   .controller('ModalTrackManagerActionsController', ModalTrackManagerActionsController)
+  .controller('ModalNetwordDrivesPasswordController', ModalNetwordDrivesPasswordController)
 
 
   .controller('WifiPluginController',  WifiPluginController)
