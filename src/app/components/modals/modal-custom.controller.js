@@ -12,7 +12,7 @@ class ModalCustomController {
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss();
   }
 
   btnClick(button) {

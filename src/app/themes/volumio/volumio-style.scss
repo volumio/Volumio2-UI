@@ -176,7 +176,7 @@ $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 
 // Components w/ JavaScript
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/modals";
-//@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tooltip";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tooltip";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/carousel";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/popovers";
 
@@ -531,6 +531,8 @@ li.list-group-item {
   }
 }
 
+
+//Slder
 .slider-track {
   border: solid 1px #555;
   height: 30px;
@@ -540,11 +542,24 @@ li.list-group-item {
   background-image: linear-gradient(to bottom, #CCC  0%, #CCC  100%)
 }
 .slider-handle {
-  background-image: linear-gradient(to bottom, #FFF 0%, #EEE 100%);
-  border: solid 1px #CCC;
-  margin-left: -5px !important;
+  background-image: linear-gradient(to bottom, $volumio-green-color 0%, darken($volumio-green-color, 20%) 100%);
+  border: solid 1px darken($volumio-green-color, 15%);
+  // margin-left: -5px !important;
   width: 22px;
   height: 22px;
+}
+
+.slider-tick, .slider-tick.in-selection {
+  background-image: linear-gradient(to bottom, #CCC  0%, #CCC  100%)
+}
+
+div.equalizer.horizontal{
+  .slider-selection {
+    background-image: linear-gradient(to bottom, $volumio-green-color  0%, $volumio-green-color  100%)
+  }
+  .slider-track {
+    background-image: linear-gradient(to top, #CCC 0%, #CCC 100%);
+  }
 }
 
 //Button groups
@@ -570,7 +585,7 @@ ul {
     }
     a {
       display: block;
-      color: #FFF;
+      color: $volumio-green-color;
       padding: 6px 0px 6px 6px;
       font-size: 16px;
       &:hover {

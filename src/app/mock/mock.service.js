@@ -829,6 +829,98 @@ class MockService {
                 }
               }
             ]
+          },
+
+          {
+            'id': 'eq',
+            'type': 'section',
+            'label': 'Equalizer',
+            'onSave': {
+              'type': 'plugin',
+              'endpoint': 'music_services/eq',
+              'method': 'saveEqValues'
+            },
+            'saveButton': {
+              'label': 'Save eq settings',
+              'data': [
+                'bandEqualizer', 'equalizerSelector'
+              ]
+            },
+            'content': [
+              {
+                'id': 'eq_switch',
+                'element': 'switch',
+                'label': 'Test eq switch',
+                'value': true
+              },
+              {
+                'id': 'bandEqualizer',
+                'element': 'equalizer',
+                'label': 'Music EQ',
+                'description': 'Desc',
+                'visibleIf': {'field': 'eq_switch', 'value': true},
+                'config': {
+                  orientation: 'vertical',
+                  bars: [
+                    {
+                      min: -100,
+                      max: 100,
+                      step: 20,
+                      value: 20,
+                      tooltip: 'always'
+                    },
+                    {
+                      min: 0,
+                      max: 50,
+                      step: 20,
+                      value: 25,
+                      tooltip: 'hide'
+                    },
+                    {
+                      min: 0,
+                      max: 50,
+                      step: 20,
+                      value: 25,
+                      tooltip: 'always'
+                    }
+                  ]
+                }
+              },
+
+              {
+                'id': 'equalizerSelector',
+                'element': 'equalizer',
+                'label': 'Slider selector',
+                'description': 'Desc',
+                'config': {
+                  orientation: 'horizontal',
+                  bars: [
+                    {
+                      min: 0,
+                      max: 50,
+                      step: 10,
+                      value: [10, 20],
+                      range: true,
+                      tooltip: 'always'
+                    },
+                    {
+                      ticks: [1, 2, 3],
+                      ticksLabels: ['Min', 'Medium', 'Max'],
+                      value: 2,
+                      tooltip: 'show'
+                    },
+                    {
+                      ticks: [1, 2, 3, 4, 5],
+                      ticksPositions: [0, 20, 40, 80, 100],
+                      ticksLabels: ['1', '2', '3', '4', '5'],
+                      tickSnapBounds: 20,
+                      value: 4,
+                      tooltip: 'show'
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ]
       }
