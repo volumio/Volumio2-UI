@@ -102,7 +102,8 @@
     "NAME":"Name",
     "PATH":"Path",
     "MOUNTED":"Mounted",
-    "SIZE":"Size"
+    "SIZE":"Size",
+    "SCANNING_FOR_NETWORK_DRIVES": "Scanning for network drives"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Network Status",

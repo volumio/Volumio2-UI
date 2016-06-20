@@ -28,11 +28,11 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       'de_CH': 'de',
       'it': 'it',
       'fr': 'fr'
-    });
+    })
     //Back end send default language, this improve translation consistency
     // .determinePreferredLanguage()
     // .preferredLanguage('en')
-    // .fallbackLanguage('en');
+    .fallbackLanguage('en');
   $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 }
 
