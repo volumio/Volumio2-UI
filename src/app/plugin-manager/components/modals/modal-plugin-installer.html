@@ -12,8 +12,8 @@
   </div>
   <div ng-if="modal.dataObj.advancedLog">
     <a href ng-click="modal.toggleAdvancedLog()">
-      <span ng-if="!modal.showAdvancedLog">+ Show details</span>
-      <span ng-if="modal.showAdvancedLog">- Hide details</span>
+      <span ng-if="!modal.showAdvancedLog" translate="PLUGINS.SHOW_DETAILS"></span>
+      <span ng-if="modal.showAdvancedLog" translate="PLUGINS.HIDE_DETAILS"></span>
     </a>
     <div ng-show="modal.showAdvancedLog" id="advancedLogWrapper">
       <p ng-bind-html="modal.dataObj.advancedLog"></p>

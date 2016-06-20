@@ -6,13 +6,13 @@
       ngf-drag-over-class="'dragover'"
       ng-model="pluginManager.pluginFile"
       name="plugin">
-    Click and select a plugin or drop it here.
+    <span translate="PLUGINS.DROP"></span>
   </div>
 </div>
 
 
 <div id="installProgressBar" ng-if="pluginManager.uploadPercentage > 0">
-  <h3>Install progress:</h3>
+  <h3 translate="PLUGINS.INSTALL_PROGRESS">:</h3>
   <uib-progressbar
       class="progress-striped active"
       value="pluginManager.uploadPercentage"

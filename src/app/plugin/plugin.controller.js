@@ -1,5 +1,5 @@
 class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $translate) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -7,6 +7,7 @@ class PluginController {
     this.mockService = mockService;
     this.$scope = $scope;
     this.$log = $log;
+    this.$translate = $translate;
     //this.pluginObj = this.mockService.get('getSettings');
     //this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -72,6 +73,7 @@ class PluginController {
     this.registerListner();
     this.initService();
   }
+
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {

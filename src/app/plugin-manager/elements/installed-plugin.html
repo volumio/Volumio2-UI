@@ -20,8 +20,8 @@
       <span
           class="pluginDotStatus"
           ng-class="{'active': plugin.active, 'inactive': !plugin.active}"></span>
-      <span ng-if="plugin.active">Active</span>
-      <span ng-if="!plugin.active">Inactive</span>
+      <span ng-if="plugin.active" translate="COMMON.ACTIVE"></span>
+      <span ng-if="!plugin.active" translate="COMMON.INACTIVE"></span>
     </td>
     <td>
       <button
@@ -35,7 +35,7 @@
   </tr>
   <tr ng-repeat-end ng-show="plugin.showSettings">
     <td>
-      settings values
+      <span translate="COMMON.SHOW_SETTINGS"></span>
     </td>
   </tr>
 </table>

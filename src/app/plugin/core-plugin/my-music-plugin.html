@@ -7,12 +7,12 @@
     <h4 ng-if="false" class="sectionDescription"></h4>
     <table class="table">
       <tr>
-        <th>Artists</th>
-        <th>Albums</th>
-        <th>Songs</th>
+        <th><span translate="COMMON.ARTISTS"></span></th>
+        <th><span translate="COMMON.ALBUMS"></span></th>
+        <th><span translate="COMMON.SONGS"></span></th>
         <th>
-          <span class="hidden-xs">Playtime</span>
-          <span class="visible-xs">Time</span>
+          <span class="hidden-xs" translate="COMMON.PLAYTIME"></span>
+          <span class="visible-xs" translate="COMMON.TIME"></span>
         </th>
       </tr>
       <tr>
@@ -31,7 +31,7 @@
       </tr>
     </table>
     <button ng-click="myMusic.rescanLibrary()" type="button" class="btn btn-info" title="Rescan Library">
-      Rescan
+      <span translate="COMMON.RESCAN"></span>
     </button>
   </div>
 </div>

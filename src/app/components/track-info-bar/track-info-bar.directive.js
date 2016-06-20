@@ -14,12 +14,13 @@ class TrackInfoBarDirective {
 }
 
 class TrackInfoBarController {
-  constructor(playerService, playQueueService, modalService, $state) {
+  constructor(playerService, playQueueService, modalService, $state, $translate) {
     'ngInject';
     this.playerService = playerService;
     this.playQueueService = playQueueService;
     this.modalService = modalService;
     this.$state = $state;
+    this.$translate = $translate;
   }
 
   addToPlaylist() {

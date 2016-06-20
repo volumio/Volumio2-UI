@@ -1,5 +1,5 @@
 class ModalPowerOffController {
-  constructor($uibModalInstance, socketService, dataObj, themeManager) {
+  constructor($uibModalInstance, socketService, dataObj, themeManager, $translate) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.socketService = socketService;

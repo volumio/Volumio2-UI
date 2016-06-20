@@ -127,6 +127,15 @@ $nav-tabs-active-link-hover-bg: $volumio-black-trans-dark;
 $nav-tabs-active-link-hover-color: $volumio-green-color;
 $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 
+//Input group
+$input-group-addon-bg: $volumio-dark-color;
+$input-group-addon-border-color: $volumio-green-color;
+
+//Alerts
+$alert-info-bg: $volumio-dark-color;
+$alert-info-text: $volumio-text-color;
+$alert-info-border: $volumio-green-color;
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -155,7 +164,7 @@ $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/component-animations";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/dropdowns";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/button-groups";
-//@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navs";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navbar";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/breadcrumbs";
@@ -165,7 +174,7 @@ $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/badges";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/jumbotron";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/thumbnails";
-//@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/progress-bars";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/media";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/list-group";
@@ -638,18 +647,18 @@ ul {
     color: $volumio-green-color;
   }
 }
+
 //Alerts
 .alert {
-  padding: 15px;
+  margin: 0 auto;
+  padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
-  font-size: 16px;
+  font-size: 18px;
 }
-.alert-info {
-  color: darken($volumio-green-color, 20%);
-  background-color: lighten($volumio-green-color, 30%);
-}
-.alert-warning {
-  color: darken($volumio-red-color, 20%);
-  background-color: lighten($volumio-red-color, 30%);
+
+//Input group
+.input-group-addon {
+  &.clickable {
+    cursor: pointer;
+  }
 }

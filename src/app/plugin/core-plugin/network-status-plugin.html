@@ -1,7 +1,7 @@
 <div id="networkStatus" ng-controller="NetworkStatusPluginController as networkStatus"
     class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-tachometer"></i> Network status</h3>
+    <h3 class="panel-title"><i class="fa fa-tachometer"></i> <span translate="NETWORK.NETWORK_STATUS"></span></h3>
   </div>
   <div class="panel-body">
     <h4 ng-if="::false" class="sectionDescription"></h4>
@@ -12,16 +12,16 @@
         </div>
         <div class="panel-body">
           <ul>
-            <li ng-if="::network.ssid"><span>SSID:</span> {{::network.ssid}}</li>
-            <li ng-if="::network.signal"><span>Signal:</span>
+            <li ng-if="::network.ssid"><span><span translate="NETWORK.SSID"></span>:</span> {{::network.ssid}}</li>
+            <li ng-if="::network.signal"><span><span translate="NETWORK.SIGNAL"></span>:</span>
               <i class="fa fa-wifi"></i>
               <span ng-if="::network.signal === 1 || network.signal === 2"> Low</span>
               <span ng-if="::network.signal === 3 || network.signal === 4"> Good</span>
               <span ng-if="::network.signal === 5"> Excellent</span>
             </li>
-            <li><span>IP Address:</span> {{::network.ip}}</li>
-            <li ng-if="::network.speed"><span> Speed:</span>  {{::network.speed}}</li>
-            <li><span>Online:</span>
+            <li><span> <span translate="NETWORK.IP_ADDRESS"></span>:</span> {{::network.ip}}</li>
+            <li ng-if="::network.speed"><span> <span translate="NETWORK.SPEED"></span>:</span>  {{::network.speed}}</li>
+            <li><span> <span translate="NETWORK.ONLINE"></span>:</span>
               <i class="fa fa-check true" ng-if="network.online"></i>
               <i class="fa fa-remove false" ng-if="!network.online"></i>
             </li>
