@@ -92,6 +92,13 @@
                       </ui-select>
                     </div>
 
+                    <div ng-switch-when="equalizer">
+                      <equalizer
+                          id="{{::item.id}}"
+                          config="item.config">
+                      </equalizer>
+                    </div>
+
                     <button ng-switch-when="button"
                         id="{{item.id}}"
                         type="button"
