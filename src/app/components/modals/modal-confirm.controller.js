@@ -7,11 +7,11 @@ class ModalConfirmController {
   }
 
   yes() {
-    this.$uibModalInstance.close('yes');
+    this.$uibModalInstance.close();
   }
 
   no() {
-    this.$uibModalInstance.dismiss('no');
+    this.$uibModalInstance.dismiss();
   }
 }
 

@@ -40,6 +40,7 @@ import PlaylistDirective from './components/playlist/playlist.directive';
 import BrowseScrollManagerDirective from './browse/components/browse-scroll-manager.directive';
 import BrowseHamburgerMenuDirective from './browse/components/browse-hamburger-menu.directive';
 import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.directive';
+import EqualizerDirective from './components/equalizer/equalizer.directive';
 
 import ModalController from './components/modals/modal.controller';
 
@@ -159,6 +160,7 @@ angular.module('volumio', [
       (browseService, matchmediaService) => new BrowseScrollManagerDirective(browseService, matchmediaService))
   .directive('browseHamburgerMenu', () => new BrowseHamburgerMenuDirective())
   .directive('trackInfoBar', () => new TrackInfoBarDirective())
+  .directive('equalizer', () => new EqualizerDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())

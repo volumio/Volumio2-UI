@@ -8,9 +8,10 @@ class PluginController {
     this.$scope = $scope;
     this.$log = $log;
     this.$translate = $translate;
-    //this.pluginObj = this.mockService.get('getSettings');
-    //this.$log.debug(this.pluginObj);
+    // this.pluginObj = this.mockService.get('getSettings');
+    // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
+
     this.init();
   }
 
@@ -24,7 +25,13 @@ class PluginController {
           return item.id === value;
         })[0];
         if (item) {
-          data[value] = item.value;
+          if (item.element === 'equalizer') {
+            data[value] = item.config.bars.map((bar) => {
+              return bar.value;
+            });
+          } else {
+            data[value] = item.value;
+          }
         }
       });
       saveObj.data = data;

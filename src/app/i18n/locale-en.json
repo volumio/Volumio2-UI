@@ -76,6 +76,13 @@
     "GO_TO_ALBUM":"Go To Album",
     "TWEET_TRACK":"Tweet Track"
   },
+  "TRACK_INFO_BAR": {
+    "RANDOM": "Random",
+    "REPEAT": "Repeat",
+    "SAVE_QUEUE_AS_PLAYLIST": "Save queue as playlist",
+    "CONSUME_PLAYLIST": "Consume playlist",
+    "CLEAR_QUEUE": "Clear queue"
+  },
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"No Network Drives Found",
     "ALIAS":"Alias",
