@@ -39,6 +39,7 @@ class NetworkDrivesPluginController {
     this.drive = {fstype: 'cifs'};
     this.inAddDrive = true;
     this.inEditDrive = false;
+    this.advancedVisible = false;
     this.networkShares = undefined;
     this.socketService.emit('getNetworkSharesDiscovery');
     this.$log.debug('emit getNetworkSharesDiscovery');
@@ -49,6 +50,7 @@ class NetworkDrivesPluginController {
     this.$log.debug('edit', index);
     this.inEditDrive = index;
     this.inAddDrive = false;
+    this.advancedVisible = true;
     this.drive = drive;
   }
 
@@ -133,12 +135,13 @@ class NetworkDrivesPluginController {
         'ModalNetwordDrivesPasswordController',
         'app/plugin/core-plugin/modals/modal-network-drive-password.html',
         data);
-        modalPromise.then((obj) => {
-          this.drive = angular.extend(this.drive, obj);
-          this.$log.debug('updateSharePw', this.drive);
-          this.socketService.emit('editShare', this.drive);
-        }, () => {});
+      modalPromise.then((obj) => {
+        this.drive = angular.extend(this.drive, obj);
+        this.$log.debug('updateSharePw', this.drive);
+        this.socketService.emit('editShare', this.drive);
+      }, () => {});
     });
+
 
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushListShares');

@@ -1,14 +1,16 @@
 <div ng-if="networkDrives.inAddDrive">
-  <div ng-if="!networkDrives.networkShares" class="text-center">
-    <div class="alert alert-warning" role="alert">
+  <div ng-if="!networkDrives.networkShares" class="text-center col-sm-12 col-sm-offset-6">
+    <div class="alert alert-info" role="alert">
       <i class="fa fa-refresh fa-spin"></i> <span translate="NETWORKFS.SCANNING_FOR_NETWORK_DRIVES"></span>
     </div>
   </div>
-  <div ng-if="networkDrives.networkShares.nas.length === 0" class="text-center">
-    <div class="alert alert-warning" role="alert">
+  <div ng-if="networkDrives.networkShares.nas.length === 0" class="text-center col-sm-12 col-sm-offset-6">
+    <div class="alert alert-info" role="alert">
       <i class="fa fa-exclamation-circle"></i> <span translate="NETWORKFS.NO_DRIVES_FOUND"></span>
     </div>
   </div>
+
+  <div class="clearfix"></div>
 
   <div ng-if="networkDrives.networkShares && networkDrives.networkShares.nas.length" class="row">
     <div class="col-sm-12 col-sm-offset-6">

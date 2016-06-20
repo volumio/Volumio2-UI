@@ -129,8 +129,12 @@ $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 
 //Input group
 $input-group-addon-bg: $volumio-dark-color;
-//** Border color for textual input addons
 $input-group-addon-border-color: $volumio-green-color;
+
+//Alerts
+$alert-info-bg: $volumio-dark-color;
+$alert-info-text: $volumio-text-color;
+$alert-info-border: $volumio-green-color;
 
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -170,7 +174,7 @@ $input-group-addon-border-color: $volumio-green-color;
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/badges";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/jumbotron";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/thumbnails";
-//@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/progress-bars";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/media";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/list-group";
@@ -643,25 +647,16 @@ ul {
     color: $volumio-green-color;
   }
 }
+
 //Alerts
 .alert {
   margin: 0 auto;
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
   font-size: 18px;
-  max-width: 600px;
-}
-.alert-info {
-  color: darken($volumio-green-color, 20%);
-  background-color: lighten($volumio-green-color, 30%);
-}
-.alert-warning {
-  color: #fff;
-  background-color: $volumio-black-trans-dark;
 }
 
-//Input groups
+//Input group
 .input-group-addon {
   &.clickable {
     cursor: pointer;
