@@ -127,6 +127,11 @@ $nav-tabs-active-link-hover-bg: $volumio-black-trans-dark;
 $nav-tabs-active-link-hover-color: $volumio-green-color;
 $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 
+//Input group
+$input-group-addon-bg: $volumio-dark-color;
+//** Border color for textual input addons
+$input-group-addon-border-color: $volumio-green-color;
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -155,7 +160,7 @@ $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/component-animations";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/dropdowns";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/button-groups";
-//@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navs";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navbar";
 //@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/breadcrumbs";
@@ -654,4 +659,11 @@ ul {
 .alert-warning {
   color: #fff;
   background-color: $volumio-black-trans-dark;
+}
+
+//Input groups
+.input-group-addon {
+  &.clickable {
+    cursor: pointer;
+  }
 }

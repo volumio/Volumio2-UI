@@ -13,12 +13,19 @@
           type="button"
           class="btn btn-info"
           title="Add new drive">
-        <i class="fa fa-plus"></i> <span translate="NETWORKFS.ADD_DRIVE"></span>
+        <span ng-if="!networkDrives.inAddDrive">
+          <i class="fa fa-plus"></i>
+          <span translate="NETWORKFS.ADD_DRIVE"></span>
+        </span>
+        <span ng-if="networkDrives.inAddDrive">
+          <i class="fa fa-refresh"></i>
+          <span translate="COMMON.RESCAN"></span>
+        </span>
       </button>
       <div class="clearfix"></div>
       <br>
 
-      <ng-include src="'app/plugin/core-plugin/elements/add-edit-drive.html'"
+      <ng-include src="'app/plugin/core-plugin/elements/network-drives-add-edit-drive.html'"
           ng-if="networkDrives.inAddDrive">
       </ng-include>
 
@@ -64,7 +71,7 @@
           <td colspan="5">
             <div class="row">
               <div class="col-xs-24">
-                <ng-include src="'app/plugin/core-plugin/elements/add-edit-drive.html'">
+                <ng-include src="'app/plugin/core-plugin/elements/network-drives-add-edit-drive.html'">
                 </ng-include>
               </div>
             </div>

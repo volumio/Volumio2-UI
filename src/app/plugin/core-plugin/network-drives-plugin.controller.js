@@ -8,10 +8,11 @@ class NetworkDrivesPluginController {
     this.$scope = $scope;
     this.$log = $log;
     this.$translate = $translate;
-    //this.infoShare = mockService.get('infoShare');
-    //this.listUsbDrives = mockService.get('listUsbDrives');
+    // this.infoShare = mockService.get('infoShare');
+    // this.listUsbDrives = mockService.get('listUsbDrives');
     // this.networkShares = mockService.get('networkSharesDiscovery');
 
+    this.passwordInputType = 'password';
     this.inAddDrive = false;
     this.driveTypes = ['cifs', 'nfs'];
     this.init();
@@ -38,6 +39,7 @@ class NetworkDrivesPluginController {
     this.drive = {fstype: 'cifs'};
     this.inAddDrive = true;
     this.inEditDrive = false;
+    this.networkShares = undefined;
     this.socketService.emit('getNetworkSharesDiscovery');
     this.$log.debug('emit getNetworkSharesDiscovery');
   }
@@ -71,6 +73,14 @@ class NetworkDrivesPluginController {
     this.socketService.emit('showNasHelper');
   }
 
+  togglePasswordVisibility() {
+    if (this.passwordInputType === 'password') {
+      this.passwordInputType = 'input';
+    } else {
+      this.passwordInputType = 'password';
+    }
+  }
+
   init() {
     this.registerListner();
     this.initService();
@@ -81,10 +91,12 @@ class NetworkDrivesPluginController {
       this.$log.debug('infoShare', data);
       this.infoShare = data;
     });
+
     this.socketService.on('pushListUsbDrives', (data) => {
       this.$log.debug('listUsbDrives', data);
       this.listUsbDrives = data;
     });
+
     this.socketService.on('pushAddShare', (data) => {
       this.$log.debug('pushAddShare', data);
       if (data.success) {
@@ -94,6 +106,7 @@ class NetworkDrivesPluginController {
         this.$log.debug('addShare failed', data);
       } this.socketService.emit('getListShares');
     });
+
     this.socketService.on('pushDeleteShare', (data) => {
       this.$log.debug('pushDeleteShare', data);
       if (data.success) {
@@ -110,12 +123,30 @@ class NetworkDrivesPluginController {
       this.networkShares = data;
     });
 
+    this.socketService.on('nasCredentialsCheck', (data) => {
+      this.$log.debug('nasCredentialsCheck', data);
+      this.drive = {
+        id: data.id,
+        name: data.name
+      };
+      let modalPromise = this.modalService.openModal(
+        'ModalNetwordDrivesPasswordController',
+        'app/plugin/core-plugin/modals/modal-network-drive-password.html',
+        data);
+        modalPromise.then((obj) => {
+          this.drive = angular.extend(this.drive, obj);
+          this.$log.debug('updateSharePw', this.drive);
+          this.socketService.emit('editShare', this.drive);
+        }, () => {});
+    });
+
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushListShares');
       this.socketService.off('pushListUsbDrives');
       this.socketService.off('pushAddShare');
       this.socketService.off('pushDeleteShare');
       this.socketService.off('pushNetworkSharesDiscovery');
+      this.socketService.off('nasCredentialsCheck');
     });
   }
 
