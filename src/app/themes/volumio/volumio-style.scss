@@ -123,8 +123,8 @@ $nav-link-hover-bg: $volumio-black-trans-dark;
 $nav-tabs-border-color: $volumio-green-color;
 $nav-tabs-link-hover-border-color: $volumio-green-color;
 
-$nav-tabs-active-link-hover-bg: $volumio-black-trans-dark;
-$nav-tabs-active-link-hover-color: $volumio-green-color;
+$nav-tabs-active-link-hover-bg: $volumio-green-color;
+$nav-tabs-active-link-hover-color: $volumio-text-color;
 $nav-tabs-active-link-hover-border-color:  $volumio-green-color;
 
 //Input group
@@ -430,6 +430,9 @@ table {
 //Form override
 .form-control {
   border-radius: 0;
+  &:focus {
+    box-shadow: 0 0 5px 1px $volumio-green-color;
+  }
 }
 
 //List override
