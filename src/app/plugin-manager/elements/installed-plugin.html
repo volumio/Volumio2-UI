@@ -1,6 +1,8 @@
 <table class="table noFirstRowBorder">
   <tr ng-repeat-start="plugin in pluginManager.installedPlugins track by $index">
     <td>
+      <i ng-if="plugin.icon" class="fa {{plugin.icon}}"></i>
+      <i ng-if="!plugin.icon" class="fa fa-cube"></i>
       {{::plugin.prettyName}}
     </td>
     <td>
