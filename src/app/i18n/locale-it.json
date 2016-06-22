@@ -35,7 +35,8 @@
     "RESCAN":"Scansiona Nuovamente",
     "SYSTEM_VERSION":"Versione del Sistema",
     "RELEASED":"Rilasciata",
-    "CLOSE":"Chiudi"
+    "CLOSE":"Chiudi",
+    "MY_MUSIC":"La mia Musica"
   },
   "BROWSER": {
     "PLAY": "Riproduci",

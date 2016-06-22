@@ -35,7 +35,8 @@
     "RESCAN":"Rescan",
     "SYSTEM_VERSION":"Version du système",
     "RELEASED":"Révision",
-    "CLOSE":"Fermer"
+    "CLOSE":"Fermer",
+    "MY_MUSIC":"Ma Musique"
   },
   "BROWSER": {
     "PLAY": "Lecture",
