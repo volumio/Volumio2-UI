@@ -1,6 +1,8 @@
 <table class="table noFirstRowBorder">
   <tr ng-repeat-start="plugin in pluginManager.installedPlugins track by $index">
     <td>
+      <i ng-if="plugin.icon" class="fa {{plugin.icon}}"></i>
+      <i ng-if="!plugin.icon" class="fa fa-cube"></i>
       {{::plugin.prettyName}}
     </td>
     <td>
@@ -28,7 +30,8 @@
           ng-if="plugin.enabled"
           ng-click="pluginManager.showPluginSettings(plugin)"
           type="button"
-          class="btn btn-info pull-right">
+          class="btn btn-info pull-right"
+          title="Settings">
         <i class="fa fa-cog"></i>
       </button>
     </td>
