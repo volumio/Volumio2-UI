@@ -109,7 +109,7 @@
   "NETWORK":{
     "NETWORK_STATUS":"Network Status",
     "SSID":"SSID",
-    "SIGNAL":"Signal",
+    "SIGNAL":"Signal Strength",
     "IP_ADDRESS":"IP Address",
     "SPEED":"Speed",
     "ONLINE":"Online",
