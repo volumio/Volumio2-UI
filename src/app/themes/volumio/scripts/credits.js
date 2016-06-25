@@ -248,8 +248,13 @@ function writeHTML() {
 	}
 	}
 	html += addThirdPartCredits();
-	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> License</h3></div><div class="panel-body"><p>License Information</p></div></div>'
 	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> License</h3></div><div class="panel-body"><p>'
+	html += '<p><span class="help-block">This Program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation either version 3, '
+	html += 'or (at your option) any later version. This Program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.'
+	html += 'See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Volumio; see the file COPYING. '
+	html += 'If not, see <a href="http://www.gnu.org/licenses/" target="_blank">http://www.gnu.org/licenses</a></span></p></p></div></div>'
+	html += '\n'
+	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> Legal Disclaimer </h3></div><div class="panel-body"><p>'
 	html += '<p><strong>Copyright © 2013-2016 Michelangelo Guarise</strong>'
 	html += '<span class="help-block">Volumio name and logo can be used for commercial purposes only with an explicit authorization. <a href="mailto:info@volumio.org">Contact us</a> for details. </span>'
 	html += '<span class="help-block">We are not responsible for any damage to your computer or appliances caused by Volumio. Use it by your own risk.'
