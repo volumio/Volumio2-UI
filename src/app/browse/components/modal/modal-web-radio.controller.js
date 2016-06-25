@@ -14,7 +14,7 @@ class ModalWebRadioController {
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss();
   }
 }
 

@@ -8,6 +8,6 @@
     class="btn-link backButton"
     ng-if="browse.browseService.isBrowsing && browse.browseService.breadcrumbs.uri"
     ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri}, true)"
-    title="Go Back">
+    title="{{'COMMON.BACK' | translate}}">
     <i class="fa fa-arrow-circle-left"></i>
 </button>

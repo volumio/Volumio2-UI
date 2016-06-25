@@ -36,7 +36,7 @@ class ModalAlarmClockController {
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss();
   }
 
   init() {

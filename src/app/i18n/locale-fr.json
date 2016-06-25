@@ -36,7 +36,10 @@
     "SYSTEM_VERSION":"Version du système",
     "RELEASED":"Révision",
     "CLOSE":"Fermer",
-    "MY_MUSIC":"Ma Musique"
+    "MY_MUSIC":"Ma Musique",
+    "SEARCH":"Chercher",
+    "NEW":"Nouveau",
+    "FAVOURITES":"Favoris"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -67,7 +70,7 @@
   "UPDATER": {
     "DOWNLOAD_SPEED": "Retour aux Plugins",
     "TIME_REMAINING": "Temps restant",
-    "UPDATER.UPDATE_NOW": "Mettre à jour maintenant"
+    "UPDATE_NOW": "Mettre à jour maintenant"
   },
   "TRACK_MANAGER":{
     "PLAYING":"Lecture en cours",

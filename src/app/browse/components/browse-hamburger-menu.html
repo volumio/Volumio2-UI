@@ -21,8 +21,8 @@
 </li>
 <li ng-if="::item.type === 'playlist'"
     ng-click="browse.playlistService.deletePlaylist(item.title)"
-    title="Delete playlist">
-  <a href><i class="fa fa-trash"></i>Delete playlist</a>
+    title="{{'BROWSER.DELETE_PLAYLIST' | translate}}">
+  <a href><i class="fa fa-trash"></i>{{'BROWSER.DELETE_PLAYLIST' | translate}}</a>
 </li>
 
 <li ng-if="::item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"

@@ -36,7 +36,16 @@
     "SYSTEM_VERSION":"Versione del Sistema",
     "RELEASED":"Rilasciata",
     "CLOSE":"Chiudi",
-    "MY_MUSIC":"La mia Musica"
+    "MY_MUSIC":"La mia Musica",
+    "SEARCH":"Cerca",
+    "NEW":"Nuova",
+    "FAVOURITES":"Preferiti",
+    "NAME":"Nome",
+    "URL":"Url",
+    "BACK":"Indietro",
+    "OPTIONS":"Opzioni",
+    "CHOOSE_PLAYLIST":"Scegli Playlist",
+    "STOP_MUSIC":"Ferma la musica "
   },
   "BROWSER": {
     "PLAY": "Riproduci",
@@ -49,7 +58,10 @@
     "EDIT_WEBRADIO":"Modifica Webradio",
     "DELETE_WEBRADIO":"Rimuovi Webradio",
     "ADD_TO_RADIO_FAVOURITES":"Aggiungi a Webradio Preferite",
-    "REMOVE_FROM_RADIO_FAVOURITES":"Rimuovi da WebRadio Preferite"
+    "REMOVE_FROM_RADIO_FAVOURITES":"Rimuovi da WebRadio Preferite",
+    "ADD_WEBRADIO_TITLE":"Aggiungi Web Radio",
+    "URL_DOC":"L'URL può essere sia l'indirizzo dello stream o di un file remoto PLS o M3U",
+    "DELETE_PLAYLIST":"Cancella Playlist"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Ritorna ai Plugin",
@@ -70,7 +82,7 @@
   "UPDATER": {
     "DOWNLOAD_SPEED": "Velocità di download",
     "TIME_REMAINING": "Tempo Rimanente",
-    "UPDATER.UPDATE_NOW": "Aggiorna Ora"
+    "UPDATE_NOW": "Aggiorna Ora"
   },
   "TRACK_MANAGER":{
     "PLAYING":"In riproduzione",
@@ -103,7 +115,10 @@
     "SCANNING_FOR_NETWORK_DRIVES":"Ricerca dischi di rete in corso",
     "DELETE_DRIVE":"Elimina Disco",
     "EDIT_DRIVE":"Modifica Disco",
-    "DELETE_DRIVE_CONFIRM":"Vuoi eliminare il disco"
+    "DELETE_DRIVE_CONFIRM":"Vuoi eliminare il disco",
+    "PLACEHOLDER_NAME":"Nome",
+    "PLACEHOLDER_IP_ADDRESS":"Indirizzo IP o Nome del NAS",
+    "PLACEHOLDER_PATH_TO_SHARE":"Indirizzo/della/Share"    
   },
   "NETWORK":{
     "NETWORK_STATUS":"Stato della rete",

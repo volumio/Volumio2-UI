@@ -4,7 +4,7 @@
       ng-model="browse.searchField"
       ng-change="browse.search()"
       class="form-control"
-      placeholder="Search..."
+      placeholder="{{'COMMON.SEARCH' | translate}} ..."
       title="Search">
   <span class="form-control-feedback" aria-hidden="true">
     <i ng-if="!browse.searchField.length" class="fa fa-search"></i>
