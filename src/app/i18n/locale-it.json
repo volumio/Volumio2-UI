@@ -62,7 +62,10 @@
     "UPDATE":"Aggiorna",
     "DETAILS":"Dettagli",
     "DROP":"Clicca e seleziona un plugin oppure trascinalo qui.",
-    "INSTALL_PROGRESS":"Avanzamento dell'installazione"
+    "INSTALL_PROGRESS":"Avanzamento dell'installazione",
+    "INSTALLED_PLUGINS":"Plugins Installati",
+    "SEARCH_PLUGINS":"Cerca Plugins",
+    "UPLOAD_PLUGINS":"Carica Plugin"
   },
   "UPDATER": {
     "DOWNLOAD_SPEED": "Velocità di download",
@@ -96,7 +99,11 @@
     "NAME":"Nome",
     "PATH":"Percorso",
     "MOUNTED":"Attivo",
-    "SIZE":"Dimensione"
+    "SIZE":"Dimensione",
+    "SCANNING_FOR_NETWORK_DRIVES":"Ricerca dischi di rete in corso",
+    "DELETE_DRIVE":"Elimina Disco",
+    "EDIT_DRIVE":"Modifica Disco",
+    "DELETE_DRIVE_CONFIRM":"Vuoi eliminare il disco"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Stato della rete",

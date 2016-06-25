@@ -62,7 +62,10 @@
     "UPDATE":"Update",
     "DETAILS":"Details",
     "DROP":"Click and select a plugin or drop it here.",
-    "INSTALL_PROGRESS":"Installation Progress"
+    "INSTALL_PROGRESS":"Installation Progress",
+    "INSTALLED_PLUGINS":"Installed Plugins",
+    "SEARCH_PLUGINS":"Search Plugins",
+    "UPLOAD_PLUGINS":"Upload Plugin"
   },
   "UPDATER": {
     "DOWNLOAD_SPEED": "Back to Plugins",
@@ -104,7 +107,10 @@
     "PATH":"Path",
     "MOUNTED":"Mounted",
     "SIZE":"Size",
-    "SCANNING_FOR_NETWORK_DRIVES": "Scanning for network drives"
+    "SCANNING_FOR_NETWORK_DRIVES": "Scanning for network drives",
+    "DELETE_DRIVE":"Delete Drive",
+    "EDIT_DRIVE":"Edit Drive",
+    "DELETE_DRIVE_CONFIRM":"Do you want to delete"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Network Status",
