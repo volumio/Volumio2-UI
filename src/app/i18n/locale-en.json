@@ -61,7 +61,11 @@
     "REMOVE_FROM_RADIO_FAVOURITES":"Remove from Radio Favourites",
     "ADD_WEBRADIO_TITLE":"Add Web Radio",
     "URL_DOC":"The URL can be either a stream URL or a M3U or PLS remote file",
-    "DELETE_PLAYLIST":"Delete Playlist"
+    "DELETE_PLAYLIST":"Delete Playlist",
+    "GO_TO_SHARE":"Go To - Share",
+    "NEXT_TRACK":"Next Track",
+    "PREVIOUS_TRACK":"Previous Track",
+    "PAUSE":"Pause"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Back to Plugins",
@@ -125,7 +129,7 @@
     "DELETE_DRIVE_CONFIRM":"Do you want to delete",
     "PLACEHOLDER_NAME":"Name",
     "PLACEHOLDER_IP_ADDRESS":"NAS Ip Address or Name",
-    "PLACEHOLDER_PATH_TO_SHARE":"Path/to/Share" 
+    "PLACEHOLDER_PATH_TO_SHARE":"Path/to/Share"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Network Status",

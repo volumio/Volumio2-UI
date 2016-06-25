@@ -61,7 +61,11 @@
     "REMOVE_FROM_RADIO_FAVOURITES":"Rimuovi da WebRadio Preferite",
     "ADD_WEBRADIO_TITLE":"Aggiungi Web Radio",
     "URL_DOC":"L'URL può essere sia l'indirizzo dello stream o di un file remoto PLS o M3U",
-    "DELETE_PLAYLIST":"Cancella Playlist"
+    "DELETE_PLAYLIST":"Cancella Playlist",
+    "GO_TO_SHARE":"Vai a - Condividi",
+    "NEXT_TRACK":"Traccia Successiva",
+    "PREVIOUS_TRACK":"Traccia Precedente",
+    "PAUSE":"Pausa"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Ritorna ai Plugin",
@@ -92,6 +96,13 @@
     "GO_TO_ALBUM":"Vai a Album",
     "TWEET_TRACK":"Twitta la Traccia"
   },
+"TRACK_INFO_BAR": {
+ "RANDOM": "Riproduzione Cauale",
+ "REPEAT": "Ripeti",
+ "SAVE_QUEUE_AS_PLAYLIST": "Salva la coda come Playlist",
+ "CONSUME_PLAYLIST": "Rimuovi dopo riproduzione",
+ "CLEAR_QUEUE": "Svuota la coda"
+ },
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"Nessun Hard Disk di rete trovato",
     "ALIAS":"Alias",
@@ -118,7 +129,7 @@
     "DELETE_DRIVE_CONFIRM":"Vuoi eliminare il disco",
     "PLACEHOLDER_NAME":"Nome",
     "PLACEHOLDER_IP_ADDRESS":"Indirizzo IP o Nome del NAS",
-    "PLACEHOLDER_PATH_TO_SHARE":"Indirizzo/della/Share"    
+    "PLACEHOLDER_PATH_TO_SHARE":"Indirizzo/della/Share"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Stato della rete",

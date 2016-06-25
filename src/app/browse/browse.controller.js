@@ -148,7 +148,7 @@ class BrowseController {
         };
         this.$log.debug('search', emitPayload);
         this.socketService.emit('search', emitPayload);
-      }, 300, false);
+      }, 600, false);
     } else {
       this.browseService.isSearching = false;
       this.browseService.list = [];
