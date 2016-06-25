@@ -1,18 +1,26 @@
-{
-  "utilities":[
-      {"name":"Upmpdcli","author":"Justin Maggard","link":"http"},
-      {"name":"Upmpdcli","author":"Justin Maggard","link":"http"}
-      ],
-    "backgrounds":[
+{"categories":[
+      {"name":"Frameworks","icon":"fa-briefcase","credits":[
+        {"name":"Node.js","author":"Ryan Dahl","link":"https://nodejs.org/"},
+        {"name":"AngularJS","author":"Google","link":"https://angularjs.org/"},
+        {"name":"Upmpdcli","author":"Twitter","link":"http://getbootstrap.com"}
+        ]},
+      {"name":"Core Packages","icon":"fa-cube","credits":[
+      {"name":"MPD - Music Player Daemon","author":"Max Kellermann","link":"https://www.musicpd.org/"},
+      {"name":"Shairport-Sync","author":"Mike Brady","link":"https://github.com/mikebrady/shairport-sync"},
+      {"name":"UPMPDCLI","author":"Justin Maggard","link":"http://www.lesbonscomptes.com/upmpdcli/"}
+      ]},
+    {"name":"Backgrounds","icon":"fa-camera-retro","credits":[
         {"name":"Galaxy","author":"ESA/Hubble","link":"https://www.spacetelescope.org"},
         {"name":"Darkness","author":"Jarred Decker","link":"http://www.jdphotopdx.com"},
         {"name":"Aurora","author":"Alfrfrey","link":"https://www.flickr.com/photos/alfrfrey"},
         {"name":"Morning","author":"Justin Thomas","link":"https://www.flickr.com/photos/reddodger123"},
         {"name":"Stars","author":"Andrew King","link":"http://andrewking.info"},
-        {"name":"Yosemite","author":"Wasim Muklashy","link":"http://www.wasimofnazareth.com"}
+        {"name":"Yosemite","author":"Wasim Muklashy","link":"http://www.wasimofnazareth.com"},
         {"name":"Berlin","author":"Fabrizio Nisi","link":"http://www.fabrizionisi.com"}
-    ],
-    "services":[
-        {"name":"Tide","logo":"logourl","link":"http"}
-        ]
+    ]},
+    {"name":"Services","icon":"fa-code","credits":[
+        {"name":"Shoutcast Web Radio API","logo":"app/themes/volumio/assets/graphics/shoutcast-logo.png","author":"Shoutcast","link":"http://www.shoutcast.com/"},
+        {"name":"Dirble Web Radio DIrectory API","author":"Dirble","link":"http://dirble.com"}
+        ]}
+]
 }

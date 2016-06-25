@@ -1,7 +1,8 @@
 #!/usr/local/bin/node
 var fs = require('fs');
-var request = require("request")
-var npm = require("npm")
+var request = require("request");
+var npm = require("npm");
+var fs=require('fs-extra');
 
 var repos = [];
 
@@ -191,6 +192,34 @@ function finished() {
 	}
 }
 
+function addThirdPartCredits() {
+	var thirdparty;
+	var creditsjson=fs.readJsonSync(__dirname+'/credits.json');
+	for (i = 0; i < creditsjson.categories.length; i++) {
+		var category =  creditsjson.categories[i];
+		console.log('Writing Category ' + category.name)
+    thirdparty += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa '+category.icon +'"></i> ';
+		thirdparty += category.name
+		thirdparty+= '</h3></div><div class="panel-body">';
+		for (a = 0; a < category.credits.length; a++) {
+			var item =  category.credits[a];
+			if (item.logo) {
+					thirdparty += '<img src="' + item.logo + '" width=50> </a>';
+			}
+			thirdparty += '<strong>' + item.name  +'</strong> by ';
+			if (item.link) {
+				thirdparty += '<a href="' + item.link + '"target="_blank">' + item.author + '</a><br>\n';
+			} else {
+				 thirdparty += item.author +  '<br>\n'
+			}
+
+		}
+		thirdparty+= '</div></div>';
+}
+
+	return thirdparty
+}
+
 function writeHTML() {
 	var html = '<div class="box"><div class="boxHeader"><div class="title"><h2>Credits</h2></div></div>	';
 	for (itemN in array) {
@@ -218,8 +247,21 @@ function writeHTML() {
 		html += '</div></div>';
 	}
 	}
+	html += addThirdPartCredits();
 	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> License</h3></div><div class="panel-body"><p>License Information</p></div></div>'
-  var creditsPath = "src/app/themes/" + theme + "/assets/static-pages/credits.html";
+	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> License</h3></div><div class="panel-body"><p>'
+	html += '<p><strong>Copyright © 2013-2016 Michelangelo Guarise</strong>'
+	html += '<span class="help-block">Volumio name and logo can be used for commercial purposes only with an explicit authorization. <a href="mailto:info@volumio.org">Contact us</a> for details. </span>'
+	html += '<span class="help-block">We are not responsible for any damage to your computer or appliances caused by Volumio. Use it by your own risk.'
+	html += 'Volumio uses several trademarks from different projects. Their rights are not overruled by our license and stay intact.</span>'
+	html += '<span class="help-block"><i>All trademarks, copyrights and other forms of intellectual property belong to their respective owners.</i></span>'
+	html += '<span class="help-block">Linux is a registered trademark of Linus Torvalds in the U.S. and other countries.'
+	html += 'Spotify is a registered trademark of Spotify AB.'
+	html += 'Airplay is a registered trademark of Apple Inc.'
+	html += 'Direct-Stream Digital (DSD) is a registered trademark of Sony Corporation and Philips AG.</span>'
+  html += '</p></div></div>'
+
+	var creditsPath = "src/app/themes/" + theme + "/assets/static-pages/credits.html";
   console.log(creditsPath);
 	fs.writeFile(creditsPath, html);
 	console.log("Wrote html");

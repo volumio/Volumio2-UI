@@ -1,7 +1,9 @@
 {
   "name": "volumio",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "fs-extra": "^0.30.0"
+  },
   "scripts": {
     "test": "gulp test"
   },
