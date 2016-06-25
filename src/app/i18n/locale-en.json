@@ -70,7 +70,7 @@
   "UPDATER": {
     "DOWNLOAD_SPEED": "Back to Plugins",
     "TIME_REMAINING": "Time Remaining",
-    "UPDATER.UPDATE_NOW": "Update Now"
+    "UPDATE_NOW": "Update Now"
   },
   "TRACK_MANAGER":{
     "PLAYING":"Playing",
