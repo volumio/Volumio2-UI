@@ -1,6 +1,6 @@
 {
   "UI_SETTINGS": {
-    "THEME_SETTINGS": "Selection du thème",
+    "THEME_SETTINGS": "Sélection du thème",
     "UPLOAD_BACKGROUND": "Sélectionner un nouveau fond d'écran",
     "UPLOAD_BACKGROUND_FILE": "Cliquer et sélectionner un nouveau fond d'écran ou le glisser ici.",
     "UPLOAD_PROGRESS": "Progression du téléchargement:",
@@ -29,10 +29,10 @@
     "TAB_QUEUE":"Queue",
     "ARTISTS":"Artistes",
     "ALBUMS":"Albums",
-    "SONGS":"Chansons",
+    "SONGS":"Pistes",
     "PLAYTIME":"Durée de lecture",
     "TIME":"Temps",
-    "RESCAN":"Rescan",
+    "RESCAN":"Scanner à nouveau",
     "SYSTEM_VERSION":"Version du système",
     "RELEASED":"Révision",
     "CLOSE":"Fermer",
@@ -64,7 +64,7 @@
     "UNINSTALL":"Désinstaller",
     "UPDATE":"Mettre à jour",
     "DETAILS":"Details",
-    "DROP":"Cliquer et selectionner un plugin le glisser le ici.",
+    "DROP":"Cliquer et sélectionner un plugin ou le glisser le ici.",
     "INSTALL_PROGRESS":"Avancement de l'installation"
   },
   "UPDATER": {
@@ -83,11 +83,11 @@
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"Pas de disque réseau trouvé",
     "ALIAS":"Alias",
-    "ALIAS_DOC":"Choisir un l'alias qui sera affiché dans les disques NAS montés",
+    "ALIAS_DOC":"Choisir un le nom qui sera affiché dans les disques NAS montés",
     "NAS_IP_ADDRESS":"Adresse IP du NAS",
     "NAS_IP_ADDRESS_DOC":"Adresse IP du disque réseau",
     "NAS_PATH":"Chemin",
-    "NAS_PATH_DOC":"Nom du partage réseau ou chemin du sous dossier",
+    "NAS_PATH_DOC":"Nom du partage réseau ou chemin du sous-dossier",
     "SHARE_TYPE":"Type de partage réseau",
     "USERNAME":"Nom d'utilisateur",
     "PASSWORD":"Mot de passe",
