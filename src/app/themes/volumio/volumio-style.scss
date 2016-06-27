@@ -597,7 +597,7 @@ ul {
     }
     a {
       display: block;
-      color: $volumio-green-color;
+      color: $volumio-text-color;
       padding: 6px 0px 6px 6px;
       font-size: 16px;
       &:hover {
@@ -656,6 +656,7 @@ ul {
   img {
     float: left;
     padding-right: 10px;
+    padding-bottom: 10px;
   }
   span{
     font-size: 16px;
