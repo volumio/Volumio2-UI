@@ -45,7 +45,13 @@
     "BACK":"Back",
     "OPTIONS":"Options",
     "CHOOSE_PLAYLIST":"Choose Playlist",
-    "STOP_MUSIC":"Stop Music"
+    "STOP_MUSIC":"Stop Music",
+    "SKIP": "Skip",
+    "NEXT_STEP": "Next step",
+    "DONE": "Done",
+    "EMAIL": "Email",
+    "SUBSCRIBE_ME": "Subscribe me",
+    "SHARE": "Share"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -140,5 +146,20 @@
     "ONLINE":"Online",
     "CONNECT":"Connect",
     "REFRESH":"Refresh"
+  },
+  "WIZARD": {
+    "WELCOME": "Welcome to Volumio, the Audiophile music Player",
+    "SELECT_YOUR_LANGUAGE": "Select your language",
+    "DEVICE_NAME": "Device name",
+    "DEVICE_ADDRESS": "This device will be available at the address:",
+    "SELECT_YOUR_AUDIO_OUTPUT": "Select your audio output",
+    "SELECT_YOUR_I2S_DAC": "Select your i2s DAC",
+    "I_HAVE_DAC": "I have an I2S DAC",
+    "CUSTOM_AMOUNT": "Custom amount",
+    "DONE_MESSAGE": "Done, your Volumio is ready.<br />Take just a second to support us",
+    "MAIL_LIST_SUBSCRIPTION": "Mail list subscription",
+    "SOCIAL_SHARE": "Social share",
+    "DONATE": "Donate",
+    "SUBSCRIBED_SUCCESFULLY": "Subscribed successfully"
   }
 }

@@ -1,0 +1,51 @@
+#wizard {
+  // border: solid 1px #CCC;
+  margin: 20px;
+  h1 {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  #wizard-container {
+    position: relative;
+    border: solid 1px #54C698;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding:30px 25px 65px 25px;
+    min-height: 450px;
+    #custom-amount {
+      display: inline-block;
+      width: 130px;
+    }
+    .btn-facebook {
+      background-color: #3b5998;
+      border-color: #3b5998;
+    }
+    .btn-twitter {
+      background-color: #4099FF;
+      border-color: #4099FF;
+    }
+    .fb-share-button {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+  #wizard-navigator {
+    text-align: center;
+    button {
+      margin-right: 10px;
+      &.selected {
+        background-color: #333 !important;
+        border-bottom: solid 1px #54C698;
+        border-radius: 0;
+        transition: all .3s;
+      }
+    }
+  }
+  #button-bar{
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+  }
+}

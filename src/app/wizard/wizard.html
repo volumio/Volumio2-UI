@@ -1,0 +1,11 @@
+<div class="row" id="wizard">
+  <div id="wizard-container" class="col-sm-18 col-sm-offset-3">
+    <ng-include src="'app/wizard/partials/wizard-navigator.html'"></ng-include>
+
+    <div class="row">
+      <ng-include src="'app/wizard/views/wizard-' + wizard.currentStep.toLowerCase() + '.html'"></ng-include>
+    </div>
+
+    <ng-include src="'app/wizard/partials/wizard-button-bar.html'"></ng-include>
+  </div>
+</div>

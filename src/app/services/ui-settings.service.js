@@ -1,11 +1,13 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate) {
+  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate, $state, $timeout) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
     this.$document = $document;
     this.$log = $log;
     this.$translate = $translate;
+    this.$state = $state;
+    this.$timeout = $timeout;
 
     this.currentTheme = themeManager.theme;
     this.defaultUiSettings = {
@@ -47,7 +49,27 @@ class UiSettingsService {
   }
 
   setLanguage() {
-    this.$translate.use(this.uiSettings.language);
+    if (~this.$state.current.name.indexOf('wizard')) {
+      this.browserLanguage = this.getBrowserDefaultLanguage();
+      this.$translate.use(this.browserLanguage);
+    } else {
+      this.$translate.use(this.uiSettings.language);
+    }
+  }
+
+  getBrowserDefaultLanguage() {
+    const browserLanguagePropertyKeys = ['language', 'languages', 'browserLanguage', 'userLanguage', 'systemLanguage'];
+    let langArray = [];
+    browserLanguagePropertyKeys.forEach((prop) => {
+      if (prop in window.navigator) {
+        if (angular.isArray(window.navigator[prop])) {
+          langArray.push(...window.navigator[prop]);
+        } else {
+          langArray.push(window.navigator[prop]);
+        }
+      }
+    });
+    return langArray[0] || 'en';
   }
 
   registerListner() {
@@ -79,10 +101,20 @@ class UiSettingsService {
         }));
         this.setBackground();
     });
+
+    this.socketService.on('pushWizard', (data) => {
+      this.$log.debug('pushWizard', data);
+      if (data.openWizard) {
+        if (!~location.href.indexOf('wizard')) {
+          location.href="wizard";
+        }
+      }
+    });
   }
 
   initService() {
     this.socketService.emit('getUiSettings');
+    this.socketService.emit('getWizard');
   }
 }
 

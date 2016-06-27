@@ -1,0 +1,93 @@
+<div class="wizard-panel col-sm-10 col-sm-offset-7">
+  <div class="row">
+    <h3 translate="WIZARD.DONE_MESSAGE"></h3>
+    <button
+        class="btn btn-default"
+        type="button"
+        ng-repeat="amount in wizard.wizardDetails.donation.amounts track by amount"
+        ng-click="wizard.setDonationAmount(amount)"
+        ng-class="{selected: wizard.wizardData.donationAmount === amount}">
+      {{amount}}
+    </button>
+    <input
+        id="custom-amount"
+        type="text"
+        class="form-control"
+        placeholder="{{'WIZARD.CUSTOM_AMOUNT' | translate}}"
+        ng-model="wizard.wizardData.customAmount"
+        ng-change="wizard.setDonationAmount(wizard.wizardData.customAmount)">
+  </div>
+
+  <br />
+
+  <div class="row">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_donations">
+        <input type="hidden" name="business" value="info@volumio.org">
+        <input type="hidden" name="lc" value="EU">
+        <input type="hidden" name="amount" ng-value="wizard.wizardData.donationAmount">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="cn" value="Add special instructions to the seller:">
+        <input type="hidden" name="no_shipping" value="2">
+        <input type="hidden" name="currency_code" value="EUR">
+        <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
+        <button class="btn btn-info" type="submit" translate="WIZARD.DONATE"></button>
+    </form>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <h3 translate="WIZARD.SOCIAL_SHARE"></h3>
+
+    <div class="fb-share-button"
+        data-href="https://volumio.org/"
+        data-layout="button_count"
+        data-mobile-iframe="true">
+      <a class="fb-xfbml-parse-ignore btn btn-info btn-facebook"
+          target="_blank"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvolumio.org%2F&amp;src=sdkpreparse">
+      <i class="fa fa-facebook-square" aria-hidden="true"></i> {{'COMMON.SHARE' | translate}}
+      </a>
+    </div>
+
+    <a href="https://twitter.com/share"
+        class="twitter-share-button"
+        data-url="https://volumio.org/"
+        data-via="volumio"
+        data-hashtags="volumio Audiophile">
+       Tweet
+    </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>  </div>
+
+  <br />
+
+  <div class="row">
+    <h3 translate="WIZARD.MAIL_LIST_SUBSCRIPTION"></h3>
+    <form  name="wizard.mailListForm" ng-submit="wizard.subscribeToMailList()">
+      <input
+          id="EMAIL"
+          name"EMAIL"
+          type="text"
+          class="form-control"
+          placeholder="{{'COMMON.EMAIL' | translate}}"
+          ng-model="wizard.wizardData.mailListData.EMAIL">
+          <br>
+      <div
+          class="text-center"
+          ng-if="wizard.wizardData.mailListSubscribed"
+          translate="WIZARD.SUBSCRIBED_SUCCESFULLY">
+        <div translate="WIZARD.SUBSCRIBED_SUCCESFULLY"></div>
+        <br /><br />
+      </div>
+      <div>
+        <button
+          class="btn btn-info"
+          type="submit"
+          translate="COMMON.SUBSCRIBE_ME">
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

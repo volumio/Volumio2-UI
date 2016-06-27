@@ -140,5 +140,8 @@
     "ONLINE":"Online",
     "CONNECT":"Connetti",
     "REFRESH":"Aggiorna"
+  },
+  "WIZARD": {
+    "SELECT_YOUR_LANGUAGE": "Seleziona la tua lingua"
   }
 }

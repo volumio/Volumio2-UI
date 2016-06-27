@@ -64,6 +64,8 @@ import PlayQueueController from './play-queue/play-queue.controller';
 import PluginController from './plugin/plugin.controller';
 import PluginManagerController from './plugin-manager/plugin-manager.controller';
 
+import WizardController from './wizard/wizard.controller';
+
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
 import ModalWebRadioController from './browse/components/modal/modal-web-radio.controller';
@@ -108,10 +110,12 @@ angular.module('volumio', [
   'hmTouchEvents',
   'ngFileUpload',
   'pascalprecht.translate',
+  'cg.mailchimp',
 
   //Angular core modules
   // 'ngAnimate',
   // 'ngCookies',
+  'ngResource',
   'ngTouch',
   'ngSanitize'
   ])
@@ -179,6 +183,8 @@ angular.module('volumio', [
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
+
+  .controller('WizardController', WizardController)
 
   .controller('ModalController', ModalController)
   .controller('ModalPlaylistController', ModalPlaylistController)
