@@ -68,7 +68,7 @@
     "INSTALL_PROGRESS":"Avancement de l'installation"
   },
   "UPDATER": {
-    "DOWNLOAD_SPEED": "Retour aux Plugins",
+    "DOWNLOAD_SPEED": "Vitesse de téléchargement",
     "TIME_REMAINING": "Temps restant",
     "UPDATE_NOW": "Mettre à jour maintenant"
   },
