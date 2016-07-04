@@ -148,6 +148,12 @@
     "REFRESH":"Refresh"
   },
   "WIZARD": {
+    "LANGUAGE": "Language",
+    "NAME": "Name",
+    "OUTPUT": "Output",
+    "NETWORK": "Network",
+    "MUSIC": "Muisc",
+    "DONE": "Done",
     "WELCOME": "Welcome to Volumio, the Audiophile music Player",
     "SELECT_YOUR_LANGUAGE": "Select your language",
     "DEVICE_NAME": "Device name",

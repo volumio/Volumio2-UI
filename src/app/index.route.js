@@ -143,36 +143,16 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       }
     })
 
-    .state('wizard', {
-      url: '/wizard',
+    .state('volumio.wizard', {
+      url: 'wizard',
       views: {
-        'layout': {
+        'content@volumio': {
           templateUrl: 'app/wizard/wizard.html',
           controller: 'WizardController',
           controllerAs: 'wizard'
         }
-      },
-      resolve: {
-        //NOTE this resolver init also global services like toast
-        socketResolver: resolverFn
       }
     })
-    // .state('volumio.wizard', {
-    //   url: 'wizard',
-    //   views: {
-    //     'content@volumio': {
-    //       templateUrl: 'app/wizard/wizard.html',
-    //       controller: 'WizardController',
-    //       controllerAs: 'wizard'
-    //     },
-    //     'header@volumio': {
-    //       template: 'asd'
-    //     },
-    //     'footer@volumio': {
-    //       template: 'asd'
-    //     }
-    //   }
-    // })
     ;
 
   $urlRouterProvider.otherwise('/playback');

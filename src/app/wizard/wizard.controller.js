@@ -1,5 +1,6 @@
 class WizardController {
-  constructor($log, $scope, mockService, $state, socketService, $translate, uiSettingsService, CgMailChimpService) {
+  constructor($log, $scope, mockService, $state, socketService, $translate, uiSettingsService, CgMailChimpService,
+      $window, matchmediaService) {
     'ngInject';
     this.$log = $log;
     this.mockService = mockService;
@@ -7,13 +8,17 @@ class WizardController {
     this.$scope = $scope;
     this.socketService = socketService;
     this.$translate = $translate;
+    this.$window = $window;
     this.uiSettingsService = uiSettingsService;
     this.CgMailChimpService = CgMailChimpService;
+    this.matchmediaService = matchmediaService;
     this.init();
   }
 
 
   init() {
+    this.$window.contentWrapper.style.zIndex = 5;
+    this.$window.wizardScrim.style.display = 'block';
     this.registerListner();
     this.initService();
     this.wizardDetails = {};
@@ -32,9 +37,15 @@ class WizardController {
 
     this.currentStep = this.wizardDetails.steps[0];
     this.wizardData.defaultLanguage = this.wizardDetails.language.defaultLanguage;
+
+    this.$scope.$on('$destroy', () => {
+      this.$window.contentWrapper.style.zIndex = 1;
+      this.$window.wizardScrim.style.display = 'none';
+    });
   }
 
   gotoStep(step) {
+    console.log(step);
     let emitPayload;
     this.$log.log('go from step', this.currentStep.toLowerCase());
     //From step actions

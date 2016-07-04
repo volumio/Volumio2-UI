@@ -1,5 +1,6 @@
 <div id="wizard-navigator">
   <button
+      ng-if="!wizard.matchmediaService.isPhone"
       class="btn btn-link btn-navigator"
       type="button"
       ng-repeat="step in wizard.wizardDetails.steps track by step"
@@ -7,4 +8,8 @@
       ng-class="{selected: wizard.currentStep === step}">
     {{step}}
   </button>
+  <h1
+      ng-if="wizard.matchmediaService.isPhone">
+    {{'WIZARD.' + wizard.currentStep | uppercase | translate}}
+  </h1>
 </div>
