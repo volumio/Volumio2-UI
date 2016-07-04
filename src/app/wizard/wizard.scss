@@ -10,9 +10,9 @@
 }
 #wizard {
   height: calc(100vh - #{$headerHeight} - #{$footerHeight});
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 30px 0px;
   h1 {
     text-align: center;
     margin-bottom: 25px;
@@ -21,25 +21,21 @@
     font-size: 20px;
   }
   #wizard-container {
-    position: relative;
-    z-index: 30;
-    margin: 0px auto;
-    position: relative;
-    border: solid 1px #54C698;
+    border: solid 1px $volumio-green-color;
     background-color: rgba(0, 0, 0, 0.6);
-    padding:30px 25px 65px 25px;
+    padding: 30px 25px 65px 25px;
     min-height: 450px;
     #custom-amount {
       display: inline-block;
       width: 130px;
     }
     .btn-facebook {
-      background-color: #3b5998;
-      border-color: #3b5998;
+      background-color: $fb-color;
+      border-color: $fb-color;
     }
     .btn-twitter {
-      background-color: #4099FF;
-      border-color: #4099FF;
+      background-color: $twitter-color;
+      border-color: $twitter-color;
     }
     .fb-share-button {
       display: inline-block;
@@ -54,6 +50,10 @@
     }
     button {
       margin-right: 10px;
+      cursor: default;
+      &:hover {
+        color: $link-color;
+      }
       &.selected {
         background-color: #333 !important;
         border-bottom: solid 1px #54C698;

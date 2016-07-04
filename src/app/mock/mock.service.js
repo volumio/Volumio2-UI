@@ -37,7 +37,8 @@ class MockService {
           ]
         },
         "donation": {
-          "defaultAmount": 10,
+          "donationAmount": 20,
+          "customAmount": 150,
           "amounts": [
             10,
             20,

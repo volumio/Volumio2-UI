@@ -49,7 +49,8 @@ class UiSettingsService {
   }
 
   setLanguage() {
-    if (~this.$state.current.name.indexOf('wizard')) {
+    console.log(location.href);
+    if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
       this.$translate.use(this.browserLanguage);
     } else {
@@ -69,6 +70,7 @@ class UiSettingsService {
         }
       }
     });
+    this.$log.debug('Console defaultLanguage', langArray[0]);
     return langArray[0] || 'en';
   }
 
@@ -106,7 +108,7 @@ class UiSettingsService {
       this.$log.debug('pushWizard', data);
       if (data.openWizard) {
         if (!~location.href.indexOf('wizard')) {
-          location.href="wizard";
+          location.href = '/wizard';
         }
       }
     });

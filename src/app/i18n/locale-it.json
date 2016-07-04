@@ -142,6 +142,12 @@
     "REFRESH":"Aggiorna"
   },
   "WIZARD": {
-    "SELECT_YOUR_LANGUAGE": "Seleziona la tua lingua"
+    "LANGUAGE": "Lingua",
+    "NAME": "Nome",
+    "OUTPUT": "Uscite",
+    "NETWORK": "Rete",
+    "MUSIC": "Musica",
+    "DONE": "Fatto",
+    "SELECT_YOUR_LANGUAGE": "Seleziona la tua lingadsua"
   }
 }

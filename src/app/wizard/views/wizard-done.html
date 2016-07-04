@@ -1,4 +1,4 @@
-<div class="wizard-panel col-sm-10 col-sm-offset-7">
+<div class="wizard-panel col-sm-12 col-sm-offset-5">
   <div class="row">
     <h3 translate="WIZARD.DONE_MESSAGE"></h3>
     <button
@@ -6,7 +6,7 @@
         type="button"
         ng-repeat="amount in wizard.wizardDetails.donation.amounts track by amount"
         ng-click="wizard.setDonationAmount(amount)"
-        ng-class="{selected: wizard.wizardData.donationAmount === amount}">
+        ng-class="{selected: wizard.wizardDetails.donation.donationAmount === amount}">
       {{amount}}
     </button>
     <input
@@ -14,8 +14,8 @@
         type="text"
         class="form-control"
         placeholder="{{'WIZARD.CUSTOM_AMOUNT' | translate}}"
-        ng-model="wizard.wizardData.customAmount"
-        ng-change="wizard.setDonationAmount(wizard.wizardData.customAmount)">
+        ng-model="wizard.wizardDetails.donation.customAmount"
+        ng-change="wizard.setDonationAmount(wizard.wizardDetails.donation.customAmount)">
   </div>
 
   <br />

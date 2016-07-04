@@ -24,15 +24,13 @@ class WizardController {
     this.wizardDetails = {};
     this.wizardData = {
       deviceName: '',
-      showI2sOption: false,
-      donationAmount: 20,
-      customAmount: 150
+      showI2sOption: false
     };
 
     //Start mock
-    this.wizardDetails = this.mockService.get('wizard');
-    this.setBrowserLangAsDefault();
-    console.log(this.wizardDetails);
+    // this.wizardDetails = this.mockService.get('wizard');
+    // let browserLanguage = this.setBrowserLangAsDefault();
+    // console.log(this.wizardDetails);
     //End mock
 
     this.currentStep = this.wizardDetails.steps[0];
@@ -175,29 +173,28 @@ class WizardController {
   registerListner() {
     this.socketService.on('pushWizardSteps', (data) => {
       this.$log.debug('pushWizardSteps', data);
-      // this.wizardDetails.steps = data;
+      this.wizardDetails.steps = data;
     });
 
     this.socketService.on('pushAvailableLanguages', (data) => {
       this.$log.debug('pushAvailableLanguages', data);
-      // this.wizardDetails.language = data;
+      this.wizardDetails.language = data;
       this.setBrowserLangAsDefault();
     });
 
     this.socketService.on('pushDeviceName', (data) => {
       this.$log.debug('pushDeviceName', data);
-      // this.wizardDetails.deviceName = data;
+      this.wizardDetails.deviceName = data;
     });
 
     this.socketService.on('pushOutputDevices', (data) => {
       this.$log.debug('pushOutputDevices', data);
-      // this.wizardDetails.pushOutputDevices = data;
+      this.wizardDetails.pushOutputDevices = data;
     });
 
     this.socketService.on('pushDonationAmounts', (data) => {
       this.$log.debug('pushDonationAmounts', data);
-      // this.wizardDetails.donation = data;
-      // this.wizardData.defaultAmount = data.defaultAmount;
+      this.wizardDetails.donation = data;
     });
 
     this.$scope.$on('$destroy', () => {

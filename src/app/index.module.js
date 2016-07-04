@@ -47,6 +47,7 @@ import ModalController from './components/modals/modal.controller';
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
+import PluginComponent from './plugin/components/plugin.component';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -179,6 +180,7 @@ angular.module('volumio', [
 
   .controller('PluginController', PluginController)
   .controller('PluginManagerController', PluginManagerController)
+  .component('pluginComponent', new PluginComponent())
 
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
