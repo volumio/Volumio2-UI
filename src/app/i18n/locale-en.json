@@ -29,7 +29,7 @@
     "TAB_QUEUE":"Queue",
     "ARTISTS":"Artists",
     "ALBUMS":"Albums",
-    "SONGS":"Songs",
+    "SONGS":"Tracks",
     "PLAYTIME":"Playtime",
     "TIME":"Time",
     "RESCAN":"Rescan",
@@ -161,5 +161,9 @@
     "SOCIAL_SHARE": "Social share",
     "DONATE": "Donate",
     "SUBSCRIBED_SUCCESFULLY": "Subscribed successfully"
+  },
+  "SLEEP": {
+    "POWER_OFF": "Power off",
+    "STOP_MUSIC": "Stop music"
   }
 }
