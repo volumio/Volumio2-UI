@@ -140,5 +140,9 @@
     "ONLINE":"Online",
     "CONNECT":"Connect",
     "REFRESH":"Refresh"
+  },
+  "SLEEP": {
+    "POWER_OFF": "Power off",
+    "STOP_MUSIC": "Stop music"
   }
 }
