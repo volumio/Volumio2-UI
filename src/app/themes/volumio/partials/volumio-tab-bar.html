@@ -4,8 +4,12 @@
       class="btn btn-default browseBtn"
       ng-class="{selected: state.current.name === 'volumio.browse'}"
       title="Browse">
-    <img src="/app/themes/volumio/assets/icons/volumio_icon_note.svg" alt="Browse"/>
-    <span>Browse</span>
+    <img
+        ng-if="!footer.playerService.state.updatedb"
+        src="/app/themes/volumio/assets/icons/volumio_icon_note.svg"
+        alt="Browse"/>
+    <i ng-if="footer.playerService.state.updatedb" class="fa fa-refresh fa-spin"></i>
+    <span translate="COMMON.TAB_BROWSE"></span>
   </button>
 
   <button
@@ -14,7 +18,7 @@
       ng-class="{selected: state.current.name === 'volumio.playback'}"
       title="Playback">
     <img src="/app/themes/volumio/assets/icons/volumio_icon_volumio-icon.svg" alt="Playback"/>
-    <span>Playback</span>
+    <span translate="COMMON.TAB_PLAYBACK"></span>
   </button>
 
   <button
@@ -23,6 +27,6 @@
       ng-class="{selected: state.current.name === 'volumio.play-queue'}"
       title="Queue">
     <img src="/app/themes/volumio/assets/icons/volumio_icon_queue.svg" alt="Queue"/>
-    <span>Queue</span>
+    <span translate="COMMON.TAB_QUEUE"></span>
   </button>
 </div>

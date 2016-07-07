@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-sm-4">
+    <div ng-repeat="category in pluginManager.availablePlugins.categories">
+      <button
+          ng-click="pluginManager.showPluginCategory(category, $index)"
+          type="button"
+          class="btn btn-link pluginCategoryBtn"
+          ng-class="{active: category.name === pluginManager.selectedCategory.name}">
+        {{::category.prettyName}}
+      </button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="col-sm-20">
+    <div class="panel panel-default" ng-repeat="plugin in pluginManager.selectedCategory.plugins track by $index">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <i ng-if="plugin.icon" class="fa {{plugin.icon}}"></i>
+            <i ng-if="!plugin.icon" class="fa fa-cube"></i>
+            {{plugin.prettyName}}
+          </h3>
+        </div>
+
+        <div class="panel-body">
+          <div>
+            {{plugin.description}}
+          </div>
+          <br>
+          <div class="row pluginDetailsRow">
+            <div class="col-xs-12">
+              <strong>Author: </strong>{{plugin.author}}
+            </div>
+            <div class="col-xs-12 text-right">
+              <strong>Updated: </strong>{{plugin.updated}}
+            </div>
+          </div>
+          <br>
+          <div>
+            <button
+                ng-if="!plugin.installed"
+                ng-click="pluginManager.installPlugin(plugin)"
+                type="button"
+                class="btn btn-info pull-right marginLeft"
+                title="Install">
+              <span translate="PLUGINS.INSTALL"></span>
+            </button>
+            <button
+                ng-if="false"
+                ng-click="pluginManager.updatePlugin(plugin)"
+                type="button"
+                class="btn btn-info pull-right marginLeft"
+                title="Update">
+              <span translate="PLUGINS.UPDATE"></span>
+            </button>
+            <button
+                ng-if="plugin.installed"
+                ng-click="pluginManager.unInstallPlugin(plugin)"
+                type="button"
+                class="btn btn-danger pull-right marginLeft"
+                title="Uninstall">
+              <span translate="PLUGINS.UNINSTALL"></span>
+            </button>
+            <button
+                ng-click="pluginManager.showPluginDetails(plugin)"
+                type="button"
+                class="btn btn-info pull-right"
+                title="Details">
+              <span translate="PLUGINS.DETAILS"></span>
+            </button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

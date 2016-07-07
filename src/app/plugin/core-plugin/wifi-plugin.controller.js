@@ -1,9 +1,10 @@
 class WifiPluginController {
-  constructor($scope, socketService, mockService, $log) {
+  constructor($scope, socketService, mockService, $log, $translate) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
     this.$log = $log;
+    this.$translate = $translate;
     //this.wirelessNetworks = mockService.get('wirelessNetworks');
     this.init();
   }
@@ -54,7 +55,7 @@ class WifiPluginController {
       this.wirelessNetworks.available.push({
         security: '',
         signal: -1,
-        ssid: 'Network Name',
+        ssid: 'Connect to Hidden Network',
         ssidHidden: true
       });
     });

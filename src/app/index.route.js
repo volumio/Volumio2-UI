@@ -35,6 +35,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           ripperService,
           modalListenerService,
           toastMessageService,
+          uiSettingsService,
           updaterService) => {
             let localhostApiURL = `http://${$window.location.hostname }/api`;
             return $http.get(localhostApiURL + '/host').then((response) => {
@@ -106,14 +107,25 @@ function routerConfig ($stateProvider, $urlRouterProvider,
         }
       }
     })
-
     .state('volumio.plugin', {
       url: 'plugin/:pluginName',
+      params: {isPluginSettings: null},
       views: {
         'content@volumio': {
           templateUrl: 'app/plugin/plugin.html',
           controller: 'PluginController',
           controllerAs: 'plugin'
+        }
+      }
+    })
+
+    .state('volumio.plugin-manager', {
+      url: 'plugin-manager',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin-manager/plugin-manager.html',
+          controller: 'PluginManagerController',
+          controllerAs: 'pluginManager'
         }
       }
     })

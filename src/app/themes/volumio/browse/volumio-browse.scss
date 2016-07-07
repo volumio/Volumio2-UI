@@ -5,18 +5,18 @@
     background-color: $volumio-black-trans-dark;
   }
 }
-#navButtons {
-  @include make-sm-column(3, 0);
-  @include make-xs-column(10, 0);
+.navButtons {
+  // @include make-sm-column(3, 0);
+  // @include make-xs-column(10, 0);
   button {
-    font-size: 22px;
+    font-size: 24px;
   }
 }
 
-#searchBox {
-  @include make-sm-column(9, 0);
-  @include make-sm-column-offset(12);
-  @include make-xs-column(14, 0);
+.searchBox {
+  // @include make-sm-column(9, 0);
+  // @include make-sm-column-offset(12);
+  // @include make-xs-column(14, 0);
   input {
     color: $volumio-text-color;
   }
@@ -31,6 +31,16 @@
       color: $volumio-green-color;
     }
   }
+  #browseFilterBar {
+    color: #FFF;
+    margin-top: 5px;
+    text-align: right;
+  }
+}
+
+#searchForm {
+  position: relative;
+  width: 200px;
 }
 
 #browseTableSources {
@@ -49,6 +59,15 @@
   table {
     user-select: none;
     cursor: pointer;
+    .rowTitle {
+      font-size: 18px;
+      padding: 5px 10px;
+      color: $volumio-green-color;
+      cursor: auto;
+      i {
+        margin-right: 10px;
+      }
+    }
     .title {
       font-size: 16px;
     }

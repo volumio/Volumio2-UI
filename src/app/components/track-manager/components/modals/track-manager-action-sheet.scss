@@ -1,0 +1,11 @@
+.trackManagerActionSheet {
+  button {
+    margin-bottom: 16px;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &.btn-twitter {
+      background-color: #55ACEE;
+    }
+  }
+}

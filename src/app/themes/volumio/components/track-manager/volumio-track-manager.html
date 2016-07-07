@@ -41,7 +41,14 @@
         </div>
         <div class="footerText">
           <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
-            {{trackManager.playerService.state.trackType}}
+            <img
+                ng-if="trackManager.playerService.state.fileFormat"
+                ng-src="{{'/app/themes/volumio/assets/format-icons/' +
+                  trackManager.playerService.state.fileFormat.url + '.svg'}}"
+                alt="{{trackManager.playerService.state.fileFormat.name}}" />
+            <span ng-if="!trackManager.playerService.state.fileFormat">
+              {{trackManager.playerService.state.trackType}}
+            </span>
           </span>
         </div>
       </div>
@@ -57,7 +64,7 @@
     <div
         id="trackButtonBar"
         class="btn-group"
-        ng-include src="'app/components/track-manager/elements/track-manager-button-bar.html'">
+        ng-include src="'app/themes/volumio/components/track-manager/elements/volumio-track-manager-button-bar.html'">
     </div>
   </div>
 </div>

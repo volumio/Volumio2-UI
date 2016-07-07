@@ -1,11 +1,11 @@
-<div id="myMusic" ng-controller="SystemVersionPluginController as sv"
+<div id="systemVersion" ng-controller="SystemVersionPluginController as sv"
     class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-info-circle"></i> System version</h3>
+    <h3 class="panel-title"><i class="fa fa-info-circle"></i> <span translate="COMMON.SYSTEM_VERSION"></span></h3>
   </div>
   <div class="panel-body">
     <h4 ng-if="false" class="sectionDescription"></h4>
-    System version: {{sv.systemVersion.systemversion}}
-    Released: {{sv.systemVersion.builddate}}
+    <span translate="COMMON.SYSTEM_VERSION"></span>: {{sv.systemVersion.systemversion}}
+    <span translate="COMMON.RELEASED"></span>: {{sv.systemVersion.builddate}}
   </div>
 </div>

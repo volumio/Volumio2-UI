@@ -13,14 +13,15 @@
       margin-bottom: 10px;
     }
     .deviceName {
-      font-size:20px;
+      margin-top: -10px;
+      font-size: 20px;
     }
     .artist {
       color: $text-grey-color;
-      font-size:16px;
+      font-size: 15px;
     }
     .track {
-      font-size:16px;
+      font-size: 14px;
     }
     .isSelf {
       border-color: $volumio-green-color;
@@ -37,7 +38,7 @@
     }
 
     .deviceIcon {
-      min-width: 98px;
+      width: 35%;
       text-align: center;
       padding: 9px;
       @extend .pull-left;
@@ -48,7 +49,7 @@
       }
     }
     .deviceDetails {
-      width: 75%;
+      width: 65%;
       padding: 13px 9px 13px 0px;
       @extend .pull-left;
     }

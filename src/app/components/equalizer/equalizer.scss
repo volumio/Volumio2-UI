@@ -1,0 +1,11 @@
+.equalizer {
+  display: inline-block;
+  margin: 10px;
+  &.vertical {
+    margin: 10px 20px;
+  }
+  &.horizontal {
+    margin: 10px 0px 20px 0px;
+    width: 180px;
+  }
+}

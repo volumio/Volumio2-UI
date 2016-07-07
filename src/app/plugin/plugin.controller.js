@@ -1,5 +1,5 @@
 class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $translate) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -7,9 +7,11 @@ class PluginController {
     this.mockService = mockService;
     this.$scope = $scope;
     this.$log = $log;
-    //this.pluginObj = this.mockService.get('getSettings');
-    //this.$log.debug(this.pluginObj);
+    this.$translate = $translate;
+    // this.pluginObj = this.mockService.get('getSettings');
+    // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
+
     this.init();
   }
 
@@ -23,7 +25,13 @@ class PluginController {
           return item.id === value;
         })[0];
         if (item) {
-          data[value] = item.value;
+          if (item.element === 'equalizer') {
+            data[value] = item.config.bars.map((bar) => {
+              return bar.value;
+            });
+          } else {
+            data[value] = item.value;
+          }
         }
       });
       saveObj.data = data;
@@ -73,8 +81,10 @@ class PluginController {
     this.initService();
   }
 
+
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
+      // data.sections.unshift({coreSection: 'ui-settings'});
       // data.sections.unshift({coreSection: 'wifi'});
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
@@ -88,6 +98,7 @@ class PluginController {
   }
 
   initService() {
+    this.$log.debug('init', this.$stateParams);
     this.socketService.emit('getUiConfig',
         {'page': this.$stateParams.pluginName.replace('-', '/')});
   }

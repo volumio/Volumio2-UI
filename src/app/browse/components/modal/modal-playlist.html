@@ -8,13 +8,13 @@
         type="button"
         ng-click="modal.addToCustomPlaylist()"
         class="btn btn-info pull-right">
-      New
+      {{'COMMON.NEW' | translate}}
     </button>
     <div class="clearfix"></div>
     <ul class="list-group">
       <li class="list-group-item"
           ng-click="modal.addToFavourite()">
-        Favourites
+        {{'COMMON.FAVOURITES' | translate}}
       </li>
       <li ng-repeat="playlist in modal.playlistService.playlists track by $index"
           class="list-group-item"
@@ -26,7 +26,7 @@
   <div class="modal-footer">
     <!-- <button class="btn btn-primary" ng-click="modal.ok()">Add</button> -->
     <button class="btn btn-warning" ng-click="modal.cancel()">
-      Cancel
+      {{'COMMON.CANCEL' | translate}}
     </button>
   </div>
 </div>

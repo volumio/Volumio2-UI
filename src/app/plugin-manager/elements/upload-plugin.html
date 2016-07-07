@@ -1,0 +1,21 @@
+<div ng-if="!pluginManager.uploadPercentage">
+  <div
+      class="uploadDroppableArea"
+      ngf-drop="pluginManager.uploadPlugin()"
+      ngf-select="pluginManager.uploadPlugin()"
+      ngf-drag-over-class="'dragover'"
+      ng-model="pluginManager.pluginFile"
+      name="plugin">
+    <span translate="PLUGINS.DROP"></span>
+  </div>
+</div>
+
+
+<div id="installProgressBar" ng-if="pluginManager.uploadPercentage > 0">
+  <h3 translate="PLUGINS.INSTALL_PROGRESS">:</h3>
+  <uib-progressbar
+      class="progress-striped active"
+      value="pluginManager.uploadPercentage"
+      type="default">{{pluginManager.uploadPercentage}}%
+  </uib-progressbar>
+</div>

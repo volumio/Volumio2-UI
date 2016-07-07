@@ -1,12 +1,5 @@
-function config (
-    $logProvider,
-    toastrConfig,
-    themeManagerProvider,
-    theme,
-    $touchProvider,
-    env,
-    $locationProvider,
-    $httpProvider) {
+function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touchProvider, env, $locationProvider,
+  $httpProvider, $translateProvider) {
   'ngInject';
 
   $touchProvider.enabled = true;
@@ -21,6 +14,26 @@ function config (
   angular.extend(toastrConfig, {
     timeOut: 2000
   });
+
+  //i18n Configs
+  $translateProvider
+    .useStaticFilesLoader({
+      prefix: 'app/i18n/locale-',
+      suffix: '.json'
+    })
+    .registerAvailableLanguageKeys(['en', 'de', 'it', 'fr', 'ja', 'nl'], {
+      'en': 'en',
+      'de': 'de',
+      'it': 'it',
+      'fr': 'fr',
+      'ja': 'ja',
+      'nl': 'nl'
+    })
+    //Back end send default language, this improve translation consistency
+    // .determinePreferredLanguage()
+    // .preferredLanguage('en')
+    .fallbackLanguage('en');
+  $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 }
 
 export default config;

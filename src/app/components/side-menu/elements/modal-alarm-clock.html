@@ -2,7 +2,7 @@
   <h3 class="modal-title"><i class="fa fa-clock-o"></i> {{::modal.dataObj.name}}</h3>
 </div>
 <div class="modal-body">
-  <div ng-repeat="alarm in modal.alarms track by $index" class="row">
+  <div ng-repeat="alarm in modal.alarms track by $index" class="row alarm">
     <div class="col-xs-12 col-sm-6">
       <uib-timepicker
           ng-model="alarm.time"
@@ -33,7 +33,7 @@
           theme="bootstrap">
         <ui-select-match
             class="ui-select-match"
-            placeholder="Choose playlist">
+            placeholder="{{'COMMON.CHOOSE_PLAYLIST' | translate}}">
           {{$select.selected}}
         </ui-select-match>
         <ui-select-choices
@@ -47,7 +47,7 @@
       <button
           class="btn btn-danger"
           ng-click="modal.deleteAlarm(alarm)">
-        Delete
+        <span translate="COMMON.DELETE"></span>
       </button>
     </div>
   </div>
@@ -57,16 +57,16 @@
   <button
       class="btn btn-warning"
       ng-click="modal.cancel()">
-    Cancel
+    <span translate="COMMON.CANCEL"></span>
   </button>
   <button
       class="btn btn-info"
       ng-click="modal.add()">
-    Add
+    <span translate="COMMON.ADD"></span>
   </button>
   <button
       class="btn btn-info"
       ng-click="modal.save()">
-    Save
+    <span translate="COMMON.SAVE"></span>
   </button>
 </div>

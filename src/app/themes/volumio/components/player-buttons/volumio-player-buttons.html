@@ -2,7 +2,7 @@
   <button
       ng-click="playerButtons.playerService.prev()"
       class="btn btn-link"
-      title="Previous Track">
+      title="{{'BROWSER.PREVIOUS_TRACK' | translate}}">
     <i class="fa fa-step-backward"></i>
   </button>
 
@@ -12,7 +12,7 @@
           ng-if="playerButtons.playerService.state.status !== 'play'"
           ng-click="playerButtons.playerService.play()"
           class="btn btn-link playPause play"
-          title="Play">
+          title="{{'BROWSER.PLAY' | translate}}">
         <i class="fa fa-play"></i>
       </button>
       <button
@@ -20,7 +20,7 @@
           ng-click="playerButtons.playerService.pause()"
           class="btn btn-link playPause"
           ng-class="{active: playerButtons.playerService.state.status === 'play'}"
-          title="Pause">
+          title="{{'BROWSER.PAUSE' | translate}}">
         <i class="fa fa-pause"></i>
       </button>
       <button
@@ -35,7 +35,7 @@
   <button
       ng-click="playerButtons.playerService.next()"
       class="btn btn-link"
-      title="Next Track">
+      title="{{'BROWSER.NEXT_TRACK' | translate}}">
     <i class="fa fa-step-forward"></i>
   </button>
 </div>

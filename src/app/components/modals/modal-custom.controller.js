@@ -1,9 +1,10 @@
 class ModalCustomController {
-  constructor($uibModalInstance, dataObj, socketService) {
+  constructor($uibModalInstance, dataObj, socketService, $translate) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.dataObj = dataObj;
     this.socketService = socketService;
+    this.$translate = $translate;
   }
 
   ok() {
@@ -11,7 +12,7 @@ class ModalCustomController {
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss();
   }
 
   btnClick(button) {

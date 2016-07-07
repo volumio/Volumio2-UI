@@ -1,7 +1,8 @@
 class BrowseScrollManagerDirective {
-  constructor(browseService, $log) {
+  constructor(browseService, matchmediaService) {
     'ngInject';
     this.browseService = browseService;
+    this.matchmediaService = matchmediaService;
 
     let directive = {
       restrict: 'A',
@@ -32,7 +33,11 @@ class BrowseScrollManagerDirective {
     function scrollHandler() {
       /*jshint validthis:true */
       // $log.debug(browseService.currentFetchRequest.uri, this.scrollTop);
-      browseService.scrollPositions.set(browseService.currentFetchRequest.uri, this.scrollTop);
+      if ( browseService.currentFetchRequest && browseService.currentFetchRequest.uri) {
+        browseService.scrollPositions.set(browseService.currentFetchRequest.uri, this.scrollTop);
+      } else {
+        browseService.scrollPositions.set({}, this.scrollTop);
+      }
     }
 
     setTimeout(() => {
@@ -46,26 +51,39 @@ class BrowseScrollManagerDirective {
       // this.browseTablesWrapper.scrollTop = 0;
       // $log.debug(this.browseTablesWrapper);
       this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
-
-      browsePanelHeading = angular.element('#browsePanelHeading')[0];
-      footer = angular.element('#footer')[0];
-      this.browseTablesWrapper.style.height =
-          footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
-          browsePanelHeading.getBoundingClientRect().bottom + 'px';
+      setbrowseTablesWrapperHeight();
       this.setScrollTop();
     }, 100);
 
+    let setbrowseTablesWrapperHeight = () => {
+      browsePanelHeading = angular.element('#browsePanelHeading')[0];
+      footer = angular.element('#footer')[0];
+      if (this.browseTablesWrapper && footer && browsePanelHeading) {
+        this.browseTablesWrapper.style.height =
+            footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
+            browsePanelHeading.getBoundingClientRect().bottom + 'px';
+      }
+    };
+
     scope.$on('browseController:listRendered', () => {
-      this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
-      setTimeout(() => {
-        this.setScrollTop();
-        this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
-      }, 100);
+      if (this.browseTablesWrapper) {
+        this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
+        setTimeout(() => {
+          this.setScrollTop();
+          this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
+        }, 100);
+      }
     });
 
     scope.$on('$destroy', () => {
       this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
       this.contentWrapper.style.overflowY = 'auto';
+    });
+
+    this.matchmediaService.onPortrait((data) => {
+      setTimeout(function () {
+        setbrowseTablesWrapperHeight();
+      }, 50);
     });
   }
 }

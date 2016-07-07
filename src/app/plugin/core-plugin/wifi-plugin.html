@@ -7,12 +7,6 @@
     <h3 class="panel-title"><i class="fa fa-wifi"></i> Wireless network</h3>
   </div> -->
 
-
-  <button type="button" class="btn btn-link pull-right" ng-click="wifiPlugin.refreshWifiNetworks()">
-    <i class="fa fa-refresh" title="Refresh wifi networkw"></i>
-  </button>
-
-
   <div class="panel-body">
     <!-- <h4 ng-if="false" class="sectionDescription"></h4> -->
     <table class="table">
@@ -47,6 +41,7 @@
           <img
               ng-if="::wifi.signal >= 0"
               ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+          <i ng-if="::wifi.signal < 0" class="fa fa-eye-slash"></i>
         </td>
         <td class="lockIcon">
           <span ng-if="::wifi.security">
@@ -63,7 +58,7 @@
               type="button"
               class="btn btn-info">
             <i class="fa fa-link"></i>
-            <span class="hidden-xs"> Connect</span>
+            <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
           </button>
         </td>
       </tr>
@@ -93,10 +88,14 @@
                 ng-click="wifiPlugin.connectToWifi(wifi, $index)"
                 type="button"
                 name="btn btn-info">
-              Connect
+              <span translate="NETWORK.CONNECT"></span>
             </button>
         </td>
       </tr>
     </table>
+    <button type="button" class="btn btn-info" ng-click="wifiPlugin.refreshWifiNetworks()">
+      <i class="fa fa-refresh" title="Refresh WiFi Networks"></i>
+      <span translate="NETWORK.REFRESH"></span>
+    </button>
   </div>
 </div>

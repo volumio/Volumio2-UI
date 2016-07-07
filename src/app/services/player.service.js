@@ -132,10 +132,16 @@ class PlayerService {
   calculateElapsedTimeString() {
     //this.$log.debug(this.elapsedTime);
     let momentDuration = moment.duration(this.elapsedTime),
+      hours = momentDuration.hours(),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
-    this.elapsedTimeString = minutes + ':' +
+    if (this.hours > 0) {
+      this.elapsedTimeString = hours + ':' + minutes + ':' +
         ((seconds < 10) ? ('0' + seconds) : seconds);
+    } else {
+        this.elapsedTimeString = minutes + ':' +
+          ((seconds < 10) ? ('0' + seconds) : seconds);
+      }
   }
 
   startSeek() {
@@ -180,7 +186,7 @@ class PlayerService {
     } else if (volume > 100) {
       volume = 100;
     }
-    console.log('volume', volume);
+    this.$log.log('volume', volume);
     this.socketService.emit('volume', volume);
   }
 
@@ -215,6 +221,66 @@ class PlayerService {
     }
   }
 
+  loadFileFormatIcon() {
+    if (this.state.trackType) {
+      switch (this.state.trackType) {
+        case 'dff':
+          this.state.fileFormat = {
+            url: 'dsd',
+            name: 'dff dsd'
+          };
+          break;
+        case 'dsf':
+          this.state.fileFormat = {
+            url: 'dsd',
+            name: 'dsf dsd'
+          };
+          break;
+        case 'ogg':
+          this.state.fileFormat = {
+            url: 'ogg',
+            name: 'oga vorbis'
+          };
+          break;
+        case 'oga':
+          this.state.fileFormat = {
+            url: 'ogg',
+            name: 'ogg vorbis'
+          };
+          break;
+        case 'wv':
+          this.state.fileFormat = {
+            url: 'wavpack',
+            name: 'wavpack'
+          };
+          break;
+        case 'aac':
+        case 'aiff':
+        case 'alac':
+        case 'dsd':
+        case 'dts':
+        case 'flac':
+        case 'm4a':
+        case 'mp3':
+        case 'mp4':
+        case 'opus':
+        case 'spotify':
+        case 'wav':
+        case 'wawpack':
+        case 'wma':
+          this.state.fileFormat = {
+            url: this.state.trackType,
+            name: this.state.trackType
+          };
+          break;
+        default:
+          this.state.fileFormat = null;
+      }
+    } else {
+      this.state.fileFormat = null;
+    }
+  }
+
   registerListner() {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
@@ -242,17 +308,25 @@ class PlayerService {
         this.elapsedTimeString = undefined;
         this.songLength = undefined;
       }
+
+      //Forward emit event
+      this.$rootScope.$broadcast('socket:pushState', data);
+
       this.updatePageTitle();
       this.updateFavicon();
+      this.loadFileFormatIcon();
     });
+
     this.socketService.on('pushTrackInfo', (data) => {
       this.$log.debug('pushTrackInfo', data);
       this.trackInfo = data;
     });
+
     this.socketService.on('pushGetSeek', (data) => {
       this.$log.debug('pushGetSeek', data);
       this.seek = data;
     });
+
     this.socketService.on('urifavourites', (data) => {
       this.$log.debug('urifavourites', data);
       this.favourite = data;

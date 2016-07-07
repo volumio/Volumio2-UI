@@ -1,18 +1,23 @@
 <div class="trackInfoBar">
   <div class="leftInfo" >
     <div ng-show="trackInfoBar.playerService.state.status === 'play'">
-      <span class="green">Playing:</span>
+      <span class="green" translate="TRACK_MANAGER.PLAYING">:</span>
       {{trackInfoBar.playerService.state.title}}
 
       <span ng-if="trackInfoBar.playerService.state.artist">
-        <span class="small">by</span>
+        <span class="small" translate="TRACK_MANAGER.BY"></span>
         {{trackInfoBar.playerService.state.artist}}
       </span>
 
       <span ng-if="trackInfoBar.playerService.state.album">
-        <span class="small">from</span>
+        <span class="small" translate="TRACK_MANAGER.FROM"></span>
         {{trackInfoBar.playerService.state.album}}
       </span>
     </div>
+  </div>
+  <div
+      class="rightInfo"
+      ng-if="trackInfoBar.$state.current.name === 'volumio.play-queue'"
+      ng-include="'app/components/track-info-bar/elements/track-info-bar-buttons.html'">
   </div>
 </div>
