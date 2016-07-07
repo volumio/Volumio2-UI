@@ -3,6 +3,30 @@ function routerConfig ($stateProvider, $urlRouterProvider,
   'ngInject';
   console.info('[TEME]: ' + themeManagerProvider.theme);
 
+  const resolverFn = (
+    $rootScope,
+    $http,
+    $window,
+    socketService,
+    ripperService,
+    modalListenerService,
+    toastMessageService,
+    uiSettingsService,
+    updaterService) => {
+      let localhostApiURL = `http://${$window.location.hostname }/api`;
+      return $http.get(localhostApiURL + '/host').then((response) => {
+        console.info('IP from API', response);
+        $rootScope.initConfig = response.data;
+        socketService.host  = response.data.host;
+      }, () => {
+        //Fallback socket
+        console.info('IP from fallback');
+        return $http.get('/app/local-config.json').then((response) => {
+          socketService.host  = response.data.localhost;
+        });
+      });
+    };
+
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('volumio', {
@@ -27,29 +51,7 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       },
       resolve: {
         //NOTE this resolver init also global services like toast
-        socketResolver: (
-          $rootScope,
-          $http,
-          $window,
-          socketService,
-          ripperService,
-          modalListenerService,
-          toastMessageService,
-          uiSettingsService,
-          updaterService) => {
-            let localhostApiURL = `http://${$window.location.hostname }/api`;
-            return $http.get(localhostApiURL + '/host').then((response) => {
-              console.info('IP from API', response);
-              $rootScope.initConfig = response.data;
-              socketService.host  = response.data.host;
-            }, () => {
-              //Fallback socket
-              console.info('IP from fallback');
-              return $http.get('/app/local-config.json').then((response) => {
-                socketService.host  = response.data.localhost;
-              });
-            });
-          }
+        socketResolver: resolverFn
       }
     })
 
@@ -139,7 +141,19 @@ function routerConfig ($stateProvider, $urlRouterProvider,
           controllerAs: 'staticPage'
         }
       }
-    });
+    })
+
+    .state('volumio.wizard', {
+      url: 'wizard',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/wizard/wizard.html',
+          controller: 'WizardController',
+          controllerAs: 'wizard'
+        }
+      }
+    })
+    ;
 
   $urlRouterProvider.otherwise('/playback');
 }

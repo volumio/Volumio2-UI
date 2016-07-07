@@ -140,5 +140,14 @@
     "ONLINE":"Online",
     "CONNECT":"Connetti",
     "REFRESH":"Aggiorna"
+  },
+  "WIZARD": {
+    "LANGUAGE": "Lingua",
+    "NAME": "Nome",
+    "OUTPUT": "Uscite",
+    "NETWORK": "Rete",
+    "MUSIC": "Musica",
+    "DONE": "Fatto",
+    "SELECT_YOUR_LANGUAGE": "Seleziona la tua lingadsua"
   }
 }

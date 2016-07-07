@@ -47,6 +47,7 @@ import ModalController from './components/modals/modal.controller';
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
+import PluginComponent from './plugin/components/plugin.component';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -63,6 +64,8 @@ import PlayQueueController from './play-queue/play-queue.controller';
 
 import PluginController from './plugin/plugin.controller';
 import PluginManagerController from './plugin-manager/plugin-manager.controller';
+
+import WizardController from './wizard/wizard.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -108,10 +111,12 @@ angular.module('volumio', [
   'hmTouchEvents',
   'ngFileUpload',
   'pascalprecht.translate',
+  'cg.mailchimp',
 
   //Angular core modules
   // 'ngAnimate',
   // 'ngCookies',
+  'ngResource',
   'ngTouch',
   'ngSanitize'
   ])
@@ -175,10 +180,13 @@ angular.module('volumio', [
 
   .controller('PluginController', PluginController)
   .controller('PluginManagerController', PluginManagerController)
+  .component('pluginComponent', new PluginComponent())
 
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
+
+  .controller('WizardController', WizardController)
 
   .controller('ModalController', ModalController)
   .controller('ModalPlaylistController', ModalPlaylistController)
