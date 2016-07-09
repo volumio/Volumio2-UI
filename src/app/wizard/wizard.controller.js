@@ -33,8 +33,7 @@ class WizardController {
     // console.log(this.wizardDetails);
     //End mock
 
-    this.currentStep = this.wizardDetails.steps[0];
-    this.wizardData.defaultLanguage = this.wizardDetails.language.defaultLanguage;
+
 
     this.$scope.$on('$destroy', () => {
       this.$window.contentWrapper.style.zIndex = 1;
@@ -174,11 +173,13 @@ class WizardController {
     this.socketService.on('pushWizardSteps', (data) => {
       this.$log.debug('pushWizardSteps', data);
       this.wizardDetails.steps = data;
+      this.currentStep = this.wizardDetails.steps[0];
     });
 
     this.socketService.on('pushAvailableLanguages', (data) => {
       this.$log.debug('pushAvailableLanguages', data);
       this.wizardDetails.language = data;
+      this.wizardData.defaultLanguage = this.wizardDetails.language.defaultLanguage;
       this.setBrowserLangAsDefault();
     });
 
