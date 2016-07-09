@@ -11,7 +11,7 @@
   <div>
     <br>
     <h4 translate="WIZARD.DEVICE_ADDRESS"></h4>
-    http://{{wizard.wizardDetails.deviceName.name.replace(' ', '-')}}.local
+    http://{{wizard.wizardDetails.deviceName.name.split(' ').join('-').toLowerCase()}}.local
     <!-- <a href ng-click="wizard.addToBookmark($event)">Add to </a> -->
   </div>
 </div>

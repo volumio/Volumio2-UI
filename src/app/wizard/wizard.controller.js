@@ -54,17 +54,18 @@ class WizardController {
         break;
       case 'name':
         if (this.deviceNameform.$valid) {
-          this.$log.debug('setDeviceName', this.wizardData.deviceName.replace(' ', '-'));
-          this.socketService.emit('setDeviceName', this.wizardData.deviceName.replace(' ', '-'));
+          this.$log.debug('setDeviceName', this.wizardDetails.deviceName);
+          this.socketService.emit('setDeviceName', this.wizardDetails.deviceName);
         }
         break;
       case 'output':
         if (this.wizardData.showI2sOption) {
-          emitPayload = this.wizardData.selectedI2s;
+          emitPayload = {'i2s':true,'i2sid':{'value':this.wizardData.selectedI2s.id,'label':this.wizardData.selectedI2s.name},'output_device':{'value':0,'label':this.wizardData.selectedI2s.name}};
         } else {
-          emitPayload = this.wizardData.selectedDevice;
+          emitPayload = {'i2s':false,'output_device':{'value':this.wizardData.selectedDevice.id,'label':this.wizardData.selectedDevice.name}};
         }
         this.$log.debug('setOutputDevices', emitPayload);
+        this.$log.debug(this.wizardData.selectedI2s);
         this.socketService.emit('setOutputDevices', emitPayload);
         break;
     }
@@ -190,7 +191,7 @@ class WizardController {
 
     this.socketService.on('pushOutputDevices', (data) => {
       this.$log.debug('pushOutputDevices', data);
-      this.wizardDetails.pushOutputDevices = data;
+      this.wizardDetails.outputDevices = data;
     });
 
     this.socketService.on('pushDonationAmounts', (data) => {
