@@ -6,7 +6,7 @@ rm -rf dist || exit 0;
 mkdir dist;
 
 # Build Volumio UI
-gulp build --theme="volumio"
+gulp build --theme="volumio" --env="production"
 
 # go to the dist directory and create a *new* Git repo
 cd dist
