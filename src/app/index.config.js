@@ -25,7 +25,7 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       'en': 'en',
       'da': 'da',
       'de': 'de',
-	  'es': 'es',
+      'es': 'es',
       'it': 'it',
       'fr': 'fr',
       'ja': 'ja',
