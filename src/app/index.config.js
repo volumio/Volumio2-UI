@@ -21,10 +21,11 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       prefix: 'app/i18n/locale-',
       suffix: '.json'
     })
-    .registerAvailableLanguageKeys(['en', 'da', 'de', 'it', 'fr', 'ja', 'nl', 'pl', 'zh'], {
+    .registerAvailableLanguageKeys(['en', 'da', 'de', 'es', 'it', 'fr', 'ja', 'nl', 'pl', 'zh'], {
       'en': 'en',
       'da': 'da',
       'de': 'de',
+	  'es': 'es',
       'it': 'it',
       'fr': 'fr',
       'ja': 'ja',
