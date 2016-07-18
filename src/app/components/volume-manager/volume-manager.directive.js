@@ -40,6 +40,8 @@ class VolumeManagerController {
       };
     }
 
+    this.volume = playerService.volume;
+
     // NOTE this watches are for decouple the playerService.volume
     // from the knob value. The playerService.volume (getter) value
     // is delayed by the BE callback. This prevent the knob from go
