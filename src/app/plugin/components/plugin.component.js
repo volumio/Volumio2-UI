@@ -3,7 +3,7 @@ class PluginComponent {
     'ngInject';
     let component = {
       bindings: {
-        pluginName: '@',
+        pluginName: '@'
       },
       templateUrl: 'app/plugin/components/plugin-component.html',
       controller: PluginComponentController,
@@ -15,7 +15,7 @@ class PluginComponent {
 }
 
 class PluginComponentController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $translate) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -23,11 +23,12 @@ class PluginComponentController {
     this.mockService = mockService;
     this.$scope = $scope;
     this.$log = $log;
-    this.$translate = $translate;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
+  }
 
+  $onInit() {
     this.init();
   }
 
@@ -108,9 +109,10 @@ class PluginComponentController {
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
     });
-    this.$scope.$on('$destroy', () => {
-      this.socketService.off('pushUiConfig');
-    });
+  }
+
+  $onDestroy() {
+    this.socketService.off('pushUiConfig');
   }
 
   initService() {

@@ -21,7 +21,9 @@ class WizardController {
     this.$window.wizardScrim.style.display = 'block';
     this.registerListner();
     this.initService();
-    this.wizardDetails = {};
+    this.wizardDetails = {
+      steps: []
+    };
     this.wizardData = {
       deviceName: '',
       showI2sOption: false
@@ -59,13 +61,28 @@ class WizardController {
         }
         break;
       case 'output':
-        if (this.wizardData.showI2sOption) {
-          emitPayload = {'i2s':true,'i2sid':{'value':this.wizardData.selectedI2s.id,'label':this.wizardData.selectedI2s.name},'output_device':{'value':0,'label':this.wizardData.selectedI2s.name}};
+        if (this.wizardDetails.outputDevices.i2s.enabled) {
+          emitPayload = {
+            'i2s': true,
+            'i2sid': {
+              'value': this.wizardData.selectedI2s.id,
+              'label': this.wizardData.selectedI2s.name
+            },
+            'output_device': {
+              'value': 0,
+              'label': this.wizardData.selectedI2s.name
+            }
+          };
         } else {
-          emitPayload = {'i2s':false,'output_device':{'value':this.wizardData.selectedDevice.id,'label':this.wizardData.selectedDevice.name}};
+          emitPayload = {
+            'i2s': false,
+            'output_device': {
+              'value': this.wizardData.selectedDevice.id,
+              'label': this.wizardData.selectedDevice.name
+            }
+          };
         }
         this.$log.debug('setOutputDevices', emitPayload);
-        this.$log.debug(this.wizardData.selectedI2s);
         this.socketService.emit('setOutputDevices', emitPayload);
         break;
     }
@@ -83,9 +100,7 @@ class WizardController {
         this.socketService.emit('getOutputDevices');
         break;
       case 'done':
-        if (!this.wizardDetails.donation) {
-          this.socketService.emit('getDonationAmounts');
-        }
+        this.socketService.emit('getDonePage');
         break;
     }
   }
@@ -100,10 +115,10 @@ class WizardController {
       this.CgMailChimpService.subscribe(this.wizardData.mailListData)
       .then(() => {
           this.wizardData.mailListSubscribed = true;
-      },
-      (reason) => {
-        this.$log.log('Mailchimp subscription error', reason);
-      });
+        },
+        (reason) => {
+          this.$log.log('Mailchimp subscription error', reason);
+        });
     }
   }
 
@@ -134,12 +149,12 @@ class WizardController {
   }
 
   addToBookmark(event) {
-    var bookmarkURL = window.location.href;
-    var bookmarkTitle = document.title;
+    let bookmarkURL = window.location.href;
+    let bookmarkTitle = document.title;
 
     if ('addToHomescreen' in window && window.addToHomescreen.isCompatible) {
       // Mobile browsers
-      window.addToHomescreen({ autostart: false, startDelay: 0 }).show(true);
+      window.addToHomescreen({autostart: false, startDelay: 0}).show(true);
     } else if (window.sidebar && window.sidebar.addPanel) {
       // Firefox version < 23
       window.sidebar.addPanel(bookmarkTitle, bookmarkURL, '');
@@ -180,7 +195,7 @@ class WizardController {
     this.socketService.on('pushAvailableLanguages', (data) => {
       this.$log.debug('pushAvailableLanguages', data);
       this.wizardDetails.language = data;
-      this.wizardData.defaultLanguage = this.wizardDetails.language.defaultLanguage;
+      this.wizardData.defaultLanguage = this.wizardDetails.language.defaultLanguage.code;
       this.setBrowserLangAsDefault();
     });
 
@@ -192,11 +207,16 @@ class WizardController {
     this.socketService.on('pushOutputDevices', (data) => {
       this.$log.debug('pushOutputDevices', data);
       this.wizardDetails.outputDevices = data;
+      this.wizardData.selectedDevice = {name: data.devices.active};
+      this.wizardData.selectedI2s = {name: data.i2s.active};
     });
 
-    this.socketService.on('pushDonationAmounts', (data) => {
-      this.$log.debug('pushDonationAmounts', data);
-      this.wizardDetails.donation = data;
+    this.socketService.on('pushDonePage', (data) => {
+      this.$log.debug('pushDonePage', data);
+      this.wizardDetails.done = data;
+      if (data.donation) {
+        this.setDonationAmount(data.donationAmount.donationAmount);
+      }
     });
 
     this.$scope.$on('$destroy', () => {

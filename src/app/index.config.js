@@ -30,7 +30,10 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       suffix: '.json'
     })
     .registerAvailableLanguageKeys(['en', 'de', 'it', 'fr', 'ja', 'nl'], {
-      'en': 'en',
+      'en-US': 'en',
+      'en-UK': 'en',
+      'de-DE': 'de',
+      'de-CH': 'de',
       'de': 'de',
       'it': 'it',
       'fr': 'fr',

@@ -4,7 +4,7 @@
     <input
         id="outpu-switch"
         bs-switch
-        ng-model="wizard.wizardData.showI2sOption"
+        ng-model="wizard.wizardDetails.outputDevices.i2s.enabled"
         type="checkbox"
         switch-size="medium"
         switch-animate="false"
@@ -14,7 +14,7 @@
         ng-false-value="false">
   </div>
 
-  <div ng-show="!wizard.wizardData.showI2sOption">
+  <div ng-show="!wizard.wizardDetails.outputDevices.i2s.enabled">
     <h3 translate="WIZARD.SELECT_YOUR_AUDIO_OUTPUT"></h3>
 
     <ui-select
@@ -31,13 +31,13 @@
       </ui-select-match>
       <ui-select-choices
           class="ui-select-choices"
-          repeat="device in wizard.wizardDetails.outputDevices.devices track by $index">
+          repeat="device in wizard.wizardDetails.outputDevices.devices.available track by $index">
         <div ng-bind-html="device.name"></div>
       </ui-select-choices>
     </ui-select>
   </div>
 
-  <div ng-show="wizard.wizardData.showI2sOption">
+  <div ng-show="wizard.wizardDetails.outputDevices.i2s.enabled">
     <h3 translate="WIZARD.SELECT_YOUR_I2S_DAC"></h3>
 
     <ui-select
@@ -54,7 +54,7 @@
       </ui-select-match>
       <ui-select-choices
           class="ui-select-choices"
-          repeat="device in wizard.wizardDetails.outputDevices.i2s track by $index">
+          repeat="device in wizard.wizardDetails.outputDevices.i2s.available track by $index">
         <div ng-bind-html="device.name"></div>
       </ui-select-choices>
     </ui-select>
