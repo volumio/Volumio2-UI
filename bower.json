@@ -22,7 +22,7 @@
     "socket.io": "~1.4.0",
     "ui-router-extras": "~0.1.0",
     "matchmedia-ng": "^1.0.5",
-    "AngularHammer": "ryanmullins-angular-hammer#^2.1.10",
+    "AngularHammer": "https://github.com/RyanMullins/angular-hammer.git#3a85d4d36f387f79bad1dc65a1708bbbaef24663",
     "ngDraggable": "git://github.com/fatlinesofcode/ngDraggable.git#92bacff"
   },
   "devDependencies": {
