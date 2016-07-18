@@ -133,7 +133,7 @@ class TrackManagerController {
       return this.playerService.state && this.playerService.state.albumart;
     }, (newVal) => {
       if (this.matchmediaService.isPhone) {
-        let albumArtUrl = `url('${this.socketService.host}${newVal}')`;
+        let albumArtUrl = `url('${this.playerService.getAlbumart(newVal)}')`;
         this.backgroundAlbumArtStyle = {
           'background-image': albumArtUrl
         };
@@ -146,7 +146,7 @@ class TrackManagerController {
       if (this.matchmediaService.isPhone) {
         let albumart = this.playerService.state && this.playerService.state.albumart;
         if (albumart) {
-          let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
+          let albumArtUrl = `url('${this.playerService.getAlbumart(albumart)}')`;
           this.backgroundAlbumArtStyle = {
             'background-image': albumArtUrl
           };
