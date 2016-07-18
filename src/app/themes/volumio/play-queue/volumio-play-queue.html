@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div id="playQueue">
-    <!-- ng-include src="'app/play-queue/elements/play-queue-table-items.html'" -->
+    <track-info-bar-buttons ng-if="playQueue.matchmediaService.isPhone"></track-info-bar-buttons>
     <div id="playQueueList">
       <ul></ul>
     </div>

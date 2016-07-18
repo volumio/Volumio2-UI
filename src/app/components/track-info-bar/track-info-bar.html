@@ -15,9 +15,8 @@
       </span>
     </div>
   </div>
-  <div
+  <track-info-bar-buttons
       class="rightInfo"
-      ng-if="trackInfoBar.$state.current.name === 'volumio.play-queue'"
-      ng-include="'app/components/track-info-bar/elements/track-info-bar-buttons.html'">
-  </div>
+      ng-if="trackInfoBar.$state.current.name === 'volumio.play-queue'">
+  </track-info-bar-buttons>
 </div>
