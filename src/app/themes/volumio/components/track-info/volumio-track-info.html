@@ -15,7 +15,7 @@
   <div ng-if="trackInfo.playerService.state.albumart">
     <img
         ng-if="trackInfo.playerService.state.albumart"
-        ng-src="{{trackInfo.playerService.socketService.host + trackInfo.playerService.state.albumart}}"
+        ng-src="{{trackInfo.playerService.albumart}}"
         alt="{{trackInfo.playerService.state.album}}"/>
     <i
         ng-if="trackInfo.playerService.state.icon"
