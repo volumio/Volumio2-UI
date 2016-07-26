@@ -192,19 +192,35 @@ class BrowseController {
       let angularThis = `angular.element('#browseTableItems').scope().browse`;
       for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
         let item = this.browseService.list[i];
-        this.table += `
-        <tr>
-          <td class="rowTitle ${(item.type !== 'title') ? 'hidden' : ''}" colspan="3">
-            <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
-          </td>
-          <td class="image ${(item.type === 'title') ? 'hidden' : ''}">
+        this.table += `<tr>`;
+
+        if (item.type === 'title') {
+          this.table += `
+            <td class="rowTitle" colspan="3">
+              <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
+            </td>`;
+        }
+
+        if (item.type !== 'title') {
+          this.table += `<td class="image">`;
+
+          if (!item.icon) {
+            this.table += `
             <img
-                class="${(!item.icon) ? '' : 'hidden'}"
                 ${(!item.icon) ? 'src="' + this.playerService.getAlbumart(item.albumart) + '"' : ''}
-                alt="${item.title}"/>
-            <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
-          </td>
-          <td class="breakMe ${(item.type === 'title') ? 'hidden' : ''}"
+                alt="${item.title}"/>`;
+          }
+
+          if (item.icon) {
+            this.table += `<i class="${item.icon}"></i>`;
+          }
+
+          this.table += `</td>`;
+        }
+
+        if (item.type !== 'title') {
+          this.table += `
+          <td class="breakMe"
               onclick="${angularThis}.clickListItemByIndex(${i})"
               ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
             <div class="title">
@@ -215,16 +231,18 @@ class BrowseController {
               ${item.artist} - ${item.album}
             </div>
           </td>
-          <td class="commandButtons ${(item.type === 'title') ? 'hidden' : ''}">
+          <td class="commandButtons">
             <div class="hamburgerMenu
-                ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ? 'hidden' : ''}">
-              <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})" title="Options...">
+                ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
+                    'hidden' : ''}">
+              <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})"
+                  title="Options...">
                 <i class="fa fa-bars"></i>
               </button>
             </div>
-          </td>
-        </tr>
-        `;
+          </td>`;
+        }
+        this.table += `</tr>`;
       }
       let tbody = document.createElement('tbody');
       window.requestAnimationFrame(() => {
@@ -255,7 +273,7 @@ class BrowseController {
              d.type.toUpperCase() === 'SEARCH' ||
              d.type.toUpperCase() === 'EMAIL' ||
              d.type.toUpperCase() === 'NUMBER' ||
-             d.type.toUpperCase() === 'DATE' )
+             d.type.toUpperCase() === 'DATE')
           ) ||
           d.tagName.toUpperCase() === 'TEXTAREA') {
         prventDefault = d.readOnly || d.disabled;
