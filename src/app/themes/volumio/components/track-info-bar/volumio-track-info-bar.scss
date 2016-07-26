@@ -1,6 +1,6 @@
 .trackInfoBar {
   @include make-row();
-  background-color: $volumio-grey-trans-dark;
+  background-color: $volumio-black-trans-dark;
   height: 35px;
   overflow: hidden;
   .leftInfo {

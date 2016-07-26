@@ -78,6 +78,10 @@ class UiSettingsService {
     this.$log.debug('UiSettingsService is listening');
 
     this.socketService.on('pushUiSettings', (data) => {
+      if (data.background.path.indexOf(this.socketService.host) === -1) {
+        var bg = `${this.socketService.host}/backgrounds/${data.background.path}`;
+        data.background.path = bg;
+      }
       this.$log.debug('pushUiSettings', data);
       //Check for language switch
       if (this.uiSettings && this.uiSettings.language !== data.language) {

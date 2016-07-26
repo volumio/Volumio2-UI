@@ -20,8 +20,8 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       username: 'volumio',
       dc: 'us11',
       u: '64b4a843c27713ee9da781aa9',
-      id:'030f96ce5c'
-  });
+      id: '030f96ce5c'
+    });
 
   //i18n Configs
   $translateProvider
@@ -29,16 +29,20 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       prefix: 'app/i18n/locale-',
       suffix: '.json'
     })
-    .registerAvailableLanguageKeys(['en', 'de', 'it', 'fr', 'ja', 'nl'], {
+    .registerAvailableLanguageKeys(['en', 'da', 'de', 'es', 'it', 'fr', 'ja', 'nl', 'pl', 'sv', 'zh'], {
       'en-US': 'en',
       'en-UK': 'en',
       'de-DE': 'de',
       'de-CH': 'de',
-      'de': 'de',
+      'da': 'da',
+      'es': 'es',
       'it': 'it',
       'fr': 'fr',
       'ja': 'ja',
-      'nl': 'nl'
+      'nl': 'nl',
+      'pl': 'pl',
+      'sv': 'sv',
+      'zh': 'zh'
     })
     //Back end send default language, this improve translation consistency
     // .determinePreferredLanguage()
