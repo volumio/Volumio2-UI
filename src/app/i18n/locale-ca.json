@@ -48,7 +48,7 @@
   	"STOP_MUSIC":"Atura Música"
   },
   "BROWSER": {
-   	"PLAY":"Play",
+    "PLAY":"Play",
   	"ADD_TO_QUEUE":"Afegir a la cua",
   	"ADD_TO_PLAYLIST":"Afegir a la llista",
   	"REMOVE_FROM_PLAYLIST":"Eliminar de llista de reproducció",
@@ -104,7 +104,7 @@
   	"CLEAR_QUEUE":"esborrar cua"
   },
   "NETWORKFS":{
-   	"NO_DRIVES_FOUND":"No s'han trobat unitats de xarxa",
+    "NO_DRIVES_FOUND":"No s'han trobat unitats de xarxa",
   	"ALIAS":"àlies",
   	"ALIAS_DOC":"Triar un àlies que es mostrarà en muntar NAS",
   	"NAS_IP_ADDRESS":"Adreça IP del NAS",
@@ -132,14 +132,14 @@
   	"PLACEHOLDER_PATH_TO_SHARE":"Ruta/a/Compartir"
   },
   "NETWORK":{
-    "NETWORK_STATUS":"Network Status",
+    "NETWORK_STATUS":"Estat de la xarxa",
     "SSID":"SSID",
     "SIGNAL":"Signal",
     "IP_ADDRESS":"IP Address",
     "SPEED":"Speed",
     "ONLINE":"Online",
     "CONNECT":"Connect",
-    "REFRESH":"Refresh"	"NETWORK_STATUS":"Estat de la xarxa",
+    "REFRESH":"Refresh",
 	"SSID":"SSID",
   	"SIGNAL":"Senyal",
   	"IP_ADDRESS":"Adreça IP",
