@@ -34,7 +34,7 @@ class PlayQueueController {
           <span class="rollover"></span>
           <img
               class="${(!item.icon) ? '' : 'hidden'}"
-              ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
+              ${(!item.icon) ? 'src="' +  this.playerService.getAlbumart(item.albumart) + '"' : ''}
               alt="${item.title}"/>
           <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
         </div>

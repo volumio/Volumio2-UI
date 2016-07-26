@@ -59,7 +59,7 @@ The file will look like
 ```
 
 
-Now, feel free to edit and see live changes on a local browser with dinamically generated UI. To do so:
+Now, feel free to edit and see live changes on a local browser with dynamically generated UI. To do so:
 
 ```shell
 gulp serve --theme="volumio"
