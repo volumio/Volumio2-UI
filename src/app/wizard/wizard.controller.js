@@ -182,6 +182,9 @@ class WizardController {
     });
     if (isLangAvailable) {
       this.wizardDetails.language.defaultLanguage = isLangAvailable;
+      this.$translate.use(isLangAvailable.code);
+    } else {
+      this.$translate.use('en');
     }
   }
 

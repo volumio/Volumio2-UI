@@ -51,7 +51,6 @@ class UiSettingsService {
   setLanguage() {
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
-      this.$translate.use(this.browserLanguage);
     } else {
       this.$translate.use(this.uiSettings.language);
     }
