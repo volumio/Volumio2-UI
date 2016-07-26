@@ -54,6 +54,14 @@ class BrowseController {
     }
   }
 
+  replaceAndPlay(item) {
+    if (item.type === 'cuesong') {
+      this.playQueueService.replaceAndPlayCue(item);
+    } else {
+      this.playQueueService.replaceAndPlay(item);
+    }
+  }
+
   clickListItem(item) {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong') {
       this.fetchLibrary(item);

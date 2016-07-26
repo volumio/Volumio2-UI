@@ -8,6 +8,11 @@
     title="Add to queue">
   <a href><i class="fa fa-list"></i><span translate="BROWSER.ADD_TO_QUEUE"></span></a></a>
 </li>
+<li ng-if="::browse.showPlayButton(item)"
+    ng-click="browse.replaceAndPlay(item)"
+    title="Add to queue">
+  <a href><i class="fa fa-list"></i><span translate="BROWSER.CLEAR_AND_PLAY"></span></a></a>
+</li>
 
 <li ng-if="::browse.showAddToPlaylist(item)"
     ng-click="browse.addToPlaylist(item)"
