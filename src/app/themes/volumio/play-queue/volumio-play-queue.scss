@@ -3,6 +3,25 @@
   background-color: $volumio-black-trans-dark;
   user-select: none;
   cursor: pointer;
+  position: relative;
+
+  @include breakpoint('xs') {
+    padding-top: 36px;
+  }
+
+  overflow: hidden;
+  height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+
+  track-info-bar-buttons {
+    position: absolute;
+    top: 0;
+    height: 36px;
+  }
+
+  #playQueueList {
+    overflow: auto;
+    height: 100%;
+  }
 
   ul {
     padding: 0;
