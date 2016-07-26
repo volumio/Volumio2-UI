@@ -4,7 +4,7 @@
       ng-if="!wizard.matchmediaService.isPhone"
       class="btn btn-link btn-navigator"
       type="button"
-
+      ng-click="wizard.gotoStep(step)"
       ng-repeat="step in wizard.wizardDetails.steps track by step"
       ng-class="{selected: wizard.currentStep === step}">
     {{'WIZARD.' + step | uppercase | translate}}

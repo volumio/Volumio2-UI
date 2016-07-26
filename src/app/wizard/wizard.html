@@ -3,7 +3,7 @@
     <ng-include src="'app/wizard/partials/wizard-navigator.html'"></ng-include>
 
     <div class="row">
-      <ng-include src="'app/wizard/views/wizard-' + wizard.currentStep.toLowerCase() + '.html'"></ng-include>
+      <ng-include ng-if="wizard.currentStep" src="'app/wizard/views/wizard-' + wizard.currentStep.toLowerCase() + '.html'"></ng-include>
     </div>
 
     <ng-include src="'app/wizard/partials/wizard-button-bar.html'"></ng-include>

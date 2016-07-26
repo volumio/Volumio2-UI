@@ -49,7 +49,6 @@ class UiSettingsService {
   }
 
   setLanguage() {
-    console.log(location.href);
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
       this.$translate.use(this.browserLanguage);
@@ -59,7 +58,7 @@ class UiSettingsService {
   }
 
   getBrowserDefaultLanguage() {
-    const browserLanguagePropertyKeys = ['language', 'languages', 'browserLanguage', 'userLanguage', 'systemLanguage'];
+    const browserLanguagePropertyKeys = ['languages', 'language', 'browserLanguage', 'userLanguage', 'systemLanguage'];
     let langArray = [];
     browserLanguagePropertyKeys.forEach((prop) => {
       if (prop in window.navigator) {
@@ -70,8 +69,8 @@ class UiSettingsService {
         }
       }
     });
-    this.$log.debug('Console defaultLanguage', langArray[0]);
-    return langArray[0] || 'en';
+    this.$log.debug('Navigator defaultLanguage', langArray[0]);
+    return langArray[0].substr(0, 2) || 'en';
   }
 
   registerListner() {
@@ -105,15 +104,13 @@ class UiSettingsService {
           background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
           return background;
         }));
-        this.setBackground();
+      this.setBackground();
     });
 
     this.socketService.on('pushWizard', (data) => {
       this.$log.debug('pushWizard', data);
       if (data.openWizard) {
-        if (!~location.href.indexOf('wizard')) {
-          location.href = '/wizard';
-        }
+        this.$state.go('volumio.wizard');
       }
     });
   }
