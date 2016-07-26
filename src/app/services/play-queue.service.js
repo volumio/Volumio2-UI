@@ -31,6 +31,24 @@ class PlayQueueService {
     });
   }
 
+  replaceAndPlay(item) {
+    this.$log.debug('PlayQueueService replaceAndPlay', item);
+    this.socketService.emit('replaceAndPlay', {
+      uri: item.uri,
+      title: item.title,
+      service: (item.service || null)
+    });
+  }
+
+  replaceAndPlayCue(item) {
+    this.$log.debug('PlayQueueService replaceAndPlayCue', item);
+    this.socketService.emit('replaceAndPlayCue', {
+      uri: item.uri,
+      title: item.title,
+      service: (item.service || null)
+    });
+  }
+
   playPlaylist(index) {
     this.$log.debug('PlayQueueService playPlaylist', index);
     this.socketService.emit('playPlaylist', {name: index.title});
