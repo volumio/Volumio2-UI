@@ -180,19 +180,37 @@ class BrowseController {
     let angularThis = `angular.element('#browseTableItems').scope().browse`;
     for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
       let item = this.browseService.list[i];
-      this.table += `
-      <tr>
-        <td class="image">
+      this.table += `<tr>`;
+
+      if (item.type === 'title') {
+        this.table += `
+          <td class="rowTitle" colspan="3">
+            <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
+          </td>`;
+      }
+
+      if (item.type !== 'title') {
+        this.table += `<td class="image">`;
+
+        if (!item.icon) {
+          this.table += `
           <img
-              class="${(!item.icon) ? '' : 'hidden'}"
               ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
-              alt="${item.title}"/>
-          <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
-        </td>
-        <td
+              alt="${item.title}"/>`;
+        }
+
+        if (item.icon) {
+          this.table += `<i class="${item.icon}"></i>`;
+        }
+
+        this.table += `</td>`;
+      }
+
+      if (item.type !== 'title') {
+        this.table += `
+        <td class="breakMe"
             onclick="${angularThis}.clickListItemByIndex(${i})"
-            ondblclick="${angularThis}.dblClickListItemByIndex(${i})"
-            class="breakMe">
+            ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
           <div class="title">
             ${item.title}
           </div>
@@ -203,14 +221,16 @@ class BrowseController {
         </td>
         <td class="commandButtons">
           <div class="hamburgerMenu
-              ${(item.type === 'radio-favourites' || item.type === 'radio-category') ? 'hidden' : ''}">
-            <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})" title="Options...">
+              ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
+                  'hidden' : ''}">
+            <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})"
+                title="Options...">
               <i class="fa fa-bars"></i>
             </button>
           </div>
-        </td>
-      </tr>
-      `;
+        </td>`;
+      }
+      this.table += `</tr>`;
     }
     let tbody = document.createElement('tbody');
     window.requestAnimationFrame(() => {
