@@ -15,7 +15,13 @@
   track-info-bar-buttons {
     position: absolute;
     top: 0;
+    width: 100vw;
     height: 36px;
+    text-align: center;
+    button {
+      padding: 0px 18px;
+      font-size: 24px;
+    }
   }
 
   #playQueueList {
