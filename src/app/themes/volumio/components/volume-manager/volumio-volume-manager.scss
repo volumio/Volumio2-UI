@@ -19,6 +19,9 @@
         margin: 14px 0px;
         transform: rotate(0deg);
       }
+      button {
+        pointer-events: auto;
+      }
       .bigText {
         color: $volumio-green-color;
         font-size: 28px;

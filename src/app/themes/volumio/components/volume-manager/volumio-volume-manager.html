@@ -4,7 +4,7 @@
       <div class="headerText green">
         <span ng-if="volumeManager.playerService.state.mute">Muted</span>
       </div>
-      <div class="bigText">{{volumeManager.playerService.state.volume}}</div>
+      <div class="bigText">{{volumeManager.playerService.volume}}</div>
       <div class="smallText">/100</div>
     </div>
     <knob
@@ -37,6 +37,11 @@
   <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
     <div class="bigText">{{volumeManager.playerService.state.volume}}</div>
     <div class="smallText">/100</div>
+
+    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="Volume Up">
+      <i class="fa fa-volume-up"></i>
+    </button>
+
     <slider
         class="volumeSlider"
         ng-class="{disabled: volumeManager.playerService.state.mute}"
@@ -48,6 +53,10 @@
         reversed="true"
         orientation="vertical">
     </slider>
+
+    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link" title="Volume Down">
+      <i class="fa fa-volume-down"></i>
+    </button>
   </div>
   <button
       id="openVolumeVerticalSlider"

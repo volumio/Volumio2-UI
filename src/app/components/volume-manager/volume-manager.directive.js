@@ -62,7 +62,7 @@ class VolumeManagerController {
         $timeout.cancel(this.timeoutHandler);
         this.timeoutHandler2 = $timeout(() => {
           this.volume = value;
-        }, 220, false);
+        }, 20, true);
       }
     });
   }
@@ -71,7 +71,7 @@ class VolumeManagerController {
     if (this.playerService.state.mute) {
       this.knobOptions.fgColor = this.knobFgColor;
     } else {
-      this.knobOptions.fgColor = "#999";
+      this.knobOptions.fgColor = '#999';
     }
     this.playerService.toggleMute();
   }
