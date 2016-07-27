@@ -1,6 +1,6 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, $translate) {
+      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, $translate, playerService) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -8,6 +8,7 @@ class BrowseController {
     this.playlistService = playlistService;
     this.socketService = socketService;
     this.modalService = modalService;
+    this.playerService = playerService;
     this.$timeout = $timeout;
     this.matchmediaService = matchmediaService;
     this.$compile = $compile;
@@ -212,11 +213,9 @@ class BrowseController {
         if (item.type !== 'title') {
           this.table += `<td class="image">`;
 
-          if (!item.icon) {
+          if (!item.icon && item.albumart) {
             this.table += `
-            <img
-                ${(!item.icon) ? 'src="' + this.playerService.getAlbumart(item.albumart) + '"' : ''}
-                alt="${item.title}"/>`;
+            <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
           }
 
           if (item.icon) {
