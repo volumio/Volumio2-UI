@@ -304,9 +304,11 @@ class PlayerService {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
       this.state = data;
+
       if (!this.state.mute && this.state.volume) {
         this.lastVolume = this.state.volume;
       }
+
       this.elapsedTime = this.state.seek;
       if (this.state.status === 'play') {
         this.startSeek();
