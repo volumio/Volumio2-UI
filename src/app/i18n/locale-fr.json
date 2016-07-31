@@ -65,7 +65,7 @@
     "GO_TO_SHARE":"Aller au partage",
     "NEXT_TRACK":"Piste suivante",
     "PREVIOUS_TRACK":"Piste précedente",
--   "PAUSE":"Pause"
+-   "PAUSE":"Pause",
     "CLEAR_AND_PLAY":"Remplacer et jouer"
   },
   "PLUGINS": {
