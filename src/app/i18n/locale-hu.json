@@ -30,7 +30,7 @@
     "ARTISTS":"Előadók",
     "ALBUMS":"Albumok",
     "SONGS":"Számok",
-    "PLAYTIME":"Playtime",
+    "PLAYTIME":"Játékidő",
     "TIME":"Idő",
     "RESCAN":"Újra keres",
     "SYSTEM_VERSION":"Rendszer verzió",
@@ -100,7 +100,7 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Véletlen",
     "REPEAT": "Ismétlés",
-    "SAVE_QUEUE_AS_PLAYLIST": "Lejátszási sor mentése lejtszólistaként",
+    "SAVE_QUEUE_AS_PLAYLIST": "Lejátszási sor mentése lejátszólistaként",
     "CONSUME_PLAYLIST": "Lejátszólista fogyasztása",
     "CLEAR_QUEUE": "Lejátszási sor ürítése"
   },
