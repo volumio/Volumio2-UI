@@ -49,7 +49,7 @@
   },
   "BROWSER": {
     "PLAY": "Lejátszás",
-    "ADD_TO_QUEUE":"Hozzáadás a lejetszási sorhoz",
+    "ADD_TO_QUEUE":"Hozzáadás a lejátszási sorhoz",
     "ADD_TO_PLAYLIST":"Hozzáadás a lejátszólistához",
     "REMOVE_FROM_PLAYLIST":"Eltávolítás a lejátszólistából",
     "ADD_TO_FAVOURITES":"Hozzáadás a Kedvencekhez",
