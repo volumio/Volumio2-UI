@@ -8,7 +8,6 @@
     "try",
     "catch"
   ],
-  "esnext": true,
   "requireCamelCaseOrUpperCaseIdentifiers": true,
   "maximumLineLength": {
     "value": 120,

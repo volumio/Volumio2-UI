@@ -139,9 +139,9 @@ class PlayerService {
       this.elapsedTimeString = hours + ':' + minutes + ':' +
         ((seconds < 10) ? ('0' + seconds) : seconds);
     } else {
-        this.elapsedTimeString = minutes + ':' +
-          ((seconds < 10) ? ('0' + seconds) : seconds);
-      }
+      this.elapsedTimeString = minutes + ':' +
+        ((seconds < 10) ? ('0' + seconds) : seconds);
+    }
   }
 
   startSeek() {
@@ -188,6 +188,25 @@ class PlayerService {
     }
     this.$log.log('volume', volume);
     this.socketService.emit('volume', volume);
+  }
+
+  get albumart() {
+    if (this.state && this.state.albumart) {
+      return this.getAlbumart(this.state.albumart);
+    } else {
+      return null;
+    }
+  }
+
+  getAlbumart(albumart) {
+    if (!albumart) {
+      return '';
+    }
+    if (~albumart.indexOf('http')) {
+      return albumart;
+    } else {
+      return `${this.socketService.host}${albumart}`;
+    }
   }
 
   init() {
@@ -285,9 +304,11 @@ class PlayerService {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
       this.state = data;
+
       if (!this.state.mute && this.state.volume) {
         this.lastVolume = this.state.volume;
       }
+
       this.elapsedTime = this.state.seek;
       if (this.state.status === 'play') {
         this.startSeek();
