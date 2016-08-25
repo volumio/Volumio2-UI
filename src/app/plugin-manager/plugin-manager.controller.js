@@ -67,8 +67,11 @@ class PluginManagerController {
       prettyName: plugin.prettyName,
       category: this.selectedCategory.name
     };
+    this._openInstallerModal();
+    this.$timeout(() => {
     this.$log.debug('emit updatePlugin', emitPayload);
     this.socketService.emit('updatePlugin', emitPayload);
+    }, 300);
   }
 
   unInstallPlugin(plugin) {
