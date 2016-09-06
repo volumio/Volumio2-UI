@@ -6,17 +6,13 @@
   }
 }
 .navButtons {
-  // @include make-sm-column(3, 0);
-  // @include make-xs-column(10, 0);
   button {
+    padding: 4px 10px;
     font-size: 24px;
   }
 }
 
 .searchBox {
-  // @include make-sm-column(9, 0);
-  // @include make-sm-column-offset(12);
-  // @include make-xs-column(14, 0);
   input {
     color: $volumio-text-color;
   }
@@ -40,7 +36,8 @@
 
 #searchForm {
   position: relative;
-  width: 200px;
+  width: 140px;
+  margin-top: 6px;
 }
 
 #browseTableSources {
@@ -56,38 +53,146 @@
 
 #browseTablesWrapper {
   overflow-y: auto;
-  table {
-    user-select: none;
-    cursor: pointer;
-    .rowTitle {
-      font-size: 18px;
-      padding: 5px 10px;
-      color: $volumio-green-color;
-      cursor: auto;
-      i {
-        margin-right: 10px;
+}
+
+.rowTitle {
+  clear: both;
+  font-size: 18px;
+  padding: 15px 10px 5px 10px;
+  cursor: auto;
+  color: $volumio-green-color;
+  border-bottom: solid 1px $volumio-green-color;
+  background-color: $volumio-black-trans-dark;
+  i {
+    margin-right: 10px;
+  }
+}
+
+.browseTableWrapper {
+  .itemTab {
+    overflow: visible;
+    height: 46px;
+    border-bottom: solid 1px $volumio-green-color;
+  }
+
+  .image {
+    float: left;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    margin-right: 5px;
+    i {
+      padding-top: 15px;
+      font-size: 18px
+    }
+    img {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  .description {
+    width: auto;
+    overflow: hidden;
+  }
+
+  .title {
+    font-size: 16px;
+    height: 22px;
+    overflow: hidden;
+    &.oneLine {
+      margin-top: 12px;
+    }
+  }
+
+  .artist-album {
+    font-size: 13px;
+    color: $volumio-green-color;
+    height: 20px;
+    overflow: hidden;
+  }
+
+  .commandButtons {
+    float: right;
+    padding-top: 6px;
+    width: 35px;
+    .dropdown-menu {
+      left: auto;
+      right: 10px;
+      visibility: hidden;
+      &.right {
+        left: 0;
+        right: auto;
       }
-    }
-    .title {
-      font-size: 16px;
-    }
-    .artist-album {
-      font-size: 13px;
-      color: $volumio-green-color;
-    }
-    .image {
-      img {
-        width: 45px;
-        height: 45px;
-      }
-    }
-    .breakMe{
-      word-break: break-all;
-    }
-    tr:first-of-type {
-      td {
-        border-top: none;
+      &.top {
+        top: auto;
+        bottom: 25px;
       }
     }
   }
+
+  //Grid view override
+  &.grid {
+    .itemWrapper {
+      position: relative;
+      @include make-xs-column(12, 0);
+      @include make-sm-column(6, 0);
+      @include make-md-column(4, 0);
+      @include make-lg-column(4, 0);
+    }
+
+    .itemTab {
+      position: relative;
+      height: auto;
+      padding: 10px;
+      border: solid 1px $volumio-green-color;
+      margin: 10px;
+    }
+
+    .image {
+      border: solid 1px #444;
+      position: relative;
+      float: none;
+      width: 100%;
+      height: auto;
+      margin-bottom: 5px;
+      &:before{
+        content: "";
+        display: block;
+        padding-top: 100%;
+      }
+      i {
+        display: block;
+        position: absolute;
+        padding: 0px;
+        width: 60px;
+        height: 50px;
+        margin: 0px auto;
+        font-size: 50px;
+        top: calc(50% - 25px);
+        left: calc(50% - 30px);
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+    }
+
+    .description {
+      float: none;
+    }
+
+    .commandButtons {
+      float: none;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      i {
+        font-size: 20px;
+      }
+    }
+  } //End grid overrides
 }

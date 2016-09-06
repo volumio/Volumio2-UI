@@ -92,10 +92,9 @@ class BrowseController {
           on-toggle="browse.toggledItem(open, $event)"
           class="hamburgerMenu">
         <button id="hamburgerMenuBtn-${index}" class="dropdownToggle btn-link" uib-dropdown-toggle>
-          <i class="fa fa-bars"></i>
+          <i class="fa fa-ellipsis-v"></i>
         </button>
-        <ul class="dropdown-menu buttonsGroup"
-          ng-class="::{'last': (${index} > 2 && this.browseService.listLength - ${index} < 3)}">
+        <ul class="dropdown-menu buttonsGroup">
           <browse-hamburger-menu item="browse.browseService.list[${index}]" browse="browse"></browse-hamburger-menu>
         </ul>
       </div>
@@ -197,64 +196,67 @@ class BrowseController {
       return false;
     }
     this.$timeout(() => {
-      this.table = '';
       let angularThis = `angular.element('#browseTableItems').scope().browse`;
+
+      this.table = '<div class="">';
       for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
         let item = this.browseService.list[i];
-        this.table += `<tr>`;
-
         if (item.type === 'title') {
           this.table += `
-            <td class="rowTitle" colspan="3">
+            <div class="rowTitle">
               <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
-            </td>`;
-        }
+            </div>`;
+        } else {
+          this.table += `<div class="itemWrapper"><div class="itemTab">`;
 
-        if (item.type !== 'title') {
-          this.table += `<td class="image">`;
-
+          this.table += `<div class="image">`;
           if (!item.icon && item.albumart) {
             this.table += `
             <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
           }
 
           if (item.icon) {
+            // this.table += `<img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PearlJam1.jpg/220px-PearlJam1.jpg"/>`;
             this.table += `<i class="${item.icon}"></i>`;
           }
+          this.table += `</div>`;
 
-          this.table += `</td>`;
-        }
-
-        if (item.type !== 'title') {
           this.table += `
-          <td class="breakMe"
-              onclick="${angularThis}.clickListItemByIndex(${i})"
-              ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
-            <div class="title">
-              ${item.title}
-            </div>
-            <div class="artist-album
-                ${(item.artist || item.album) ? '' : 'hidden'}">
-              ${item.artist} - ${item.album}
-            </div>
-          </td>
-          <td class="commandButtons">
-            <div class="hamburgerMenu
-                ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
-                    'hidden' : ''}">
-              <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})"
-                  title="Options...">
-                <i class="fa fa-bars"></i>
-              </button>
-            </div>
-          </td>`;
+            <div class="commandButtons">
+              <div class="hamburgerMenu
+                  ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
+                      'hidden' : ''}">
+                <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})"
+                    title="Options...">
+                  <i class="fa fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>`;
+
+          this.table += `
+            <div class="description breakMe"
+                onclick="${angularThis}.clickListItemByIndex(${i})"
+                ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
+              <div class="title ${(item.artist || item.album) ? '' : 'oneLine'}"">
+                ${item.title}
+              </div>
+              <div class="artist-album ${(item.artist || item.album) ? '' : 'hidden'}">
+                ${item.artist} - ${item.album}
+              </div>
+            </div>`;
+
+          this.table += `</div></div>`;
         }
-        this.table += `</tr>`;
       }
-      let tbody = document.createElement('tbody');
+      this.table += `</div>`;
+      let browseTable = document.createElement('div');
+      browseTable.classList.add('browseTable');
+      console.log(browseTable);
+      console.log(angular.element('#browseTableItems .browseTable'));
+
       window.requestAnimationFrame(() => {
-        angular.element(tbody).append(this.table);
-        angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
+        angular.element(browseTable).append(this.table);
+        angular.element('#browseTableItems .browseTable').replaceWith(browseTable); //.appendChild(this.table);
         this.$rootScope.$broadcast('browseController:listRendered');
       });
     }, 0);

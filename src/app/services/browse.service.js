@@ -66,6 +66,18 @@ class BrowseService {
     this.filterBy = filter;
   }
 
+  toggleGridView() {
+    this._showGridView = !this._showGridView;
+  }
+
+  get showGridView() {
+    return this._showGridView;
+  }
+
+  set showGridView(showGridView) {
+    this._showGridView = showGridView;
+  }
+
   get filters() {
     return this._filters;
   }
