@@ -54,14 +54,14 @@
         </td>
         <td>
           <span ng-if="!$last">{{::wifi.ssid}}</span>
-          <span ng-if="$last" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
+          <span ng-if="$last">Manual Network Connection</span>
         </td>
         <td class="commandCol">
           <button ng-if="::!wifi.insertPassword"
               type="button"
               class="btn btn-info">
             <i class="fa fa-link"></i>
-            <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
+            Connect
           </button>
         </td>
       </tr>
@@ -75,6 +75,7 @@
               </label>
 
               <div class="securitySelectWrapper">
+
                 <ui-select
                     ng-model="wifi.security"
                     search-enabled="false"
@@ -99,7 +100,7 @@
                   ng-if="::wifi.ssidHidden"
                   ng-model="wifi.ssid"
                   type="text"
-                  placeholder="{{'NETWORK.NETWORK_NAME'}}">
+                  placeholder="{{'Network Name'}}">
               <input
                   class="form-control"
                   ng-model="wifi.password"
@@ -114,7 +115,7 @@
                   type="button"
                   name="btn btn-info">
                   <i class="fa fa-link"></i>
-                  <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
+                  Connect
               </button>
 
               <button
@@ -133,7 +134,7 @@
     <br/><br/>
     <button type="button" class="btn btn-info" ng-click="wifiPlugin.refreshWifiNetworks()">
       <i class="fa fa-refresh" title="Refresh WiFi Networks"></i>
-      <span translate="NETWORK.REFRESH"></span>
+      Refresh
     </button>
   </div>
 </div>
