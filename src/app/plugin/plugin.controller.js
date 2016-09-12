@@ -84,11 +84,13 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
+      //NOTE this commented lines are for testing pourpose
       // data.sections.unshift({coreSection: 'ui-settings'});
       // data.sections.unshift({coreSection: 'wifi'});
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
       // data.sections.unshift({coreSection: 'network-drives'});
+      data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
     });

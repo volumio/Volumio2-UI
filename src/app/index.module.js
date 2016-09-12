@@ -89,6 +89,7 @@ import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.contro
 import NetworkDrivesPluginController from './plugin/core-plugin/network-drives-plugin.controller';
 import SystemVersionPluginController from './plugin/core-plugin/system-version-plugin.controller';
 import UiSettingsPluginController from './plugin/core-plugin/ui-settings-plugin.controller';
+import FirmwareUploadPluginController from './plugin/core-plugin/firmware-upload-plugin.controller';
 
 
 
@@ -205,5 +206,6 @@ angular.module('volumio', [
   .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)
   .controller('SystemVersionPluginController', SystemVersionPluginController)
   .controller('UiSettingsPluginController', UiSettingsPluginController)
+  .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
 
   ;

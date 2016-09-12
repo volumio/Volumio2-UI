@@ -82,7 +82,15 @@
     "INSTALL_PROGRESS":"Installation Progress",
     "INSTALLED_PLUGINS":"Installed Plugins",
     "SEARCH_PLUGINS":"Search Plugins",
-    "UPLOAD_PLUGINS":"Upload Plugin"
+    "UPLOAD_PLUGINS":"Upload Plugin",
+    "FIRMWARE_UPLOAD": {
+      "TITLE": "Update firmware via file",
+      "DESCRIPTION": "Select a firmware file and click upload to begin update process",
+      "UPLOAD_BTN": "Upload firmware file",
+      "MODAL_TITLE": "Uploading Firmware File",
+      "MODAL_DESCRIPTION": "Please wait until file upload finishes, don't refresh the page",
+      "UPLOAD_FIRMWARE_FILE": "Drag a firmware file or click to start upload"
+    }
   },
   "UPDATER": {
     "DOWNLOAD_SPEED": "Back to Plugins",

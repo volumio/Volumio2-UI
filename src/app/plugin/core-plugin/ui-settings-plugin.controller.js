@@ -32,17 +32,17 @@ class UiSettingsPluginController {
     this.Upload.upload({
         url: `${this.socketService.host}/backgrounds-upload`,
         data: {filename: this.backgroundFile}
-    }).then((resp) => {
-      this.uploadPercentage = false;
-    }, (resp) => {
-      this.uploadPercentage = false;
-      this.$log.debug('Error status: ' + resp.status);
-    }, (evt)  => {
-        this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        if (this.uploadPercentage === 100) {
-          this.uploadPercentage = false;
-        }
-    });
+      }).then((resp) => {
+        this.uploadPercentage = false;
+      }, (resp) => {
+        this.uploadPercentage = false;
+        this.$log.debug('Error status: ' + resp.status);
+      }, (evt)  => {
+          this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          if (this.uploadPercentage === 100) {
+            this.uploadPercentage = false;
+          }
+        });
   }
 
   init() {

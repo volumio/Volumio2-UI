@@ -34,11 +34,12 @@ class UiSettingsService {
     if (this.uiSettings.color) {
       this.$document[0].body.style.background = '';
       this.$document[0].body.style.backgroundColor = this.uiSettings.color;
-    } else {
+    }
+    if (this.uiSettings.background) {
       if (this.uiSettings.background.title === 'Default') {
         this.$document[0].body.style.background = `#333 url(${this.defaultBackgroundUrl}) repeat top left`;
         this.$document[0].body.style.backgroundSize = 'auto';
-      } else {
+      } else if (this.uiSettings.background.path) {
         this.$document[0].body.style.background =
             `#333 url(${this.uiSettings.background.path}) no-repeat center center`;
         this.$document[0].body.style.backgroundSize = 'cover';
@@ -54,8 +55,9 @@ class UiSettingsService {
     this.$log.debug('UiSettingsService is listening');
 
     this.socketService.on('pushUiSettings', (data) => {
-      if (data.background.path.indexOf(this.socketService.host) === -1) {
-        var bg = `${this.socketService.host}/backgrounds/${data.background.path}`;
+      if (data.background && data.background.path &&
+            data.background.path.indexOf(this.socketService.host) === -1) {
+        let bg = `${this.socketService.host}/backgrounds/${data.background.path}`;
         data.background.path = bg;
       }
       this.$log.debug('pushUiSettings', data);
@@ -64,8 +66,8 @@ class UiSettingsService {
         location.reload();
       }
       this.uiSettings = data;
-      this.setLanguage();
       this.setBackground();
+      this.setLanguage();
     });
 
     this.socketService.on('pushBackgrounds', (data) => {
@@ -81,7 +83,7 @@ class UiSettingsService {
           background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
           return background;
         }));
-        this.setBackground();
+      this.setBackground();
     });
   }
 
