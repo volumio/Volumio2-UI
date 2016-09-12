@@ -59,7 +59,7 @@ class NetworkDrivesPluginController {
       'ModalConfirmController',
       'app/components/modals/modal-confirm.html',
       {title: 'Delete drive', message: 'Do you want to delete "' + drive.name + '"?'});
-    modalPromise.then((yes) => {
+    modalPromise.result.then((yes) => {
       this.$log.debug('deleteShare', {id: drive.name});
       this.socketService.emit('deleteShare', {id: drive.id});
     }, () => {});
@@ -135,7 +135,7 @@ class NetworkDrivesPluginController {
         'ModalNetwordDrivesPasswordController',
         'app/plugin/core-plugin/modals/modal-network-drive-password.html',
         data);
-      modalPromise.then((obj) => {
+      modalPromise.result.then((obj) => {
         this.drive = angular.extend(this.drive, obj);
         this.$log.debug('updateSharePw', this.drive);
         this.socketService.emit('editShare', this.drive);

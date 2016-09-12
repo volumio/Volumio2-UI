@@ -42,7 +42,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         section.onSave.askForConfirm);
-      modalPromise.then((yes) => {
+      modalPromise.result.then((yes) => {
         delete saveObj.askForConfirm;
         this.socketService.emit('callMethod', saveObj);
       }, () => {});
@@ -58,7 +58,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         item.onClick.askForConfirm);
-      modalPromise.then((yes) => {
+      modalPromise.result.then((yes) => {
         if (item.onClick.type === 'emit') {
           this.$log.debug('emit', item.onClick.message, item.onClick.data);
           this.socketService.emit(item.onClick.message, item.onClick.data);
