@@ -43,8 +43,7 @@ export default class FirmwareUploadPluginController {
           this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
           this.updaterService.updateProgress.progress = this.uploadPercentage;
           if (this.uploadPercentage === 100) {
-            //TODO enable hide modal
-            // uploadModal.close();
+            uploadModal.close();
           }
         });
   }
