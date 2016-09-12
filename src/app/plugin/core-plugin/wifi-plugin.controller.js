@@ -12,6 +12,11 @@ class WifiPluginController {
   init() {
     this.registerListner();
     this.initService();
+    this.securityTypes = [
+      {label: 'None'},
+      {label: 'WEP'},
+      {label: 'WPA/WPA2'}
+    ];
   }
 
   insertPassword(index) {
@@ -27,8 +32,9 @@ class WifiPluginController {
   connectToWifi(wifi, index) {
     let saveWiFi = {
       ssid: wifi.ssid,
-      encryption: wifi.encryption,
-      password: wifi.password
+      security: wifi.security.label,
+      password: wifi.password,
+      hidden: wifi.hidden
     };
     this.wirelessNetworks.available[index].insertPassword = undefined;
     this.$log.debug('connect to', wifi, saveWiFi);
@@ -53,9 +59,8 @@ class WifiPluginController {
         this.wirelessNetworks.available = [];
       }
       this.wirelessNetworks.available.push({
-        security: '',
+        security: this.securityTypes[0],
         signal: -1,
-        ssid: 'Connect to Hidden Network',
         ssidHidden: true
       });
     });

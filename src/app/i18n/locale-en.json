@@ -140,7 +140,10 @@
     "SPEED":"Speed",
     "ONLINE":"Online",
     "CONNECT":"Connect",
-    "REFRESH":"Refresh"
+    "REFRESH":"Refresh",
+    "MANUAL_WIFI_CONNECTION": "Manual wi fi connection",
+    "NETWORK_NAME": "Network name",
+    "SELECT_ENCRYPTION": "Select encryption"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
