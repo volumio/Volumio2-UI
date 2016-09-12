@@ -7,9 +7,10 @@ class PluginController {
     this.mockService = mockService;
     this.$scope = $scope;
     this.$log = $log;
-    //this.pluginObj = this.mockService.get('getSettings');
-    //this.$log.debug(this.pluginObj);
+    // this.pluginObj = this.mockService.get('getSettings');
+    // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
+
     this.init();
   }
 
@@ -23,7 +24,13 @@ class PluginController {
           return item.id === value;
         })[0];
         if (item) {
-          data[value] = item.value;
+          if (item.element === 'equalizer') {
+            data[value] = item.config.bars.map((bar) => {
+              return bar.value;
+            });
+          } else {
+            data[value] = item.value;
+          }
         }
       });
       saveObj.data = data;
@@ -34,7 +41,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         section.onSave.askForConfirm);
-      modalPromise.then((yes) => {
+      modalPromise.result.then((yes) => {
         delete saveObj.askForConfirm;
         this.socketService.emit('callMethod', saveObj);
       }, () => {});
@@ -50,7 +57,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         item.onClick.askForConfirm);
-      modalPromise.then((yes) => {
+      modalPromise.result.then((yes) => {
         if (item.onClick.type === 'emit') {
           this.$log.debug('emit', item.onClick.message, item.onClick.data);
           this.socketService.emit(item.onClick.message, item.onClick.data);
@@ -73,12 +80,16 @@ class PluginController {
     this.initService();
   }
 
+
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
+      //NOTE this commented lines are for testing pourpose
+      // data.sections.unshift({coreSection: 'ui-settings'});
       // data.sections.unshift({coreSection: 'wifi'});
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
       // data.sections.unshift({coreSection: 'network-drives'});
+      // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
     });
@@ -88,6 +99,7 @@ class PluginController {
   }
 
   initService() {
+    this.$log.debug('init', this.$stateParams);
     this.socketService.emit('getUiConfig',
         {'page': this.$stateParams.pluginName.replace('-', '/')});
   }
