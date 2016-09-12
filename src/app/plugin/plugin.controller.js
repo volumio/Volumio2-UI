@@ -89,7 +89,7 @@ class PluginController {
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
       // data.sections.unshift({coreSection: 'network-drives'});
-      data.sections.unshift({coreSection: 'firmware-upload'});
+      // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
     });
