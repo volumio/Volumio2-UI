@@ -74,7 +74,7 @@
                 <input type="checkbox" ng-model="wifi.hidden"> Hidden
               </label>
 
-              <div class="securitySelectWrapper">
+              <div class="securitySelectWrapper" ng-if="::wifi.ssidHidden">
 
                 <ui-select
                     ng-model="wifi.security"

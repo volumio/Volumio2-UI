@@ -12,9 +12,10 @@ class WifiPluginController {
     this.registerListner();
     this.initService();
     this.securityTypes = [
-      {label: 'None'},
-      {label: 'WEP'},
-      {label: 'WPA/WPA2'}
+      {label: 'none'},
+      {label: 'wep'},
+      {label: 'wpa'},
+      {label: 'wpa2'}
     ];
   }
 
@@ -31,7 +32,7 @@ class WifiPluginController {
   connectToWifi(wifi, index) {
     let saveWiFi = {
       ssid: wifi.ssid,
-      security: wifi.security.label,
+      security: wifi.security.label || wifi.security,
       password: wifi.password,
       hidden: wifi.hidden
     };
