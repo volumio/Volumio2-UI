@@ -145,5 +145,8 @@
   "SLEEP": {
     "POWER_OFF": "Power off",
     "STOP_MUSIC": "Stop music"
+  },
+  "ALARM": {
+    "CRATE_PLAYLIST_FIRST": "Create playlist first"
   }
 }
