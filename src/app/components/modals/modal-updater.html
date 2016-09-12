@@ -16,9 +16,9 @@
 
     <!-- This data are available only when PI downloads the firmware -->
     <div ng-if="modal.updaterService.updateProgress.downloadSpeed">
-      <span translate="UPDATER.DOWNLOAD_SPEED"></span>:
+      Download Speed:
       {{modal.updaterService.updateProgress.downloadSpeed}} |
-      <span translate="UPDATER.TIME_REMAINING"></span>:
+      Eta:
       {{modal.updaterService.updateProgress.eta}}
     </div>
   </div>
@@ -34,21 +34,21 @@
         ng-if="modal.updaterService.updateReady.updateavailable"
         class="btn btn-warning"
         ng-click="modal.cancel()">
-      <span translate="COMMON.CANCEL"></span>
+      Cancel
     </button>
 
     <button
         ng-if="modal.updaterService.updateReady.updateavailable"
         class="btn btn-primary"
         ng-click="modal.update('now')">
-      <span translate="UPDATER.UPDATE_NOW"></span>
+      Update Now
     </button>
 
     <button
         ng-if="!modal.updaterService.updateReady.updateavailable"
         class="btn btn-primary"
         ng-click="modal.cancel()">
-      <span translate="COMMON.OK"></span>
+      Ok
     </button>
   </div>
 
@@ -56,13 +56,13 @@
     <button
         ng-if="modal.updaterService.updateDone.status === 'success'"
         class="btn btn-primary" ng-click="modal.reboot()">
-      <span translate="COMMON.RESTART_SYSTEM"></span>
+      Restart System
     </button>
 
     <button
         ng-if="modal.updaterService.updateDone.status === 'error'"
         class="btn btn-primary" ng-click="modal.update('now')">
-      <span translate="COMMON.TRY_AGAIN"></span>
+      Try Again
     </button>
   </div>
 </div>
