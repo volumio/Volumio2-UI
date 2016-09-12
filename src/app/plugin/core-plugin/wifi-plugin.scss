@@ -4,12 +4,15 @@
       border-top: 0 !important;
       border-bottom: 1px solid #7C7C7C;
       &.insertPasswordRow {
-        input {
-          width: 150px;
-          display: inline-block;
-          margin-right: 15px;
+        label {
+          margin-right: 10px;
         }
-        text-align: center;
+        input {
+          width: 140px;
+          display: inline-block;
+          margin-right: 10px;
+        }
+        // text-align: center;
       }
       &.commandCol {
         max-width: 210px;
@@ -30,6 +33,9 @@
         width: 120px;
         display: inline-block;
         margin-right: 15px;
+      }
+      .showHidePassword {
+        margin-right: 10px;
       }
     }
   }
