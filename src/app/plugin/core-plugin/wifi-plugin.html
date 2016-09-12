@@ -61,7 +61,7 @@
               type="button"
               class="btn btn-info">
             <i class="fa fa-link"></i>
-            Connect
+            <span class="hidden-xs">Connect</span>
           </button>
         </td>
       </tr>
@@ -100,7 +100,7 @@
                   ng-if="::wifi.ssidHidden"
                   ng-model="wifi.ssid"
                   type="text"
-                  placeholder="{{'Network Name'}}">
+                  placeholder="Network Name">
               <input
                   class="form-control"
                   ng-model="wifi.password"
@@ -115,7 +115,7 @@
                   type="button"
                   name="btn btn-info">
                   <i class="fa fa-link"></i>
-                  Connect
+                  <span class="hidden-xs">Connect</span>
               </button>
 
               <button
@@ -134,7 +134,7 @@
     <br/><br/>
     <button type="button" class="btn btn-info" ng-click="wifiPlugin.refreshWifiNetworks()">
       <i class="fa fa-refresh" title="Refresh WiFi Networks"></i>
-      Refresh
+      <span class="hidden-xs">Refresh</span>
     </button>
   </div>
 </div>
