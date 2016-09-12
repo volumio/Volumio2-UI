@@ -8,9 +8,24 @@ class UpdaterService {
     // this.updateReady =
     //   {
     //     title: 'Update v2.0',
-    //     description: '- Bug fixing, new dac available<br/> - <a href="http://volumio.org/" target="_blank">http://volumio.org/</a>',
-    //     updateavailable: true
+    //     description: `- Bug fixing, new dac available<br/> - <a href="http://volumio.org/"
+    //         target="_blank">http://volumio.org/</a>`,
+    //     updateavailable: true,
+    //     alternativeEmit: {
+    //       message: 'method',
+    //       payload: 'payme'
+    //     }
     //   };
+    // this.status = 'updateProgress';
+    // this.updateProgress = {
+    //   progress: 90,
+    //   status: 'please wait',
+    //   downloadSpeed: '100',
+    //   eta: '40m 30s'
+    // };
+    // this.$timeout(() => {
+    //   this.updateDone();
+    // }, 3000000);
     // this.openUpdateModal();
 
     $rootScope.$on('socket:init', () => {
@@ -31,7 +46,11 @@ class UpdaterService {
   }
 
   update(val) {
-    this.socketService.emit('update', {value: val});
+    if (this.updateReady.alternativeEmit) {
+      this.socketService.emit(this.updateReady.alternativeEmit.message, this.updateReady.alternativeEmit.payload);
+    } else {
+      this.socketService.emit('update', {value: val});
+    }
     // this.status = 'updateProgress';
     // this.updateProgress = {
     //   progress: 90,
