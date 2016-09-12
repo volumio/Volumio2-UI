@@ -18,6 +18,11 @@ tr {
       img {
         width: 20px;
       }
+      .securitySelectWrapper {
+        width: 120px;
+        display: inline-block;
+        margin-right: 15px;
+      }
     }
     &.lockIcon {
       width: 30px;
