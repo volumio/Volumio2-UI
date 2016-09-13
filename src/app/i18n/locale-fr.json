@@ -140,7 +140,10 @@
     "SPEED":"Vitesse",
     "ONLINE":"Connecté",
     "CONNECT":"Connexion",
-    "REFRESH":"Rafraichir"
+    "REFRESH":"Rafraichir",
+    "MANUAL_WIFI_CONNECTION": "Connexion WiFi manuelle",
+    "NETWORK_NAME": "Nom du réseau",
+    "SELECT_ENCRYPTION": "Type de Sécurité"
   },
   "SLEEP": {
     "POWER_OFF": "Eteindre",
