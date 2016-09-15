@@ -147,6 +147,6 @@
     "STOP_MUSIC": "Stop music"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Create playlist first"
+    "CRATE_PLAYLIST_FIRST": "In order to use Alarm Clock, you must create at least one Playlist first"
   }
 }
