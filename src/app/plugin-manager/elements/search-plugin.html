@@ -41,7 +41,7 @@
                 ng-click="pluginManager.installPlugin(plugin)"
                 type="button"
                 class="btn btn-info pull-right marginLeft"
-                title="Install">
+                title="{{'PLUGINS.INSTALL' | translate}}">
               <span translate="PLUGINS.INSTALL"></span>
             </button>
             <button
@@ -49,7 +49,7 @@
                 ng-click="pluginManager.updatePlugin(plugin)"
                 type="button"
                 class="btn btn-info pull-right marginLeft"
-                title="Update">
+                title="{{'PLUGINS.UPDATE' | translate}}">
               <span translate="PLUGINS.UPDATE"></span>
             </button>
             <button
@@ -57,14 +57,14 @@
                 ng-click="pluginManager.unInstallPlugin(plugin)"
                 type="button"
                 class="btn btn-danger pull-right marginLeft"
-                title="Uninstall">
+                title="{{'PLUGINS.UNINSTALL' | translate}}">
               <span translate="PLUGINS.UNINSTALL"></span>
             </button>
             <button
                 ng-click="pluginManager.showPluginDetails(plugin)"
                 type="button"
                 class="btn btn-info pull-right"
-                title="Details">
+                title="{{'PLUGINS.DETAILS' | translate}}">
               <span translate="PLUGINS.DETAILS"></span>
             </button>
           </div>
