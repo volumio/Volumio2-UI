@@ -1,27 +1,27 @@
 <li ng-if="::browse.showPlayButton(item)"
     ng-click="browse.play(item)"
-    title="Play">
+    title="{{'BROWSER.PLAY' | translate}}">
   <a href><i class="fa fa-play"></i><span translate="BROWSER.PLAY"></span></a>
 </li>
 <li ng-if="::browse.showAddToQueueButton(item)"
     ng-click="browse.addToQueue(item)"
-    title="Add to queue">
+    title="{{'BROWSER.ADD_TO_QUEUE' | translate}}">
   <a href><i class="fa fa-list"></i><span translate="BROWSER.ADD_TO_QUEUE"></span></a></a>
 </li>
 <li ng-if="::browse.showPlayButton(item)"
     ng-click="browse.replaceAndPlay(item)"
-    title="Add to queue">
+    title="{{'BROWSER.ADD_TO_QUEUE' | translate}}">
   <a href><i class="fa fa-list"></i><span translate="BROWSER.CLEAR_AND_PLAY"></span></a></a>
 </li>
 
 <li ng-if="::browse.showAddToPlaylist(item)"
     ng-click="browse.addToPlaylist(item)"
-    title="Add to playlist">
+    title="{{'BROWSER.ADD_TO_PLAYLIST' | translate}}">
   <a href><i class="fa fa-plus"></i><span translate="BROWSER.ADD_TO_PLAYLIST"></span></a>
 </li>
 <li ng-if="::browse.browseService.currentFetchRequest.type === 'playlist'"
     ng-click="browse.playlistService.removeFromPlaylist(item, browse.browseService.currentFetchRequest.title)"
-    title="Remove from playlist">
+    title="{{'BROWSER.REMOVE_FROM_PLAYLIST' | translate}}">
   <a href><i class="fa fa-trash"></i><span translate="BROWSER.REMOVE_FROM_PLAYLIST"></a>
 </li>
 <li ng-if="::item.type === 'playlist'"
@@ -32,38 +32,38 @@
 
 <li ng-if="::item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"
     ng-click="browse.playlistService.addToFavourites(item)"
-    title="Add to favourites">
+    title="{{'BROWSER.ADD_TO_FAVOURITES' | translate}}">
   <a href><i class="fa fa-heart"></i><span translate="BROWSER.ADD_TO_FAVOURITES"></a>
 </li>
 <li ng-if="::browse.browseService.currentFetchRequest.uri === 'favourites'"
     ng-click="browse.playlistService.removeFromFavourites(item)"
-    title="Remove from favourites">
+    title="{{'BROWSER.REMOVE_FROM_FAVOURITES' | translate}}">
   <a href><i class="fa fa-trash"></i><span translate="BROWSER.REMOVE_FROM_FAVOURITES"></a>
 </li>
 
 <li ng-if="::item.type === 'mywebradio-category'"
     ng-click="browse.addWebRadio()"
-    title="Add web radio">
+    title="{{'BROWSER.ADD_WEBRADIO' | translate}}">
   <a href><i class="fa fa-plus"></i><span translate="BROWSER.ADD_WEBRADIO"></a>
 </li>
 <li ng-if="::item.type === 'mywebradio'"
     ng-click="browse.editWebRadio(item)"
-    title="Edit web radio">
+    title="{{'BROWSER.EDIT_WEBRADIO' | translate}}">
   <a href><i class="fa fa-pencil"></i><span translate="BROWSER.EDIT_WEBRADIO"></a>
 </li>
 <li ng-if="::item.type === 'mywebradio' && browse.browseService.currentFetchRequest.uri === 'radio/myWebRadio'"
     ng-click="browse.playlistService.deleteWebRadio(item)"
-    title="Delete web radio">
+    title="{{'BROWSER.DELETE_WEBRADIO' | translate}}">
   <a href><i class="fa fa-trash"></i><span translate="BROWSER.DELETE_WEBRADIO"></a>
 </li>
 
 <li ng-if="::item.type === 'webradio' || item.type === 'mywebradio'"
     ng-click="browse.playlistService.addWebRadioToFavourites(item)"
-    title="Add to radio favourites">
+    title="{{'BROWSER.ADD_TO_RADIO_FAVOURITES' | translate}}">
   <a href><i class="fa fa-heart"></i><span translate="BROWSER.ADD_TO_RADIO_FAVOURITES"></a>
 </li>
 <li ng-if="::browse.browseService.currentFetchRequest.uri === 'radio/favourites' && (item.type === 'webradio' || item.type === 'mywebradio')"
     ng-click="browse.playlistService.removeWebRadioFromFavourites(item)"
-    title="Remove from radio favourites">
+    title="{{'BROWSER.REMOVE_FROM_RADIO_FAVOURITES' | translate}}">
   <a href><i class="fa fa-trash"></i><span translate="BROWSER.REMOVE_FROM_RADIO_FAVOURITES"></a>
 </li>
