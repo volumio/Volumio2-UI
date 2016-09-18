@@ -39,7 +39,13 @@
     "MY_MUSIC":"Ma Musique",
     "SEARCH":"Chercher",
     "NEW":"Nouveau",
-    "FAVOURITES":"Favoris"
+    "FAVOURITES":"Favoris",
+    "NAME":"Nom",
+    "URL":"Url",
+    "BACK":"Retour",
+    "OPTIONS":"Options",
+    "CHOOSE_PLAYLIST":"Choisir la Playlist",
+    "STOP_MUSIC":"Arrêter la lecture"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -52,7 +58,15 @@
     "EDIT_WEBRADIO":"Editer une Webradio",
     "DELETE_WEBRADIO":"Supprimer une Webradio",
     "ADD_TO_RADIO_FAVOURITES":"Ajouter aux radios favorites",
-    "REMOVE_FROM_RADIO_FAVOURITES":"Supprimer des radios favorites"
+    "REMOVE_FROM_RADIO_FAVOURITES":"Supprimer des radios favorites",
+    "ADD_WEBRADIO_TITLE":"Ajouter une WebRadio",
+    "URL_DOC":"L'URL peut être un flux ou un fichier M3U ou PLS",
+    "DELETE_PLAYLIST":"Effacer la Playlist",
+    "GO_TO_SHARE":"Aller au partage",
+    "NEXT_TRACK":"Piste suivante",
+    "PREVIOUS_TRACK":"Piste précedente",
+    "PAUSE":"Pause",
+    "CLEAR_AND_PLAY":"Remplacer et jouer"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Retour aux plugins",
@@ -65,7 +79,10 @@
     "UPDATE":"Mettre à jour",
     "DETAILS":"Details",
     "DROP":"Cliquer et sélectionner un plugin ou le glisser le ici.",
-    "INSTALL_PROGRESS":"Avancement de l'installation"
+    "INSTALL_PROGRESS":"Avancement de l'installation",
+    "INSTALLED_PLUGINS":"Plugins installés",
+    "SEARCH_PLUGINS":"Rechercher Plugins",
+    "UPLOAD_PLUGINS":"Télécharger Plugin"
   },
   "UPDATER": {
     "DOWNLOAD_SPEED": "Vitesse de téléchargement",
@@ -74,12 +91,19 @@
   },
   "TRACK_MANAGER":{
     "PLAYING":"Lecture en cours",
-    "BY":"Au revoir",
-    "FROM":"De",
+    "BY":"De",
+    "FROM":"Extrait de l'album",
     "GO_TO_ARTIST":"Aller à l' Artiste",
     "GO_TO_ALBUM":"Aller à l' Album",
     "TWEET_TRACK":"Tweeter la piste"
   },
+   "TRACK_INFO_BAR": {
+    "RANDOM": "Aléatoire",
+    "REPEAT": "Répèter",
+    "SAVE_QUEUE_AS_PLAYLIST": "Sauver la file comme une Playlist",
+    "CONSUME_PLAYLIST": "Lire et supprimer",
+    "CLEAR_QUEUE": "Vider la file"
+},
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"Pas de disque réseau trouvé",
     "ALIAS":"Alias",
@@ -99,7 +123,14 @@
     "NAME":"Nom",
     "PATH":"Chemin",
     "MOUNTED":"Monté",
-    "SIZE":"Taille"
+    "SIZE":"Taille",
+    "SCANNING_FOR_NETWORK_DRIVES": "Scan des disques réseau",
+    "DELETE_DRIVE":"Supprimer disque",
+    "EDIT_DRIVE":"Editer disque",
+    "DELETE_DRIVE_CONFIRM":"Voulez vous supprimer",
+    "PLACEHOLDER_NAME":"Nom",
+    "PLACEHOLDER_IP_ADDRESS":"Adresse IP ou nom du NAS",
+    "PLACEHOLDER_PATH_TO_SHARE":"Chemin du partage"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Etat du réseau",
@@ -110,5 +141,9 @@
     "ONLINE":"Connecté",
     "CONNECT":"Connexion",
     "REFRESH":"Rafraichir"
+  },
+  "SLEEP": {
+    "POWER_OFF": "Eteindre",
+    "STOP_MUSIC": "Arrêter la musique"
   }
 }
