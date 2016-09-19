@@ -1,5 +1,5 @@
 class NetworkDrivesPluginController {
-  constructor($scope, socketService, modalService, mockService, toastMessageService, $log, $translate) {
+  constructor($scope, socketService, modalService, mockService, toastMessageService, $log) {
     'ngInject';
     this.drive = {};
     this.socketService = socketService;
@@ -7,7 +7,6 @@ class NetworkDrivesPluginController {
     this.toastMessageService = toastMessageService;
     this.$scope = $scope;
     this.$log = $log;
-    this.$translate = $translate;
     // this.infoShare = mockService.get('infoShare');
     // this.listUsbDrives = mockService.get('listUsbDrives');
     // this.networkShares = mockService.get('networkSharesDiscovery');
