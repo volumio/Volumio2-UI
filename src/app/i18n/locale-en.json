@@ -155,7 +155,9 @@
     "REFRESH":"Refresh",
     "OPEN_NETWORK":"Open Network",
     "SECURE_NETWORK":"Secure Network",
-    "SECURITY": "Security"
+    "SECURITY": "Security",
+    "MANUAL_WIFI_CONNECTION":"Manual WiFi Connection",
+    "NETWORK_NAME":"Network Name"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
