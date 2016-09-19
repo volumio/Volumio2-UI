@@ -13,7 +13,7 @@ class WifiPluginController {
     this.registerListner();
     this.initService();
     this.securityTypes = [
-      {label: 'none'},
+      {label: 'open'},
       {label: 'wep'},
       {label: 'wpa'},
       {label: 'wpa2'}

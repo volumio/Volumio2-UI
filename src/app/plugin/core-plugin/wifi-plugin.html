@@ -104,6 +104,7 @@
               placeholder="{{'NETWORK.NETWORK_NAME' | translate}}">
           <input
               class="form-control"
+              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'"
               ng-model="wifi.password"
               type="{{wifi.showHidePassword || 'password'}}"
               placeholder="password">
@@ -118,6 +119,7 @@
           </button>
 
           <button
+              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'"
               ng-click="(wifi.showHidePassword === 'text') ? wifi.showHidePassword = 'password' : wifi.showHidePassword = 'text'"
               type="button"
               class="btn btn-info showHidePassword">
