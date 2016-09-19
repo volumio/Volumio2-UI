@@ -68,18 +68,28 @@
 
       <tr ng-repeat-end ng-if="wifi.insertPassword">
         <td colspan="4" class="insertPasswordRow">
-          <div class="row">
-            <div class="col-sm-16">
-              <label class="checkbox-inline" ng-if="::wifi.ssidHidden">
-                <input type="checkbox" ng-model="wifi.hidden"> Hidden
-              </label>
+          <!-- <div class="row"> -->
+            <!-- <div class="col-sm-16"> -->
+              <!-- <label class="checkbox-inline" ng-if="::wifi.ssidHidden">
+                <input type="checkbox" ng-model="wifi.hidden">
+                <span translate="COMMON.HIDDEN"></span>
+              </label> -->
+
+              <span ng-if="::wifi.ssidHidden" class="checkbox-wrapper">
+                <input ng-model="wifi.hidden" type="checkbox" id="customWifi" class="custom-checkbox" />
+                <label for="customWifi"></label>
+                <span translate="COMMON.HIDDEN"></span> &nbsp;|&nbsp;
+              </span>
+
+
+              <span translate="NETWORK.SECURITY" ng-if="::wifi.ssidHidden"></span>
 
               <div class="securitySelectWrapper" ng-if="::wifi.ssidHidden">
                 <ui-select
                     ng-model="wifi.security"
                     search-enabled="false"
                     ng-readonly="true"
-                    append-to-body="true"
+                    append-to-body="false"
                     theme="bootstrap">
                   <ui-select-match
                       class="ui-select-match"
@@ -105,11 +115,11 @@
                   ng-model="wifi.password"
                   type="{{wifi.showHidePassword || 'password'}}"
                   placeholder="password">
-            </div>
+            <!-- </div> -->
 
-            <div class="col-sm-8">
+            <!-- <div class="col-sm-8"> -->
               <button
-                  class="btn btn-info pull-right"
+                  class="btn btn-info"
                   ng-click="wifiPlugin.connectToWifi(wifi, $index)"
                   type="button"
                   name="btn btn-info">
@@ -120,12 +130,12 @@
               <button
                   ng-click="(wifi.showHidePassword === 'text') ? wifi.showHidePassword = 'password' : wifi.showHidePassword = 'text'"
                   type="button"
-                  class="btn btn-info pull-right showHidePassword">
+                  class="btn btn-info showHidePassword">
                 <i ng-if="!wifi.showHidePassword || wifi.showHidePassword === 'password'" class="fa fa-eye"></i>
                 <i ng-if="wifi.showHidePassword === 'text'" class="fa fa-eye-slash"></i>
               </button>
-            </div>
-          </div>
+            <!-- </div> -->
+          <!-- </div> -->
         </td>
       </tr>
     </table>

@@ -56,7 +56,8 @@
     "VOLUME_MUTE":"Mute",
     "VOLUME_MUTED":"Muted",
     "VOLUME_UP":"Volume Up",
-    "VOLUME_DOWN":"Volume Down"
+    "VOLUME_DOWN":"Volume Down",
+    "HIDDEN": "Hidden"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -153,7 +154,8 @@
     "CONNECT":"Connect",
     "REFRESH":"Refresh",
     "OPEN_NETWORK":"Open Network",
-    "SECURE_NETWORK":"Secure Network"
+    "SECURE_NETWORK":"Secure Network",
+    "SECURITY": "Security"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
