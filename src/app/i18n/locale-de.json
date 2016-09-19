@@ -2,7 +2,7 @@
   "UI_SETTINGS": {
     "THEME_SETTINGS": "Thema-Einstellungen",
     "UPLOAD_BACKGROUND": "Neuen Hintergrund hochladen",
-    "UPLOAD_BACKGROUND_FILE": "Klicken und neuen Hintergrund auswählen oder hier ablegen.",
+    "UPLOAD_BACKGROUND_FILE": "Klicken und neuen Hintergrund ausählen oder hier ablegen.",
     "UPLOAD_PROGRESS": "Uploadfortschritt:",
     "SELECT_BACKGROUND": "Hintergrund auswählen",
     "SELECT_BACKGROUND_COLOR": "Hintergrundfarbe auswählen"
@@ -73,12 +73,12 @@
     "PLUGINS_MANAGEMENT":"Plugins Management",
     "SHOW_DETAILS":"+ Zeige Details",
     "HIDE_DETAILS":"- Verstecke Details",
-    "INSTALL":"Installieren",
+    "INSTALL":"Instalieren",
     "UNINSTALL":"Deinstallieren",
     "UPDATE":"Aktualisieren",
     "DETAILS":"Details",
     "DROP":"Klicken und Plugin auswählen oder hier ablegen.",
-    "INSTALL_PROGRESS":"Installationsfortschritt",
+    "INSTALL_PROGRESS":"Installationsvortschritt",
     "INSTALLED_PLUGINS":"Installierte Plugins",
     "SEARCH_PLUGINS":"Suche Plugins",
     "UPLOAD_PLUGINS":"Aktualisiere Plugin"

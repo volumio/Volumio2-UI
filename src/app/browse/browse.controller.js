@@ -165,7 +165,7 @@ class BrowseController {
   }
 
   showHamburgerMenu(item) {
-    let ret = item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category';
+    let ret = item.type === 'radio-favourites' || item.type === 'radio-category';
     return !ret;
   }
 
