@@ -1,5 +1,5 @@
 class BrowseService {
-  constructor($rootScope, $timeout, $log, socketService, mockService, $interval, $window) {
+  constructor($rootScope, $timeout, $log, socketService, mockService, $interval, $window, localStorageService) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
@@ -9,11 +9,13 @@ class BrowseService {
     this.$rootScope = $rootScope;
     this.$log = $log;
     this.$timeout = $timeout;
+    this.mockService = mockService;
 
     this.isPhone = false;
     this.filterBy = 'any';
     this.isBrowsing = false;
     this.isSearching = false;
+    this.localStorageService = localStorageService;
     //this._filters = mockService.get('getBrowseFilters');
     // this._sources = mockService.get('getBrowseSources');
     // this.$log.debug(this._sources);
@@ -66,27 +68,6 @@ class BrowseService {
     this.filterBy = filter;
   }
 
-  toggleGridView() {
-    this.showGridView = !this._showGridView;
-  }
-
-  get showGridView() {
-    //Return value based on preferences and view availability
-    if (this.availableListViews.length === 1) {
-      return this.availableListViews[0] === 'grid';
-    }
-    if (this._showGridView && ~this.availableListViews.indexOf('grid')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  set showGridView(showGridView) {
-    //Store user preference
-    this._showGridView = showGridView;
-  }
-
   get filters() {
     return this._filters;
   }
@@ -127,6 +108,44 @@ class BrowseService {
     this._breadcrumbs = breadcrumbs;
   }
 
+  canShowGridView(list) {
+    //Return value based on preferences and view availability
+    if (list.availableListViews.length === 1) {
+      return list.availableListViews[0] === 'grid';
+    }
+    if (this.showGridView && ~list.availableListViews.indexOf('grid')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  get showGridView() {
+    return this._showGridView;
+  }
+
+  set showGridView(showGridView) {
+    //Store user preference
+    this.localStorageService.set('showGridView', showGridView);
+    this._showGridView = showGridView;
+  }
+
+  get showGridViewSelector() {
+    if (!this.lists) {
+      return false;
+    }
+    for (let i = 0; i < this.lists.length; i++) {
+      if (this.lists[i].availableListViews.length > 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  toggleGridView() {
+    this.showGridView = !this.showGridView;
+  }
+
   init() {
     this.registerListner();
     this.initService();
@@ -143,15 +162,13 @@ class BrowseService {
       this.sources = data;
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
+      // data = this.mockService.get('getBrowseLibrary');
       if (data.navigation) {
-        this.list = data.navigation.list;
-        //TODO get this data from backend
-        this.availableListViews = ['list', 'grid'];//this.availableListViews;
-        console.error(this.availableListViews);
-        this.listLength = this.list.length;
-        this.$log.debug('pushBrowseLibrary', this.listLength, this.list);
+        this.$log.debug('pushBrowseLibrary', data);
+        this.lists = data.navigation.lists;
 
         this.breadcrumbs = data.navigation.prev;
+
         this.$rootScope.$broadcast('browseService:fetchEnd');
       }
     });
@@ -163,7 +180,9 @@ class BrowseService {
     this._isBrowsing = false;
     this._listBy = 'track';
     //TODO or from sessionStorage
-    this._showGridView = false;
+    // this._showGridView = false;
+    this._showGridView = this.localStorageService.get('showGridView');
+
     //this.socketService.emit('browseLibrary', {});
   }
 

@@ -71,7 +71,7 @@
   }
 }
 
-.browseTableWrapper {
+.browseTable {
   .itemTab {
     overflow: visible;
     height: 46px;
@@ -139,80 +139,83 @@
   }
 
   //Grid view override
-  &.grid {
-    .itemWrapper {
-      position: relative;
-      @include make-xs-column(12, 0);
-      @include make-sm-column(6, 0);
-      @include make-md-column(4, 0);
-      @include make-lg-column(4, 0);
-    }
-
-    .itemTab {
-      position: relative;
-      height: auto;
-      padding: 10px;
-      border: solid 1px $volumio-green-color;
-      margin: 10px;
-    }
-
-    .image {
-      border: solid 1px #444;
-      position: relative;
-      float: none;
-      width: 100%;
-      height: auto;
-      margin-bottom: 5px;
-      &:before{
-        content: "";
-        display: block;
-        padding-top: 100%;
+  .listWrapper {
+    &.grid {
+      .itemWrapper {
+          position: relative;
+          @include make-xs-column(12, 0);
+          @include make-sm-column(6, 0);
+          @include make-md-column(4, 0);
+          @include make-lg-column(4, 0);
       }
-      i {
-        display: block;
-        position: absolute;
-        padding: 0px;
-        width: 60px;
-        height: 50px;
-        margin: 0px auto;
-        font-size: 50px;
-        top: calc(50% - 25px);
-        left: calc(50% - 30px);
+
+      .itemTab {
+        position: relative;
+        height: auto;
+        padding: 10px;
+        border: solid 1px $volumio-green-color;
+        margin: 10px;
       }
-      img {
+
+      .image {
+        border: solid 1px #444;
+        position: relative;
+        float: none;
         width: 100%;
-        height: 100%;
+        height: auto;
+        margin-bottom: 5px;
+        &:before{
+          content: "";
+          display: block;
+          padding-top: 100%;
+        }
+        i {
+          display: block;
+          position: absolute;
+          padding: 0px;
+          width: 60px;
+          height: 50px;
+          margin: 0px auto;
+          font-size: 50px;
+          top: calc(50% - 25px);
+          left: calc(50% - 30px);
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
+      }
+
+      .title {
+        &.album {
+          height: 46px;
+          margin: 0;
+          display: block; /* Fallback for non-webkit */
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .description {
+        float: none;
+      }
+
+      .commandButtons {
+        float: none;
         position: absolute;
-        top: 0px;
-        left: 0px;
+        top: 5px;
+        right: 5px;
+        i {
+          font-size: 20px;
+        }
       }
     }
-
-    .title {
-      &.album {
-        height: 46px;
-        margin: 0;
-        display: block; /* Fallback for non-webkit */
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-
-    .description {
-      float: none;
-    }
-
-    .commandButtons {
-      float: none;
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      i {
-        font-size: 20px;
-      }
-    }
-  } //End grid overrides
+  }
+  //End grid overrides
 }

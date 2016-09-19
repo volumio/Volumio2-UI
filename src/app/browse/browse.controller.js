@@ -68,8 +68,8 @@ class BrowseController {
       this.fetchLibrary(item);
     }
   }
-  clickListItemByIndex(index) {
-    let item = this.browseService.list[index];
+  clickListItemByIndex(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
     this.clickListItem(item);
   }
 
@@ -80,22 +80,25 @@ class BrowseController {
       this.playQueueService.addPlayCue(item);
     }
   }
-  dblClickListItemByIndex(index) {
-    let item = this.browseService.list[index];
+  dblClickListItemByIndex(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
     this.dblClickListItem(item);
   }
 
-  hamburgerMenuClick(button, index) {
+  hamburgerMenuClick(button, listIndex, itemIndex) {
     let hamburgerMenuMarkup = `
       <div
           uib-dropdown
           on-toggle="browse.toggledItem(open, $event)"
           class="hamburgerMenu">
-        <button id="hamburgerMenuBtn-${index}" class="dropdownToggle btn-link" uib-dropdown-toggle>
+        <button id="hamburgerMenuBtn-${listIndex}-${itemIndex}" class="dropdownToggle btn-link" uib-dropdown-toggle>
           <i class="fa fa-ellipsis-v"></i>
         </button>
         <ul class="dropdown-menu buttonsGroup">
-          <browse-hamburger-menu item="browse.browseService.list[${index}]" browse="browse"></browse-hamburger-menu>
+          <browse-hamburger-menu
+              item="browse.browseService.lists[${listIndex}].items[${itemIndex}]"
+              browse="browse">
+          </browse-hamburger-menu>
         </ul>
       </div>
     `;
@@ -103,7 +106,7 @@ class BrowseController {
     let buttonParent = angular.element(button).parent();
     buttonParent.replaceWith(hamburgerMenuMarkup);
     this.$timeout(() => {
-      document.querySelector(`#hamburgerMenuBtn-${index}`).click();
+      document.querySelector(`#hamburgerMenuBtn-${listIndex}-${itemIndex}`).click();
     }, 0);
   }
 
@@ -159,7 +162,7 @@ class BrowseController {
       }, 600, false);
     } else {
       this.browseService.isSearching = false;
-      this.browseService.list = [];
+      this.browseService.lists = [];
     }
   }
 
@@ -192,27 +195,30 @@ class BrowseController {
   }
 
   renderBrowseTable() {
-    if (!this.browseService.list) {
+    if (!this.browseService.lists) {
       return false;
     }
     this.$timeout(() => {
-      let angularThis = `angular.element('#browseTableItems').scope().browse`;
+      let angularThis = `angular.element('#browseTablesWrapper').scope().browse`;
 
-      this.table = '<div>';
-      for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
-        let item = this.browseService.list[i];
-        if (item.type === 'title') {
+      this.table = '';
+      this.browseService.lists.forEach((list, listIndex) => {
+        //Print title
+        if (list.title) {
           this.table += `
             <div class="rowTitle">
-              <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
+              <i class="${list.icon} ${(list.icon) ? '' : 'hidden'}"></i> ${list.title}
             </div>`;
-        } else {
-          this.table += `<div class="itemWrapper">
-                <div class="itemTab">`;
+        }
+
+        this.table += `<div class="listWrapper">`;
+        list.items.forEach((item, itemIndex) => {
+          //Print items
+          this.table += `<div class="itemWrapper"><div class="itemTab">`;
 
           this.table += `<div class="image"
-              onclick="${angularThis}.clickListItemByIndex(${i})"
-              ondblclick="${angularThis}.dblClickListItemByIndex(${i})">`;
+              onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
+              ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">`;
           if (!item.icon && item.albumart) {
             this.table += `
             <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
@@ -229,7 +235,8 @@ class BrowseController {
               <div class="hamburgerMenu
                   ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
                       'hidden' : ''}">
-                <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i}, event)"
+                <button class="dropdownToggle btn-link"
+                    onclick="${angularThis}.hamburgerMenuClick(this, ${listIndex}, ${itemIndex}, event)"
                     title="Options...">
                   <i class="fa fa-ellipsis-v"></i>
                 </button>
@@ -238,8 +245,8 @@ class BrowseController {
 
           this.table += `
             <div class="description breakMe"
-                onclick="${angularThis}.clickListItemByIndex(${i})"
-                ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
+                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
+                ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">
               <div class="title ${(item.artist || item.album) ? 'artist' : 'album'}">
                 ${(item.title) ? item.title : ''}
               </div>
@@ -249,18 +256,43 @@ class BrowseController {
             </div>`;
 
           this.table += `</div></div>`;
-        }
-      }
-      this.table += `</div>`;
+        });
+        this.table += `</div>`;
+      });
+
+      this.table += `<div class="clearfix"></div>`;
+
       let browseTable = document.createElement('div');
       browseTable.classList.add('browseTable');
 
       window.requestAnimationFrame(() => {
+        let browseTable = document.querySelector('.browseTable');
+        browseTable.style.display = 'none';
         angular.element(browseTable).append(this.table);
-        angular.element('#browseTableItems .browseTable').replaceWith(browseTable); //.appendChild(this.table);
+        angular.element('#browseTablesWrapper .browseTable').replaceWith(browseTable); //.appendChild(this.table);
         this.$rootScope.$broadcast('browseController:listRendered');
+        this.applyGridStyle();
+        this.$timeout(() => {
+          browseTable.style.display = 'block';
+        }, 50);
       });
     }, 0);
+  }
+
+  applyGridStyle() {
+    const itemWrappers = document.querySelectorAll('.listWrapper');
+    this.browseService.lists.forEach((list, i) => {
+      if (this.browseService.canShowGridView(list)) {
+        itemWrappers[i].classList.add('grid');
+      } else {
+        itemWrappers[i].classList.remove('grid');
+      }
+    });
+  }
+
+  toggleGridView() {
+    this.browseService.toggleGridView();
+    this.applyGridStyle();
   }
 
   initController() {

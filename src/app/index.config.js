@@ -1,5 +1,5 @@
 function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touchProvider, env, $locationProvider,
-  $httpProvider, $translateProvider) {
+  $httpProvider, $translateProvider, localStorageServiceProvider) {
   'ngInject';
 
   $touchProvider.enabled = true;
@@ -14,6 +14,8 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
   angular.extend(toastrConfig, {
     timeOut: 2000
   });
+
+  localStorageServiceProvider.setPrefix('volumio');
 
   //i18n Configs
   $translateProvider
