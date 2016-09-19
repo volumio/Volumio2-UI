@@ -51,7 +51,7 @@
                   type="button"
                   class="btn btn-info"
                   ng-click="uiSettingsPlugin.selectBackground(background)"
-                  title="Apply Background">
+                  title="{{'UI_SETTINGS.APPLY_BACKGROUND' | translate}}">
                 <i class="fa fa-check"></i>
               </button>
               <button
@@ -59,7 +59,7 @@
                   class="btn btn-danger"
                   ng-if="!background.notDeletable"
                   ng-click="uiSettingsPlugin.deleteBackground(background)"
-                  title="Delete Background">
+                  title="{{'UI_SETTINGS.DELETE_BACKGROUND' | translate}}">
                 <i class="fa fa-trash"></i>
               </button>
             </p>
@@ -80,7 +80,7 @@
             ng-style="{backgroundColor: uiSettingsPlugin.backgroundColorSet[$index]}">
           <button type="button" class="btn btn-info"
               ng-click="uiSettingsPlugin.selectBackgroundColor(uiSettingsPlugin.backgroundColorSet[$index])"
-              title="Apply Background color">
+              title="{{'UI_SETTINGS.APPLY_BACKGROUND_COLOR' | translate}}">
             <i class="fa fa-check"></i>
           </button>
         </div>
@@ -91,7 +91,7 @@
               uiSettingsPlugin.customBackgroundColor === uiSettingsPlugin.uiSettingsService.uiSettings.color)}">
           <button type="button" class="btn btn-info customColor"
               ng-click="uiSettingsPlugin.selectBackgroundColor(uiSettingsPlugin.customBackgroundColor)"
-              title="Apply Background color">
+              title="{{'UI_SETTINGS.APPLY_BACKGROUND_COLOR' | translate}}">
             <i class="fa fa-check"></i>
           </button>
           <input

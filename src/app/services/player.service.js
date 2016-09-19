@@ -42,11 +42,13 @@ class PlayerService {
   }
 
   pause() {
+    this.$log.debug('pause');
     this.stopSeek();
     this.socketService.emit('pause');
   }
 
   stop() {
+    this.$log.debug('stop');
     this.socketService.emit('stop');
     this.$interval.cancel(this.intervalHandler);
     this.seekPercent = 0;
