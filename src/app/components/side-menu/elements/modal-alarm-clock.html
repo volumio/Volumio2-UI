@@ -2,7 +2,14 @@
   <h3 class="modal-title"><i class="fa fa-clock-o"></i> {{::modal.dataObj.name}}</h3>
 </div>
 <div class="modal-body">
-  <div ng-repeat="alarm in modal.alarms track by $index" class="row alarm">
+  <div
+      ng-if="!modal.playlistService.playlists || modal.playlistService.playlists.length === 0"
+      translate="ALARM.CRATE_PLAYLIST_FIRST">
+  </div>
+
+  <div
+      ng-if="modal.playlistService.playlists && modal.playlistService.playlists.length"
+      ng-repeat="alarm in modal.alarms track by $index" class="row alarm">
     <div class="col-xs-12 col-sm-6">
       <uib-timepicker
           ng-model="alarm.time"
@@ -55,18 +62,27 @@
 
 <div class="modal-footer">
   <button
-      class="btn btn-warning"
+      ng-if="!modal.playlistService.playlists || modal.playlistService.playlists.length === 0"
+      class="btn btn-info"
       ng-click="modal.cancel()">
-    <span translate="COMMON.CANCEL"></span>
+    <span translate="COMMON.OK"></span>
   </button>
-  <button
-      class="btn btn-info"
-      ng-click="modal.add()">
-    <span translate="COMMON.ADD"></span>
-  </button>
-  <button
-      class="btn btn-info"
-      ng-click="modal.save()">
-    <span translate="COMMON.SAVE"></span>
-  </button>
+
+  <div ng-if="modal.playlistService.playlists && modal.playlistService.playlists.length">
+    <button
+        class="btn btn-warning"
+        ng-click="modal.cancel()">
+      <span translate="COMMON.CANCEL"></span>
+    </button>
+    <button
+        class="btn btn-info"
+        ng-click="modal.add()">
+      <span translate="COMMON.ADD"></span>
+    </button>
+    <button
+        class="btn btn-info"
+        ng-click="modal.save()">
+      <span translate="COMMON.SAVE"></span>
+    </button>
+  </div>
 </div>

@@ -18,8 +18,8 @@
         </td>
         <td class="lockIcon">
           <span ng-if="::wifi.security">
-            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security == 'open'" class="fa fa-unlock" title="Open Netork"></i>
-            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock" title="Secured Network"></i>
+            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security == 'open'" class="fa fa-unlock" title="{{'NETWORK.OPEN_NETWORK' | translate}}"></i>
+            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock" title="{{'NETWORK.SECURE_NETWORK' | translate}}"></i>
           </span>
         </td>
         <td>
@@ -45,8 +45,8 @@
         </td>
         <td class="lockIcon">
           <span ng-if="::wifi.security">
-            <i ng-if="::wifi.security == 'open'" class="fa fa-unlock" title="Open Network"></i>
-            <i ng-if="::wifi.security !== 'open'" class="fa fa-lock" title="Secured Network"></i>
+            <i ng-if="::wifi.security == 'open'" class="fa fa-unlock" title="{{'NETWORK.OPEN_NETWORK' | translate}}"></i>
+            <i ng-if="::wifi.security !== 'open'" class="fa fa-lock" title="{{'NETWORK.SECURE_NETWORK' | translate}}"></i>
           </span>
         </td>
         <td>
@@ -94,7 +94,7 @@
       </tr>
     </table>
     <button type="button" class="btn btn-info" ng-click="wifiPlugin.refreshWifiNetworks()">
-      <i class="fa fa-refresh" title="Refresh WiFi Networks"></i>
+      <i class="fa fa-refresh" title="{{'NETWORK.REFRESH' | translate}}"></i>
       <span translate="NETWORK.REFRESH"></span>
     </button>
   </div>

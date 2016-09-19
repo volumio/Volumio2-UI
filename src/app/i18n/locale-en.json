@@ -5,7 +5,10 @@
     "UPLOAD_BACKGROUND_FILE": "Click and select new background or drop it here.",
     "UPLOAD_PROGRESS": "Upload progress:",
     "SELECT_BACKGROUND": "Select background",
-    "SELECT_BACKGROUND_COLOR": "Select background color"
+    "SELECT_BACKGROUND_COLOR": "Select background color",
+    "APPLY_BACKGROUND": "Apply background",
+    "APPLY_BACKGROUND_COLOR": "Apply background color",
+    "DELETE_BACKGROUND": "Delete background"
   },
   "COMMON": {
     "SAVE": "Save",
@@ -27,8 +30,11 @@
     "TAB_BROWSE":"Browse",
     "TAB_PLAYBACK":"Playback",
     "TAB_QUEUE":"Queue",
+    "ARTIST":"Artist",
     "ARTISTS":"Artists",
+    "ALBUM":"Album",
     "ALBUMS":"Albums",
+    "SONG":"Track",
     "SONGS":"Tracks",
     "PLAYTIME":"Playtime",
     "TIME":"Time",
@@ -45,7 +51,12 @@
     "BACK":"Back",
     "OPTIONS":"Options",
     "CHOOSE_PLAYLIST":"Choose Playlist",
-    "STOP_MUSIC":"Stop Music"
+    "STOP_MUSIC":"Stop Music",
+    "HOME": "Home",
+    "VOLUME_MUTE":"Mute",
+    "VOLUME_MUTED":"Muted",
+    "VOLUME_UP":"Volume Up",
+    "VOLUME_DOWN":"Volume Down"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -140,10 +151,15 @@
     "SPEED":"Speed",
     "ONLINE":"Online",
     "CONNECT":"Connect",
-    "REFRESH":"Refresh"
+    "REFRESH":"Refresh",
+    "OPEN_NETWORK":"Open Network",
+    "SECURE_NETWORK":"Secure Network"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
     "STOP_MUSIC": "Stop music"
+  },
+  "ALARM": {
+    "CRATE_PLAYLIST_FIRST": "In order to use Alarm Clock, you must create at least one Playlist first"
   }
 }

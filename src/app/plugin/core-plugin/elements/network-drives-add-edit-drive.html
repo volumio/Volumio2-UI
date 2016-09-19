@@ -175,10 +175,10 @@
   <div class="form-group">
     <label class="control-label"></label>
     <div class="control-item">
-      <button ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true" type="button" class="btn btn-info" title="Show Advanced Options">
+      <button ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true" type="button" class="btn btn-info" title="{{'NETWORKFS.SHOW_OPTIONS' | translate}}">
         <span translate="NETWORKFS.SHOW_OPTIONS"></span>
       </button>
-      <button ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false" type="button" class="btn btn-warning" title="Close Advanced Options">
+      <button ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false" type="button" class="btn btn-warning" title="{{'NETWORKFS.HIDE_OPTIONS' | translate}}">
         <span translate="NETWORKFS.HIDE_OPTIONS"></span>
       </button>
     </div>
@@ -187,11 +187,11 @@
   <div class="form-group">
     <label class="control-label"></label>
     <div class="control-item">
-      <button ng-click="networkDrives.cancelAddEditDrive()" type="button" class="btn btn-warning" title="Cancel">
+      <button ng-click="networkDrives.cancelAddEditDrive()" type="button" class="btn btn-warning" title="{{'COMMON.CANCEL' | translate}}">
         <span translate="COMMON.CANCEL"></span>
       </button>
       <button ng-click="networkDrives.saveAddEditDrive()" type="button"
-          class="btn btn-info saveAddEditDrive" title="Save">
+          class="btn btn-info saveAddEditDrive" title="{{'COMMON.SAVE' | translate}}">
         <span translate="COMMON.SAVE"></span>
       </button>
     </div>
