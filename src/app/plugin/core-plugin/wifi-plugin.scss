@@ -4,10 +4,10 @@
       border-top: 0 !important;
       border-bottom: 1px solid #7C7C7C;
       &.insertPasswordRow {
-        input {
-          width: 150px;
+        input[type=text], input[type=password] {
+          width: 140px;
           display: inline-block;
-          margin-right: 15px;
+          margin-right: 10px;
         }
         text-align: center;
       }
@@ -25,6 +25,20 @@
       &.lockIcon {
         width: 30px;
         text-align: center;
+      }
+      .securitySelectWrapper {
+        width: 120px;
+        display: inline-block;
+        margin-right: 15px;
+        position: relative;
+        .ui-select-choices {
+          position: absolute;
+          top: -22px;
+          left: 0;
+        }
+      }
+      .showHidePassword {
+        margin-right: 10px;
       }
     }
   }

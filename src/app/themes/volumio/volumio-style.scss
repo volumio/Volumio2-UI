@@ -682,3 +682,41 @@ ul {
     cursor: pointer;
   }
 }
+
+//Checkboxes
+span {
+  &.checkbox-wrapper {
+    position: relative;
+  }
+}
+
+.custom-checkbox {
+	display: none;
+  & + label {
+    cursor: pointer;
+  	background-color: $volumio-dark-color;
+  	border: 1px solid $volumio-green-color;
+  	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+  	padding: 9px;
+  	display: inline-block;
+  	position: absolute;;
+    left: -28px;
+    top: 1px;
+  }
+
+  &:checked + label {
+  	background-color: $volumio-green-color;
+  	border: 1px solid $volumio-dark-color;
+  	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+  	color: $volumio-green-color;
+  }
+
+  &:checked + label:after {
+  	content: '\2714';
+  	font-size: 14px;
+  	position: absolute;
+  	top: 0px;
+  	left: 3px;
+  	color: $volumio-dark-color;
+  }
+}
