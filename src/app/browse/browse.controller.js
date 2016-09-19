@@ -198,7 +198,7 @@ class BrowseController {
     this.$timeout(() => {
       let angularThis = `angular.element('#browseTableItems').scope().browse`;
 
-      this.table = '<div class="">';
+      this.table = '<div>';
       for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
         let item = this.browseService.list[i];
         if (item.type === 'title') {
@@ -207,9 +207,12 @@ class BrowseController {
               <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
             </div>`;
         } else {
-          this.table += `<div class="itemWrapper"><div class="itemTab">`;
+          this.table += `<div class="itemWrapper">
+                <div class="itemTab">`;
 
-          this.table += `<div class="image">`;
+          this.table += `<div class="image"
+              onclick="${angularThis}.clickListItemByIndex(${i})"
+              ondblclick="${angularThis}.dblClickListItemByIndex(${i})">`;
           if (!item.icon && item.albumart) {
             this.table += `
             <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
@@ -226,7 +229,7 @@ class BrowseController {
               <div class="hamburgerMenu
                   ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
                       'hidden' : ''}">
-                <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})"
+                <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i}, event)"
                     title="Options...">
                   <i class="fa fa-ellipsis-v"></i>
                 </button>
@@ -237,11 +240,11 @@ class BrowseController {
             <div class="description breakMe"
                 onclick="${angularThis}.clickListItemByIndex(${i})"
                 ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
-              <div class="title ${(item.artist || item.album) ? '' : 'oneLine'}"">
-                ${item.title}
+              <div class="title ${(item.artist || item.album) ? 'artist' : 'album'}">
+                ${(item.title) ? item.title : ''}
               </div>
               <div class="artist-album ${(item.artist || item.album) ? '' : 'hidden'}">
-                ${item.artist} - ${item.album}
+                ${(item.artist) ? item.artist : ''} ${(item.album) ? '-' + item.album : ''}
               </div>
             </div>`;
 
@@ -251,8 +254,6 @@ class BrowseController {
       this.table += `</div>`;
       let browseTable = document.createElement('div');
       browseTable.classList.add('browseTable');
-      console.log(browseTable);
-      console.log(angular.element('#browseTableItems .browseTable'));
 
       window.requestAnimationFrame(() => {
         angular.element(browseTable).append(this.table);

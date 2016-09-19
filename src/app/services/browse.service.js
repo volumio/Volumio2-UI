@@ -67,14 +67,23 @@ class BrowseService {
   }
 
   toggleGridView() {
-    this._showGridView = !this._showGridView;
+    this.showGridView = !this._showGridView;
   }
 
   get showGridView() {
-    return this._showGridView;
+    //Return value based on preferences and view availability
+    if (this.availableListViews.length === 1) {
+      return this.availableListViews[0] === 'grid';
+    }
+    if (this._showGridView && ~this.availableListViews.indexOf('grid')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   set showGridView(showGridView) {
+    //Store user preference
     this._showGridView = showGridView;
   }
 
@@ -130,12 +139,15 @@ class BrowseService {
     });
     this.socketService.on('pushBrowseSources', (data) => {
       this.$log.debug('pushBrowseSources', data);
+      this.availableListViews = ['list'];
       this.sources = data;
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
       if (data.navigation) {
         this.list = data.navigation.list;
-
+        //TODO get this data from backend
+        this.availableListViews = ['list', 'grid'];//this.availableListViews;
+        console.error(this.availableListViews);
         this.listLength = this.list.length;
         this.$log.debug('pushBrowseLibrary', this.listLength, this.list);
 
@@ -150,6 +162,8 @@ class BrowseService {
     this.socketService.emit('getBrowseSources');
     this._isBrowsing = false;
     this._listBy = 'track';
+    //TODO or from sessionStorage
+    this._showGridView = false;
     //this.socketService.emit('browseLibrary', {});
   }
 

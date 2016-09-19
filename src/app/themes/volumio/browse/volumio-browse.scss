@@ -41,6 +41,9 @@
 }
 
 #browseTableSources {
+  tr {
+    cursor: pointer;
+  }
   td {
     text-transform: capitalize;
     padding-left: 10px;
@@ -75,6 +78,10 @@
     border-bottom: solid 1px $volumio-green-color;
   }
 
+  .itemWrapper {
+    cursor: pointer;
+  }
+
   .image {
     float: left;
     text-align: center;
@@ -100,8 +107,8 @@
     font-size: 16px;
     height: 22px;
     overflow: hidden;
-    &.oneLine {
-      margin-top: 12px;
+    &.album {
+      margin: 10px 0;
     }
   }
 
@@ -178,6 +185,19 @@
         position: absolute;
         top: 0px;
         left: 0px;
+      }
+    }
+
+    .title {
+      &.album {
+        height: 46px;
+        margin: 0;
+        display: block; /* Fallback for non-webkit */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
