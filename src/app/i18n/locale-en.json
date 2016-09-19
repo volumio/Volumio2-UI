@@ -154,7 +154,10 @@
     "CONNECT":"Connect",
     "REFRESH":"Refresh",
     "OPEN_NETWORK":"Open Network",
-    "SECURE_NETWORK":"Secure Network"
+    "SECURE_NETWORK":"Secure Network",
+    "MANUAL_WIFI_CONNECTION": "Manual wi fi connection",
+    "NETWORK_NAME": "Network name",
+    "SELECT_ENCRYPTION": "Select encryption"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
