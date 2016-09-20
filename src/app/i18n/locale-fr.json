@@ -5,7 +5,10 @@
     "UPLOAD_BACKGROUND_FILE": "Cliquer et sélectionner un nouveau fond d'écran ou le glisser ici.",
     "UPLOAD_PROGRESS": "Progression du téléchargement:",
     "SELECT_BACKGROUND": "Choisir un fond d'écran",
-    "SELECT_BACKGROUND_COLOR": "Choisir une couleur de fond"
+    "SELECT_BACKGROUND_COLOR": "Choisir une couleur de fond",
+    "APPLY_BACKGROUND": "Appliquer l'image de fond d'écran,
+    "APPLY_BACKGROUND_COLOR": "Applique la couleur de fond d'écran",
+    "DELETE_BACKGROUND": "Effacer l'arrière plan"
   },
   "COMMON": {
     "SAVE": "Sauver",
@@ -24,11 +27,15 @@
     "ACTIVE":"Active",
     "INACTIVE":"Inactive",
     "SHOW_SETTINGS":"Montrer les réglages",
+    "SETTINGS":"Réglages",
     "TAB_BROWSE":"Parcourir",
     "TAB_PLAYBACK":"Jouer",
     "TAB_QUEUE":"Queue",
+    "ARTIST":"Artiste",
     "ARTISTS":"Artistes",
+    "ALBUM":"Album",
     "ALBUMS":"Albums",
+    "SONG":"Piste",
     "SONGS":"Pistes",
     "PLAYTIME":"Durée de lecture",
     "TIME":"Temps",
@@ -45,7 +52,12 @@
     "BACK":"Retour",
     "OPTIONS":"Options",
     "CHOOSE_PLAYLIST":"Choisir la Playlist",
-    "STOP_MUSIC":"Arrêter la lecture"
+    "STOP_MUSIC":"Arrêter la lecture",
+    "HOME": "Home",
+    "VOLUME_MUTE":"Rendre Muet",
+    "VOLUME_MUTED":"Muet",
+    "VOLUME_UP":"Monter Volume",
+    "VOLUME_DOWN":"Baisser Volume"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -148,5 +160,8 @@
   "SLEEP": {
     "POWER_OFF": "Eteindre",
     "STOP_MUSIC": "Arrêter la musique"
+  },
+  "ALARM": {
+    "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist"
   }
 }
