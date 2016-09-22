@@ -247,10 +247,10 @@ class BrowseController {
             <div class="description breakMe"
                 onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
                 ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">
-              <div class="title ${(item.artist || item.album) ? 'artist' : 'album'}">
+              <div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
                 ${(item.title) ? item.title : ''}
               </div>
-              <div class="artist-album ${(item.artist || item.album) ? '' : 'hidden'}">
+              <div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
                 ${(item.artist) ? item.artist : ''} ${(item.album) ? '-' + item.album : ''}
               </div>
             </div>`;

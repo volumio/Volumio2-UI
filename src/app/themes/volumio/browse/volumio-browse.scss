@@ -111,7 +111,10 @@
     font-size: 16px;
     height: 22px;
     overflow: hidden;
-    &.album {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &.onlyTitle {
       margin: 10px 0;
     }
   }
@@ -121,6 +124,9 @@
     color: $volumio-green-color;
     height: 20px;
     overflow: hidden;
+    &.onlyTitle {
+      display: none;
+    }
   }
 
   .commandButtons {
@@ -194,15 +200,15 @@
       }
 
       .title {
-        &.album {
-          height: 46px;
+        &.onlyTitle {
+          height: 26px;
           margin: 0;
-          display: block; /* Fallback for non-webkit */
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis;
+        }
+      }
+
+      .artist-album {
+        &.onlyTitle {
+          display: block;
         }
       }
 
