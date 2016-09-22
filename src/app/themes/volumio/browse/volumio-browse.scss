@@ -72,14 +72,18 @@
 }
 
 .browseTable {
-  .itemTab {
-    overflow: visible;
-    height: 46px;
-    border-bottom: solid 1px $volumio-green-color;
-  }
-
   .itemWrapper {
     cursor: pointer;
+  }
+
+  .itemTab {
+    overflow: visible;
+    height: 56px;
+    border-bottom: solid 1px $volumio-table-border-color;
+    padding: 5px 0px 0px 5px;
+    &:hover {
+      background-color: $volumio-grey-trans-dark;
+    }
   }
 
   .image {
@@ -87,7 +91,7 @@
     text-align: center;
     width: 45px;
     height: 45px;
-    margin-right: 5px;
+    margin-right: 10px;
     i {
       padding-top: 15px;
       font-size: 18px
@@ -153,7 +157,7 @@
         position: relative;
         height: auto;
         padding: 10px;
-        border: solid 1px $volumio-green-color;
+        border: solid 1px $volumio-table-border-color;
         margin: 10px;
       }
 

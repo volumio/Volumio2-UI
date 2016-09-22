@@ -262,20 +262,14 @@ class BrowseController {
 
       this.table += `<div class="clearfix"></div>`;
 
-      let browseTable = document.createElement('div');
-      browseTable.classList.add('browseTable');
-
-      window.requestAnimationFrame(() => {
+      this.$timeout(() => {
         let browseTable = document.querySelector('.browseTable');
         browseTable.style.display = 'none';
-        angular.element(browseTable).append(this.table);
-        angular.element('#browseTablesWrapper .browseTable').replaceWith(browseTable); //.appendChild(this.table);
-        this.$rootScope.$broadcast('browseController:listRendered');
+        browseTable.innerHTML = this.table;
+        browseTable.style.display = 'block';
         this.applyGridStyle();
-        this.$timeout(() => {
-          browseTable.style.display = 'block';
-        }, 50);
-      });
+        this.$rootScope.$broadcast('browseController:listRendered');
+      }, 10, false);
     }, 0);
   }
 

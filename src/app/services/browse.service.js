@@ -33,6 +33,10 @@ class BrowseService {
   }
 
   fetchLibrary(item, back) {
+    if (item.uri === '/') {
+      this.backHome();
+      return false;
+    }
     let obj = {uri: item.uri};
     this.$log.debug('fetchLibrary', item);
     this.currentFetchRequest = item;
@@ -46,7 +50,7 @@ class BrowseService {
   backHome() {
     this.isBrowsing = false;
     this.isSearching = false;
-    this.list = [];
+    this.lists = [];
     this.scrollPositions.clear();
   }
 
@@ -131,7 +135,7 @@ class BrowseService {
   }
 
   get showGridViewSelector() {
-    if (!this.lists) {
+    if (!this.lists || this.lists.length === 0) {
       return false;
     }
     for (let i = 0; i < this.lists.length; i++) {
