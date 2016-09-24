@@ -404,54 +404,57 @@ class MockService {
             }
           ]}
       ],
-      getBrowseList: {
-        pagination: {
-          currentPage: 1,
-          totItems: 20,
-          itemsPerPage: 10,
-          totPages: 2
-        },
-        list: [
-          {
-            "type": "title",
-            "title": "Artist"
-          },
-          {
-            "type": "folder",
-            "title": "Musica",
-            "icon": "fa fa-folder-open-o",
-            "uri": "music-library/USB/KINGSTON/Musica"
-          },
-          {
-            "type": "folder",
-            "title": "Lezioni_AIS_3°_Livello_2014_PDF",
-            "icon": "fa fa-folder-open-o",
-            "uri": "music-library/USB/KINGSTON/Lezioni_AIS_3°_Livello_2014_PDF"
-          },
-          {
-            "type": "title",
-            "title": "Album",
-            "icon": "fa fa-folder-open-o"
-          },
-          {
-            "type": "folder",
-            "title": "Fotografie falegnameria e falegnami - CB interni",
-            "icon": "fa fa-folder-open-o",
-            "uri": "music-library/USB/KINGSTON/Fotografie falegnameria e falegnami - CB interni"
-          },
-          {
-            "type": "folder",
-            "title": ".Trashes",
-            "icon": "fa fa-folder-open-o",
-            "uri": "music-library/USB/KINGSTON/.Trashes"
-          },
-          {
-            "type": "folder",
-            "title": ".Spotlight-V100",
-            "icon": "fa fa-folder-open-o",
-            "uri": "music-library/USB/KINGSTON/.Spotlight-V100"
+      getBrowseLibrary: {
+        "navigation": {
+          "lists": [
+            {
+              "title": "Artists",
+              "icon": "fa fa-music",
+              "availableListViews": [
+                "grid", "list"
+              ],
+              "items": [
+                {
+                  "service": "mpd",
+                  "type": "song",
+                  "title": "Led Zeppelin",
+                  "icon": "fa fa-music",
+                  "uri": "search://artist/Led Zeppelin"
+                }
+              ]
+            },
+            {
+              "title": "Webradios",
+              "icon": "",
+              "availableListViews": [
+                "list"
+              ],
+              "items": [
+                {
+                  "service": "webradio",
+                  "type": "webradio",
+                  "title": "ledjam",
+                  "artist": "",
+                  "album": "",
+                  "icon": "fa fa-microphone",
+                  "uri": "http://yp.shoutcast.com/sbin/tunein-station.m3u?id=492072"
+                },
+                {
+                  "service": "webradio",
+                  "type": "webradio",
+                  "title": "NAXI 80-e RADIO (NAXI,Belgrade,Serbia, NAXI,Beograd,Srbija) - 128k",
+                  "artist": "",
+                  "album": "",
+                  "icon": "fa fa-microphone",
+                  "uri": "http://yp.shoutcast.com/sbin/tunein-station.m3u?id=68544"
+                }
+              ]
+            }
+          ],
+          "prev": {
+            "uri": "/"
           }
-        ]
+        }
       },
       getMultiRoomDevices: {
         misc: {debug: true},

@@ -9,5 +9,13 @@
     ng-if="browse.browseService.isBrowsing && browse.browseService.breadcrumbs.uri"
     ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri}, true)"
     title="{{'COMMON.BACK' | translate}}">
-    <i class="fa fa-arrow-circle-left"></i>
+  <i class="fa fa-arrow-circle-left"></i>
+</button>
+<button
+    class="btn-link"
+    ng-click="browse.toggleGridView()"
+    title="{{((browse.browseService.showGridView) ? 'COMMON.LIST': 'COMMON.GRID') | translate}}"
+    ng-if="browse.browseService.showGridViewSelector">
+  <i ng-if="browse.browseService.showGridView" class="fa fa-th-list"></i>
+  <i ng-if="!browse.browseService.showGridView" class="fa fa-th-large"></i>
 </button>
