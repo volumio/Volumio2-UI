@@ -127,9 +127,8 @@
     "SPEED":"Vitesse",
     "ONLINE":"Connecté",
     "CONNECT":"Connexion",
-<<<<<<< HEAD
     "REFRESH":"Rafraichir",
-    "MANUAL_WIFI_CONNECTION": "Connexion WiFi manuelle",
+    "MANUAL_WIFI_CONNECTION":"Connexion WiFi manuelle",
     "NETWORK_NAME": "Nom du réseau",
     "SELECT_ENCRYPTION": "Type de Sécurité"
   },
@@ -138,9 +137,7 @@
     "STOP_MUSIC": "Arrêter la musique"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist"
-=======
+    "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist",
     "REFRESH":"Rafraichir"
->>>>>>> development
   }
 }
