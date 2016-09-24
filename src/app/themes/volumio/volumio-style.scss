@@ -683,15 +683,40 @@ ul {
   }
 }
 
-//installed Plugin List
+//Checkboxes
+span {
+  &.checkbox-wrapper {
+    position: relative;
+  }
+}
 
-div#installed-plugin-lists {
-  padding-bottom: 15px;
-  padding-top: 25px;
-  font-size: 16px;
-  border-bottom: 1px solid #54C698;
+.custom-checkbox {
+	display: none;
+  & + label {
+    cursor: pointer;
+  	background-color: $volumio-dark-color;
+  	border: 1px solid $volumio-green-color;
+  	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+  	padding: 9px;
+  	display: inline-block;
+  	position: absolute;;
+    left: -28px;
+    top: 1px;
   }
 
-div#list-group {
-      margin: 10px 10px 10px 10px;
+  &:checked + label {
+  	background-color: $volumio-green-color;
+  	border: 1px solid $volumio-dark-color;
+  	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+  	color: $volumio-green-color;
+  }
+
+  &:checked + label:after {
+  	content: '\2714';
+  	font-size: 14px;
+  	position: absolute;
+  	top: 0px;
+  	left: 3px;
+  	color: $volumio-dark-color;
+  }
 }

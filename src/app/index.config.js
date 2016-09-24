@@ -1,5 +1,5 @@
 function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touchProvider, env, $locationProvider,
-  $httpProvider, $translateProvider) {
+  $httpProvider, $translateProvider, localStorageServiceProvider) {
   'ngInject';
 
   $touchProvider.enabled = true;
@@ -15,13 +15,15 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
     timeOut: 2000
   });
 
+  localStorageServiceProvider.setPrefix('volumio');
+
   //i18n Configs
   $translateProvider
     .useStaticFilesLoader({
       prefix: 'app/i18n/locale-',
       suffix: '.json'
     })
-    .registerAvailableLanguageKeys(['ca', 'en', 'da', 'de', 'es', 'it', 'fr', 'hu', 'ja', 'nl', 'no', 'pl', 'ru', 'sv', 'ua', 'zh'], {
+    .registerAvailableLanguageKeys(['ca', 'en', 'da', 'de', 'es', 'it', 'fr', 'ja', 'nl', 'pl', 'sv', 'zh'], {
       'ca': 'ca',
       'en': 'en',
       'da': 'da',
@@ -29,14 +31,10 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       'es': 'es',
       'it': 'it',
       'fr': 'fr',
-      'hu': 'hu',
       'ja': 'ja',
       'nl': 'nl',
-      'no': 'no',
       'pl': 'pl',
-      'ru': 'ru',
       'sv': 'sv',
-      'ua': 'ua',
       'zh': 'zh'
     })
     //Back end send default language, this improve translation consistency

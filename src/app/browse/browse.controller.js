@@ -68,8 +68,8 @@ class BrowseController {
       this.fetchLibrary(item);
     }
   }
-  clickListItemByIndex(index) {
-    let item = this.browseService.list[index];
+  clickListItemByIndex(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
     this.clickListItem(item);
   }
 
@@ -80,23 +80,25 @@ class BrowseController {
       this.playQueueService.addPlayCue(item);
     }
   }
-  dblClickListItemByIndex(index) {
-    let item = this.browseService.list[index];
+  dblClickListItemByIndex(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
     this.dblClickListItem(item);
   }
 
-  hamburgerMenuClick(button, index) {
+  hamburgerMenuClick(button, listIndex, itemIndex) {
     let hamburgerMenuMarkup = `
       <div
           uib-dropdown
           on-toggle="browse.toggledItem(open, $event)"
           class="hamburgerMenu">
-        <button id="hamburgerMenuBtn-${index}" class="dropdownToggle btn-link" uib-dropdown-toggle>
-          <i class="fa fa-bars"></i>
+        <button id="hamburgerMenuBtn-${listIndex}-${itemIndex}" class="dropdownToggle btn-link" uib-dropdown-toggle>
+          <i class="fa fa-ellipsis-v"></i>
         </button>
-        <ul class="dropdown-menu buttonsGroup"
-          ng-class="::{'last': (${index} > 2 && this.browseService.listLength - ${index} < 3)}">
-          <browse-hamburger-menu item="browse.browseService.list[${index}]" browse="browse"></browse-hamburger-menu>
+        <ul class="dropdown-menu buttonsGroup">
+          <browse-hamburger-menu
+              item="browse.browseService.lists[${listIndex}].items[${itemIndex}]"
+              browse="browse">
+          </browse-hamburger-menu>
         </ul>
       </div>
     `;
@@ -104,7 +106,7 @@ class BrowseController {
     let buttonParent = angular.element(button).parent();
     buttonParent.replaceWith(hamburgerMenuMarkup);
     this.$timeout(() => {
-      document.querySelector(`#hamburgerMenuBtn-${index}`).click();
+      document.querySelector(`#hamburgerMenuBtn-${listIndex}-${itemIndex}`).click();
     }, 0);
   }
 
@@ -160,12 +162,12 @@ class BrowseController {
       }, 600, false);
     } else {
       this.browseService.isSearching = false;
-      this.browseService.list = [];
+      this.browseService.lists = [];
     }
   }
 
   showHamburgerMenu(item) {
-    let ret = item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category';
+    let ret = item.type === 'radio-favourites' || item.type === 'radio-category';
     return !ret;
   }
 
@@ -193,71 +195,98 @@ class BrowseController {
   }
 
   renderBrowseTable() {
-    if (!this.browseService.list) {
+    if (!this.browseService.lists) {
       return false;
     }
     this.$timeout(() => {
-      this.table = '';
-      let angularThis = `angular.element('#browseTableItems').scope().browse`;
-      for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
-        let item = this.browseService.list[i];
-        this.table += `<tr>`;
+      let angularThis = `angular.element('#browseTablesWrapper').scope().browse`;
 
-        if (item.type === 'title') {
+      this.table = '';
+      this.browseService.lists.forEach((list, listIndex) => {
+        //Print title
+        if (list.title) {
           this.table += `
-            <td class="rowTitle" colspan="3">
-              <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
-            </td>`;
+            <div class="rowTitle">
+              <i class="${list.icon} ${(list.icon) ? '' : 'hidden'}"></i> ${list.title}
+            </div>`;
         }
 
-        if (item.type !== 'title') {
-          this.table += `<td class="image">`;
+        this.table += `<div class="listWrapper">`;
+        list.items.forEach((item, itemIndex) => {
+          //Print items
+          this.table += `<div class="itemWrapper"><div class="itemTab">`;
 
+          this.table += `<div class="image"
+              onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
+              ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">`;
           if (!item.icon && item.albumart) {
             this.table += `
             <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
           }
 
           if (item.icon) {
+            // this.table += `<img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PearlJam1.jpg/220px-PearlJam1.jpg"/>`;
             this.table += `<i class="${item.icon}"></i>`;
           }
+          this.table += `</div>`;
 
-          this.table += `</td>`;
-        }
-
-        if (item.type !== 'title') {
           this.table += `
-          <td class="breakMe"
-              onclick="${angularThis}.clickListItemByIndex(${i})"
-              ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
-            <div class="title">
-              ${item.title}
-            </div>
-            <div class="artist-album
-                ${(item.artist || item.album) ? '' : 'hidden'}">
-              ${item.artist} - ${item.album}
-            </div>
-          </td>
-          <td class="commandButtons">
-            <div class="hamburgerMenu
-                ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
-                    'hidden' : ''}">
-              <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})"
-                  title="Options...">
-                <i class="fa fa-bars"></i>
-              </button>
-            </div>
-          </td>`;
-        }
-        this.table += `</tr>`;
-      }
-      let tbody = document.createElement('tbody');
-      window.requestAnimationFrame(() => {
-        angular.element(tbody).append(this.table);
-        angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
-        this.$rootScope.$broadcast('browseController:listRendered');
+            <div class="commandButtons">
+              <div class="hamburgerMenu
+                  ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
+                      'hidden' : ''}">
+                <button class="dropdownToggle btn-link"
+                    onclick="${angularThis}.hamburgerMenuClick(this, ${listIndex}, ${itemIndex}, event)"
+                    title="Options...">
+                  <i class="fa fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>`;
+
+          this.table += `
+            <div class="description breakMe"
+                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
+                ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">
+              <div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                ${(item.title) ? item.title : ''}
+              </div>
+              <div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                ${(item.artist) ? item.artist : ''} ${(item.album) ? '-' + item.album : ''}
+              </div>
+            </div>`;
+
+          this.table += `</div></div>`;
+        });
+        this.table += `</div>`;
       });
+
+      this.table += `<div class="clearfix"></div>`;
+
+      this.$timeout(() => {
+        let browseTable = document.querySelector('.browseTable');
+        browseTable.style.display = 'none';
+        browseTable.innerHTML = this.table;
+        browseTable.style.display = 'block';
+        this.applyGridStyle();
+        this.$rootScope.$broadcast('browseController:listRendered');
+      }, 10, false);
     }, 0);
+  }
+
+  applyGridStyle() {
+    const itemWrappers = document.querySelectorAll('.listWrapper');
+    this.browseService.lists.forEach((list, i) => {
+      if (this.browseService.canShowGridView(list)) {
+        itemWrappers[i].classList.add('grid');
+      } else {
+        itemWrappers[i].classList.remove('grid');
+      }
+    });
+  }
+
+  toggleGridView() {
+    this.browseService.toggleGridView();
+    this.applyGridStyle();
   }
 
   initController() {

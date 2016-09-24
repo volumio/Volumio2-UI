@@ -27,7 +27,6 @@
     "ACTIVE":"Active",
     "INACTIVE":"Inactive",
     "SHOW_SETTINGS":"Show Settings",
-    "SETTINGS":"Settings",
     "TAB_BROWSE":"Browse",
     "TAB_PLAYBACK":"Playback",
     "TAB_QUEUE":"Queue",
@@ -57,7 +56,8 @@
     "VOLUME_MUTE":"Mute",
     "VOLUME_MUTED":"Muted",
     "VOLUME_UP":"Volume Up",
-    "VOLUME_DOWN":"Volume Down"
+    "VOLUME_DOWN":"Volume Down",
+    "HIDDEN": "Hidden"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -154,7 +154,10 @@
     "CONNECT":"Connect",
     "REFRESH":"Refresh",
     "OPEN_NETWORK":"Open Network",
-    "SECURE_NETWORK":"Secure Network"
+    "SECURE_NETWORK":"Secure Network",
+    "SECURITY": "Security",
+    "MANUAL_WIFI_CONNECTION":"Manual WiFi Connection",
+    "NETWORK_NAME":"Network Name"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",

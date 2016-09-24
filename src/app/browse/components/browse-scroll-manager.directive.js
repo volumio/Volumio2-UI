@@ -52,6 +52,7 @@ class BrowseScrollManagerDirective {
       // $log.debug(this.browseTablesWrapper);
       this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
       setbrowseTablesWrapperHeight();
+      setbrowseTablesWrapperHeight();
       this.setScrollTop();
     }, 100);
 
@@ -60,7 +61,7 @@ class BrowseScrollManagerDirective {
       footer = angular.element('#footer')[0];
       if (this.browseTablesWrapper && footer && browsePanelHeading) {
         this.browseTablesWrapper.style.height =
-            footer.getBoundingClientRect().bottom - footer.getBoundingClientRect().height -
+            footer.getBoundingClientRect().top -
             browsePanelHeading.getBoundingClientRect().bottom + 'px';
       }
     };

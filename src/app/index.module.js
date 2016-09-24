@@ -109,6 +109,7 @@ angular.module('volumio', [
   'hmTouchEvents',
   'ngFileUpload',
   'pascalprecht.translate',
+  'LocalStorageModule',
 
   //Angular core modules
   // 'ngAnimate',
