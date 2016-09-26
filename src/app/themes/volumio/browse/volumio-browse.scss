@@ -81,8 +81,9 @@
     height: 56px;
     border-bottom: solid 1px $volumio-table-border-color;
     padding: 5px 0px 0px 5px;
+    background-color: $volumio-grey-trans-dark;
     &:hover {
-      background-color: $volumio-grey-trans-dark;
+      background-color: $volumio-black-trans-dark;
     }
   }
 
@@ -131,8 +132,9 @@
 
   .commandButtons {
     float: right;
-    padding-top: 6px;
+    padding-top: 8px;
     width: 35px;
+    font-size: 20px;
     .dropdown-menu {
       left: auto;
       right: 10px;
