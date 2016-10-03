@@ -29,7 +29,8 @@ var User = function (gitUser) {
 var array = [
 	new Repo("Volumio2","https://raw.githubusercontent.com/volumio/Volumio2/master/package.json","https://api.github.com/repos/volumio/Volumio2/contributors"),
 	new Repo("Volumio2-UI Bower","https://raw.githubusercontent.com/volumio/Volumio2-UI/master/bower.json",""),
-	new Repo("Volumio2-UI","https://raw.githubusercontent.com/volumio/Volumio2-UI/master/package.json","https://api.github.com/repos/volumio/Volumio2-UI/contributors")
+	new Repo("Volumio2-UI","https://raw.githubusercontent.com/volumio/Volumio2-UI/master/package.json","https://api.github.com/repos/volumio/Volumio2-UI/contributors"),
+	new Repo("Volumio OS","","https://api.github.com/repos/volumio/Build/contributors")
 		];
 
 var finishCount=0;
@@ -257,10 +258,12 @@ function writeHTML() {
 		html += addAuthors(item.authors);
 		html += '</div></div>';
 	} else {
+		if (item.name != 'Volumio OS'){
 		html += addSection(item.name);
 		html += addPackages(item.deps);
 		html += addPackages(item.devDeps);
 		html += '</div></div>';
+	}
 		html += addSection(item.name+' Contributors');
 		html += addAuthors(item.authors);
 		html += '</div></div>';

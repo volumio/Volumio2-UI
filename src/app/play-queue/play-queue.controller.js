@@ -28,65 +28,73 @@ class PlayQueueController {
     for (var i = 0, ll = this.playQueueService.queue.length ; i < ll; i++) {
       let item = this.playQueueService.queue[i];
       this.list += `
-      <li id="itemQueue-${i}" class="">
+      <li id="itemQueue-${i}">
         <div class="image"
             onclick="${angularThis}.playQueueService.play(${i})">
-          <span class="rollover"></span>
-          <img
-              class="${(!item.icon) ? '' : 'hidden'}"
-              ${(!item.icon) ? 'src="' +  this.playerService.getAlbumart(item.albumart) + '"' : ''}
-              alt="${item.title}"/>
-          <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i>
-        </div>
-        <div class="titleArtist" onclick="${angularThis}.playQueueService.play(${i})">
+          <span class="rollover"></span>`;
+
+      if (item.icon) {
+        this.list += `<i class="${item.icon}"></i>`;
+      } else {
+        this.list +=
+          `<img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
+      }
+      this.list += `</div>`;
+
+      this.list +=
+        `<div class="titleArtist" onclick="${angularThis}.playQueueService.play(${i})">
           <div class="title">
             ${item.name}
-          </div>
-          <div class="artist-album ${(item.artist || item.album) ? '' : 'hidden'}">
-            ${item.artist} - ${item.album}
-          </div>
-        </div>
-        <div class="commandButtons">
+          </div>`;
+
+      if (item.artist || item.album) {
+        this.list +=
+          `<div class="artist-album">
+            ${item.artist}${(item.album) ? ' - ' + item.album : ''}
+          </div>`;
+      }
+      this.list += `</div>`;
+
+      this.list +=
+        `<div class="commandButtons">
           <button
               class="btn-link"
               onclick="${angularThis}.playQueueService.remove(${i})">
             <i class="fa fa-times-circle"></i>
           </button>
         </div>
-      </li>
-      `;
+      </li>`;
     }
     let ul = document.createElement('ul');
     angular.element(ul).append(this.list);
-    window.requestAnimationFrame(() => {
-      angular.element('#playQueueList ul').replaceWith(ul);
-      let ulHandler = document.querySelector('#playQueueList ul');
-      this.hilightCurrentTrack();
-      if (ulHandler) {
-        let sortable = Sortable.create(ulHandler, {
-          onEnd: (evt) => {
-            let emitPayload = {
-              from: evt.oldIndex,
-              to: evt.newIndex
-            };
-            let sortingElement = this.$document[0].getElementById(`itemQueue-${evt.oldIndex}`);
-            sortingElement.classList.remove('sorting');
-            this.socketService.emit('moveQueue', emitPayload);
-          },
-          onStart: (evt) => {
-           console.log(evt.oldIndex);
-           let sortingElement = this.$document[0].getElementById(`itemQueue-${evt.oldIndex}`);
-           console.log(sortingElement);
-           sortingElement.classList.add('sorting');
-          },
-          animation: 250,
-          delay: 150
-        });
-      }
-    });
+    angular.element('#playQueueList ul').replaceWith(ul);
+
+    let ulHandler = document.querySelector('#playQueueList ul');
+    this.hilightCurrentTrack(true);
+    if (ulHandler) {
+      let sortable = Sortable.create(ulHandler, {
+        onEnd: (evt) => {
+          let emitPayload = {
+            from: evt.oldIndex,
+            to: evt.newIndex
+          };
+          let sortingElement = this.$document[0].getElementById(`itemQueue-${evt.oldIndex}`);
+          sortingElement.classList.remove('sorting');
+          this.socketService.emit('moveQueue', emitPayload);
+        },
+        onStart: (evt) => {
+          console.log(evt.oldIndex);
+          let sortingElement = this.$document[0].getElementById(`itemQueue-${evt.oldIndex}`);
+          console.log(sortingElement);
+          sortingElement.classList.add('sorting');
+        },
+        animation: 250,
+        delay: 150
+      });
+    }
   }
 
-  hilightCurrentTrack() {
+  hilightCurrentTrack(firstRender = false) {
     if (!this.playerService.state) {
       return false;
     }
@@ -98,6 +106,9 @@ class PlayQueueController {
     let currentPlayingSong = this.$document[0].getElementById(`itemQueue-${position}`);
     if (currentPlayingSong && this.playerService.state.status === 'play') {
       currentPlayingSong.classList.add('isPlaying');
+      if (firstRender) {
+        currentPlayingSong.scrollIntoView();
+      }
     }
   }
 

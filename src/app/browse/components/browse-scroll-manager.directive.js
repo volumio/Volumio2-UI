@@ -33,7 +33,7 @@ class BrowseScrollManagerDirective {
     function scrollHandler() {
       /*jshint validthis:true */
       // $log.debug(browseService.currentFetchRequest.uri, this.scrollTop);
-      if ( browseService.currentFetchRequest && browseService.currentFetchRequest.uri) {
+      if (browseService.currentFetchRequest && browseService.currentFetchRequest.uri) {
         browseService.scrollPositions.set(browseService.currentFetchRequest.uri, this.scrollTop);
       } else {
         browseService.scrollPositions.set({}, this.scrollTop);
@@ -51,7 +51,6 @@ class BrowseScrollManagerDirective {
       // this.browseTablesWrapper.scrollTop = 0;
       // $log.debug(this.browseTablesWrapper);
       this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
-      setbrowseTablesWrapperHeight();
       setbrowseTablesWrapperHeight();
       this.setScrollTop();
     }, 100);
