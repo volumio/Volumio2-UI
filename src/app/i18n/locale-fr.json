@@ -104,8 +104,8 @@
   },
   "TRACK_MANAGER":{
     "PLAYING":"Lecture en cours",
-    "BY":"Au revoir",
-    "FROM":"De",
+    "BY":"De",
+    "FROM":"Extrait de l'album",
     "GO_TO_ARTIST":"Aller à l' Artiste",
     "GO_TO_ALBUM":"Aller à l' Album",
     "TWEET_TRACK":"Tweeter la piste"
