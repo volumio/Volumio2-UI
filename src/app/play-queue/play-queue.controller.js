@@ -70,7 +70,7 @@ class PlayQueueController {
     angular.element('#playQueueList ul').replaceWith(ul);
 
     let ulHandler = document.querySelector('#playQueueList ul');
-    this.hilightCurrentTrack();
+    this.hilightCurrentTrack(true);
     if (ulHandler) {
       let sortable = Sortable.create(ulHandler, {
         onEnd: (evt) => {
@@ -94,7 +94,7 @@ class PlayQueueController {
     }
   }
 
-  hilightCurrentTrack() {
+  hilightCurrentTrack(firstRender = false) {
     if (!this.playerService.state) {
       return false;
     }
@@ -106,6 +106,9 @@ class PlayQueueController {
     let currentPlayingSong = this.$document[0].getElementById(`itemQueue-${position}`);
     if (currentPlayingSong && this.playerService.state.status === 'play') {
       currentPlayingSong.classList.add('isPlaying');
+      if (firstRender) {
+        currentPlayingSong.scrollIntoView();
+      }
     }
   }
 
