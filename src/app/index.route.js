@@ -41,6 +41,8 @@ function routerConfig ($stateProvider, $urlRouterProvider,
               console.info('Dev mode: IP from local-config.json');
               return $http.get('/app/local-config.json').then((response) => {
                 socketService.host  = response.data.localhost;
+                // socketService.host = '192.168.0.90';
+                // socketService.host2 = '192.168.0.9';
               });
             });
         }
