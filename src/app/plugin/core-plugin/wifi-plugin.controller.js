@@ -64,6 +64,12 @@ class WifiPluginController {
         signal: -1,
         ssidHidden: true
       });
+      this.wirelessNetworks.available.map((network) => {
+        if (!network.security || network.security === '') {
+          network.security = this.securityTypes[0];
+          network.hotSpot = true;
+        }
+      });
     });
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushWirelessNetworks');
