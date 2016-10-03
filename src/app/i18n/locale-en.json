@@ -57,7 +57,8 @@
     "VOLUME_MUTED":"Muted",
     "VOLUME_UP":"Volume Up",
     "VOLUME_DOWN":"Volume Down",
-    "HIDDEN": "Hidden"
+    "HIDDEN": "Hidden",
+    "LIST": "List"
   },
   "BROWSER": {
     "PLAY": "Play",
