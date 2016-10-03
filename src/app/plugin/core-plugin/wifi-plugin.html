@@ -47,9 +47,9 @@
           <i ng-if="::wifi.signal < 0" class="fa fa-eye-slash"></i>
         </td>
         <td class="lockIcon">
-          <span ng-if="::wifi.security">
-            <i ng-if="::wifi.security == 'open'" class="fa fa-unlock" title="{{'NETWORK.OPEN_NETWORK' | translate}}"></i>
-            <i ng-if="::wifi.security !== 'open'" class="fa fa-lock" title="{{'NETWORK.SECURE_NETWORK' | translate}}"></i>
+          <span>
+            <i ng-if="wifi.security === 'open' || wifi.security.label === 'open'" class="fa fa-unlock" title="{{'NETWORK.OPEN_NETWORK' | translate}}"></i>
+            <i ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'" class="fa fa-lock" title="{{'NETWORK.SECURE_NETWORK' | translate}}"></i>
           </span>
         </td>
         <td>
@@ -74,9 +74,9 @@
             <span translate="COMMON.HIDDEN"></span> &nbsp;|&nbsp;
           </span>
 
-          <span translate="NETWORK.SECURITY" ng-if="::wifi.ssidHidden"></span>
+          <span translate="NETWORK.SECURITY" ng-if="::wifi.ssidHidden || wifi.hotSpot"></span>
 
-          <div class="securitySelectWrapper" ng-if="::wifi.ssidHidden">
+          <div class="securitySelectWrapper" ng-if="::wifi.ssidHidden || wifi.hotSpot">
             <ui-select
                 ng-model="wifi.security"
                 search-enabled="false"
