@@ -74,9 +74,9 @@
             <span translate="COMMON.HIDDEN"></span> &nbsp;|&nbsp;
           </span>
 
-          <span translate="NETWORK.SECURITY" ng-if="::wifi.ssidHidden"></span>
+          <span translate="NETWORK.SECURITY" ng-if="::wifi.ssidHidden || !wifi.security || wifi.security ===''"></span>
 
-          <div class="securitySelectWrapper" ng-if="::wifi.ssidHidden">
+          <div class="securitySelectWrapper" ng-if="::wifi.ssidHidden || !wifi.security || wifi.security ===''">
             <ui-select
                 ng-model="wifi.security"
                 search-enabled="false"
