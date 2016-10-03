@@ -125,6 +125,8 @@
     color: $volumio-green-color;
     height: 20px;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     &.onlyTitle {
       display: none;
     }
@@ -202,15 +204,19 @@
       }
 
       .title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         &.onlyTitle {
-          height: 26px;
+          white-space: normal;
           margin: 0;
+          height: 42px;
         }
       }
 
       .artist-album {
         &.onlyTitle {
-          display: block;
+          // display: block;
         }
       }
 
