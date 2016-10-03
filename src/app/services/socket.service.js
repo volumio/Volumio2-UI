@@ -7,6 +7,8 @@ class SocketService {
     this.$log = $log;
 
     this._host = null;
+    this.connectToFallbackHost = false;
+    this.host2 = null;
   }
 
   changeHost(host) {
@@ -14,9 +16,25 @@ class SocketService {
       this.$window.socket.disconnect();
       this.$window.socket.removeAllListeners();
     }
-    this.$window.socket = io(this.host);
+    this.$window.socket = io(this.host, {timeout: 500});
     this.$window.socket.connect();
+    this.$window.socket.on('connect_error', () => {
+      this.$log.debug(`Socket connect_error for host ${this.host}`);
+      this._connectToFallbackHost();
+    });
+    this.$window.socket.on('connect_timeout', () => {
+      this.$log.debug(`Socket connect_timeout for host ${this.host}`);
+      this._connectToFallbackHost();
+    });
     this.$rootScope.$emit('socket:init');
+  }
+
+  _connectToFallbackHost() {
+    if (!this.connectToFallbackHost && this.host2) {
+      this.connectToFallbackHost = true;
+      this.$log.info(`Try to connect to host2 ${this.host2}`);
+      this.host = this.host2;
+    }
   }
 
   get isConnected() {
