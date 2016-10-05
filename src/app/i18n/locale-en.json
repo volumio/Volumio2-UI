@@ -98,7 +98,7 @@
     "UPLOAD_PLUGINS":"Upload Plugin"
   },
   "UPDATER": {
-    "DOWNLOAD_SPEED": "Back to Plugins",
+    "DOWNLOAD_SPEED": "Download Speed",
     "TIME_REMAINING": "Time Remaining",
     "UPDATE_NOW": "Update Now"
   },
