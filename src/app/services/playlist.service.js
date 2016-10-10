@@ -41,7 +41,7 @@ class PlaylistService {
   }
 
   deletePlaylist(playlist) {
-    this.socketService.emit('deletePlaylist', {value: playlist});
+    this.socketService.emit('deletePlaylist', {name: playlist});
   }
 
   //Favourites
