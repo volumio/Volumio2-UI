@@ -64,6 +64,7 @@ class PluginManagerController {
     let emitPayload = {
       url: plugin.url,
       name: plugin.name,
+      prettyName: plugin.prettyName,
       category: this.selectedCategory.name
     };
     this.$log.debug('emit updatePlugin', emitPayload);
