@@ -65,6 +65,10 @@ class BrowseController {
   clickListItem(item) {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong') {
       this.fetchLibrary(item);
+    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
+      this.play(item);
+    } else if (item.type === 'cuesong') {
+      this.playQueueService.addPlayCue(item);
     }
   }
   clickListItemByIndex(listIndex, itemIndex) {
@@ -72,17 +76,18 @@ class BrowseController {
     this.clickListItem(item);
   }
 
-  dblClickListItem(item) {
-    if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
-      this.play(item);
-    } else if (item.type === 'cuesong') {
-      this.playQueueService.addPlayCue(item);
-    }
-  }
-  dblClickListItemByIndex(listIndex, itemIndex) {
-    let item = this.browseService.lists[listIndex].items[itemIndex];
-    this.dblClickListItem(item);
-  }
+  //TODO remove this code
+  // dblClickListItem(item) {
+  //   if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
+  //     this.play(item);
+  //   } else if (item.type === 'cuesong') {
+  //     this.playQueueService.addPlayCue(item);
+  //   }
+  // }
+  // dblClickListItemByIndex(listIndex, itemIndex) {
+  //   let item = this.browseService.lists[listIndex].items[itemIndex];
+  //   this.dblClickListItem(item);
+  // }
 
   hamburgerMenuClick(button, listIndex, itemIndex) {
     let hamburgerMenuMarkup = `
@@ -217,8 +222,7 @@ class BrowseController {
           this.table += `<div class="itemWrapper"><div class="itemTab">`;
 
           this.table += `<div class="image"
-              onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
-              ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">`;
+              onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
           if (!item.icon && item.albumart) {
             this.table += `
             <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
@@ -245,8 +249,7 @@ class BrowseController {
 
           this.table += `
             <div class="description breakMe"
-                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
-                ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">
+                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
               <div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
                 ${(item.title) ? item.title : ''}
               </div>
@@ -269,7 +272,7 @@ class BrowseController {
         browseTable.style.display = 'block';
         this.applyGridStyle();
         this.$rootScope.$broadcast('browseController:listRendered');
-      }, 10, false);
+      }, 50, false);
     }, 0);
   }
 

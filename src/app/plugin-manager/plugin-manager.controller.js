@@ -69,8 +69,8 @@ class PluginManagerController {
     };
     this._openInstallerModal();
     this.$timeout(() => {
-    this.$log.debug('emit updatePlugin', emitPayload);
-    this.socketService.emit('updatePlugin', emitPayload);
+      this.$log.debug('emit updatePlugin', emitPayload);
+      this.socketService.emit('updatePlugin', emitPayload);
     }, 300);
   }
 
@@ -100,20 +100,20 @@ class PluginManagerController {
   //TAB UPLOAD PLUGIN
   uploadPlugin() {
     this.Upload.upload({
-        url: `${this.socketService.host}/plugin-upload`,
-        data: {filename: this.pluginFile}
+      url: `${this.socketService.host}/plugin-upload`,
+      data: {filename: this.pluginFile}
     }).then((resp) => {
       this.uploadPercentage = false;
     }, (resp) => {
       this.uploadPercentage = false;
       this.$log.debug('Error status: ' + resp.status);
-    }, (evt)  =>{
-        this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        if (this.uploadPercentage === 100) {
-          this.uploadPercentage = false;
-          this.activeTab = 0;
-          this._openInstallerModal();
-        }
+    }, (evt) => {
+      this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
+      if (this.uploadPercentage === 100) {
+        this.uploadPercentage = false;
+        this.activeTab = 0;
+        this._openInstallerModal();
+      }
     });
   }
 
