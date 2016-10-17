@@ -9,12 +9,23 @@ footer {
   background-color: $volumio-deep-dark-color;
 }
 
+.tabBar {
+  button {
+    i {
+      font-size: 25px;
+      @include breakpoint(xs) {
+        font-size: 28px;
+      }
+    }
+  }
+}
+
 #phoneFooter {
   button {
     font-size: 22px;
     &:active{
       color: $volumio-green-color;
-    } 
+    }
   }
 }
 

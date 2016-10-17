@@ -1,0 +1,27 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="PLUGINS.PLUGINS"></h2>
+    </div>
+  </div>
+  <div
+    id="pluginsPlugin"
+    class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-plug"></i> <span translate="PLUGINS.PLUGINS_MANAGEMENT"></span></h3>
+    </div>
+
+    <div class="panel-body">
+      <uib-tabset active="pluginManager.activeTab">
+        <uib-tab index="0" heading="{{'PLUGINS.INSTALLED_PLUGINS' | translate}}">
+          <ng-include src="'app/plugin-manager/elements/installed-plugin.html'"></ng-include>
+        </uib-tab>
+        <uib-tab index="1" heading="{{'PLUGINS.SEARCH_PLUGINS' | translate}}">
+          <ng-include src="'app/plugin-manager/elements/search-plugin.html'"></ng-include>
+        </uib-tab>
+        <uib-tab index="2" heading="{{'PLUGINS.UPLOAD_PLUGINS' | translate}}">
+          <ng-include src="'app/plugin-manager/elements/upload-plugin.html'"></ng-include>
+        </uib-tab>
+      </uib-tabset>
+    </div>
+</div>

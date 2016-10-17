@@ -1,3 +1,19 @@
+.networkStatus {
+  ul {
+    list-style: none;
+  }
+  li {
+    font-size: 18px;
+    span {
+      color: #7C7C7C;
+    }
+    img {
+      width: 20px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
 .fa.fa-check {
   &.online {
     color: green;

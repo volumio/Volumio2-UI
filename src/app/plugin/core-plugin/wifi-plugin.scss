@@ -7,7 +7,7 @@
         label {
           margin-right: 10px;
         }
-        input {
+        input[type=text], input[type=password] {
           width: 140px;
           display: inline-block;
           margin-right: 10px;
@@ -33,6 +33,12 @@
         width: 120px;
         display: inline-block;
         margin-right: 15px;
+        position: relative;
+        .ui-select-choices {
+          position: absolute;
+          top: -22px;
+          left: 0;
+        }
       }
       .showHidePassword {
         margin-right: 10px;

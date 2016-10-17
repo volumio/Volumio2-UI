@@ -1,0 +1,199 @@
+<div ng-if="networkDrives.inAddDrive">
+  <div ng-if="!networkDrives.networkShares" class="text-center col-sm-12 col-sm-offset-6">
+    <div class="alert alert-info" role="alert">
+      <i class="fa fa-refresh fa-spin"></i> <span translate="NETWORKFS.SCANNING_FOR_NETWORK_DRIVES"></span>
+    </div>
+  </div>
+  <div ng-if="networkDrives.networkShares.nas.length === 0" class="text-center col-sm-12 col-sm-offset-6">
+    <div class="alert alert-info" role="alert">
+      <i class="fa fa-exclamation-circle"></i> <span translate="NETWORKFS.NO_DRIVES_FOUND"></span>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div ng-if="networkDrives.networkShares && networkDrives.networkShares.nas.length" class="row">
+    <div class="col-sm-12 col-sm-offset-6">
+      <uib-accordion close-others="true">
+        <uib-accordion-group
+            ng-repeat="share in networkDrives.networkShares.nas track by $index"
+            is-open="networkDrives.accordionIsOpen[$index]"
+            template-url="app/plugin/core-plugin/elements/network-drives-plugin-accordion.html">
+          <uib-accordion-heading>
+            <i class="fa fa-plus" ng-if="!networkDrives.accordionIsOpen[$index]"></i>
+            <i class="fa fa-minus" ng-if="networkDrives.accordionIsOpen[$index]"></i>
+            {{share.name}}
+            <i class="fa fa-hdd-o pull-right"></i>
+          </uib-accordion-heading>
+          <div class="radio" ng-repeat="disk in share.shares track by $index">
+            <label>
+              <input
+                  type="radio" name="share-{{share.name}}"
+                  ng-checked="false"
+                  ng-value="disk"
+                  ng-model="networkDrives.selectedShare[$parent.$index]"
+                  ng-change="networkDrives.selectShare(share, disk)">
+              {{disk.sharename}}
+            </label>
+          </div>
+        </uib-accordion-group>
+      </uib-accordion>
+    </div>
+  </div>
+</div>
+
+
+<form class="form-horizontal">
+  <!-- <div ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false">
+    <a href>Hide advanced Options</a><br>
+  </div> -->
+  <div class="form-group">
+    <label for="{{networkDrives.drive.name}}"
+        class="control-label"><span translate="NETWORKFS.ALIAS"></span>
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.name}}"
+          type="text"
+          ng-model="networkDrives.drive.name"
+          placeholder="{{'NETWORKFS.PLACEHOLDER_NAME' | translate}}"
+          class="form-control">
+    </div>
+    <div class="control-description">
+      <span translate="NETWORKFS.ALIAS_DOC"></span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="{{networkDrives.drive.ip}}"
+        class="control-label"><span translate="NETWORKFS.NAS_IP_ADDRESS"></span>
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.ip}}"
+          type="text"
+          ng-model="networkDrives.drive.ip"
+          placeholder="{{'NETWORKFS.PLACEHOLDER_IP_ADDRESS' | translate}}"
+          class="form-control">
+    </div>
+    <div class="control-description">
+       <span translate="NETWORKFS.NAS_IP_ADDRESS_DOC"></span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="{{networkDrives.drive.path}}"
+        class="control-label"><span translate="NETWORKFS.PATH"></span>
+    </label>
+    <div class="control-item">
+      <input id="{{networkDrives.drive.path}}"
+          type="text"
+          ng-model="networkDrives.drive.path"
+          placeholder="{{'NETWORKFS.PLACEHOLDER_PATH_TO_SHARE' | translate}}"
+          class="form-control">
+    </div>
+    <div class="control-description">
+       <span translate="NETWORKFS.NAS_PATH_DOC"></span>
+    </div>
+  </div>
+
+  <div ng-show="networkDrives.advancedVisible">
+    <div class="form-group">
+      <label for="{{networkDrives.drive.fstype}}"
+          class="control-label"><span translate="NETWORKFS.SHARE_TYPE"></span>
+      </label>
+      <div class="control-item">
+        <ui-select
+            id="{{item.id}}"
+            ng-model="networkDrives.drive.fstype"
+            search-enabled="false"
+            append-to-body="true"
+            theme="bootstrap">
+          <ui-select-match
+              class="ui-select-match"
+              placeholder="Fs type">
+            {{$select.selected}}
+          </ui-select-match>
+          <ui-select-choices
+              class="ui-select-choices"
+              repeat="option in networkDrives.driveTypes track by $index">
+            <div ng-bind-html="option"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{networkDrives.drive.username}}"
+          class="control-label"><span translate="NETWORKFS.USERNAME"></span>
+      </label>
+      <div class="control-item">
+        <input id="{{networkDrives.drive.username}}"
+            type="text"
+            ng-model="networkDrives.drive.username"
+            placeholder="{{'NETWORKFS.USERNAME' | translate}}"
+            class="form-control">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{networkDrives.drive.password}}"
+          class="control-label"><span translate="NETWORKFS.PASSWORD"></span>
+      </label>
+      <div class="control-item">
+        <div class="input-group">
+          <span class="input-group-addon clickable" ng-click="networkDrives.togglePasswordVisibility()">
+            <i
+                ng-if="networkDrives.passwordInputType === 'password'"
+                class="fa fa-eye"
+                aria-hidden="true"></i>
+            <i
+                ng-if="networkDrives.passwordInputType === 'input'"
+                class="fa fa-eye-slash"
+                aria-hidden="true"></i>
+          </span>
+          <input id="{{networkDrives.drive.password}}"
+              type="{{networkDrives.passwordInputType}}"
+              ng-model="networkDrives.drive.password"
+              placeholder="{{'NETWORKFS.PASSWORD' | translate}}"
+              class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="{{networkDrives.drive.options}}"
+          class="control-label"><span translate="NETWORKFS.OPTIONS"></span>
+      </label>
+      <div class="control-item">
+        <input id="{{networkDrives.drive.options}}"
+            type="text"
+            ng-model="networkDrives.drive.options"
+            placeholder="{{'NETWORKFS.OPTIONS' | translate}}"
+            class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label"></label>
+    <div class="control-item">
+      <button ng-if="!networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = true" type="button" class="btn btn-info" title="{{'NETWORKFS.SHOW_OPTIONS' | translate}}">
+        <span translate="NETWORKFS.SHOW_OPTIONS"></span>
+      </button>
+      <button ng-if="networkDrives.advancedVisible" ng-click="networkDrives.advancedVisible = false" type="button" class="btn btn-warning" title="{{'NETWORKFS.HIDE_OPTIONS' | translate}}">
+        <span translate="NETWORKFS.HIDE_OPTIONS"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label"></label>
+    <div class="control-item">
+      <button ng-click="networkDrives.cancelAddEditDrive()" type="button" class="btn btn-warning" title="{{'COMMON.CANCEL' | translate}}">
+        <span translate="COMMON.CANCEL"></span>
+      </button>
+      <button ng-click="networkDrives.saveAddEditDrive()" type="button"
+          class="btn btn-info saveAddEditDrive" title="{{'COMMON.SAVE' | translate}}">
+        <span translate="COMMON.SAVE"></span>
+      </button>
+    </div>
+  </div>
+</form>

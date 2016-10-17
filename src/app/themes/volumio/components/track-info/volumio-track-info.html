@@ -1,21 +1,21 @@
 <div id="trackInfo">
   <div id="trackDetails">
-    <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album" title="Album">
+    <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album" title="{{'COMMON.ALBUM' | translate}}">
       {{trackInfo.playerService.state.album}}
     </div>
     <br/>
-    <div id="trackInfo-title" ng-if="trackInfo.playerService.state.title" title="Track Title">
+    <div id="trackInfo-title" ng-if="trackInfo.playerService.state.title" title="{{'COMMON.SONG' | translate}}">
       {{trackInfo.playerService.state.title}}
     </div>
     <br/>
-    <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist" title="Artist">
+    <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist" title="{{'COMMON.ARTIST' | translate}}">
       {{trackInfo.playerService.state.artist}}
     </div>
   </div>
   <div ng-if="trackInfo.playerService.state.albumart">
     <img
         ng-if="trackInfo.playerService.state.albumart"
-        ng-src="{{trackInfo.playerService.socketService.host + trackInfo.playerService.state.albumart}}"
+        ng-src="{{trackInfo.playerService.albumart}}"
         alt="{{trackInfo.playerService.state.album}}"/>
     <i
         ng-if="trackInfo.playerService.state.icon"

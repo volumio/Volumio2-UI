@@ -1,6 +1,6 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log) {
+      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -8,6 +8,7 @@ class BrowseController {
     this.playlistService = playlistService;
     this.socketService = socketService;
     this.modalService = modalService;
+    this.playerService = playerService;
     this.$timeout = $timeout;
     this.matchmediaService = matchmediaService;
     this.$compile = $compile;
@@ -19,6 +20,8 @@ class BrowseController {
     $scope.$on('browseService:fetchEnd', () => {
       this.renderBrowseTable();
     });
+
+    this.initController();
   }
 
   fetchLibrary(item, back = false) {
@@ -51,13 +54,21 @@ class BrowseController {
     }
   }
 
+  replaceAndPlay(item) {
+    if (item.type === 'cuesong') {
+      this.playQueueService.replaceAndPlayCue(item);
+    } else {
+      this.playQueueService.replaceAndPlay(item);
+    }
+  }
+
   clickListItem(item) {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong') {
       this.fetchLibrary(item);
     }
   }
-  clickListItemByIndex(index) {
-    let item = this.browseService.list[index];
+  clickListItemByIndex(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
     this.clickListItem(item);
   }
 
@@ -68,23 +79,25 @@ class BrowseController {
       this.playQueueService.addPlayCue(item);
     }
   }
-  dblClickListItemByIndex(index) {
-    let item = this.browseService.list[index];
+  dblClickListItemByIndex(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
     this.dblClickListItem(item);
   }
 
-  hamburgerMenuClick(button, index) {
+  hamburgerMenuClick(button, listIndex, itemIndex) {
     let hamburgerMenuMarkup = `
       <div
           uib-dropdown
           on-toggle="browse.toggledItem(open, $event)"
           class="hamburgerMenu">
-        <button id="hamburgerMenuBtn-${index}" class="dropdownToggle btn-link" uib-dropdown-toggle>
-          <i class="fa fa-bars"></i>
+        <button id="hamburgerMenuBtn-${listIndex}-${itemIndex}" class="dropdownToggle btn-link" uib-dropdown-toggle>
+          <i class="fa fa-ellipsis-v"></i>
         </button>
-        <ul class="dropdown-menu buttonsGroup"
-          ng-class="::{'last': (${index} > 2 && this.browseService.listLength - ${index} < 3)}">
-          <browse-hamburger-menu item="browse.browseService.list[${index}]" browse="browse"></browse-hamburger-menu>
+        <ul class="dropdown-menu buttonsGroup">
+          <browse-hamburger-menu
+              item="browse.browseService.lists[${listIndex}].items[${itemIndex}]"
+              browse="browse">
+          </browse-hamburger-menu>
         </ul>
       </div>
     `;
@@ -92,7 +105,7 @@ class BrowseController {
     let buttonParent = angular.element(button).parent();
     buttonParent.replaceWith(hamburgerMenuMarkup);
     this.$timeout(() => {
-      document.querySelector(`#hamburgerMenuBtn-${index}`).click();
+      document.querySelector(`#hamburgerMenuBtn-${listIndex}-${itemIndex}`).click();
     }, 0);
   }
 
@@ -134,13 +147,21 @@ class BrowseController {
 
   search() {
     if (this.searchField.length >= 3) {
+      this.browseService.isSearching = true;
       if (this.searchTimeoutHandler) {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
-        this.$log.debug('search', this.searchField);
-        this.socketService.emit('search', {value: this.searchField});
-      }, 300, false);
+        let emitPayload = {
+          type: this.browseService.filterBy,
+          value: this.searchField
+        };
+        this.$log.debug('search', emitPayload);
+        this.socketService.emit('search', emitPayload);
+      }, 600, false);
+    } else {
+      this.browseService.isSearching = false;
+      this.browseService.lists = [];
     }
   }
 
@@ -173,71 +194,135 @@ class BrowseController {
   }
 
   renderBrowseTable() {
-    if (!this.browseService.list || this.browseService.list.length === 0) {
+    if (!this.browseService.lists) {
       return false;
     }
-    this.table = '';
-    let angularThis = `angular.element('#browseTableItems').scope().browse`;
-    for (var i = 0, ll = this.browseService.list.length ; i < ll; i++) {
-      let item = this.browseService.list[i];
-      this.table += `<tr>`;
 
-      if (item.type === 'title') {
-        this.table += `
-          <td class="rowTitle" colspan="3">
-            <i class="${item.icon} ${(item.icon) ? '' : 'hidden'}"></i> ${item.title}
-          </td>`;
-      }
+    this.$timeout(() => {
+      let angularThis = `angular.element('#browseTablesWrapper').scope().browse`;
 
-      if (item.type !== 'title') {
-        this.table += `<td class="image">`;
-
-        if (!item.icon) {
+      this.table = '';
+      this.browseService.lists.forEach((list, listIndex) => {
+        //Print title
+        if (list.title) {
           this.table += `
-          <img
-              ${(!item.icon) ? 'src="' + this.socketService.host + item.albumart + '"' : ''}
-              alt="${item.title}"/>`;
+            <div class="rowTitle">
+              <i class="${list.icon} ${(list.icon) ? '' : 'hidden'}"></i> ${list.title}
+            </div>`;
         }
 
-        if (item.icon) {
-          this.table += `<i class="${item.icon}"></i>`;
-        }
+        this.table += `<div class="listWrapper">`;
+        list.items.forEach((item, itemIndex) => {
+          //Print items
+          this.table += `<div class="itemWrapper"><div class="itemTab">`;
 
-        this.table += `</td>`;
-      }
+          this.table += `<div class="image"
+              onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
+              ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">`;
+          if (!item.icon && item.albumart) {
+            this.table += `
+            <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
+          }
 
-      if (item.type !== 'title') {
-        this.table += `
-        <td class="breakMe"
-            onclick="${angularThis}.clickListItemByIndex(${i})"
-            ondblclick="${angularThis}.dblClickListItemByIndex(${i})">
-          <div class="title">
-            ${item.title}
-          </div>
-          <div class="artist-album
-              ${(item.artist || item.album) ? '' : 'hidden'}">
-            ${item.artist} - ${item.album}
-          </div>
-        </td>
-        <td class="commandButtons">
-          <div class="hamburgerMenu
-              ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
-                  'hidden' : ''}">
-            <button class="dropdownToggle btn-link" onclick="${angularThis}.hamburgerMenuClick(this, ${i})"
-                title="Options...">
-              <i class="fa fa-bars"></i>
-            </button>
-          </div>
-        </td>`;
+          if (item.icon) {
+            // this.table += `<img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PearlJam1.jpg/220px-PearlJam1.jpg"/>`;
+            this.table += `<i class="${item.icon}"></i>`;
+          }
+          this.table += `</div>`;
+
+          this.table += `
+            <div class="commandButtons">
+              <div class="hamburgerMenu
+                  ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
+                      'hidden' : ''}">
+                <button class="dropdownToggle btn-link"
+                    onclick="${angularThis}.hamburgerMenuClick(this, ${listIndex}, ${itemIndex}, event)"
+                    title="Options...">
+                  <i class="fa fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>`;
+
+          this.table += `
+            <div class="description breakMe"
+                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
+                ondblclick="${angularThis}.dblClickListItemByIndex(${listIndex}, ${itemIndex})">
+              <div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                ${(item.title) ? item.title : ''}
+              </div>
+              <div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                ${(item.artist) ? item.artist : ''} ${(item.album) ? '-' + item.album : ''}
+              </div>
+            </div>`;
+
+          this.table += `</div></div>`;
+        });
+        this.table += `</div>`;
+      });
+
+      this.table += `<div class="clearfix"></div>`;
+
+      this.$timeout(() => {
+        let browseTable = document.querySelector('.browseTable');
+        browseTable.style.display = 'none';
+        browseTable.innerHTML = this.table;
+        browseTable.style.display = 'block';
+        this.applyGridStyle();
+        this.$rootScope.$broadcast('browseController:listRendered');
+      }, 10, false);
+    }, 0);
+  }
+
+  applyGridStyle() {
+    const itemWrappers = document.querySelectorAll('.listWrapper');
+    this.browseService.lists.forEach((list, i) => {
+      if (this.browseService.canShowGridView(list)) {
+        itemWrappers[i].classList.add('grid');
+      } else {
+        itemWrappers[i].classList.remove('grid');
       }
-      this.table += `</tr>`;
-    }
-    let tbody = document.createElement('tbody');
-    window.requestAnimationFrame(() => {
-      angular.element(tbody).append(this.table);
-      angular.element('#browseTableItems tbody').replaceWith(tbody); //.appendChild(this.table);
-      this.$rootScope.$broadcast('browseController:listRendered');
     });
+  }
+
+  toggleGridView() {
+    this.browseService.toggleGridView();
+    this.applyGridStyle();
+  }
+
+  initController() {
+    let bindedBackListener = this.backListener.bind(this);
+    this.$document[0].addEventListener('keydown', bindedBackListener, false);
+    this.$scope.$on('$destroy', () => {
+      this.$document[0].removeEventListener('keydown', bindedBackListener, false);
+    });
+  }
+
+  backListener() {
+    let prventDefault;
+    if (event.keyCode === 8) {
+      let d = event.srcElement || event.target;
+      if ((d.tagName.toUpperCase() === 'INPUT' &&
+          (
+             d.type.toUpperCase() === 'TEXT' ||
+             d.type.toUpperCase() === 'PASSWORD' ||
+             d.type.toUpperCase() === 'FILE' ||
+             d.type.toUpperCase() === 'SEARCH' ||
+             d.type.toUpperCase() === 'EMAIL' ||
+             d.type.toUpperCase() === 'NUMBER' ||
+             d.type.toUpperCase() === 'DATE')
+          ) ||
+          d.tagName.toUpperCase() === 'TEXTAREA') {
+        prventDefault = d.readOnly || d.disabled;
+      } else {
+        prventDefault = true;
+      }
+    }
+    if (prventDefault) {
+      event.preventDefault();
+      if (this.browseService.breadcrumbs) {
+        this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
+      }
+    }
   }
 }
 

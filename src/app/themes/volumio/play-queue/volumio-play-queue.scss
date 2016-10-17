@@ -1,40 +1,106 @@
+$trackInfoBarButtonsHeight: 35px;
 #playQueue {
-  @include make-xs-column(24);
-  background-color: $volumio-black-trans-dark;
-  user-select: none;
-  cursor: pointer;
-  .title {
-    font-size: 16px;
-  }
-  .artist-album {
-    font-size: 13px;
-    color: $volumio-green-color;
-  }
-  .deleteBtn {
+  .trackInfoBarButtons {
+    height: $trackInfoBarButtonsHeight;
     text-align: right;
-    i {
-      font-size: 20px;
+    @include breakpoint('xs') {
+      text-align: center;
+      button {
+        padding: 0px 18px;
+        font-size: 24px;
+      }
     }
   }
-  span.rollover {
-    font-family: FontAwesome;
-    font-size: 18px;
-    padding-top: 10px;
-    -webkit-transition: .3s;
-    background: rgba(0,0,0,0);
+
+  #playQueueList {
+    // @include make-xs-column(24);
+    background-color: $volumio-black-trans-dark;
+    user-select: none;
     cursor: pointer;
-    height: 45px;
-    width: 45px;
-    position: absolute;
-    z-index: 10;
-    &:hover {
-      background: rgba(0,0,0,.5);
-      -webkit-transition: .3s;
-      box-shadow: 0px 0px 2px #000;
-      &:before {
-        content: '\f04b';
+    position: relative;
+    overflow: auto;
+    // height: 100%;
+    height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$trackInfoBarButtonsHeight});
+
+    ul {
+      padding: 0;
+    }
+    li {
+      &:hover {
+        background-color: rgba(30, 30, 30, 0.8);
       }
-      &:active {
+      margin: 0px;
+      list-style: none;
+      padding: 8px 0px;
+      border-top: solid 1px #CCC;
+    }
+
+    .image {
+      display: table-cell;
+      position: relative;
+      img {
+        width: 45px;
+        height: 45px;
+        margin:0 10px 0 10px;
+      }
+    }
+
+    .titleArtist {
+      display: table-cell;
+      vertical-align: top;
+      width: 100%;
+    }
+
+    .commandButtons {
+      display: table-cell;
+      vertical-align: middle;
+      margin-right: 5px;
+      font-size: 22px;
+    }
+
+    .title {
+      margin-top: -5px;
+      font-size: 16px;
+    }
+    .artist-album {
+      font-size: 13px;
+      color: $volumio-green-color;
+    }
+    .deleteBtn {
+      text-align: right;
+      i {
+        font-size: 20px;
+      }
+    }
+    span.rollover {
+      font-family: FontAwesome;
+      font-size: 20px;
+      padding-top: 10px;
+      padding-left: 15px;
+      left: 10px;
+      -webkit-transition: .3s;
+      background: rgba(0, 0, 0, 0);
+      cursor: pointer;
+      height: 45px;
+      width: 45px;
+      position: absolute;
+    }
+
+    li{
+      &.sorting span.rollover{
+        transform: rotate(90deg);
+        &:before {
+          content: '\f0ec' !important;
+        }
+      }
+      &:hover span.rollover, &.isPlaying span.rollover{
+        background: rgba(0, 0, 0, .3);
+        -webkit-transition: .3s;
+        &:before {
+          content: '\f04b';
+        }
+      }
+      &.isPlaying span.rollover {
         color: $volumio-green-color;
       }
     }

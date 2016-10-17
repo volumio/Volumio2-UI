@@ -1,13 +1,21 @@
 <button
     class="btn-link"
     ng-click="browse.backHome()"
-    title="Home">
+    title="{{'COMMON.HOME' | translate}}">
     <i class="fa fa-home"></i>
 </button>
 <button
     class="btn-link backButton"
-    ng-if="browse.browseService.breadcrumbs.uri"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.breadcrumbs.uri"
     ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri}, true)"
-    title="Go Back">
-    <i class="fa fa-arrow-circle-left"></i>
+    title="{{'COMMON.BACK' | translate}}">
+  <i class="fa fa-arrow-circle-left"></i>
+</button>
+<button
+    class="btn-link"
+    ng-click="browse.toggleGridView()"
+    title="{{((browse.browseService.showGridView) ? 'COMMON.LIST': 'COMMON.GRID') | translate}}"
+    ng-if="browse.browseService.showGridViewSelector">
+  <i ng-if="browse.browseService.showGridView" class="fa fa-list"></i>
+  <i ng-if="!browse.browseService.showGridView" class="fa fa-th"></i>
 </button>

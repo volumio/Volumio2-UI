@@ -13,14 +13,8 @@
         value="modal.updaterService.updateProgress.progress"
         type="default">{{modal.updaterService.updateProgress.progress}}%
     </uib-progressbar>
-
-    <!-- This data are available only when PI downloads the firmware -->
-    <div ng-if="modal.updaterService.updateProgress.downloadSpeed">
-      Download Speed:
-      {{modal.updaterService.updateProgress.downloadSpeed}} |
-      Eta:
-      {{modal.updaterService.updateProgress.eta}}
-    </div>
+    <span translate="UPDATER.DOWNLOAD_SPEED"></span>: {{modal.updaterService.updateProgress.downloadSpeed}} |
+    <span translate="UPDATER.TIME_REMAINING"></span>: {{modal.updaterService.updateProgress.eta}}
   </div>
 
   <div ng-if="modal.updaterService.status === 'updateDone'">
@@ -34,21 +28,21 @@
         ng-if="modal.updaterService.updateReady.updateavailable"
         class="btn btn-warning"
         ng-click="modal.cancel()">
-      Cancel
+    <span translate="COMMON.CANCEL"></span>
     </button>
 
     <button
         ng-if="modal.updaterService.updateReady.updateavailable"
         class="btn btn-primary"
         ng-click="modal.update('now')">
-      Update Now
+      <span translate="UPDATER.UPDATE_NOW"></span>
     </button>
 
     <button
         ng-if="!modal.updaterService.updateReady.updateavailable"
         class="btn btn-primary"
         ng-click="modal.cancel()">
-      Ok
+      <span translate="COMMON.OK"></span>
     </button>
   </div>
 
@@ -56,13 +50,13 @@
     <button
         ng-if="modal.updaterService.updateDone.status === 'success'"
         class="btn btn-primary" ng-click="modal.reboot()">
-      Restart System
+      <span translate="COMMON.RESTART_SYSTEM"></span>
     </button>
 
     <button
         ng-if="modal.updaterService.updateDone.status === 'error'"
         class="btn btn-primary" ng-click="modal.update('now')">
-      Try Again
+      <span translate="COMMON.TRY_AGAIN"></span>
     </button>
   </div>
 </div>

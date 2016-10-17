@@ -1,19 +1,32 @@
 class ModalSleepController {
-  constructor($uibModalInstance, socketService, dataObj, $log) {
+  constructor($uibModalInstance, socketService, dataObj, $log, $translate) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.socketService = socketService;
     this.dataObj = dataObj;
     this.showMeridian = false;
     this.$log = $log;
+    this.$translate = $translate;
 
     this.sleepTime = new Date();
     this.sleepTime.setHours(0, 0);
     this.enabled = false;
-    this.whenSleepSelect = [
-      {val: 'poweroff', text: 'Power Off'},
-      {val: 'stop', text: 'Stop Music'}
-    ];
+
+
+    $translate(['SLEEP.POWER_OFF', 'SLEEP.STOP_MUSIC']).then(
+      translations =>
+      {
+        this.whenSleepSelect = [
+          {
+            val: 'poweroff',
+            text: translations['SLEEP.POWER_OFF']
+          },
+          {
+            val: 'stop',
+            text: translations['SLEEP.STOP_MUSIC']
+          }
+        ];
+      });
     this.init();
   }
 

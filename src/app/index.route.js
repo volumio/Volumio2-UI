@@ -27,28 +27,25 @@ function routerConfig ($stateProvider, $urlRouterProvider,
       },
       resolve: {
         //NOTE this resolver init also global services like toast
-        socketResolver: (
-          $rootScope,
-          $http,
-          $window,
-          socketService,
-          ripperService,
-          modalListenerService,
-          toastMessageService,
-          updaterService) => {
-            let localhostApiURL = `http://${$window.location.hostname }/api`;
-            return $http.get(localhostApiURL + '/host').then((response) => {
+        socketResolver: ($rootScope, $http, $window, socketService, ripperService, modalListenerService,
+            toastMessageService, uiSettingsService, updaterService) => {
+          let localhostApiURL = `http://${$window.location.hostname}/api`;
+          return $http.get(localhostApiURL + '/host')
+            .then((response) => {
               console.info('IP from API', response);
               $rootScope.initConfig = response.data;
               socketService.host  = response.data.host;
+              socketService.host2 = response.data.host2;
             }, () => {
               //Fallback socket
-              console.info('IP from fallback');
+              console.info('Dev mode: IP from local-config.json');
               return $http.get('/app/local-config.json').then((response) => {
                 socketService.host  = response.data.localhost;
+                // socketService.host = '192.168.0.90';
+                // socketService.host2 = '192.168.0.9';
               });
             });
-          }
+        }
       }
     })
 
@@ -106,14 +103,25 @@ function routerConfig ($stateProvider, $urlRouterProvider,
         }
       }
     })
-
     .state('volumio.plugin', {
       url: 'plugin/:pluginName',
+      params: {isPluginSettings: null},
       views: {
         'content@volumio': {
           templateUrl: 'app/plugin/plugin.html',
           controller: 'PluginController',
           controllerAs: 'plugin'
+        }
+      }
+    })
+
+    .state('volumio.plugin-manager', {
+      url: 'plugin-manager',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin-manager/plugin-manager.html',
+          controller: 'PluginManagerController',
+          controllerAs: 'pluginManager'
         }
       }
     })

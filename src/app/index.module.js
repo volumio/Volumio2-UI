@@ -19,6 +19,7 @@ import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 import RipperService from './services/ripper.service';
+import UiSettingsService from './services/ui-settings.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -39,13 +40,14 @@ import PlaylistDirective from './components/playlist/playlist.directive';
 import BrowseScrollManagerDirective from './browse/components/browse-scroll-manager.directive';
 import BrowseHamburgerMenuDirective from './browse/components/browse-hamburger-menu.directive';
 import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.directive';
+import TrackInfoBarButtonsDirective from './components/track-info-bar/track-info-bar-buttons.directive';
+import EqualizerDirective from './components/equalizer/equalizer.directive';
 
 import ModalController from './components/modals/modal.controller';
 
 //Directives
-import PluginAttributesDirective from './plugin/elements/plugin-attributes.directive';
-import PluginVisibleDirective from './plugin/elements/plugin-visible.directive';
-
+import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
+import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -53,13 +55,15 @@ import LayoutController from './layout/layout.controller';
 import FooterController from './footer/footer.controller';
 
 import DebugController from './debug/debug.controller';
-import PluginController from './plugin/plugin.controller';
 import StaticPageController from './static-pages/static-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
 import PlaybackController from './playback/playback.controller';
 import PlayQueueController from './play-queue/play-queue.controller';
+
+import PluginController from './plugin/plugin.controller';
+import PluginManagerController from './plugin-manager/plugin-manager.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -73,6 +77,9 @@ import ModalConfirmController from './components/modals/modal-confirm.controller
 import ModalRipperController from './components/modals/modal-ripper.controller';
 import ModalCustomController from './components/modals/modal-custom.controller';
 import ModalKaraokeController from './components/side-menu/elements/modal-karaoke.controller';
+import ModalPluginInstallerController from './plugin-manager/components/modals/modal-plugin-installer.controller';
+import ModalTrackManagerActionsController from './components/track-manager/components/modals/modal-track-manager-actions.controller';
+import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/modal-network-drive-password.controller';
 
 
 //Core plugin controller
@@ -82,6 +89,7 @@ import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.contro
 import NetworkDrivesPluginController from './plugin/core-plugin/network-drives-plugin.controller';
 import SystemVersionPluginController from './plugin/core-plugin/system-version-plugin.controller';
 import FirmwareUploadPluginController from './plugin/core-plugin/firmware-upload-plugin.controller';
+import UiSettingsPluginController from './plugin/core-plugin/ui-settings-plugin.controller';
 
 
 
@@ -101,6 +109,8 @@ angular.module('volumio', [
   'matchmedia-ng',
   'hmTouchEvents',
   'ngFileUpload',
+  'pascalprecht.translate',
+  'LocalStorageModule',
 
   //Angular core modules
   // 'ngAnimate',
@@ -131,6 +141,7 @@ angular.module('volumio', [
   .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
   .service('ripperService', RipperService)
+  .service('uiSettingsService', UiSettingsService)
 
 
   .provider('themeManager', ThemeManagerProvider)
@@ -148,9 +159,12 @@ angular.module('volumio', [
   .directive('waitBackendScrim', () => new WaitBackendScrimDirective())
   .directive('playerLogger', () => new PlayerLoggerDirective())
   .directive('playlist', (themeManager) => new PlaylistDirective(themeManager))
-  .directive('browseScrollManager', (browseService) => new BrowseScrollManagerDirective(browseService))
+  .directive('browseScrollManager',
+      (browseService, matchmediaService) => new BrowseScrollManagerDirective(browseService, matchmediaService))
   .directive('browseHamburgerMenu', () => new BrowseHamburgerMenuDirective())
   .directive('trackInfoBar', () => new TrackInfoBarDirective())
+  .directive('trackInfoBarButtons', () => new TrackInfoBarButtonsDirective())
+  .directive('equalizer', () => new EqualizerDirective())
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())
@@ -160,12 +174,13 @@ angular.module('volumio', [
   .controller('FooterController', FooterController)
 
   .controller('DebugController', DebugController)
-  .controller('PluginController', PluginController)
   .controller('StaticPageController', StaticPageController)
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 
-  .controller('BrowseController', BrowseController)
+  .controller('PluginController', PluginController)
+  .controller('PluginManagerController', PluginManagerController)
 
+  .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
 
@@ -181,6 +196,10 @@ angular.module('volumio', [
   .controller('ModalRipperController', ModalRipperController)
   .controller('ModalCustomController', ModalCustomController)
   .controller('ModalKaraokeController', ModalKaraokeController)
+  .controller('ModalPluginInstallerController', ModalPluginInstallerController)
+  .controller('ModalTrackManagerActionsController', ModalTrackManagerActionsController)
+  .controller('ModalNetwordDrivesPasswordController', ModalNetwordDrivesPasswordController)
+
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)
@@ -188,5 +207,6 @@ angular.module('volumio', [
   .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)
   .controller('SystemVersionPluginController', SystemVersionPluginController)
   .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
+  .controller('UiSettingsPluginController', UiSettingsPluginController)
 
   ;

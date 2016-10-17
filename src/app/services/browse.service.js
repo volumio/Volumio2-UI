@@ -1,5 +1,5 @@
 class BrowseService {
-  constructor($rootScope, $log, socketService, mockService, $interval, $window) {
+  constructor($rootScope, $timeout, $log, socketService, mockService, $interval, $window, localStorageService) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
@@ -8,12 +8,18 @@ class BrowseService {
     this.isBrowsing = false;
     this.$rootScope = $rootScope;
     this.$log = $log;
+    this.$timeout = $timeout;
+    this.mockService = mockService;
 
     this.isPhone = false;
+    this.filterBy = 'any';
+    this.isBrowsing = false;
+    this.isSearching = false;
+    this.localStorageService = localStorageService;
     //this._filters = mockService.get('getBrowseFilters');
     // this._sources = mockService.get('getBrowseSources');
     // this.$log.debug(this._sources);
-    //this._list = mockService.get('getBrowseList');
+    // this.list = mockService.get('getBrowseList').list;
     this.limiter = 10;
     this.scrollPositions = new Map();
 
@@ -27,6 +33,10 @@ class BrowseService {
   }
 
   fetchLibrary(item, back) {
+    if (item.uri === '/') {
+      this.backHome();
+      return false;
+    }
     let obj = {uri: item.uri};
     this.$log.debug('fetchLibrary', item);
     this.currentFetchRequest = item;
@@ -39,8 +49,27 @@ class BrowseService {
 
   backHome() {
     this.isBrowsing = false;
-    this.list = [];
+    this.isSearching = false;
+    this.lists = [];
     this.scrollPositions.clear();
+  }
+
+  goTo(emitPayload) {
+    this.backHome();
+    this.isSearching = true;
+    this.isBrowsing = false;
+    this.$log.debug('goTo', emitPayload);
+    this.$timeout(() => {
+      this.socketService.emit('goTo', emitPayload);
+      // this.socketService.emit('search', emitPayload);
+    }, 0);
+  }
+
+  filterBy(filter) {
+    if (this.filterBy === filter) {
+      filter = 'all';
+    }
+    this.filterBy = filter;
   }
 
   get filters() {
@@ -83,6 +112,44 @@ class BrowseService {
     this._breadcrumbs = breadcrumbs;
   }
 
+  canShowGridView(list) {
+    //Return value based on preferences and view availability
+    if (list.availableListViews.length === 1) {
+      return list.availableListViews[0] === 'grid';
+    }
+    if (this.showGridView && ~list.availableListViews.indexOf('grid')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  get showGridView() {
+    return this._showGridView;
+  }
+
+  set showGridView(showGridView) {
+    //Store user preference
+    this.localStorageService.set('showGridView', showGridView);
+    this._showGridView = showGridView;
+  }
+
+  get showGridViewSelector() {
+    if (!this.lists || this.lists.length === 0) {
+      return false;
+    }
+    for (let i = 0; i < this.lists.length; i++) {
+      if (this.lists[i].availableListViews.length > 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  toggleGridView() {
+    this.showGridView = !this.showGridView;
+  }
+
   init() {
     this.registerListner();
     this.initService();
@@ -95,16 +162,19 @@ class BrowseService {
     });
     this.socketService.on('pushBrowseSources', (data) => {
       this.$log.debug('pushBrowseSources', data);
+      this.availableListViews = ['list'];
       this.sources = data;
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
-      this.list = data.navigation.list;
+      // data = this.mockService.get('getBrowseLibrary');
+      if (data.navigation) {
+        this.$log.debug('pushBrowseLibrary', data);
+        this.lists = data.navigation.lists;
 
-      this.listLength = this.list.length;
-      this.$log.debug('pushBrowseLibrary', this.listLength, this.list);
+        this.breadcrumbs = data.navigation.prev;
 
-      this.breadcrumbs = data.navigation.prev;
-      this.$rootScope.$broadcast('browseService:fetchEnd');
+        this.$rootScope.$broadcast('browseService:fetchEnd');
+      }
     });
   }
 
@@ -113,6 +183,10 @@ class BrowseService {
     this.socketService.emit('getBrowseSources');
     this._isBrowsing = false;
     this._listBy = 'track';
+    //TODO or from sessionStorage
+    // this._showGridView = false;
+    this._showGridView = this.localStorageService.get('showGridView');
+
     //this.socketService.emit('browseLibrary', {});
   }
 

@@ -1,10 +1,8 @@
-<track-info-bar ng-if="!browse.matchmediaService.isPhone"></track-info-bar>
-<div class="row">
-  <div id="playQueue">
-    <table
-        id="playQueueTable"
-        class="table table-hover table-condensed"
-        ng-include src="'app/play-queue/elements/play-queue-table-items.html'">
-    </table>
+<div id="playQueue">
+  <track-info-bar ng-if="!playQueue.matchmediaService.isPhone"></track-info-bar>
+  <track-info-bar-buttons ng-if="playQueue.matchmediaService.isPhone"></track-info-bar-buttons>
+
+  <div id="playQueueList">
+    <ul></ul>
   </div>
 </div>

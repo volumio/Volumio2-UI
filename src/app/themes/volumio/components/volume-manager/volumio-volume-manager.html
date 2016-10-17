@@ -2,32 +2,32 @@
   <div class="knobWrapper">
     <div class="knobInfosWrapper">
       <div class="headerText green">
-        <span ng-if="volumeManager.playerService.state.mute">Muted</span>
+        <span ng-if="volumeManager.playerService.state.mute" translate="COMMON.VOLUME_MUTED"></span>
       </div>
-      <div class="bigText">{{volumeManager.playerService.state.volume}}</div>
+      <div class="bigText">{{volumeManager.playerService.volume}}</div>
       <div class="smallText">/100</div>
     </div>
     <knob
-      value="volumeManager.volume"
+      value="volumeManager.playerService.volume"
       options="volumeManager.knobOptions"
       type="volume">
     </knob>
   </div>
 
   <div id="volumeButtonBar" class="btn-group">
-    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link" title="Volume Down">
+    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link" title="{{'COMMON.VOLUME_DOWN' | translate}}">
       <i class="fa fa-volume-down"></i>
     </button>
     <button
         ng-click="volumeManager.toggleMute()"
         class="btn btn-link"
         ng-class="{selected: volumeManager.playerService.state.mute}"
-        title="Mute">
+        title="{{'COMMON.VOLUME_MUTE' | translate}}">
         <i class="fa fa-volume-off"></i>
       <span ng-if="volumeManager.playerService.state.mute"></span>
       <span ng-if="!volumeManager.playerService.state.mute"></span>
     </button>
-    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="Volume Up">
+    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}">
       <i class="fa fa-volume-up"></i>
     </button>
   </div>
@@ -35,12 +35,17 @@
 
 <div ng-if="volumeManager.matchmediaService.isPhone" class="volumeManager">
   <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
-    <div class="bigText">{{volumeManager.playerService.state.volume}}</div>
+    <div class="bigText">{{volumeManager.playerService.volume}}</div>
     <div class="smallText">/100</div>
+
+    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}">
+      <i class="fa fa-volume-up"></i>
+    </button>
+
     <slider
         class="volumeSlider"
         ng-class="{disabled: volumeManager.playerService.state.mute}"
-        ng-model="volumeManager.volume"
+        ng-model="volumeManager.playerService.volume"
         min="0"
         step="5"
         max="100"
@@ -48,6 +53,10 @@
         reversed="true"
         orientation="vertical">
     </slider>
+
+    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link" title="{{'COMMON.VOLUME_DOWN' | translate}}">
+      <i class="fa fa-volume-down"></i>
+    </button>
   </div>
   <button
       id="openVolumeVerticalSlider"

@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
+</div>
+<div class="modal-body" ng-if="modal.dataObj">
+  <p ng-bind-html="modal.dataObj.message"></p>
+  <div>
+    <uib-progressbar
+        class="progress-striped active"
+        value="modal.dataObj.progress"
+        type="default">{{modal.dataObj.progress}}%
+    </uib-progressbar>
+  </div>
+  <div ng-if="modal.dataObj.advancedLog">
+    <a href ng-click="modal.toggleAdvancedLog()">
+      <span ng-if="!modal.showAdvancedLog" translate="PLUGINS.SHOW_DETAILS"></span>
+      <span ng-if="modal.showAdvancedLog" translate="PLUGINS.HIDE_DETAILS"></span>
+    </a>
+    <div ng-show="modal.showAdvancedLog" id="advancedLogWrapper">
+      <p ng-bind-html="modal.dataObj.advancedLog"></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button ng-class="button.class"
+      ng-repeat="button in modal.dataObj.buttons track by $index"
+      ng-click="modal.btnClick(button)">
+    {{::button.name}}
+  </button>
+</div>

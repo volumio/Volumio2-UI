@@ -13,6 +13,181 @@ class MockService {
 
   init() {
     this._mock = {
+      //networkSharesDiscovery
+      networkSharesDiscovery: {
+        "nas": [
+          {
+            "name": "VOLUMIO",
+            "shares": [
+              {
+                "sharename": "IPC$",
+                "path": "VOLUMIO/IPC$"
+              },
+              {
+                "sharename": "NAS",
+                "path": "VOLUMIO/NAS"
+              },
+              {
+                "sharename": "USB",
+                "path": "VOLUMIO/USB"
+              }
+            ]
+          },
+          {
+            "name": "FRITZ-NAS",
+            "shares": [
+              {
+                "sharename": "IPC$",
+                "path": "FRITZ-NAS/IPC$"
+              },
+              {
+                "sharename": "FRITZ.NAS",
+                "path": "FRITZ-NAS/FRITZ.NAS"
+              }
+            ]
+          },
+          {
+            "name": "DISKSTATION",
+            "shares": [
+              {
+                "sharename": "IPC$",
+                "path": "DISKSTATION/IPC$"
+              },
+              {
+                "sharename": "video",
+                "path": "DISKSTATION/video"
+              },
+              {
+                "sharename": "Torrent",
+                "path": "DISKSTATION/Torrent"
+              },
+              {
+                "sharename": "Programmi",
+                "path": "DISKSTATION/Programmi"
+              },
+              {
+                "sharename": "photo",
+                "path": "DISKSTATION/photo"
+              },
+              {
+                "sharename": "NetBackup",
+                "path": "DISKSTATION/NetBackup"
+              },
+              {
+                "sharename": "music",
+                "path": "DISKSTATION/music"
+              },
+              {
+                "sharename": "Mi",
+                "path": "DISKSTATION/Mi"
+              },
+              {
+                "sharename": "IMGs",
+                "path": "DISKSTATION/IMGs"
+              },
+              {
+                "sharename": "homes",
+                "path": "DISKSTATION/homes"
+              },
+              {
+                "sharename": "FLAC",
+                "path": "DISKSTATION/FLAC"
+              },
+              {
+                "sharename": "Film",
+                "path": "DISKSTATION/Film"
+              },
+              {
+                "sharename": "Backup",
+                "path": "DISKSTATION/Backup"
+              }
+            ]
+          }
+        ]
+      },
+      //installedPlugins
+      installedPlugins: [
+        {
+          prettyName: 'Nome Plugin 1',
+          enabled: true,
+          active: true,
+          category: 'Category 1',
+          name: 'name'
+        },
+        {
+          prettyName: 'Nome Plugin 2',
+          enabled: false,
+          active: false,
+          category: 'Category 2',
+          name: 'name2'
+        },
+      ],
+      //availablePlugins
+      availablePlugins: {
+        metaData: {
+          repoUlr: 'fetching ulr',
+          repoStatus: 'Up'
+        },
+        categories: [
+          {
+            name: 'Music Services ',
+            id: 'cat1',
+            description: 'Plugins for Adding Music Sources to Volumio',
+            plugins: [
+              {
+                name: 'Spotify',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'Free for non commercial USE',
+                description: 'plugin 1 desc',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              },
+              {
+                name: 'Another WebRadio Plugin',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Adding other WebRadios',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              }
+            ]
+          },
+          {
+            name: 'Miscelleanea',
+            id: 'cat2',
+            description: 'Things that cannot go in other categories',
+            plugins: [
+              {
+                name: 'Random thing',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Something Random',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              }
+            ]
+          },
+          {
+            name: 'System Tools',
+            id: 'cat3',
+            description: 'Volumio System Tools',
+            plugins: [
+              {
+                name: 'Touchscreen display',
+                version: '1.0',
+                url: 'volumio.github.io/volumio-plugins/plugins/volumio/armhf/music_service/spotify/spotify.zip',
+                license: 'gpl-v3',
+                description: 'Use the 7 inches pi display',
+                author: 'Volumio Team',
+                updated: '23-04-2016'
+              }
+            ]
+          }
+        ]
+      },
       //Custom modals
       customModals: {
         'title': 'titolo in alto della modale',
@@ -229,18 +404,57 @@ class MockService {
             }
           ]}
       ],
-      getBrowseList: {
-        pagination: {
-          currentPage: 1,
-          totItems: 20,
-          itemsPerPage: 10,
-          totPages: 2
-        },
-        list: [
-          {track: 'track a', artist: 'artist a', uri: 'uri'},
-          {track: 'track b', artist: 'artist b', uri: 'uri'},
-          {track: 'track c', artist: 'artist c', uri: 'uri'}
-        ]
+      getBrowseLibrary: {
+        "navigation": {
+          "lists": [
+            {
+              "title": "Artists",
+              "icon": "fa fa-music",
+              "availableListViews": [
+                "grid", "list"
+              ],
+              "items": [
+                {
+                  "service": "mpd",
+                  "type": "song",
+                  "title": "Led Zeppelin",
+                  "icon": "fa fa-music",
+                  "uri": "search://artist/Led Zeppelin"
+                }
+              ]
+            },
+            {
+              "title": "Webradios",
+              "icon": "",
+              "availableListViews": [
+                "list"
+              ],
+              "items": [
+                {
+                  "service": "webradio",
+                  "type": "webradio",
+                  "title": "ledjam",
+                  "artist": "",
+                  "album": "",
+                  "icon": "fa fa-microphone",
+                  "uri": "http://yp.shoutcast.com/sbin/tunein-station.m3u?id=492072"
+                },
+                {
+                  "service": "webradio",
+                  "type": "webradio",
+                  "title": "NAXI 80-e RADIO (NAXI,Belgrade,Serbia, NAXI,Beograd,Srbija) - 128k",
+                  "artist": "",
+                  "album": "",
+                  "icon": "fa fa-microphone",
+                  "uri": "http://yp.shoutcast.com/sbin/tunein-station.m3u?id=68544"
+                }
+              ]
+            }
+          ],
+          "prev": {
+            "uri": "/"
+          }
+        }
       },
       getMultiRoomDevices: {
         misc: {debug: true},
@@ -615,6 +829,98 @@ class MockService {
                   'data': 'search-for-upgrade',
                   'message': 'updateCheck',
                   'askForConfirm': {'title': 'Confirm', 'message': 'are you sure?'}
+                }
+              }
+            ]
+          },
+
+          {
+            'id': 'eq',
+            'type': 'section',
+            'label': 'Equalizer',
+            'onSave': {
+              'type': 'plugin',
+              'endpoint': 'music_services/eq',
+              'method': 'saveEqValues'
+            },
+            'saveButton': {
+              'label': 'Save eq settings',
+              'data': [
+                'bandEqualizer', 'equalizerSelector'
+              ]
+            },
+            'content': [
+              {
+                'id': 'eq_switch',
+                'element': 'switch',
+                'label': 'Test eq switch',
+                'value': true
+              },
+              {
+                'id': 'bandEqualizer',
+                'element': 'equalizer',
+                'label': 'Music EQ',
+                'description': 'Desc',
+                'visibleIf': {'field': 'eq_switch', 'value': true},
+                'config': {
+                  orientation: 'vertical',
+                  bars: [
+                    {
+                      min: -100,
+                      max: 100,
+                      step: 20,
+                      value: 20,
+                      tooltip: 'always'
+                    },
+                    {
+                      min: 0,
+                      max: 50,
+                      step: 20,
+                      value: 25,
+                      tooltip: 'hide'
+                    },
+                    {
+                      min: 0,
+                      max: 50,
+                      step: 20,
+                      value: 25,
+                      tooltip: 'always'
+                    }
+                  ]
+                }
+              },
+
+              {
+                'id': 'equalizerSelector',
+                'element': 'equalizer',
+                'label': 'Slider selector',
+                'description': 'Desc',
+                'config': {
+                  orientation: 'horizontal',
+                  bars: [
+                    {
+                      min: 0,
+                      max: 50,
+                      step: 10,
+                      value: [10, 20],
+                      range: true,
+                      tooltip: 'always'
+                    },
+                    {
+                      ticks: [1, 2, 3],
+                      ticksLabels: ['Min', 'Medium', 'Max'],
+                      value: 2,
+                      tooltip: 'show'
+                    },
+                    {
+                      ticks: [1, 2, 3, 4, 5],
+                      ticksPositions: [0, 20, 40, 80, 100],
+                      ticksLabels: ['1', '2', '3', '4', '5'],
+                      tickSnapBounds: 20,
+                      value: 4,
+                      tooltip: 'show'
+                    }
+                  ]
                 }
               }
             ]

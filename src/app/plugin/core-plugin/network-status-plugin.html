@@ -1,108 +1,29 @@
 <div id="networkStatus" ng-controller="NetworkStatusPluginController as networkStatus"
     class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-tachometer"></i> Network status</h3>
+    <h3 class="panel-title"><i class="fa fa-tachometer"></i> <span translate="NETWORK.NETWORK_STATUS"></span></h3>
   </div>
   <div class="panel-body">
     <h4 ng-if="::false" class="sectionDescription"></h4>
-    <table ng-repeat="network in ::networkStatus.networkInfos track by $index" class="table hidden-xs">
-      <tr>
-        <th>
-          Type
-        </th>
-        <th ng-if="::network.ssid">
-          SSID
-        </th>
-        <th ng-if="::network.signal">
-          Signal
-        </th>
-        <th>
-          IP
-        </th>
-        <th ng-if="::network.speed">
-          Speed
-        </th>
-        <th>
-          Online
-        </th>
-      </tr>
-      <tr>
-        <td>
-          {{::network.type}}
-        </td>
-        <td ng-if="::network.ssid">
-          {{::network.ssid}}
-        </td>
-        <td ng-if="::network.signal">
-          <i class="fa fa-wifi"></i>
-          <span ng-if="::network.signal === 1 || network.signal === 2"> Low</span>
-          <span ng-if="::network.signal === 3 || network.signal === 4"> Good</span>
-          <span ng-if="::network.signal === 5"> Strong</span>
-        </td>
-        <td>
-          {{::network.ip}}
-        </td>
-        <td ng-if="::network.speed">
-          {{::network.speed}}
-        </td>
-        <td>
-          <i class="fa fa-check"
-              ng-class="::{online: network.online,
-              offline: !network.online}">
-          </i>
-        </td>
-      </tr>
-    </table>
-
-    <table ng-repeat="network in ::networkStatus.networkInfos track by $index" class="table visible-xs">
-      <tr>
-        <th>
-          <div>
-            Type
-          </div>
-          <div ng-if="::network.ssid">SSID</div>
-          <div>
-            IP
-          </div>
-        </th>
-        <th ng-if="::network.signal || network.speed">
-          <div ng-if="::network.speed">Speed</div>
-          <div ng-if="::network.ssid">Signal</div>
-          <div>
-            Online
-          </div>
-        </th>
-      </tr>
-
-      <tr>
-        <td>
-          <div>
-            {{::network.type}}
-          </div>
-          <div ng-if="::network.ssid">
-            {{::network.ssid}}
-          </div>
-          <div>
-            {{::network.ip}}
-          </div>
-        </td>
-        <td ng-if="::network.speed || network.signal">
-          <div>
-            {{::network.speed}}
-          </div>
-          <div ng-if="::network.signal">
-            <i class="fa fa-wifi"></i>
-            <span ng-if="::network.signal === 1 || network.signal === 2"> Low</span>
-            <span ng-if="::network.signal === 3 || network.signal === 4"> Good</span>
-            <span ng-if="::network.signal === 5"> Strong</span>
-          </div>
-          <div>
-            <i class="fa fa-check"
-                ng-class="::{online: network.online,
-                offline: !network.online}">
-            </i>
-          </div>
-        </td>
-        </tr>
+    <div class="networkStatus">
+      <div class="panel panel-default col-sm-12" ng-repeat="network in ::networkStatus.networkInfos track by $index">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{::network.type}}</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li ng-if="::network.ssid"><span>  <img
+                  ng-if="::network.signal >= 0"
+                  ng-src="{{assetsUrl + '/wifi-icons/' + network.signal + '.png'}}" alt="signal-{{wifi.signal}}" class="signal-icon"></span> {{::network.ssid}}</li>
+            <li><span> <span translate="NETWORK.IP_ADDRESS"></span>:</span> {{::network.ip}}</li>
+            <li ng-if="::network.speed"><span> <span translate="NETWORK.SPEED"></span>:</span>  {{::network.speed}}</li>
+            <li><span> <span translate="NETWORK.ONLINE"></span>:</span>
+              <i class="fa fa-check true" ng-if="network.online"></i>
+              <i class="fa fa-remove false" ng-if="!network.online"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

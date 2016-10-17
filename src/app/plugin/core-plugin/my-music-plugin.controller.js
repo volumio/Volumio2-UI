@@ -1,16 +1,21 @@
 class MyMusicPluginController {
-  constructor($scope, socketService, mockService, $interval, $log) {
+  constructor($scope, socketService, mockService, $interval, $log, $translate) {
     'ngInject';
     this.socketService = socketService;
     this.$interval = $interval;
     this.$scope = $scope;
     this.$log = $log;
+    this.$translate = $translate;
     //this.myCollectionStats = mockService.get('myCollectionStats');
     this.init();
   }
 
   rescanLibrary() {
     this.socketService.emit('rescanDb');
+  }
+
+  updateLibrary() {
+    this.socketService.emit('updateDb');
   }
 
   init() {

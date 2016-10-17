@@ -1,9 +1,10 @@
 class WifiPluginController {
-  constructor($scope, socketService, mockService, $log) {
+  constructor($scope, socketService, mockService, $log, $translate) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
     this.$log = $log;
+    this.$translate = $translate;
     //this.wirelessNetworks = mockService.get('wirelessNetworks');
     this.init();
   }
@@ -12,7 +13,7 @@ class WifiPluginController {
     this.registerListner();
     this.initService();
     this.securityTypes = [
-      {label: 'none'},
+      {label: 'open'},
       {label: 'wep'},
       {label: 'wpa'},
       {label: 'wpa2'}
@@ -62,6 +63,12 @@ class WifiPluginController {
         security: this.securityTypes[0],
         signal: -1,
         ssidHidden: true
+      });
+      this.wirelessNetworks.available.map((network) => {
+        if (!network.security || network.security === '') {
+          network.security = this.securityTypes[0];
+          network.hotSpot = true;
+        }
       });
     });
     this.$scope.$on('$destroy', () => {

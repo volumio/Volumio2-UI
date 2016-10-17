@@ -1,11 +1,12 @@
 class ModalUpdaterController {
-  constructor($uibModalInstance, dataObj, updaterService, socketService, $log) {
+  constructor($uibModalInstance, dataObj, updaterService, socketService, $log, $translate) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.updaterService = updaterService;
     this.socketService = socketService;
     this.dataObj = dataObj;
     this.$log = $log;
+    this.$translate = $translate;
   }
 
   update(val) {

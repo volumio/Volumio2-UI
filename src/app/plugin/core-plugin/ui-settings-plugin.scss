@@ -1,0 +1,61 @@
+#backgroundSelector {
+  .backgroundName {
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    span {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 6px 10px;
+    }
+    p {
+      margin: 10px 0 0 0;
+    }
+    span.current {
+      color: #54C698;
+    }
+  }
+  img {
+    width: 100%;
+    border: solid 1px #999;
+    cursor: pointer;
+    margin-bottom: 30px;
+    &.current {
+      border: solid 2px #54C698;
+    }
+  }
+}
+
+#backgroundColorSelector {
+  #colorPalette {
+    > div {
+      position: relative;
+      display: inline-block;
+      margin:0px 15px 10px 0px;
+      width: 110px;
+      height: 110px;
+      &.selected {
+        border: solid 2px #54C698;
+      }
+      button {
+        position: absolute;
+        top: 50%;
+        margin-top: -18px;
+        left: 50%;
+        margin-left: -21px;
+        &.customColor {
+          top: 10%;
+          margin-top: 0px;
+        }
+      }
+      input {
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        width: 90px;
+      }
+    }
+  }
+}

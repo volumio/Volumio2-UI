@@ -134,7 +134,7 @@ class NetworkDrivesPluginController {
         'ModalNetwordDrivesPasswordController',
         'app/plugin/core-plugin/modals/modal-network-drive-password.html',
         data);
-      modalPromise.result.then((obj) => {
+      modalPromise.then((obj) => {
         this.drive = angular.extend(this.drive, obj);
         this.$log.debug('updateSharePw', this.drive);
         this.socketService.emit('editShare', this.drive);

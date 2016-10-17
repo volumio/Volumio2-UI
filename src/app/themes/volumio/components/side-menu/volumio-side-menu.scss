@@ -25,6 +25,7 @@ $sideMenuWidth: 230px;
     width: $sideMenuWidth;
     padding: 10px 10px 0px 10px;
     background-color: rgba(30, 30, 30, 0.95);
+    overflow-y: scroll;
     button {
       text-transform: uppercase;
       text-align: left;
@@ -53,12 +54,12 @@ $sideMenuWidth: 230px;
       right: -200px;
     }
     #closeMenuBtn {
-      position: absolute;
+      position: fixed;
       width: auto;
       border-bottom: none;
       background-color: none;
       top: 10px;
-      right: 16px;
+      right: 20px;
       @include breakpoint(xs) {
         top: auto;
         bottom: 0px;

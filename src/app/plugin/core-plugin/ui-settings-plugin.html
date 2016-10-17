@@ -1,0 +1,105 @@
+<div id="uiSettings" ng-controller="UiSettingsPluginController as uiSettingsPlugin"
+    class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-paint-brush"></i>
+      <span translate="UI_SETTINGS.THEME_SETTINGS"></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <h4 class="sectionDescription" translate="UI_SETTINGS.UPLOAD_BACKGROUND_FILE"></h4>
+    <div ng-if="!uiSettingsPlugin.uploadPercentage">
+      <div
+          class="uploadDroppableArea"
+          ngf-drop="uiSettingsPlugin.uploadBackground()"
+          ngf-select="uiSettingsPlugin.uploadBackground()"
+          ngf-drag-over-class="'dragover'"
+          ng-model="uiSettingsPlugin.backgroundFile"
+          name="plugin">
+        <span translate="UI_SETTINGS.UPLOAD_BACKGROUND_FILE"></span>
+      </div>
+    </div>
+
+    <div id="installProgressBar" ng-if="uiSettingsPlugin.uploadPercentage > 0">
+      <h3 translate="UI_SETTINGS.UI_SETTINGS.UPLOAD_BACKGROUND_FILE"></h3>
+      <uib-progressbar
+          class="progress-striped active"
+          value="uiSettingsPlugin.uploadPercentage"
+          type="default">{{uiSettingsPlugin.uploadPercentage}}%
+      </uib-progressbar>
+    </div>
+
+    <hr>
+
+    <h4 class="sectionDescription" translate="UI_SETTINGS.SELECT_BACKGROUND"></h4>
+    <div id="backgroundSelector" class="row">
+      <div class="col-sm-6"
+          ng-repeat-start="background in uiSettingsPlugin.uiSettingsService.backgrounds.list track by $index">
+        <div class="background">
+          <img
+              ng-click="uiSettingsPlugin.selectBackground(background)"
+              ng-class="{'current': uiSettingsPlugin.uiSettingsService.uiSettings.background.title === background.name}"
+              ng-src="{{background.thumbnail}}"
+              alt="{{background.name}}"/>
+          <div class="backgroundName">
+            <span
+                ng-class="{'current':
+                  uiSettingsPlugin.uiSettingsService.uiSettings.background.title === background.name}">
+              {{background.name}}
+            </span>
+            <p ng-if="uiSettingsPlugin.uiSettingsService.uiSettings.background.title !== background.name">
+              <button
+                  type="button"
+                  class="btn btn-info"
+                  ng-click="uiSettingsPlugin.selectBackground(background)"
+                  title="{{'UI_SETTINGS.APPLY_BACKGROUND' | translate}}">
+                <i class="fa fa-check"></i>
+              </button>
+              <button
+                  type="button"
+                  class="btn btn-danger"
+                  ng-if="!background.notDeletable"
+                  ng-click="uiSettingsPlugin.deleteBackground(background)"
+                  title="{{'UI_SETTINGS.DELETE_BACKGROUND' | translate}}">
+                <i class="fa fa-trash"></i>
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div ng-repeat-end ng-if="($index + 1) % 4 === 0" class="clearfix"></div>
+    </div>
+
+    <hr>
+
+    <h4 class="sectionDescription" translate="UI_SETTINGS.SELECT_BACKGROUND_COLOR"></h4>
+    <div id="backgroundColorSelector" class="row">
+      <div class="col-xs-24" id="colorPalette">
+        <div
+            ng-repeat="color in uiSettingsPlugin.backgroundColorSet track by color"
+            ng-class="{selected: color === uiSettingsPlugin.uiSettingsService.uiSettings.color}"
+            ng-style="{backgroundColor: uiSettingsPlugin.backgroundColorSet[$index]}">
+          <button type="button" class="btn btn-info"
+              ng-click="uiSettingsPlugin.selectBackgroundColor(uiSettingsPlugin.backgroundColorSet[$index])"
+              title="{{'UI_SETTINGS.APPLY_BACKGROUND_COLOR' | translate}}">
+            <i class="fa fa-check"></i>
+          </button>
+        </div>
+
+        <div
+            ng-style="{backgroundColor: uiSettingsPlugin.customBackgroundColor}"
+            ng-class="{selected: (uiSettingsPlugin.uiSettingsService.uiSettings.color &&
+              uiSettingsPlugin.customBackgroundColor === uiSettingsPlugin.uiSettingsService.uiSettings.color)}">
+          <button type="button" class="btn btn-info customColor"
+              ng-click="uiSettingsPlugin.selectBackgroundColor(uiSettingsPlugin.customBackgroundColor)"
+              title="{{'UI_SETTINGS.APPLY_BACKGROUND_COLOR' | translate}}">
+            <i class="fa fa-check"></i>
+          </button>
+          <input
+              type="text"
+              class="form-control"
+              ng-model="uiSettingsPlugin.customBackgroundColor">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

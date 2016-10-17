@@ -133,7 +133,7 @@ class TrackManagerController {
       return this.playerService.state && this.playerService.state.albumart;
     }, (newVal) => {
       if (this.matchmediaService.isPhone) {
-        let albumArtUrl = `url('${this.socketService.host}${newVal}')`;
+        let albumArtUrl = `url('${this.playerService.getAlbumart(newVal)}')`;
         this.backgroundAlbumArtStyle = {
           'background-image': albumArtUrl
         };
@@ -146,7 +146,7 @@ class TrackManagerController {
       if (this.matchmediaService.isPhone) {
         let albumart = this.playerService.state && this.playerService.state.albumart;
         if (albumart) {
-          let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
+          let albumArtUrl = `url('${this.playerService.getAlbumart(albumart)}')`;
           this.backgroundAlbumArtStyle = {
             'background-image': albumArtUrl
           };
@@ -155,6 +155,21 @@ class TrackManagerController {
         this.backgroundAlbumArtStyle = {};
       }
     });
+  }
+
+  trackActions() {
+    if (!this.playerService.state.title && !this.playerService.album && !this.playerService.artist) {
+      return false;
+    }
+    let templateUrl = 'app/components/track-manager/components/modals/modal-track-manager-actions.html';
+    let controller = 'ModalTrackManagerActionsController';
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      null,
+      'sm',
+      true
+    );
   }
 
   // initMatchmedia() {
