@@ -26,14 +26,45 @@ $trackInfoBarButtonsHeight: 35px;
       padding: 0;
     }
     li {
-      &:hover {
-        background-color: rgba(30, 30, 30, 0.8);
-      }
       margin: 0px;
       list-style: none;
       padding: 8px 0px;
       border-top: solid 1px #CCC;
+      &:hover {
+        background-color: rgba(30, 30, 30, 0.8);
+      }
+      &:hover span.rollover, &.isPlaying span.rollover {
+        background: rgba(0, 0, 0, .3);
+        -webkit-transition: .3s;
+        &:before {
+          content: '\f04b';
+        }
+      }
+      &.sorting span.rollover{
+        transform: rotate(90deg);
+        &:before {
+          content: '\f0ec' !important;
+        }
+      }
+      &.isPlaying span.rollover {
+        color: $volumio-green-color;
+      }
     }
+
+    span.rollover {
+      font-family: FontAwesome;
+      font-size: 20px;
+      padding-top: 10px;
+      padding-left: 15px;
+      left: 10px;
+      -webkit-transition: .3s;
+      background: rgba(0, 0, 0, 0);
+      cursor: pointer;
+      height: 45px;
+      width: 45px;
+      position: absolute;
+    }
+
 
     .image {
       display: table-cell;
@@ -70,38 +101,6 @@ $trackInfoBarButtonsHeight: 35px;
       text-align: right;
       i {
         font-size: 20px;
-      }
-    }
-    span.rollover {
-      font-family: FontAwesome;
-      font-size: 20px;
-      padding-top: 10px;
-      padding-left: 15px;
-      left: 10px;
-      -webkit-transition: .3s;
-      background: rgba(0, 0, 0, 0);
-      cursor: pointer;
-      height: 45px;
-      width: 45px;
-      position: absolute;
-    }
-
-    li{
-      &.sorting span.rollover{
-        transform: rotate(90deg);
-        &:before {
-          content: '\f0ec' !important;
-        }
-      }
-      &:hover span.rollover, &.isPlaying span.rollover{
-        background: rgba(0, 0, 0, .3);
-        -webkit-transition: .3s;
-        &:before {
-          content: '\f04b';
-        }
-      }
-      &.isPlaying span.rollover {
-        color: $volumio-green-color;
       }
     }
   }

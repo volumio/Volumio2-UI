@@ -13,7 +13,7 @@ class AirplayScreemDirective {
 }
 
 class AirplayScrimController {
-  constructor($rootScope, $scope,  socketService, $document, modalService, $state) {
+  constructor($rootScope, $scope, socketService, $document, modalService, $state) {
     'ngInject';
     this.socketService = socketService;
     this.$document = $document[0];

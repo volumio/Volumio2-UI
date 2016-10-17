@@ -333,7 +333,7 @@ class PlayerService {
       }
 
       //Forward emit event
-      this.$rootScope.$broadcast('socket:pushState', data);
+      this.$rootScope.$broadcast('socket:pushState', this.state);
 
       this.updatePageTitle();
       this.updateFavicon();

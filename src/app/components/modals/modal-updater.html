@@ -7,7 +7,7 @@
   </div>
 
   <div ng-if="modal.updaterService.status === 'updateProgress'">
-    <h3>{{modal.updaterService.updateProgress.status}}</h3>
+    <h4>{{modal.updaterService.updateProgress.status}}</h4>
     <uib-progressbar
         class="progress-striped active"
         value="modal.updaterService.updateProgress.progress"
@@ -21,6 +21,7 @@
     <h3>{{modal.updaterService.updateDone.message}}</h3>
   </div>
 </div>
+
 <div class="modal-footer">
   <div ng-if="modal.updaterService.status === 'updateReady'" >
     <button
@@ -29,12 +30,14 @@
         ng-click="modal.cancel()">
     <span translate="COMMON.CANCEL"></span>
     </button>
+
     <button
         ng-if="modal.updaterService.updateReady.updateavailable"
         class="btn btn-primary"
         ng-click="modal.update('now')">
       <span translate="UPDATER.UPDATE_NOW"></span>
     </button>
+
     <button
         ng-if="!modal.updaterService.updateReady.updateavailable"
         class="btn btn-primary"
@@ -49,6 +52,7 @@
         class="btn btn-primary" ng-click="modal.reboot()">
       <span translate="COMMON.RESTART_SYSTEM"></span>
     </button>
+
     <button
         ng-if="modal.updaterService.updateDone.status === 'error'"
         class="btn btn-primary" ng-click="modal.update('now')">
