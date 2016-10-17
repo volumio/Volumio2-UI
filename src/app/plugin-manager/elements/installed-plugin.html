@@ -1,11 +1,15 @@
-<table class="table noFirstRowBorder">
-  <tr ng-repeat-start="plugin in pluginManager.installedPlugins track by $index">
-    <td>
-      <i ng-if="plugin.icon" class="fa {{plugin.icon}}"></i>
-      <i ng-if="!plugin.icon" class="fa fa-cube"></i>
+
+  <div id="installed-plugin-lists" ng-repeat="plugin in pluginManager.installedPlugins track by $index">
+    <div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-14" id="list-group">
+      <div class="row" >
+    <div class="col-xs-8 col-sm-8 col-md-8">
+
+      <i ng-if="plugin.icon" class="fa {{plugin.icon}} fa-lg"></i>
+      <i ng-if="!plugin.icon" class="fa fa-cube fa-lg"></i>
       {{::plugin.prettyName}}
-    </td>
-    <td>
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8">
       <input
           bs-switch
           ng-model="plugin.enabled"
@@ -17,28 +21,53 @@
           ng-true-value="true"
           ng-false-value="false"
           ng-change="pluginManager.enableDisablePlugin(plugin)">
-    </td>
-    <td>
+        </div>
+          <div class="col-xs-8 col-sm-8 col-md-8">
       <span
           class="pluginDotStatus"
           ng-class="{'active': plugin.active, 'inactive': !plugin.active}"></span>
       <span ng-if="plugin.active" translate="COMMON.ACTIVE"></span>
       <span ng-if="!plugin.active" translate="COMMON.INACTIVE"></span>
-    </td>
-    <td>
+    </div>
+    </div>
+    </div>
+    <div class="col-xs-24 col-sm-24 col-md-8">
+        <div class="row">
+          <div class="col-xs-8 col-sm-8 col-md-8">
+                    <button
+                        ng-if="plugin.updateAvailable"
+                        ng-click="pluginManager.updatePlugin(plugin)"
+                        type="button"
+                        class="btn btn-info pull-right"
+                        title="{{'PLUGINS.UPDATE' | translate}}">
+                      <i class="fa fa-refresh"></i> {{'PLUGINS.UPDATE' | translate}}
+                    </button>
+                  </div>
+<div class="col-xs-8 col-sm-8 col-md-8">
       <button
           ng-if="plugin.enabled"
           ng-click="pluginManager.showPluginSettings(plugin)"
           type="button"
           class="btn btn-info pull-right"
-          title="{{'COMMON.SHOW_SETTINGS' | translate}}">
-        <i class="fa fa-cog"></i>
+          title="{{'COMMON.SETTINGS' | translate}}">
+         {{'COMMON.SETTINGS' | translate}}
       </button>
-    </td>
-  </tr>
-  <tr ng-repeat-end ng-show="plugin.showSettings">
-    <td>
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8">
+        <button
+            ng-click="pluginManager.unInstallPlugin(plugin)"
+            type="button"
+            class="btn btn-danger pull-right"
+            title="{{'PLUGINS.UNINSTALL' | translate}}">
+           {{'PLUGINS.UNINSTALL' | translate}}
+        </button>
+</div>
+    </div>
+    </div>
+      </div>
+  <div ng-repeat-end ng-show="plugin.showSettings">
+
       <span translate="COMMON.SHOW_SETTINGS"></span>
-    </td>
-  </tr>
-</table>
+
+  </div>
+  </div>

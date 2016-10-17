@@ -64,16 +64,20 @@ class PluginManagerController {
     let emitPayload = {
       url: plugin.url,
       name: plugin.name,
+      prettyName: plugin.prettyName,
       category: this.selectedCategory.name
     };
+    this._openInstallerModal();
+    this.$timeout(() => {
     this.$log.debug('emit updatePlugin', emitPayload);
     this.socketService.emit('updatePlugin', emitPayload);
+    }, 300);
   }
 
   unInstallPlugin(plugin) {
     let emitPayload = {
       name: plugin.name,
-      category: this.selectedCategory.name
+      category: plugin.category
     };
     this.$log.debug('emit preUninstallPlugin', emitPayload);
     this.socketService.emit('preUninstallPlugin', emitPayload);

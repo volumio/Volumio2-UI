@@ -14,6 +14,10 @@ class MyMusicPluginController {
     this.socketService.emit('rescanDb');
   }
 
+  updateLibrary() {
+    this.socketService.emit('updateDb');
+  }
+
   init() {
     this.registerListner();
     this.initService();
