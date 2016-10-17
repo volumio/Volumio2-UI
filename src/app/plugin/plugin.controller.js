@@ -1,5 +1,5 @@
 class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $translate) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -7,7 +7,6 @@ class PluginController {
     this.mockService = mockService;
     this.$scope = $scope;
     this.$log = $log;
-    this.$translate = $translate;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -42,7 +41,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         section.onSave.askForConfirm);
-      modalPromise.then((yes) => {
+      modalPromise.result.then((yes) => {
         delete saveObj.askForConfirm;
         this.socketService.emit('callMethod', saveObj);
       }, () => {});
@@ -58,7 +57,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         item.onClick.askForConfirm);
-      modalPromise.then((yes) => {
+      modalPromise.result.then((yes) => {
         if (item.onClick.type === 'emit') {
           this.$log.debug('emit', item.onClick.message, item.onClick.data);
           this.socketService.emit(item.onClick.message, item.onClick.data);
@@ -84,11 +83,13 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
+      //NOTE this commented lines are for testing pourpose
       // data.sections.unshift({coreSection: 'ui-settings'});
       // data.sections.unshift({coreSection: 'wifi'});
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
       // data.sections.unshift({coreSection: 'network-drives'});
+      // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
     });

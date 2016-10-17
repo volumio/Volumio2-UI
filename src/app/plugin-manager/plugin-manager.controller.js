@@ -64,16 +64,20 @@ class PluginManagerController {
     let emitPayload = {
       url: plugin.url,
       name: plugin.name,
+      prettyName: plugin.prettyName,
       category: this.selectedCategory.name
     };
-    this.$log.debug('emit updatePlugin', emitPayload);
-    this.socketService.emit('updatePlugin', emitPayload);
+    this._openInstallerModal();
+    this.$timeout(() => {
+      this.$log.debug('emit updatePlugin', emitPayload);
+      this.socketService.emit('updatePlugin', emitPayload);
+    }, 300);
   }
 
   unInstallPlugin(plugin) {
     let emitPayload = {
       name: plugin.name,
-      category: this.selectedCategory.name
+      category: plugin.category
     };
     this.$log.debug('emit preUninstallPlugin', emitPayload);
     this.socketService.emit('preUninstallPlugin', emitPayload);
@@ -96,20 +100,20 @@ class PluginManagerController {
   //TAB UPLOAD PLUGIN
   uploadPlugin() {
     this.Upload.upload({
-        url: `${this.socketService.host}/plugin-upload`,
-        data: {filename: this.pluginFile}
+      url: `${this.socketService.host}/plugin-upload`,
+      data: {filename: this.pluginFile}
     }).then((resp) => {
       this.uploadPercentage = false;
     }, (resp) => {
       this.uploadPercentage = false;
       this.$log.debug('Error status: ' + resp.status);
-    }, (evt)  =>{
-        this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        if (this.uploadPercentage === 100) {
-          this.uploadPercentage = false;
-          this.activeTab = 0;
-          this._openInstallerModal();
-        }
+    }, (evt) => {
+      this.uploadPercentage = parseInt(100.0 * evt.loaded / evt.total);
+      if (this.uploadPercentage === 100) {
+        this.uploadPercentage = false;
+        this.activeTab = 0;
+        this._openInstallerModal();
+      }
     });
   }
 

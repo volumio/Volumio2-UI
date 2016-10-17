@@ -4,6 +4,9 @@
       border-top: 0 !important;
       border-bottom: 1px solid #7C7C7C;
       &.insertPasswordRow {
+        label {
+          margin-right: 10px;
+        }
         input[type=text], input[type=password] {
           width: 140px;
           display: inline-block;

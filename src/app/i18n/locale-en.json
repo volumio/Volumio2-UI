@@ -27,6 +27,7 @@
     "ACTIVE":"Active",
     "INACTIVE":"Inactive",
     "SHOW_SETTINGS":"Show Settings",
+    "SETTINGS":"Settings",
     "TAB_BROWSE":"Browse",
     "TAB_PLAYBACK":"Playback",
     "TAB_QUEUE":"Queue",
@@ -98,7 +99,7 @@
     "UPLOAD_PLUGINS":"Upload Plugin"
   },
   "UPDATER": {
-    "DOWNLOAD_SPEED": "Back to Plugins",
+    "DOWNLOAD_SPEED": "Download Speed",
     "TIME_REMAINING": "Time Remaining",
     "UPDATE_NOW": "Update Now"
   },

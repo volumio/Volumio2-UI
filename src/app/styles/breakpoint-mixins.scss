@@ -1,21 +1,25 @@
 @mixin breakpoint($class) {
- @if $class == xs {
-   @media (max-width: $screen-xs-max) { @content; }
- }
+  @if $class == ltxs {
+    @media (max-width: $screen-xs) { @content; }
+  }
 
- @else if $class == sm {
-   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { @content; }
- }
+  @else if $class == xs {
+    @media (max-width: $screen-xs-max) { @content; }
+  }
 
- @else if $class == md {
-   @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { @content; }
- }
+  @else if $class == sm {
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { @content; }
+  }
 
- @else if $class == lg {
-   @media (min-width: $screen-lg-min) { @content; }
- }
+  @else if $class == md {
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { @content; }
+  }
 
- @else {
-   @warn "Breakpoint mixin supports: xs, sm, md, lg";
- }
+  @else if $class == lg {
+    @media (min-width: $screen-lg-min) { @content; }
+  }
+
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
 }
