@@ -254,7 +254,7 @@ class BrowseController {
                 ${(item.title) ? item.title : ''}
               </div>
               <div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
-                ${(item.artist) ? item.artist : ''} ${(item.album) ? '-' + item.album : ''}
+                ${(item.artist) ? item.artist : ''} ${(item.album) ? '- ' + item.album : ''}
               </div>
             </div>`;
 
