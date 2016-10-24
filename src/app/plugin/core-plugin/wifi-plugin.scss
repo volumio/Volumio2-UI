@@ -7,6 +7,9 @@
         label {
           margin-right: 10px;
         }
+        input[type=checkbox] {
+          width: auto;
+        }
         input[type=text], input[type=password] {
           width: 140px;
           display: inline-block;
@@ -44,5 +47,8 @@
         margin-right: 10px;
       }
     }
+  }
+  .refreshWiFiNetworks {
+    margin-top: 15px;
   }
 }

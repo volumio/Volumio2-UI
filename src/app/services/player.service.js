@@ -307,6 +307,8 @@ class PlayerService {
       this.$log.debug('pushState', data);
       this.state = data;
 
+      this.state.disableUi = this.state.service === 'airplay' || this.state.service === 'analogin';
+
       if (!this.state.mute && this.state.volume) {
         this.lastVolume = this.state.volume;
       }
