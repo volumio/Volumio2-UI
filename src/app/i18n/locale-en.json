@@ -59,7 +59,8 @@
     "VOLUME_UP":"Volume Up",
     "VOLUME_DOWN":"Volume Down",
     "HIDDEN": "Hidden",
-    "LIST": "List"
+    "LIST": "List",
+    "PLAY_QUEUE": "Play queue"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -167,5 +168,12 @@
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "In order to use Alarm Clock, you must create at least one Playlist first"
+  },
+  "MULTIDEVICE": {
+    "EDIT_GROUPS": "Edit groups",
+    "ROOMS_AND_GROUPS": "Rooms and groups",
+    "MULTI_ROOM_CONFIGURATION": "Multi room configuration",
+    "GROUP": "Group",
+    "NOW_PLAYING": "Now playing"
   }
 }
