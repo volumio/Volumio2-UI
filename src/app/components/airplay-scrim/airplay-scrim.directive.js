@@ -37,7 +37,7 @@ class AirplayScrimController {
 
   registerListner() {
     let socketEventHandler = this.$scope.$on('socket:pushState', (event, data) => {
-      if (data.service === 'airplay') {
+      if (data.disableUi) {
         this.$state.go('volumio.playback');
         this.$document.querySelector('#airplayScrim').classList.add('showScrim');
       } else {
