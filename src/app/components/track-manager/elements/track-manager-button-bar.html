@@ -5,7 +5,7 @@
     ng-mouseleave="trackManager.hoverHeart = false"
     class="btn btn-link"
     title="{{'BROWSER.ADD_TO_FAVOURITES' | translate}}"
-    ng-disabled="trackManager.playerService.state.service === 'airplay'">
+    ng-disabled="trackManager.playerService.state.disableUi">
   <i ng-hide="trackManager.playerService.favourite.favourite || trackManager.hoverHeart" class="fa fa-heart-o"></i>
   <i ng-show="trackManager.playerService.favourite.favourite || trackManager.hoverHeart" class="fa fa-heart"></i>
 </button>
@@ -14,7 +14,7 @@
     ng-click="trackManager.playerService.shuffle()"
     class="btn btn-link"
     title="{{'BROWSER.RANDOM' | translate}}"
-    ng-disabled="trackManager.playerService.state.service === 'airplay'">
+    ng-disabled="trackManager.playerService.state.disableUi">
   <i class="fa fa-random"></i>
 </button>
 <button
@@ -22,13 +22,13 @@
     ng-click="trackManager.playerService.repeatAlbum()"
     class="btn btn-link"
     title="{{'BROWSER.REPEAT' | translate}}"
-    ng-disabled="trackManager.playerService.state.service === 'airplay'">
+    ng-disabled="trackManager.playerService.state.disableUi">
   <i class="fa fa-repeat"></i>
 </button>
 <button
     ng-click="trackManager.addToPlaylist()"
     class="btn btn-link"
     title="{{'BROWSER.ADD_TO_PLAYLIST' | translate}}"
-    ng-disabled="trackManager.playerService.state.service === 'airplay'">
+    ng-disabled="trackManager.playerService.state.disableUi">
   <i class="fa fa-plus"></i>
 </button>
