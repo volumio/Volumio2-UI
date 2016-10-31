@@ -642,6 +642,7 @@ class MockService {
         sections: [
           {
             'id': 'section_player_name',
+            'hidden': false,
             'element': 'section',
             'label': 'Player name',
             'plugin': 'settings/playback_conf',
@@ -655,7 +656,8 @@ class MockService {
               'label': 'salva',
               'data': [
                 'playerName'
-              ]
+              ],
+              'hidden': false
             },
             'content': [
               {
@@ -666,7 +668,8 @@ class MockService {
                 'attributes': [
                   {'placeholder': 'call me with a fancy name'}
                 ],
-                'value': 'Volumio'
+                'value': 'Volumio',
+                'hidden': false
               }
             ]
           },
