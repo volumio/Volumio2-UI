@@ -46,7 +46,6 @@ class SideMenuController {
 
   toggleMenu() {
     this.visible = !this.visible;
-    this.analogIn = this.playerService.state.service === 'analogin';
   }
 
   itemClick(item) {
@@ -88,6 +87,15 @@ class SideMenuController {
   init() {
     this.registerListner();
     this.initService();
+    this.watcherHandler = this.$scope.$watch(
+      () => 
+        this.playerService &&
+        this.playerService.state && 
+        this.playerService.state.service, (val) => {
+      if (val) {
+        this.analogIn = this.playerService.state.service === 'analogin';
+      }
+    });
   }
 
   registerListner() {
