@@ -6,7 +6,6 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
 
   themeManagerProvider.theme = theme;
   themeManagerProvider.variant = variant;
-  console.log(theme, variant);
 
   $logProvider.debugEnabled(env !== 'production');
 
