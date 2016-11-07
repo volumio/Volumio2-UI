@@ -14,16 +14,16 @@
       }
     }
     &.browseBtn {
-      background-color: $theme-black-trans-dark;
+      background-color: $theme-dark-transparent-background;
     }
     &.playbackBtn {
       background-color: $theme-light-color;
       &:focus {
-        background-color: $theme-black-trans-dark;
+        background-color: $theme-dark-transparent-background;
       }
     }
     &.queueBtn {
-      background-color: $theme-black-trans-dark;
+      background-color: $theme-dark-transparent-background;
     }
     @include breakpoint(xs) {
       font-size: 26px;

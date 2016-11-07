@@ -21,7 +21,7 @@
     height: 80px;
     width: 80px;
     top: -35px;
-    background: $theme-deep-dark-color;
+    background: $theme-darker-color;
     @include breakpoint(xs) {
       top: -50px;
     }
@@ -41,7 +41,7 @@
       padding-left: 4px;
     }
     @include breakpoint(xs) {
-      background: $theme-black-trans-dark;
+      background: $theme-dark-transparent-background;
     }
   }
 }

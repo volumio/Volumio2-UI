@@ -61,13 +61,13 @@ $btn-info-border: $theme-green-color;
 
 //used for cancel buttons
 $btn-warning-color: $theme-green-color;
-$btn-warning-bg: $theme-grey-trans-dark;
+$btn-warning-bg: $theme-transparent-background;
 $btn-warning-border: $theme-green-color;
 
 //used for delete buttons
 $btn-danger-color: #FFF;
-$btn-danger-bg: $theme-red-color;
-$btn-danger-border: $theme-red-color;
+$btn-danger-bg: $theme-danger-color;
+$btn-danger-border: $theme-danger-color;
 
 //Table
 $table-bg-hover: $theme-accent-color;
@@ -76,7 +76,7 @@ $table-border-color: $theme-table-border-color;
 
 //Panels
 $panel-bg: transparent;
-$panel-default-heading-bg: $theme-black-trans-dark;
+$panel-default-heading-bg: $theme-dark-transparent-background;
 $panel-default-border: $theme-green-color;
 $panel-border-radius: 0;
 
@@ -88,7 +88,7 @@ $input-border-focus: $theme-green-color;
 
 //Modals
 $modal-content-bg: #000;
-$modal-content-border-color: $theme-black-trans-dark;
+$modal-content-border-color: $theme-dark-transparent-background;
 $modal-header-border-color: $theme-green-color;
 $modal-footer-border-color: $theme-green-color;
 // $modal-inner-padding: 10px;
@@ -104,7 +104,7 @@ $progress-bg: $theme-dark-color;
 $progress-bar-bg: $theme-green-color;
 
 //Tabs
-$nav-link-hover-bg: $theme-black-trans-dark;
+$nav-link-hover-bg: $theme-dark-transparent-background;
 $nav-tabs-border-color: $theme-green-color;
 $nav-tabs-link-hover-border-color: $theme-green-color;
 
@@ -336,7 +336,7 @@ table {
   border: none;
   margin-top: 20px;
   .panel-body {
-    background-color: $theme-grey-trans-dark;
+    background-color: $theme-transparent-background;
   }
   .panel-heading {
     border-bottom: solid 1px $theme-green-color;
@@ -352,10 +352,10 @@ table {
 .modal-content {
   background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
   .modal-header, .modal-footer {
-    background-color: $theme-black-trans-dark;
+    background-color: $theme-dark-transparent-background;
   }
   .modal-body {
-    background-color: $theme-grey-trans-dark;
+    background-color: $theme-transparent-background;
   }
 }
 
@@ -404,7 +404,7 @@ table {
   border-radius: 0;
 }
 .bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
-  background-color: $theme-black-trans-dark;
+  background-color: $theme-dark-transparent-background;
   color: $theme-green-color;
 }
 .bootstrap-switch-label {
@@ -633,7 +633,7 @@ ul {
 }
 
 .false {
-  color: $theme-red-color;
+  color: $theme-danger-color;
 }
 
 //Credits

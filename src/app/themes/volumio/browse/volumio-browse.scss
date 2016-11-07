@@ -2,7 +2,7 @@
   .panel {
     margin-top: 0px;
     margin-bottom: 0px;
-    background-color: $theme-black-trans-dark;
+    background-color: $theme-dark-transparent-background;
   }
 }
 .navButtons {
@@ -65,7 +65,7 @@
   cursor: auto;
   color: $theme-green-color;
   border-bottom: solid 1px $theme-green-color;
-  background-color: $theme-black-trans-dark;
+  background-color: $theme-dark-transparent-background;
   i {
     margin-right: 10px;
   }
@@ -81,9 +81,9 @@
     height: 56px;
     border-bottom: solid 1px $theme-table-border-color;
     padding: 5px 0px 0px 5px;
-    background-color: $theme-grey-trans-dark;
+    background-color: $theme-transparent-background;
     &:hover {
-      background-color: $theme-black-trans-dark;
+      background-color: $theme-dark-transparent-background;
     }
   }
 

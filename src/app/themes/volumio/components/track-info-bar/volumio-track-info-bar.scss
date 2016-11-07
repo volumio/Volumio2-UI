@@ -1,6 +1,6 @@
 .trackInfoBar {
   @include make-row();
-  background-color: $theme-black-trans-dark;
+  background-color: $theme-dark-transparent-background;
   height: 35px;
   overflow: hidden;
   .leftInfo {

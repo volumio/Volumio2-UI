@@ -14,7 +14,7 @@ $trackInfoBarButtonsHeight: 35px;
 
   #playQueueList {
     // @include make-xs-column(24);
-    background-color: $theme-black-trans-dark;
+    background-color: $theme-dark-transparent-background;
     user-select: none;
     cursor: pointer;
     position: relative;
