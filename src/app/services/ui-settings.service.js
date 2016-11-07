@@ -51,22 +51,25 @@ class UiSettingsService {
   }
 
   registerListner() {
-    this.$log.debug('UiSettingsService is listening');
-
     this.socketService.on('pushUiSettings', (data) => {
-
-      if (data.background){
+      if (data.background) {
         if (data.background.path.indexOf(this.socketService.host) === -1) {
           var bg = `${this.socketService.host}/backgrounds/${data.background.path}`;
           data.background.path = bg;
         }
       }
-      this.$log.debug('pushUiSettings', data);
+
       //Check for language switch
       if (this.uiSettings && this.uiSettings.language !== data.language) {
         location.reload();
       }
       this.uiSettings = data;
+      //Add color palette here
+      this.uiSettings.colorPalette = {
+        mainColor: 'red'
+      };
+
+      this.$log.debug('pushUiSettings', data);
       this.setLanguage();
       this.setBackground();
     });
@@ -84,7 +87,7 @@ class UiSettingsService {
           background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
           return background;
         }));
-        this.setBackground();
+      this.setBackground();
     });
   }
 
