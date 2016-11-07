@@ -76,6 +76,7 @@ import ModalGotitController from './components/modals/modal-gotit.controller';
 import ModalConfirmController from './components/modals/modal-confirm.controller';
 import ModalRipperController from './components/modals/modal-ripper.controller';
 import ModalCustomController from './components/modals/modal-custom.controller';
+import ModalPasswordController from './components/modals/modal-password.controller';
 import ModalKaraokeController from './components/side-menu/elements/modal-karaoke.controller';
 import ModalPluginInstallerController from './plugin-manager/components/modals/modal-plugin-installer.controller';
 import ModalTrackManagerActionsController from './components/track-manager/components/modals/modal-track-manager-actions.controller';
@@ -195,6 +196,7 @@ angular.module('volumio', [
   .controller('ModalConfirmController', ModalConfirmController)
   .controller('ModalRipperController', ModalRipperController)
   .controller('ModalCustomController', ModalCustomController)
+  .controller('ModalPasswordController', ModalPasswordController)
   .controller('ModalKaraokeController', ModalKaraokeController)
   .controller('ModalPluginInstallerController', ModalPluginInstallerController)
   .controller('ModalTrackManagerActionsController', ModalTrackManagerActionsController)

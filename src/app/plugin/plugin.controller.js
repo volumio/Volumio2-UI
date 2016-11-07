@@ -1,5 +1,5 @@
 class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $state) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -7,6 +7,7 @@ class PluginController {
     this.mockService = mockService;
     this.$scope = $scope;
     this.$log = $log;
+    this.$state = $state;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -76,6 +77,8 @@ class PluginController {
   }
 
   init() {
+    this.showPlugin = false;
+    this.pluginName = this.$stateParams.pluginName.replace('-', '/');
     this.registerListner();
     this.initService();
   }
@@ -92,6 +95,31 @@ class PluginController {
       // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
+      if (!this.pluginObj.page.passwordProtection || !this.pluginObj.page.passwordProtection.enabled) {
+        this.showPlugin = true;
+      } else {
+        // Show PW modal
+        let
+          templateUrl = 'app/components/modals/modal-password.html',
+          controller = 'ModalPasswordController',
+          params = {
+            message: this.pluginObj.page.passwordProtection.message || '',
+            pluginName: this.pluginName
+          };
+        let modalPromise = this.modalService.openModal(
+          controller,
+          templateUrl,
+          params,
+          'sm');
+
+        modalPromise.result.then((canEnter) => {
+          if (canEnter) {
+            this.showPlugin = true;
+          }
+        }, () => {
+          this.$state.go('volumio.playback');
+        });
+      }
     });
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushUiConfig');
@@ -101,7 +129,7 @@ class PluginController {
   initService() {
     this.$log.debug('init', this.$stateParams);
     this.socketService.emit('getUiConfig',
-        {'page': this.$stateParams.pluginName.replace('-', '/')});
+        {'page': this.pluginName});
   }
 }
 
