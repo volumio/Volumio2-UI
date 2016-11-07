@@ -1,10 +1,15 @@
-src/app/themes/*
 src/app/ngConstants.js
 src/app/local-config.json
-!src/app/themes/volumio/
 dist/
 node_modules/
 bower_components/
 .sass-cache/
 .idea/
 .tmp/
+src/app/themes/*
+!src/app/themes/volumio/
+src/app/themes/volumio/assets/variants/*
+!src/app/themes/volumio/assets/variants/volumio/
+src/app/themes/volumio/variants/*
+!src/app/themes/volumio/variants/load-variant.scss
+!src/app/themes/volumio/variants/volumio-variant.scss

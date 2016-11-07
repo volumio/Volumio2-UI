@@ -1,49 +1,14 @@
-@import "./theme-variants/theme-variant";
+@import "./variants/load-variant";
 
 $headerHeight: 50px;
 $footerHeight: 50px;
 
-$fonts-path: "/app/themes/volumio/assets/fonts";
 
-@font-face {
-  font-family: 'Lato';
-  src: url('#{$fonts-path}/Lato-Regular.eot');
-  src: url('#{$fonts-path}/Lato-Regular.eot?#iefix') format('embedded-opentype'),
-       url('#{$fonts-path}/Lato-Regular.woff') format('woff'),
-       url('#{$fonts-path}/Lato-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('#{$fonts-path}/Lato-Light.eot');
-  src: url('#{$fonts-path}/Lato-Light.eot?#iefix') format('embedded-opentype'),
-       url('#{$fonts-path}/Lato-Light.woff') format('woff'),
-       url('#{$fonts-path}/Lato-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('#{$fonts-path}/Lato-Bold.eot');
-  src: url('#{$fonts-path}/Lato-Bold.eot?#iefix') format('embedded-opentype'),
-       url('#{$fonts-path}/Lato-Bold.woff') format('woff'),
-       url('#{$fonts-path}/Lato-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-}
-
-$font-family-sans-serif: "Lato";
-
+// BOOTSTRAP VARIABLES CUSTOMISATIONS
 $text-color: $theme-text-color;
 
 $link-color: #FFF;
-$link-hover-color: $theme-green-color;
+$link-hover-color: $theme-primary-color;
 $link-hover-decoration: none;
 
 
@@ -56,13 +21,13 @@ $btn-default-color: #FFF;
 $btn-default-bg: $theme-light-color;
 
 $btn-info-color: #FFF;
-$btn-info-bg: $theme-green-color;
-$btn-info-border: $theme-green-color;
+$btn-info-bg: $theme-primary-color;
+$btn-info-border: $theme-primary-color;
 
 //used for cancel buttons
-$btn-warning-color: $theme-green-color;
+$btn-warning-color: $theme-primary-color;
 $btn-warning-bg: $theme-transparent-background;
-$btn-warning-border: $theme-green-color;
+$btn-warning-border: $theme-primary-color;
 
 //used for delete buttons
 $btn-danger-color: #FFF;
@@ -77,49 +42,49 @@ $table-border-color: $theme-table-border-color;
 //Panels
 $panel-bg: transparent;
 $panel-default-heading-bg: $theme-dark-transparent-background;
-$panel-default-border: $theme-green-color;
+$panel-default-border: $theme-primary-color;
 $panel-border-radius: 0;
 
 //Inputs
 $input-bg: $theme-accent-color;
-$input-color: $theme-green-color;
-$input-border: $theme-green-color;
-$input-border-focus: $theme-green-color;
+$input-color: $theme-primary-color;
+$input-border: $theme-primary-color;
+$input-border-focus: $theme-primary-color;
 
 //Modals
 $modal-content-bg: #000;
 $modal-content-border-color: $theme-dark-transparent-background;
-$modal-header-border-color: $theme-green-color;
-$modal-footer-border-color: $theme-green-color;
+$modal-header-border-color: $theme-primary-color;
+$modal-footer-border-color: $theme-primary-color;
 // $modal-inner-padding: 10px;
 // $modal-title-padding: 10px;
 
 //List group
 $list-group-bg: $theme-dark-color;
-$list-group-border: $theme-green-color;
+$list-group-border: $theme-primary-color;
 //$list-group-border-radius: 0;
 
 //Progress
 $progress-bg: $theme-dark-color;
-$progress-bar-bg: $theme-green-color;
+$progress-bar-bg: $theme-primary-color;
 
 //Tabs
 $nav-link-hover-bg: $theme-dark-transparent-background;
-$nav-tabs-border-color: $theme-green-color;
-$nav-tabs-link-hover-border-color: $theme-green-color;
+$nav-tabs-border-color: $theme-primary-color;
+$nav-tabs-link-hover-border-color: $theme-primary-color;
 
-$nav-tabs-active-link-hover-bg: $theme-green-color;
+$nav-tabs-active-link-hover-bg: $theme-primary-color;
 $nav-tabs-active-link-hover-color: $theme-text-color;
-$nav-tabs-active-link-hover-border-color:  $theme-green-color;
+$nav-tabs-active-link-hover-border-color:  $theme-primary-color;
 
 //Input group
 $input-group-addon-bg: $theme-dark-color;
-$input-group-addon-border-color: $theme-green-color;
+$input-group-addon-border-color: $theme-primary-color;
 
 //Alerts
 $alert-info-bg: $theme-dark-color;
 $alert-info-text: $theme-text-color;
-$alert-info-border: $theme-green-color;
+$alert-info-border: $theme-primary-color;
 
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -222,13 +187,13 @@ body {
   border-radius: 0;
   font-size: 16px;
   &.selected {
-    background-color: $theme-green-color !important;
+    background-color: $theme-primary-color !important;
   }
   &:focus {
     color: $link-color;
     &.btn-info {
-      // color: $theme-green-color;
-      border-color: $theme-green-color;
+      // color: $theme-primary-color;
+      border-color: $theme-primary-color;
       background-color: $btn-info-bg;
     }
   }
@@ -238,7 +203,7 @@ body {
     //   border-color: $btn-default-border;
     // }
     &:hover{
-      background-color: $theme-green-color;
+      background-color: $theme-primary-color;
     }
     &.active {
       background-color: transparent;
@@ -253,7 +218,7 @@ body {
 .btn-link {
   border-radius: $btn-border-radius-base;
   &.active {
-    color: $theme-green-color;
+    color: $theme-primary-color;
   }
 }
 
@@ -339,7 +304,7 @@ table {
     background-color: $theme-transparent-background;
   }
   .panel-heading {
-    border-bottom: solid 1px $theme-green-color;
+    border-bottom: solid 1px $theme-primary-color;
     .panel-title {
       color: #FFF;
       font-size: 18px;
@@ -350,7 +315,7 @@ table {
 
 //modals
 .modal-content {
-  background: #535d67 url('/app/themes/volumio/assets/graphics/volumio-bg.png') repeat left top;
+  background: #535d67;
   .modal-header, .modal-footer {
     background-color: $theme-dark-transparent-background;
   }
@@ -370,8 +335,8 @@ table {
 //Select override
 .ui-select-toggle, .ui-select-container, .ui-select-match {
   background-color: $theme-accent-color;
-  border-color: $theme-green-color;
-  color: $theme-green-color;
+  border-color: $theme-primary-color;
+  color: $theme-primary-color;
   border-radius: 0;
 }
 .ui-select-bootstrap .ui-select-choices-row.active > a {
@@ -379,7 +344,7 @@ table {
   color: $theme-text-color;
 }
 .ui-select-bootstrap .ui-select-choices-row > a {
-  color: $theme-green-color;
+  color: $theme-primary-color;
 }
 .ui-select-bootstrap .btn.btn-default:hover {
   background-color: $theme-accent-color;
@@ -387,7 +352,7 @@ table {
 
 //Switch override
 .bootstrap-switch {
-  border-color: $theme-green-color;
+  border-color: $theme-primary-color;
   border-radius: 0;
 }
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
@@ -396,7 +361,7 @@ table {
   border-radius: 0;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-  background-color: $theme-green-color;
+  background-color: $theme-primary-color;
   color: #FFF;
   border-radius: 0;
 }
@@ -405,18 +370,18 @@ table {
 }
 .bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
   background-color: $theme-dark-transparent-background;
-  color: $theme-green-color;
+  color: $theme-primary-color;
 }
 .bootstrap-switch-label {
   background-color: red;
-  color: $theme-green-color;
+  color: $theme-primary-color;
 }
 
 //Form override
 .form-control {
   border-radius: 0;
   &:focus {
-    box-shadow: 0 0 5px 1px $theme-green-color;
+    box-shadow: 0 0 5px 1px $theme-primary-color;
   }
 }
 
@@ -460,13 +425,13 @@ li.list-group-item {
     margin-top: 24px;
     font-size: 11px;
     &.green {
-      color: $theme-green-color;
+      color: $theme-primary-color;
     }
   }
   .bigText {
     margin-top: 8px;
     height: 45px;
-    color: $theme-green-color;
+    color: $theme-primary-color;
     font-size: 50px;
     line-height: 45px;
     font-weight: 300;
@@ -499,7 +464,7 @@ li.list-group-item {
   top: 0px;
   width: 210px;
   height: 210px;
-  background-color: $theme-green-color;
+  background-color: $theme-primary-color;
   border-radius: 150px;
   pointer-events: none;
   z-index: 9;
@@ -533,14 +498,14 @@ li.list-group-item {
 .slider-track {
   border: solid 1px #555;
   height: 30px;
-  background-image: linear-gradient(to top, $theme-green-color 0%, $theme-green-color 100%);
+  background-image: linear-gradient(to top, $theme-primary-color 0%, $theme-primary-color 100%);
 }
 .slider-selection {
   background-image: linear-gradient(to bottom, #CCC  0%, #CCC  100%)
 }
 .slider-handle {
-  background-image: linear-gradient(to bottom, $theme-green-color 0%, darken($theme-green-color, 20%) 100%);
-  border: solid 1px darken($theme-green-color, 15%);
+  background-image: linear-gradient(to bottom, $theme-primary-color 0%, darken($theme-primary-color, 20%) 100%);
+  border: solid 1px darken($theme-primary-color, 15%);
   // margin-left: -5px !important;
   width: 22px;
   height: 22px;
@@ -552,7 +517,7 @@ li.list-group-item {
 
 div.equalizer.horizontal{
   .slider-selection {
-    background-image: linear-gradient(to bottom, $theme-green-color  0%, $theme-green-color  100%)
+    background-image: linear-gradient(to bottom, $theme-primary-color  0%, $theme-primary-color  100%)
   }
   .slider-track {
     background-image: linear-gradient(to top, #CCC 0%, #CCC 100%);
@@ -574,7 +539,7 @@ ul {
   &.dropdown-menu {
     width: 200px;
     background-color: $theme-accent-color;
-    border: solid 1px $theme-green-color;
+    border: solid 1px $theme-primary-color;
     i {
       width: 24px;
       text-align: center;
@@ -586,7 +551,7 @@ ul {
       padding: 6px 0px 6px 6px;
       font-size: 16px;
       &:hover {
-        color: $theme-green-color;
+        color: $theme-primary-color;
       }
     }
   }
@@ -629,7 +594,7 @@ ul {
 
 //Checks and Crosses
 .true {
-  color: $theme-green-color;
+  color: $theme-primary-color;
 }
 
 .false {
@@ -648,7 +613,7 @@ ul {
     font-weight: 700;
   }
   p {
-    color: $theme-green-color;
+    color: $theme-primary-color;
   }
 }
 
@@ -691,7 +656,7 @@ span {
   & + label {
     cursor: pointer;
   	background-color: $theme-dark-color;
-  	border: 1px solid $theme-green-color;
+  	border: 1px solid $theme-primary-color;
   	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
   	padding: 9px;
   	display: inline-block;
@@ -701,10 +666,10 @@ span {
   }
 
   &:checked + label {
-  	background-color: $theme-green-color;
+  	background-color: $theme-primary-color;
   	border: 1px solid $theme-dark-color;
   	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
-  	color: $theme-green-color;
+  	color: $theme-primary-color;
   }
 
   &:checked + label:after {

@@ -59,16 +59,14 @@ class UiSettingsService {
         }
       }
 
+      // Page title
+      // this.themeManager.defaultPageTitle = data.metaTitle;
+
       //Check for language switch
       if (this.uiSettings && this.uiSettings.language !== data.language) {
         location.reload();
       }
       this.uiSettings = data;
-      //Add color palette here
-      this.uiSettings.colorPalette = {
-        mainColor: 'red'
-      };
-
       this.$log.debug('pushUiSettings', data);
       this.setLanguage();
       this.setBackground();

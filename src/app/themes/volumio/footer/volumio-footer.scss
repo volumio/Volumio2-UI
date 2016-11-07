@@ -24,11 +24,11 @@ footer {
   button {
     font-size: 22px;
     &:active{
-      color: $theme-green-color;
+      color: $theme-primary-color;
     }
   }
 }
 
 #openVolumeVerticalSlider:focus {
-    color: $theme-green-color;
+    color: $theme-primary-color;
 }

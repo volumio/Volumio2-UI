@@ -47,7 +47,7 @@ $trackInfoBarButtonsHeight: 35px;
         }
       }
       &.isPlaying span.rollover {
-        color: $theme-green-color;
+        color: $theme-primary-color;
       }
     }
 
@@ -95,7 +95,7 @@ $trackInfoBarButtonsHeight: 35px;
     }
     .artist-album {
       font-size: 13px;
-      color: $theme-green-color;
+      color: $theme-primary-color;
     }
     .deleteBtn {
       text-align: right;

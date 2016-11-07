@@ -20,7 +20,7 @@
         class="btn-link btn-block">
           {{::item.name}}
     </button>
-    <div id="analogInput" ng-if="::sideMenu.theme === 'axiom'">
+    <div id="analogInput" ng-if="::sideMenu.theme === 'axiom' || ::sideMenu.variant === 'vivaldi'">
       <input type="checkbox"
           ng-model="sideMenu.analogIn"
           ng-click="sideMenu.toggleAnalogInput()"> ANALOG INPUT

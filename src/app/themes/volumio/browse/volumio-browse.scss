@@ -24,7 +24,7 @@
     cursor: pointer;
     pointer-events: auto;
     &:hover {
-      color: $theme-green-color;
+      color: $theme-primary-color;
     }
   }
   #browseFilterBar {
@@ -63,8 +63,8 @@
   font-size: 18px;
   padding: 15px 10px 5px 10px;
   cursor: auto;
-  color: $theme-green-color;
-  border-bottom: solid 1px $theme-green-color;
+  color: $theme-primary-color;
+  border-bottom: solid 1px $theme-primary-color;
   background-color: $theme-dark-transparent-background;
   i {
     margin-right: 10px;
@@ -122,7 +122,7 @@
 
   .artist-album {
     font-size: 13px;
-    color: $theme-green-color;
+    color: $theme-primary-color;
     height: 20px;
     overflow: hidden;
     white-space: nowrap;
