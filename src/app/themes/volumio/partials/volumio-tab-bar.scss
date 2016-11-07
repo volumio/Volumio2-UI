@@ -14,16 +14,16 @@
       }
     }
     &.browseBtn {
-      background-color: $volumio-black-trans-dark;
+      background-color: $theme-black-trans-dark;
     }
     &.playbackBtn {
-      background-color: $volumio-light-color;
+      background-color: $theme-light-color;
       &:focus {
-        background-color: $volumio-black-trans-dark;
+        background-color: $theme-black-trans-dark;
       }
     }
     &.queueBtn {
-      background-color: $volumio-black-trans-dark;
+      background-color: $theme-black-trans-dark;
     }
     @include breakpoint(xs) {
       font-size: 26px;

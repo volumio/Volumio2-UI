@@ -1,18 +1,22 @@
-$volumio-green-color: #54C698;
-$volumio-red-color: #DF4649;
-$volumio-light-color: #7a848e;
-$volumio-dark-color: #3C3C3C;
-$volumio-deep-dark-color: #090909;
-$volumio-accent-color: #333;
-$volumio-text-color: #FFF;
-$volumio-dark-text-color: #AAA;
-$volumio-background-color: #555;
-$volumio-grey-trans-dark: rgba(20,20,20,0.6);
-$volumio-black-trans-dark: rgba(0,0,0,0.6);
-$volumio-playbtn-gradient: linear-gradient(top, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.0) 72%, rgba(0,0,0,0.6) 72%, rgba(0,0,0,0.6) 100%);
-$volumio-table-border-color: #7C7C7C;
+$theme-green-color: #54C698;
+$theme-accent-color: #333;
+$theme-red-color: #DF4649;
+$theme-light-color: #7a848e;
+$theme-dark-color: #3C3C3C;
+$theme-deep-dark-color: #090909;
 
 
-$text-grey-color: #999;
+$theme-background-color: #555;
+$theme-grey-trans-dark: rgba(20, 20, 20, 0.6);
+$theme-black-trans-dark: rgba(0, 0, 0, 0.6);
+$theme-playbtn-gradient: linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.0) 72%, rgba(0, 0, 0, 0.6) 72%,
+  rgba(0, 0, 0, 0.6) 100%);
+$theme-table-border-color: #7C7C7C;
+
+
+$theme-text-color: #FFF;
+$theme-dark-text-color: #AAA;
+$theme-darker-text-color: #999;
+
 $body-bg: transparent;
 $brand-primary: #222;

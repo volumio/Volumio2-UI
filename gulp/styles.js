@@ -37,9 +37,6 @@ gulp.task('styles', function () {
     path.join('!' + conf.paths.src, '/app/themes/'+theme+'/theme-variants/**/*')
   ], { read: true });
 
-  console.log(path.join('!' + conf.paths.src, '/app/themes/'+theme+'/theme-variants/**/*'));
-
-
   var injectOptions = {
     transform: function(filePath) {
       filePath = filePath.replace(conf.paths.src + '/app/', '');

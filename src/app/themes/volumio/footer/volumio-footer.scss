@@ -6,7 +6,7 @@ footer {
   width: 100%;
   height: $footerHeight;
   // border: solid 10px green;
-  background-color: $volumio-deep-dark-color;
+  background-color: $theme-deep-dark-color;
 }
 
 .tabBar {
@@ -24,11 +24,11 @@ footer {
   button {
     font-size: 22px;
     &:active{
-      color: $volumio-green-color;
+      color: $theme-green-color;
     }
   }
 }
 
 #openVolumeVerticalSlider:focus {
-    color: $volumio-green-color;
+    color: $theme-green-color;
 }

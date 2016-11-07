@@ -2,7 +2,7 @@
   .panel {
     margin-top: 0px;
     margin-bottom: 0px;
-    background-color: $volumio-black-trans-dark;
+    background-color: $theme-black-trans-dark;
   }
 }
 .navButtons {
@@ -14,17 +14,17 @@
 
 .searchBox {
   input {
-    color: $volumio-text-color;
+    color: $theme-text-color;
   }
   .form-control-feedback {
-    color: $volumio-text-color;
+    color: $theme-text-color;
     font-size: 18px;
   }
   .clear-search {
     cursor: pointer;
     pointer-events: auto;
     &:hover {
-      color: $volumio-green-color;
+      color: $theme-green-color;
     }
   }
   #browseFilterBar {
@@ -63,9 +63,9 @@
   font-size: 18px;
   padding: 15px 10px 5px 10px;
   cursor: auto;
-  color: $volumio-green-color;
-  border-bottom: solid 1px $volumio-green-color;
-  background-color: $volumio-black-trans-dark;
+  color: $theme-green-color;
+  border-bottom: solid 1px $theme-green-color;
+  background-color: $theme-black-trans-dark;
   i {
     margin-right: 10px;
   }
@@ -79,11 +79,11 @@
   .itemTab {
     overflow: visible;
     height: 56px;
-    border-bottom: solid 1px $volumio-table-border-color;
+    border-bottom: solid 1px $theme-table-border-color;
     padding: 5px 0px 0px 5px;
-    background-color: $volumio-grey-trans-dark;
+    background-color: $theme-grey-trans-dark;
     &:hover {
-      background-color: $volumio-black-trans-dark;
+      background-color: $theme-black-trans-dark;
     }
   }
 
@@ -122,7 +122,7 @@
 
   .artist-album {
     font-size: 13px;
-    color: $volumio-green-color;
+    color: $theme-green-color;
     height: 20px;
     overflow: hidden;
     white-space: nowrap;
@@ -167,7 +167,7 @@
         position: relative;
         height: auto;
         padding: 10px;
-        border: solid 1px $volumio-table-border-color;
+        border: solid 1px $theme-table-border-color;
         margin: 10px;
       }
 

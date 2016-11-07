@@ -13,7 +13,7 @@ $sideMenuWidth: 230px;
   #openMenuBtn {
     color: #FFF;
     &:hover {
-      color: $volumio-green-color;
+      color: $theme-green-color;
     }
   }
 
@@ -34,7 +34,7 @@ $sideMenuWidth: 230px;
       padding: 10px 0px 10px 5px;
       border-bottom: solid 1px #333;
       &:hover {
-        color: $volumio-green-color;
+        color: $theme-green-color;
         border-bottom: solid 1px #333;
       }
     }

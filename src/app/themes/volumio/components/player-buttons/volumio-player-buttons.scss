@@ -21,7 +21,7 @@
     height: 80px;
     width: 80px;
     top: -35px;
-    background: $volumio-deep-dark-color;
+    background: $theme-deep-dark-color;
     @include breakpoint(xs) {
       top: -50px;
     }
@@ -33,7 +33,7 @@
     left: 0;
     right: 0;
     margin: auto;
-    border: solid 3px $volumio-green-color;
+    border: solid 3px $theme-green-color;
     height: 55px;
     width: 55px;
     border-radius: 100px;
@@ -41,7 +41,7 @@
       padding-left: 4px;
     }
     @include breakpoint(xs) {
-      background: $volumio-black-trans-dark;
+      background: $theme-black-trans-dark;
     }
   }
 }
