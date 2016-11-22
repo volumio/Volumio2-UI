@@ -1,8 +1,14 @@
 language: node_js
-node_js:
+node_js: node
+
+cache:
+  directories:
+    - node_modules
+
 branches:
   only:
   - master
+
 before_script:
 - npm install -g bower
 - npm install -g gulp
@@ -10,7 +16,9 @@ before_script:
 - npm install -g karma
 - npm install
 - bower install
+
 script: bash ./deploy.sh
+
 env:
   global:
     - GH_REF: github.com/volumio/Volumio2-UI.git
