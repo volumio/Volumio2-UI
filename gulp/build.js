@@ -40,11 +40,9 @@ gulp.task('html', ['inject', 'partials'], function () {
   var htmlFilter = $.filter('*.html');
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
-  var assets;
 
   return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-    .pipe(assets = $.useref.assets())
     .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
@@ -55,7 +53,6 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.replace('../../bower_components/components-font-awesome/fonts', '../fonts/'))
     .pipe($.csso())
     .pipe(cssFilter.restore())
-    .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.revReplace())
     .pipe(htmlFilter)
