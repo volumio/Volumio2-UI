@@ -24,6 +24,9 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
       prefix: 'app/i18n/locale-',
       suffix: '.json'
     })
+    //Back end send default language, this improve translation consistency
+    // .determinePreferredLanguage()
+    // .preferredLanguage('en')
     .fallbackLanguage('en');
   $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 }

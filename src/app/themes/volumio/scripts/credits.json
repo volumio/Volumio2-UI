@@ -33,7 +33,13 @@
         {"name":"Chinese translation","author":"FishTest"},
         {"name":"Swedish translation","author":"Magnus kjez"},
         {"name":"Portuguese translation","author":"gvasco"},
-        {"name":"Finnish translation","author":"pgustafs"}
+        {"name":"Finnish translation","author":"pgustafs"},
+        {"name":"Hungarian translation","author":"falu"},
+        {"name":"Russian translation","author":"dimas.sky"},
+        {"name":"Ukranian translation","author":"solaar1974"},
+        {"name":"Norwegian translation","author":"geirhell"},
+        {"name":"Greek translation","author":"xela"},
+        {"name":"Korean translation","author":"Justin Lee  &  club706"}
         ]}
 ]
 }

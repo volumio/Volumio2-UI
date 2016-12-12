@@ -637,7 +637,8 @@ class MockService {
       getSettings: {
         page: {
           'label': 'Settings',
-          'description': 'If you mess up with this configuration, you can reset to default.'
+          'description': 'If you mess up with this configuration, you can reset to default.',
+          'passwordProtection': {'enabled': true, 'message': 'Insert password for'}
         },
         sections: [
           {
