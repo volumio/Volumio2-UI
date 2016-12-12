@@ -8,7 +8,4 @@ bower_components/
 .tmp/
 src/app/themes/*
 !src/app/themes/volumio/
-src/app/themes/volumio/assets/variants/*
-!src/app/themes/volumio/assets/variants/volumio/
-src/app/themes/volumio/variants/*
-!src/app/themes/volumio/variants/volumio-variant.scss
+src/app/themes/volumio/variants/load-variant.scss
