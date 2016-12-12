@@ -23,7 +23,7 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       prefix: 'app/i18n/locale-',
       suffix: '.json'
     })
-    .registerAvailableLanguageKeys(['ca', 'en', 'da', 'de', 'es', 'fi', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'sv', 'zh'], {
+    .registerAvailableLanguageKeys(['ca', 'en', 'da', 'de', 'es', 'fi', 'fr', 'gr', 'hu', 'it', 'ja', 'ko', 'nl', 'no', 'pl', 'pt', 'ru', 'sv', 'ua', 'zh','zh-TW'], {
       'ca': 'ca',
       'en': 'en',
       'da': 'da',
@@ -31,13 +31,20 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
       'es': 'es',
       'fi': 'fi',
       'fr': 'fr',
+      'gr': 'gr',
+      'hu': 'hu',
       'it': 'it',
       'ja': 'ja',
+      'ko': 'ko',
       'nl': 'nl',
+      'no': 'no',
       'pl': 'pl',
       'pt': 'pt',
+      'ru': 'ru',
       'sv': 'sv',
-      'zh': 'zh'
+      'ua': 'ua',
+      'zh': 'zh',
+      'zh-TW':'zh_TW'
     })
     //Back end send default language, this improve translation consistency
     // .determinePreferredLanguage()

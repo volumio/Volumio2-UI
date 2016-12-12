@@ -27,6 +27,7 @@
     "ACTIVE":"Active",
     "INACTIVE":"Inactive",
     "SHOW_SETTINGS":"Montrer les réglages",
+    "SETTINGS":"Réglages",
     "TAB_BROWSE":"Parcourir",
     "TAB_PLAYBACK":"Jouer",
     "TAB_QUEUE":"Queue",
@@ -58,7 +59,10 @@
     "VOLUME_UP":"Monter Volume",
     "VOLUME_DOWN":"Baisser Volume",
     "HIDDEN":"Caché(e)",
-    "LIST":"Liste"
+    "LIST":"Liste",
+    "PLAY_QUEUE": "Jouer la file d'attente",
+    "ENTER_PASSWORD": "Entre mot de passe",
+    "INVALID_PASSWORD": "Mot de passe invalide"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -166,5 +170,12 @@
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist"
+  },
+   "MULTIDEVICE": {
+    "EDIT_GROUPS": "Editer les groupes",
+    "ROOMS_AND_GROUPS": "Pièces et groupes",
+    "MULTI_ROOM_CONFIGURATION": "Configuration du Multi room",
+    "GROUP": "Groupe",
+    "NOW_PLAYING": "En cours de lecture"
   }
 }

@@ -81,6 +81,11 @@ gulp.task('fonts', function () {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 
+gulp.task('fontawesome', function() {
+  return gulp.src('bower_components/components-font-awesome/fonts/*.*')
+          .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
+});
+
 gulp.task('other', function () {
   var fileFilter = $.filter(function (file) {
     return file.stat.isFile();
@@ -135,4 +140,4 @@ gulp.task('credits', function (cb) {
   });
 })
 
-gulp.task('build', ['credits','html', 'fonts', 'other', 'static-pages', 'theme']);
+gulp.task('build', ['credits','html', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme']);
