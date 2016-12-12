@@ -23,7 +23,7 @@ class SideMenuController {
     this.modalService = modalService;
     this.playerService = playerService;
     this.visible = false;
-    this.theme = themeManager.theme;
+    this.themeManager = themeManager;
     this.$log = $log;
     this.$scope = $scope;
     // this.menuItems = mockService.get('getMenuItems');
@@ -88,9 +88,9 @@ class SideMenuController {
     this.registerListner();
     this.initService();
     this.watcherHandler = this.$scope.$watch(
-      () => 
+      () =>
         this.playerService &&
-        this.playerService.state && 
+        this.playerService.state &&
         this.playerService.state.service, (val) => {
       if (val) {
         this.analogIn = this.playerService.state.service === 'analogin';

@@ -8,7 +8,7 @@
       overflow: hidden;
       cursor: pointer;
       text-transform: uppercase;
-      border: solid 1px $volumio-accent-color;
+      border: solid 1px $theme-accent-color;
       border-radius: 4px;
       margin-bottom: 10px;
     }
@@ -17,15 +17,15 @@
       font-size: 20px;
     }
     .artist {
-      color: $text-grey-color;
+      color: $theme-darker-text-color;
       font-size: 15px;
     }
     .track {
       font-size: 14px;
     }
     .isSelf {
-      border-color: $volumio-green-color;
-      background-color: $volumio-black-trans-dark;
+      border-color: $theme-primary-color;
+      background-color: $theme-dark-transparent-background;
     }
     .child {
       cursor: default;

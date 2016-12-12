@@ -1,16 +1,7 @@
 class ThemeManagerProvider {
   constructor() {
     'ngInject';
-    this._theme = undefined;
-    this._defaultPageTitle = undefined;
-  }
-
-  set theme(theme) {
-    this._theme = theme;
-  }
-
-  get theme() {
-    return this._theme;
+    this.defaultPageTitle = '';
   }
 
   getHtmlPath(filename, folder) {
@@ -24,19 +15,30 @@ class ThemeManagerProvider {
         this.theme + '-' + filename + '.html';
   }
 
+  getCssValue(val) {
+    if (!this.cssEsposer) {
+      this.cssEsposer = getComputedStyle(window.cssExposer);
+    }
+    return this.cssEsposer[val];
+  }
+
   $get($rootScope, $document, $log) {
     'ngInject';
     let setPageMetadata = function() {
       angular.element('body').attr('id', this.theme);
       //$log.debug($rootScope.favicon);
       $rootScope.theme = this.theme;
-      $rootScope.assetsUrl = 'app/themes/' + this.theme + '/assets';
-      $rootScope.touchIconsUrl = `${$rootScope.assetsUrl}/touch-icons`;
-      $rootScope.favicon = '/app/themes/' + this.theme + '/assets/favicon.png';
+      $rootScope.variant = this.variant;
+      // TODO
+      // Ritornare come image url quella della variant dalla gestione dei backgrounds
+      $rootScope.assetsUrl = '/app/themes/' + this.theme + '/assets';
+      $rootScope.variantAssetsUrl = 'app/themes/' + this.theme  + '/assets/variants/' + this.variant;
+      $rootScope.touchIconsUrl = `${$rootScope.variantAssetsUrl}/touch-icons`;
+      $rootScope.favicon = `${$rootScope.variantAssetsUrl}/favicons/favicon.png`;
+
+      //TODO remove this hardcoded if
       if (this.theme === 'axiom') {
         this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';
-      } else {
-        this.defaultPageTitle = `${this.theme.charAt(0).toUpperCase()}${this.theme.slice(1)} - Audiophile Music Player`;
       }
       $rootScope.pageTitle = this.defaultPageTitle;
     };
@@ -46,10 +48,12 @@ class ThemeManagerProvider {
     };
 
     return {
-      theme: this._theme,
+      theme: this.theme,
+      variant: this.variant,
       getHtmlPath: this.getHtmlPath,
       setPageMetadata: setPageMetadata,
-      getDefaultPageTitle: getDefaultPageTitle
+      getDefaultPageTitle: getDefaultPageTitle,
+      getCssValue: this.getCssValue
     };
   }
 }

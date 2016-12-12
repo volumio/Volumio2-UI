@@ -1,7 +1,7 @@
 <div ng-if="!header.matchmediaService.isPhone">
   <div id="logo">
     <img
-        ng-src="{{'app/themes/'+header.themeManager.theme + '/assets/graphics/' + header.themeManager.theme + '-logo.png'}}"
+        ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo.png"
         alt="{{header.themeManager.theme}}"
         ui-sref="volumio.playback"/>
   </div>

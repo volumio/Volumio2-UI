@@ -52,18 +52,8 @@ class TrackManagerDirective {
 
 class TrackManagerController {
   constructor(
-      $element,
-      playerService,
-      playlistService,
-      $timeout,
-      modalService,
-      matchmedia,
-      socketService,
-      $scope,
-      knobFgColor,
-      knobBgColor,
-      matchmediaService,
-      $log) {
+      $element, playerService, playlistService, $timeout, modalService, matchmedia, socketService, $scope, 
+      themeManager, matchmediaService, $log) {
     'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
@@ -80,8 +70,8 @@ class TrackManagerController {
       this.knobOptions = {
         min: 0,
         max: 1001,
-        fgColor: knobFgColor,
-        bgColor: knobBgColor,
+        fgColor: themeManager.getCssValue('color'),
+        bgColor: themeManager.getCssValue('backgroundColor'),
         width: 210,
         height: 210,
         displayInput: false,

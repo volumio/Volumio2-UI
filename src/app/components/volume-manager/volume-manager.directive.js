@@ -17,20 +17,20 @@ class VolumeManagerDirective {
 }
 
 class VolumeManagerController {
-  constructor($rootScope, $scope, playerService, $timeout, knobFgColor, knobBgColor, matchmediaService) {
+  constructor($rootScope, $scope, playerService, $timeout, matchmediaService, themeManager) {
     'ngInject';
     this.timeoutHandler = null;
     this.playerService = playerService;
     this.matchmediaService = matchmediaService;
     this.showVerticalSlider = false;
-    this.knobFgColor = knobFgColor;
+    this.themeManager = themeManager;
 
     if (this.type === 'knob') {
       this.knobOptions = {
         min: 0,
         max: 100,
-        fgColor: knobFgColor,
-        bgColor: knobBgColor,
+        fgColor: themeManager.getCssValue('color'),
+        bgColor: themeManager.getCssValue('backgroundColor'),
         width: 210,
         height: 210,
         displayInput: false,
@@ -69,7 +69,7 @@ class VolumeManagerController {
 
   toggleMute() {
     if (this.playerService.state.mute) {
-      this.knobOptions.fgColor = this.knobFgColor;
+      this.knobOptions.fgColor = this.themeManager.getCssValue('color');
     } else {
       this.knobOptions.fgColor = '#999';
     }
