@@ -65,13 +65,6 @@ gulp.task('angularConfig', function () {
     variant: variantSelected
   };
 
-  if (themeSelected === 'opera') {
-    constants.knobFgColor = '#952531';
-    constants.knobBgColor = 'rgba(50,50,50,0.8)';
-  } else {
-    constants.knobFgColor = '#54C698';
-    constants.knobBgColor = 'rgba(0,0,0,0.2)';
-  }
   constants.env = env;
 
   var obj = {

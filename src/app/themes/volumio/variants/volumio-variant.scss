@@ -1,3 +1,4 @@
+// COLORS
 $theme-primary-color: #54C698;
 $theme-accent-color: #333;
 $theme-danger-color: #DF4649;
@@ -21,6 +22,8 @@ $theme-darker-text-color: #999;
 $body-bg: transparent;
 $brand-primary: #222;
 
+$knob-foreground-color: $theme-primary-color;
+$knob-background-color: rgba(0,0,0,0.2);
 
 // FONTS
 $fonts-path: "/app/themes/volumio/assets/variants/volumio/fonts";
@@ -59,3 +62,10 @@ $fonts-path: "/app/themes/volumio/assets/variants/volumio/fonts";
 }
 
 $font-family-sans-serif: "Lato";
+
+// CSS EXPOSED FOR JS READ
+#cssExposer {
+  color: $theme-primary-color;
+  background-color: $knob-background-color;
+  display: none;
+}

@@ -15,6 +15,13 @@ class ThemeManagerProvider {
         this.theme + '-' + filename + '.html';
   }
 
+  getCssValue(val) {
+    if (!this.cssEsposer) {
+      this.cssEsposer = getComputedStyle(window.cssExposer);
+    }
+    return this.cssEsposer[val];
+  }
+
   $get($rootScope, $document, $log) {
     'ngInject';
     let setPageMetadata = function() {
@@ -45,7 +52,8 @@ class ThemeManagerProvider {
       variant: this.variant,
       getHtmlPath: this.getHtmlPath,
       setPageMetadata: setPageMetadata,
-      getDefaultPageTitle: getDefaultPageTitle
+      getDefaultPageTitle: getDefaultPageTitle,
+      getCssValue: this.getCssValue
     };
   }
 }
