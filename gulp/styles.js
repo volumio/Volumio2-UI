@@ -32,9 +32,10 @@ gulp.task('styles', function () {
   var injectFiles = gulp.src([
     path.join('!' + conf.paths.src, '/app/index.scss'),
     path.join(conf.paths.src, '/app/**/*.scss'),
+    // Disable other themes
     path.join('!' + conf.paths.src, '/app/themes/!('+theme+')/**/*'),
     // Disable import other theme variants
-    path.join('!' + conf.paths.src, '/app/themes/'+theme+'/variants/**/*')
+    path.join('!' + conf.paths.src, '/app/themes/'+theme+'/variants/!('+variant+')/**/*')
   ], { read: true });
 
   var injectOptions = {
