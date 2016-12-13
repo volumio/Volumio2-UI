@@ -16,7 +16,9 @@ class BrowseController {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
 
-    this.renderBrowseTable();
+    if (this.browseService.isBrowsing || this.browseService.isSearching) {
+      this.renderBrowseTable();
+    }
     $scope.$on('browseService:fetchEnd', () => {
       this.renderBrowseTable();
     });
