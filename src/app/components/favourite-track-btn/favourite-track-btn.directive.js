@@ -1,7 +1,6 @@
 export default class FavouriteTrackBtnDirective {
   constructor(themeManager) {
     'ngInject';
-
     let directive = {
       restrict: 'E',
       templateUrl: themeManager.getHtmlPath('favourite-track-btn', 'components/favourite-track-btn'),
@@ -16,6 +15,7 @@ export default class FavouriteTrackBtnDirective {
 
 class FavouriteBtnController {
   constructor($log, playerService, playlistService) {
+    'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
     this.$log = $log;

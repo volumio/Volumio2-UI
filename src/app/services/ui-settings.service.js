@@ -60,7 +60,9 @@ class UiSettingsService {
       }
 
       // Page title
-      this.themeManager.defaultPageTitle = data.pageTitle;
+      if (data.pageTitle) {
+        this.themeManager.defaultPageTitle = data.pageTitle;
+      }
 
       //Check for language switch
       if (this.uiSettings && this.uiSettings.language !== data.language) {

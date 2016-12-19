@@ -1,7 +1,6 @@
 export default class AddTrackToPlaylistBtnDirective {
   constructor(themeManager) {
     'ngInject';
-
     let directive = {
       restrict: 'E',
       templateUrl: themeManager.getHtmlPath('add-track-to-playlist-btn', 'components/add-track-to-playlist-btn'),
@@ -16,6 +15,7 @@ export default class AddTrackToPlaylistBtnDirective {
 
 class AddTrackToPlaylistBtnController {
   constructor($log, playerService, modalService) {
+    'ngInject';
     this.playerService = playerService;
     this.modalService = modalService;
     this.$log = $log;

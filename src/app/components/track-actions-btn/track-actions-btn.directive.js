@@ -15,6 +15,7 @@ export default class TrackAciotnsBtnDirective {
 
 class TrackActionsBtnController {
   constructor($log, playerService, modalService) {
+    'ngInject';
     this.playerService = playerService;
     this.modalService = modalService;
     this.$log = $log;

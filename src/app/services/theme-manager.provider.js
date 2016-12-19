@@ -37,9 +37,12 @@ class ThemeManagerProvider {
       $rootScope.favicon = `${$rootScope.variantAssetsUrl}/favicons/favicon.png`;
 
       //TODO remove this hardcoded if
-      if (this.theme === 'axiom') {
+      if (this.variant === 'axiom') {
         this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';
+      } else if (this.variant !== 'volumio') {
+        this.defaultPageTitle = this.variant.charAt(0).toUpperCase() + this.variant.slice(1);
       }
+
       $rootScope.pageTitle = this.defaultPageTitle;
     };
 
