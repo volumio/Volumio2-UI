@@ -52,11 +52,10 @@ class TrackManagerDirective {
 
 class TrackManagerController {
   constructor(
-      $element, playerService, playlistService, $timeout, modalService, matchmedia, socketService, $scope, 
-      themeManager, matchmediaService, $log) {
+      $element, playerService, $timeout, modalService, matchmedia, socketService, $scope, themeManager,
+      matchmediaService, $log) {
     'ngInject';
     this.playerService = playerService;
-    this.playlistService = playlistService;
     this.modalService = modalService;
     this.socketService = socketService;
     this.matchmediaService = matchmediaService;
@@ -91,33 +90,6 @@ class TrackManagerController {
     }
   }
 
-  toggleFavouriteTrack() {
-    if (this.playerService.favourite.favourite) {
-      this.$log.debug('Remove from favourite');
-      this.playlistService.removeFromFavourites(this.playerService.state);
-    } else {
-      this.$log.debug('Add to favourite');
-      this.playlistService.addToFavourites(this.playerService.state);
-    }
-  }
-
-  addToPlaylist() {
-    if (this.playerService.state.trackType !== 'webradio') {
-      let
-      templateUrl = 'app/browse/components/modal/modal-playlist.html',
-      controller = 'ModalPlaylistController',
-      params = {
-        title: 'Add to playlist',
-        item: this.playerService.state
-      };
-      this.modalService.openModal(
-        controller,
-        templateUrl,
-        params,
-        'sm');
-    }
-  }
-
   initWatchers() {
     this.$scope.$watch(() => {
       return this.playerService.state && this.playerService.state.albumart;
@@ -145,21 +117,6 @@ class TrackManagerController {
         this.backgroundAlbumArtStyle = {};
       }
     });
-  }
-
-  trackActions() {
-    if (!this.playerService.state.title && !this.playerService.album && !this.playerService.artist) {
-      return false;
-    }
-    let templateUrl = 'app/components/track-manager/components/modals/modal-track-manager-actions.html';
-    let controller = 'ModalTrackManagerActionsController';
-    this.modalService.openModal(
-      controller,
-      templateUrl,
-      null,
-      'sm',
-      true
-    );
   }
 
   // initMatchmedia() {

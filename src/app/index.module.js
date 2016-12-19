@@ -42,8 +42,11 @@ import BrowseHamburgerMenuDirective from './browse/components/browse-hamburger-m
 import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.directive';
 import TrackInfoBarButtonsDirective from './components/track-info-bar/track-info-bar-buttons.directive';
 import EqualizerDirective from './components/equalizer/equalizer.directive';
-
 import ModalController from './components/modals/modal.controller';
+// Track buttons
+import FavouriteTrackBtnDirective from './components/favourite-track-btn/favourite-track-btn.directive';
+import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
+import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
 
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
@@ -79,7 +82,8 @@ import ModalCustomController from './components/modals/modal-custom.controller';
 import ModalPasswordController from './components/modals/modal-password.controller';
 import ModalKaraokeController from './components/side-menu/elements/modal-karaoke.controller';
 import ModalPluginInstallerController from './plugin-manager/components/modals/modal-plugin-installer.controller';
-import ModalTrackManagerActionsController from './components/track-manager/components/modals/modal-track-manager-actions.controller';
+import ModalTrackManagerActionsController from
+  './components/track-manager/components/modals/modal-track-manager-actions.controller';
 import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/modal-network-drive-password.controller';
 
 
@@ -169,6 +173,10 @@ angular.module('volumio', [
 
   .directive('pluginAttributes', () => new PluginAttributesDirective())
   .directive('pluginVisible', () => new PluginVisibleDirective())
+
+  .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
+  .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
+  .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)
