@@ -35,7 +35,7 @@ gulp.task('styles', function () {
     // Disable other themes
     path.join('!' + conf.paths.src, '/app/themes/!('+theme+')/**/*'),
     // Disable import other theme variants
-    path.join('!' + conf.paths.src, '/app/themes/'+theme+'/variants/!('+variant+')/**/*')
+    path.join('!' + conf.paths.src, '/app/themes/'+theme+'/assets/variants/!('+variant+')/**/*')
   ], { read: true });
 
   var injectOptions = {
