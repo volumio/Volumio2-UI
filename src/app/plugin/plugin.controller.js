@@ -80,7 +80,10 @@ class PluginController {
     let modalPromise = this.modalService.openModal(
         'ModalGotitController',
         'app/components/modals/modal-gotit.html',
-        {message: item.doc});
+        {message: item.doc},
+        'lg',
+        true
+        );
   }
 
   init() {
