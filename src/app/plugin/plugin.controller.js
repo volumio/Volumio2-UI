@@ -76,6 +76,16 @@ class PluginController {
     }
   }
 
+  openDoc(item) {
+    let modalPromise = this.modalService.openModal(
+        'ModalGotitController',
+        'app/components/modals/modal-gotit.html',
+        {message: item.doc},
+        'lg',
+        true
+        );
+  }
+
   init() {
     this.showPlugin = false;
     this.pluginName = this.$stateParams.pluginName.replace('-', '/');
