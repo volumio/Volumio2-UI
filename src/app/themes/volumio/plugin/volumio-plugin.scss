@@ -4,7 +4,11 @@
     margin-top: 10px;
   }
 
-  .sectionDescription{
+  .form-group {
+    margin-bottom: 30px;
+  }
+
+  .sectionDescription{ 
     margin-bottom: 28px;
   }
 
@@ -17,8 +21,17 @@
   .control-item {
     @include make-sm-column(7);
   }
+ .control-doc {
+    @include make-xs-column(1);
+    a {
+      font-size: 20px;
+      display: inline-block;
+      padding-top: 3px;
+    }
+  }
   .control-description {
-    @include make-sm-column(10);
+    @include make-sm-column(8);
+    @include make-xs-column(21);
     padding-top: 6px;
   }
   .control-buttons {
@@ -32,7 +45,7 @@
     margin-top: 10px;
   }
   h2 {
-    background-color: $volumio-black-trans-dark;
+    background-color: $theme-dark-transparent-background;
     padding: 6px 10px;
     display: inline-block;
     font-size: 35px;

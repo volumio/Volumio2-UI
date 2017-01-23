@@ -1,10 +1,11 @@
-function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touchProvider, env, $locationProvider,
-  $httpProvider, $translateProvider, localStorageServiceProvider) {
+function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
+    $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider) {
   'ngInject';
 
   $touchProvider.enabled = true;
 
   themeManagerProvider.theme = theme;
+  themeManagerProvider.variant = variant;
 
   $logProvider.debugEnabled(env !== 'production');
 
@@ -22,29 +23,6 @@ function config ($logProvider, toastrConfig, themeManagerProvider, theme, $touch
     .useStaticFilesLoader({
       prefix: 'app/i18n/locale-',
       suffix: '.json'
-    })
-    .registerAvailableLanguageKeys(['ca', 'en', 'da', 'de', 'es', 'fi', 'fr', 'gr', 'hu', 'it', 'ja', 'ko', 'nl', 'no', 'pl', 'pt', 'ru', 'sv', 'ua', 'zh','zh-TW'], {
-      'ca': 'ca',
-      'en': 'en',
-      'da': 'da',
-      'de': 'de',
-      'es': 'es',
-      'fi': 'fi',
-      'fr': 'fr',
-      'gr': 'gr',
-      'hu': 'hu',
-      'it': 'it',
-      'ja': 'ja',
-      'ko': 'ko',
-      'nl': 'nl',
-      'no': 'no',
-      'pl': 'pl',
-      'pt': 'pt',
-      'ru': 'ru',
-      'sv': 'sv',
-      'ua': 'ua',
-      'zh': 'zh',
-      'zh-TW':'zh_TW'
     })
     //Back end send default language, this improve translation consistency
     // .determinePreferredLanguage()

@@ -65,7 +65,8 @@
     "GO_TO_SHARE":"转到 - 共享",
     "NEXT_TRACK":"下一音轨",
     "PREVIOUS_TRACK":"上一音轨",
-    "PAUSE":"暂停"
+    "PAUSE":"暂停",
+    "CLEAR_AND_PLAY": "清空并播放"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "返回插件列表",

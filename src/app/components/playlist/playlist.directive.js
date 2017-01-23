@@ -19,7 +19,6 @@ class PlaylistController {
     this.socketService = socketService;
     this.playerService = playerService;
     this.$log = $log;
-    
     $log.debug(this.playerService);
     let endpoint = 'http://sublinode.gestiolink.ch/client/constellation1';
     if ($rootScope.initConfig && $rootScope.initConfig.restendpoint) {

@@ -21,17 +21,22 @@ gulp.task('styles', function () {
   };
 
   var theme = gutil.env.theme ? gutil.env.theme : 'volumio';
-  console.log('Theme', theme);
+  var variant = gutil.env.variant ? gutil.env.variant : 'volumio';
+  console.log('Theme', theme, 'Variant', variant);
+
+
+  var fs = require('fs');
+  fs.writeFileSync('src/app/themes/' + theme + '/assets/variants/load-variant.scss',
+    '@import "./' + variant + '/' + variant + '-variant"; $theme:"' + theme + '"; $variant:"' + variant + '";');
 
   var injectFiles = gulp.src([
     path.join('!' + conf.paths.src, '/app/index.scss'),
     path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join('!' + conf.paths.src, '/app/themes/!('+theme+')/**/*')
-    //path.join(conf.paths.src, '/app/themes/' + theme + '/' + theme + '-style.scss'),
-    //path.join(conf.paths.src, '/app/themes/' + theme + '/**/*.scss'),
-    //path.join('!' + conf.paths.src, '/app/themes/' + theme + '/' + theme + '-style.scss')
+    // Disable other themes
+    path.join('!' + conf.paths.src, '/app/themes/!('+theme+')/**/*'),
+    // Disable import other theme variants
+    path.join('!' + conf.paths.src, '/app/themes/'+theme+'/assets/variants/!('+variant+')/**/*')
   ], { read: true });
-
 
   var injectOptions = {
     transform: function(filePath) {

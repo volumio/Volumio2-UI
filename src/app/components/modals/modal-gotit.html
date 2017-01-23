@@ -1,9 +1,7 @@
-<div class="modal-header">
+<div ng-if="modal.dataObj.title" class="modal-header">
   <h3 class="modal-title"><i class="fa fa-info-circle"></i> {{modal.dataObj.title}}</h3>
 </div>
-<div class="modal-body">
-  {{modal.dataObj.message}}
-</div>
+<div class="modal-body" ng-bind-html="modal.dataObj.message"></div>
 <div class="modal-footer">
   <button class="btn btn-info" ng-click="modal.gotIt()">
     <span translate="COMMON.GOT_IT"></span>

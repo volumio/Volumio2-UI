@@ -14,7 +14,7 @@ $trackInfoBarButtonsHeight: 35px;
 
   #playQueueList {
     // @include make-xs-column(24);
-    background-color: $volumio-black-trans-dark;
+    background-color: $theme-dark-transparent-background;
     user-select: none;
     cursor: pointer;
     position: relative;
@@ -47,7 +47,7 @@ $trackInfoBarButtonsHeight: 35px;
         }
       }
       &.isPlaying span.rollover {
-        color: $volumio-green-color;
+        color: $theme-primary-color;
       }
     }
 
@@ -57,7 +57,7 @@ $trackInfoBarButtonsHeight: 35px;
       padding-top: 10px;
       padding-left: 15px;
       left: 10px;
-      -webkit-transition: .3s;
+      transition: .3s;
       background: rgba(0, 0, 0, 0);
       cursor: pointer;
       height: 45px;
@@ -95,7 +95,7 @@ $trackInfoBarButtonsHeight: 35px;
     }
     .artist-album {
       font-size: 13px;
-      color: $volumio-green-color;
+      color: $theme-primary-color;
     }
     .deleteBtn {
       text-align: right;

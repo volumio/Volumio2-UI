@@ -24,7 +24,7 @@
   font-size: 18px;
   font-weight: 300;
   display: inline-block;
-  color: $volumio-green-color;
+  color: $theme-primary-color;
 }
 
 #trackInfo-title {
@@ -37,6 +37,6 @@
 }
 #trackInfo-artist {
   font-size: 20px;
-  color: $volumio-green-color;
+  color: $theme-primary-color;
   display: inline-block;
 }

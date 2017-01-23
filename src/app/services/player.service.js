@@ -233,11 +233,11 @@ class PlayerService {
   updateFavicon() {
     if (this.themeManager.theme === 'volumio') {
       if (this.state.status === 'play') {
-        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon-play.png';
+        this.$rootScope.favicon = `${this.$rootScope.variantAssetsUrl}/favicons/favicon-play.png`;
       } else if (this.state.status === 'pause') {
-        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon-pause.png';
+        this.$rootScope.favicon = `${this.$rootScope.variantAssetsUrl}/favicons/favicon-pause.png`;
       } else {
-        this.$rootScope.favicon = 'app/themes/' + this.themeManager.theme + '/assets/favicon.png';
+        this.$rootScope.favicon = `${this.$rootScope.variantAssetsUrl}/favicons/favicon.png`;
       }
     }
   }
@@ -306,7 +306,7 @@ class PlayerService {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
       this.state = data;
-             
+
       this.state.disableUi = this.state.service === 'airplay' || this.state.service === 'analogin';
 
       if (!this.state.mute && this.state.volume) {

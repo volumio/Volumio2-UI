@@ -1,5 +1,6 @@
 class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $state) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $state, 
+      uiSettingsService) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -8,6 +9,7 @@ class PluginController {
     this.$scope = $scope;
     this.$log = $log;
     this.$state = $state;
+    this.uiSettingsService = uiSettingsService;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -74,6 +76,16 @@ class PluginController {
         this.socketService.emit('callMethod', item.onClick);
       }
     }
+  }
+
+  openDoc(item) {
+    let modalPromise = this.modalService.openModal(
+        'ModalGotitController',
+        'app/components/modals/modal-gotit.html',
+        {message: item.doc},
+        'lg',
+        true
+        );
   }
 
   init() {

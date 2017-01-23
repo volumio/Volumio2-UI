@@ -177,5 +177,9 @@
     "MULTI_ROOM_CONFIGURATION": "Multi room configuration",
     "GROUP": "Group",
     "NOW_PLAYING": "Now playing"
+  },
+  "SIDEMENU": {
+    "ANALOG_INPUT": "ANALOG INPUT",
+    "BLUETOOTH": "BLUETOOTH"
   }
 }

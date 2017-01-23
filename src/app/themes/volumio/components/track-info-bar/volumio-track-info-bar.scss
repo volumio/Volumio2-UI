@@ -1,6 +1,6 @@
 .trackInfoBar {
   @include make-row();
-  background-color: $volumio-black-trans-dark;
+  background-color: $theme-dark-transparent-background;
   height: 35px;
   overflow: hidden;
   .leftInfo {
@@ -16,7 +16,7 @@
       }
       &.green {
         font-weight: 700;
-        color: $volumio-green-color;
+        color: $theme-primary-color;
       }
     }
   }

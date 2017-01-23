@@ -7,7 +7,7 @@
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" type="image/png" ng-href="{{favicon}}"/>
-    <link rel="manifest" ng-href="{{assetsUrl}}/manifest.json">
+    <link rel="manifest" ng-href="{{variantAssetsUrl}}/manifest.json">
 
     <link rel="apple-touch-icon" sizes="57x57" ng-href="{{touchIconsUrl}}/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" ng-href="{{touchIconsUrl}}/apple-touch-icon-60x60.png">
@@ -48,6 +48,8 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div ui-view="layout"></div>
+
+    <div id="cssExposer"></div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
