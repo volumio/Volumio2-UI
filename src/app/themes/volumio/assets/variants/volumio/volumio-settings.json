@@ -1,0 +1,12 @@
+{
+  "sideMenu": {
+    "checkboxes": {
+        "analogInput": false,
+        "bluetooth": false
+      }
+  },
+  "plugins": {
+    "showDoc": true,
+    "showDescription": true
+  }
+}

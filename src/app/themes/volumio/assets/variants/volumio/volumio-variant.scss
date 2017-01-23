@@ -64,8 +64,10 @@ $fonts-path: "/app/themes/volumio/assets/variants/volumio/fonts";
 $font-family-sans-serif: "Lato";
 
 // CSS EXPOSED FOR JS READ
+// Color is used for the knob foreground color
+// Background color is used for knob background color
 #cssExposer {
-  color: $theme-primary-color;
+  color: $knob-foreground-color;
   background-color: $knob-background-color;
   display: none;
 }

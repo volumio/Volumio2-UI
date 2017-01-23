@@ -14,8 +14,8 @@ class SideMenuDirective {
 }
 
 class SideMenuController {
-  constructor($scope, $rootScope, socketService, mockService,
-      $state, modalService, playerService, themeManager, $log, $http, $window) {
+  constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log, 
+      $http, $window, uiSettingsService) {
     'ngInject';
     this.$state = $state;
     this.$window = $window;
@@ -26,6 +26,7 @@ class SideMenuController {
     this.themeManager = themeManager;
     this.$log = $log;
     this.$scope = $scope;
+    this.uiSettingsService = uiSettingsService;
     // this.menuItems = mockService.get('getMenuItems');
 
     this.init();
@@ -41,6 +42,13 @@ class SideMenuController {
     this.socketService.emit('callMethod', {
       endpoint: 'system_controller/gpios',
       method: 'DASwitchPress'
+    });
+  }
+
+  toggleBluetooth() {
+    this.socketService.emit('callMethod', {
+      endpoint: 'audio_interface/bluetooth',
+      method: 'BTpress'
     });
   }
 
@@ -94,6 +102,7 @@ class SideMenuController {
         this.playerService.state.service, (val) => {
       if (val) {
         this.analogIn = this.playerService.state.service === 'analogin';
+        this.bluetooth = this.playerService.state.service === 'bluetoth';
       }
     });
   }
