@@ -24,17 +24,19 @@
     </button>
 
     <div class="hardwareToggleCheckbox" 
-        ng-if="::sideMenu.uiSettingsService.uiSettings.analogInput">
+        ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.analogInput">
       <input type="checkbox"
           ng-model="sideMenu.analogIn"
-          ng-click="sideMenu.toggleAnalogInput()"> ANALOG INPUT
+          ng-click="sideMenu.toggleAnalogInput()"> 
+        <span translate="SIDEMENU.ANALOG_INPUT"></span>
     </div>
 
     <div class="hardwareToggleCheckbox" 
-        ng-if="::sideMenu.uiSettingsService.uiSettings.bluetooth">
+        ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.bluetooth">
       <input type="checkbox"
           ng-model="sideMenu.bluetooth"
-          ng-click="sideMenu.toggleBluetooth()"> BLUETOOTH
+          ng-click="sideMenu.toggleBluetooth()">
+        <span translate="SIDEMENU.BLUETOOTH"></span>
     </div>
   </div>
 </div>

@@ -1,19 +1,24 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate) {
+  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate, $http) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
     this.$document = $document;
     this.$log = $log;
     this.$translate = $translate;
+    this.$http = $http;
 
     this.currentTheme = themeManager.theme;
+    this.uiSettings = {};
+
     this.defaultUiSettings = {
       backgroundImg: 'default bkg'
     };
 
+
     $rootScope.$on('socket:init', () => {
       this.init();
+      this._loadVariantSettings();
     });
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
@@ -65,11 +70,13 @@ class UiSettingsService {
       }
 
       //Check for language switch
-      if (this.uiSettings && this.uiSettings.language !== data.language) {
+      if (this.uiSettings.language && this.uiSettings.language !== data.language) {
         location.reload();
       }
-      this.uiSettings = data;
-      this.$log.debug('pushUiSettings', data);
+
+      Object.assign(this.uiSettings, data);
+
+      this.$log.debug('pushUiSettings', this.uiSettings);
       this.setLanguage();
       this.setBackground();
     });
@@ -93,6 +100,17 @@ class UiSettingsService {
 
   initService() {
     this.socketService.emit('getUiSettings');
+  }
+
+  _loadVariantSettings() {
+    let settingsUrl = 
+        `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
+    settingsUrl += `/${this.themeManager.variant}-settings.json`;
+    this.$http.get(settingsUrl)
+      .then((response) => {
+        Object.assign(this.uiSettings, response.data);
+        this.$log.debug('Variant settings', response.data);
+      });
   }
 }
 
