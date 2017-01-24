@@ -41,6 +41,12 @@ function browserSyncInit(baseDir, browser) {
 
   browserSync.instance = browserSync.init({
     startPath: '/',
+    scriptPath: function (path) {
+      return path.substring(1);
+    },
+    socket: {
+      path: 'browser-sync/socket.io'
+    },
     server: server,
     browser: browser
   });
