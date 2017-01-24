@@ -28,8 +28,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
         //NOTE this resolver init also global services like toast
         socketResolver: ($rootScope, $http, $window, socketService, ripperService, modalListenerService,
             toastMessageService, uiSettingsService, updaterService) => {
-          let localhostApiURL = `http://${$window.location.hostname}/api`;
-          return $http.get(localhostApiURL + '/host')
+          return $http.get('host')
             .then((response) => {
               console.info('IP from API', response);
               $rootScope.initConfig = response.data;
@@ -38,7 +37,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
             }, () => {
               //Fallback socket
               console.info('Dev mode: IP from local-config.json');
-              return $http.get('/app/local-config.json').then((response) => {
+              return $http.get('app/local-config.json').then((response) => {
                 socketService.host  = response.data.localhost;
                 // socketService.host = '192.168.0.90';
                 // socketService.host2 = '192.168.0.9';
