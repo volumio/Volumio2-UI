@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="bigText">
-          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio' && trackManager.playerService.state.service !== 'analogin'">
             {{trackManager.playerService.elapsedTimeString}}
           </span>
           <div
@@ -52,7 +52,7 @@
           </span>
         </div>
       </div>
-      <div ng-if="trackManager.playerService.state.trackType === 'webradio'" class="fakePulsingKnob"></div>
+      <div ng-if="trackManager.playerService.state.trackType === 'webradio' || trackManager.playerService.state.service === 'analogin'" class="fakePulsingKnob"></div>
       <knob
         ng-if="trackManager.playerService.state.trackType !== 'webradio'"
         value="trackManager.playerService.seekPercent"
