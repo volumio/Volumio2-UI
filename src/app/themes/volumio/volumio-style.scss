@@ -360,6 +360,12 @@ table {
   background-color: $theme-accent-color;
   border-radius: 0;
 }
+// https://github.com/nostalgiaz/bootstrap-switch/issues/355
+.bootstrap-switch .bootstrap-switch-handle-on,
+.bootstrap-switch .bootstrap-switch-handle-off,
+.bootstrap-switch .bootstrap-switch-label {
+  height: auto !important;
+}
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
   background-color: $theme-primary-color;
   color: #FFF;
