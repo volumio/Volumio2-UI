@@ -1,6 +1,6 @@
 function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, themeManagerProvider) {
   'ngInject';
-  console.info('[TEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
+  console.info('[THEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
 
   $locationProvider.html5Mode(true);
   $stateProvider
