@@ -2,7 +2,7 @@ src/app/ngConstants.js
 src/app/local-config.json
 dist/
 node_modules/
-bower_components/
+inject/
 .sass-cache/
 .idea/
 .tmp/
