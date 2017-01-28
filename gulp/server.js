@@ -45,7 +45,22 @@ function browserSyncInit(baseDir, browser) {
       return path.substring(1);
     },
     socket: {
-      path: 'browser-sync/socket.io'
+
+      // Determine the URL used by the browser client to access
+      // the site, and use it to configure the browser-sync socket
+      // connection:
+      //
+      // https://github.com/BrowserSync/browser-sync/issues/1301
+      domain:
+        // ___browserSync___.socket = ___browserSync___.io(
+        "' + location.origin "
+        + "  + location.pathname.replace(/\\/+$/, '') "
+        + "  + '{ns}', "
+        + "{ path: "
+        + "    location.pathname.replace(/\\/+$/, '') "
+        + "    + ___browserSync___.socketConfig.path }); "
+        + "(0, '"
+        // , ___browserSync___.socketConfig);
     },
     server: server,
     browser: browser
