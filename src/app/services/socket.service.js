@@ -8,7 +8,8 @@ class SocketService {
 
     this._host = null;
     this.connectToFallbackHost = false;
-    this.host2 = null;
+    this.hosts = [ null ];
+    this._hostIndex = 0;
   }
 
   changeHost(host) {
@@ -30,11 +31,14 @@ class SocketService {
   }
 
   _connectToFallbackHost() {
-    if (!this.connectToFallbackHost && this.host2) {
-      this.connectToFallbackHost = true;
-      this.$log.info(`Try to connect to host2 ${this.host2}`);
-      this.host = this.host2;
-    }
+    let host;
+    do {
+      this._hostIndex = (this._hostIndex + 1) % this.hosts.length;
+      host = this.hosts[this._hostIndex];
+    } while ( ! host);
+    this._host = host;
+    this.$log.info(`Try to connect to host ${this._hostIndex} ${this._host}`);
+    this.changeHost();
   }
 
   get isConnected() {
@@ -97,6 +101,7 @@ class SocketService {
   }
 
   set host(host) {
+    this.hosts[0] = host;
     this._host = host;
     this.changeHost(host);
     this.$log.debug('New host:', this._host);

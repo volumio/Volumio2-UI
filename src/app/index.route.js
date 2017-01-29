@@ -2,6 +2,11 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
   'ngInject';
   console.info('[THEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
 
+  if (routerConfig.location === undefined) {
+    routerConfig.url = window.location.origin + window.location.pathname;
+    console.info('URL', routerConfig.url);
+  }
+
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('volumio', {
@@ -28,12 +33,13 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
         //NOTE this resolver init also global services like toast
         socketResolver: ($rootScope, $http, $window, socketService, ripperService, modalListenerService,
             toastMessageService, uiSettingsService, updaterService) => {
-          return $http.get('host')
+          return $http.get('api/host')
             .then((response) => {
-              console.info('IP from API', response);
+              console.info('IP from API',
+                  routerConfig.url, response, response.data);
               $rootScope.initConfig = response.data;
-              socketService.host  = response.data.host;
-              socketService.host2 = response.data.host2;
+              socketService.host = routerConfig.url;
+              socketService.hosts.push(response.data.host, response.data.host2);
             }, () => {
               //Fallback socket
               console.info('Dev mode: IP from local-config.json');
