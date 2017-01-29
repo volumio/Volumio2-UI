@@ -12,12 +12,20 @@ class SocketService {
     this._hostIndex = 0;
   }
 
-  changeHost(host) {
+  changeHost() {
     if (this.$window.socket) {
       this.$window.socket.disconnect();
       this.$window.socket.removeAllListeners();
     }
-    this.$window.socket = io(this.host, {timeout: 500});
+
+    let protocol = this.host.split('//', 1)[0] + '//';
+    let site = this.host.substring(protocol.length);
+    let host = site.split('/', 1)[0];
+    let path = site.substring(host.length).replace(/\/+$/, '') + '/socket.io';
+    host = protocol + host;
+
+    this.$log.info(`Socket connect to host ${host} path ${path}`);
+    this.$window.socket = io(host, {path: path, timeout: 500});
     this.$window.socket.connect();
     this.$window.socket.on('connect_error', () => {
       this.$log.debug(`Socket connect_error for host ${this.host}`);
@@ -103,7 +111,7 @@ class SocketService {
   set host(host) {
     this.hosts[0] = host;
     this._host = host;
-    this.changeHost(host);
+    this.changeHost();
     this.$log.debug('New host:', this._host);
   }
 
