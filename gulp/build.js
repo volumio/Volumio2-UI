@@ -106,9 +106,12 @@ gulp.task('theme', function () {
   });
 
   var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
+  var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
   return gulp.src([
     path.join(conf.paths.src, '/app/themes/' + themeSelected + '/**/*'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
+    path.join('!' + conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/!('+variantSelected+')/**/*'),
+    // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/' + variantSelected + '/**/*')
+    // path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected)));
