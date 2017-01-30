@@ -18,7 +18,6 @@ class UiSettingsService {
 
     $rootScope.$on('socket:init', () => {
       this.init();
-      this._loadVariantSettings();
     });
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
@@ -74,7 +73,7 @@ class UiSettingsService {
         location.reload();
       }
 
-      Object.assign(this.uiSettings, data);
+      angular.merge(this.uiSettings, data);
 
       this.$log.debug('pushUiSettings', this.uiSettings);
       this.setLanguage();
@@ -99,17 +98,16 @@ class UiSettingsService {
   }
 
   initService() {
-    this.socketService.emit('getUiSettings');
-  }
-
-  _loadVariantSettings() {
-    let settingsUrl = 
+    let settingsUrl =
         `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
     this.$http.get(settingsUrl)
       .then((response) => {
-        Object.assign(this.uiSettings, response.data);
+        this.uiSettings = response.data;
         this.$log.debug('Variant settings', response.data);
+      })
+      .finally(() => {
+        this.socketService.emit('getUiSettings');
       });
   }
 }
