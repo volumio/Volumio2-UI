@@ -21,6 +21,8 @@ class BrowseService {
     // this.$log.debug(this._sources);
     // this.list = mockService.get('getBrowseList').list;
     this.limiter = 10;
+    this.currentFetchRequest = {};
+    this.historyUri = [];
     this.scrollPositions = new Map();
 
     this.init();
@@ -37,8 +39,17 @@ class BrowseService {
       this.backHome();
       return false;
     }
+
     let obj = {uri: item.uri};
-    this.$log.debug('fetchLibrary', item);
+    if (!back) {
+      if  (this.historyUri.length) {
+        obj.prevUri = this.historyUri[this.historyUri.length - 1].uri;
+      }
+      this.historyUri.push(item);
+    } else {
+      this.historyUri.pop();
+    }
+    this.$log.debug('fetchLibrary', obj);
     this.currentFetchRequest = item;
     this.socketService.emit('browseLibrary', obj);
     this.isBrowsing = true;
@@ -51,6 +62,8 @@ class BrowseService {
     this.isBrowsing = false;
     this.isSearching = false;
     this.lists = [];
+    this.historyUri = [];
+    this.currentFetchRequest = {};
     this.scrollPositions.clear();
   }
 
