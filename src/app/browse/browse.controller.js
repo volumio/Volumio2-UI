@@ -239,7 +239,8 @@ class BrowseController {
           this.table += `
             <div class="commandButtons">
               <div class="hamburgerMenu
-                  ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
+                  ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' ||
+                      item.category === 'streaming-category') ?
                       'hidden' : ''}">
                 <button class="dropdownToggle btn-link"
                     onclick="${angularThis}.hamburgerMenuClick(this, ${listIndex}, ${itemIndex}, event)"
