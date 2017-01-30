@@ -1,14 +1,5 @@
-<button
-    ng-class="{'active': trackManager.playerService.favourite.favourite}"
-    ng-click="trackManager.toggleFavouriteTrack()"
-    ng-mouseover="trackManager.hoverHeart = true"
-    ng-mouseleave="trackManager.hoverHeart = false"
-    class="btn btn-link"
-    title="{{'BROWSER.ADD_TO_FAVOURITES' | translate}}"
-    ng-disabled="trackManager.playerService.state.disableUi">
-  <i ng-hide="trackManager.playerService.favourite.favourite || trackManager.hoverHeart" class="fa fa-heart-o"></i>
-  <i ng-show="trackManager.playerService.favourite.favourite || trackManager.hoverHeart" class="fa fa-heart"></i>
-</button>
+<favourite-track-btn></favourite-track-btn>
+
 <button
     ng-class="{'active': trackManager.playerService.state.random}"
     ng-click="trackManager.playerService.shuffle()"
@@ -25,10 +16,5 @@
     ng-disabled="trackManager.playerService.state.disableUi">
   <i class="fa fa-repeat"></i>
 </button>
-<button
-    ng-click="trackManager.addToPlaylist()"
-    class="btn btn-link"
-    title="{{'BROWSER.ADD_TO_PLAYLIST' | translate}}"
-    ng-disabled="trackManager.playerService.state.disableUi">
-  <i class="fa fa-plus"></i>
-</button>
+
+<add-track-to-playlist-btn></add-track-to-playlist-btn>
