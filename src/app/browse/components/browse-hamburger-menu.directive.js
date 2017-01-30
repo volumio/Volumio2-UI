@@ -9,11 +9,9 @@ class BrowseHamburgerMenuDirective {
       },
       templateUrl: 'app/browse/components/browse-hamburger-menu.html',
       link: function link(scope, el) {
-        console.log(el[0].parentNode);
 
         let menuWrapper = el[0].parentNode;
         let menuBtn = menuWrapper.parentNode;
-        console.log(menuBtn);
 
         const placeMenu = function placeMenu() {
           menuWrapper.style.visibility = 'hidden';
