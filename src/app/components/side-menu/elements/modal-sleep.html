@@ -19,7 +19,7 @@
         <ui-select-choices
             class="ui-select-choices"
             repeat="item in modal.whenSleepSelect track by $index">
-          <div ng-bind-html="item.text"></div>
+          <div id="sleepOption-{{item.val}}" ng-bind-html="item.text"></div>
         </ui-select-choices>
       </ui-select>
     </div>

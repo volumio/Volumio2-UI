@@ -9,12 +9,14 @@
   </button>
   <button
       class="btn btn-info"
+      id="powerOffBtn"
       ng-click="modal.powerOff()">
     <span translate="COMMON.POWER_OFF"></span>
   </button>
   <button
       ng-if="modal.themeManager.theme !== 'opera'"
       class="btn btn-info"
+      id="rebootBtn"
       ng-click="modal.reboot()">
     <span translate="COMMON.REBOOT_SYSTEM"></span>
   </button>
