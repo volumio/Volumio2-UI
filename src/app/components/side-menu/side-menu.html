@@ -23,20 +23,26 @@
           {{::item.name}}
     </button>
 
-    <div class="hardwareToggleCheckbox" 
+    <div class="hardwareToggleCheckbox"
         ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.analogInput">
       <input type="checkbox"
           ng-model="sideMenu.analogIn"
-          ng-click="sideMenu.toggleAnalogInput()"> 
+          ng-click="sideMenu.toggleAnalogInput()">
         <span translate="SIDEMENU.ANALOG_INPUT"></span>
     </div>
 
-    <div class="hardwareToggleCheckbox" 
+    <div class="hardwareToggleCheckbox"
         ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.bluetooth">
       <input type="checkbox"
           ng-model="sideMenu.bluetooth"
           ng-click="sideMenu.toggleBluetooth()">
         <span translate="SIDEMENU.BLUETOOTH"></span>
+    </div>
+
+    <div class="side-logo" ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.showLogo">
+      <img
+        ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo-sidebar.png"
+        alt="{{header.themeManager.theme}}"/>
     </div>
   </div>
 </div>
