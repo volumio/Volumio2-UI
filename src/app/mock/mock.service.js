@@ -670,7 +670,9 @@ class MockService {
                   {'placeholder': 'call me with a fancy name'}
                 ],
                 'value': 'Volumio',
-                'hidden': false
+                'hidden': false,
+                'description': 'This is a desc',
+                'doc': 'This is a doc'
               }
             ]
           },
@@ -756,6 +758,8 @@ class MockService {
                 ],
                 'label': 'Username',
                 'value': 'asd',
+                'description': 'desc',
+                'doc': 'Spot doc',
                 'visibleIf': {'field': 'spotify_service', 'value': true}
               },
               {
