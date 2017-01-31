@@ -46,7 +46,7 @@
     "BACK":"Indietro",
     "OPTIONS":"Opzioni",
     "CHOOSE_PLAYLIST":"Scegli Playlist",
-    "STOP_MUSIC":"Ferma la musica "
+    "STOP_MUSIC":"Ferma la musica"
   },
   "BROWSER": {
     "PLAY": "Riproduci",
@@ -141,5 +141,9 @@
     "ONLINE":"Online",
     "CONNECT":"Connetti",
     "REFRESH":"Aggiorna"
+  },
+  "SLEEP": {
+    "POWER_OFF": "Spegni",
+    "STOP_MUSIC": "Ferma la Musica"
   }
 }
