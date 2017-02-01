@@ -16,12 +16,12 @@ class ModalSleepController {
     $translate(['SLEEP.POWER_OFF', 'SLEEP.STOP_MUSIC']).then(translations => {
         this.whenSleepSelect = [
           {
-            val: 'poweroff',
-            text: translations['SLEEP.POWER_OFF']
-          },
-          {
             val: 'stop',
             text: translations['SLEEP.STOP_MUSIC']
+          },
+          {
+            val: 'poweroff',
+            text: translations['SLEEP.POWER_OFF']
           }
         ];
       });
