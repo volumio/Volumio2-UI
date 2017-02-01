@@ -145,5 +145,8 @@
   "SLEEP": {
     "POWER_OFF": "Spegni",
     "STOP_MUSIC": "Ferma la Musica"
+  },
+  "ALARM": {
+    "CRATE_PLAYLIST_FIRST": "Per usare la funzione sveglia, è necessario creare almeno una Playlist"
   }
 }
