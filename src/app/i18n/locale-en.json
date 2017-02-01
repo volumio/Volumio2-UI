@@ -62,7 +62,8 @@
     "LIST": "List",
     "PLAY_QUEUE": "Play queue",
     "ENTER_PASSWORD": "Enter password",
-    "INVALID_PASSWORD": "Invalid password"
+    "INVALID_PASSWORD": "Invalid password",
+    "RIP": "RIP"
   },
   "BROWSER": {
     "PLAY": "Play",

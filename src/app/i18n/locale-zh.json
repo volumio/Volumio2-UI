@@ -28,7 +28,9 @@
     "TAB_PLAYBACK":"回放",
     "TAB_QUEUE":"队列",
     "ARTISTS":"艺术家",
+    "ARTIST":"艺术家",
     "ALBUMS":"专辑",
+    "ALBUM":"专辑",
     "SONGS":"音轨",
     "PLAYTIME":"播放时间",
     "TIME":"时间",
@@ -45,7 +47,8 @@
     "BACK":"返回",
     "OPTIONS":"选项",
     "CHOOSE_PLAYLIST":"选择播放列表",
-    "STOP_MUSIC":"停止音乐"
+    "STOP_MUSIC":"停止音乐",
+    "RIP": "抓轨到存储设备"
   },
   "BROWSER": {
     "PLAY": "播放",
