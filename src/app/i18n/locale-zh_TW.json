@@ -29,7 +29,9 @@
     "TAB_PLAYBACK":"播放",
     "TAB_QUEUE":"佇列",
     "ARTISTS":"演出者",
+    "ARTIST":"演出者",
     "ALBUMS":"專輯",
+    "ALBUM":"專輯",
     "SONGS":"歌曲",
     "PLAYTIME":"播放時間",
     "TIME":"時間",
@@ -46,7 +48,8 @@
     "BACK":"返回",
     "OPTIONS":"選項",
     "CHOOSE_PLAYLIST":"選擇播放列表",
-    "STOP_MUSIC":"停止音樂"
+    "STOP_MUSIC":"停止音樂",
+    "RIP":"抓取音軌"
   },
   "BROWSER": {
     "PLAY": "播放",
