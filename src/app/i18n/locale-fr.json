@@ -15,7 +15,7 @@
     "OK":"Ok",
     "YES":"Oui",
     "NO":"Non",
-    "GOT_IT":"Je l'ai",
+    "GOT_IT":"Ok",
     "CANCEL": "Annuler",
     "RESTART_SYSTEM":"Redémarrer le système",
     "TRY_AGAIN":"Essayer à nouveau",
@@ -62,7 +62,8 @@
     "LIST":"Liste",
     "PLAY_QUEUE": "Jouer la file d'attente",
     "ENTER_PASSWORD": "Entre mot de passe",
-    "INVALID_PASSWORD": "Mot de passe invalide"
+    "INVALID_PASSWORD": "Mot de passe invalide",
+    "RIP": "RIP"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -177,5 +178,9 @@
     "MULTI_ROOM_CONFIGURATION": "Configuration du Multi room",
     "GROUP": "Groupe",
     "NOW_PLAYING": "En cours de lecture"
+  },
+  "SIDEMENU": {
+    "ANALOG_INPUT": "Entrée Analogique",
+    "BLUETOOTH": "BLUETOOTH"
   }
 }
