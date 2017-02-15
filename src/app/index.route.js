@@ -1,6 +1,11 @@
 function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, themeManagerProvider) {
   'ngInject';
-  console.info('[TEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
+  console.info('[THEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
+
+  if (routerConfig.location === undefined) {
+    routerConfig.url = window.location.origin + window.location.pathname;
+    console.info('URL', routerConfig.url);
+  }
 
   $locationProvider.html5Mode(true);
   $stateProvider
@@ -28,17 +33,17 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
         //NOTE this resolver init also global services like toast
         socketResolver: ($rootScope, $http, $window, socketService, ripperService, modalListenerService,
             toastMessageService, uiSettingsService, updaterService) => {
-          let localhostApiURL = `http://${$window.location.hostname}/api`;
-          return $http.get(localhostApiURL + '/host')
+          return $http.get('api/host')
             .then((response) => {
-              console.info('IP from API', response);
+              console.info('IP from API',
+                  routerConfig.url, response, response.data);
               $rootScope.initConfig = response.data;
-              socketService.host  = response.data.host;
-              socketService.host2 = response.data.host2;
+              socketService.host = routerConfig.url;
+              socketService.hosts.push(response.data.host, response.data.host2);
             }, () => {
               //Fallback socket
               console.info('Dev mode: IP from local-config.json');
-              return $http.get('/app/local-config.json').then((response) => {
+              return $http.get('app/local-config.json').then((response) => {
                 socketService.host  = response.data.localhost;
                 // socketService.host = '192.168.0.90';
                 // socketService.host2 = '192.168.0.9';

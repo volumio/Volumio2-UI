@@ -8,15 +8,24 @@ class SocketService {
 
     this._host = null;
     this.connectToFallbackHost = false;
-    this.host2 = null;
+    this.hosts = [ null ];
+    this._hostIndex = 0;
   }
 
-  changeHost(host) {
+  changeHost() {
     if (this.$window.socket) {
       this.$window.socket.disconnect();
       this.$window.socket.removeAllListeners();
     }
-    this.$window.socket = io(this.host, {timeout: 500});
+
+    let protocol = this.host.split('//', 1)[0] + '//';
+    let site = this.host.substring(protocol.length);
+    let host = site.split('/', 1)[0];
+    let path = site.substring(host.length).replace(/\/+$/, '') + '/socket.io';
+    host = protocol + host;
+
+    this.$log.info(`Socket connect to host ${host} path ${path}`);
+    this.$window.socket = io(host, {path: path, timeout: 500});
     this.$window.socket.connect();
     this.$window.socket.on('connect_error', () => {
       this.$log.debug(`Socket connect_error for host ${this.host}`);
@@ -30,11 +39,14 @@ class SocketService {
   }
 
   _connectToFallbackHost() {
-    if (!this.connectToFallbackHost && this.host2) {
-      this.connectToFallbackHost = true;
-      this.$log.info(`Try to connect to host2 ${this.host2}`);
-      this.host = this.host2;
-    }
+    let host;
+    do {
+      this._hostIndex = (this._hostIndex + 1) % this.hosts.length;
+      host = this.hosts[this._hostIndex];
+    } while ( ! host);
+    this._host = host;
+    this.$log.info(`Try to connect to host ${this._hostIndex} ${this._host}`);
+    this.changeHost();
   }
 
   get isConnected() {
@@ -97,8 +109,9 @@ class SocketService {
   }
 
   set host(host) {
+    this.hosts[0] = host;
     this._host = host;
-    this.changeHost(host);
+    this.changeHost();
     this.$log.debug('New host:', this._host);
   }
 

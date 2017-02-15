@@ -26,7 +26,11 @@ exports.paths = {
 exports.wiredep = {
   exclude: [/bootstrap.js$/, /bootstrap-sass-official\/.*\.js/,
       /bootstrap\.css/, /_bootstrap\.scss/], //, /modernizr\.js/
-  directory: 'bower_components'
+
+  // Avoid serving bower_components outside top level directory structure
+  // https://github.com/stephenplusplus/grunt-wiredep/issues/117
+  ignorePath: /^\.\.\/inject\//,
+  directory: 'inject/bower_components'
 };
 
 /**

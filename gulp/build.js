@@ -51,8 +51,8 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
-    .pipe($.replace('../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/', '../fonts/'))
-    .pipe($.replace('../../bower_components/components-font-awesome/fonts', '../fonts/'))
+    .pipe($.replace('../../inject/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/', '../fonts/'))
+    .pipe($.replace('../../inject/bower_components/components-font-awesome/fonts', '../fonts/'))
     .pipe($.csso())
     .pipe(cssFilter.restore())
     .pipe(assets.restore())
@@ -74,7 +74,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
   var paths = $.mainBowerFiles()
-  paths.push('bower_components/bootstrap-sass-official/**');
+  paths.push('inject/bower_components/bootstrap-sass-official/**');
   return gulp.src(paths)
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
@@ -82,7 +82,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('fontawesome', function() {
-  return gulp.src('bower_components/components-font-awesome/fonts/*.*')
+  return gulp.src('inject/bower_components/components-font-awesome/fonts/*.*')
           .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 

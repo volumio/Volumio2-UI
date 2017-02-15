@@ -19,7 +19,7 @@ function browserSyncInit(baseDir, browser) {
   var routes = null;
   if(baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
     routes = {
-      '/bower_components': 'bower_components'
+      '/bower_components': 'inject/bower_components'
     };
   }
 
@@ -41,6 +41,27 @@ function browserSyncInit(baseDir, browser) {
 
   browserSync.instance = browserSync.init({
     startPath: '/',
+    scriptPath: function (path) {
+      return path.substring(1);
+    },
+    socket: {
+
+      // Determine the URL used by the browser client to access
+      // the site, and use it to configure the browser-sync socket
+      // connection:
+      //
+      // https://github.com/BrowserSync/browser-sync/issues/1301
+      domain:
+        // ___browserSync___.socket = ___browserSync___.io(
+        "' + location.origin "
+        + "  + location.pathname.replace(/\\/+$/, '') "
+        + "  + '{ns}', "
+        + "{ path: "
+        + "    location.pathname.replace(/\\/+$/, '') "
+        + "    + ___browserSync___.socketConfig.path }); "
+        + "(0, '"
+        // , ___browserSync___.socketConfig);
+    },
     server: server,
     browser: browser
   });

@@ -31,7 +31,7 @@ class ThemeManagerProvider {
       $rootScope.variant = this.variant;
       // TODO
       // Ritornare come image url quella della variant dalla gestione dei backgrounds
-      $rootScope.assetsUrl = '/app/themes/' + this.theme + '/assets';
+      $rootScope.assetsUrl = 'app/themes/' + this.theme + '/assets';
       $rootScope.variantAssetsUrl = 'app/themes/' + this.theme  + '/assets/variants/' + this.variant;
       $rootScope.touchIconsUrl = `${$rootScope.variantAssetsUrl}/touch-icons`;
       $rootScope.favicon = `${$rootScope.variantAssetsUrl}/favicons/favicon.png`;
