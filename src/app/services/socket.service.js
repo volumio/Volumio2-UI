@@ -37,7 +37,7 @@ class SocketService {
       if (++currentHostIndex >= hostKeys.length) {
         currentHostIndex = 0;
       }
-      const newHost = this.hosts[hostKeys[currentHostIndex]]
+      const newHost = this.hosts[hostKeys[currentHostIndex]];
       this.$log.info(`Try to connect to host: ${hostKeys[currentHostIndex]}: ${newHost}`);
       this.host = newHost;
     }
