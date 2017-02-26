@@ -1,11 +1,12 @@
 class PlayerService {
-  constructor($rootScope, $log, $interval, socketService, themeManager) {
+  constructor($rootScope, $log, $interval, socketService, themeManager, uiSettingsService) {
     'ngInject';
     this.$log = $log;
     this.$interval = $interval;
     this.socketService = socketService;
     this.themeManager = themeManager;
     this.$rootScope = $rootScope;
+    this.uiSettingsService = uiSettingsService;
 
     this.state = null;
     this.trackInfo = null;
@@ -225,7 +226,7 @@ class PlayerService {
       pageTitle += (pageTitle) ? ` - ${this.state.title}` : this.state.title;
     }
     if (!this.state.artist && !this.state.title) {
-      pageTitle = this.themeManager.defaultPageTitle;
+      pageTitle = this.uiSettingsService.defaultPageTitle;
     }
     this.$rootScope.pageTitle = pageTitle;
   }

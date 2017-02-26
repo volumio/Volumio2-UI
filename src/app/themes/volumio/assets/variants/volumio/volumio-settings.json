@@ -1,4 +1,6 @@
 {
+  "app": "volumio",
+  "pageTitle": "Volumio - Audiophile Music Player",
   "sideMenu": {
     "checkboxes": {
         "analogInput": false,
