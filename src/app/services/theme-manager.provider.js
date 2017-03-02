@@ -35,19 +35,6 @@ class ThemeManagerProvider {
       $rootScope.variantAssetsUrl = 'app/themes/' + this.theme  + '/assets/variants/' + this.variant;
       $rootScope.touchIconsUrl = `${$rootScope.variantAssetsUrl}/touch-icons`;
       $rootScope.favicon = `${$rootScope.variantAssetsUrl}/favicons/favicon.png`;
-
-      //TODO remove this hardcoded if
-      if (this.variant === 'axiom') {
-        this.defaultPageTitle = 'Axiom Air - Wireless HiFi Speaker';
-      } else if (this.variant !== 'volumio') {
-        this.defaultPageTitle = this.variant.charAt(0).toUpperCase() + this.variant.slice(1);
-      }
-
-      $rootScope.pageTitle = this.defaultPageTitle;
-    };
-
-    let getDefaultPageTitle = function() {
-      return this.defaultPageTitle;
     };
 
     return {
@@ -55,7 +42,6 @@ class ThemeManagerProvider {
       variant: this.variant,
       getHtmlPath: this.getHtmlPath,
       setPageMetadata: setPageMetadata,
-      getDefaultPageTitle: getDefaultPageTitle,
       getCssValue: this.getCssValue
     };
   }
