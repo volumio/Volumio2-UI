@@ -71,6 +71,7 @@ Once finished, to deploy on Volumio 2, first build it. if you want production op
 gulp build --theme="volumio" --env="production"
 ```
 
+
 And deploy by copying the content of dist directory on Volumio2 device to:
 
 ```shell
