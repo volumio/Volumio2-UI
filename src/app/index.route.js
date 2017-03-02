@@ -33,15 +33,22 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
             .then((response) => {
               console.info('IP from API', response);
               $rootScope.initConfig = response.data;
-              socketService.host  = response.data.host;
-              socketService.host2 = response.data.host2;
+              const hosts = response.data;
+              const firstHostKey = Object.keys(hosts)[0];
+              socketService.hosts = hosts;
+              socketService.host = hosts[firstHostKey];
             }, () => {
               //Fallback socket
               console.info('Dev mode: IP from local-config.json');
               return $http.get('/app/local-config.json').then((response) => {
-                socketService.host  = response.data.localhost;
-                // socketService.host = '192.168.0.90';
-                // socketService.host2 = '192.168.0.9';
+                // const hosts = {
+                //   'host1': 'http://192.168.0.65',
+                //   'host2': 'http://192.168.0.66',
+                //   'host3': 'http://192.168.0.67'};
+                const hosts = {'devHost': response.data.localhost};
+                const firstHostKey = Object.keys(hosts)[0];
+                socketService.hosts = hosts;
+                socketService.host = hosts[firstHostKey];
               });
             });
         }
