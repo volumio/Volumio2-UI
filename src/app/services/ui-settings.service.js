@@ -64,9 +64,7 @@ class UiSettingsService {
       }
 
       // Page title
-      if (data.pageTitle) {
-        this.themeManager.defaultPageTitle = data.pageTitle;
-      }
+      this.defaultPageTitle = this.uiSettings.pageTitle || 'Audiophile music player';
 
       //Check for language switch
       if (this.uiSettings.language && this.uiSettings.language !== data.language) {
