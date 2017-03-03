@@ -3,9 +3,12 @@
     "THEME_SETTINGS": "Hintergrundeinstellungen",
     "UPLOAD_BACKGROUND": "Neuen Hintergrund hochladen",
     "UPLOAD_BACKGROUND_FILE": "Klicken und Hintergrund auswählen oder Datei hier ablegen",
-    "UPLOAD_PROGRESS": "Uploadfortschritt:",
+    "UPLOAD_PROGRESS": "Fortschritt:",
     "SELECT_BACKGROUND": "Hintergrund auswählen",
-    "SELECT_BACKGROUND_COLOR": "Hintergrundfarbe auswählen"
+    "SELECT_BACKGROUND_COLOR": "Hintergrundfarbe auswählen",
+    "APPLY_BACKGROUND": "Hintergrund auswählen",
+    "APPLY_BACKGROUND_COLOR": "Hintergrundfarbe auswählen",
+    "DELETE_BACKGROUND": "Hintergrund löschen"
   },
   "COMMON": {
     "SAVE": "Speichern",
@@ -45,7 +48,18 @@
     "BACK":"Zurück",
     "OPTIONS":"Optionen",
     "CHOOSE_PLAYLIST":"Wiedergabeliste auswählen",
-    "STOP_MUSIC":"Musik anhalten"
+    "STOP_MUSIC":"Musik anhalten",
+    "HOME": "Home",
+    "VOLUME_MUTE":"Lautlos",
+    "VOLUME_MUTED":"Lautlos",
+    "VOLUME_UP":"Lautstärke erhöhen",
+    "VOLUME_DOWN":"Lautstärke verringern",
+    "HIDDEN":"Versteckt",
+    "LIST":"Liste",
+    "PLAY_QUEUE": "Warteschlange wiedergeben",
+    "ENTER_PASSWORD": "Passwort eingeben",
+    "INVALID_PASSWORD": "Passwort ungültig",
+    "RIP": "RIP"
   },
   "BROWSER": {
     "PLAY": "Wiedergeben",
@@ -85,7 +99,7 @@
     "UPLOAD_PLUGINS":"Aktualisiere Plugin"
   },
   "UPDATER": {
-    "DOWNLOAD_SPEED": "Zurück zu den Plugins",
+    "DOWNLOAD_SPEED": "Download-Geschwindigkeit:",
     "TIME_REMAINING": "Restzeit",
     "UPDATE_NOW": "Jetzt aktualisieren"
   },
@@ -140,6 +154,29 @@
     "SPEED":"Geschwindigkeit",
     "ONLINE":"Online",
     "CONNECT":"Verbinden",
-    "REFRESH":"Aktualisieren"
-  }
+    "REFRESH":"Aktualisieren",
+    "OPEN_NETWORK":"Offenes Netzwerk",
+    "SECURE_NETWORK":"Sicheres Netzwerk",
+    "SECURITY":"Sicherheit",
+    "MANUAL_WIFI_CONNECTION":"Manuelle WLAN-Verbindung",
+    "NETWORK_NAME": "Netzwerkname" 
+  },
+  "SLEEP": {
+    "POWER_OFF": "Ausschalten",
+    "STOP_MUSIC": "Musik anhalten"
+  },
+  "ALARM": {
+    "CRATE_PLAYLIST_FIRST": "Um die Weckfunktion nutzen zu können, muss mindestens eine Wiedergabeliste angelegt sein."
+  },
+  "MULTIDEVICE": {
+    "EDIT_GROUPS": "Gruppen bearbeiten",
+    "ROOMS_AND_GROUPS": "Räume und Gruppen",
+    "MULTI_ROOM_CONFIGURATION": "Multi-Raum Konfiguration",
+    "GROUP": "Gruppe",
+    "NOW_PLAYING": "Wird wiedergegeben"
+  },
+  "SIDEMENU": {
+    "ANALOG_INPUT": "Analoger Input",
+    "BLUETOOTH": "Bluetooth"
+   } 
 }
