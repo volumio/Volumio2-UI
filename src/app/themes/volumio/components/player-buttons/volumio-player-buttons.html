@@ -2,7 +2,8 @@
   <button
       ng-click="playerButtons.playerService.prev()"
       class="btn btn-link"
-      title="{{'BROWSER.PREVIOUS_TRACK' | translate}}">
+      title="{{'BROWSER.PREVIOUS_TRACK' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
     <i class="fa fa-step-backward"></i>
   </button>
 
@@ -12,7 +13,8 @@
           ng-if="playerButtons.playerService.state.status !== 'play'"
           ng-click="playerButtons.playerService.play()"
           class="btn btn-link playPause play"
-          title="{{'BROWSER.PLAY' | translate}}">
+          title="{{'BROWSER.PLAY' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
         <i class="fa fa-play"></i>
       </button>
 
@@ -21,7 +23,8 @@
           ng-click="playerButtons.playerService.pause()"
           class="btn btn-link playPause"
           ng-class="{active: playerButtons.playerService.state.status === 'play'}"
-          title="{{'BROWSER.PAUSE' | translate}}">
+          title="{{'BROWSER.PAUSE' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
         <i class="fa fa-pause"></i>
       </button>
 
@@ -29,7 +32,8 @@
           ng-if="playerButtons.playerService.state.status === 'play' && playerButtons.playerService.state.trackType === 'webradio'"
           ng-click="playerButtons.playerService.stop()"
           class="btn btn-link playPause"
-          ng-class="{active: playerButtons.playerService.state.status === 'stop'}">
+          ng-class="{active: playerButtons.playerService.state.status === 'stop'}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
         <i class="fa fa-stop"></i>
       </button>
     </div>
@@ -37,7 +41,8 @@
   <button
       ng-click="playerButtons.playerService.next()"
       class="btn btn-link"
-      title="{{'BROWSER.NEXT_TRACK' | translate}}">
+      title="{{'BROWSER.NEXT_TRACK' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
     <i class="fa fa-step-forward"></i>
   </button>
 </div>
