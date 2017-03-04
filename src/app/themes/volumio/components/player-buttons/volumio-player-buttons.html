@@ -3,7 +3,7 @@
       ng-click="playerButtons.playerService.prev()"
       class="btn btn-link"
       title="{{'BROWSER.PREVIOUS_TRACK' | translate}}"
-      ng-disabled="playerButtons.playerService.service === 'analogin'">
+      ng-disabled="playerButtons.playerService.state.disableUi">
     <i class="fa fa-step-backward"></i>
   </button>
 
@@ -14,7 +14,7 @@
           ng-click="playerButtons.playerService.play()"
           class="btn btn-link playPause play"
           title="{{'BROWSER.PLAY' | translate}}"
-          ng-disabled="playerButtons.playerService.service === 'analogin'">
+          ng-disabled="playerButtons.playerService.state.disableUi">
         <i class="fa fa-play"></i>
       </button>
 
@@ -24,7 +24,7 @@
           class="btn btn-link playPause"
           ng-class="{active: playerButtons.playerService.state.status === 'play'}"
           title="{{'BROWSER.PAUSE' | translate}}"
-          ng-disabled="playerButtons.playerService.service === 'analogin'">
+          ng-disabled="playerButtons.playerService.state.disableUi">
         <i class="fa fa-pause"></i>
       </button>
 
@@ -33,7 +33,7 @@
           ng-click="playerButtons.playerService.stop()"
           class="btn btn-link playPause"
           ng-class="{active: playerButtons.playerService.state.status === 'stop'}"
-          ng-disabled="playerButtons.playerService.service === 'analogin'">
+          ng-disabled="playerButtons.playerService.state.disableUi">
         <i class="fa fa-stop"></i>
       </button>
     </div>
@@ -42,7 +42,7 @@
       ng-click="playerButtons.playerService.next()"
       class="btn btn-link"
       title="{{'BROWSER.NEXT_TRACK' | translate}}"
-      ng-disabled="playerButtons.playerService.service === 'analogin'">
+      ng-disabled="playerButtons.playerService.state.disableUi">
     <i class="fa fa-step-forward"></i>
   </button>
 </div>
