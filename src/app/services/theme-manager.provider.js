@@ -1,7 +1,6 @@
 class ThemeManagerProvider {
   constructor() {
     'ngInject';
-    this.defaultPageTitle = '';
   }
 
   getHtmlPath(filename, folder) {

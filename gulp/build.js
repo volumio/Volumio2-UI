@@ -8,6 +8,9 @@ var conf = require('./conf');
 var gutil = require('gulp-util');
 var exec = require('child_process').exec;
 
+var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
+var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
+
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
@@ -29,7 +32,7 @@ gulp.task('partials', function () {
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
 });
 
-gulp.task('html', ['inject', 'partials'], function () {
+gulp.task('html', ['inject', 'partials'], function (cb) {
   var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/partials/templateCacheHtml.js'), { read: false });
   var partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',
@@ -68,6 +71,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(htmlFilter.restore())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
+    cb(err);
 });
 
 // Only applies for fonts from bower dependencies
@@ -105,23 +109,33 @@ gulp.task('theme', function () {
     return file.stat.isFile();
   });
 
-  var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
-  var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
   return gulp.src([
     path.join(conf.paths.src, '/app/themes/' + themeSelected + '/**/*'),
     path.join('!' + conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/!('+variantSelected+')/**/*'),
     // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/' + variantSelected + '/**/*')
     // path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
   ])
-    .pipe(fileFilter)
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected)));
+  .pipe(fileFilter)
+  .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected)));
+});
+
+  //Set static page title to remove FOUC
+gulp.task('replace-page-title', ['html'], function () {
+  var fs = require('fs');
+  var themeSettings =
+      fs.readFileSync(`${conf.paths.src}/app/themes/${themeSelected}/assets/variants/${variantSelected}/${variantSelected}-settings.json`, 'utf8');
+  themeSettings = JSON.parse(themeSettings);
+
+  var pageTitle = themeSettings.pageTitle || 'Audiophile music player';
+  var index = fs.readFileSync(`dist/index.html`, 'utf8');
+  index = index.replace('<title></title>', `<title>${pageTitle}</title>`);
+  fs.writeFileSync('dist/index.html', index);
 });
 
 gulp.task('static-pages', function () {
   var fileFilter = $.filter(function (file) {
     return file.stat.isFile();
   });
-  var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
 
   return gulp.src([
     path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/static-pages/*')
@@ -135,7 +149,6 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('credits', function (cb) {
-  var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
   exec('node src/app/themes/' + themeSelected + '/scripts/credits.js ' + themeSelected, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -143,4 +156,4 @@ gulp.task('credits', function (cb) {
   });
 })
 
-gulp.task('build', ['credits','html', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme']);
+gulp.task('build', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title']);

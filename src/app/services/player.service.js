@@ -1,5 +1,5 @@
 class PlayerService {
-  constructor($rootScope, $log, $interval, socketService, themeManager, uiSettingsService) {
+  constructor($rootScope, $log, $interval, socketService, themeManager, uiSettingsService, $document) {
     'ngInject';
     this.$log = $log;
     this.$interval = $interval;
@@ -7,6 +7,7 @@ class PlayerService {
     this.themeManager = themeManager;
     this.$rootScope = $rootScope;
     this.uiSettingsService = uiSettingsService;
+    this.$document = $document;
 
     this.state = null;
     this.trackInfo = null;
@@ -218,17 +219,19 @@ class PlayerService {
   }
 
   updatePageTitle() {
-    let pageTitle = '';
-    if (this.state.artist) {
-      pageTitle = this.state.artist;
+    console.info('update');
+    if (this.state.status !== 'play' || (!this.state.artist && !this.state.title)) {
+        this.pageTitle = this.uiSettingsService.defaultPageTitle;
+    } else {
+      this.pageTitle = '';
+      if (this.state.artist) {
+        this.pageTitle = this.state.artist;
+      }
+      if (this.state.title) {
+        this.pageTitle += (this.pageTitle) ? ` - ${this.state.title}` : this.state.title;
+      }
     }
-    if (this.state.title) {
-      pageTitle += (pageTitle) ? ` - ${this.state.title}` : this.state.title;
-    }
-    if (!this.state.artist && !this.state.title) {
-      pageTitle = this.uiSettingsService.defaultPageTitle;
-    }
-    this.$rootScope.pageTitle = pageTitle;
+    this.$document[0].title = this.pageTitle;
   }
 
   updateFavicon() {
