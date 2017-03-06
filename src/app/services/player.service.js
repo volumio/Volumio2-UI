@@ -219,11 +219,10 @@ class PlayerService {
   }
 
   updatePageTitle() {
-    console.info('update');
+    this.pageTitle = '';
     if (this.state.status !== 'play' || (!this.state.artist && !this.state.title)) {
         this.pageTitle = this.uiSettingsService.defaultPageTitle;
     } else {
-      this.pageTitle = '';
       if (this.state.artist) {
         this.pageTitle = this.state.artist;
       }
@@ -231,7 +230,9 @@ class PlayerService {
         this.pageTitle += (this.pageTitle) ? ` - ${this.state.title}` : this.state.title;
       }
     }
-    this.$document[0].title = this.pageTitle;
+    if (this.pageTitle) {
+      this.$document[0].title = this.pageTitle;
+    }
   }
 
   updateFavicon() {

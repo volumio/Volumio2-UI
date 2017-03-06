@@ -110,16 +110,17 @@ gulp.task('theme', function () {
   });
 
   return gulp.src([
-    path.join(conf.paths.src, '/app/themes/' + themeSelected + '/**/*'),
-    path.join('!' + conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/!('+variantSelected+')/**/*'),
+    path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/**/*'),
+    path.join('!' + conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/!(' + variantSelected + ')/**/*'),
+    // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/'+variantSelected+'/**/*'),
     // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/' + variantSelected + '/**/*')
     // path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
   ])
   .pipe(fileFilter)
-  .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected)));
+  .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected + '/assets')));
 });
 
-  //Set static page title to remove FOUC
+//Set static page title to remove FOUC
 gulp.task('replace-page-title', ['html'], function () {
   var fs = require('fs');
   var themeSettings =
@@ -156,4 +157,4 @@ gulp.task('credits', function (cb) {
   });
 })
 
-gulp.task('build', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title']);
+gulp.task('build-app', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title']);
