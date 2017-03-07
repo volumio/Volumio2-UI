@@ -6,7 +6,7 @@ rm -rf dist || exit 0;
 mkdir dist;
 
 # Build Volumio UI
-gulp --theme="volumio" --env="production"
+gulp build --theme="volumio" --env="production"
 
 # Fallback to 127.0.0.1 (for Ui on non-networked systems)
 echo '{"localhost": "http://127.0.0.1:3000"}' > dist/app/local-config.json
