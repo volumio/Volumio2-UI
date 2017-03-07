@@ -22,7 +22,7 @@ gulp.task('styles', function () {
 
   var theme = gutil.env.theme ? gutil.env.theme : 'volumio';
   var variant = gutil.env.variant ? gutil.env.variant : 'volumio';
-  console.log('Theme', theme, 'Variant', variant);
+  // console.log('Theme', theme, 'Variant', variant);
 
 
   var fs = require('fs');

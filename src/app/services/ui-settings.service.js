@@ -15,7 +15,6 @@ class UiSettingsService {
       backgroundImg: 'default bkg'
     };
 
-
     $rootScope.$on('socket:init', () => {
       this.init();
     });
