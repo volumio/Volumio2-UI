@@ -296,6 +296,31 @@ table {
   }
 }
 
+// Table ovverride fot xs devices
+@include breakpoint(xs) {
+  table {
+    &.tableSmall {
+      th {
+        font-size: 12px;
+      }
+      tr {
+        td {
+          font-size: 13px;
+          padding: 5px 2px !important;
+        }
+      }
+      button {
+        &.btn {
+          padding: 5px 8px;
+        }
+        &:first-of-type {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
 //panels
 .panel {
   border: none;
@@ -681,3 +706,4 @@ span {
   	color: $theme-dark-color;
   }
 }
+
