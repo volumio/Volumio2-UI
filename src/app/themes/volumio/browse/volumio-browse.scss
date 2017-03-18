@@ -152,6 +152,25 @@
     }
   }
 
+  .commandTitleButtons {
+    float: right;
+    padding-left: 10px;
+    width: 35px;
+    font-size: 20px;
+    .dropdown-menu {
+      left: auto;
+      right: 10px;
+      visibility: hidden;
+      &.right {
+        left: 0;
+        right: auto;
+      }
+      &.top {
+        top: auto;
+        bottom: 25px;
+      }
+    }
+  }
   //Grid view override
   .listWrapper {
     &.grid {
