@@ -130,6 +130,7 @@ gulp.task('replace-page-title', ['html'], function () {
   var pageTitle = themeSettings.pageTitle || 'Audiophile music player';
   var index = fs.readFileSync(`dist/index.html`, 'utf8');
   index = index.replace('<title></title>', `<title>${pageTitle}</title>`);
+  index = index.replace(/@APP_NAME/g, pageTitle);
   fs.writeFileSync('dist/index.html', index);
 });
 
