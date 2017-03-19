@@ -80,16 +80,11 @@ class UiSettingsService {
     this.socketService.on('pushBackgrounds', (data) => {
       this.$log.debug('pushBackgrounds', data);
       this.backgrounds = data;
-      this.backgrounds.list = [{
-        path: this.defaultBackgroundUrl,
-        thumbnail: this.defaultThumbnailBackgroundUrl,
-        notDeletable: true,
-        name: 'Default'}]
-        .concat(data.available.map((background) => {
+      this.backgrounds.list = data.available.map((background) => {
           background.path = `${this.socketService.host}/backgrounds/${background.path}`;
           background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
           return background;
-        }));
+        });
       this.setBackground();
     });
   }
