@@ -312,9 +312,8 @@ table {
       button {
         &.btn {
           padding: 5px 8px;
-        }
-        &:first-of-type {
-          margin-bottom: 5px;
+          margin-top: 2px;
+          margin-bottom: 2px;
         }
       }
     }
