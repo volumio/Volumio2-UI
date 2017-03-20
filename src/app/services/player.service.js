@@ -20,7 +20,7 @@ class PlayerService {
     this._seekScale = 1000;
     this.elapsedTimeString = '0:00';
 
-    this._volume = 80;
+    this._volume;
     this._volumeStep = 10;
     this._volumeSetInProgress = false;
 
