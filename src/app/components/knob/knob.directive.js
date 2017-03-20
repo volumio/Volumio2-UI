@@ -34,11 +34,9 @@ class KnobController {
         });
       },
       release: (value, e) => {
-        $scope.$apply(() => {
-          if (this.onRelease) {
-            this.onRelease({value: value});
-          }
-        });
+        if (this.onRelease) {
+          this.onRelease({value: value});
+        }
       }
     };
     angular.extend(knobOptions, this.options);
