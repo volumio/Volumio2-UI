@@ -56,7 +56,7 @@
           ng-if="trackManager.playerService.state.trackType === 'webradio' || trackManager.playerService.state.disableUi"
           class="fakePulsingKnob"></div>
       <knob
-        ng-if="trackManager.playerService.state.trackType !== 'webradio'
+        ng-show="trackManager.playerService.state.trackType !== 'webradio'
             && trackManager.playerService.state.disableUi === false"
         value="trackManager.playerService.seekPercent"
         on-change="trackManager.onChange(value)"
