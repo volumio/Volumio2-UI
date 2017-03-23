@@ -316,14 +316,18 @@ class MockService {
       //Network drives plugin
       infoShare: [
         {
-          name: 'SHARE su 192.168.10.35',
+          name: 'SHARE',
+          ip: '192.168.10.35',
+          path: 'path',
           id: 'suasianure 2',
           mounted: 'true',
           size: '40 GB',
           fstype: 'cifs'
         },
         {
-          name: 'SHARE su 192.168.10.99',
+          name: 'SHARE',
+          ip: '192.168.10.99',
+          path: 'path',
           id: 'id nuovo',
           mounted: 'false',
           size: '450 GB',

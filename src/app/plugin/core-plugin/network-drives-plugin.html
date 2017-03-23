@@ -29,10 +29,12 @@
           ng-if="networkDrives.inAddDrive">
       </ng-include>
 
-      <table class="table" ng-if="networkDrives.infoShare">
+      <table class="table tableSmall" ng-if="networkDrives.infoShare">
         <tr>
           <th><span translate="NETWORKFS.ALIAS"></span></th>
-          <th><span translate="NETWORKFS.PATH"></span></th>
+          <th ng-if="!networkDrives.matchmediaService.isPhone">
+            <span translate="NETWORKFS.PATH"></span>
+          </th>
           <th><span translate="NETWORKFS.MOUNTED"></span></th>
           <th><span translate="NETWORKFS.SIZE"></span></th>
           <th></th>
@@ -41,7 +43,7 @@
           <td>
             {{drive.name}}
           </td>
-          <td>
+          <td ng-if="!networkDrives.matchmediaService.isPhone">
             {{drive.ip}}:{{drive.path}}
           </td>
           <td>
