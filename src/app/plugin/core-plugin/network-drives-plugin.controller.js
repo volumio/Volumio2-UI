@@ -9,9 +9,9 @@ class NetworkDrivesPluginController {
     this.$scope = $scope;
     this.$log = $log;
     this.$filter = $filter;
-    this.infoShare = mockService.get('infoShare');
-    this.listUsbDrives = mockService.get('listUsbDrives');
-    this.networkShares = mockService.get('networkSharesDiscovery');
+    //this.infoShare = mockService.get('infoShare');
+    //this.listUsbDrives = mockService.get('listUsbDrives');
+    //this.networkShares = mockService.get('networkSharesDiscovery');
     this.matchmediaService = matchmediaService;
 
     this.passwordInputType = 'password';
@@ -99,7 +99,7 @@ class NetworkDrivesPluginController {
   registerListner() {
     this.socketService.on('pushListShares', (data) => {
       this.$log.debug('infoShare', data);
-      // this.infoShare = data;
+       this.infoShare = data;
     });
 
     this.socketService.on('pushListUsbDrives', (data) => {
