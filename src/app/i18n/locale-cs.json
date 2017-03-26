@@ -98,7 +98,7 @@
     "DETAILS":"Podrobnosti",
     "DROP":"Kliknout a vybrat, nebo přenést přetažením soubor se zásuvným modulem.",
     "INSTALL_PROGRESS":"Průběh instalace",
-    "INSTALLED_PLUGINS":"Insatalované",
+    "INSTALLED_PLUGINS":"Instalované",
     "SEARCH_PLUGINS":"Vyhledat",
     "UPLOAD_PLUGINS":"Nahrát"
   },
@@ -120,7 +120,7 @@
     "REPEAT": "Opakovat",
     "SAVE_QUEUE_AS_PLAYLIST": "Uložit frontu jako seznam",
     "CONSUME_PLAYLIST": "Vyprazdňovat frontu",
-    "CLEAR_QUEUE": "vyčistit frontu"
+    "CLEAR_QUEUE": "Vyčistit frontu"
   },
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"Nenalezen žádný síťový disk",
