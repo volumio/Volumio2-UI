@@ -35,8 +35,8 @@
     "ARTISTS":"Umělci",
     "ALBUM":"Album",
     "ALBUMS":"Alba",
-    "SONG":"Stopa",
-    "SONGS":"Stopy",
+    "SONG":"Skladba",
+    "SONGS":"Skladby",
     "PLAYTIME":"Délka",
     "TIME":"Čas",
     "RESCAN":"Znovu vyhledat",
@@ -81,15 +81,15 @@
     "URL_DOC":"Internetová adresa (URL) může být URL přenos, nebo vzdálené soubory typu M3U nebo PLS.",
     "DELETE_PLAYLIST":"Odstranit seznam",
     "GO_TO_SHARE":"Přejít; Sdílet; Režimy přehrávání",
-    "NEXT_TRACK":"Další stopa",
-    "PREVIOUS_TRACK":"Předchozí stopa",
+    "NEXT_TRACK":"Další skladba",
+    "PREVIOUS_TRACK":"Předchozí skladba",
     "PAUSE":"Pauza",
     "CLEAR_AND_PLAY": "Vyčistit a přehrát"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Zpět do zásuvných modulů",
     "PLUGINS":"Zásuvné moduly",
-    "PLUGINS_MANAGEMENT":"Plugins Management",
+    "PLUGINS_MANAGEMENT":"Správa zásuvných modulů",
     "SHOW_DETAILS":"+ Ukázat podrobnosti",
     "HIDE_DETAILS":"- Skrýt podrobnosti",
     "INSTALL":"Nainstalovat",
@@ -113,7 +113,7 @@
     "FROM":"Z",
     "GO_TO_ARTIST":"Přejít k umělci",
     "GO_TO_ALBUM":"Přejít do alba",
-    "TWEET_TRACK":"Tweetnout stopu"
+    "TWEET_TRACK":"Tweetnout skladbu"
   },
   "TRACK_INFO_BAR": {
     "RANDOM": "Náhodně",
