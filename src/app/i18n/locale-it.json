@@ -68,6 +68,12 @@
     "PREVIOUS_TRACK":"Traccia Precedente",
     "PAUSE":"Pausa"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Aggiorna", 
+    "UPDATE_DOC":"Aggiorna", 
+    "RESCAN":"Scansiona Nuovamente", 
+    "RESCAN_DOC":"Scansiona Nuovamente"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Ritorna ai Plugin",
     "PLUGINS":"Plugins",

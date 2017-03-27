@@ -1,0 +1,25 @@
+#!/bin/bash
+file=$1
+
+#prepare values to write
+update=`grep '"UPDATE":' $file`
+rescan=`grep '"RESCAN":' $file`
+
+update_doc=${update/UPDATE/UPDATE_DOC}
+rescan_tmp=${rescan/RESCAN/RESCAN_DOC}
+rescan_doc=${rescan_tmp/,/ }
+spaces='  '
+
+to_write="${spaces}\"MY_MUSIC\": { \n\
+$update \n\
+$update_doc \n\
+$rescan \n\
+$rescan_doc \n\
+${spaces}}, "
+
+#get line to write
+line_num=`awk '/"PLUGINS": {/ {print FNR}' $file`
+
+#awk "NR==$line_num{print $to_write}1" $file
+sed -i "${line_num}i $to_write" $file
+

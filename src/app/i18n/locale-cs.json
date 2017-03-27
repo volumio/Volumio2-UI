@@ -86,6 +86,12 @@
     "PAUSE":"Pauza",
     "CLEAR_AND_PLAY": "Vyčistit a přehrát"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Aktualizovat", 
+    "UPDATE_DOC":"Aktualizovat knihovnu na nové, změněné nebo smazané soubory", 
+    "RESCAN":"Znovu vyhledat", 
+    "RESCAN_DOC":"Vytvořit knihovnu ze všech souborů"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Zpět do zásuvných modulů",
     "PLUGINS":"Zásuvné moduly",

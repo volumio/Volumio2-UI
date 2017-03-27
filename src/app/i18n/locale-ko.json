@@ -83,6 +83,12 @@
     "PAUSE":"일시정지",
     "CLEAR_AND_PLAY": "대기 목록 삭제 후 재생"
   },
+"MY_MUSIC": { 
+    "UPDATE":"업데이트", 
+    "UPDATE_DOC":"업데이트", 
+    "RESCAN":"재탐색", 
+    "RESCAN_DOC":"재탐색"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "플러그인 설정으로 돌아가기",
     "PLUGINS":"플러그인",

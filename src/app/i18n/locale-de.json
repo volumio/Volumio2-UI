@@ -82,6 +82,12 @@
     "PREVIOUS_TRACK":"Vorheriger Titel",
     "PAUSE":"Pause"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Aktualisieren", 
+    "UPDATE_DOC":"Aktualisieren", 
+    "RESCAN":"Neu einlesen", 
+    "RESCAN_DOC":"Neu einlesen"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Zurück zu den Plugins",
     "PLUGINS":"Plugins",

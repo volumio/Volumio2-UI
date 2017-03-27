@@ -67,6 +67,12 @@
     "PREVIOUS_TRACK":"Föregående låt",
     "PAUSE":"Paus"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Updatera", 
+    "UPDATE_DOC":"Updatera", 
+    "RESCAN":"Sök igen", 
+    "RESCAN_DOC":"Sök igen"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Tillbaka till plugins",
     "PLUGINS":"Plugins",
