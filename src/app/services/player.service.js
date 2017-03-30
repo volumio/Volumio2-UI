@@ -20,8 +20,9 @@ class PlayerService {
     this._seekScale = 1000;
     this.elapsedTimeString = '0:00';
 
-    this._volume = 80;
+    this._volume;
     this._volumeStep = 10;
+    this._volumeSetInProgress = false;
 
     this._shuffle = false;
     this._repeatTrack = false;
@@ -122,7 +123,7 @@ class PlayerService {
   toggleMute() {
     if (this.state.mute) {
       this.$log.debug('unmute', this.state.mute);
-      this.socketService.emit('unmute');
+      this.socketService.emit('volume', this._volume);
     } else {
       this.$log.debug('mute', this.state.mute);
       this.socketService.emit('mute');
@@ -174,24 +175,21 @@ class PlayerService {
 
     // GETTER & SETTER ---------------------------------------------------------
   get volume() {
-    if (this.state) {
-      return parseInt(this.state.volume);
-    } else {
-      return 0;
-    }
+    return this._volume;
   }
 
   set volume(volume) {
-    if (this.state.mute) {
-      volume += this.lastVolume;
-    }
     if (volume < 0) {
       volume = 0;
     } else if (volume > 100) {
       volume = 100;
     }
-    this.$log.log('volume', volume);
-    this.socketService.emit('volume', volume);
+    this._volume = volume;
+    if (!this.state.mute && !this._volumeSetInProgress) {
+      this.$log.log('volume', volume);
+      this._volumeSetInProgress = true;
+      this.socketService.emit('volume', volume);
+    }
   }
 
   get albumart() {
@@ -314,8 +312,14 @@ class PlayerService {
 
       this.state.disableUi = this.state.service === 'airplay' || this.state.service === 'analogin';
 
-      if (!this.state.mute && this.state.volume) {
-        this.lastVolume = this.state.volume;
+      if (!this.state.mute) {
+        if (!this._volumeSetInProgress) {
+          this._volume = this.state.volume;
+        } else if (this._volume != this.state.volume) {
+            this.socketService.emit('volume', this._volume);
+        } else {
+            this._volumeSetInProgress = false;          
+        }
       }
 
       this.elapsedTime = this.state.seek;
