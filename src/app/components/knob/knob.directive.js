@@ -72,15 +72,14 @@ class KnobController {
     }, true);
   }
 
-  updateValue() {
+  updateValue(newVal) {
     return this.$timeout(() => {
-      let timeoutHandler;
       //$log.debug('this.value', this.value);
       if (!this.isChanging) {
         this.$element.val(parseInt(this.value, 10)).trigger('change');
       } else {
-        this.$timeout.cancel(timeoutHandler);
-        timeoutHandler = this.updateValue();
+        this.$timeout.cancel(this.timeoutHandler3);
+        this.timeoutHandler3 = this.updateValue();
       }
     }, 800);
   }

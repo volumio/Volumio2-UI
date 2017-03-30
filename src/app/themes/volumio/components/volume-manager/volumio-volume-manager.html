@@ -24,8 +24,6 @@
         ng-class="{selected: volumeManager.playerService.state.mute}"
         title="{{'COMMON.VOLUME_MUTE' | translate}}">
         <i class="fa fa-volume-off"></i>
-      <span ng-if="volumeManager.playerService.state.mute"></span>
-      <span ng-if="!volumeManager.playerService.state.mute"></span>
     </button>
     <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}">
       <i class="fa fa-volume-up"></i>
