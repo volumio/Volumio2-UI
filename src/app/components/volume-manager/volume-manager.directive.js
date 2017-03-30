@@ -38,6 +38,11 @@ class VolumeManagerController {
         angleOffset: -160,
         angleArc: 320
       };
+      $scope.$watch(() => playerService.volume,  (value) => {
+        if (value) {
+         this._updateKnobState();
+        }
+      });
     } else if(this.type === 'slider') {
       // this.volume = playerService.volume;
 
@@ -54,7 +59,7 @@ class VolumeManagerController {
           }, 300);
         }
       });
-      
+
       $scope.$watch(() => playerService.volume,  (value) => {
         if (value) {
           $timeout.cancel(this.timeoutHandler2);
@@ -68,14 +73,17 @@ class VolumeManagerController {
   }
 
   toggleMute() {
-    if (this.playerService.state.mute) {
-      this.knobOptions.fgColor = this.themeManager.getCssValue('color');
-    } else {
-      this.knobOptions.fgColor = '#999';
-    }
     this.playerService.toggleMute();
+    this._updateKnobState();
   }
 
+  _updateKnobState() {
+    if (this.playerService.state.mute) {
+      this.knobOptions.fgColor = '#999';
+    } else {
+      this.knobOptions.fgColor = this.themeManager.getCssValue('color');
+    }
+  }
 }
 
 export default VolumeManagerDirective;

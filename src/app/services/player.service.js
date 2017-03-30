@@ -182,9 +182,6 @@ class PlayerService {
   }
 
   set volume(volume) {
-    if (this.state.mute) {
-      volume += this.lastVolume;
-    }
     if (volume < 0) {
       volume = 0;
     } else if (volume > 100) {
@@ -313,10 +310,6 @@ class PlayerService {
       this.state = data;
 
       this.state.disableUi = this.state.service === 'airplay' || this.state.service === 'analogin';
-
-      if (!this.state.mute && this.state.volume) {
-        this.lastVolume = this.state.volume;
-      }
 
       this.elapsedTime = this.state.seek;
       if (this.state.status === 'play') {
