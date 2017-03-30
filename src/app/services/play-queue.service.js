@@ -84,11 +84,6 @@ class PlayQueueService {
     this.socketService.emit('removeFromQueue', {value: index});
   }
 
-  toggleConsume() {
-    this.$log.debug('setConsume', !this.playerService.state.consume);
-    this.socketService.emit('setConsume', {value: !this.playerService.state.consume});
-  }
-
   clearQueue() {
     this.$log.debug('clearQueue');
     this.socketService.emit('clearQueue');
