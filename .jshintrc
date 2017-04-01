@@ -87,6 +87,7 @@
     "io",
     "socket",
     "performance",
-    "Sortable"
+    "Sortable",
+    "urljoin"
   ]
 }
