@@ -33,7 +33,7 @@ export default class FirmwareUploadPluginController {
     };
 
     this.Upload.upload({
-        url: `${this.socketService.host}/firmware-upload`,
+        url: urljoin(this.socketService.host, 'firmware-upload'),
         data: {filename: this.firmwareFile}
       })
       .then((resp) => {

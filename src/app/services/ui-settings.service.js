@@ -25,9 +25,11 @@ class UiSettingsService {
     this.initService();
 
     this.defaultThumbnailBackgroundUrl =
-      `${this.socketService.host}/app/themes/${this.themeManager.theme}/assets/graphics/thumb-${this.themeManager.theme}-bg.jpg`;
+      urljoin(this.socketService.host,
+              `app/themes/${this.themeManager.theme}/assets/graphics/thumb-${this.themeManager.theme}-bg.jpg`);
     this.defaultBackgroundUrl =
-      `${this.socketService.host}/app/themes/${this.themeManager.theme}/assets/graphics/${this.themeManager.theme}-bg.jpg`;
+      urljoin(this.socketService.host,
+              `app/themes/${this.themeManager.theme}/assets/graphics/${this.themeManager.theme}-bg.jpg`);
   }
 
   setBackground() {
@@ -54,7 +56,8 @@ class UiSettingsService {
     this.socketService.on('pushUiSettings', (data) => {
       if (data.background) {
         if (data.background.path.indexOf(this.socketService.host) === -1) {
-          var bg = `${this.socketService.host}/backgrounds/${data.background.path}`;
+          var bg = urljoin(this.socketService.host,
+                           `backgrounds/${data.background.path}`);
           data.background.path = bg;
         }
       }
@@ -83,8 +86,10 @@ class UiSettingsService {
         notDeletable: true,
         name: 'Default'}]
         .concat(data.available.map((background) => {
-          background.path = `${this.socketService.host}/backgrounds/${background.path}`;
-          background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
+          background.path = urljoin(this.socketService.host,
+                                    `backgrounds/${background.path}`);
+          background.thumbnail = urljoin(this.socketService.host,
+                                         `backgrounds/${background.thumbnail}`);
           return background;
         }));
       this.setBackground();

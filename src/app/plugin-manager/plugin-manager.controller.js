@@ -100,7 +100,7 @@ class PluginManagerController {
   //TAB UPLOAD PLUGIN
   uploadPlugin() {
     this.Upload.upload({
-      url: `${this.socketService.host}/plugin-upload`,
+      url: urljoin(this.socketService.host, 'plugin-upload'),
       data: {filename: this.pluginFile}
     }).then((resp) => {
       this.uploadPercentage = false;

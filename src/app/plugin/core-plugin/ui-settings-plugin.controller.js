@@ -30,7 +30,7 @@ class UiSettingsPluginController {
 
   uploadBackground() {
     this.Upload.upload({
-        url: `${this.socketService.host}/backgrounds-upload`,
+        url: urljoin(this.socketService.host, 'backgrounds-upload'),
         data: {filename: this.backgroundFile}
     }).then((resp) => {
       this.uploadPercentage = false;

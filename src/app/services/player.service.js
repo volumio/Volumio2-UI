@@ -207,7 +207,7 @@ class PlayerService {
     if (~albumart.indexOf('http')) {
       return albumart;
     } else {
-      return `${this.socketService.host}${albumart}`;
+      return urljoin(this.socketService.host, albumart);
     }
   }
 
