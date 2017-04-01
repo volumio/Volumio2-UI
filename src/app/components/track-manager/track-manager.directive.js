@@ -124,7 +124,7 @@ class TrackManagerController {
   //     if (mediaQueryList.matches) {
   //       let albumart = this.playerService.state && this.playerService.state.albumart;
   //       if (albumart) {
-  //         let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
+  //         let albumArtUrl = `url('${this.playerService.getAlbumart(albumart)}')`;
   //         this.backgroundAlbumArtStyle = {
   //           'background-image': albumArtUrl
   //         };
