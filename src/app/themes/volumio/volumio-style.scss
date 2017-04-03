@@ -7,8 +7,8 @@ $footerHeight: 50px;
 // BOOTSTRAP VARIABLES CUSTOMISATIONS
 $text-color: $theme-text-color;
 
-$link-color: #FFF;
-$link-hover-color: $theme-primary-color;
+$link-color: $theme-link-color;
+$link-hover-color: $theme-link-hover-color;
 $link-hover-decoration: none;
 
 
@@ -187,7 +187,7 @@ body {
   border-radius: 0;
   font-size: 16px;
   &.selected {
-    background-color: $theme-primary-color !important;
+    // background-color: $theme-primary-color !important;
   }
   &:focus {
     color: $link-color;
@@ -202,10 +202,18 @@ body {
     //   background-color: $theme-light-color;
     //   border-color: $btn-default-border;
     // }
+    color: $theme-footer-link-color;
+    background-color: transparent;
+    &.selected {
+      color: $theme-footer-link-hover-color;
+      background-color: $theme-footer-link-selected-background-color;
+    }
     &:hover{
-      background-color: $theme-primary-color;
+      color: $theme-footer-link-hover-color;
+      background-color: $theme-footer-link-selected-background-color;
     }
     &.active {
+      color: $theme-footer-link-color;
       background-color: transparent;
     }
     @include breakpoint(xs) {
@@ -217,8 +225,12 @@ body {
 }
 .btn-link {
   border-radius: $btn-border-radius-base;
+  color: $theme-link-color;
   &.active {
-    color: $theme-primary-color;
+    color: $theme-link-hover-color;
+  }
+  &:hover {
+    color: $theme-link-hover-color;
   }
 }
 
@@ -550,7 +562,7 @@ div.equalizer.horizontal{
 
 //Button groups
 .btn-group {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: $theme-transparent-buttons-background;
   padding: 0px;
   button {
     font-size: 26px;

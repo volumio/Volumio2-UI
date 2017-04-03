@@ -11,9 +11,9 @@ $sideMenuWidth: 230px;
     text-align: center;
   }
   #openMenuBtn {
-    color: #FFF;
+    color: $theme-link-color;
     &:hover {
-      color: $theme-primary-color;
+      color: $theme-link-hover-color;
     }
   }
 
@@ -24,17 +24,17 @@ $sideMenuWidth: 230px;
     right: 0;
     width: $sideMenuWidth;
     padding: 10px 10px 0px 10px;
-    background-color: rgba(30, 30, 30, 0.95);
+    background-color: $theme-sidebar-background-color;
     overflow-y: scroll;
     button {
       text-transform: uppercase;
       text-align: left;
       font-size: 18px;
-      color: #FFF;
+      // color: #FFF;
       padding: 10px 0px 10px 5px;
       border-bottom: solid 1px #333;
       &:hover {
-        color: $theme-primary-color;
+        // color: $theme-primary-color;
         border-bottom: solid 1px #333;
       }
     }

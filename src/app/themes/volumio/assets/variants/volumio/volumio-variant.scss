@@ -5,19 +5,30 @@ $theme-danger-color: #DF4649;
 $theme-light-color: #7a848e;
 $theme-dark-color: #3C3C3C;
 $theme-darker-color: #090909;
+$theme-header-color: $theme-darker-color;
+$theme-footer-color: $theme-darker-color;
 
 
 $theme-background-color: #555;
+$theme-transparent-buttons-background: rgba(0, 0, 0, 0.6);
 $theme-transparent-background: rgba(20, 20, 20, 0.6);
 $theme-dark-transparent-background: rgba(0, 0, 0, 0.6);
 $theme-playbtn-gradient: linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.0) 72%, rgba(0, 0, 0, 0.6) 72%,
   rgba(0, 0, 0, 0.6) 100%);
 $theme-table-border-color: #7C7C7C;
 
-
 $theme-text-color: #FFF;
 $theme-dark-text-color: #AAA;
 $theme-darker-text-color: #999;
+
+$theme-link-color: white;
+$theme-link-hover-color: $theme-primary-color;
+$theme-footer-link-color: white;
+$theme-footer-link-selected-background-color: $theme-accent-color;
+$theme-footer-link-hover-color: white;
+$theme-link-playback-color: $theme-primary-color;
+
+$theme-sidebar-background-color: rgba(30, 30, 30, 0.95);
 
 $body-bg: transparent;
 $brand-primary: #222;
