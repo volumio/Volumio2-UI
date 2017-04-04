@@ -3,10 +3,13 @@ var fs = require('fs');
 var request = require("request");
 var npm = require("npm");
 var fs=require('fs-extra');
+var theme = process.argv.slice(2)[0];
+var variant = process.argv.slice(2)[1];
+var html = '';
 
 var repos = [];
 
-var theme = process.argv.slice(2)[0];
+
 
 var itemHTML = '<strong>${NAME}</strong> </a>by ${AUTHOR} - ${LICENSENAME} - ${LINKREPO}<br>\n';
 var shortItemHTML = '<strong>${NAME}</strong>';
@@ -225,12 +228,58 @@ function addThirdPartCredits() {
 	return thirdparty
 }
 
+function addVolumioOEM() {
+	var volumioOem = '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-diamond"></i> Volumio OEM </h3></div><div class="panel-body"><p>'
+	volumioOem += '<span class="help-block"><strong>White label solution</strong></span>'
+	volumioOem += '<span class="help-block">Volumio name and logo can be used for commercial purposes only with an explicit authorization. <a href="mailto:info@volumio.org">Contact us</a> for details. </span>'
+	volumioOem += 'However, Volumio offers a white label solution which does not have Volumio branding. Also, such solutions can be finely tailored to fir any particular need. This has already been proved effective for various Audio '
+	volumioOem += 'Manufactures, enabling them to offer Volumios ease of use, excellent audio quality and reliability, but at a fraction of the cost of in-house development.'
+	volumioOem += 'This also benefits our project financially, which allows us to invest more resources in the project and constantly increse its quality. '
+	volumioOem += '<br><br>'
+	volumioOem += 'We are able to offer the following:'
+	volumioOem += '<ul><br>'
+	volumioOem += '<li>Custom UI branding</li>'
+	volumioOem += '<li>Custom UI \ Backend features</li>'
+	volumioOem += '<li>Removal or addition of new features, based on specific scenarios</li>'
+	volumioOem += '<li>Consultancy on Hardware and software solution for specific scenarios</li>'
+	volumioOem += '<li>A very convenient pricing model</li>'
+	volumioOem += '</ul><br><br>'
+	volumioOem += 'Although you could make these changes yourself, letting us take care of it will guarantee:'
+	volumioOem += '<ul><br>'
+	volumioOem += '<li>Support for the whole products lifecycle</li>'
+	volumioOem += '<li>Tested, loved and proven solution by a huge community</li>'
+	volumioOem += '<li>All system updates, with your branding and functions preserved on each update</li>'
+	volumioOem += '<br><br>'
+	volumioOem += 'You should note that Volumio is licensed under the GPL and as such any changes to the source code made must be made available to anyone requesting them. We can offer also licence exceptions, '
+	volumioOem += 'if your business model needs it. If you are interested in this service, you can contact us for a quote.'
+	volumioOem += '</p></div></div>'
+
+	return volumioOem
+}
+
+
+function addVolumioSources() {
+ var VolumioSources = '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-code"></i> Source Code </h3></div><div class="panel-body"><p>'
+ VolumioSources +='<br><br>'
+ VolumioSources +='Volumio Backend code: <a href="https://github.com/volumio/Volumio2.git" target="_blank">https://github.com/volumio/Volumio2.git</a>'
+ VolumioSources +='<br>'
+ VolumioSources +='Volumio UI code: <a href="https://github.com/volumio/Volumio2-UI" target="_blank">https://github.com/volumio/Volumio2-UI</a>'
+ VolumioSources +='<br>'
+ VolumioSources +='Package Sources: <a href="https://github.com/volumio/debian-sources" target="_blank">https://github.com/volumio/debian-sources</a>'
+ VolumioSources += '</p></div></div>'
+
+	return VolumioSources
+}
+
 function writeHTML() {
-	var html = '<div class="box"><div class="boxHeader"><div class="title"><h2>Credits</h2></div></div>	';
+	var year = new Date().getFullYear();
+	var html = '<style type="text/css">img.logo{max-width: 90% !important;}</style>';
+	if (variant == 'volumio') {
+	  html = '<div class="box"><div class="boxHeader"><div class="title"><h2>Credits</h2></div></div>	';
 		html += '<div class="panel panel-default"><div class="panel-heading"></div><div class="panel-body"><p>'
-    html +='<center><img src="app/themes/volumio/assets/graphics/volumio-header.png" width=600 align="middle"> </a></center>'
+    html +='<center><img src="app/themes/'+theme+'/assets/variants/'+variant+'/graphics/credits-logo.png" width="60%"/></a></center>'
 		html +='<br>'
-		html +='<center>Copyright 2013-2016 Michelangelo Guarise</center>'
+		html +='<center>Copyright 2013-' + year + ' Michelangelo Guarise</center>'
 		html +='<br>'
 		html +='<center>Made with ♥ in Italy, brought to awesomeness by contributors all around the world</center>'
     html +='<br>'
@@ -242,9 +291,9 @@ function writeHTML() {
 		html +='<br>'
 		html +='Volumio UI code: <a href="https://github.com/volumio/Volumio2-UI" target="_blank">https://github.com/volumio/Volumio2-UI</a>'
 		html += '</p></div></div>'
+
 	for (itemN in array) {
 			var item = array[itemN];
-		console.log(item.name);
 		if (item.name == 'Volumio2-UI Bower') {
 			var htmlbower = addPackages(item.deps);
 			htmlbower += addPackages(item.devDeps);
@@ -269,6 +318,15 @@ function writeHTML() {
 		html += '</div></div>';
 	}
 	}
+	} else {
+	  html = '<div class="box"><div class="boxHeader"><div class="title"><h2>Credits</h2></div></div>	';
+		html += '<div class="panel panel-default"><div class="panel-heading"></div><div class="panel-body"><p>'
+		html +='<center><img src="app/themes/'+theme+'/assets/variants/'+variant+'/graphics/credits-logo.png" width="60%"/></a></center>'
+		html +='<br>'
+		html +='<center>Powered by <a href="https://volumio.org/oem-custom-solutions/" target="_parent">Volumio Technology</a><br></center>'
+		html +='<br>'
+		html += '</p></div></div>'
+	}
 	html += addThirdPartCredits();
 	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> License</h3></div><div class="panel-body"><p>'
 	html += '<p><span class="help-block">This Program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation either version 3, '
@@ -276,32 +334,11 @@ function writeHTML() {
 	html += 'See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Volumio; see the file COPYING. '
 	html += 'If not, see <a href="http://www.gnu.org/licenses/" target="_blank">http://www.gnu.org/licenses</a></span></p></p></div></div>'
 	html += '\n'
-	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-diamond"></i> Volumio OEM </h3></div><div class="panel-body"><p>'
-	html += '<span class="help-block"><strong>White label solution</strong></span>'
-	html += '<span class="help-block">Volumio name and logo can be used for commercial purposes only with an explicit authorization. <a href="mailto:info@volumio.org">Contact us</a> for details. </span>'
-	html += 'However, Volumio offers a white label solution which does not have Volumio branding. Also, such solutions can be finely tailored to fir any particular need. This has already been proved effective for various Audio '
-	html += 'Manufactures, enabling them to offer Volumios ease of use, excellent audio quality and reliability, but at a fraction of the cost of in-house development.'
-	html += 'This also benefits our project financially, which allows us to invest more resources in the project and constantly increse its quality. '
-	html += '<br><br>'
-	html += 'We are able to offer the following:'
-	html += '<ul><br>'
-	html += '<li>Custom UI branding</li>'
-	html += '<li>Custom UI \ Backend features</li>'
-	html += '<li>Removal or addition of new features, based on specific scenarios</li>'
-	html += '<li>Consultancy on Hardware and software solution for specific scenarios</li>'
-	html += '<li>A very convenient pricing model</li>'
-	html += '</ul><br><br>'
-	html += 'Although you could make these changes yourself, letting us take care of it will guarantee:'
-	html += '<ul><br>'
-	html += '<li>Support for the whole products lifecycle</li>'
-	html += '<li>Tested, loved and proven solution by a huge community</li>'
-	html += '<li>All system updates, with your branding and functions preserved on each update</li>'
-	html += '<br><br>'
-	html += 'You should note that Volumio is licensed under the GPL and as such any changes to the source code made must be made available to anyone requesting them. We can offer also licence exceptions, '
-	html += 'if your business model needs it. If you are interested in this service, you can contact us for a quote.'
-	html += '</p></div></div>'
+	if (variant == 'volumio') {
+		html += addVolumioOEM();
+	}
 	html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-legal"></i> Legal Disclaimer </h3></div><div class="panel-body"><p>'
-	html += '<p><strong>Copyright © 2013-2016 Michelangelo Guarise</strong>'
+	html += '<p><strong>Copyright © 2013-' + year + ' Michelangelo Guarise</strong>'
 	html += '<span class="help-block">We are not responsible for any damage to your computer or appliances caused by Volumio. Use it by your own risk.'
 	html += '<span class="help-block"><strong>Intellectual property</strong></span>'
 	html += 'This Agreement does not transfer from INTUITU di Michelangelo Guarise to you any INTUITU di Michelangelo Guarise or third party intellectual property, and all right, title and interest in and to such property'
@@ -312,15 +349,14 @@ function writeHTML() {
 	html += 'and logos used in connection with the Website may be the trademarks of other third parties. Your use of the Website grants you no right or license to reproduce or otherwise use any INTUITU di Michelangelo Guarise'
 	html += 'or third-party trademarks.'
 	html += '<span class="help-block"><strong>EULA</strong></span>'
-	html += 'End-User License Agreement for Volumio'
-	html += 'End-User License Agreement for Volumio'
-  html += 'This End-User License Agreement (EULA) is a legal agreement between you (either an individual or a single entity) and the mentioned author (Volumio) of this Software for the software product identified above,'
-	html += 'which includes computer software and may include associated media, printed materials, and “online” or electronic documentation (“SOFTWARE PRODUCT”).'
-	html += 'By installing, copying, or otherwise using the SOFTWARE PRODUCT, you agree to be bounded by the terms of this EULA.'
-	html += 'If you do not agree to the terms of this EULA, do not install or use the SOFTWARE PRODUCT.'
+	html += 'End-User License Agreement<br>'
+  html += 'This End-User License Agreement (EULA) is a legal agreement between you (either an individual or a single entity) and the author  of this Software for the software product identified above,'
+	html += 'which includes computer software and may include associated media, printed materials, and “online” or electronic documentation.'
+	html += 'By installing, copying, or otherwise using this software, you agree to be bounded by the terms of this EULA.'
+	html += 'If you do not agree to the terms of this EULA, do not install or use this software<br>'
 	html += '<span class="help-block"><strong>SOFTWARE PRODUCT LICENSE</strong></span>'
 	html += 'You may use, distribute and copy Volumio under the terms of GNU General Public License version 3 which you should have received with this software.'
-	html += '<span class="help-block"><strong>NO WARRANTIES.</strong></span>'
+	html += '<span class="help-block"><strong>NO WARRANTIES.</strong></span><br>'
 	html += 'The Author of this Software expressly disclaims any warranty for the SOFTWARE PRODUCT. The SOFTWARE PRODUCT and any related documentation is provided “as is” without warranty of any kind, either express or '
   html += 'implied, including, without limitation, the implied warranties or merchantability, fitness for a particular purpose, or noninfringement. The entire risk arising out of use or performance of the SOFTWARE PRODUCT'
 	html += ' remains with you.'
@@ -335,9 +371,10 @@ function writeHTML() {
 	html += 'Airplay is a registered trademark of Apple Inc.'
 	html += 'Direct-Stream Digital (DSD) is a registered trademark of Sony Corporation and Philips AG.</span>'
   html += '</p></div></div>'
+  html += addVolumioSources();
 
 	var creditsPath = "src/app/themes/" + theme + "/assets/static-pages/credits.html";
-  console.log(creditsPath);
+
 	fs.writeFile(creditsPath, html);
 	console.log("Wrote html");
 }
