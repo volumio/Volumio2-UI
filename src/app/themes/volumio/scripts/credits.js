@@ -277,7 +277,7 @@ function writeHTML() {
 	if (variant == 'volumio') {
 	  html = '<div class="box"><div class="boxHeader"><div class="title"><h2>Credits</h2></div></div>	';
 		html += '<div class="panel panel-default"><div class="panel-heading"></div><div class="panel-body"><p>'
-    html +='<center><img src="app/themes/'+theme+'/assets/variants/'+variant+'/graphics/credits-logo.png" width="60%"/></a></center>'
+    html +='<center><img src="app/themes/volumio/assets/graphics/volumio-header.png" width="60%"/></a></center>'
 		html +='<br>'
 		html +='<center>Copyright 2013-' + year + ' Michelangelo Guarise</center>'
 		html +='<br>'
