@@ -83,6 +83,14 @@ $font-family-sans-serif: "Lato";
   display: none;
 }
 
+$theme-link-color: white;
+$theme-link-hover-color: darken($theme-primary-color, 15%);
+$theme-footer-link-color: white;
+$theme-footer-link-selected-background-color: $theme-primary-color;
+$theme-footer-link-hover-color: white;
+$theme-link-playback-color: $theme-light-color;
+$theme-footer-link-selected-color: white;
+
 .toast-success {}
 
 .toast-info {}
