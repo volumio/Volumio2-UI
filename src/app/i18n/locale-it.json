@@ -68,12 +68,12 @@
     "PREVIOUS_TRACK":"Traccia Precedente",
     "PAUSE":"Pausa"
   },
-"MY_MUSIC": { 
-    "UPDATE":"Aggiorna", 
-    "UPDATE_DOC":"Aggiorna", 
-    "RESCAN":"Scansiona Nuovamente", 
-    "RESCAN_DOC":"Scansiona Nuovamente"  
-  }, 
+"MY_MUSIC": {
+    "UPDATE":"Aggiorna",
+    "UPDATE_DOC":"Aggiorna il database, aggiungendo le tracce aggiunte di recente",
+    "RESCAN":"Scansiona Nuovamente",
+    "RESCAN_DOC":"Scansiona nuovamente il database, ricreandolo da zero"  
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Ritorna ai Plugin",
     "PLUGINS":"Plugins",
