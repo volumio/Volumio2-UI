@@ -1,12 +1,14 @@
 <div class="tabBar">
   <button
       ui-sref="volumio.browse"
+      ng-mouseenter="hover = 'browse'"
+      ng-mouseleave="hover = ''"
       class="btn btn-default browseBtn"
       ng-class="{selected: state.current.name === 'volumio.browse'}"
       title="{{'COMMON.TAB_BROWSE' | translate}}">
     <img
         ng-if="!footer.playerService.state.updatedb"
-        ng-src="{{variantAssetsUrl}}/icons/browse.svg"
+        ng-src="{{variantAssetsUrl}}/icons/browse{{(hover === 'browse' || state.current.name === 'volumio.browse')?'-selected':''}}.svg"
         alt="{{'COMMON.TAB_BROWSE' | translate}}"/>
     <i ng-if="footer.playerService.state.updatedb" class="fa fa-refresh fa-spin"></i>
     <span translate="COMMON.TAB_BROWSE"></span>
@@ -15,18 +17,22 @@
   <button
       ui-sref="volumio.playback"
       class="btn btn-default playbackBtn"
+      ng-mouseenter="hover = 'playback'"
+      ng-mouseleave="hover = ''"
       ng-class="{selected: state.current.name === 'volumio.playback'}"
       title="{{'COMMON.TAB_PLAYBACK' | translate}}">
-    <img ng-src="{{variantAssetsUrl}}/icons/playback.svg" alt="{{'COMMON.TAB_PLAYBACK' | translate}}"/>
+    <img ng-src="{{variantAssetsUrl}}/icons/playback{{(hover === 'playback' || state.current.name === 'volumio.playback')?'-selected':''}}.svg" alt="{{'COMMON.TAB_PLAYBACK' | translate}}"/>
     <span translate="COMMON.TAB_PLAYBACK"></span>
   </button>
 
   <button
       ui-sref="volumio.play-queue"
       class="btn btn-default queueBtn"
+      ng-mouseenter="hover = 'queue'"
+      ng-mouseleave="hover = ''"
       ng-class="{selected: state.current.name === 'volumio.play-queue'}"
       title="{{'COMMON.TAB_QUEUE' | translate}}">
-    <img ng-src="{{variantAssetsUrl}}/icons/queue.svg" alt="{{'COMMON.TAB_QUEUE' | translate}}"/>
+    <img ng-src="{{variantAssetsUrl}}/icons/queue{{(hover === 'queue' || state.current.name === 'volumio.play-queue')?'-selected':''}}.svg" alt="{{'COMMON.TAB_QUEUE' | translate}}"/>
     <span translate="COMMON.TAB_QUEUE"></span>
   </button>
 </div>

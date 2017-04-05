@@ -12,7 +12,7 @@
       bottom: $footerHeight;
       left: 0px;
       width: 60px;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: $theme-transparent-buttons-background;
       text-align: center;
       .volumeSlider {
         pointer-events: auto;
