@@ -67,6 +67,12 @@
     "PREVIOUS_TRACK":"前のトラック",
     "PAUSE":"停止"
   },
+"MY_MUSIC": { 
+    "UPDATE":"更新", 
+    "UPDATE_DOC":"更新", 
+    "RESCAN":"再スキャン", 
+    "RESCAN_DOC":"再スキャン"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "プラグインに戻る",
     "PLUGINS":"プラグイン",

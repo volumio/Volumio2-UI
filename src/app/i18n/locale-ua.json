@@ -68,6 +68,12 @@
     "PAUSE":"Пауза",
     "CLEAR_AND_PLAY":"Очистити, додати та відтворити"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Оновлення", 
+    "UPDATE_DOC":"Оновлення", 
+    "RESCAN":"Пересканувати", 
+    "RESCAN_DOC":"Пересканувати"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Назад до плагинів",
     "PLUGINS":"Плагіни",

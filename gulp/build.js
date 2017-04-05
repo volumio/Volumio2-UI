@@ -7,6 +7,7 @@ var gulp = require('gulp');
 var conf = require('./conf');
 var gutil = require('gulp-util');
 var exec = require('child_process').exec;
+var fs = require('fs');
 
 var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
 var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
@@ -122,7 +123,6 @@ gulp.task('theme', function () {
 
 //Set static page title to remove FOUC
 gulp.task('replace-page-title', ['html'], function () {
-  var fs = require('fs');
   var themeSettings =
       fs.readFileSync(`${conf.paths.src}/app/themes/${themeSelected}/assets/variants/${variantSelected}/${variantSelected}-settings.json`, 'utf8');
   themeSettings = JSON.parse(themeSettings);
@@ -151,11 +151,18 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('credits', function (cb) {
-  exec('node src/app/themes/' + themeSelected + '/scripts/credits.js ' + themeSelected, function (err, stdout, stderr) {
+
+  var creditsfile = 'src/app/themes/' + themeSelected + '/scripts/credits.js ' + themeSelected + ' ' + variantSelected;
+  fs.unlink(creditsfile, function(err) {
+  if (err) {
+  }
+  exec('node '+ creditsfile, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
   });
+});
+
 })
 
 gulp.task('build-app', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title']);

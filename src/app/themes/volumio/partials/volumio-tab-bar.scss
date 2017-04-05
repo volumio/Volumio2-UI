@@ -14,16 +14,16 @@
       }
     }
     &.browseBtn {
-      background-color: $theme-dark-transparent-background;
+      // background-color: $theme-dark-transparent-background;
     }
     &.playbackBtn {
-      background-color: $theme-light-color;
+      background-color: $theme-link-playback-color;
       &:focus {
-        background-color: $theme-dark-transparent-background;
+        // background-color: $theme-dark-transparent-background;
       }
     }
     &.queueBtn {
-      background-color: $theme-dark-transparent-background;
+      // background-color: $theme-dark-transparent-background;
     }
     @include breakpoint(xs) {
       font-size: 26px;

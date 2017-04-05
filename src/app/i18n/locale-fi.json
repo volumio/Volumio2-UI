@@ -68,6 +68,12 @@
     "PAUSE":"Tauko",
     "CLEAR_AND_PLAY": "Tyhjennä ja soita"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Päivitä", 
+    "UPDATE_DOC":"Päivitä", 
+    "RESCAN":"Selaa uudelleen", 
+    "RESCAN_DOC":"Selaa uudelleen"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Takaisin liitännäisiin",
     "PLUGINS":"Liitännäiset",

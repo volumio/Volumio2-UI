@@ -81,6 +81,12 @@
     "PAUSE":"Pausar",
     "CLEAR_AND_PLAY": "Limpar e Reproduzir"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Atualizar", 
+    "UPDATE_DOC":"Atualizar", 
+    "RESCAN":"Resondar", 
+    "RESCAN_DOC":"Resondar"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Voltar aos Plugins",
     "PLUGINS":"Plugins",

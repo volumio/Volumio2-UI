@@ -68,6 +68,12 @@
     "PAUSE":"Szünet",
     "CLEAR_AND_PLAY": "Törlés és lejátszás"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Frissítés", 
+    "UPDATE_DOC":"Frissítés", 
+    "RESCAN":"Újra keres", 
+    "RESCAN_DOC":"Újra keres"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Vissza a beépülőkhöz",
     "PLUGINS":"Beépülők",

@@ -67,6 +67,12 @@
     "PREVIOUS_TRACK":"Forrige nummer",
     "PAUSE":"Pause"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Opdater", 
+    "UPDATE_DOC":"Opdater", 
+    "RESCAN":"Scan igen", 
+    "RESCAN_DOC":"Scan igen"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Tilbage til plugins",
     "PLUGINS":"Plugins",

@@ -67,6 +67,12 @@
     "PREVIOUS_TRACK":"Anterior Pista",
     "PAUSE":"Pausa"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Actualizar", 
+    "UPDATE_DOC":"Actualizar", 
+    "RESCAN":"Reescanear", 
+    "RESCAN_DOC":"Reescanear"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Volver a Plugins",
     "PLUGINS":"Plugins",

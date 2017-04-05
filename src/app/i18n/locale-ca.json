@@ -67,6 +67,12 @@
   	"PREVIOUS_TRACK":"Pista anterior",
   	"PAUSE":"Pausa"
   },
+"MY_MUSIC": { 
+  	"UPDATE":"Actualització", 
+  	"UPDATE_DOC":"Actualització", 
+  	"RESCAN":"Tornar a analitzar", 
+  	"RESCAN_DOC":"Tornar a analitzar"  
+  }, 
   "PLUGINS": {
   	"BACK_TO_PLUGINS":"Tornar als connectors",
   	"PLUGINS":"Connectors",

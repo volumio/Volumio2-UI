@@ -86,6 +86,12 @@
     "PAUSE":"Pause",
     "CLEAR_AND_PLAY": "Clear and play"
   },
+  "MY_MUSIC": {
+    "UPDATE": "Update",
+    "UPDATE_DOC": "Update music database entries for any changed, new, or deleted files",
+    "RESCAN": "Rescan",
+    "RESCAN_DOC": "Remake music database entries for all files"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Back to Plugins",
     "PLUGINS":"Plugins",

@@ -67,6 +67,12 @@
     "PREVIOUS_TRACK":"Poprzedni utwór",
     "PAUSE":"Pauza"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Aktualizuj", 
+    "UPDATE_DOC":"Aktualizuj", 
+    "RESCAN":"Skanuj ponownie", 
+    "RESCAN_DOC":"Skanuj ponownie"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Powrót do wtyczek",
     "PLUGINS":"Wtyczki",
