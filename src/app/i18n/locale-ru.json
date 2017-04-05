@@ -68,6 +68,12 @@
     "PAUSE":"Пауза",
     "CLEAR_AND_PLAY": "Очистить и играть"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Обновить", 
+    "UPDATE_DOC":"Обновить", 
+    "RESCAN":"Пересканировать", 
+    "RESCAN_DOC":"Пересканировать"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Назад к Плагинам",
     "PLUGINS":"Плагины",

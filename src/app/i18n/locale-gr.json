@@ -67,6 +67,12 @@
     "PREVIOUS_TRACK":"Προηγούμενο κομμάτι",
     "PAUSE":"Pause"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Ενημέρωση", 
+    "UPDATE_DOC":"Ενημέρωση", 
+    "RESCAN":"Σκανάρισμα ξανά", 
+    "RESCAN_DOC":"Σκανάρισμα ξανά"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Επιστροφή στα Plugins",
     "PLUGINS":"Plugins",

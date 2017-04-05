@@ -67,6 +67,12 @@
     "PREVIOUS_TRACK":"Vorige Nummer",
     "PAUSE":"Pauze"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Update", 
+    "UPDATE_DOC":"Update", 
+    "RESCAN":"Opnieuw Scannen", 
+    "RESCAN_DOC":"Opnieuw Scannen"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Terug naar Plugins",
     "PLUGINS":"Plugins",

@@ -71,6 +71,12 @@
     "PAUSE":"暂停",
     "CLEAR_AND_PLAY": "清空并播放"
   },
+"MY_MUSIC": { 
+    "UPDATE":"更新", 
+    "UPDATE_DOC":"更新", 
+    "RESCAN":"重新扫描", 
+    "RESCAN_DOC":"重新扫描"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "返回插件列表",
     "PLUGINS":"插件",

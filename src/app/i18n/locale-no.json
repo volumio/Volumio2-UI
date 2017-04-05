@@ -69,6 +69,12 @@
     "PAUSE":"Pause",
     "CLEAR_AND_PLAY": "Slett og spill"
   },
+"MY_MUSIC": { 
+    "UPDATE":"Oppdater", 
+    "UPDATE_DOC":"Oppdater", 
+    "RESCAN":"Søk på nytt", 
+    "RESCAN_DOC":"Søk på nytt"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Tilbake til Plugins",
     "PLUGINS":"Plugins",

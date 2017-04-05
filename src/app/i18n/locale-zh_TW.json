@@ -71,6 +71,12 @@
     "PREVIOUS_TRACK":"上一軌",
     "PAUSE":"暫停"
   },
+"MY_MUSIC": { 
+    "UPDATE":"更新", 
+    "UPDATE_DOC":"更新", 
+    "RESCAN":"重新掃瞄", 
+    "RESCAN_DOC":"重新掃瞄"  
+  }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "返回插件列表",
     "PLUGINS":"插件",
