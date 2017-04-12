@@ -197,7 +197,7 @@ function finished() {
 }
 
 function addThirdPartCredits() {
-	var thirdparty;
+	var thirdparty = '';
 	var creditsjson=fs.readJsonSync(__dirname+'/credits.json');
 	for (i = 0; i < creditsjson.categories.length; i++) {
 		var category =  creditsjson.categories[i];
