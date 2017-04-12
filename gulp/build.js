@@ -131,6 +131,7 @@ gulp.task('replace-page-title', ['html'], function () {
   var index = fs.readFileSync(`dist/index.html`, 'utf8');
   index = index.replace('<title></title>', `<title>${pageTitle}</title>`);
   index = index.replace(/@APP_NAME/g, themeSettings.app || '');
+  index = index.replace(/@BAR_COLOR/g, themeSettings.addressBarColor || '');
   fs.writeFileSync('dist/index.html', index);
 });
 
