@@ -6,6 +6,8 @@
 
 ## Volumio Web Interface
 
+[![Join the chat at https://gitter.im/volumio/Volumio2-UI](https://badges.gitter.im/volumio/Volumio2-UI.svg)](https://gitter.im/volumio/Volumio2-UI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This UI is meant to be used as a standalone Web User Interface communicating via Volumio2 Backend via Socket.io API, see [Volumio2 WebSocket API reference](https://github.com/volumio/Volumio2/wiki/WebSockets-API-Reference)
 
 Currently the UI is served via Express Static Server, and resides at /volumio/http/www
