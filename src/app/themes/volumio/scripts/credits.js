@@ -283,14 +283,12 @@ function writeHTML() {
 		html +='<br>'
 		html +='<center>Made with ♥ in Italy, brought to awesomeness by contributors all around the world</center>'
     html +='<br>'
-
 		html +='</p></div></div>'
-		html +='<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-gift"></i> Be Part of Volumio</h3></div><div class="panel-body"><p>'
+		html +='<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-gift"></i>Support Volumio</h3></div><div class="panel-body"><p>'
     html +='<span class="help-block"><strong>Do you like Volumio? Help us make it better with a small contribution on Patreon! </strong></span>'
 		html +='<br>'
 		html +='<a rel="nofollow" target="_blank" href="https://www.patreon.com/Volumio"><img height="40" width="204" style="margin-top: 10px;margin-bottom: 10px;" src="app/themes/volumio/assets/graphics/patreon-medium-button.png" title="" alt="" scale="0"></a>'
 		html +='<br>'
-
 		html +='</p></div></div>'
 
 	for (itemN in array) {
