@@ -276,7 +276,7 @@ function writeHTML() {
 	var html = '<style type="text/css">img.logo{max-width: 90% !important;}</style>';
 	if (variant == 'volumio') {
 	  html = '<div class="box"><div class="boxHeader"><div class="title"><h2>Credits</h2></div></div>	';
-		html += '<div class="panel panel-default"><div class="panel-heading"></div><div class="panel-body"><p>'
+		html +='<div class="panel panel-default"><div class="panel-heading"></div><div class="panel-body"><p>'
     html +='<center><img src="app/themes/volumio/assets/graphics/volumio-header.png" width="60%"/></a></center>'
 		html +='<br>'
 		html +='<center>Copyright 2013-' + year + ' Michelangelo Guarise</center>'
@@ -284,19 +284,14 @@ function writeHTML() {
 		html +='<center>Made with ♥ in Italy, brought to awesomeness by contributors all around the world</center>'
     html +='<br>'
 
-		html += '</p></div></div>'
-		html += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-gift"></i> Be Part of Volumio</h3></div><div class="panel-body"><p>'
-    html +='Help Volumio development with a small contribution on Patreon! '
+		html +='</p></div></div>'
+		html +='<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-gift"></i> Be Part of Volumio</h3></div><div class="panel-body"><p>'
+    html +='<span class="help-block"><strong>Do you like Volumio? Help us make it better with a small contribution on Patreon! </strong></span>'
 		html +='<br>'
 		html +='<a rel="nofollow" target="_blank" href="https://www.patreon.com/Volumio"><img height="40" width="204" style="margin-top: 10px;margin-bottom: 10px;" src="app/themes/volumio/assets/graphics/patreon-medium-button.png" title="" alt="" scale="0"></a>'
 		html +='<br>'
-		html +='<span class="help-block"><strong>Source Code</strong></span>'
-		html +='Contributions are not only welcome, they are a vital part of the project. Feel free to jump in and make Volumio better'
-		html +='<br><br>'
-		html +='Volumio Backend code: <a href="https://github.com/volumio/Volumio2.git" target="_blank">https://github.com/volumio/Volumio2.git</a>'
-		html +='<br>'
-		html +='Volumio UI code: <a href="https://github.com/volumio/Volumio2-UI" target="_blank">https://github.com/volumio/Volumio2-UI</a>'
-		html += '</p></div></div>'
+
+		html +='</p></div></div>'
 
 	for (itemN in array) {
 			var item = array[itemN];
