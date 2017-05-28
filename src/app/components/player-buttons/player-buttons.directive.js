@@ -111,7 +111,7 @@ class PlayerButtonsController {
         combo: '9',
         description: 'Playlist item 9',
         callback: () => this.playQueueService.play(8)
-      })
+      });
   }
 }
 
