@@ -290,6 +290,8 @@ class PlayerService {
         case 'spotify':
         case 'wav':
         case 'wawpack':
+        case 'airplay':
+        case 'YouTube':
         case 'wma':
           this.state.fileFormat = {
             url: this.state.trackType,
