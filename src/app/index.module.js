@@ -116,6 +116,7 @@ angular.module('volumio', [
   'ngFileUpload',
   'pascalprecht.translate',
   'LocalStorageModule',
+  'cfp.hotkeys',
 
   //Angular core modules
   // 'ngAnimate',
