@@ -136,7 +136,7 @@
     "NAS_IP_ADDRESS_DOC":"L'adressa IP de la unitat de xarxa",
     "NAS_PATH":"Ruta",
     "NAS_PATH_DOC":"Tria la ruta a on està ubicada la música",
-    "SHARE_TYPE":"Opcions de compartir l'arxiu",
+    "SHARE_TYPE":"Tipus de l'arxiu a compartir",
     "USERNAME":"Nom d'usuari del servidor",
     "PASSWORD":"Contrasenya",
     "OPTIONS":"Opcions",
