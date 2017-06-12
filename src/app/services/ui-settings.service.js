@@ -56,6 +56,7 @@ class UiSettingsService {
   registerListner() {
     this.socketService.on('pushUiSettings', (data) => {
       if (data.background) {
+        delete this.uiSettings.color;
         if (data.background.path.indexOf(this.socketService.host) === -1) {
           var bg = `${this.socketService.host}/backgrounds/${data.background.path}`;
           data.background.path = bg;
