@@ -172,8 +172,8 @@
     "NETWORK_NAME": "Nom du réseau"   
   },
   "SLEEP": {
-    "POWER_OFF": "Eteindre",
-    "STOP_MUSIC": "Arrêter la musique"
+    "POWER_OFF": "Eteindre dans",
+    "STOP_MUSIC": "Arrêter la musique dans"
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist"
