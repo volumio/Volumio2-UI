@@ -32,7 +32,7 @@ class ModalAlarmClockController {
   }
 
   deleteAlarm(index) {
-    this.alarms.splice(index, 1);
+    this.alarms.splice(this.alarms.indexOf(index), 1);
   }
 
   cancel() {
