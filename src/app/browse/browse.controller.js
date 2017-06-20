@@ -77,6 +77,21 @@ class BrowseController {
     let item = this.browseService.lists[listIndex].items[itemIndex];
     this.clickListItem(item);
   }
+  clickListItemArtist(artist) {
+    //alert("hu:"+'artists://'+encodeURI(artist));
+    window.setTimeout(
+      function (obj) {
+        obj.fetchLibrary({uri: 'artists://'+encodeURI(artist)}, false);
+      }, 100,this);
+  }
+  clickListItemAlbum(artist,album) {
+  //  alert("hu:"+'albums://'+encodeURI(album)+'/'+encodeURI(artist));
+    window.setTimeout(
+      function (obj) {
+        obj.fetchLibrary({uri: 'albums://'+encodeURI(album)+'/'+encodeURI(artist)}, false);
+      }, 100,this);
+
+  }
 
   //TODO remove this code
   // dblClickListItem(item) {
@@ -90,6 +105,33 @@ class BrowseController {
   //   let item = this.browseService.lists[listIndex].items[itemIndex];
   //   this.dblClickListItem(item);
   // }
+
+  hamburgerTitleClick(button,listIndex) {
+
+    let hamburgerMenuMarkup = `
+      <div
+          uib-dropdown
+          on-toggle="browse.toggledItem(open, $event)"
+          class="hamburgerMenu">
+        <button id="hamburgerMenuBtn-Title" class="dropdownToggle btn-link" uib-dropdown-toggle>
+          <i class="fa fa-ellipsis-v"></i>
+        </button>
+        <ul class="dropdown-menu buttonsGroup">
+          <browse-hamburger-menu
+          item="browse.browseService.lists[${listIndex}]"
+              browse="browse">
+          </browse-hamburger-menu>
+        </ul>
+      </div>
+    `;
+    hamburgerMenuMarkup = this.$compile(hamburgerMenuMarkup)(this.$scope);
+    let buttonParent = angular.element(button).parent();
+    buttonParent.replaceWith(hamburgerMenuMarkup);
+    this.$timeout(() => {
+      document.querySelector(`#hamburgerMenuBtn-Title`).click();
+    }, 0);
+  }
+
 
   hamburgerMenuClick(button, listIndex, itemIndex) {
     let hamburgerMenuMarkup = `
@@ -200,6 +242,8 @@ class BrowseController {
     this.socketService.emit(item.emit, item.payload);
   }
 
+
+
   renderBrowseTable() {
     if (!this.browseService.lists) {
       return false;
@@ -214,8 +258,25 @@ class BrowseController {
         if (list.title) {
           this.table += `
             <div class="rowTitle">
-              <i class="${list.icon} ${(list.icon) ? '' : 'hidden'}"></i> ${list.title}
-            </div>`;
+              <span><i class="${list.icon} ${(list.icon) ? '' : 'hidden'}"></i> ${list.title}</span>`;
+
+              this.table += `
+                <span  class="commandTitleButtons">
+                  <span  class="hamburgerMenu
+                      ${(list.uri) ?
+                          '' : 'hidden'}">
+                    <button class="dropdownToggle btn-link"
+                        onclick="${angularThis}.hamburgerTitleClick(this, ${listIndex})"
+                        title="Options...">
+                      <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                  </span>
+                </span>`;
+
+            this.table += `</div>`;
+
+
+
         }
 
         this.table += `<div class="listWrapper">`;
@@ -239,8 +300,7 @@ class BrowseController {
           this.table += `
             <div class="commandButtons">
               <div class="hamburgerMenu
-                  ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' ||
-                      item.type === 'streaming-category') ?
+                  ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title') ?
                       'hidden' : ''}">
                 <button class="dropdownToggle btn-link"
                     onclick="${angularThis}.hamburgerMenuClick(this, ${listIndex}, ${itemIndex}, event)"
@@ -251,13 +311,14 @@ class BrowseController {
             </div>`;
 
           this.table += `
-            <div class="description breakMe"
-                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
-              <div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+            <div class="description breakMe">
+              <div onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})"
+              class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
                 ${(item.title) ? item.title : ''}
               </div>
               <div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
-                ${(item.artist) ? item.artist : ''} ${(item.album) ? '- ' + item.album : ''}
+                <a onclick="${angularThis}.clickListItemArtist('${item.artist}');">${(item.artist) ? item.artist: ''}</a>
+                <a onclick="${angularThis}.clickListItemAlbum('${item.artist}','${item.album}');"> ${(item.album) ? '- ' + item.album : ''}</a>
               </div>
             </div>`;
 
