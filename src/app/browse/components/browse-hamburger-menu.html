@@ -29,6 +29,12 @@
     title="{{'BROWSER.DELETE_PLAYLIST' | translate}}">
   <a href><i class="fa fa-trash"></i>{{'BROWSER.DELETE_PLAYLIST' | translate}}</a>
 </li>
+<li ng-if="::item.type === 'remdisk'"
+    ng-click="browse.safeRemoveDrive(item.title)"
+    title="{{'BROWSER.SAFE_REMOVE' | translate}}">
+  <a href><i class="fa fa-eject"></i>{{'BROWSER.SAFE_REMOVE' | translate}}</a>
+</li>
+
 
 <li ng-if="::item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"
     ng-click="browse.playlistService.addToFavourites(item)"
