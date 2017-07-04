@@ -44,7 +44,7 @@ class PlayQueueService {
     this.$log.debug('PlayQueueService replaceAndPlayCue', item);
     this.socketService.emit('replaceAndPlayCue', {
       uri: item.uri,
-      title: item.title,
+      number: item.number,
       service: (item.service || null)
     });
   }

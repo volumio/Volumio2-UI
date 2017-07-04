@@ -78,19 +78,6 @@ class BrowseController {
     this.clickListItem(item);
   }
 
-  //TODO remove this code
-  // dblClickListItem(item) {
-  //   if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
-  //     this.play(item);
-  //   } else if (item.type === 'cuesong') {
-  //     this.playQueueService.addPlayCue(item);
-  //   }
-  // }
-  // dblClickListItemByIndex(listIndex, itemIndex) {
-  //   let item = this.browseService.lists[listIndex].items[itemIndex];
-  //   this.dblClickListItem(item);
-  // }
-
   hamburgerMenuClick(button, listIndex, itemIndex) {
     let hamburgerMenuMarkup = `
       <div
@@ -185,13 +172,14 @@ class BrowseController {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'cuesong' ||
-        item.type === 'remdisk';
+        item.type === 'remdisk' || item.type === 'cuefile';
     return ret;
   }
   showAddToQueueButton(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
-        item.type === 'playlist' || item.type === 'remdisk';
+        item.type === 'playlist' || item.type === 'remdisk' ||
+        item.type === 'cuefile';
     return ret;
   }
   showAddToPlaylist(item) {
