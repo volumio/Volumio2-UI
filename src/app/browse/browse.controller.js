@@ -152,6 +152,10 @@ class BrowseController {
     this.addWebRadio(item);
   }
 
+  safeRemoveDrive(item) {
+    this.socketService.emit('safeRemoveDrive', item);
+  }
+
   search() {
     if (this.searchField.length >= 3) {
       this.browseService.isSearching = true;
@@ -180,17 +184,19 @@ class BrowseController {
   showPlayButton(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
-        item.type === 'playlist' || item.type === 'cuesong';
+        item.type === 'playlist' || item.type === 'cuesong' ||
+        item.type === 'remdisk';
     return ret;
   }
   showAddToQueueButton(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
-        item.type === 'playlist';
+        item.type === 'playlist' || item.type === 'remdisk';
     return ret;
   }
   showAddToPlaylist(item) {
-    let ret = item.type === 'folder' || item.type === 'song';
+    let ret = item.type === 'folder' || item.type === 'song' ||
+    item.type === 'remdisk';
     return ret;
   }
 
