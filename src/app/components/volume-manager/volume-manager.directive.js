@@ -17,7 +17,7 @@ class VolumeManagerDirective {
 }
 
 class VolumeManagerController {
-  constructor($rootScope, $scope, playerService, $timeout, matchmediaService, themeManager) {
+  constructor($rootScope, $scope, playerService, $timeout, matchmediaService, themeManager, uiSettingsService) {
     'ngInject';
     this.timeoutHandler = null;
     this.playerService = playerService;
@@ -36,7 +36,8 @@ class VolumeManagerController {
         displayInput: false,
         step: 1,
         angleOffset: -160,
-        angleArc: 320
+        angleArc: 320,
+        thickness: uiSettingsService.uiSettings.knobThickness || 0.2
       };
       $scope.$watch(() => playerService.volume,  (value) => {
         if (value) {

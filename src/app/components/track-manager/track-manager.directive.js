@@ -53,7 +53,7 @@ class TrackManagerDirective {
 class TrackManagerController {
   constructor(
       $element, playerService, $timeout, modalService, matchmedia, socketService, $scope, themeManager,
-      matchmediaService, $log) {
+      matchmediaService, $log, uiSettingsService) {
     'ngInject';
     this.playerService = playerService;
     this.modalService = modalService;
@@ -76,7 +76,8 @@ class TrackManagerController {
         displayInput: false,
         step: 1,
         angleOffset: 0,
-        angleArc: 360
+        angleArc: 360,
+        thickness: uiSettingsService.uiSettings.knobThickness || 0.2
       };
 
       this.onChange = (value) => {
