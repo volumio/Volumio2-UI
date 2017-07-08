@@ -1,5 +1,5 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate, $http) {
+  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate, $http, $q) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -7,9 +7,10 @@ class UiSettingsService {
     this.$log = $log;
     this.$translate = $translate;
     this.$http = $http;
+    this.$q = $q;
 
     this.currentTheme = themeManager.theme;
-    this.uiSettings = {};
+    this.uiSettings = undefined;
 
     this.defaultUiSettings = {
       backgroundImg: 'default bkg'
@@ -94,14 +95,22 @@ class UiSettingsService {
     let settingsUrl =
         `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
-    this.$http.get(settingsUrl)
+    // Return pending promise or cached results
+    if (this.uiSettings) {
+      return this.$q.resolve(this.uiSettings);
+    } else if (this.settingsPromise) {
+      return this.settingsPromise;
+    }
+    this.settingsPromise = this.$http.get(settingsUrl)
       .then((response) => {
         this.uiSettings = response.data;
         this.$log.debug('Variant settings', response.data);
+        return this.uiSettings;
       })
       .finally(() => {
         this.socketService.emit('getUiSettings');
       });
+    return this.settingsPromise;
   }
 }
 
