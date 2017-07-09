@@ -12,5 +12,6 @@
     "showDescription": true
   },
   "addressBarColor": "black",
-  "indexState": "play-queue"
+  "indexState": "playback",
+  "browseSourcesView": "list"
 }
