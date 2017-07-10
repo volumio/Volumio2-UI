@@ -37,8 +37,10 @@ class VolumeManagerController {
         step: 1,
         angleOffset: -160,
         angleArc: 320,
-        thickness: uiSettingsService.uiSettings.knobThickness || 0.2
+        thickness: uiSettingsService.uiSettings.knobDesktopThickness || 0.2
       };
+      this.volume = playerService.volume;
+      console.info('playerService.volume', playerService.volume);
       $scope.$watch(() => playerService.volume,  (value) => {
         if (value) {
          this._updateKnobState();

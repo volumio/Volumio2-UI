@@ -12,5 +12,6 @@
     "showDescription": true
   },
   "addressBarColor": "black",
-  "knobThickness": 0.08
+  "knobThicknessDesktop": 0.2,
+  "knobThicknessMobile": 0.08
 }
