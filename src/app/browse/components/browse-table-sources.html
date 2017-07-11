@@ -1,25 +1,41 @@
-<tr ng-repeat="source in browse.browseService.sources track by source.uri"
-    ng-click="browse.fetchLibrary(source)">
-  <td>
-    {{::source.name}}
-    <span ng-if="::source.info" class="info"> - {{::source.info}}</span>
-  </td>
-  <td class="commandButtons">
+<div class="browseTable sourcesTable">
+  <div class="listWrapper" ng-class="::{grid: browse.uiSettingsService.uiSettings.browseSourcesView === 'grid'}">
     <div
-        ng-if="::source.menuItems"
-        uib-dropdown
-        class="hamburgerMenu">
-      <button class="dropdownToggle btn-link" title="{{'COMMON.OPTIONS' | translate}} ..." uib-dropdown-toggle>
-        <i class="fa fa-bars"></i>
-      </button>
-      <ul
-          class="dropdown-menu buttonsGroup"
-          ng-class="{'last': ($index > 2 && browse.browseService.sources.length - $index < 3)}">
-        <li ng-repeat="item in source.menuItems track by $index"
-            ng-click="browse.browseServiceHamburgerClick(item.socketCall)">
-          <a href><i ng-if="::item.icon" ng-class="::item.icon"></i>{{::item.name}}</a>
-        </li>
-      </ul>
+        ng-repeat="source in browse.browseService.sources track by source.uri"
+        ng-click="browse.fetchLibrary(source)"
+        class="itemWrapper">
+      <div class="itemTab">
+        <div class="image">
+          <img ng-if="source.albumart" src="${this.playerService.getAlbumart(item.albumart)}" alt="${source.name}"/>
+          <i ng-if="source.icon" class="${source.icon}"></i>
+        </div>
+
+        <div class="commandButtons">
+          <div
+              ng-if="::source.menuItems"
+              uib-dropdown
+              class="hamburgerMenu">
+            <button class="dropdownToggle btn-link" title="{{'COMMON.OPTIONS' | translate}} ..." uib-dropdown-toggle>
+              <i class="fa fa-bars"></i>
+            </button>
+            <ul
+                class="dropdown-menu buttonsGroup"
+                ng-class="{'last': ($index > 2 && browse.browseService.sources.length - $index < 3)}">
+              <li ng-repeat="item in source.menuItems track by $index"
+                  ng-click="browse.browseServiceHamburgerClick(item.socketCall)">
+                <a href><i ng-if="::item.icon" ng-class="::item.icon"></i>{{::item.name}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="description breakMe">
+          <div class="title" ng-class="::{onlyTitle: !source.info}">
+            {{::source.name}}
+            <span ng-if="::source.info" class="info"> - {{::source.info}}</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </td>
-</tr>
+  </div>
+</div>

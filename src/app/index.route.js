@@ -109,6 +109,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
         }
       }
     })
+
     .state('volumio.plugin', {
       url: 'plugin/:pluginName',
       params: {isPluginSettings: null},
@@ -141,9 +142,28 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
           controllerAs: 'staticPage'
         }
       }
+    })
+
+    .state('volumio.redirect', {
+      url: 'redirect',
+      views: {
+        'content@volumio': {
+          template: '',
+          controller: function($state, uiSettingsService) {
+            uiSettingsService.initService().then(data => {
+              if (data && data.indexState) {
+                $state.go(`volumio.${data.indexState}`);
+              } else {
+                $state.go('volumio.playback');
+              }
+            });
+          },
+          controllerAs: 'redirect'
+        }
+      }
     });
 
-  $urlRouterProvider.otherwise('/playback');
+  $urlRouterProvider.otherwise('/redirect');
 }
 
 export default routerConfig;
