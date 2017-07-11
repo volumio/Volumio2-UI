@@ -53,41 +53,19 @@ class TrackManagerDirective {
 class TrackManagerController {
   constructor(
       $element, playerService, $timeout, modalService, matchmedia, socketService, $scope, themeManager,
-      matchmediaService, $log) {
+      matchmediaService, $log, uiSettingsService) {
     'ngInject';
     this.playerService = playerService;
     this.modalService = modalService;
     this.socketService = socketService;
     this.matchmediaService = matchmediaService;
+    this.themeManager = themeManager;
+    this.$timeout = $timeout;
+    this.uiSettingsService = uiSettingsService;
     this.$scope = $scope;
     this.$log = $log;
 
     this.initWatchers();
-    // this.initMatchmedia();
-
-    if (this.type === 'knob') {
-      this.knobOptions = {
-        min: 0,
-        max: 1001,
-        fgColor: themeManager.getCssValue('color'),
-        bgColor: themeManager.getCssValue('backgroundColor'),
-        width: 210,
-        height: 210,
-        displayInput: false,
-        step: 1,
-        angleOffset: 0,
-        angleArc: 360
-      };
-
-      this.onChange = (value) => {
-        $timeout.cancel(this.timeoutHandler);
-        this.timeoutHandler = $timeout(() => {
-          this.$log.debug('track manager', value);
-          this.playerService.stopSeek();
-          this.playerService.seek = value;
-        }, 200, false);
-      };
-    }
   }
 
   initWatchers() {
@@ -105,6 +83,7 @@ class TrackManagerController {
     });
 
     this.$scope.$watch(() => this.matchmediaService.isPhone, (newVal) => {
+      console.info(this.matchmediaService.isPhone);
       if (this.matchmediaService.isPhone) {
         let albumart = this.playerService.state && this.playerService.state.albumart;
         if (albumart) {
@@ -116,25 +95,39 @@ class TrackManagerController {
       } else {
         this.backgroundAlbumArtStyle = {};
       }
+      this._initKnob(this.matchmediaService.isPhone);
     });
   }
 
-  // initMatchmedia() {
-  //   this.matchMediaHandler = this.matchmedia.onPhone((mediaQueryList) => {
-  //     if (mediaQueryList.matches) {
-  //       let albumart = this.playerService.state && this.playerService.state.albumart;
-  //       if (albumart) {
-  //         let albumArtUrl = `url('${this.socketService.host}${albumart}')`;
-  //         this.backgroundAlbumArtStyle = {
-  //           'background-image': albumArtUrl
-  //         };
-  //       }
-  //     } else {
-  //       this.backgroundAlbumArtStyle = {};
-  //     }
-  //   });
-  // }
-}
+  _initKnob(isPhone) {
+    if (this.type !== 'knob') {
+      return;
+    }
+    this.knobOptions = {
+      min: 0,
+      max: 1001,
+      fgColor: this.themeManager.getCssValue('color'),
+      bgColor: this.themeManager.getCssValue('backgroundColor'),
+      width: 210,
+      height: 210,
+      displayInput: false,
+      step: 1,
+      angleOffset: 0,
+      angleArc: 360,
+      thickness: ((isPhone) ?
+          this.uiSettingsService.uiSettings.knobThicknessMobile :
+          this.uiSettingsService.uiSettings.knobThicknessDesktop) || 0.2
+    };
 
+    this.onChange = (value) => {
+      this.$timeout.cancel(this.timeoutHandler);
+      this.timeoutHandler = this.$timeout(() => {
+        this.$log.debug('track manager', value);
+        this.playerService.stopSeek();
+        this.playerService.seek = value;
+      }, 200, false);
+    };
+  }
+}
 
 export default TrackManagerDirective;
