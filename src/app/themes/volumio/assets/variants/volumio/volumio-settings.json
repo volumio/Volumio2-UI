@@ -11,5 +11,9 @@
     "showDoc": true,
     "showDescription": true
   },
-  "addressBarColor": "black"
+  "addressBarColor": "black",
+  "knobThicknessDesktop": 0.2,
+  "knobThicknessMobile": 0.09,
+  "indexState": "playback",
+  "browseSourcesView": "list"
 }

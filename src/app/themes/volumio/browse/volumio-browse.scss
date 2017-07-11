@@ -40,20 +40,6 @@
   margin-top: 6px;
 }
 
-#browseTableSources {
-  tr {
-    cursor: pointer;
-  }
-  td {
-    text-transform: capitalize;
-    padding-left: 10px;
-    height: 45px;
-    .info {
-      text-transform: none;
-    }
-  }
-}
-
 #browseTablesWrapper {
   overflow-y: auto;
 }
@@ -74,6 +60,16 @@
 .browseTable {
   .itemWrapper {
     cursor: pointer;
+  }
+
+  &.sourcesTable {
+    .listWrapper {
+      &.grid {
+        .description {
+          text-align: center;
+        }
+      }
+    }
   }
 
   .itemTab {

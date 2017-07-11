@@ -14,10 +14,10 @@
     </div>
 
     <div id="browseTablesWrapper">
-      <table id="browseTableSources" class="table table-hover table-condensed sourcesTable"
+      <div
           ng-if="!browse.browseService.isBrowsing && !browse.browseService.isSearching"
           ng-include src="'app/browse/components/browse-table-sources.html'">
-      </table>
+      </div>
       <div
           ng-if="browse.browseService.isBrowsing || browse.browseService.isSearching"
           ng-include src="'app/browse/components/browse-table-items.html'">

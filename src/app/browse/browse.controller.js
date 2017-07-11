@@ -1,6 +1,7 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
-      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService) {
+      modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
+      uiSettingsService) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -15,6 +16,7 @@ class BrowseController {
     this.$document = $document;
     this.$scope = $scope;
     this.$rootScope = $rootScope;
+    this.uiSettingsService = uiSettingsService;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();

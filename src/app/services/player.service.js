@@ -292,6 +292,8 @@ class PlayerService {
         case 'wawpack':
         case 'airplay':
         case 'YouTube':
+        case 'rr':
+        case 'bt':
         case 'wma':
           this.state.fileFormat = {
             url: this.state.trackType,
