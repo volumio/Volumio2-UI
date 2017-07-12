@@ -7,7 +7,7 @@
       <div class="itemTab">
         <div class="image">
           <img ng-if="source.albumart" src={{::source.albumart}} alt={{::source.name}}/>
-          <i ng-if="source.icon" class={{::source.icon}}></i>
+          <i ng-if="source.icon && !source.albumart" class={{::source.icon}}></i>
         </div>
 
         <div class="commandButtons">
