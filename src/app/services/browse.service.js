@@ -174,9 +174,14 @@ class BrowseService {
       this.filters = data;
     });
     this.socketService.on('pushBrowseSources', (data) => {
-      this.$log.debug('pushBrowseSources', data);
       this.availableListViews = ['list'];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].albumart) {
+          data[i].albumart = this.getSourcesAlbumart(data[i].albumart);
+        }
+      }
       this.sources = data;
+      this.$log.debug('pushBrowseSources', data);
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
       // data = this.mockService.get('getBrowseLibrary');
@@ -189,6 +194,17 @@ class BrowseService {
         this.$rootScope.$broadcast('browseService:fetchEnd');
       }
     });
+  }
+
+  getSourcesAlbumart(albumart) {
+    if (!albumart) {
+      return '';
+    }
+    if (~albumart.indexOf('http')) {
+      return albumart;
+    } else {
+      return `${this.socketService.host}${albumart}`;
+    }
   }
 
   initService() {
