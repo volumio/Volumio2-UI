@@ -6,8 +6,8 @@
         class="itemWrapper">
       <div class="itemTab">
         <div class="image">
-          <img ng-if="source.albumart" src="${this.playerService.getAlbumart(item.albumart)}" alt="${source.name}"/>
-          <i ng-if="source.icon" class="${source.icon}"></i>
+          <img ng-if="source.albumart" src={{::source.albumart}} alt={{::source.name}}/>
+          <i ng-if="source.icon" class={{::source.icon}}></i>
         </div>
 
         <div class="commandButtons">
