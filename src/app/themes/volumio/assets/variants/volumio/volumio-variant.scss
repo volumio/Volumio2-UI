@@ -99,3 +99,12 @@ $theme-footer-link-selected-color: white;
 .toast-error {}
 
 .toast-warning {}
+
+.browseTable .listWrapper.grid .image {
+    border: solid 0px #444 !important;
+}
+
+.browseTable .listWrapper.grid .itemTab {
+    border: solid 0px #7C7C7C !important;
+    margin: 5px !important;
+}
