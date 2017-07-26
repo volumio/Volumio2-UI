@@ -9,6 +9,9 @@ class PlayerService {
     this.uiSettingsService = uiSettingsService;
     this.$document = $document;
 
+    this.serverStateNumeral = -1;
+    this.stateNumeral = 0;
+
     this.state = null;
     this.trackInfo = null;
     this.favourite = {
@@ -188,7 +191,8 @@ class PlayerService {
       volume = 100;
     }
     this.$log.log('volume', volume);
-    this.socketService.emit('volume', volume);
+    this.socketService.emit('volume', {volume:volume, numeral:this.stateNumeral});
+      this.stateNumeral++;
   }
 
   get albumart() {
@@ -305,7 +309,16 @@ class PlayerService {
   }
 
   registerListner() {
+    this.socketService.on('connected', () => {
+      this.serverStateNumeral = -1;
+    });
+
     this.socketService.on('pushState', (data) => {
+      if(data.numeral < this.serverStateNumeral)
+        return;
+      console.log(data.numeral < this.serverStateNumeral);
+      this.serverStateNumeral = data.numeral;
+
       this.$log.debug('pushState', data);
       this.state = data;
 
