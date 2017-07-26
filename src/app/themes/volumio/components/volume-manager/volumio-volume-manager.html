@@ -4,11 +4,11 @@
       <div class="headerText green">
         <span ng-if="volumeManager.playerService.state.mute" translate="COMMON.VOLUME_MUTED"></span>
       </div>
-      <div class="bigText">{{volumeManager.playerService.volume}}</div>
+      <div class="bigText">{{volumeManager.displayVolume}}</div>
       <div class="smallText">/100</div>
     </div>
     <knob
-      value="volumeManager.playerService.volume"
+      value="volumeManager.displayVolume"
       options="volumeManager.knobOptions"
       type="volume">
     </knob>
@@ -33,7 +33,7 @@
 
 <div ng-if="volumeManager.matchmediaService.isPhone" class="volumeManager">
   <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
-    <div class="bigText">{{volumeManager.playerService.volume}}</div>
+    <div class="bigText">{{volumeManager.displayVolume}}</div>
     <div class="smallText">/100</div>
 
     <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}">
@@ -43,7 +43,7 @@
     <slider
         class="volumeSlider"
         ng-class="{disabled: volumeManager.playerService.state.mute}"
-        ng-model="volumeManager.playerService.volume"
+        ng-model="volumeManager.displayVolume"
         min="0"
         step="5"
         max="100"

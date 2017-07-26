@@ -24,6 +24,8 @@ class VolumeManagerController {
     this.matchmediaService = matchmediaService;
     this.showVerticalSlider = false;
     this.themeManager = themeManager;
+    this.dv = 69;
+    this.$timeout = $timeout;
 
     if (this.type === 'knob') {
       this.knobOptions = {
@@ -73,6 +75,26 @@ class VolumeManagerController {
         }
       });
     }
+  }
+
+  get displayVolume(){
+    if(this.timeoutHandler4 != null)
+      return this.playerService.volume;
+    return this.dv;
+  }
+
+  set displayVolume(volume){
+    this.dv = volume;
+    console.log("VOLUME SET TO " + volume);
+    this.$timeout.cancel(this.timeoutHandler3);
+    this.timeoutHandler3 = this.$timeout(() => {
+      this.playerService.volume = volume;
+      this.timeoutHandler3 = null;
+    }, 50, true);
+    this.$timeout.cancel(this.timeoutHandler4);
+    this.timeoutHandler4 = this.$timeout(() => {
+      this.timeoutHandler4 = null;
+    }, 300, true);
   }
 
   toggleMute() {
