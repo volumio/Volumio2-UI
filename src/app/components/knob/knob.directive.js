@@ -49,7 +49,7 @@ class KnobController {
             this.onRelease({value: value});
           }
           this.isChanging = false;
-        }, 0, true);
+        }, 300, true);
       }
     };
     angular.extend(knobOptions, this.options);
