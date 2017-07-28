@@ -154,7 +154,11 @@ class BrowseController {
       this.searchTimeoutHandler = this.$timeout(() => {
         let emitPayload = {
           type: this.browseService.filterBy,
-          value: this.searchField
+          value: this.searchField,
+          plugin_name: this.browseService.currentFetchRequest.plugin_name,
+          plugin_type: this.browseService.currentFetchRequest.plugin_type,
+          uri: this.browseService.currentFetchRequest.uri,
+          service: this.browseService.currentFetchRequest.service
         };
         this.$log.debug('search', emitPayload);
         this.socketService.emit('search', emitPayload);
