@@ -190,9 +190,9 @@ class PlayerService {
     } else if (volume > 100) {
       volume = 100;
     }
-    this.$log.log('volume', volume);
+    this.$log.log('volume ' + volume + ', numeral ' + this.stateNumeral);
     this.socketService.emit('volume', {volume:volume, numeral:this.stateNumeral});
-      this.stateNumeral++;
+    this.stateNumeral++;
   }
 
   get albumart() {
@@ -320,7 +320,6 @@ class PlayerService {
     this.socketService.on('pushState', (data) => {
       if(data.numeral < this.serverStateNumeral)
         return;
-      console.log(data.numeral < this.serverStateNumeral);
       this.serverStateNumeral = data.numeral;
 
       this.$log.debug('pushState', data);

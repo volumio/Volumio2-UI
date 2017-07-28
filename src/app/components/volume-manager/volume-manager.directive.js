@@ -25,6 +25,7 @@ class VolumeManagerController {
     this.showVerticalSlider = false;
     this.themeManager = themeManager;
     this.dv = 69;
+    this.displayVolumex = 69;
     this.$timeout = $timeout;
     this.knobUpdateCallback = null;
 
@@ -85,13 +86,11 @@ class VolumeManagerController {
   }
 
   set displayVolume(volume){
+    if(this.playerService.state.volume == volume)
+      return;
     this.dv = volume;
-    console.log("VOLUME SET TO " + volume);
-    this.$timeout.cancel(this.timeoutHandler3);
-    this.timeoutHandler3 = this.$timeout(() => {
       this.playerService.volume = volume;
       this.timeoutHandler3 = null;
-    }, 0, true);
     this.$timeout.cancel(this.timeoutHandler4);
     this.timeoutHandler4 = this.$timeout(() => {
       this.timeoutHandler4 = null;
