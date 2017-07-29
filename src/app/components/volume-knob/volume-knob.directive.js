@@ -3,7 +3,7 @@ class VolumeKnobDirective {
     'ngInject';
     let directive = {
       restrict: 'E',
-      template: '<input ng-model="knob.value">',
+      template: '<input ng-model="volume-knob.value">',
       scope: {},
       controller: VolumeKnobController,
       controllerAs: 'volume-knob',
@@ -32,6 +32,7 @@ class VolumeKnobController {
     let knobOptions = {
       change: (value) =>{
         $timeout(() => {
+          //Rounding the value to make the transition more smooth
           var rounded = Math.round(value);
           this.value = rounded;
           this.localValue = rounded;
@@ -44,40 +45,13 @@ class VolumeKnobController {
           this.localValue = rounded;
         }, 0, true);
       }
-    //Original Code
-    //   change: (value) => {
-    //     console.log("change: " + value);
-    //     $timeout.cancel(this.timeoutHandler);
-    //      this.timeoutHandler = $timeout(() => {
-    //        value = parseInt(value, 10);
-    //        this.value = value;
-    //        if (this.onChange) {
-    //          this.onChange({value: value});
-    //        }
-    //      }, 300, false);
-    //   },
-    //   release: (value, e) => {
-    //     console.log("release: " + value);
-    //     $timeout.cancel(this.timeoutHandler2);
-    //     this.isChanging = true;
-    //     this.timeoutHandler2 = $timeout(() => {
-    //       if (this.type === 'volume') {
-    //         value = parseInt(value, 10);
-    //         this.value = value;
-    //       }
-    //       if (this.onRelease) {
-    //         this.onRelease({value: value});
-    //       }
-    //       this.isChanging = false;
-    //     }, 0, true);
-    //  }
     };
     angular.extend(knobOptions, this.options);
     $element.knob(knobOptions);
 
     // NOTE live update value
     $scope.$watch(() => this.value,  (newVal, oldVal) => {
-      if (newVal != oldVal && newVal != this.localValue) {
+      if (newVal !== oldVal && newVal !== this.localValue) {
         this.$element.val(Math.round(newVal)).trigger("change");
       }
     });
