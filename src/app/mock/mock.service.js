@@ -15,91 +15,91 @@ class MockService {
     this._mock = {
       //networkSharesDiscovery
       networkSharesDiscovery: {
-        "nas": [
+        'nas': [
           {
-            "name": "VOLUMIO",
-            "shares": [
+            'name': 'VOLUMIO',
+            'shares': [
               {
-                "sharename": "IPC$",
-                "path": "VOLUMIO/IPC$"
+                'sharename': 'IPC$',
+                'path': 'VOLUMIO/IPC$'
               },
               {
-                "sharename": "NAS",
-                "path": "VOLUMIO/NAS"
+                'sharename': 'NAS',
+                'path': 'VOLUMIO/NAS'
               },
               {
-                "sharename": "USB",
-                "path": "VOLUMIO/USB"
+                'sharename': 'USB',
+                'path': 'VOLUMIO/USB'
               }
             ]
           },
           {
-            "name": "FRITZ-NAS",
-            "shares": [
+            'name': 'FRITZ-NAS',
+            'shares': [
               {
-                "sharename": "IPC$",
-                "path": "FRITZ-NAS/IPC$"
+                'sharename': 'IPC$',
+                'path': 'FRITZ-NAS/IPC$'
               },
               {
-                "sharename": "FRITZ.NAS",
-                "path": "FRITZ-NAS/FRITZ.NAS"
+                'sharename': 'FRITZ.NAS',
+                'path': 'FRITZ-NAS/FRITZ.NAS'
               }
             ]
           },
           {
-            "name": "DISKSTATION",
-            "shares": [
+            'name': 'DISKSTATION',
+            'shares': [
               {
-                "sharename": "IPC$",
-                "path": "DISKSTATION/IPC$"
+                'sharename': 'IPC$',
+                'path': 'DISKSTATION/IPC$'
               },
               {
-                "sharename": "video",
-                "path": "DISKSTATION/video"
+                'sharename': 'video',
+                'path': 'DISKSTATION/video'
               },
               {
-                "sharename": "Torrent",
-                "path": "DISKSTATION/Torrent"
+                'sharename': 'Torrent',
+                'path': 'DISKSTATION/Torrent'
               },
               {
-                "sharename": "Programmi",
-                "path": "DISKSTATION/Programmi"
+                'sharename': 'Programmi',
+                'path': 'DISKSTATION/Programmi'
               },
               {
-                "sharename": "photo",
-                "path": "DISKSTATION/photo"
+                'sharename': 'photo',
+                'path': 'DISKSTATION/photo'
               },
               {
-                "sharename": "NetBackup",
-                "path": "DISKSTATION/NetBackup"
+                'sharename': 'NetBackup',
+                'path': 'DISKSTATION/NetBackup'
               },
               {
-                "sharename": "music",
-                "path": "DISKSTATION/music"
+                'sharename': 'music',
+                'path': 'DISKSTATION/music'
               },
               {
-                "sharename": "Mi",
-                "path": "DISKSTATION/Mi"
+                'sharename': 'Mi',
+                'path': 'DISKSTATION/Mi'
               },
               {
-                "sharename": "IMGs",
-                "path": "DISKSTATION/IMGs"
+                'sharename': 'IMGs',
+                'path': 'DISKSTATION/IMGs'
               },
               {
-                "sharename": "homes",
-                "path": "DISKSTATION/homes"
+                'sharename': 'homes',
+                'path': 'DISKSTATION/homes'
               },
               {
-                "sharename": "FLAC",
-                "path": "DISKSTATION/FLAC"
+                'sharename': 'FLAC',
+                'path': 'DISKSTATION/FLAC'
               },
               {
-                "sharename": "Film",
-                "path": "DISKSTATION/Film"
+                'sharename': 'Film',
+                'path': 'DISKSTATION/Film'
               },
               {
-                "sharename": "Backup",
-                "path": "DISKSTATION/Backup"
+                'sharename': 'Backup',
+                'path': 'DISKSTATION/Backup'
               }
             ]
           }
@@ -359,20 +359,72 @@ class MockService {
         {name: 'Tracks by Name', index: 'index:Tracks by Name'}
       ],
       getBrowseSources: [
-        {name: 'USB', uri: 'usb'},
-        {name: 'NAS', uri: 'nas'},
-        {name: 'Web Radio', uri: 'web-radio'},
-        {name: 'Spotify', uri: 'spotify'},
         {
-          name: 'CD Player',
-          pluginName: 'cd_controller',
-          pluginType: 'music_service',
+          albumart: '/albumart?sourceicon=music_service/mpd/favouritesicon.png',
+          name: 'Favorites',
+          uri: 'favourites',
+          plugin_type: '',
+          plugin_name: ''
+        },
+        {
+          albumart: '/albumart?sourceicon=music_service/mpd/playlisticon.svg',
+          name: 'Playlists',
+          uri: 'playlists',
+          plugin_type: 'music_service',
+          plugin_name: 'mpd'
+        },
+        {
+          albumart: '/albumart?sourceicon=music_service/mpd/musiclibraryicon.svg',
+          name: 'Music Library',
+          uri: 'music-library',
+          plugin_type: 'music_service',
+          plugin_name: 'mpd'
+        },
+        {
+          albumart: '/albumart?sourceicon=music_service/mpd/artisticon.png',
+          name: 'Artists',
+          uri: 'artists://',
+          plugin_type: 'music_service',
+          plugin_name: 'mpd'
+        },
+        {
+          albumart: '/albumart?sourceicon=music_service/mpd/albumicon.png',
+          name: 'Albums',
+          uri: 'albums://',
+          plugin_type: 'music_service',
+          plugin_name: 'mpd'
+        },
+        {
+          albumart: '/albumart?sourceicon=music_service/mpd/genreicon.png',
+          name: 'Genres',
+          uri: 'genres://',
+          plugin_type: 'music_service',
+          plugin_name: 'mpd'
+        },
+        {
+          albumart: '/albumart?sourceicon=music_service/last_100/icon.svg',
+          name: 'last 100',
+          uri: 'Last_100',
+          plugin_type: 'music_service',
+          plugin_name: 'last_100'
+        },
+        {
+          albumart: '/albumart?sourceicon=music_service/webradio/icon.svg',
+          icon: 'fa fa-microphone',
+          name: 'Web Radio',
+          uri: 'radio',
+          plugin_type: 'music_service',
+          plugin_name: 'webradio'
+        },
+        {
+          name: 'Audio CD',
           uri: 'cd',
-          info: 'Pink Floyd - Wish you were Here',
+          info: 'CD ',
+          plugin_type: 'music_service',
+          plugin_name: 'cd_controller',
           menuItems: [
             {
-              name: 'play',
-              icon: 'fa fa-folder-open-o',
+              name: 'link1',
               socketCall: {
                 emit: 'callMethod',
                 payload: {
@@ -383,80 +435,79 @@ class MockService {
               }
             },
             {
-              name: 'rip',
-              icon: 'fa fa-folder-open-o',
+              name: 'link2',
               socketCall: {
                 emit: 'callMethod',
                 payload: {
                   endpoint: 'music_service/cd_controller',
-                  method: 'ripCD',
+                  method: 'getRipInfo',
                   data: ''
                 }
               }
             },
             {
-              name: 'eject',
-              icon: 'fa fa-folder-open-o',
+              name: 'link3',
               socketCall: {
                 emit: 'callMethod',
                 payload: {
                   endpoint: 'music_service/cd_controller',
-                  method: 'ejectCD',
+                  method: 'eject',
                   data: ''
                 }
               }
             }
-          ]}
+          ]
+        }
       ],
       getBrowseLibrary: {
-        "navigation": {
-          "lists": [
+        'navigation': {
+          'lists': [
             {
-              "title": "Artists",
-              "icon": "fa fa-music",
-              "availableListViews": [
-                "grid", "list"
+              'title': 'Artists',
+              'icon': 'fa fa-music',
+              'availableListViews': [
+                'grid', 'list'
               ],
-              "items": [
+              'items': [
                 {
-                  "service": "mpd",
-                  "type": "song",
-                  "title": "Led Zeppelin",
-                  "icon": "fa fa-music",
-                  "uri": "search://artist/Led Zeppelin"
+                  'service': 'mpd',
+                  'type': 'song',
+                  'title': 'Led Zeppelin',
+                  'icon': 'fa fa-music',
+                  'uri': 'search://artist/Led Zeppelin'
                 }
               ]
             },
             {
-              "title": "Webradios",
-              "icon": "",
-              "availableListViews": [
-                "list"
+              'title': 'Webradios',
+              'icon': '',
+              'availableListViews': [
+                'list'
               ],
-              "items": [
+              'items': [
                 {
-                  "service": "webradio",
-                  "type": "webradio",
-                  "title": "ledjam",
-                  "artist": "",
-                  "album": "",
-                  "icon": "fa fa-microphone",
-                  "uri": "http://yp.shoutcast.com/sbin/tunein-station.m3u?id=492072"
+                  'service': 'webradio',
+                  'type': 'webradio',
+                  'title': 'ledjam',
+                  'artist': '',
+                  'album': '',
+                  'icon': 'fa fa-microphone',
+                  'uri': 'http://yp.shoutcast.com/sbin/tunein-station.m3u?id=492072'
                 },
                 {
-                  "service": "webradio",
-                  "type": "webradio",
-                  "title": "NAXI 80-e RADIO (NAXI,Belgrade,Serbia, NAXI,Beograd,Srbija) - 128k",
-                  "artist": "",
-                  "album": "",
-                  "icon": "fa fa-microphone",
-                  "uri": "http://yp.shoutcast.com/sbin/tunein-station.m3u?id=68544"
+                  'service': 'webradio',
+                  'type': 'webradio',
+                  'title': 'NAXI 80-e RADIO (NAXI,Belgrade,Serbia, NAXI,Beograd,Srbija) - 128k',
+                  'artist': '',
+                  'album': '',
+                  'icon': 'fa fa-microphone',
+                  'uri': 'http://yp.shoutcast.com/sbin/tunein-station.m3u?id=68544'
                 }
               ]
             }
           ],
-          "prev": {
-            "uri": "/"
+          'prev': {
+            'uri': '/'
           }
         }
       },
