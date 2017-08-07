@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body sleep">
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-6">
       <h4 translate="COMMON.ACTION"></h4>
       <ui-select
           id="whenSleep"
@@ -23,7 +23,26 @@
         </ui-select-choices>
       </ui-select>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
+      <h4 translate="SLEEP.WHEN"></h4>
+      <ui-select
+          id="whenSleepTimeType"
+          ng-model="modal.timeType"
+          search-enabled="false"
+          append-to-body="false"
+          theme="bootstrap">
+      <ui-select-match
+          class="ui-select-match"
+          placeholder="">
+          <translate>SLEEP.IN</translate>
+      </ui-select-match>
+      <ui-select-choices
+          class="ui-select-choices"
+          repeat="item in modal.whenSleepTimeTypeSelect track by $index">
+        <div id="sleepTimeTypeOption-{{item.val}}" ng-bind-html="item.text"></div>
+      </ui-select-choices>
+    </div>
+    <div class="col-sm-6">
       <uib-timepicker
           ng-model="modal.sleepTime"
           ng-change="modal.timeChanged()"
@@ -32,7 +51,7 @@
           show-meridian="modal.showMeridian">
       </uib-timepicker>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
       <h4 translate="COMMON.ACTIVE"></h4>
       <input
           bs-switch
