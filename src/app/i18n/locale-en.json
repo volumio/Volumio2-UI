@@ -173,6 +173,9 @@
     "NETWORK_NAME":"Network Name"
   },
   "SLEEP": {
+    "AT": "at",
+    "IN": "in",
+    "WHEN": "when",
     "POWER_OFF": "Power off",
     "STOP_MUSIC": "Stop music"
   },
