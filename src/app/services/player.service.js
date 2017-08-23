@@ -191,9 +191,9 @@ class PlayerService {
       volume = 100;
     }
     //The numeral is used to ensure that socket.io events are not processed by the backend in a problematic order
-    //The backend will discard any volume event that has numeral lower than the last processed volume event (for each client)
+    //The be will discard any volume event that has nu
     this.$log.log('volume ' + volume + ', numeral ' + this.stateNumeral);
-    this.socketService.emit('volume', {volume:volume, numeral:this.stateNumeral});
+    this.socketService.emit('volume', {volume: volume, numeral: this.stateNumeral});
     this.stateNumeral++;
   }
 

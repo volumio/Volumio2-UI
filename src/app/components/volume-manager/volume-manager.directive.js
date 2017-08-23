@@ -82,37 +82,6 @@ class VolumeManagerController {
     }
   }
 
-  get displayVolume(){
-    //Has one second passed since the last local volume set?
-    if(this.timeoutHandler4 === null){
-      this.dv = this.playerService.volume;
-    }
-    return this.dv;
-  }
-
-  set displayVolume(volume){
-    //In other words, has this setvolume originated in this instance of the UI or is it coming from the pushState?
-    //This is extremely important to prevent pushStates bouncing around between instances of the UI
-    if(this.playerService.state.volume === volume){
-      return;
-    }
-    this.dv = volume;
-      this.playerService.volume = volume;
-      this.timeoutHandler3 = null;
-
-    //This timeout is only used as an indicator that the volume was set in the last second
-    //It sets itself to null after that
-    //Remote volume changes won't be reflected in the displayVolume if it was recently changed locally,
-    //this is to ensure stability, and might not be necessary, but it is not very likely to happen often anyways
-    this.$timeout.cancel(this.timeoutHandler4);
-    this.timeoutHandler4 = this.$timeout(() => {
-      this.timeoutHandler4 = null;
-    }, 1000, true);
-    if(this.knobUpdateCallback !== null){
-      this.knobUpdateCallback();
-    }
-  }
-
   toggleMute() {
     this.playerService.toggleMute();
     this._updateKnobState();

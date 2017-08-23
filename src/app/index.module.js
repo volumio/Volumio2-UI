@@ -32,7 +32,6 @@ import TrackInfoDirective from './components/track-info/track-info.directive';
 import PlayerStatusDirective from './components/player-status/player-status.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
 import KnobDirective from './components/knob/knob.directive';
-import VolumeKnobDirective from './components/volume-knob/volume-knob.directive';
 import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
 import AirplayScrimDirective from './components/airplay-scrim/airplay-scrim.directive';
 import WaitBackendScrimDirective from './components/wait-backend-scrim/wait-backend-scrim.directive';
@@ -160,7 +159,6 @@ angular.module('volumio', [
   .directive('playerStatus', () => new PlayerStatusDirective())
   .directive('sideMenu', () => new SideMenuDirective())
   .directive('knob', () => new KnobDirective())
-  .directive('volumeKnob', () => new VolumeKnobDirective())
   .directive('multiRoomDock', (themeManager) => new MultiRoomDockDirective(themeManager))
   .directive('airplayScrim', () => new AirplayScrimDirective())
   .directive('waitBackendScrim', () => new WaitBackendScrimDirective())

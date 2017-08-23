@@ -4,14 +4,14 @@
       <div class="headerText green">
         <span ng-if="volumeManager.playerService.state.mute" translate="COMMON.VOLUME_MUTED"></span>
       </div>
-      <div class="bigText">{{volumeManager.displayVolume}}</div>
+      <div class="bigText">{{volumeManager.playerService.volume}}</div>
       <div class="smallText">/100</div>
     </div>
-    <volume-knob
-      value="volumeManager.displayVolume"
+    <knob
+      value="volumeManager.playerService.volume"
       options="volumeManager.knobOptions"
       type="volume">
-    </volume-knob>
+    </knob>
   </div>
 
   <div id="volumeButtonBar" class="btn-group">
