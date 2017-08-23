@@ -1,5 +1,5 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate, $http, $q) {
+  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -8,6 +8,7 @@ class UiSettingsService {
     this.$translate = $translate;
     this.$http = $http;
     this.$q = $q;
+    this.$state = $state;
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
@@ -119,7 +120,7 @@ class UiSettingsService {
   }
 
   initService() {
-
+    this.socketService.emit('getWizard');
     let settingsUrl =
         `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
@@ -137,7 +138,7 @@ class UiSettingsService {
       })
       .finally(() => {
         this.socketService.emit('getUiSettings');
-        this.socketService.emit('getWizard');
+
       });
     return this.settingsPromise;
 
