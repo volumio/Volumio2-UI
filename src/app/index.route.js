@@ -186,8 +186,8 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
           controllerAs: 'redirect'
         }
       }
-    });
-    
+    })
+
     .state('volumio.wizard', {
       url: 'wizard',
       views: {
@@ -197,8 +197,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
           controllerAs: 'wizard'
         }
       }
-    })
-    ;
+    });
 
 
   $urlRouterProvider.otherwise('/redirect');

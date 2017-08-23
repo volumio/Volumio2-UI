@@ -106,7 +106,7 @@ class UiSettingsService {
           background.path = `${this.socketService.host}/backgrounds/${background.path}`;
           background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
           return background;
-        }));
+        });
       this.setBackground();
     });
 
@@ -119,7 +119,7 @@ class UiSettingsService {
   }
 
   initService() {
-    
+
     let settingsUrl =
         `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
