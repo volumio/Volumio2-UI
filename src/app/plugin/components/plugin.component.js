@@ -1,6 +1,21 @@
-class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $state,
-      uiSettingsService) {
+class PluginComponent {
+  constructor() {
+    'ngInject';
+    let component = {
+      bindings: {
+        pluginName: '@'
+      },
+      templateUrl: 'app/plugin/components/plugin-component.html',
+      controller: PluginComponentController,
+      controllerAs: 'pluginComponent'
+    };
+
+    return component;
+  }
+}
+
+class PluginComponentController {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -8,12 +23,12 @@ class PluginController {
     this.mockService = mockService;
     this.$scope = $scope;
     this.$log = $log;
-    this.$state = $state;
-    this.uiSettingsService = uiSettingsService;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
+  }
 
+  $onInit() {
     this.init();
   }
 
@@ -44,7 +59,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         section.onSave.askForConfirm);
-      modalPromise.result.then((yes) => {
+      modalPromise.then((yes) => {
         delete saveObj.askForConfirm;
         this.socketService.emit('callMethod', saveObj);
       }, () => {});
@@ -60,7 +75,7 @@ class PluginController {
         'ModalConfirmController',
         'app/components/modals/modal-confirm.html',
         item.onClick.askForConfirm);
-      modalPromise.result.then((yes) => {
+      modalPromise.then((yes) => {
         if (item.onClick.type === 'emit') {
           this.$log.debug('emit', item.onClick.message, item.onClick.data);
           this.socketService.emit(item.onClick.message, item.onClick.data);
@@ -78,19 +93,7 @@ class PluginController {
     }
   }
 
-  openDoc(item) {
-    let modalPromise = this.modalService.openModal(
-        'ModalGotitController',
-        'app/components/modals/modal-gotit.html',
-        {message: item.doc},
-        'lg',
-        true
-        );
-  }
-
   init() {
-    this.showPlugin = false;
-    this.pluginName = this.$stateParams.pluginName.replace('-', '/');
     this.registerListner();
     this.initService();
   }
@@ -98,51 +101,24 @@ class PluginController {
 
   registerListner() {
     this.socketService.on('pushUiConfig', (data) => {
-      //NOTE this commented lines are for testing pourpose
       // data.sections.unshift({coreSection: 'ui-settings'});
       // data.sections.unshift({coreSection: 'wifi'});
       // data.sections.unshift({coreSection: 'my-music'});
       // data.sections.unshift({coreSection: 'network-status'});
       // data.sections.unshift({coreSection: 'network-drives'});
-      // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
-      if (!this.pluginObj.page.passwordProtection || !this.pluginObj.page.passwordProtection.enabled) {
-        this.showPlugin = true;
-      } else {
-        // Show PW modal
-        let
-          templateUrl = 'app/components/modals/modal-password.html',
-          controller = 'ModalPasswordController',
-          params = {
-            message: this.pluginObj.page.passwordProtection.message || '',
-            pluginName: this.pluginName
-          };
-        let modalPromise = this.modalService.openModal(
-          controller,
-          templateUrl,
-          params,
-          'sm');
+    });
+  }
 
-        modalPromise.result.then((canEnter) => {
-          if (canEnter) {
-            this.showPlugin = true;
-          }
-        }, () => {
-          this.$state.go('volumio.playback');
-        });
-      }
-    });
-    this.$scope.$on('$destroy', () => {
-      this.socketService.off('pushUiConfig');
-    });
+  $onDestroy() {
+    this.socketService.off('pushUiConfig');
   }
 
   initService() {
-    this.$log.debug('init', this.$stateParams);
     this.socketService.emit('getUiConfig',
-        {'page': this.pluginName});
+        {'page': this.pluginName.replace('-', '/')});
   }
 }
 
-export default PluginController;
+export default PluginComponent;

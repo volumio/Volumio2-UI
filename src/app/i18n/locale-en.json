@@ -63,7 +63,13 @@
     "PLAY_QUEUE": "Play queue",
     "ENTER_PASSWORD": "Enter password",
     "INVALID_PASSWORD": "Invalid password",
-    "RIP": "RIP"
+    "RIP": "RIP",
+    "SKIP": "Skip",
+    "NEXT_STEP": "Next step",
+    "DONE": "Done",
+    "EMAIL": "Email",
+    "SUBSCRIBE_ME": "Subscribe me",
+    "SHARE": "Share"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -171,6 +177,28 @@
     "SECURITY": "Security",
     "MANUAL_WIFI_CONNECTION":"Manual WiFi Connection",
     "NETWORK_NAME":"Network Name"
+  },
+  "WIZARD": {
+    "LANGUAGE": "Language",
+    "NAME": "Name",
+    "OUTPUT": "Output",
+    "NETWORK": "Network",
+    "MUSIC": "Music",
+    "FOLLOW": "Follow",
+    "DONE": "Done",
+    "WELCOME": "Welcome to Volumio, the Audiophile music Player",
+    "SELECT_YOUR_LANGUAGE": "Select your language",
+    "DEVICE_NAME": "Device name",
+    "DEVICE_ADDRESS": "This device will be available at the address:",
+    "SELECT_YOUR_AUDIO_OUTPUT": "Select your audio output",
+    "SELECT_YOUR_I2S_DAC": "Select your i2s DAC",
+    "I_HAVE_DAC": "I have an I2S DAC",
+    "CUSTOM_AMOUNT": "Custom amount",
+    "DONE_MESSAGE": "Done, your Volumio is ready.<br />Take just a second to support us",
+    "MAIL_LIST_SUBSCRIPTION": "Mail list subscription",
+    "SOCIAL_SHARE": "Social share",
+    "DONATE": "Donate",
+    "SUBSCRIBED_SUCCESFULLY": "Subscribed successfully"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",

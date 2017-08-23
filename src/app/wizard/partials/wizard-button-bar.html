@@ -1,0 +1,23 @@
+<div id="button-bar" class="row text-right">
+  <button
+      type="button"
+      class="btn btn-warning"
+      ng-click="wizard.skipWizard()"
+      ng-if="!wizard.isLastStep()"
+      translate="COMMON.SKIP">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.gotoNextStep()"
+      ng-if="!wizard.isLastStep()"
+      translate="COMMON.NEXT_STEP">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.done()"
+      ng-if="wizard.isLastStep()"
+      translate="COMMON.DONE">
+  </button>
+</div>

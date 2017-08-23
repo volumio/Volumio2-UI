@@ -6,6 +6,7 @@
   left: 0px;
   z-index: 1;
 }
+
 .hardwareToggleCheckbox {
   margin: 15px 0px 0px 8px;
   text-align: left;
@@ -23,4 +24,9 @@
   img {
     width: 80%;
   }
+}
+
+#sideMenu {
+  position: relative;
+  z-index: 1;
 }

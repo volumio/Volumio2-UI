@@ -51,7 +51,27 @@ class UiSettingsService {
   }
 
   setLanguage() {
-    this.$translate.use(this.uiSettings.language);
+    if (~location.href.indexOf('wizard')) {
+      this.browserLanguage = this.getBrowserDefaultLanguage();
+    } else {
+      this.$translate.use(this.uiSettings.language);
+    }
+  }
+
+  getBrowserDefaultLanguage() {
+    const browserLanguagePropertyKeys = ['languages', 'language', 'browserLanguage', 'userLanguage', 'systemLanguage'];
+    let langArray = [];
+    browserLanguagePropertyKeys.forEach((prop) => {
+      if (prop in window.navigator) {
+        if (angular.isArray(window.navigator[prop])) {
+          langArray.push(...window.navigator[prop]);
+        } else {
+          langArray.push(window.navigator[prop]);
+        }
+      }
+    });
+    this.$log.debug('Navigator defaultLanguage', langArray[0]);
+    return langArray[0].substr(0, 2) || 'en';
   }
 
   registerListner() {
@@ -86,12 +106,20 @@ class UiSettingsService {
           background.path = `${this.socketService.host}/backgrounds/${background.path}`;
           background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
           return background;
-        });
+        }));
       this.setBackground();
+    });
+
+    this.socketService.on('pushWizard', (data) => {
+      this.$log.debug('pushWizard', data);
+      if (data.openWizard) {
+        this.$state.go('volumio.wizard');
+      }
     });
   }
 
   initService() {
+    
     let settingsUrl =
         `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
@@ -109,8 +137,10 @@ class UiSettingsService {
       })
       .finally(() => {
         this.socketService.emit('getUiSettings');
+        this.socketService.emit('getWizard');
       });
     return this.settingsPromise;
+
   }
 }
 
