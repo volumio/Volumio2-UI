@@ -219,7 +219,14 @@
     "OFF": "Off"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "In order to use Alarm Clock, you must create at least one Playlist first"
+    "CRATE_PLAYLIST_FIRST": "In order to use Alarm Clock, you must create at least one Playlist first",
+    "MONDAY":"Monday",
+    "TUESDAY":"Tuesday",
+    "WEDNESDAY":"Wednesday",
+    "THURSDAY":"Thursday",
+    "FRIDAY":"Friday",
+    "SATURDAY":"Saturday",
+    "SUNDAY":"Sunday"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Edit groups",

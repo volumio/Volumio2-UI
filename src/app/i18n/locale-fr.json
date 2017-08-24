@@ -219,7 +219,14 @@
     "OFF": "Stop"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist"
+    "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist",
+    "MONDAY":"Lundi",
+    "TUESDAY":"Mardi",
+    "WEDNESDAY":"Mercredi",
+    "THURSDAY":"Jeudi",
+    "FRIDAY":"Vendredi",
+    "SATURDAY":"Samedi",
+    "SUNDAY":"Dimanche"
   },
    "MULTIDEVICE": {
     "EDIT_GROUPS": "Editer les groupes",
