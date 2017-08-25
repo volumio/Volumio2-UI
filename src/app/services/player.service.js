@@ -27,6 +27,9 @@ class PlayerService {
     this._repeatTrack = false;
     this._repeatAlbum = false;
 
+    this.volumeSliderValue = 0;
+    this.volumeSliderLastUpdateTime = -1000;
+
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -189,6 +192,23 @@ class PlayerService {
     }
     this.$log.log('volume', volume);
     this.socketService.emit('volume', volume);
+  }
+
+  get sliderVolume(){
+    // console.log("slider get");
+    if(Date.now() - this.volumeSliderLastUpdateTime > 1000){
+      this.volumeSliderValue = this.volume;
+    }
+    return this.volumeSliderValue;
+  }
+
+  set sliderVolume(volume){
+    console.log("slider set " + volume);
+    if(Date.now() - this.volumeSliderLastUpdateTime > 100 && this.volumeSliderValue !== volume){
+      this.volumeSliderLastUpdateTime = Date.now();
+      this.volume = volume;
+    }
+    this.volumeSliderValue = volume;
   }
 
   get albumart() {
