@@ -26,12 +26,16 @@ class KnobController {
     this.timeoutHandler = null;
     this.$timeout = $timeout;
     this.$element = $element;
+    this.lastChange = -1000;
     let knobOptions = {
       change: (value) => {
         $timeout.cancel(this.timeoutHandler);
          this.timeoutHandler = $timeout(() => {
            value = parseInt(value, 10);
-           this.value = value;
+           if(this.value !== value){
+             this.lastChange = Date.now();
+             this.value = value;
+           }
            if (this.onChange) {
              this.onChange({value: value});
            }
@@ -43,13 +47,16 @@ class KnobController {
         this.timeoutHandler2 = $timeout(() => {
           if (this.type === 'volume') {
             value = parseInt(value, 10);
-            this.value = value;
+            if(this.value !== value){
+              this.lastChange = Date.now();
+              this.value = value;
+            }
           }
           if (this.onRelease) {
             this.onRelease({value: value});
           }
           this.isChanging = false;
-        }, 300, true);
+        }, 0, true);
       }
     };
     angular.extend(knobOptions, this.options);
@@ -58,8 +65,9 @@ class KnobController {
     // NOTE live update value
     $scope.$watch(() => this.value,  (newVal, oldVal) => {
       if (newVal !== oldVal) {
-        $timeout.cancel(this.timeoutHandler3);
-        this.timeoutHandler3 = this.updateValue();
+        if (Date.now() - this.lastChange > 300) {
+          this.$element.val(parseInt(this.value, 10)).trigger('change');
+        }
       }
     });
 
@@ -70,18 +78,6 @@ class KnobController {
         $element.trigger('configure', options);
       }
     }, true);
-  }
-
-  updateValue(newVal) {
-    return this.$timeout(() => {
-      //$log.debug('this.value', this.value);
-      if (!this.isChanging) {
-        this.$element.val(parseInt(this.value, 10)).trigger('change');
-      } else {
-        this.$timeout.cancel(this.timeoutHandler3);
-        this.timeoutHandler3 = this.updateValue();
-      }
-    }, 800);
   }
 }
 
