@@ -60,7 +60,7 @@ class KnobController {
 
         // NOTE live update value
         $scope.$watch(() => this.value, (newVal, oldVal) => {
-            if (newVal !== oldVal || this.getCanvasValue() != newVal) {
+            if (newVal !== oldVal || this.getCanvasValue() !== newVal) {
                 this.updateValue();
             }
         });
