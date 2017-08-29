@@ -60,8 +60,8 @@ class KnobController {
 
     // NOTE live update value
     $scope.$watch(() => this.value, (newVal, oldVal) => {
-      if (newVal !== oldVal || this.getCanvasValue() !== newVal) {
-        this.updateValue();
+      if (this.isCanvasUpdateNeeded(newVal,oldVal)) {
+        this.updateCanvas();
       }
     });
 
@@ -73,6 +73,13 @@ class KnobController {
       }
     }, true);
   }
+  
+  isCanvasUpdateNeeded(newVal, oldVal){
+    if(newVal !== oldVal || this.getCanvasValue() !== newVal){
+      return true;
+    }
+    return false;
+  }
 
   getCanvasValue() {
     if (!this.$element) {
@@ -81,19 +88,19 @@ class KnobController {
     return this.$element.val();
   }
 
-  updateValue() {
+  updateCanvas() {
     this.$timeoutService.cancel(this.timeoutHandler3);
-    this.timeoutHandler3 = this.updateValueAsyncTask();
+    this.timeoutHandler3 = this.updateCanvasAsyncTask();
   }
 
-  updateValueAsyncTask() {
+  updateCanvasAsyncTask() {
     return this.$timeoutService(() => {
       //$log.debug('this.value', this.value);
       if (!this.isChanging) {
         this.$element.val(parseInt(this.value, 10)).trigger('change');
       } else {
         this.$timeoutService.cancel(this.timeoutHandler3);
-        this.timeoutHandler3 = this.updateValueAsyncTask();
+        this.timeoutHandler3 = this.updateCanvasAsyncTask();
       }
     }, 800);
   }
