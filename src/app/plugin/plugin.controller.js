@@ -1,6 +1,6 @@
 class PluginController {
-  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $state, 
-      uiSettingsService) {
+  constructor($rootScope, $scope, $stateParams, socketService, modalService, mockService, $log, $state,
+      uiSettingsService, $window) {
     'ngInject';
     this.socketService = socketService;
     this.$stateParams = $stateParams;
@@ -10,6 +10,7 @@ class PluginController {
     this.$log = $log;
     this.$state = $state;
     this.uiSettingsService = uiSettingsService;
+    this.$window = $window;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -72,6 +73,8 @@ class PluginController {
       if (item.onClick.type === 'emit') {
         this.$log.debug('emit', item.onClick.message, item.onClick.data);
         this.socketService.emit(item.onClick.message, item.onClick.data);
+      } else if (item.onClick.type === 'openUrl'){
+        this.$window.open(item.onClick.url);
       } else {
         this.socketService.emit('callMethod', item.onClick);
       }
