@@ -27,8 +27,8 @@ class PlayerService {
     this._repeatTrack = false;
     this._repeatAlbum = false;
 
-    this.volumeSliderValue = 0;
-    this.volumeSliderLastUpdateTime = -1000;
+    this.localVolume = 0;
+    this.lastVolumeUpdateTime = -1000;
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -176,7 +176,7 @@ class PlayerService {
 
 
     // GETTER & SETTER ---------------------------------------------------------
-  get volume() {
+  get remoteVolume() {
     if (this.state) {
       return parseInt(this.state.volume);
     } else {
@@ -184,7 +184,7 @@ class PlayerService {
     }
   }
 
-  set volume(volume) {
+  set remoteVolume(volume) {
     if (volume < 0) {
       volume = 0;
     } else if (volume > 100) {
@@ -194,21 +194,19 @@ class PlayerService {
     this.socketService.emit('volume', volume);
   }
 
-  get sliderVolume(){
-    // console.log("slider get");
-    if(Date.now() - this.volumeSliderLastUpdateTime > 1000){
-      this.volumeSliderValue = this.volume;
+  get volume(){
+    if(Date.now() - this.lastVolumeUpdateTime > 1000){
+      this.localVolume = this.remoteVolume;
     }
-    return this.volumeSliderValue;
+    return this.localVolume;
   }
 
-  set sliderVolume(volume){
-    console.log("slider set " + volume);
-    if(Date.now() - this.volumeSliderLastUpdateTime > 100 && this.volumeSliderValue !== volume){
-      this.volumeSliderLastUpdateTime = Date.now();
-      this.volume = volume;
+  set volume(volume){
+    if(Date.now() - this.lastVolumeUpdateTime > 100 && this.localVolume !== volume){
+      this.lastVolumeUpdateTime = Date.now();
+      this.remoteVolume = volume;
     }
-    this.volumeSliderValue = volume;
+    this.localVolume = volume;
   }
 
   get albumart() {
