@@ -27,6 +27,9 @@ class PlayerService {
     this._repeatTrack = false;
     this._repeatAlbum = false;
 
+    this.localVolume = 0;
+    this.lastVolumeUpdateTime = -1000;
+
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -173,7 +176,7 @@ class PlayerService {
 
 
     // GETTER & SETTER ---------------------------------------------------------
-  get volume() {
+  get remoteVolume() {
     if (this.state) {
       return parseInt(this.state.volume);
     } else {
@@ -181,7 +184,7 @@ class PlayerService {
     }
   }
 
-  set volume(volume) {
+  set remoteVolume(volume) {
     if (volume < 0) {
       volume = 0;
     } else if (volume > 100) {
@@ -189,6 +192,21 @@ class PlayerService {
     }
     this.$log.log('volume', volume);
     this.socketService.emit('volume', volume);
+  }
+
+  get volume(){
+    if(Date.now() - this.lastVolumeUpdateTime > 1000){
+      this.localVolume = this.remoteVolume;
+    }
+    return this.localVolume;
+  }
+
+  set volume(volume){
+    if(Date.now() - this.lastVolumeUpdateTime > 100 && this.localVolume !== volume){
+      this.lastVolumeUpdateTime = Date.now();
+      this.remoteVolume = volume;
+    }
+    this.localVolume = volume;
   }
 
   get albumart() {

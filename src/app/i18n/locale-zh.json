@@ -26,7 +26,7 @@
     "SHOW_SETTINGS":"显示设置",
     "TAB_BROWSE":"浏览",
     "TAB_PLAYBACK":"回放",
-    "TAB_QUEUE":"队列",
+    "TAB_QUEUE":"貯列",
     "ARTISTS":"艺术家",
     "ARTIST":"艺术家",
     "ALBUMS":"专辑",
@@ -71,12 +71,12 @@
     "PAUSE":"暂停",
     "CLEAR_AND_PLAY": "清空并播放"
   },
-"MY_MUSIC": { 
-    "UPDATE":"更新", 
-    "UPDATE_DOC":"更新", 
-    "RESCAN":"重新扫描", 
-    "RESCAN_DOC":"重新扫描"  
-  }, 
+"MY_MUSIC": {
+    "UPDATE":"更新",
+    "UPDATE_DOC":"更新",
+    "RESCAN":"重新扫描",
+    "RESCAN_DOC":"重新扫描"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "返回插件列表",
     "PLUGINS":"插件",

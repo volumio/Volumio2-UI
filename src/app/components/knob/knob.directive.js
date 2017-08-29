@@ -24,18 +24,25 @@ class KnobController {
   constructor($scope, $element, $timeout) {
     'ngInject';
     this.timeoutHandler = null;
-    this.$timeout = $timeout;
+    this.timeoutHandler2 = null;
+    this.timeoutHandler3 = null;
+    this.$timeoutService = $timeout;
     this.$element = $element;
+    this.lastValueUpdateTime = 0;
+
     let knobOptions = {
       change: (value) => {
         $timeout.cancel(this.timeoutHandler);
-         this.timeoutHandler = $timeout(() => {
-           value = parseInt(value, 10);
-           this.value = value;
-           if (this.onChange) {
-             this.onChange({value: value});
-           }
-         }, 0, false);
+        this.timeoutHandler = $timeout(() => {
+          value = parseInt(value, 10);
+          if (this.value !== value) {
+            this.setNowAsLastValueUpdateTime();
+            this.value = value;
+          }
+          if (this.onChange) {
+            this.onChange({value: value});
+          }
+        }, 0, false);
       },
       release: (value, e) => {
         $timeout.cancel(this.timeoutHandler2);
@@ -43,28 +50,30 @@ class KnobController {
         this.timeoutHandler2 = $timeout(() => {
           if (this.type === 'volume') {
             value = parseInt(value, 10);
-            this.value = value;
+            if (this.value !== value) {
+              this.setNowAsLastValueUpdateTime();
+              this.value = value;
+            }
           }
           if (this.onRelease) {
             this.onRelease({value: value});
           }
           this.isChanging = false;
-        }, 300, true);
+        }, 0, true);
       }
     };
     angular.extend(knobOptions, this.options);
-    $element.knob(knobOptions);
+    this.$element.knob(knobOptions);
 
     // NOTE live update value
-    $scope.$watch(() => this.value,  (newVal, oldVal) => {
-      if (newVal !== oldVal) {
-        $timeout.cancel(this.timeoutHandler3);
-        this.timeoutHandler3 = this.updateValue();
+    $scope.$watch(() => this.value, (newVal, oldVal) => {
+      if (this.isCanvasUpdateNeeded(newVal, oldVal)) {
+        this.updateCanvas();
       }
     });
 
     // NOTE live update configurations
-    $scope.$watch(() => this.options,  (options) => {
+    $scope.$watch(() => this.options, (options) => {
       if (options) {
         //$log.debug('option changed', options);
         $element.trigger('configure', options);
@@ -72,17 +81,52 @@ class KnobController {
     }, true);
   }
 
-  updateValue(newVal) {
-    return this.$timeout(() => {
+  isCanvasUpdateNeeded(newVal, oldVal) {
+    if ((newVal !== oldVal || this.getCanvasValue() !== newVal) && this.isMinimumTimeForUpdateElapsed()) {
+      return true;
+    }
+    return false;
+  }
+
+  isMinimumTimeForUpdateElapsed() {
+    if (Date.now() > this.lastValueUpdateTime + 300) {
+      return true;
+    }
+    return false;
+  }
+
+  setNowAsLastValueUpdateTime() {
+    this.lastValueUpdateTime = Date.now();
+  }
+
+  getCanvasValue() {
+    if (!this.$element) {
+      return undefined;
+    }
+    return this.$element.val();
+  }
+
+  updateCanvas() {
+    this.$timeoutService.cancel(this.timeoutHandler3);
+    this.timeoutHandler3 = this.updateCanvasAsyncTask();
+  }
+
+  updateCanvasAsyncTask() {
+    return this.$timeoutService(() => {
       //$log.debug('this.value', this.value);
       if (!this.isChanging) {
-        this.$element.val(parseInt(this.value, 10)).trigger('change');
+        this.updateCanvasComponent();
       } else {
-        this.$timeout.cancel(this.timeoutHandler3);
-        this.timeoutHandler3 = this.updateValue();
+        this.$timeoutService.cancel(this.timeoutHandler3);
+        this.timeoutHandler3 = this.updateCanvasAsyncTask();
       }
     }, 800);
   }
+
+  updateCanvasComponent() {
+    this.$element.val(parseInt(this.value, 10)).trigger('change');
+  }
+
 }
 
 export default KnobDirective;
