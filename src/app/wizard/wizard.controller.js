@@ -44,7 +44,6 @@ class WizardController {
   }
 
   gotoStep(step) {
-    console.log(step);
     let emitPayload;
     this.$log.log('go from step', this.currentStep.toLowerCase());
     //From step actions
@@ -111,7 +110,6 @@ class WizardController {
 
   subscribeToMailList() {
     if (this.mailListForm.$valid) {
-      console.log(this.wizardData.mailListData);
       this.CgMailChimpService.subscribe(this.wizardData.mailListData)
       .then(() => {
           this.wizardData.mailListSubscribed = true;
@@ -210,7 +208,7 @@ class WizardController {
     this.socketService.on('pushOutputDevices', (data) => {
       this.$log.debug('pushOutputDevices', data);
       this.wizardDetails.outputDevices = data;
-      this.wizardData.selectedDevice = {name: data.devices.active};
+      this.wizardData.selectedDevice = {name: data.devices.active.name, id: data.devices.active.name};
       this.wizardData.selectedI2s = {name: data.i2s.active};
     });
 
