@@ -24,6 +24,10 @@ class VolumeManagerController {
     this.matchmediaService = matchmediaService;
     this.showVerticalSlider = false;
     this.themeManager = themeManager;
+    this.dv = 69;
+    this.displayVolumex = 69;
+    this.$timeout = $timeout;
+    this.knobUpdateCallback = null;
 
     if (this.type === 'knob') {
       this.knobOptions = {
@@ -47,31 +51,34 @@ class VolumeManagerController {
         }
       });
     } else if(this.type === 'slider') {
-      // this.volume = playerService.volume;
-
-      // NOTE this watches are for decouple the playerService.volume
-      // from the knob value. The playerService.volume (getter) value
-      // is delayed by the BE callback. This prevent the knob from go
-      // back and forward two times
-      $scope.$watch(() => this.volume,  (value) => {
-        if (value) {
-          $timeout.cancel(this.timeoutHandler);
-          $timeout.cancel(this.timeoutHandler2);
-          this.timeoutHandler = $timeout(() => {
-            playerService.volume = value;
-          }, 300);
-        }
-      });
-
-      $scope.$watch(() => playerService.volume,  (value) => {
-        if (value) {
-          $timeout.cancel(this.timeoutHandler2);
-          $timeout.cancel(this.timeoutHandler);
-          this.timeoutHandler2 = $timeout(() => {
-            this.volume = value;
-          }, 20, true);
-        }
-      });
+      //This code is obsolete
+      //The slider class should be reimplemented in the same fashion as the knob, to allow control over it's internal state.
+      //
+      // // this.volume = playerService.volume;
+      //
+      // // NOTE this watches are for decouple the playerService.volume
+      // // from the knob value. The playerService.volume (getter) value
+      // // is delayed by the BE callback. This prevent the knob from go
+      // // back and forward two times
+      // $scope.$watch(() => this.volume,  (value) => {
+      //   if (value) {
+      //     $timeout.cancel(this.timeoutHandler);
+      //     $timeout.cancel(this.timeoutHandler2);
+      //     this.timeoutHandler = $timeout(() => {
+      //       playerService.volume = value;
+      //     }, 0);
+      //   }
+      // });
+      //
+      // $scope.$watch(() => playerService.volume,  (value) => {
+      //   if (value) {
+      //     $timeout.cancel(this.timeoutHandler2);
+      //     $timeout.cancel(this.timeoutHandler);
+      //     this.timeoutHandler2 = $timeout(() => {
+      //       this.volume = value;
+      //     }, 20, true);
+      //   }
+      // });
     }
   }
 

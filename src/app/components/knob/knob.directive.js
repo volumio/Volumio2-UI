@@ -26,30 +26,38 @@ class KnobController {
     this.timeoutHandler = null;
     this.$timeout = $timeout;
     this.$element = $element;
+    this.lastChange = -1000;
     let knobOptions = {
       change: (value) => {
         $timeout.cancel(this.timeoutHandler);
+        this.lastChange = Date.now();
          this.timeoutHandler = $timeout(() => {
            value = parseInt(value, 10);
-           this.value = value;
+           if(this.value !== value){
+             this.value = value;
+           }
            if (this.onChange) {
              this.onChange({value: value});
            }
          }, 0, false);
       },
       release: (value, e) => {
+        console.log("release");
         $timeout.cancel(this.timeoutHandler2);
         this.isChanging = true;
+        this.lastChange = Date.now();
         this.timeoutHandler2 = $timeout(() => {
           if (this.type === 'volume') {
             value = parseInt(value, 10);
-            this.value = value;
+            if(this.value !== value){
+              this.value = value;
+            }
           }
           if (this.onRelease) {
             this.onRelease({value: value});
           }
           this.isChanging = false;
-        }, 300, true);
+        }, 0, true);
       }
     };
     angular.extend(knobOptions, this.options);
@@ -58,8 +66,11 @@ class KnobController {
     // NOTE live update value
     $scope.$watch(() => this.value,  (newVal, oldVal) => {
       if (newVal !== oldVal) {
-        $timeout.cancel(this.timeoutHandler3);
-        this.timeoutHandler3 = this.updateValue();
+        if (Date.now() - this.lastChange > 300) {
+          console.log("watch");
+          $timeout.cancel(this.timeoutHandler3);
+          this.timeoutHandler3 = this.updateValue();
+        }
       }
     });
 
@@ -81,8 +92,9 @@ class KnobController {
         this.$timeout.cancel(this.timeoutHandler3);
         this.timeoutHandler3 = this.updateValue();
       }
-    }, 800);
+    }, 0);
   }
+
 }
 
 export default KnobDirective;
