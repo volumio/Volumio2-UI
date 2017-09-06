@@ -1,3 +1,4 @@
+<div class="volumeSliderScrim" ng-if="volumeManager.showVerticalSlider" ng-click="volumeManager.toggleVolumeSlider()"></div>
 <div ng-if="!volumeManager.matchmediaService.isPhone" class="volumeManager">
   <div class="knobWrapper">
     <div class="knobInfosWrapper">
@@ -58,7 +59,7 @@
   </div>
   <button
       id="openVolumeVerticalSlider"
-      ng-click="volumeManager.showVerticalSlider = !volumeManager.showVerticalSlider"
+      ng-click="volumeManager.toggleVolumeSlider()"
       class="btn btn-link">
     <i class="fa fa-volume-up"></i>
   </button>
