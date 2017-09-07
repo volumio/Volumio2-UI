@@ -14,11 +14,12 @@ export default class FavouriteTrackBtnDirective {
 }
 
 class FavouriteBtnController {
-  constructor($log, playerService, playlistService) {
+  constructor($log, playerService, playlistService, matchmediaService) {
     'ngInject';
     this.playerService = playerService;
     this.playlistService = playlistService;
     this.$log = $log;
+    this.matchmediaService = matchmediaService;
   }
 
   toggleFavouriteTrack() {
