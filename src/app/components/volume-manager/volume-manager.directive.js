@@ -24,6 +24,8 @@ class VolumeManagerController {
     this.matchmediaService = matchmediaService;
     this.showVerticalSlider = false;
     this.themeManager = themeManager;
+    this.$scope = $scope;
+    
 
     if (this.type === 'knob') {
       this.knobOptions = {
@@ -86,6 +88,14 @@ class VolumeManagerController {
     } else {
       this.knobOptions.fgColor = this.themeManager.getCssValue('color');
     }
+  }
+  
+  toggleVolumeSlider(){
+    this.showVerticalSlider = !this.showVerticalSlider;
+  }
+  
+  closeVolumeSlider($event){
+    this.showVerticalSlider = false;
   }
 }
 
