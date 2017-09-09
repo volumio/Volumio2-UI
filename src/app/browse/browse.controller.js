@@ -227,7 +227,7 @@ class BrowseController {
               onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
           if (!item.icon && item.albumart) {
             this.table += `
-            <img src="${this.playerService.getAlbumart(item.albumart)}" alt="${item.title}"/>`;
+            <img src="${this.playerService.getAlbumart(item.albumart)}" alt=""/>`;
           }
 
           if (item.icon) {
