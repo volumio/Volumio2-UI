@@ -42,6 +42,18 @@ class WifiPluginController {
     this.socketService.emit('saveWirelessNetworkSettings', saveWiFi);
   }
 
+  connectToWifiWizard(wifi, index) {
+    let saveWiFi = {
+      ssid: wifi.ssid,
+      security: wifi.security.label || wifi.security,
+      password: wifi.password,
+      hidden: wifi.hidden
+    };
+    this.wirelessNetworks.available[index].insertPassword = undefined;
+    this.$log.debug('connect to', wifi, saveWiFi);
+    this.socketService.emit('connectWirelessNetworkWizard', saveWiFi);
+  }
+
   cancelConnectToWifi(wifi) {
     wifi.insertPassword = undefined;
   }
@@ -71,9 +83,17 @@ class WifiPluginController {
         }
       });
     });
+    this.socketService.on('pushWizardWirelessConnResults', (data) => {
+      this.$log.debug('pushWizardWirelessConnResults', data);
+      this.wirelessNetworks = '';
+      this.WirelessConnResults = data;
+    });
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushWirelessNetworks');
+      this.socketService.off('pushWizardWirelessConnResults');
     });
+    this.socketService.on('pushWirelessNetworks', (data) => {
+      });
   }
 
   initService() {

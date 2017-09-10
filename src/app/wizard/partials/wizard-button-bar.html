@@ -4,14 +4,21 @@
       class="btn btn-warning"
       ng-click="wizard.skipWizard()"
       ng-if="!wizard.isLastStep()"
-      translate="COMMON.SKIP">
+      translate="COMMON.CLOSE">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.gotoPrevStep()"
+      ng-if="!wizard.isFirstStep()"
+      translate="COMMON.PREVIOUS">
   </button>
   <button
       type="button"
       class="btn btn-info"
       ng-click="wizard.gotoNextStep()"
       ng-if="!wizard.isLastStep()"
-      translate="COMMON.NEXT_STEP">
+      translate="COMMON.NEXT">
   </button>
   <button
       type="button"

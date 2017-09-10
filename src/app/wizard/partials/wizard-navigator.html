@@ -9,8 +9,5 @@
       ng-class="{selected: wizard.currentStep === step}">
     {{'WIZARD.' + step | uppercase | translate}}
   </button>
-  <h1
-      ng-if="wizard.matchmediaService.isPhone">
-    {{'WIZARD.' + wizard.currentStep | uppercase | translate}}
-  </h1>
+  
 </div>

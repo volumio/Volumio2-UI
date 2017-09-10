@@ -68,3 +68,16 @@
     right: 25px;
   }
 }
+
+tr.wifiwizard.ng-scope {
+    font-size: 12px;
+}
+
+div#wizard-wifi-spinner i.fa.fa-spinner.fa-pulse {
+    font-size: 90px;
+    margin: 30px 50% 30px 50%;
+}
+
+div#wizard-wifi-message {
+    margin-top: 50px;
+}

@@ -1,1 +1,156 @@
-<plugin-component plugin-name="system_controller-network/wifi"></plugin-component>
+<div
+    id="wifiPlugin"
+    ng-controller="WifiPluginController as wifiPlugin"
+    ng-show="wifiPlugin.WirelessConnResults"
+    class="panel panel-default">
+
+    <div id="wizard-wifi-spinner"
+    ng-show="wifiPlugin.WirelessConnResults.wait">
+      <i class="fa fa-spinner fa-pulse"></i>
+      <div id="wizard-wifi-message"
+      ng-show="wifiPlugin.WirelessConnResults.message">
+      <h4 class="text-center">{{::wifiPlugin.WirelessConnResults.message}}</h4>
+      </div>
+    </div>
+    <div id="wizard-wifi-spinner"
+    ng-show="!wifiPlugin.WirelessConnResults.wait">
+    <div id="wizard-wifi-message"
+    ng-show="wifiPlugin.WirelessConnResults.result">
+    <h4 class="text-center">{{::wifiPlugin.WirelessConnResults.result}}</h4>
+    </div>
+    </div>
+</div>
+<div
+    id="wifiPlugin"
+    ng-controller="WifiPluginController as wifiPlugin"
+    ng-show="wifiPlugin.wirelessNetworks.available || wifiPlugin.wirelessNetworks.connectedTo"
+    class="panel panel-default">
+  <!-- <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-wifi"></i> Wireless network</h3>
+  </div> -->
+
+  <div class="panel-body">
+    <!-- <h4 ng-if="false" class="sectionDescription"></h4> -->
+    <table class="table">
+      <tr ng-if="::wifiPlugin.wirelessNetworks.connectedTo">
+        <td class="wifiIcon">
+          <img
+              ng-if="::wifiPlugin.wirelessNetworks.connectedTo.signal >= 0"
+              ng-src="{{assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+        </td>
+        <td class="lockIcon">
+          <span ng-if="::wifi.security">
+            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security == 'open'" class="fa fa-unlock" title="{{'NETWORK.OPEN_NETWORK' | translate}}"></i>
+            <i ng-if="::wifiPlugin.wirelessNetworks.connectedTo.security !== 'open'" class="fa fa-lock" title="{{'NETWORK.SECURE_NETWORK' | translate}}"></i>
+          </span>
+        </td>
+        <td>
+          {{::wifiPlugin.wirelessNetworks.connectedTo.ssid}}
+        </td>
+        <td>
+        </td>
+        <td class="commandCol">
+          <!-- <button ng-click="wifi.disconnectFromWiFi()"
+              type="button"
+              class="btn btn-info">
+            <span class="hidden-xs"> Disconnect</span>
+          </button> -->
+        </td>
+      </tr>
+
+      <tr
+          ng-if="::wifiPlugin.wirelessNetworks.available.length > 0"
+          ng-click="wifiPlugin.insertPassword($index)"
+          ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available track by $index"
+          class="wifiwizard">
+        <td class="wifiIcon">
+          <img
+              ng-if="::wifi.signal >= 0"
+              ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+          <i ng-if="::wifi.signal < 0" class="fa fa-eye-slash"></i>
+        </td>
+        <td class="lockIcon">
+          <span>
+            <i ng-if="wifi.security === 'open' || wifi.security.label === 'open'" class="fa fa-unlock" title="{{'NETWORK.OPEN_NETWORK' | translate}}"></i>
+            <i ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'" class="fa fa-lock" title="{{'NETWORK.SECURE_NETWORK' | translate}}"></i>
+          </span>
+        </td>
+        <td>
+          <span ng-if="!$last">{{::wifi.ssid}}</span>
+          <span ng-if="$last" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
+        </td>
+        <td class="commandCol">
+          <button ng-if="::!wifi.insertPassword"
+              type="button"
+              class="btn btn-info">
+            <i class="fa fa-link"></i>
+            <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
+          </button>
+        </td>
+      </tr>
+
+      <tr ng-repeat-end ng-if="wifi.insertPassword">
+        <td colspan="4" class="insertPasswordRow">
+          <span ng-if="::wifi.ssidHidden" class="checkbox-wrapper">
+            <input ng-model="wifi.hidden" type="checkbox" id="customWifi" class="custom-checkbox" />
+            <label for="customWifi"></label>
+            <span translate="COMMON.HIDDEN"></span> &nbsp;|&nbsp;
+          </span>
+
+          <span translate="NETWORK.SECURITY" ng-if="::wifi.ssidHidden || wifi.hotSpot"></span> &nbsp;
+
+          <div class="securitySelectWrapper" ng-if="::wifi.ssidHidden || wifi.hotSpot">
+            <ui-select
+                ng-model="wifi.security"
+                search-enabled="false"
+                ng-readonly="true"
+                append-to-body="false"
+                theme="bootstrap">
+              <ui-select-match
+                  class="ui-select-match"
+                  placeholder="{{'NETWORK.SELECT_ENCRYPTION'}}">
+                {{$select.selected.label}}
+              </ui-select-match>
+              <ui-select-choices
+                  class="ui-select-choices"
+                  repeat="option in wifiPlugin.securityTypes track by $index">
+                <div ng-bind-html="option.label"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+
+          <input
+              class="form-control"
+              ng-if="::wifi.ssidHidden"
+              ng-model="wifi.ssid"
+              type="text"
+              placeholder="{{'NETWORK.NETWORK_NAME' | translate}}">
+          <input
+              class="form-control"
+              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'"
+              ng-model="wifi.password"
+              type="{{wifi.showHidePassword || 'password'}}"
+              placeholder="password">
+
+          <button
+              class="btn btn-info"
+              ng-click="wifiPlugin.connectToWifiWizard(wifi, $index)"
+              type="button"
+              name="btn btn-info">
+              <i class="fa fa-link"></i>
+              <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
+          </button>
+
+          <button
+              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'"
+              ng-click="(wifi.showHidePassword === 'text') ? wifi.showHidePassword = 'password' : wifi.showHidePassword = 'text'"
+              type="button"
+              class="btn btn-info showHidePassword">
+            <i ng-if="!wifi.showHidePassword || wifi.showHidePassword === 'password'" class="fa fa-eye"></i>
+            <i ng-if="wifi.showHidePassword === 'text'" class="fa fa-eye-slash"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

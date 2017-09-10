@@ -120,7 +120,6 @@ class UiSettingsService {
   }
 
   initService() {
-    this.socketService.emit('getWizard');
     let settingsUrl =
         `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
@@ -138,7 +137,7 @@ class UiSettingsService {
       })
       .finally(() => {
         this.socketService.emit('getUiSettings');
-
+        this.socketService.emit('getWizard');
       });
     return this.settingsPromise;
 

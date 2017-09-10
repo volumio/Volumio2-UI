@@ -124,12 +124,20 @@ class WizardController {
     this.gotoStep(this.wizardDetails.steps[this.getStepIndex() + 1]);
   }
 
+  gotoPrevStep() {
+    this.gotoStep(this.wizardDetails.steps[this.getStepIndex() - 1]);
+  }
+
   getStepIndex(step = this.currentStep) {
     return this.wizardDetails.steps.indexOf(step);
   }
 
   isLastStep() {
     return this.getStepIndex(this.currentStep) === this.wizardDetails.steps.length - 1;
+  }
+
+  isFirstStep() {
+    return this.getStepIndex(this.currentStep) === 0;
   }
 
   done() {
@@ -230,6 +238,7 @@ class WizardController {
   initService() {
     this.socketService.emit('getWizardSteps');
     this.socketService.emit('getAvailableLanguages');
+
   }
 }
 
