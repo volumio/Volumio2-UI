@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-if="pluginComponent.showPlugin">
   <div id="pluginWrapper">
     <div class="box">
       <div class="boxHeader">
@@ -16,7 +16,7 @@
 
       <div class="panel panel-default" ng-if="!section.hidden" ng-repeat="section in pluginComponent.pluginObj.sections track by $index">
 
-        <div ng-if="section.coreSection" ng-include="'app/plugin/core-plugin/' + section.coreSection + '-pluginComponent.html'">
+        <div ng-if="section.coreSection" ng-include="'app/plugin/core-plugin/' + section.coreSection + '-plugin.html'">
         </div>
 
         <div ng-if="!section.coreSection" class="panel-heading">
