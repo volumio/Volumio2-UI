@@ -48,6 +48,9 @@ import FavouriteTrackBtnDirective from './components/favourite-track-btn/favouri
 import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
 import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
 
+// Light Switch
+import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-btn.directive';
+
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
@@ -177,6 +180,7 @@ angular.module('volumio', [
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
+  .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)
