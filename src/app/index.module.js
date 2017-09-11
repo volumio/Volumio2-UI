@@ -51,6 +51,7 @@ import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actio
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
+import PluginComponent from './plugin/components/plugin.component';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -122,7 +123,6 @@ angular.module('volumio', [
   //Angular core modules
   // 'ngAnimate',
   // 'ngCookies',
-  'ngResource',
   'ngTouch',
   'ngSanitize'
   ])
@@ -191,6 +191,7 @@ angular.module('volumio', [
 
   .controller('PluginController', PluginController)
   .controller('PluginManagerController', PluginManagerController)
+  .component('pluginComponent', new PluginComponent())
 
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
