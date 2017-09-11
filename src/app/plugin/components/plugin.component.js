@@ -3,7 +3,8 @@ class PluginComponent {
     'ngInject';
     let component = {
       bindings: {
-        pluginName: '@'
+        pluginName: '=',
+        type: '='
       },
       templateUrl: 'app/plugin/components/plugin-component.html',
       controller: PluginComponentController,
@@ -122,9 +123,16 @@ class PluginComponentController {
   }
 
   init() {
+    this.pluginName = this.pluginName.replace('-', '/');
     this.showPlugin = false;
-    this.pluginName = this.$stateParams.pluginName.replace('-', '/');
     this.registerListner();
+    this.initService();
+    this.initWatchers();
+  }
+
+  changePlugin() {
+    this.pluginName = this.pluginName.replace('-', '/');
+    this.showPlugin = false;
     this.initService();
   }
 
@@ -173,12 +181,25 @@ class PluginComponentController {
     });
   }
 
+  initWatchers() {
+    this.watchersHandeler = this.$scope.$watch(() => this.pluginName, (newVal, oldVal) => {
+      if (newVal && newVal !== oldVal) {
+        this.changePlugin();
+      }
+    });
+  }
+
   $onDestroy() {
     this.socketService.off('pushUiConfig');
+    this.watchersHandeler();
   }
 
   initService() {
-    this.socketService.emit('getUiConfig', { page: this.pluginName });
+    if (this.type === 'wizardPlugin') {
+      this.socketService.emit('getWizardUiConfig', { page: this.pluginName });
+    } else {
+      this.socketService.emit('getUiConfig', { page: this.pluginName });
+    }
   }
 }
 

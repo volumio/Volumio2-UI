@@ -45,9 +45,9 @@ class WizardController {
 
   gotoStep(step) {
     let emitPayload;
-    this.$log.log('go from step', this.currentStep.toLowerCase());
+    this.$log.log('go from step', this.currentStep.name.toLowerCase());
     //From step actions
-    switch (this.currentStep.toLowerCase()) {
+    switch (this.currentStep.name.toLowerCase()) {
       case 'language':
         this.$log.debug('setLanguage', this.wizardDetails.language);
         this.socketService.emit('setLanguage', this.wizardDetails.language);
@@ -89,7 +89,7 @@ class WizardController {
     this.currentStep = step;
 
     //To step actions
-    switch (this.currentStep.toLowerCase()) {
+    switch (this.currentStep.name.toLowerCase()) {
       case 'name':
         if (!this.wizardDetails.deviceName) {
           this.socketService.emit('getDeviceName');
