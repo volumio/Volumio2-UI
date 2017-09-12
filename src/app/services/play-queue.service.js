@@ -17,8 +17,10 @@ class PlayQueueService {
   }
 
   play(index) {
-    this.$log.debug('PlayQueueService play', index);
-    this.socketService.emit('play', {value: index});
+    if (this._queue !== null && index <= this._queue.length) {
+      this.$log.debug('PlayQueueService play', index);
+      this.socketService.emit('play', {value: index});
+    }
   }
 
   //play song and add to queue
