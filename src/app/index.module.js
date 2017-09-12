@@ -20,6 +20,7 @@ import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
 import RipperService from './services/ripper.service';
 import UiSettingsService from './services/ui-settings.service';
+import AngularFireService from './services/angularfire.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -121,7 +122,12 @@ angular.module('volumio', [
   // 'ngAnimate',
   // 'ngCookies',
   'ngTouch',
-  'ngSanitize'
+  'ngSanitize',
+  
+  //firebase module
+  'firebase'
+  
+  
   ])
 
   //.constant('', toastr)
@@ -147,6 +153,7 @@ angular.module('volumio', [
   .service('mockService', MockService)
   .service('ripperService', RipperService)
   .service('uiSettingsService', UiSettingsService)
+  .service('angularFireService', AngularFireService)
 
 
   .provider('themeManager', ThemeManagerProvider)
