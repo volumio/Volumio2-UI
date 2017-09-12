@@ -82,12 +82,26 @@ tr.wifiwizard.ng-scope {
     margin-top: 50px;
 }
 
-h5.music-wizard {
+
+.h-wizard {
     margin-top: 30px;
+    margin-left: 20px;
 }
 
 #status-bar {
     position: absolute;
     bottom: 20px;
     left: 40px;
+}
+
+.done-message {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.congratulations-message {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bolder;
+    color: $theme-primary-color;
 }

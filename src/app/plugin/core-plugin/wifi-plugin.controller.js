@@ -1,7 +1,8 @@
 class WifiPluginController {
-  constructor($scope, socketService, mockService, $log, $translate) {
+  constructor($rootScope, $scope, socketService, mockService, $log, $translate, themeManager) {
     'ngInject';
     this.socketService = socketService;
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$log = $log;
     this.$translate = $translate;

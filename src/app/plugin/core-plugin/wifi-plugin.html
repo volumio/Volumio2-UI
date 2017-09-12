@@ -14,7 +14,7 @@
         <td class="wifiIcon">
           <img
               ng-if="::wifiPlugin.wirelessNetworks.connectedTo.signal >= 0"
-              ng-src="{{assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+              ng-src="{{wifiPlugin.$rootScope.assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
           <span ng-if="::wifi.security">
@@ -43,7 +43,7 @@
         <td class="wifiIcon">
           <img
               ng-if="::wifi.signal >= 0"
-              ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+              ng-src="{{wifiPlugin.$rootScope.assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
           <i ng-if="::wifi.signal < 0" class="fa fa-eye-slash"></i>
         </td>
         <td class="lockIcon">

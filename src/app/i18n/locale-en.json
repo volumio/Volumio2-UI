@@ -201,7 +201,9 @@
     "DONATE": "Donate",
     "SUBSCRIBED_SUCCESFULLY": "Subscribed successfully",
     "ADD_YOUR_MUSIC":"To add your music, simply connect a USB Drive or click the button below to add your Network Drive",
-    "STEP":"Step"
+    "STEP":"Step",
+    "VOLUMIOAPPS":"Apps",
+    "GET_APPS":"For your convenience, you can also use our handy apps"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",

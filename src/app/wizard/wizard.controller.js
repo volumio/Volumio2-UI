@@ -1,6 +1,6 @@
 class WizardController {
   constructor($log, $scope, mockService, $state, socketService, $translate, uiSettingsService, CgMailChimpService,
-      $window, matchmediaService) {
+      $window, matchmediaService, themeManager) {
     'ngInject';
     this.$log = $log;
     this.mockService = mockService;

@@ -1,9 +1,12 @@
 <div class="wizard-panel col-sm-12 col-sm-offset-5">
   <div class="row">
-    <h3 ng-if="wizard.wizardDetails.done.title">
+    <h2 ng-if="wizard.wizardDetails.done.congratulations" class="congratulations-message">
+      {{wizard.wizardDetails.done.congratulations}}
+    </h2>
+    <h4 ng-if="wizard.wizardDetails.done.title">
       {{wizard.wizardDetails.done.title}}
-    </h3>
-    <p ng-if="wizard.wizardDetails.done.message">
+    </h4>
+    <p ng-if="wizard.wizardDetails.done.message" class="done-message">
       {{wizard.wizardDetails.done.message}}
     </p>
   </div>
