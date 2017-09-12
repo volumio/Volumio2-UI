@@ -1,0 +1,17 @@
+<div class="wizard-panel col-sm-10 col-sm-offset-7">
+  <h4 translate="WIZARD.DEVICE_NAME" style="margin-top:40px;"></h4>
+  <form name="wizard.deviceNameform">
+    <input
+        type="text"
+        name="deviceName"
+        class="form-control"
+        ng-model="wizard.wizardDetails.deviceName.name">
+  </form>
+
+  <div>
+    <br>
+    <h4 translate="WIZARD.DEVICE_ADDRESS"></h4>
+    http://{{wizard.wizardDetails.deviceName.name.split(' ').join('-').toLowerCase()}}.local
+    <!-- <a href ng-click="wizard.addToBookmark($event)">Add to </a> -->
+  </div>
+</div>

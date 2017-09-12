@@ -1,0 +1,12 @@
+<div id="wizard">
+  <div id="wizard-container" class="col-sm-18 col-sm-offset-3 col-xs-24">
+    <ng-include src="'app/wizard/partials/wizard-navigator.html'"></ng-include>
+
+    <div class="row" ng-if="wizard.currentStep">
+      <ng-include ng-if="wizard.currentStep.type === 'core'" src="'app/wizard/views/wizard-' + wizard.currentStep.name.toLowerCase() + '.html'"></ng-include>
+      <ng-include ng-if="wizard.currentStep.type.indexOf('Plugin') > -1" src="'app/wizard/views/wizard-plugin.html'"></ng-include>
+    </div>
+
+    <ng-include src="'app/wizard/partials/wizard-button-bar.html'"></ng-include>
+  </div>
+</div>

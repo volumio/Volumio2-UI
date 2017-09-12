@@ -48,9 +48,13 @@ import FavouriteTrackBtnDirective from './components/favourite-track-btn/favouri
 import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
 import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
 
+// Light Switch
+import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-btn.directive';
+
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
+import PluginComponent from './plugin/components/plugin.component';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -67,6 +71,8 @@ import PlayQueueController from './play-queue/play-queue.controller';
 
 import PluginController from './plugin/plugin.controller';
 import PluginManagerController from './plugin-manager/plugin-manager.controller';
+
+import WizardController from './wizard/wizard.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -116,7 +122,7 @@ angular.module('volumio', [
   'ngFileUpload',
   'pascalprecht.translate',
   'LocalStorageModule',
-
+  'cg.mailchimp',
   //Angular core modules
   // 'ngAnimate',
   // 'ngCookies',
@@ -177,6 +183,7 @@ angular.module('volumio', [
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
+  .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)
@@ -188,10 +195,13 @@ angular.module('volumio', [
 
   .controller('PluginController', PluginController)
   .controller('PluginManagerController', PluginManagerController)
+  .component('pluginComponent', new PluginComponent())
 
   .controller('BrowseController', BrowseController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
+
+  .controller('WizardController', WizardController)
 
   .controller('ModalController', ModalController)
   .controller('ModalPlaylistController', ModalPlaylistController)

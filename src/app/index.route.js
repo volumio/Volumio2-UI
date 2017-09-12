@@ -2,6 +2,30 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
   'ngInject';
   console.info('[TEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
 
+  const resolverFn = (
+    $rootScope,
+    $http,
+    $window,
+    socketService,
+    ripperService,
+    modalListenerService,
+    toastMessageService,
+    uiSettingsService,
+    updaterService) => {
+      let localhostApiURL = `http://${$window.location.hostname }/api`;
+      return $http.get(localhostApiURL + '/host').then((response) => {
+        console.info('IP from API', response);
+        $rootScope.initConfig = response.data;
+        socketService.host  = response.data.host;
+      }, () => {
+        //Fallback socket
+        console.info('IP from fallback');
+        return $http.get('/app/local-config.json').then((response) => {
+          socketService.host  = response.data.localhost;
+        });
+      });
+    };
+
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('volumio', {
@@ -144,6 +168,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
       }
     })
 
+
     .state('volumio.redirect', {
       url: 'redirect',
       views: {
@@ -161,7 +186,19 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
           controllerAs: 'redirect'
         }
       }
+    })
+
+    .state('volumio.wizard', {
+      url: 'wizard',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/wizard/wizard.html',
+          controller: 'WizardController',
+          controllerAs: 'wizard'
+        }
+      }
     });
+
 
   $urlRouterProvider.otherwise('/redirect');
 }

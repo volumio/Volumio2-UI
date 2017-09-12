@@ -1,0 +1,33 @@
+<div id="status-bar" class="row text-lef">
+{{'WIZARD.STEP' | translate}} {{wizard.getStepPos()}}
+</div>
+<div id="button-bar" class="row text-right">
+  <button
+      type="button"
+      class="btn btn-warning"
+      ng-click="wizard.skipWizard()"
+      ng-if="!wizard.isLastStep()"
+      translate="COMMON.CLOSE">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.gotoPrevStep()"
+      ng-if="!wizard.isFirstStep()"
+      translate="COMMON.PREVIOUS">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.gotoNextStep()"
+      ng-if="!wizard.isLastStep()"
+      translate="COMMON.NEXT">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.done()"
+      ng-if="wizard.isLastStep()"
+      translate="COMMON.DONE">
+  </button>
+</div>

@@ -72,7 +72,7 @@
     "UPDATE":"Aggiorna",
     "UPDATE_DOC":"Aggiorna il database, aggiungendo le tracce aggiunte di recente",
     "RESCAN":"Scansiona Nuovamente",
-    "RESCAN_DOC":"Scansiona nuovamente il database, ricreandolo da zero"  
+    "RESCAN_DOC":"Scansiona nuovamente il database, ricreandolo da zero"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Ritorna ai Plugin",
@@ -154,5 +154,14 @@
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Per usare la funzione sveglia, è necessario creare almeno una Playlist"
+  },
+  "WIZARD": {
+    "LANGUAGE": "Lingua",
+    "NAME": "Nome",
+    "OUTPUT": "Uscite",
+    "NETWORK": "Rete",
+    "MUSIC": "Musica",
+    "DONE": "Fatto",
+    "SELECT_YOUR_LANGUAGE": "Seleziona la tua lingua"
   }
 }
