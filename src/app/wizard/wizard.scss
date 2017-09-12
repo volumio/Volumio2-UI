@@ -56,7 +56,7 @@
       }
       &.selected {
         background-color: #333 !important;
-        border-bottom: solid 1px #54C698;
+        border-bottom: solid 1px $theme-primary-color;
         border-radius: 0;
         transition: all .3s;
       }
