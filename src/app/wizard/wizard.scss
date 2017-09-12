@@ -73,11 +73,21 @@ tr.wifiwizard.ng-scope {
     font-size: 12px;
 }
 
-div#wizard-wifi-spinner i.fa.fa-spinner.fa-pulse {
+#wizard-wifi-spinner i.fa.fa-spinner.fa-pulse {
     font-size: 90px;
     margin: 30px 50% 30px 50%;
 }
 
-div#wizard-wifi-message {
+#wizard-wifi-message {
     margin-top: 50px;
+}
+
+h5.music-wizard {
+    margin-top: 30px;
+}
+
+#status-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
 }

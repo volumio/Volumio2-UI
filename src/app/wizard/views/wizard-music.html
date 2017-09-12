@@ -1,18 +1,15 @@
+<h5 class="music-wizard" translate="WIZARD.ADD_YOUR_MUSIC"></h4>
 <div ng-controller="NetworkDrivesPluginController as networkDrives">
   <div id="networkDrives"
       class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><i class="fa fa-hdd-o"></i> <span translate="NETWORKFS.NETWORK_DRIVES"></span>
-        <i class="fa fa-info-circle pull-right" ng-click="networkDrives.showNasHelper()"></i>
-      </h3>
-    </div>
     <div class="panel-body">
       <h4 ng-if="false" class="sectionDescription"></h4>
       <button ng-click="networkDrives.addDrive()"
           id="addNewDrive"
           type="button"
           class="btn btn-info"
-          title="{{'NETWORKFS.ADD_DRIVE' | translate}}">
+          title="{{'NETWORKFS.ADD_DRIVE' | translate}}"
+          style="float:left!important;">
         <span ng-if="!networkDrives.inAddDrive">
           <i class="fa fa-plus"></i>
           <span translate="NETWORKFS.ADD_DRIVE"></span>

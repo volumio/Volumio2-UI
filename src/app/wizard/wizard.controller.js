@@ -50,6 +50,7 @@ class WizardController {
     switch (this.currentStep.name.toLowerCase()) {
       case 'language':
         this.$log.debug('setLanguage', this.wizardDetails.language);
+        this.wizardDetails.language.disallowReload = true;
         this.socketService.emit('setLanguage', this.wizardDetails.language);
         this.$translate.use(this.wizardDetails.language.defaultLanguage.code);
         break;
@@ -140,17 +141,17 @@ class WizardController {
     return this.getStepIndex(this.currentStep) === 0;
   }
 
+  getStepPos() {
+    return (this.getStepIndex(this.currentStep)+1) + '/' + this.wizardDetails.steps.length;
+  }
+
   done() {
-    if (this.wizardData.showI2sOption) {
-      this.$log.log('getFirstConfig {action: "reboot"}');
-      this.socketService.emit('getFirstConfig', {action: 'reboot'});
-    } else {
-      this.$state.go('volumio.playback');
-    }
+    this.$state.go('volumio.playback');
+    this.socketService.emit('setWizardAction', {action: 'close'});
   }
 
   skipWizard() {
-    this.socketService.emit('getFirstConfig', {action: 'skip'});
+    this.socketService.emit('setWizardAction', {action: 'skip'});
     this.$state.go('volumio.playback');
   }
 

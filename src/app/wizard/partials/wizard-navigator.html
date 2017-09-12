@@ -7,7 +7,13 @@
       ng-click="wizard.gotoStep(step)"
       ng-repeat="step in wizard.wizardDetails.steps track by step.name"
       ng-class="{selected: wizard.currentStep === step}">
-    {{'WIZARD.' + step.name | uppercase | translate}}
+      <span ng-if="step.type === 'core'">
+          {{'WIZARD.' + step.name | uppercase | translate}}
+      </span>
+      <span ng-if="step.type != 'core'" style="text-transform:capitalize;">
+          {{step.name}}
+      </span>
+
   </button>
 
 </div>
