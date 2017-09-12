@@ -13,8 +13,15 @@
       type="button"
       class="btn btn-info"
       ng-click="wizard.gotoPrevStep()"
-      ng-if="!wizard.isFirstStep()"
+      ng-if="!wizard.isFirstStep() && !wizard.matchmediaService.isPhone"
       translate="COMMON.PREVIOUS">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.gotoPrevStep()"
+      ng-if="!wizard.isFirstStep() && wizard.matchmediaService.isPhone">
+      <
   </button>
   <button
       type="button"

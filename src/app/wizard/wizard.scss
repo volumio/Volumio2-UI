@@ -12,7 +12,6 @@
   height: calc(100vh - #{$headerHeight} - #{$footerHeight});
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 30px 0px;
   h1 {
     text-align: center;
     margin-bottom: 25px;
@@ -104,4 +103,10 @@ tr.wifiwizard.ng-scope {
     margin-bottom: 30px;
     font-weight: bolder;
     color: $theme-primary-color;
+}
+
+div#logo-wizard {
+    left: 50%;
+    text-align: center;
+    padding: 30px;
 }

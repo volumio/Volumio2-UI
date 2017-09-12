@@ -1,7 +1,8 @@
 class NetworkStatusPluginController {
-  constructor($scope, socketService, mockService, $log, $translate) {
+  constructor($scope, $rootScope, socketService, mockService, $log, $translate) {
     'ngInject';
     this.socketService = socketService;
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$log = $log;
     this.$translate = $translate;
