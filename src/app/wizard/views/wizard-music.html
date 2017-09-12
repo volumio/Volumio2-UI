@@ -1,0 +1,82 @@
+<h5 class="h-wizard" translate="WIZARD.ADD_YOUR_MUSIC"></h5>
+<div ng-controller="NetworkDrivesPluginController as networkDrives">
+  <div id="networkDrives"
+      class="panel panel-default">
+    <div class="panel-body">
+      <h4 ng-if="false" class="sectionDescription"></h4>
+      <button ng-click="networkDrives.addDrive()"
+          id="addNewDrive"
+          type="button"
+          class="btn btn-info"
+          title="{{'NETWORKFS.ADD_DRIVE' | translate}}"
+          style="float:left!important;">
+        <span ng-if="!networkDrives.inAddDrive">
+          <i class="fa fa-plus"></i>
+          <span translate="NETWORKFS.ADD_DRIVE"></span>
+        </span>
+        <span ng-if="networkDrives.inAddDrive">
+          <i class="fa fa-refresh"></i>
+          <span translate="COMMON.RESCAN"></span>
+        </span>
+      </button>
+      <div class="clearfix"></div>
+      <br>
+
+      <ng-include src="'app/plugin/core-plugin/elements/network-drives-add-edit-drive.html'"
+          ng-if="networkDrives.inAddDrive">
+      </ng-include>
+
+      <table class="table tableSmall" ng-if="networkDrives.infoShare">
+        <tr>
+          <th><span translate="NETWORKFS.ALIAS"></span></th>
+          <th ng-if="!networkDrives.matchmediaService.isPhone">
+            <span translate="NETWORKFS.PATH"></span>
+          </th>
+          <th><span translate="NETWORKFS.MOUNTED"></span></th>
+          <th><span translate="NETWORKFS.SIZE"></span></th>
+          <th></th>
+        </tr>
+        <tr ng-repeat-start="drive in networkDrives.infoShare track by drive.id">
+          <td>
+            {{drive.name}}
+          </td>
+          <td ng-if="!networkDrives.matchmediaService.isPhone">
+            {{drive.ip}}:{{drive.path}}
+          </td>
+          <td>
+            <i class="fa fa-check true" ng-if="drive.mounted"></i>
+            <i class="fa fa-remove false" ng-if="!drive.mounted"></i>
+          </td>
+          <td>
+            {{drive.size}}
+          </td>
+          <td class="commandCol">
+            <button ng-click="networkDrives.deleteDrive(drive)"
+                type="button"
+                class="btn btn-danger"
+                title="{{'NETWORKFS.DELETE_DRIVE' | translate}}">
+              <i class="fa fa-trash-o"></i>
+            </button>
+            <button ng-click="networkDrives.editDrive(drive, $index)"
+                type="button"
+                class="btn btn-info"
+                title="{{'NETWORKFS.EDIT_DRIVE' | translate}}">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr ng-if="networkDrives.inEditDrive === $index" ng-repeat-end="">
+          <td colspan="5">
+            <div class="row">
+              <div class="col-xs-24">
+                <ng-include src="'app/plugin/core-plugin/elements/network-drives-add-edit-drive.html'">
+                </ng-include>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

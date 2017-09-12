@@ -1,6 +1,28 @@
 <div
     id="wifiPlugin"
     ng-controller="WifiPluginController as wifiPlugin"
+    ng-show="wifiPlugin.WirelessConnResults"
+    class="panel panel-default">
+
+    <div id="wizard-wifi-spinner"
+    ng-show="wifiPlugin.WirelessConnResults.wait">
+      <i class="fa fa-spinner fa-pulse"></i>
+      <div id="wizard-wifi-message"
+      ng-show="wifiPlugin.WirelessConnResults.message">
+      <h4 class="text-center">{{::wifiPlugin.WirelessConnResults.message}}</h4>
+      </div>
+    </div>
+    <div id="wizard-wifi-spinner"
+    ng-show="!wifiPlugin.WirelessConnResults.wait">
+    <div id="wizard-wifi-message"
+    ng-show="wifiPlugin.WirelessConnResults.result">
+    <h4 class="text-center">{{::wifiPlugin.WirelessConnResults.result}}</h4>
+    </div>
+    </div>
+</div>
+<div
+    id="wifiPlugin"
+    ng-controller="WifiPluginController as wifiPlugin"
     ng-show="wifiPlugin.wirelessNetworks.available || wifiPlugin.wirelessNetworks.connectedTo"
     class="panel panel-default">
   <!-- <div class="panel-heading">
@@ -14,7 +36,7 @@
         <td class="wifiIcon">
           <img
               ng-if="::wifiPlugin.wirelessNetworks.connectedTo.signal >= 0"
-              ng-src="{{wifiPlugin.$rootScope.assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+              ng-src="{{assetsUrl + '/wifi-icons/' + wifiPlugin.wirelessNetworks.connectedTo.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
         </td>
         <td class="lockIcon">
           <span ng-if="::wifi.security">
@@ -39,11 +61,12 @@
       <tr
           ng-if="::wifiPlugin.wirelessNetworks.available.length > 0"
           ng-click="wifiPlugin.insertPassword($index)"
-          ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available track by $index">
+          ng-repeat-start="wifi in wifiPlugin.wirelessNetworks.available track by $index"
+          class="wifiwizard">
         <td class="wifiIcon">
           <img
               ng-if="::wifi.signal >= 0"
-              ng-src="{{wifiPlugin.$rootScope.assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
+              ng-src="{{assetsUrl + '/wifi-icons/' + wifi.signal + '.png'}}" alt="signal-{{wifi.signal}}" />
           <i ng-if="::wifi.signal < 0" class="fa fa-eye-slash"></i>
         </td>
         <td class="lockIcon">
@@ -111,7 +134,7 @@
 
           <button
               class="btn btn-info"
-              ng-click="wifiPlugin.connectToWifi(wifi, $index)"
+              ng-click="wifiPlugin.connectToWifiWizard(wifi, $index)"
               type="button"
               name="btn btn-info">
               <i class="fa fa-link"></i>
@@ -129,10 +152,5 @@
         </td>
       </tr>
     </table>
-
-    <button type="button" class="btn btn-info refreshWiFiNetworks" ng-click="wifiPlugin.refreshWifiNetworks()">
-      <i class="fa fa-refresh" title="{{'NETWORK.REFRESH' | translate}}"></i>
-      <span translate="NETWORK.REFRESH"></span>
-    </button>
   </div>
 </div>

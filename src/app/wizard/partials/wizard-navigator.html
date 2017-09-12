@@ -1,0 +1,18 @@
+<!-- ng-click="wizard.gotoStep(step)" -->
+<div id="wizard-navigator">
+  <span ng-repeat="step in wizard.wizardDetails.steps track by step.name">
+  <button
+      ng-if="!wizard.matchmediaService.isPhone"
+      class="btn btn-link btn-navigator"
+      type="button"
+      ng-click="wizard.gotoStep(step)"
+      ng-class="{selected: wizard.currentStep === step}">
+      <span ng-if="step.type === 'core'">
+          {{'WIZARD.' + step.name | uppercase | translate}}
+      </span>
+      <span ng-if="step.type != 'core'" style="text-transform:capitalize;">
+          {{step.name}}
+      </span>
+  </button>
+  </span>
+</div>

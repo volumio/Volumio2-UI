@@ -13,6 +13,40 @@ class MockService {
 
   init() {
     this._mock = {
+      wizard: {
+        "steps": [
+          "Language", "Name", "Output", "Network", "Music", "Done"
+        ],
+        "language": {
+          "defaultLanguage": {"code": "en", "language": "English"},
+          "available": [
+            {"code": "en", "language": "English"},
+            {"code": "it", "language": "Italiano"},
+            {"code": "fr", "language": "French"}
+          ]
+        },
+        "deviceName": {"name": "volumio"},
+        "outputDevices": {
+          "devices": [
+            {"id": 1, "name": "Out 1"},
+            {"id": 2, "name": "Out 2"}
+          ],
+          "i2s": [
+            {"id": 1, "name": "Out i2s 1"},
+            {"id": 2, "name": "Out i2s 2"}
+          ]
+        },
+        "donation": {
+          "donationAmount": 20,
+          "customAmount": 150,
+          "amounts": [
+            10,
+            20,
+            50,
+            100
+          ]
+        }
+      },
       //networkSharesDiscovery
       networkSharesDiscovery: {
         'nas': [
