@@ -61,7 +61,7 @@ class WizardController {
         }
         break;
       case 'output':
-        if (this.wizardDetails.outputDevices.i2s.enabled) {
+        if (this.wizardDetails.outputDevices.i2s && this.wizardDetails.outputDevices.i2s.enabled) {
           emitPayload = {
             'i2s': true,
             'i2sid': {
@@ -218,7 +218,9 @@ class WizardController {
       this.$log.debug('pushOutputDevices', data);
       this.wizardDetails.outputDevices = data;
       this.wizardData.selectedDevice = {name: data.devices.active.name, id: data.devices.active.name};
-      this.wizardData.selectedI2s = {name: data.i2s.active};
+      if (data.i2s && data.i2s.enabled) {
+        this.wizardData.selectedI2s = {name: data.i2s.active};
+      }
     });
 
     this.socketService.on('pushDonePage', (data) => {
