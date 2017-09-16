@@ -52,3 +52,9 @@
     margin-top: 15px;
   }
 }
+
+.fa-rotate-90 {
+    -ms-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform:rotate(90deg);         
+}
