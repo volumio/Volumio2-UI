@@ -36,7 +36,7 @@
 </li>
 
 
-<li ng-if="::item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"
+<li ng-if="::(item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites'"
     ng-click="browse.playlistService.addToFavourites(item)"
     title="{{'BROWSER.ADD_TO_FAVOURITES' | translate}}">
   <a href><i class="fa fa-heart"></i><span translate="BROWSER.ADD_TO_FAVOURITES"></a>
