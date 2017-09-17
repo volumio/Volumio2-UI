@@ -178,19 +178,20 @@ class BrowseController {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'cuesong' ||
-        item.type === 'remdisk' || item.type === 'cuefile';
+        item.type === 'remdisk' || item.type === 'cuefile' ||
+        item.type === 'folder-with-favourites';
     return ret;
   }
   showAddToQueueButton(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'remdisk' ||
-        item.type === 'cuefile';
+        item.type === 'cuefile' || item.type === 'folder-with-favourites';
     return ret;
   }
   showAddToPlaylist(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
-    item.type === 'remdisk';
+    item.type === 'remdisk' || item.type === 'folder-with-favourites';
     return ret;
   }
 
@@ -240,7 +241,7 @@ class BrowseController {
             <div class="commandButtons">
               <div class="hamburgerMenu
                   ${(item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' ||
-                      item.type === 'streaming-category') ?
+                      item.type === 'streaming-category' || item.type === 'item-no-menu') ?
                       'hidden' : ''}">
                 <button class="dropdownToggle btn-link"
                     onclick="${angularThis}.hamburgerMenuClick(this, ${listIndex}, ${itemIndex}, event)"
