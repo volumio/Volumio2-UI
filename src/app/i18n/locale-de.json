@@ -27,11 +27,15 @@
     "ACTIVE":"Aktiv",
     "INACTIVE":"Inaktiv",
     "SHOW_SETTINGS":"Zeige Einstellungen",
+    "SETTINGS":"Einstellungen",
     "TAB_BROWSE":"Durchsuchen",
     "TAB_PLAYBACK":"Wiedergabe",
     "TAB_QUEUE":"Warteschlange",
+    "ARTIST":"Interpret",
     "ARTISTS":"Interpreten",
+    "ALBUM":"Album",
     "ALBUMS":"Alben",
+    "SONG":"Titel",
     "SONGS":"Titel",
     "PLAYTIME":"Wiedergabezeit",
     "TIME":"Zeit",
@@ -59,12 +63,18 @@
     "PLAY_QUEUE": "Warteschlange wiedergeben",
     "ENTER_PASSWORD": "Passwort eingeben",
     "INVALID_PASSWORD": "Passwort ungültig",
-    "RIP": "RIP"
+    "RIP": "RIP",
+    "SKIP": "Überspringen",
+    "NEXT": "Nächsen",
+    "PREVIOUS": "Verherigen",
+    "DONE": "Fertig",
+    "EMAIL": "Email",
+    "SUBSCRIBE_ME": "Newsletter erhalten",
+    "SHARE": "Teilen"
   },
   "BROWSER": {
     "PLAY": "Wiedergeben",
     "ADD_TO_QUEUE":"Zu Warteschlange hinzufügen",
-    "CLEAR_AND_PLAY":"Warteschlange hiermit ersetzen",
     "ADD_TO_PLAYLIST":"Zu Wiedergabeliste hinzufügen",
     "REMOVE_FROM_PLAYLIST":"Von Wiedergabeliste entfernen",
     "ADD_TO_FAVOURITES":"Zu Favoriten hinzufügen",
@@ -80,14 +90,16 @@
     "GO_TO_SHARE":"Teilen",
     "NEXT_TRACK":"Nächster Titel",
     "PREVIOUS_TRACK":"Vorheriger Titel",
-    "PAUSE":"Pause"
+    "PAUSE":"Pause",
+    "CLEAR_AND_PLAY":"Warteschlange hiermit ersetzen",
+    "SAFE_REMOVE": "Medium sicher auswerfen"
   },
-"MY_MUSIC": { 
-    "UPDATE":"Aktualisieren", 
-    "UPDATE_DOC":"Aktualisieren", 
-    "RESCAN":"Neu einlesen", 
-    "RESCAN_DOC":"Neu einlesen"  
-  }, 
+"MY_MUSIC": {
+    "UPDATE":"Aktualisieren",
+    "UPDATE_DOC":"Aktualisieren",
+    "RESCAN":"Neu einlesen",
+    "RESCAN_DOC":"Neu einlesen"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Zurück zu den Plugins",
     "PLUGINS":"Plugins",
@@ -165,7 +177,33 @@
     "SECURE_NETWORK":"Sicheres Netzwerk",
     "SECURITY":"Sicherheit",
     "MANUAL_WIFI_CONNECTION":"Manuelle WLAN-Verbindung",
-    "NETWORK_NAME": "Netzwerkname" 
+    "NETWORK_NAME": "Netzwerkname"
+  },
+    "WIZARD": {
+    "LANGUAGE": "Sprache",
+    "NAME": "Name",
+    "OUTPUT": "Ausgang",
+    "NETWORK": "Netzwerk",
+    "MUSIC": "Musik",
+    "FOLLOW": "Follow",
+    "DONE": "Fertig",
+    "WELCOME": "Willkommen",
+    "SELECT_YOUR_LANGUAGE": "Wähle deine Sprache",
+    "DEVICE_NAME": "Wähle einen eindeutigen Namen für dein Gerät",
+    "DEVICE_ADDRESS": "Dieses Gerät ist über folgende die Addresse erreichbar:",
+    "SELECT_YOUR_AUDIO_OUTPUT": "Wähle deinen Audioausgang",
+    "SELECT_YOUR_I2S_DAC": "Wähle deinen i2s DAC",
+    "I_HAVE_DAC": "Ich habe einen I2S DAC",
+    "CUSTOM_AMOUNT": "Eigener Wert",
+    "DONE_MESSAGE": "Fertig, dein System ist bereit",
+    "MAIL_LIST_SUBSCRIPTION": "Newsletter abonnieren",
+    "SOCIAL_SHARE": "Über Soziale Netzwerke teilen",
+    "DONATE": "Spenden",
+    "SUBSCRIBED_SUCCESFULLY": "Newsletter abonniert",
+    "ADD_YOUR_MUSIC":"Um Musik hinzuzufügen, verbinde einfach ein USB-Laufwerk oder klicke unten, um ein Netzwerklaufwerk hinzuzufügen",
+    "STEP":"Schritt",
+    "VOLUMIOAPPS":"Apps",
+    "GET_APPS":"Du kannst auch ganz bequem unsere praktischen Apps verwenden"
   },
   "SLEEP": {
     "POWER_OFF": "Ausschalten",
@@ -184,5 +222,5 @@
   "SIDEMENU": {
     "ANALOG_INPUT": "Analoger Input",
     "BLUETOOTH": "Bluetooth"
-   } 
+   }
 }
