@@ -224,7 +224,7 @@ class BrowseController {
           //Print items
           this.table += `<div class="itemWrapper"><div class="itemTab">`;
 
-          this.table += `<div class="image"
+          this.table += `<div class="image" id="${item.active ? 'source-active': ''}"
               onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
           if (!item.icon && item.albumart) {
             this.table += `
