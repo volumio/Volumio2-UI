@@ -52,7 +52,9 @@ class BrowseService {
     this.$log.debug('fetchLibrary', obj);
     this.currentFetchRequest = item;
     this.socketService.emit('browseLibrary', obj);
-    this.isBrowsing = true;
+    if (!item.static) {
+      this.isBrowsing = true;
+    }
     if (!back) {
       this.scrollPositions.delete(item.uri);
     }
