@@ -60,6 +60,14 @@ class BrowseService {
     }
   }
 
+  sendEject(data) {
+    this.socketService.emit('callMethod', data);
+  }
+
+  sendRip(data) {
+    this.socketService.emit('callMethod', data);
+  }
+
   backHome() {
     this.isBrowsing = false;
     this.isSearching = false;
@@ -192,6 +200,8 @@ class BrowseService {
         this.lists = data.navigation.lists;
 
         this.breadcrumbs = data.navigation.prev;
+        this.eject = data.navigation.eject;
+        this.rip = data.navigation.rip;
 
         this.$rootScope.$broadcast('browseService:fetchEnd');
       }
