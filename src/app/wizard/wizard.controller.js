@@ -217,7 +217,7 @@ class WizardController {
     this.socketService.on('pushOutputDevices', (data) => {
       this.$log.debug('pushOutputDevices', data);
       this.wizardDetails.outputDevices = data;
-      this.wizardData.selectedDevice = {name: data.devices.active.name, id: data.devices.active.name};
+      this.wizardData.selectedDevice = {name: data.devices.active.name, id: data.devices.active.id};
       if (data.i2s && data.i2s.enabled) {
         this.wizardData.selectedI2s = {name: data.i2s.active};
       }
