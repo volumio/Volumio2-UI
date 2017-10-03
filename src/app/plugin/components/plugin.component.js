@@ -23,8 +23,10 @@ class PluginComponentController {
     socketService,
     modalService,
     mockService,
+    uiSettingsService,
     $log,
-    $state
+    $state,
+    $window
   ) {
     'ngInject';
     this.socketService = socketService;
@@ -34,6 +36,8 @@ class PluginComponentController {
     this.$scope = $scope;
     this.$log = $log;
     this.$state = $state;
+    this.uiSettingsService = uiSettingsService;
+    this.$window = $window;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -91,7 +95,7 @@ class PluginComponentController {
         'app/components/modals/modal-confirm.html',
         item.onClick.askForConfirm
       );
-      modalPromise.then(
+      modalPromise.result.then(
         yes => {
           if (item.onClick.type === 'emit') {
             this.$log.debug('emit', item.onClick.message, item.onClick.data);
@@ -106,6 +110,8 @@ class PluginComponentController {
       if (item.onClick.type === 'emit') {
         this.$log.debug('emit', item.onClick.message, item.onClick.data);
         this.socketService.emit(item.onClick.message, item.onClick.data);
+      } else if (item.onClick.type === 'openUrl'){
+        this.$window.open(item.onClick.url);
       } else {
         this.socketService.emit('callMethod', item.onClick);
       }

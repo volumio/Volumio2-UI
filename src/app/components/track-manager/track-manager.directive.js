@@ -83,7 +83,6 @@ class TrackManagerController {
     });
 
     this.$scope.$watch(() => this.matchmediaService.isPhone, (newVal) => {
-      console.info(this.matchmediaService.isPhone);
       if (this.matchmediaService.isPhone) {
         let albumart = this.playerService.state && this.playerService.state.albumart;
         if (albumart) {
@@ -108,8 +107,8 @@ class TrackManagerController {
       max: 1001,
       fgColor: this.themeManager.getCssValue('color'),
       bgColor: this.themeManager.getCssValue('backgroundColor'),
-      width: 210,
-      height: 210,
+      width: isPhone ? 186 : 210,
+      height: isPhone ? 185 : 210,
       displayInput: false,
       step: 1,
       angleOffset: 0,
