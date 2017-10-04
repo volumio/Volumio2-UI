@@ -19,3 +19,17 @@
   <i ng-if="browse.browseService.showGridView" class="fa fa-list"></i>
   <i ng-if="!browse.browseService.showGridView" class="fa fa-th"></i>
 </button>
+<button
+    class="btn-link"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.eject"
+    ng-click="browse.browseService.sendEject(browse.browseService.eject.data)"
+    title="{{'COMMON.EJECT' | translate}}">
+  <i class="fa fa-eject"></i>
+</button>
+<button
+    class="btn-link"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.rip"
+    ng-click="browse.browseService.sendRip(browse.browseService.rip.data)"
+    title="{{'COMMON.RIP' | translate}}">
+  <i class="fa fa-download"></i>
+</button>
