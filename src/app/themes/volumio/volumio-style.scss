@@ -434,13 +434,9 @@ li.list-group-item {
 //Knob
 .knobWrapper {
   position: relative;
-  margin: 0px auto 15px auto;
   width: 210px;
   height: 210px;
-  @include breakpoint(xs) {
-    width: 186px;
-    height: 186px;
-  }
+  margin: 0px auto 15px auto;
 }
 
 .knob {
