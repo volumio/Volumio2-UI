@@ -129,7 +129,6 @@ class PluginComponentController {
   }
 
   init() {
-    this.pluginName = this.pluginName.replace('-', '/');
     this.showPlugin = false;
     this.registerListner();
     this.initService();
@@ -137,7 +136,6 @@ class PluginComponentController {
   }
 
   changePlugin() {
-    this.pluginName = this.pluginName.replace('-', '/');
     this.showPlugin = false;
     this.initService();
   }
