@@ -52,9 +52,11 @@ class DatabaseService {
   waitForValue(ref) {
     var waitingForValue = this.$q.defer();
     this.angularFireService.waitForValue(ref).then((result) => {
+      console.log("dbs result");
       console.log(result);
       waitingForValue.resolve(result);
     }, (error) => {
+      console.log("dbs error");
       console.log(error);
       waitingForValue.reject(error);
     });

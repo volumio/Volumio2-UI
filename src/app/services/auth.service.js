@@ -69,11 +69,13 @@ class AuthService {
       this.redirectToEditProfile();
       promise.reject('Missing mandatory user fields'); //TODO error
     }
-    if(!this.isUserVerified(user)){
-      this.redirectToVerifyUser();
-      promise.reject('User is not verified'); //TODO error
-    }
     promise.resolve(user);
+//    this.isUserVerified().then(() => {
+//      promise.resolve(user);
+//    }).catch(() => {
+//      this.redirectToVerifyUser();
+//      promise.reject('User is not verified'); //TODO error
+//    });
   }
 
   getFilterAccessMethod(watcher) {
@@ -88,28 +90,31 @@ class AuthService {
 
   isUserFilledWithMandatory(user) {
     for (var i in this.mandatoryFields) {
-      if (user && !user.hasOwnProperty(this.mandatoryFields[i])) {
-        console.log("user is false");
+      if (user &&
+              (!user.hasOwnProperty(this.mandatoryFields[i]) ||
+                      user[this.mandatoryFields[i]] === undefined ||
+                      user[this.mandatoryFields[i]].length == 0
+                      )
+              ) {
         return false;
       }
     }
     return true;
   }
+
+  isUserVerified() {
+    return this.angularFireService.isLoggedAndVerified();
+  }
   
-  isUserVerified(user){
-    return true;
-    //TODO server mechanism
-    if(user.verified === true){
-      return true;
-    }
-    return false;
+  resendEmailVerification(){
+    return this.angularFireService.sendEmailVerification();
   }
 
   redirectToEditProfile() {
     this.$state.go('volumio.auth.edit-profile');
   }
-  
-  redirectToVerifyUser(){
+
+  redirectToVerifyUser() {
     this.$state.go('volumio.auth.verify-user');
   }
 
@@ -124,7 +129,7 @@ class AuthService {
   }
 
   logOut() {
-    this.angularFireService.logOut();
+    return this.angularFireService.logOut();
   }
 
   saveUserData(user) {
@@ -133,8 +138,10 @@ class AuthService {
       delete user.password;
     }
     this.databaseService.updateFirebaseObject(user).then(() => {
+      console.log("saved");
       saving.resolve();
     }).catch((error) => {
+      console.log("error");
       saving.reject(error);
     });
     return saving.promise;
@@ -159,9 +166,13 @@ class AuthService {
     });
     return updating.promise;
   }
-  
-  getFirebaseAuthService(){
+
+  getFirebaseAuthService() {
     return this.angularFireService.getAuthService();
+  }
+
+  recoverPassword(email) {
+    return this.angularFireService.recoverPassword(email);
   }
 
 }

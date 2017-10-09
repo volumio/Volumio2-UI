@@ -22,19 +22,33 @@
 
             <div class="row">
               <div class="col-sm-24 col-md-12 user-data">
-                <h3>{{authProfileController.user.firstName}} {{authProfileController.user.lastName}}
+                <h3 class="user-title">{{authProfileController.user.firstName}} {{authProfileController.user.lastName}}
                   <span class="pull-right">
                     <a ng-click="authProfileController.goToEdit()" style="cursor: pointer;"><i class="glyphicon glyphicon-pencil glyphicon-2x"></i></a>
                   </span>
                 </h3>
-                <h4 class='active'> {{authProfileController.user.username}} </h4>
-                <p>
+                <h4 class='active user-username'> {{authProfileController.user.username}} </h4>
+                <p class="user-details">
                   <i class="glyphicon glyphicon-envelope"></i> {{authProfileController.user.email}}
                   <br />
                   <i class="glyphicon glyphicon-gift"></i> {{authProfileController.user.birthday}}
                   <br />
                   <i class="glyphicon glyphicon-globe"></i> {{authProfileController.user.country}}
                 </p>
+
+                <div ng-if="!authProfileController.isUserVerified">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <h4>
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        <span translate="AUTH.PLEASE_VERIFY_TITLE"></span>
+                      </h4>
+                      <p translate="AUTH.PLEASE_VERIFY_DESC"></p>
+                      <p><a ng-click="authProfileController.resendEmailVerification()" translate="AUTH.RESEND_VERIFICATION_EMAIL" ></a></p>
+                      <p><a ng-click="authProfileController.reAuth()" translate="AUTH.VERIFICATION_DONE_NOW_REAUTH" ></a></p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="col-sm-24 col-md-12 plans-table">
@@ -46,7 +60,7 @@
                   <div class="panel-body">
                     <div class="the-price">
                       <h1>
-                        {{authProfileController.user.plan | uppercase}}
+                        {{authProfileController.user.plan || 'FREE'  | uppercase}}
                       </h1>
                       <small>
                         Expiring: 7 Dec 2017
@@ -54,7 +68,7 @@
                     </div>
                   </div>
                   <div class="panel-footer">
-                    <button type="button" class="btn btn-labeled btn-success" ng-click="authProfileController.goToPlans();">
+                    <button type="button" class="btn btn-labeled btn-success" ng-click="authProfileController.goToPlans();" ng-disabled="!authProfileController.isUserVerified">
                       <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>Upgrade Plan
                     </button>
                   </div>

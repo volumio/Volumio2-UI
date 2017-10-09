@@ -5,8 +5,7 @@ class AuthEditProfileController {
     this.$q = $q;
 
     this.user = null;
-    this.previousEmail = null;
-    this.previousEmailSaved = false;
+    this.emailChanged = false;
 
     this.init();
   }
@@ -35,15 +34,7 @@ class AuthEditProfileController {
   }
 
   setUser(user) {
-    this.savePreviousEmail(user);
     this.user = user;
-  }
-
-  savePreviousEmail(user) {
-    if (user !== null && !this.previousEmailSaved && user.mail && user.mail !== null) {
-      this.previousEmail = user.email;
-      this.previousEmailSaved = true;
-    }
   }
 
   goToProfile() {
@@ -55,7 +46,6 @@ class AuthEditProfileController {
   }
 
   doEdit() {
-    console.log(this.user.password);
     var promises = [];
     if (this.user.password) {
       if (!this.checkPasswordMatch()) {
@@ -65,7 +55,7 @@ class AuthEditProfileController {
       var updatingPassword = this.updatePassword();
       promises.push(updatingPassword);
     }
-    if (this.user.email !== this.previousEmail) {
+    if (this.emailChanged === true) {
       var updatingEmail = this.updateEmail();
       promises.push(updatingEmail);
     }
@@ -114,6 +104,10 @@ class AuthEditProfileController {
   showPasswordNotMatchError() {
     //TODO
     alert('Pass not match');
+  }
+  
+  notifyEmailChanged(){
+    this.emailChanged = true;
   }
 
 }

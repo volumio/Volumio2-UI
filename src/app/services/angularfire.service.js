@@ -51,8 +51,8 @@ class AngularFireService {
   }
 
   /* ------------ AUTH ------------- */
-  
-  getAuthService(){
+
+  getAuthService() {
     return this.authService;
   }
 
@@ -76,7 +76,7 @@ class AngularFireService {
     this.authListeners.push(listener);
   }
 
-  removeAuthLister(listener) {
+  removeAuthListener(listener) {
     var index = this.authListeners.indexOf(listener);
     this.authListeners.splice(index, 1);
   }
@@ -182,8 +182,7 @@ class AngularFireService {
   }
 
   logOut() {
-    this.authService.$signOut().then(() => {/**/
-    });
+    return this.authService.$signOut();
   }
 
   signup(user) {
@@ -240,9 +239,9 @@ class AngularFireService {
 
   sendEmailVerification() {
     var currentUrl = document.location.origin;
+    var callbackUrl = `${currentUrl}/user/verify`;
     var actionCodeSettings = {
-      url: `${currentUrl}/user/verify`,
-      handleCodeInApp: false
+      url: callbackUrl
     };
     console.log(this.authUser);
     this.authUser.sendEmailVerification(/*actionCodeSettings*/)
@@ -254,7 +253,12 @@ class AngularFireService {
               // Error occurred. Inspect error.code.
               console.log(error);
             });
-            //TODO handle error
+  }
+  
+  isLoggedAndVerified(){
+    console.log("authUser");
+    console.log(this.authUser.emailVerified);
+    return this.authService.$requireSignIn(true);
   }
 
   updatePassword(password) {
@@ -275,6 +279,10 @@ class AngularFireService {
       updating.reject(error);
     });
     return updating.promise;
+  }
+  
+  recoverPassword(email){
+    return this.authService.$sendPasswordResetEmail(email);
   }
 
   /* ------------ DATABASE ------------- */
@@ -304,6 +312,8 @@ class AngularFireService {
   }
 
   updateObject(firebaseObject) {
+    console.log("firebaseObject");
+    console.log(firebaseObject);
     var updating = this.$q.defer();
     firebaseObject.$save().then(() => {
       updating.resolve();
@@ -340,30 +350,45 @@ class AngularFireService {
   }
 
   waitForValue(refPath, timeout = 30) {
-    var waiting = this.$q.defer();
-    
+    var waitingFor = this.$q.defer();
+
     var ref = this.database.ref(refPath);
-    var obj = this.$firebaseObject(ref);
-    
-    var unwatch = obj.$watch(() => {
-      if (obj === undefined){
+    //var obj = this.$firebaseObject(ref);
+
+    ref.on("value", (snapshot) => {
+      if (!snapshot || snapshot.val() === undefined || snapshot.val() === null ) {
         return;
       }
-      var value = obj.$value;
+
+      var value = snapshot.val();
+
       console.log(value);
-      waiting.resolve(value);
-      unwatch();
-    }, (error) => {
-      console.log(error);
-      waiting.reject(error);
+      waitingFor.resolve(value);
+      ref.off();
+      this.clearWaitForValueTimeout(timeouting);
+
     });
+    
+//    console.log(error);
+//    waitingFor.reject(error);
+//    this.clearWaitForValueTimeout(timeouting);
 
-    this.$timeout(() => {
-      unwatch();
-      waiting.reject('timeout'); //TODO ERROR
+    var timeouting = this.setWaitForValueTimeout(ref, waitingFor, timeout);
+
+    return waitingFor.promise;
+  }
+
+  setWaitForValueTimeout(ref, waitingFor, timeout) {
+    return this.$timeout(() => {
+      ref.off();
+      waitingFor.reject('timeout'); //TODO ERROR 
     }, timeout * 1000);
+  }
 
-    return waiting.promise;
+  clearWaitForValueTimeout(timeouting) {
+    if (timeouting) {
+      this.$timeout.cancel(timeouting);
+    }
   }
 
 }

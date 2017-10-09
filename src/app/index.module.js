@@ -63,6 +63,7 @@ import PluginVisibleDirective from './plugin/components/plugin-visible.directive
 //auth directives
 import StripePayButtonDirective from './plugin/core-plugin/auth/components/stripe-pay-button/stripe-pay-button.directive';
 import AuthCardDirective from './plugin/core-plugin/auth/components/card/auth-card.directive';
+import AuthBackButtonDirective from './plugin/core-plugin/auth/components/back-button/back-button.directive';
 import PluginComponent from './plugin/components/plugin.component';
 
 // Controllers
@@ -220,11 +221,12 @@ angular.module('volumio', [
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
+  .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))  
   
   //auth
   .directive('stripePayButton', () => new StripePayButtonDirective())
   .directive('authCard', () => new AuthCardDirective())
-  .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))
+  .directive('authBackButton', () => new AuthBackButtonDirective())
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)

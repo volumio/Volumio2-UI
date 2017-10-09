@@ -65,7 +65,7 @@ class StripePayButtonController {
 
   initButton() {
     this.handler = this.stripeCheckoutService.configure({
-      key: 'pk_test_BIm19dEV1fzXm2a0x3Wwkn8f', //TODO insert in a config
+      key: 'pk_test_utxQAjiMNEdVZFel9iQlDkyH', //TODO insert in a config
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
       token: this.getPayFunction()

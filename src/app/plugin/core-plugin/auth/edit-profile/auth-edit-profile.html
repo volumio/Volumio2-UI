@@ -14,96 +14,94 @@
     <div class="panel-body">
 
       <div id="" ng-if="authEditProfileController.user !== null" >
-     <div class="container">
-       <div>
-       <a ng-click="authEditProfileController.goToProfile()" style="cursor: pointer;"><span class="glyphicon glyphicon-arrow-left" style="font-size: large;"></span></a>
-       </div>
-    <h1>
-      Edit Profile
-    </h1>
-  	<hr>
-	<div class="row">
-      <!-- left column -->
-      <div class="col-md-6">
-        <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
+        <div class="container">
+          <auth-back-button route-destination="volumio.auth.profile" label="Profile"></auth-back-button>
+          <h1>
+            Edit Profile
+          </h1>
+          <hr>
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <div class="text-center">
+                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                <h6>Upload a different photo...</h6>
+
+                <input type="file" class="form-control">
+              </div>
+            </div>
+
+            <!-- edit form column -->
+            <div class="col-md-18 personal-info">
+
+              <div class="alert alert-info alert-dismissable" ng-if="!authEditProfileController.isUserFilledWithMandatory()">
+                <a class="panel-close close" data-dismiss="alert">×</a> 
+                <i class="glyphicon glyphicon-check"></i>
+                Complete your registration
+              </div>
+              <h3>Personal info</h3>
+
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label class="col-lg-6 control-label">First name:</label>
+                  <div class="col-lg-16">
+                    <input class="form-control" type="text" ng-model="authEditProfileController.user.firstName" pattern="[A-Za-z0-9]{2,}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-6 control-label">Last name:</label>
+                  <div class="col-lg-16">
+                    <input class="form-control" type="text" ng-model="authEditProfileController.user.lastName" pattern="[A-Za-z0-9]{2,}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-6 control-label">Username</label>
+                  <div class="col-lg-16">
+                    <input class="form-control" type="text" ng-model="authEditProfileController.user.username" pattern="[A-Za-z0-9]{5,}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-6 control-label">Country:</label>
+                  <div class="col-lg-16">
+                    <input class="form-control" type="text" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-6 control-label">Birthday:</label>
+                  <div class="col-lg-16">
+                    <input class="form-control" type="text" >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-6 control-label">Email:</label>
+                  <div class="col-md-16">
+                    <input class="form-control" type="text" ng-model="authEditProfileController.user.email" ng-change="authEditProfileController.notifyEmailChanged()">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-6 control-label">Password:</label>
+                  <div class="col-md-16">
+                    <input class="form-control" type="password" ng-model="authEditProfileController.user.password" placeholder="Leave blank to keep current">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-6 control-label">Confirm password:</label>
+                  <div class="col-md-16">
+                    <input class="form-control" type="password"  ng-model="authEditProfileController.passwordCheck">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-24">
+                    <input type="button" class="btn btn-success" value="Save Changes" ng-click="authEditProfileController.doEdit();"> 
+                    <a ng-if="authEditProfileController.isUserFilledWithMandatory()" ng-click="authEditProfileController.goToProfile()" class="btn btn-default pull-right">Go to profile</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <!-- edit form column -->
-      <div class="col-md-18 personal-info">
-        
-        <div class="alert alert-info alert-dismissable" ng-if="!authEditProfileController.isUserFilledWithMandatory()">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="glyphicon glyphicon-check"></i>
-          Complete your registration
-        </div>
-        <h3>Personal info</h3>
-        
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label class="col-lg-6 control-label">First name:</label>
-            <div class="col-lg-16">
-              <input class="form-control" type="text" ng-model="authEditProfileController.user.firstName" pattern="[A-Za-z0-9]{2,}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-6 control-label">Last name:</label>
-            <div class="col-lg-16">
-              <input class="form-control" type="text" ng-model="authEditProfileController.user.lastName" pattern="[A-Za-z0-9]{2,}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-6 control-label">Username</label>
-            <div class="col-lg-16">
-              <input class="form-control" type="text" ng-model="authEditProfileController.user.username" pattern="[A-Za-z0-9]{5,}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-6 control-label">Country:</label>
-            <div class="col-lg-16">
-              <input class="form-control" type="text" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-6 control-label">Birthday:</label>
-            <div class="col-lg-16">
-              <input class="form-control" type="text" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-6 control-label">Email:</label>
-            <div class="col-md-16">
-              <input class="form-control" type="text" ng-model="authEditProfileController.user.email">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-6 control-label">Password:</label>
-            <div class="col-md-16">
-              <input class="form-control" type="password" ng-model="authEditProfileController.user.password" placeholder="Leave blank to keep current">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-6 control-label">Confirm password:</label>
-            <div class="col-md-16">
-              <input class="form-control" type="password"  ng-model="authEditProfileController.passwordCheck">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-24">
-              <input type="button" class="btn btn-success" value="Save Changes" ng-click="authEditProfileController.doEdit();"> 
-              <a ng-if="authEditProfileController.isUserFilledWithMandatory()" ng-click="authEditProfileController.goToProfile()" class="btn btn-default pull-right">Go to profile</a>
-            </div>
-          </div>
-        </form>
-      </div>
-  </div>
-</div>
-      </div>
-      
+
       <div id="" ng-if="authEditProfileController.user === null" >
         <h4>You're not logged in</h4>
         <a ng-click="authEditProfileController.logIn()" class="btn btn-lg btn-success">Log In</a>

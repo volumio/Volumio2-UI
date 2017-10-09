@@ -1,5 +1,5 @@
-function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
-    $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider , CgMailChimpServiceProvider) {
+function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
+        $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider, CgMailChimpServiceProvider) {
   'ngInject';
 
   $touchProvider.enabled = true;
@@ -20,11 +20,11 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
   localStorageServiceProvider.setPrefix('volumio');
   //Mailchimp
   CgMailChimpServiceProvider.setConfig({
-      username: 'volumio',
-      dc: 'us11',
-      u: '64b4a843c27713ee9da781aa9',
-      id: '030f96ce5c'
-    });
+    username: 'volumio',
+    dc: 'us11',
+    u: '64b4a843c27713ee9da781aa9',
+    id: '030f96ce5c'
+  });
 
 
   //i18n Configs
@@ -40,7 +40,7 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
   $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
   StripeCheckoutProvider.defaults({
-    key: "pk_test_BIm19dEV1fzXm2a0x3Wwkn8f"
+    key: "pk_test_utxQAjiMNEdVZFel9iQlDkyH"
   });
 
 }
