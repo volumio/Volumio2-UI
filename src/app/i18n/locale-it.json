@@ -5,7 +5,10 @@
     "UPLOAD_BACKGROUND_FILE": "Clicca e seleziona un file o trascinalo qua.",
     "UPLOAD_PROGRESS": "Progresso upload:",
     "SELECT_BACKGROUND": "Seleziona lo sfondo",
-    "SELECT_BACKGROUND_COLOR": "Seleziona il colore di sfondo"
+    "SELECT_BACKGROUND_COLOR": "Seleziona il colore di sfondo",
+    "APPLY_BACKGROUND": "Applica sfondo",
+    "APPLY_BACKGROUND_COLOR": "Applica colore di sfondo",
+    "DELETE_BACKGROUND": "Cancella sfondo"
   },
   "COMMON": {
     "SAVE": "Salva",
@@ -28,8 +31,11 @@
     "TAB_BROWSE":"Sfoglia",
     "TAB_PLAYBACK":"Riproduzione",
     "TAB_QUEUE":"Coda",
+    "ARTIST":"Artista",
     "ARTISTS":"Artisti",
+    "ALBUM":"Album",
     "ALBUMS":"Album",
+    "SONG":"Canzone",
     "SONGS":"Canzoni",
     "PLAYTIME":"Tempo Totale",
     "TIME":"Tempo",
@@ -46,7 +52,25 @@
     "BACK":"Indietro",
     "OPTIONS":"Opzioni",
     "CHOOSE_PLAYLIST":"Scegli Playlist",
-    "STOP_MUSIC":"Ferma la musica"
+    "STOP_MUSIC":"Ferma la musica",
+    "HOME": "Home",
+    "VOLUME_MUTE":"Muto",
+    "VOLUME_MUTED":"Muto",
+    "VOLUME_UP":"Volume Su",
+    "VOLUME_DOWN":"Volume Giù",
+    "HIDDEN": "Nascosto",
+    "LIST": "Lista",
+    "PLAY_QUEUE": "Coda di riproduzione",
+    "ENTER_PASSWORD": "Inserire password",
+    "INVALID_PASSWORD": "Password non valida",
+    "RIP": "RIP",
+    "SKIP": "Salta",
+    "NEXT": "Successivo",
+    "PREVIOUS": "Precedente",
+    "DONE": "Fatto",
+    "EMAIL": "Email",
+    "SUBSCRIBE_ME": "Iscrivimi",
+    "SHARE": "Condividi"
   },
   "BROWSER": {
     "PLAY": "Riproduci",
@@ -66,13 +90,15 @@
     "GO_TO_SHARE":"Vai a - Condividi",
     "NEXT_TRACK":"Traccia Successiva",
     "PREVIOUS_TRACK":"Traccia Precedente",
-    "PAUSE":"Pausa"
+    "PAUSE":"Pausa",
+    "CLEAR_AND_PLAY": "Pulisci e riproduci",
+    "SAFE_REMOVE": "Rimozione sicura"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
     "UPDATE_DOC":"Aggiorna il database, aggiungendo le tracce aggiunte di recente",
     "RESCAN":"Scansiona Nuovamente",
-    "RESCAN_DOC":"Scansiona nuovamente il database, ricreandolo da zero"  
+    "RESCAN_DOC":"Scansiona nuovamente il database, ricreandolo da zero"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Ritorna ai Plugin",
@@ -103,12 +129,12 @@
     "GO_TO_ALBUM":"Vai a Album",
     "TWEET_TRACK":"Twitta la Traccia"
   },
-"TRACK_INFO_BAR": {
- "RANDOM": "Riproduzione Cauale",
- "REPEAT": "Ripeti",
- "SAVE_QUEUE_AS_PLAYLIST": "Salva la coda come Playlist",
- "CONSUME_PLAYLIST": "Rimuovi dopo riproduzione",
- "CLEAR_QUEUE": "Svuota la coda"
+  "TRACK_INFO_BAR": {
+    "RANDOM": "Riproduzione Cauale",
+    "REPEAT": "Ripeti",
+    "SAVE_QUEUE_AS_PLAYLIST": "Salva la coda come Playlist",
+    "CONSUME_PLAYLIST": "Rimuovi dopo riproduzione",
+    "CLEAR_QUEUE": "Svuota la coda"
  },
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"Nessun Hard Disk di rete trovato",
@@ -146,7 +172,38 @@
     "SPEED":"Velocità",
     "ONLINE":"Online",
     "CONNECT":"Connetti",
-    "REFRESH":"Aggiorna"
+    "REFRESH":"Aggiorna",
+    "OPEN_NETWORK":"Rete Aperta",
+    "SECURE_NETWORK":"Rete Sicura",
+    "SECURITY": "Sicurezza",
+    "MANUAL_WIFI_CONNECTION":"Connessione Manuale",
+    "NETWORK_NAME":"Nome della rete"
+  },
+  "WIZARD": {
+    "LANGUAGE": "Lingua",
+    "NAME": "Nome",
+    "OUTPUT": "Uscite",
+    "NETWORK": "Rete",
+    "MUSIC": "Musica",
+    "FOLLOW": "Seguici",
+    "DONE": "Fatto",
+    "WELCOME": "Benvenuto, cominciamo",
+    "SELECT_YOUR_LANGUAGE": "Seleziona la tua lingua",
+    "DEVICE_NAME": "Scegli un nome per il tuo sistema",
+    "DEVICE_ADDRESS": "Il sistema sarà raggiungibile all'indirizzo:",
+    "SELECT_YOUR_AUDIO_OUTPUT": "Scegli l'uscita audio",
+    "SELECT_YOUR_I2S_DAC": "Scegli il DAC I2S",
+    "I_HAVE_DAC": "Voglio configurare un DAC I2S",
+    "CUSTOM_AMOUNT": "Importo personalizzato",
+    "DONE_MESSAGE": "Fatto, il tuo sistema è pronto",
+    "MAIL_LIST_SUBSCRIPTION": "Iscrizione alla mailing list",
+    "SOCIAL_SHARE": "Condividi",
+    "DONATE": "Dona",
+    "SUBSCRIBED_SUCCESFULLY": "Iscritto con successo",
+    "ADD_YOUR_MUSIC":"Per aggiungere la tua musica, basta connettere un disco rigido USB oppure clicca sul bottone in basso per aggiungere un Disco di Rete",
+    "STEP":"Passo",
+    "VOLUMIOAPPS":"App",
+    "GET_APPS":"Per rendere tutto ancora più facile, puoi anche usare una delle nostre comode App"
   },
   "SLEEP": {
     "POWER_OFF": "Spegni",
@@ -154,5 +211,16 @@
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Per usare la funzione sveglia, è necessario creare almeno una Playlist"
+  },
+  "MULTIDEVICE": {
+    "EDIT_GROUPS": "Modifica gruppi",
+    "ROOMS_AND_GROUPS": "Stanze e gruppi",
+    "MULTI_ROOM_CONFIGURATION": "Configurazione Multi-Room",
+    "GROUP": "Gruppo",
+    "NOW_PLAYING": "In riproduzione"
+  },
+  "SIDEMENU": {
+    "ANALOG_INPUT": "INPUT ANALOGICO",
+    "BLUETOOTH": "BLUETOOTH"
   }
 }

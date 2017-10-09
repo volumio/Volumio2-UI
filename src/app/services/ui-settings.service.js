@@ -1,5 +1,5 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, mockService, $log, themeManager, $document, $translate, $http, $q) {
+  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -8,6 +8,7 @@ class UiSettingsService {
     this.$translate = $translate;
     this.$http = $http;
     this.$q = $q;
+    this.$state = $state;
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
@@ -51,7 +52,27 @@ class UiSettingsService {
   }
 
   setLanguage() {
-    this.$translate.use(this.uiSettings.language);
+    if (~location.href.indexOf('wizard')) {
+      this.browserLanguage = this.getBrowserDefaultLanguage();
+    } else {
+      this.$translate.use(this.uiSettings.language);
+    }
+  }
+
+  getBrowserDefaultLanguage() {
+    const browserLanguagePropertyKeys = ['languages', 'language', 'browserLanguage', 'userLanguage', 'systemLanguage'];
+    let langArray = [];
+    browserLanguagePropertyKeys.forEach((prop) => {
+      if (prop in window.navigator) {
+        if (angular.isArray(window.navigator[prop])) {
+          langArray.push(...window.navigator[prop]);
+        } else {
+          langArray.push(window.navigator[prop]);
+        }
+      }
+    });
+    this.$log.debug('Navigator defaultLanguage', langArray[0]);
+    return langArray[0].substr(0, 2) || 'en';
   }
 
   registerListner() {
@@ -89,6 +110,13 @@ class UiSettingsService {
         });
       this.setBackground();
     });
+
+    this.socketService.on('pushWizard', (data) => {
+      this.$log.debug('pushWizard', data);
+      if (data.openWizard) {
+        this.$state.go('volumio.wizard');
+      }
+    });
   }
 
   initService() {
@@ -109,8 +137,10 @@ class UiSettingsService {
       })
       .finally(() => {
         this.socketService.emit('getUiSettings');
+        this.socketService.emit('getWizard');
       });
     return this.settingsPromise;
+
   }
 }
 

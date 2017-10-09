@@ -1,0 +1,27 @@
+<div id="logo-wizard">
+  <img
+      ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo-wizard.png"
+      alt="{{header.themeManager.theme}}"/>
+</div>
+<h4 class="text-center" translate="WIZARD.WELCOME"></h4>
+<div class="wizard-panel col-sm-10 col-sm-offset-7">
+  <h3 translate="WIZARD.SELECT_YOUR_LANGUAGE"></h3>
+  <ui-select
+      id="select-language"
+      ng-model="wizard.wizardDetails.language.defaultLanguage"
+      search-enabled="false"
+      ng-readonly="true"
+      append-to-body="true"
+      theme="bootstrap">
+    <ui-select-match
+        class="ui-select-match"
+        placeholder="Select language">
+      {{$select.selected.language}}
+    </ui-select-match>
+    <ui-select-choices
+        class="ui-select-choices"
+        repeat="language in wizard.wizardDetails.language.available track by $index">
+      <div ng-bind-html="language.language"></div>
+    </ui-select-choices>
+  </ui-select>
+</div>

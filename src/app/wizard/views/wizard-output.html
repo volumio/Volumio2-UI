@@ -1,0 +1,62 @@
+<div class="wizard-panel col-sm-10 col-sm-offset-7">
+  <div ng-if="wizard.wizardDetails.outputDevices.i2s">
+    <h3 translate="WIZARD.I_HAVE_DAC" style="margin-top:40px;"></h3>
+    <input
+        id="outpu-switch"
+        bs-switch
+        ng-model="wizard.wizardDetails.outputDevices.i2s.enabled"
+        type="checkbox"
+        switch-size="medium"
+        switch-animate="false"
+        switch-on-text="{{'YES' | translate}}"
+        switch-off-text="{{'NO' | translate}}"
+        ng-true-value="true"
+        ng-false-value="false">
+  </div>
+
+  <div ng-show="!wizard.wizardDetails.outputDevices.i2s.enabled">
+    <h3 translate="WIZARD.SELECT_YOUR_AUDIO_OUTPUT"></h3>
+
+    <ui-select
+        id="select-output"
+        ng-model="wizard.wizardData.selectedDevice"
+        search-enabled="false"
+        ng-readonly="true"
+        append-to-body="true"
+        theme="bootstrap">
+      <ui-select-match
+          class="ui-select-match"
+          placeholder="Select device">
+        {{$select.selected.name}}
+      </ui-select-match>
+      <ui-select-choices
+          class="ui-select-choices"
+          repeat="device in wizard.wizardDetails.outputDevices.devices.available track by $index">
+        <div ng-bind-html="device.name"></div>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+
+  <div ng-show="wizard.wizardDetails.outputDevices.i2s.enabled">
+    <h3 translate="WIZARD.SELECT_YOUR_I2S_DAC"></h3>
+
+    <ui-select
+        id="select-i2s"
+        ng-model="wizard.wizardData.selectedI2s"
+        search-enabled="false"
+        ng-readonly="true"
+        append-to-body="true"
+        theme="bootstrap">
+      <ui-select-match
+          class="ui-select-match"
+          placeholder="Select i2s">
+        {{$select.selected.name}}
+      </ui-select-match>
+      <ui-select-choices
+          class="ui-select-choices"
+          repeat="device in wizard.wizardDetails.outputDevices.i2s.available track by $index">
+        <div ng-bind-html="device.name"></div>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+</div>

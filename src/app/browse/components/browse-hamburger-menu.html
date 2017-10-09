@@ -36,12 +36,12 @@
 </li>
 
 
-<li ng-if="::item.type === 'song' && browse.browseService.currentFetchRequest.uri !== 'favourites'"
+<li ng-if="::(item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites'"
     ng-click="browse.playlistService.addToFavourites(item)"
     title="{{'BROWSER.ADD_TO_FAVOURITES' | translate}}">
   <a href><i class="fa fa-heart"></i><span translate="BROWSER.ADD_TO_FAVOURITES"></a>
 </li>
-<li ng-if="::browse.browseService.currentFetchRequest.uri === 'favourites'"
+<li ng-if="::(browse.browseService.currentFetchRequest.uri === 'favourites' || item.favourite)"
     ng-click="browse.playlistService.removeFromFavourites(item)"
     title="{{'BROWSER.REMOVE_FROM_FAVOURITES' | translate}}">
   <a href><i class="fa fa-trash"></i><span translate="BROWSER.REMOVE_FROM_FAVOURITES"></a>

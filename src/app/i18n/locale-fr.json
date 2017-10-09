@@ -61,9 +61,16 @@
     "HIDDEN":"Caché(e)",
     "LIST":"Liste",
     "PLAY_QUEUE": "Jouer la file d'attente",
-    "ENTER_PASSWORD": "Entre mot de passe",
+    "ENTER_PASSWORD": "Entrer le mot de passe",
     "INVALID_PASSWORD": "Mot de passe invalide",
-    "RIP": "RIP"
+    "RIP": "RIP",
+    "SKIP": "Passer",
+    "NEXT_STEP": "Suivant",
+    "PREVIOUS":"Retour",
+    "DONE": "Fait",
+    "EMAIL": "Email",
+    "SUBSCRIBE_ME": "M'inscrire",
+    "SHARE": "Partager"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -172,6 +179,32 @@
     "MANUAL_WIFI_CONNECTION":"Connexion WiFi manuelle",
     "NETWORK_NAME": "Nom du réseau"   
   },
+  "WIZARD": {
+     "LANGUAGE": "Langue",
+     "NAME": "Nom",
+     "OUTPUT": "Sortie",
+     "NETWORK": "Réseau",
+     "MUSIC": "Musique",
+     "FOLLOW": "Suivant",
+     "DONE": "Fait",
+     "WELCOME": "Bienvenue dans Volumio, c'est parti!",
+     "SELECT_YOUR_LANGUAGE": "Selectionnez votre langue",
+     "DEVICE_NAME": "Donnez un nom unique pour ce périphérique",
+     "DEVICE_ADDRESS": "Ce périphérique sera disponible à cette adresse :",
+     "SELECT_YOUR_AUDIO_OUTPUT": "Selectionnez votre sortie audio",
+     "SELECT_YOUR_I2S_DAC": "Selectionnez votre DAC i2s",
+     "I_HAVE_DAC": "J'ai un DAC I2s",
+     "CUSTOM_AMOUNT": "Quantité personnalisée",
+     "DONE_MESSAGE": "Fait, votre système Volumio est prèt.",
+     "MAIL_LIST_SUBSCRIPTION": "Adresse mail de suscription",
+     "SOCIAL_SHARE": "Partage social",
+     "DONATE": "Donner",
+     "SUBSCRIBED_SUCCESFULLY": "Inscription réussie!",
+     "ADD_YOUR_MUSIC":"Pour ajouter votre musique, connectez un disque USB et cliquez sur le bouton ci-dessous pour ajouter",
+     "STEP":"Pas",
+     "VOLUMIOAPPS":"Applications",
+     "GET_APPS":"Pour votre confort, vous pouvez utiliser des applications pratiques"
+   },
   "SLEEP": {
     "POWER_OFF": "Eteindre dans",
     "STOP_MUSIC": "Arrêter la musique dans"
