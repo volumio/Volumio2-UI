@@ -15,10 +15,10 @@
 
       <div ng-if="authSubscribeController.user && authSubscribeController.product">
 
-        <h3 translate="AUTH.SUBSCRIBE.COMPLETE_UPGRADE"></h3>
+        <h3 translate="AUTH.COMPLETE_UPGRADE"></h3>
 
-        <h4 translate="AUTH.SUBSCRIBE.PAY"></h4>
-        <p translate="AUTH.SUBSCRIBE.PAY.DESC"></p>
+        <h4 translate="AUTH.PAY"></h4>
+        <p translate="AUTH.PAY_DESC"></p>
 
 
         <div class="panel panel-primary product">
@@ -82,7 +82,7 @@
         <h4>You're not logged in.</h4>
         <a ng-click="authSubscribeController.logIn()" class="btn btn-lg btn-success">Log In</a>
       </div>
-      
+
       <div id="" ng-if="!authSubscribeController.product" >
         <h4>You've not selected any subscription or the selected subscription doesn't exist any more.</h4>
         <a ng-click="authSubscribeController.goToPlans()" class="btn btn-lg btn-success">Retry</a>

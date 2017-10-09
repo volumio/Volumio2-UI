@@ -223,5 +223,22 @@
   "SIDEMENU": {
     "ANALOG_INPUT": "ANALOG INPUT",
     "BLUETOOTH": "BLUETOOTH"
+  },
+  "AUTH": {
+    "MY_VOLUMIO":"MyVolumio",
+    "LOGIN":"Login",
+    "SIGNUP":"Signup",
+    "EMAIL_ADDRESS":"Email Address",
+    "PASSWORD":"Password",
+    "PAYMENT_SUCCESS":"Payment successful",
+    "PAYMENT_FAIL":"Payment failed",
+    "PLANS":"Plans",
+    "PROFILE":"Profile",
+    "RECOVER_PASSWORD":"Recover Password",
+    "RECOVER_PASSWORD_TEXT":"Please fill the form to recover your password",
+    "SUBSCRIBE":"Subscribe",
+    "COMPLETE_UPGRADE":"Complete plan upgrade",
+    "PAY":"Pay",
+    "PAY_DESC":"Pay"
   }
 }
