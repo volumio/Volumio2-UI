@@ -132,6 +132,175 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
         }
       }
     })
+    
+    //AUTH ROUTES TO BE ENABLED JUST WHEN MODULE IS ACTIVATED BY B-E
+    
+    .state('volumio.auth', {
+        abstract: true,
+        template : '<div ui-view></div>'
+    })
+    
+    .state('volumio.auth.login', {
+      url: 'login',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/login/auth-login.html',
+          controller: 'AuthLoginController',
+          controllerAs: 'authLoginController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$waitForSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.signup', {
+      url: 'signup',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/signup/auth-signup.html',
+          controller: 'AuthSignupController',
+          controllerAs: 'authSignupController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$waitForSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.profile', {
+      url: 'profile',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/profile/auth-profile.html',
+          controller: 'AuthProfileController',
+          controllerAs: 'authProfileController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.edit-profile', {
+      url: 'profile/edit',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/edit-profile/auth-edit-profile.html',
+          controller: 'AuthEditProfileController',
+          controllerAs: 'authEditProfileController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.plans', {
+      url: 'plans',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/plans/auth-plans.html',
+          controller: 'AuthPlansController',
+          controllerAs: 'authPlansController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$waitForSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.subscribe', {
+      url: 'subscribe/:plan',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/subscribe/auth-subscribe.html',
+          controller: 'AuthSubscribeController',
+          controllerAs: 'authSubscribeController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.payment-success',{
+      url: 'payment-success',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/payment-success/auth-payment-success.html',
+          controller: 'AuthPaymentSuccessController',
+          controllerAs: 'authPaymentSuccessController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.payment-fail',{
+      url: 'payment-fail',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/payment-fail/auth-payment-fail.html',
+          controller: 'AuthPaymentFailController',
+          controllerAs: 'authPaymentFailController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.recover-password',{
+      url: 'recover-password',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/recover-password/auth-recover-password.html',
+          controller: 'AuthRecoverPasswordController',
+          controllerAs: 'authRecoverPasswordController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$waitForSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.verify-user',{
+      url: 'profile/verify',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/verify-user/auth-verify-user.html',
+          controller: 'AuthVerifyUserController',
+          controllerAs: 'authVerifyUserController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    //end auth
 
     .state('volumio.static-page', {
       url: 'static-page/:pageName',

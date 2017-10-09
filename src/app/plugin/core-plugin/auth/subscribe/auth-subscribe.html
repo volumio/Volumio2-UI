@@ -1,0 +1,96 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="AUTH.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div
+    id="authLoginPlugin"
+    class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.SUBSCRIBE"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-if="authSubscribeController.user && authSubscribeController.product">
+
+        <h3 translate="AUTH.SUBSCRIBE.COMPLETE_UPGRADE"></h3>
+
+        <h4 translate="AUTH.SUBSCRIBE.PAY"></h4>
+        <p translate="AUTH.SUBSCRIBE.PAY.DESC"></p>
+
+
+        <div class="panel panel-primary product">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              {{authSubscribeController.product.name}}
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div class="the-price">
+              <h1>
+                {{authSubscribeController.product.textualPrice}}<span class="subscript">/mo</span></h1>
+              <span ng-if="authSubscribeController.product.trialDays">{{authSubscribeController.product.trialDays}} days FREE trial</span>
+            </div>
+            <table class="table">
+              <tr>
+                <td>
+                  5 Account
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  20 Project
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  300K API Access
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  500MB Storage
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Custom Cloud Services
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  Weekly Reports
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="panel-footer">
+            <stripe-pay-button
+              stripe-product='authSubscribeController.product'
+              callback='authSubscribeController.subscriptionCallback(subscribing)'
+              user-id="authSubscribeController.user.uid"
+              button-label="Buy now!"
+              button-class="btn-block"
+              ></stripe-pay-button>
+          </div>
+        </div>
+      </div>
+
+      <div id="" ng-if="!authSubscribeController.user" >
+        <h4>You're not logged in.</h4>
+        <a ng-click="authSubscribeController.logIn()" class="btn btn-lg btn-success">Log In</a>
+      </div>
+      
+      <div id="" ng-if="!authSubscribeController.product" >
+        <h4>You've not selected any subscription or the selected subscription doesn't exist any more.</h4>
+        <a ng-click="authSubscribeController.goToPlans()" class="btn btn-lg btn-success">Retry</a>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+</div>

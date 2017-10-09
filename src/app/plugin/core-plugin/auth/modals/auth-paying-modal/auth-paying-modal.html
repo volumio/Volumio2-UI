@@ -1,0 +1,15 @@
+<div id="auth-paying-modal">
+  <div class="modal-header">
+    <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
+  </div>
+  <div class="modal-body">
+    <h4>Paying</h4>
+    <p>Your payment has been sent to the server and it's being processed. Please wait some moments...</p>
+  </div>
+  <div class="modal-footer">
+    <!-- <button class="btn btn-primary" ng-click="modal.ok()">Add</button> -->
+    <button class="btn btn-warning" ng-click="modal.cancel()">
+      {{'COMMON.CLOSE' | translate}}
+    </button>
+  </div>
+</div>

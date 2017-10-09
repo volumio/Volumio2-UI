@@ -111,6 +111,9 @@ class SideMenuController {
     this.socketService.on('pushMenuItems', (data) => {
       this.$log.debug('pushMenuItems', data);
       this.menuItems = data;
+      //TODO MOCK
+      this.menuItems.push({'id':'auth','name':'MyVolumio'});
+      console.log(this.isAuthActive());
     });
 
     this.$scope.$on('$destroy', () => {
@@ -121,6 +124,21 @@ class SideMenuController {
   initService() {
     this.socketService.emit('getMenuItems');
   }
+  
+  isAuthActive(){
+    return this.isPluginActiveById('auth');
+  }
+  
+  isPluginActiveById(pluginId){
+    for(var i in this.menuItems){
+      var plugin = this.menuItems[i];
+      if(plugin.hasOwnProperty('id') && plugin.id === pluginId){
+        return true;
+      } 
+    }
+    return false;
+  }
+  
 }
 
 export default SideMenuDirective;

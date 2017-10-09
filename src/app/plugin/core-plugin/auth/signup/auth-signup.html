@@ -1,0 +1,103 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="AUTH.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div id="authSignupPlugin" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.SIGNUP"></span></h3>
+    </div>
+
+    <div class="panel-body">
+      
+      <div ng-show="authSignupController.user == null">
+        <div class="omb_login">
+          <h3 class="omb_authTitle">Sign Up</h3>
+          <div class="row omb_row-sm-offset-3 omb_socialButtons">
+            <div class="col-xs-12 col-sm-6">
+              <a ng-click="authSignupController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                <i class="fa fa-facebook visible-xs"></i>
+                <span class="hidden-xs">Facebook</span>
+              </a>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <a ng-click="authSignupController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
+                <i class="fa fa-google-plus visible-xs"></i>
+                <span class="hidden-xs">Google+</span>
+              </a>
+            </div>	
+          </div>
+
+          <div class="row omb_row-sm-offset-3 omb_loginOr">
+            <div class="col-xs-24 col-sm-12">
+              <hr class="omb_hrOr">
+              <span class="omb_spanOr">or</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+              <form role="form" ng-submit="authSignupController.submitForm()">
+                <div class="row">
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <input type="text" ng-model="authSignupController.firstName" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                    </div>
+                  </div>
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <input type="text" ng-model="authSignupController.lastName" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" ng-model="authSignupController.username" id="display_name" class="form-control input-lg" placeholder="Username" tabindex="3" pattern="[A-Za-z0-9]{5,}">
+                </div>
+                <div class="form-group">
+                  <input type="email" ng-model="authSignupController.email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                </div>
+                <div class="row">
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <input type="password" ng-model="authSignupController.password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5"  pattern=".{8,}">
+                    </div>
+                  </div>
+                  <div class="col-xs-24 col-sm-6 col-md-12">
+                    <div class="form-group">
+                      <input type="password" ng-model="authSignupController.passwordConfirm" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6"  pattern=".{8,}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-8 col-sm-6 col-md-6">
+                    <span class="button-checkbox">
+                      <button type="button" class="btn" tabindex="7" ng-click="authSignupController.clickAgreementButton()" >I Agree</button>
+                      <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                    </span>
+                  </div>
+                  <div class="col-xs-16 col-sm-18 col-md-18">
+                    By clicking <strong class="label label-primary">Register</strong>, you agree to the <a ng-click="authSignupController.clickShowTerms()" style="text-decoration: underline;">Terms and Conditions</a> set out by this site, including our Cookie Use.
+                  </div>
+                </div>
+
+                <hr class="colorgraph">
+                <div class="row">
+                  <div class="col-xs-24 col-md-24"><input type="submit" value="Register" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="" ng-if="authSignupController.user != null" >
+          <h4>You're already logged</h4>
+          <a ng-click="authSignupController.logOut()" class="btn btn-lg btn-success">Log Out</a>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>

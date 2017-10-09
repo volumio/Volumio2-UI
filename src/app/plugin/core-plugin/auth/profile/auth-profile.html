@@ -1,0 +1,78 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="AUTH.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div
+    id="authLoginPlugin"
+    class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.PROFILE"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-if="authProfileController.user !== null">
+        <div class="row my-profile">
+          <div class="col-sm-6 col-md-4">
+            <img src="http://www.giacomodeglinnocenti.it/me.jpg" alt="" class="img-circle img-responsive" style="width: 80%; height: auto; margin: 8px 10%; display: block;"/>
+          </div>
+          <div class="col-sm-18 col-md-20">
+
+            <div class="row">
+              <div class="col-sm-24 col-md-12 user-data">
+                <h3>{{authProfileController.user.firstName}} {{authProfileController.user.lastName}}
+                  <span class="pull-right">
+                    <a ng-click="authProfileController.goToEdit()" style="cursor: pointer;"><i class="glyphicon glyphicon-pencil glyphicon-2x"></i></a>
+                  </span>
+                </h3>
+                <h4 class='active'> {{authProfileController.user.username}} </h4>
+                <p>
+                  <i class="glyphicon glyphicon-envelope"></i> {{authProfileController.user.email}}
+                  <br />
+                  <i class="glyphicon glyphicon-gift"></i> {{authProfileController.user.birthday}}
+                  <br />
+                  <i class="glyphicon glyphicon-globe"></i> {{authProfileController.user.country}}
+                </p>
+              </div>
+
+              <div class="col-sm-24 col-md-12 plans-table">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">
+                      Your current plan:</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="the-price">
+                      <h1>
+                        {{authProfileController.user.plan | uppercase}}
+                      </h1>
+                      <small>
+                        Expiring: 7 Dec 2017
+                      </small>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <button type="button" class="btn btn-labeled btn-success" ng-click="authProfileController.goToPlans();">
+                      <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>Upgrade Plan
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="authProfileController.user === null">
+        <h4>You're not logged in</h4>
+        <a ng-click="authProfileController.logIn()" class="btn btn-lg btn-success">Log In</a>
+      </div>
+
+    </div>
+  </div>
+</div>

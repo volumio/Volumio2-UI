@@ -1,5 +1,5 @@
-function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
-    $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider) {
+function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
+        $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider) {
   'ngInject';
 
   $touchProvider.enabled = true;
@@ -20,15 +20,20 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
 
   //i18n Configs
   $translateProvider
-    .useStaticFilesLoader({
-      prefix: 'app/i18n/locale-',
-      suffix: '.json'
-    })
-    //Back end send default language, this improve translation consistency
-    // .determinePreferredLanguage()
-    // .preferredLanguage('en')
-    .fallbackLanguage('en');
+          .useStaticFilesLoader({
+            prefix: 'app/i18n/locale-',
+            suffix: '.json'
+          })
+          //Back end send default language, this improve translation consistency
+          // .determinePreferredLanguage()
+          // .preferredLanguage('en')
+          .fallbackLanguage('en');
   $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+
+  StripeCheckoutProvider.defaults({
+    key: "pk_test_BIm19dEV1fzXm2a0x3Wwkn8f"
+  });
+
 }
 
 export default config;

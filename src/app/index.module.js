@@ -21,6 +21,11 @@ import MockService from './mock/mock.service';
 import RipperService from './services/ripper.service';
 import UiSettingsService from './services/ui-settings.service';
 import AngularFireService from './services/angularfire.service';
+import AuthService from './services/auth.service';
+import PaymentsService from './services/payments.service';
+import StripeService from './services/stripe.service';
+import DatabaseService from './services/database.service';
+import ProductsService from './services/products.service'
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -52,6 +57,9 @@ import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actio
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
+//auth directives
+import StripePayButtonDirective from './plugin/core-plugin/auth/components/stripe-pay-button/stripe-pay-button.directive';
+import AuthCardDirective from './plugin/core-plugin/auth/components/card/auth-card.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -86,6 +94,9 @@ import ModalPluginInstallerController from './plugin-manager/components/modals/m
 import ModalTrackManagerActionsController from
   './components/track-manager/components/modals/modal-track-manager-actions.controller';
 import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/modal-network-drive-password.controller';
+//auth modals
+import AuthTermsModalController from './plugin/core-plugin/auth/modals/auth-terms-modal/auth-terms-modal.controller';
+import AuthPayingModalController from './plugin/core-plugin/auth/modals/auth-paying-modal/auth-paying-modal.controller';
 
 
 //Core plugin controller
@@ -97,6 +108,18 @@ import SystemVersionPluginController from './plugin/core-plugin/system-version-p
 import FirmwareUploadPluginController from './plugin/core-plugin/firmware-upload-plugin.controller';
 import UiSettingsPluginController from './plugin/core-plugin/ui-settings-plugin.controller';
 
+//Core plugin: Auth
+import AuthPluginController from './plugin/core-plugin/auth/auth-plugin.controller';
+import AuthLoginController from './plugin/core-plugin/auth/login/auth-login.controller';
+import AuthSignupController from './plugin/core-plugin/auth/signup/auth-signup.controller';
+import AuthProfileController from './plugin/core-plugin/auth/profile/auth-profile.controller';
+import AuthPlansController from './plugin/core-plugin/auth/plans/auth-plans.controller';
+import AuthSubscribeController from './plugin/core-plugin/auth/subscribe/auth-subscribe.controller';
+import AuthPaymentSuccessController from './plugin/core-plugin/auth/payment-success/auth-payment-success.controller';
+import AuthPaymentFailController from './plugin/core-plugin/auth/payment-fail/auth-payment-fail.controller';
+import AuthRecoverPasswordController from './plugin/core-plugin/auth/recover-password/auth-recover-password.controller';
+import AuthEditProfileController from './plugin/core-plugin/auth/edit-profile/auth-edit-profile.controller';
+import AuthVerifyUserController from './plugin/core-plugin/auth/verify-user/auth-verify-user.controller';
 
 
 angular.module('volumio', [
@@ -125,8 +148,10 @@ angular.module('volumio', [
   'ngSanitize',
   
   //firebase module
-  'firebase'
+  'firebase',
   
+  //stripe module
+  'stripe.checkout'
   
   ])
 
@@ -137,7 +162,7 @@ angular.module('volumio', [
   .config(routerConfig)
 
   .run(runBlock)
-
+  
   .service('socketService', SocketService)
   .service('playerService', PlayerService)
   .service('browseService', BrowseService)
@@ -154,6 +179,11 @@ angular.module('volumio', [
   .service('ripperService', RipperService)
   .service('uiSettingsService', UiSettingsService)
   .service('angularFireService', AngularFireService)
+  .service('authService', AuthService)
+  .service('paymentsService', PaymentsService)
+  .service('stripeService', StripeService)
+  .service('databaseService',DatabaseService)
+  .service('productsService',ProductsService)
 
 
   .provider('themeManager', ThemeManagerProvider)
@@ -184,6 +214,10 @@ angular.module('volumio', [
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
+  
+  //auth
+  .directive('stripePayButton', () => new StripePayButtonDirective())
+  .directive('authCard', () => new AuthCardDirective())
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)
@@ -216,7 +250,9 @@ angular.module('volumio', [
   .controller('ModalPluginInstallerController', ModalPluginInstallerController)
   .controller('ModalTrackManagerActionsController', ModalTrackManagerActionsController)
   .controller('ModalNetwordDrivesPasswordController', ModalNetwordDrivesPasswordController)
-
+  //auth
+  .controller('AuthTermsModalController',AuthTermsModalController)
+  .controller('AuthPayingModalController',AuthPayingModalController)
 
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)
@@ -225,5 +261,15 @@ angular.module('volumio', [
   .controller('SystemVersionPluginController', SystemVersionPluginController)
   .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
   .controller('UiSettingsPluginController', UiSettingsPluginController)
-
-  ;
+  //auth
+  .controller('AuthPluginController', AuthPluginController)
+  .controller('AuthLoginController', AuthLoginController)
+  .controller('AuthSignupController', AuthSignupController)
+  .controller('AuthProfileController',AuthProfileController)
+  .controller('AuthPlansController', AuthPlansController)
+  .controller('AuthSubscribeController',AuthSubscribeController)
+  .controller('AuthPaymentSuccessController',AuthPaymentSuccessController)
+  .controller('AuthPaymentFailController',AuthPaymentFailController)
+  .controller('AuthRecoverPasswordController',AuthRecoverPasswordController)
+  .controller('AuthEditProfileController',AuthEditProfileController)
+  .controller('AuthVerifyUserController',AuthVerifyUserController);

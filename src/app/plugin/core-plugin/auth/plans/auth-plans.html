@@ -1,0 +1,203 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="AUTH.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div id="authPlansPlugin" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.PLANS"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="container plans-table">
+        <div class="row" style="margin-top:20px;">
+          <div class="col-xs-24 col-md-8">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  FREE</h3>
+              </div>
+              <div class="panel-body">
+                <div class="the-price">
+                  <h1>
+                    Free
+                  </h1>
+                </div>
+                <table class="table">
+                  <tr>
+                    <td>
+                      1 Account
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      1 Project
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      100K API Access
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      100MB Storage
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Custom Cloud Services
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      Weekly Reports
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="panel-footer">
+                <button type="button" class="btn btn-labeled btn-success" ng-if="!authPlansController.user.plan || !authPlansController.user.plan === 'free'">
+                  <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>You're current plan
+                </button>
+                <div ng-if="!authPlansController.user">
+                  <a ng-click="authPlansController.signUp()" class="btn btn-success" role="button">SignUp</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-24 col-md-8" ng-if="authPlansController.product1">
+            <div class="panel panel-primary">
+              <div class="cnrflash" ng-if="authPlansController.product1.ribbon === true">
+                <div class="cnrflash-inner">
+                  <span class="cnrflash-label">MOST
+                    <br>
+                    POPULR</span>
+                </div>
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  {{authPlansController.product1.name}}</h3>
+              </div>
+              <div class="panel-body">
+                <div class="the-price">
+                  <h1>
+                    {{authPlansController.product1.textualPrice}}<span class="subscript">/mo</span></h1>
+                  <span ng-if="authPlansController.product1.trialDays">{{authPlansController.product1.trialDays}} days FREE trial</span>
+                </div>
+                <table class="table">
+                  <tr>
+                    <td>
+                      2 Account
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      5 Project
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      100K API Access
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      200MB Storage
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Custom Cloud Services
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      Weekly Reports
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="panel-footer">
+                <div ng-if="authPlansController.user.plan !== authPlansController.product1.plan && authPlansController.user.plan !== authPlansController.product2.plan">
+                  <a ng-click="authPlansController.subscribe(authPlansController.product1.plan)" class="btn btn-success" role="button">Upgrade</a>
+                  <span ng-if="authPlansController.product1.trialDays">{{authPlansController.product1.trialDays}} days FREE trial</span>
+                </div>
+                <button type="button" class="btn btn-labeled btn-success" ng-if="authPlansController.user.plan === authPlansController.product1.plan">
+                  <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>You're current plan
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-24 col-md-8" ng-if="authPlansController.product2">
+            <div class="panel panel-primary">
+              <div class="cnrflash" ng-if="authPlansController.product2.ribbon === true">
+                <div class="cnrflash-inner">
+                  <span class="cnrflash-label">MOST
+                    <br>
+                    POPULR</span>
+                </div>
+              </div>
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  {{authPlansController.product2.name}}</h3>
+              </div>
+              <div class="panel-body">
+                <div class="the-price">
+                  <h1>
+                    {{authPlansController.product2.textualPrice}}<span class="subscript">/mo</span></h1>
+                  <span ng-if="authPlansController.product2.trialDays">{{authPlansController.product2.trialDays}} days FREE trial</span>
+                </div>
+                <table class="table">
+                  <tr>
+                    <td>
+                      2 Account
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      5 Project
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      100K API Access
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      200MB Storage
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Custom Cloud Services
+                    </td>
+                  </tr>
+                  <tr class="active">
+                    <td>
+                      Weekly Reports
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="panel-footer">
+                <div ng-if="authPlansController.user.plan !== authPlansController.product2.plan">
+                  <a ng-click="authPlansController.subscribe(authPlansController.product2.plan)" class="btn btn-success" role="button">Upgrade</a>
+                  <span ng-if="authPlansController.product2.trialDays">{{authPlansController.product2.trialDays}} days FREE trial</span>
+                </div>
+                <button type="button" class="btn btn-labeled btn-success" ng-if="authPlansController.user.plan && authPlansController.user.plan === authPlansController.product2.planCode">
+                  <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>You're current plan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
