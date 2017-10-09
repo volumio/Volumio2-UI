@@ -21,7 +21,7 @@ class DatabaseService {
 
   write(ref, object) {
     var writing = this.$q.defer();
-    return this.angularFireService.write(ref, object).then(() => {
+    this.angularFireService.write(ref, object).then(() => {
       writing.resolve();
     }, (error) => {
       writing.reject(error);
@@ -31,7 +31,7 @@ class DatabaseService {
   
   updateFirebaseObject(object) {
     var updating = this.$q.defer();
-    return this.angularFireService.updateObject(object).then(() => {
+    this.angularFireService.updateObject(object).then(() => {
       updating.resolve();
     }, (error) => {
       updating.reject(error);
@@ -41,7 +41,7 @@ class DatabaseService {
 
   get(ref) {
     var getting = this.$q.defer();
-    return this.angularFireService.get(ref).then((result) => {
+    this.angularFireService.get(ref).then((result) => {
       getting.resolve(result);
     }, (error) => {
       getting.reject(error);
@@ -49,7 +49,7 @@ class DatabaseService {
     return getting.promise;
   }
 
-  waitForValue(ref) {8
+  waitForValue(ref) {
     var waitingForValue = this.$q.defer();
     this.angularFireService.waitForValue(ref).then((result) => {
       console.log(result);

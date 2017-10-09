@@ -4,7 +4,6 @@ class StripePayButtonDirective {
     let directive = {
       restrict: 'E',
       templateUrl: 'app/plugin/core-plugin/auth/components/stripe-pay-button/stripe-pay-button.html',
-      scope: {},
       controller: StripePayButtonController,
       controllerAs: 'stripePayButtonController',
       scope: {
@@ -52,7 +51,7 @@ class StripePayButtonController {
   }
   
   initButtonUI(){
-    if(this.buttonLabel == undefined){
+    if(this.buttonLabel === undefined){
       this.buttonLabel = "Buy now";
     }
   }
@@ -107,7 +106,7 @@ class StripePayButtonController {
       event.stopPropagation();
       event.preventDefault();
       this.$timeout(() => {
-        this.handler.close()
+        this.handler.close();
       });
     });
   }

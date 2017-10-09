@@ -14,10 +14,10 @@ class AuthCardDirective {
 class AuthCardController {
   constructor($rootScope, $scope, $state, authService) {
     'ngInject';
-    this.$scope = $scope;   
+    this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
-    
+
     this.user = null;
 
     this.authInit();
@@ -28,49 +28,50 @@ class AuthCardController {
       console.log("user");
       console.log(user);
       this.init(user);
-      this.authService.bindWatcher(this.getAuthWatcher(),false);
+      this.authService.bindWatcher(this.getAuthWatcher(), false);
     }).catch((error) => {
       console.log(error);
     });
   }
-  
-  getAuthWatcher(){
+
+  getAuthWatcher() {
     return (user) => {
       console.log("authWatcher");
       console.log(user);
       this.init(user);
     };
   }
-  
-  init(user){
+
+  init(user) {
     this.setUser(user);
   }
-  
-  setUser(user){
+
+  setUser(user) {
     this.user = user;
-    if(this.user)
-    this.user.image = "http://www.giacomodeglinnocenti.it/me.jpg"; //TODO IMAGE 
+    if (this.user) {
+      this.user.image = "http://www.giacomodeglinnocenti.it/me.jpg"; //TODO IMAGE 
+    }
   }
 
   //auth section
-  logIn(){
+  logIn() {
     this.$state.go('volumio.auth.login');
   }
-  
-  signUp(){
+
+  signUp() {
     console.log("signUp");
     this.$state.go('volumio.auth.signup');
   }
-  
-  goToProfile(){
+
+  goToProfile() {
     this.$state.go('volumio.auth.profile');
   }
-  
-  logOut(){
+
+  logOut() {
     this.authService.logOut();
   }
-  
-  isUserFilledWithMandatory(){
+
+  isUserFilledWithMandatory() {
     return this.authService.isUserFilledWithMandatory();
   }
 

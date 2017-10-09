@@ -25,7 +25,7 @@ import AuthService from './services/auth.service';
 import PaymentsService from './services/payments.service';
 import StripeService from './services/stripe.service';
 import DatabaseService from './services/database.service';
-import ProductsService from './services/products.service'
+import ProductsService from './services/products.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';

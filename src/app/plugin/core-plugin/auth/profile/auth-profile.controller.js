@@ -4,13 +4,13 @@ class AuthProfileController {
     this.authService = authService;
     this.user = null;
 
-  this.init();
+    this.init();
   }
-  
-  init(){
+
+  init() {
     this.authInit();
   }
-  
+
   authInit() {
     this.authService.getUserPromise().then((user) => {
       this.postAuthInit(user);
@@ -19,32 +19,33 @@ class AuthProfileController {
       console.log(error);
     });
   }
-  
-  getAuthWatcher(){
+
+  getAuthWatcher() {
     return (user) => {
       this.postAuthInit(user);
     };
   }
-  
-  postAuthInit(user){
+
+  postAuthInit(user) {
     this.setUser(user);
   }
-  
-  setUser(user){
+
+  setUser(user) {
     this.user = user;
-    if(this.user)
-    this.user.image = "http://www.giacomodeglinnocenti.it/me.jpg"; //TODO IMAGE 
+    if (this.user) {
+      this.user.image = "http://www.giacomodeglinnocenti.it/me.jpg"; //TODO IMAGE 
+    }
   }
 
   goToPlans() {
     this.$state.go('volumio.auth.plans');
   }
-   
-  logIn(){
+
+  logIn() {
     this.$state.go('volumio.auth.login');
   }
-  
-  goToEdit(){
+
+  goToEdit() {
     this.$state.go('volumio.auth.edit-profile');
   }
 

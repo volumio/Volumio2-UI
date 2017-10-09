@@ -121,7 +121,7 @@ class AngularFireService {
   }
 
   isLogged() {
-    return this.dbUser != null;
+    return this.dbUser !== null;
   }
 
   getRemoteUserPromise() {
@@ -346,8 +346,9 @@ class AngularFireService {
     var obj = this.$firebaseObject(ref);
     
     var unwatch = obj.$watch(() => {
-      if (obj === undefined)
+      if (obj === undefined){
         return;
+      }
       var value = obj.$value;
       console.log(value);
       waiting.resolve(value);

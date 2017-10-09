@@ -28,7 +28,7 @@
     "angular-translate": "^2.11.0",
     "angular-translate-loader-static-files": "^2.11.0",
     "angularfire": "^2.3.0",
-    "angular-stripe-checkout": "^5.1.0"
+    "angular-stripe-checkout": "^5.1.0",
     "angular-local-storage": "^0.5.0",
     "angular-mailchimp-subscribe": "^0.1.0"
   },

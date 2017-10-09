@@ -1,5 +1,3 @@
-function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
-        $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider) {
 function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
     $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider , CgMailChimpServiceProvider) {
   'ngInject';
