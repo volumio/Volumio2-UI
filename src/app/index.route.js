@@ -245,7 +245,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
     })
     
     .state('volumio.auth.subscribe', {
-      url: 'subscribe/:plan',
+      url: 'subscription/subscribe/:plan',
       views: {
         'content@volumio': {
           templateUrl: 'app/plugin/core-plugin/auth/subscribe/auth-subscribe.html',
@@ -315,6 +315,22 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
           templateUrl: 'app/plugin/core-plugin/auth/verify-user/auth-verify-user.html',
           controller: 'AuthVerifyUserController',
           controllerAs: 'authVerifyUserController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
+    .state('volumio.auth.cancel-subscription',{
+      url: 'subscription/cancel',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/cancel-subscription/auth-cancel-subscription.html',
+          controller: 'AuthCancelSubscriptionController',
+          controllerAs: 'authCancelSubscriptionController',
           resolve: {
             "currentAuth": ["authService", function(authService) {
               return authService.getFirebaseAuthService().$requireSignIn();

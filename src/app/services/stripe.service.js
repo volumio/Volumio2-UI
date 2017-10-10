@@ -67,7 +67,62 @@ class StripeService {
     var getting = this.$q.defer();
     var ref = `/payments/subscriptions/${userId}/${subscriptionId}/error`;
     this.databaseService.get(ref).then((error) => {
-      if(error === undefined){
+      if (error === undefined) {
+        getting.resolve("No success but no stripe error");
+        return;
+      }
+      getting.resolve(error);
+    }, (error) => {
+      getting.reject(error);
+    });
+    return getting.promise;
+  }
+
+  cancelSubscription(subscriptionId,userId) {
+    var cancellating = this.$q.defer();
+    var ref = 'payments/cancellations/' + userId;
+
+    const cancellation = {
+      subscriptionId: subscriptionId,
+      created_at: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    this.databaseService.push(ref, cancellation).then((cancellationId) => {
+      this.getCancellationResponse(cancellationId, userId).then((status) => {
+        console.log(status);
+        if (status === true) {
+          cancellating.resolve(status);
+          return;
+        }
+        this.getCancellationError(cancellationId, userId).then((error) => {
+          cancellating.reject(error);
+        });
+      });
+    }).catch((error) => {
+      console.log(error);
+      cancellating.reject(error);
+    });
+    return cancellating.promise;
+  }
+  
+  getCancellationResponse(cancellationId, userId) {
+    var getting = this.$q.defer();
+    var ref = `/payments/cancellations/${userId}/${cancellationId}/status`;
+    this.databaseService.waitForValue(ref).then((status) => {
+      console.log(status);
+      getting.resolve(status);
+    }, (error) => {
+      console.log(error);
+      getting.reject(error);
+    });
+    return getting.promise;
+  }
+
+  getCancellationError(cancellationId, userId) {
+    var getting = this.$q.defer();
+    var ref = `/payments/cancellations/${userId}/${cancellationId}/error`;
+    this.databaseService.get(ref).then((error) => {
+      if (error === undefined) {
         getting.resolve("No success but no stripe error");
         return;
       }

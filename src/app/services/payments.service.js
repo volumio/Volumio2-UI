@@ -1,10 +1,10 @@
-class PaymentsService{
-  constructor(stripeService,$q){
+class PaymentsService {
+  constructor(stripeService, $q) {
     this.stripeService = stripeService;
     this.$q = $q;
   }
-  
-  stripeSubscribe(subscription, userId){
+
+  subscribe(subscription, userId) {
     var subscribing = this.$q.defer();
     this.stripeService.subscribe(subscription, userId).then((success) => {
       console.log(success);
@@ -15,7 +15,11 @@ class PaymentsService{
     });
     return subscribing.promise;
   }
-  
+
+  cancelSubscription(subscriptionId) {
+    return this.stripeService.cancelSubscription(subscriptionId);
+  }
+
 }
 
 export default PaymentsService;

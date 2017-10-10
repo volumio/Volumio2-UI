@@ -5,6 +5,7 @@ class AuthPlansController {
     this.productService = productsService;
     this.$state = $state;
     this.$q = $q;
+    this.paymentsService = paymentsService;
 
     this.user = null;
     this.products = {};
@@ -58,6 +59,14 @@ class AuthPlansController {
 
   subscribe(plan) {
     this.$state.go('volumio.auth.subscribe', {'plan': plan});
+  }
+  
+  downgradeToProduct1(){
+    
+  }
+  
+  downgradeToFree(){
+    this.$state.go('volumio.auth.cancel-subscription');
   }
 
 }

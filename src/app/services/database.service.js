@@ -13,7 +13,8 @@ class DatabaseService {
     this.angularFireService.push(ref, object).then((ref) => {
       const keyRef = ref.key;
       putting.resolve(keyRef);
-    }, (error) => {
+    }).catch((error) => {
+      console.log(error);
       putting.reject(error);
     });
     return putting.promise;

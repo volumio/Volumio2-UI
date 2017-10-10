@@ -79,7 +79,7 @@ class StripePayButtonController {
       payment['token'] = token;
       var subscribing = this.$q.defer();
 
-      this.paymentsService.stripeSubscribe(payment, this.userId).then((success) => {
+      this.paymentsService.subscribe(payment, this.userId).then((success) => {
         console.log(success);
         this.stopLoading();
         subscribing.resolve(success);

@@ -72,9 +72,8 @@
       </div>
       </div>
       
-      <div id="" ng-if="authLoginController.user != null" >
-        <h4>You're already logged</h4>
-        <a ng-click="authLoginController.logOut()" class="btn btn-lg btn-success">Log Out</a>
+      <div ng-if="authLoginController.user != null" >
+        <auth-already-logged></auth-already-logged>
       </div>
 
 

@@ -53,18 +53,18 @@ import ModalController from './components/modals/modal.controller';
 import FavouriteTrackBtnDirective from './components/favourite-track-btn/favourite-track-btn.directive';
 import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
 import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
-
 // Light Switch
 import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-btn.directive';
-
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
 import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
 //auth directives
 import StripePayButtonDirective from './plugin/core-plugin/auth/components/stripe-pay-button/stripe-pay-button.directive';
 import AuthCardDirective from './plugin/core-plugin/auth/components/card/auth-card.directive';
-import AuthBackButtonDirective from './plugin/core-plugin/auth/components/back-button/back-button.directive';
+import AuthBackButtonDirective from './plugin/core-plugin/auth/components/shareds/back-button/auth-back-button.directive';
 import PluginComponent from './plugin/components/plugin.component';
+import AuthAlreadyLoggedDirective from './plugin/core-plugin/auth/components/shareds/already-logged/auth-already-logged.directive'
+import AuthCurrentPlanCardDirective from './plugin/core-plugin/auth/components/shareds/current-plan-card/auth-current-plan-card.directive'
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -127,6 +127,7 @@ import AuthPaymentFailController from './plugin/core-plugin/auth/payment-fail/au
 import AuthRecoverPasswordController from './plugin/core-plugin/auth/recover-password/auth-recover-password.controller';
 import AuthEditProfileController from './plugin/core-plugin/auth/edit-profile/auth-edit-profile.controller';
 import AuthVerifyUserController from './plugin/core-plugin/auth/verify-user/auth-verify-user.controller';
+import AuthCancelSubscriptionController from './plugin/core-plugin/auth/cancel-subscription/auth-cancel-subscription.controller';
 
 
 angular.module('volumio', [
@@ -227,6 +228,8 @@ angular.module('volumio', [
   .directive('stripePayButton', () => new StripePayButtonDirective())
   .directive('authCard', () => new AuthCardDirective())
   .directive('authBackButton', () => new AuthBackButtonDirective())
+  .directive('authAlreadyLogged', () => new AuthAlreadyLoggedDirective())
+  .directive('authCurrentPlanCard', () => new AuthCurrentPlanCardDirective())
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)
@@ -284,4 +287,5 @@ angular.module('volumio', [
   .controller('AuthPaymentFailController',AuthPaymentFailController)
   .controller('AuthRecoverPasswordController',AuthRecoverPasswordController)
   .controller('AuthEditProfileController',AuthEditProfileController)
-  .controller('AuthVerifyUserController',AuthVerifyUserController);
+  .controller('AuthVerifyUserController',AuthVerifyUserController)
+  .controller('AuthCancelSubscriptionController',AuthCancelSubscriptionController);

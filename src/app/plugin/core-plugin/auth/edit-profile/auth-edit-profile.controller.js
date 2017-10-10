@@ -68,6 +68,7 @@ class AuthEditProfileController {
   }
   
   updateUserData(){
+    console.log(this.user);
     this.authService.saveUserData(this.user).then(() => {
       this.goToProfile();
     }).catch((error) => {

@@ -294,7 +294,7 @@ class AngularFireService {
     list.$add(object).then((ref) => {
       putting.resolve(ref);
     }, (error) => {
-      putting.reject();
+      putting.reject(error);
     });
     return putting.promise;
   }
