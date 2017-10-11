@@ -92,8 +92,6 @@ class AuthSubscribeController {
   
   loadProduct(){
     var code = this.$stateParams['plan'];
-    console.log("this.$stateParams['plan']");
-    console.log(this.$stateParams['plan']);
     this.product = this.productsService.getProductByCode(code);
   }
   

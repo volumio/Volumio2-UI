@@ -1,4 +1,4 @@
-class AuthCancelSubscriptionController {
+class AuthChangeSubscriptionController {
   constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService) {
     this.$scope = $scope;
     this.$state = $state;
@@ -12,14 +12,25 @@ class AuthCancelSubscriptionController {
 
     this.openedModal = {};
 
-    this.subscription = null;
     this.user = null;
+    this.product = null;
 
     this.init();
   }
 
   init() {
+    this.loadProduct();
     this.authInit();
+  }
+
+  loadProduct() {
+    var plan = this.$stateParams['plan'];
+    this.product = this.productsService.getProductByCode(plan);
+  }
+
+  loadProduct() {
+    var code = this.$stateParams['plan'];
+    this.product = this.productsService.getProductByCode(code);
   }
 
   authInit() {
@@ -39,40 +50,43 @@ class AuthCancelSubscriptionController {
 
   postAuthInit(user) {
     this.setUser(user);
-    this.subscription = user.plan;
   }
 
   setUser(user) {
     this.user = user;
   }
 
-  downgradeToFree() {
-    if(!this.user.subscriptionId){
-      alert("Error, no subscription id");
+  changePlan() {
+    if (this.user.subscriptionId === undefined || this.user.subscriptionId === null) {
+      alert("Error, no subscription id."); //TODO
       return;
     }
-    this.cancellationCallback(this.paymentsService.cancelSubscription(this.user.subscriptionId, this.user.uid ));
+    if (this.product === undefined || this.product === null || this.product.planCode === undefined) {
+      alert("Error, no plan to change to."); //TODO
+      return;
+    }
+    this.updateCallback(this.paymentsService.updateSubscription(this.product.planCode, this.user.uid));
   }
 
-  cancellationCallback(cancelling) {
-    this.openCancellingModal();
+  updateCallback(cancelling) {
+    this.openUpdatingModal();
     cancelling.then((status) => {
       console.log(status);
-      this.closeCancellingModal();
+      this.closeUpdatingModal();
       if (status === true) {
-        this.goToCancellingSuccess();
+        this.goToUpdatingSuccess();
         return;
       }
-      this.goToCancellingFail();
+      this.goToUpdatingFail();
     }).catch((error) => {
       console.log("error");
       console.log(error); //TODO Modal Error and THEN redirect
-      this.closeCancellingModal();
-      this.goToCancellingFail();
+      this.closeUpdatingModal();
+      this.goToUpdatingFail();
     });
   }
 
-  openCancellingModal() {
+  openUpdatingModal() {
     let
             templateUrl = 'app/plugin/core-plugin/auth/modals/auth-paying-modal/auth-paying-modal.html',
             controller = 'AuthPayingModalController',
@@ -86,27 +100,16 @@ class AuthCancelSubscriptionController {
             'md');
   }
 
-  closeCancellingModal() {
+  closeUpdatingModal() {
     this.openedModal.close();
   }
 
-  goToCancellingSuccess() {
+  goToUpdatingSuccess() {
     this.$state.go('volumio.auth.payment-success'); //TODO
   }
 
-  goToCancellingFail() {
+  goToUpdatingFail() {
     this.$state.go('volumio.auth.payment-fail'); //TODO
-  }
-
-  loadProduct() { //unused
-    var code = this.$stateParams['plan'];
-    console.log("this.$stateParams['plan']");
-    console.log(this.$stateParams['plan']);
-    this.product = this.productsService.getProductByCode(code);
-  }
-
-  getCurrentPlanName() {
-    return this.user.plan;
   }
 
   logIn() {
@@ -116,7 +119,11 @@ class AuthCancelSubscriptionController {
   goToPlans() {
     this.$state.go('volumio.auth.plans');
   }
+  
+  getCurrentPlanName() {
+    return this.user.plan;
+  }
 
 }
 
-export default AuthCancelSubscriptionController;
+export default AuthChangeSubscriptionController;

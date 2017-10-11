@@ -340,6 +340,22 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
       }
     })
     
+    .state('volumio.auth.change-subscription',{
+      url: 'subscription/change/:plan',
+      views: {
+        'content@volumio': {
+          templateUrl: 'app/plugin/core-plugin/auth/change-subscription/auth-change-subscription.html',
+          controller: 'AuthChangeSubscriptionController',
+          controllerAs: 'authChangeSubscriptionController',
+          resolve: {
+            "currentAuth": ["authService", function(authService) {
+              return authService.getFirebaseAuthService().$requireSignIn();
+            }]
+          }
+        }
+      }
+    })
+    
     //end auth
 
     .state('volumio.static-page', {

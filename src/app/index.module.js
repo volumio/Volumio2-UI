@@ -128,6 +128,7 @@ import AuthRecoverPasswordController from './plugin/core-plugin/auth/recover-pas
 import AuthEditProfileController from './plugin/core-plugin/auth/edit-profile/auth-edit-profile.controller';
 import AuthVerifyUserController from './plugin/core-plugin/auth/verify-user/auth-verify-user.controller';
 import AuthCancelSubscriptionController from './plugin/core-plugin/auth/cancel-subscription/auth-cancel-subscription.controller';
+import AuthChangeSubscriptionController from './plugin/core-plugin/auth/change-subscription/auth-change-subscription.controller';
 
 
 angular.module('volumio', [
@@ -288,4 +289,5 @@ angular.module('volumio', [
   .controller('AuthRecoverPasswordController',AuthRecoverPasswordController)
   .controller('AuthEditProfileController',AuthEditProfileController)
   .controller('AuthVerifyUserController',AuthVerifyUserController)
-  .controller('AuthCancelSubscriptionController',AuthCancelSubscriptionController);
+  .controller('AuthCancelSubscriptionController',AuthCancelSubscriptionController)
+  .controller('AuthChangeSubscriptionController',AuthChangeSubscriptionController);

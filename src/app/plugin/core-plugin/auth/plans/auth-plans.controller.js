@@ -61,8 +61,8 @@ class AuthPlansController {
     this.$state.go('volumio.auth.subscribe', {'plan': plan});
   }
   
-  downgradeToProduct1(){
-    
+  goToChangePlan(plan){
+    this.$state.go('volumio.auth.change-subscription', {'plan': plan});
   }
   
   downgradeToFree(){

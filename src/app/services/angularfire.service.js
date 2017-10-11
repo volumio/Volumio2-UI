@@ -90,9 +90,19 @@ class AngularFireService {
       return gettingUser.promise;
     }
     this.getDbUserPromise(authUser.uid).then((dbUser) => {
+      if (dbUser === undefined || dbUser === null) { //if user'snt on db
+        this.createDbUser(authUser.uid, {}).then((user) => {
+          this.authUser = authUser;
+          this.dbUser = dbUser;
+          gettingUser.resolve(dbUser);
+        });
+        return;
+      }
       this.authUser = authUser;
       this.dbUser = dbUser;
       gettingUser.resolve(dbUser);
+    }).catch((error) => {
+      gettingUser.reject(error);
     });
     return gettingUser.promise;
   }
@@ -254,8 +264,8 @@ class AngularFireService {
               console.log(error);
             });
   }
-  
-  isLoggedAndVerified(){
+
+  isLoggedAndVerified() {
     console.log("authUser");
     console.log(this.authUser.emailVerified);
     return this.authService.$requireSignIn(true);
@@ -280,8 +290,8 @@ class AngularFireService {
     });
     return updating.promise;
   }
-  
-  recoverPassword(email){
+
+  recoverPassword(email) {
     return this.authService.$sendPasswordResetEmail(email);
   }
 
@@ -356,7 +366,7 @@ class AngularFireService {
     //var obj = this.$firebaseObject(ref);
 
     ref.on("value", (snapshot) => {
-      if (!snapshot || snapshot.val() === undefined || snapshot.val() === null ) {
+      if (!snapshot || snapshot.val() === undefined || snapshot.val() === null) {
         return;
       }
 
@@ -368,7 +378,7 @@ class AngularFireService {
       this.clearWaitForValueTimeout(timeouting);
 
     });
-    
+
 //    console.log(error);
 //    waitingFor.reject(error);
 //    this.clearWaitForValueTimeout(timeouting);

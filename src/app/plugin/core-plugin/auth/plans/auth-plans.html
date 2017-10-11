@@ -137,7 +137,7 @@
                   <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
                   <span translate="AUTH.YOUR_CURRENT_PLAN"></span>
                 </button>
-                <button ng-click="authPlansController.downgradeToProduct1()" type="button" class="btn btn-labeled btn-default" ng-if="authPlansController.user.plan === authPlansController.product2.plan">
+                <button ng-click="authPlansController.goToChangePlan(authPlansController.product1.plan)"" type="button" class="btn btn-labeled btn-default" ng-if="authPlansController.user.plan === authPlansController.product2.plan">
                   <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
                   <span translate="AUTH.DOWNGRADE"></span>
                 </button>
@@ -198,7 +198,7 @@
               </div>
               <div class="panel-footer">
                 <div ng-if="authPlansController.user.plan !== authPlansController.product2.plan">
-                  <button ng-click="authPlansController.subscribe(authPlansController.product2.plan)" class="btn btn-success btn-labeled">
+                  <button ng-click="authPlansController.goToChangePlan(authPlansController.product2.plan)" class="btn btn-success btn-labeled">
                     <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
                     <span translate="AUTH.UPGRADE"></span>
                   </button>

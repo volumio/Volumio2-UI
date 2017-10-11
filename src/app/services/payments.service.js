@@ -16,8 +16,12 @@ class PaymentsService {
     return subscribing.promise;
   }
 
-  cancelSubscription(subscriptionId) {
-    return this.stripeService.cancelSubscription(subscriptionId);
+  cancelSubscription(subscriptionId,userId) {
+    return this.stripeService.cancelSubscription(subscriptionId,userId);
+  }
+  
+  updateSubscription(planCode,userId) {
+    return this.stripeService.updateSubscription(planCode,userId);
   }
 
 }

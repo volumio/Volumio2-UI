@@ -78,7 +78,7 @@ class StripeService {
     return getting.promise;
   }
 
-  cancelSubscription(subscriptionId,userId) {
+  cancelSubscription(subscriptionId, userId) {
     var cancellating = this.$q.defer();
     var ref = 'payments/cancellations/' + userId;
 
@@ -104,7 +104,7 @@ class StripeService {
     });
     return cancellating.promise;
   }
-  
+
   getCancellationResponse(cancellationId, userId) {
     var getting = this.$q.defer();
     var ref = `/payments/cancellations/${userId}/${cancellationId}/status`;
@@ -121,6 +121,61 @@ class StripeService {
   getCancellationError(cancellationId, userId) {
     var getting = this.$q.defer();
     var ref = `/payments/cancellations/${userId}/${cancellationId}/error`;
+    this.databaseService.get(ref).then((error) => {
+      if (error === undefined) {
+        getting.resolve("No success but no stripe error");
+        return;
+      }
+      getting.resolve(error);
+    }, (error) => {
+      getting.reject(error);
+    });
+    return getting.promise;
+  }
+
+  updateSubscription(planCode, userId) {
+    var updating = this.$q.defer();
+    var ref = 'payments/updates/' + userId;
+
+    const update = {
+      planCode: planCode,
+      created_at: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    this.databaseService.push(ref, update).then((updateId) => {
+      this.getUpdateResponse(updateId, userId).then((status) => {
+        console.log(status);
+        if (status === true) {
+          updating.resolve(status);
+          return;
+        }
+        this.getUpdateError(updateId, userId).then((error) => {
+          updating.reject(error);
+        });
+      });
+    }).catch((error) => {
+      console.log(error);
+      updating.reject(error);
+    });
+    return updating.promise;
+  }
+
+  getUpdateResponse(updateId, userId) {
+    var getting = this.$q.defer();
+    var ref = `/payments/updates/${userId}/${updateId}/status`;
+    this.databaseService.waitForValue(ref).then((status) => {
+      console.log(status);
+      getting.resolve(status);
+    }, (error) => {
+      console.log(error);
+      getting.reject(error);
+    });
+    return getting.promise;
+  }
+
+  getUpdateError(updateId, userId) {
+    var getting = this.$q.defer();
+    var ref = `/payments/updates/${userId}/${updateId}/error`;
     this.databaseService.get(ref).then((error) => {
       if (error === undefined) {
         getting.resolve("No success but no stripe error");

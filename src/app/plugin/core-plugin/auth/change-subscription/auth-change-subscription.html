@@ -1,0 +1,96 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="AUTH.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div
+    class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.UPDATE_SUBSCRIPTION"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-if="authChangeSubscriptionController.user && authChangeSubscriptionController.product">
+
+        <auth-back-button label='AUTH.PLANS' route-destination="volumio.auth.plans"></auth-back-button>
+
+        <h3 translate="AUTH.UPDATE_SUBSCRIPTION_TITLE" style="margin-bottom: 16px;"></h3>
+
+        <h4 style="margin-bottom: 16px;">
+          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>: {{authChangeSubscriptionController.getCurrentPlanName() | uppercase }}
+        </h4>
+        
+        <h4>
+          <span translate="AUTH.YOUR_NEW_PLAN"></span>:
+        </h4>
+
+        <div class="panel panel-primary product">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              THE PLAN NAME THIS GONNA BE A COMPONENT SOON</h3>
+          </div>
+          <div class="panel-body">
+            <div class="the-price">
+              <h1>
+                Free
+              </h1>
+            </div>
+            <table class="table">
+              <tr>
+                <td>
+                  1 Account
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  1 Project
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  100K API Access
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  100MB Storage
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Custom Cloud Services
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  Weekly Reports
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="panel-footer" style="text-align: center;">
+            <button ng-click="authChangeSubscriptionController.changePlan();" type="button" class="btn btn-labeled btn-default">
+              <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+              <span translate="AUTH.UPDATE_SUBSCRIPTION"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="" ng-if="!authChangeSubscriptionController.user" >
+        <h4 translate="AUTH.YOURE_NOT_LOGGED"></h4>
+        <a ng-click="authChangeSubscriptionController.logIn()" class="btn btn-lg btn-success">Log In</a>
+      </div>
+
+      <div id="" ng-if="!authChangeSubscriptionController.product" >
+        <h4 translate="AUTH.NO_PRODUCT_SELECTED"></h4>
+        <a ng-click="authChangeSubscriptionController.goToPlans()" class="btn btn-lg btn-success">Retry</a>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
