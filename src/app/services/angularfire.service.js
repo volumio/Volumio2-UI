@@ -90,8 +90,30 @@ class AngularFireService {
       return gettingUser.promise;
     }
     this.getDbUserPromise(authUser.uid).then((dbUser) => {
-      if (dbUser === undefined || dbUser === null) { //if user'snt on db
-        this.createDbUser(authUser.uid, {}).then((user) => {
+      console.log("dbUser.$value");
+      console.log(dbUser.$value);
+      if (dbUser.$value === undefined || dbUser.$value === null) { //if user'snt on db
+        var userData = {};
+        //email
+        if(authUser.email !== undefined || authUser.email !== null){
+          userData.email = authUser.email;
+        }
+        const provider = authUser.providerId || '';
+        const providerDataProvider = authUser.providerData[0].providerId || '';
+        if( this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider) ){
+          //photo
+          userData.photoURL = authUser.photoUrl || null;
+          //name
+          if(authUser.displayName){
+            var splittedName = authUser.displayName.split(" ");
+            if(splittedName.length > 1){
+              userData.firstName = splittedName[0];
+              splittedName.shift();
+              userData.lastName = splittedName.join().replace(","," ");
+            }
+          }
+        }
+        this.createDbUser(authUser.uid, userData).then((dbUser) => {
           this.authUser = authUser;
           this.dbUser = dbUser;
           gettingUser.resolve(dbUser);
@@ -185,9 +207,14 @@ class AngularFireService {
     return userPromise.promise;
   }
 
-  loginWithProvider(provider) {
-    this.authService.$signInWithPopup(provider).then(() => {
+  loginWithProvider(provider) { //social login works as signup too
+    //$signInWithPopup could be an alternative flow to the following
+    this.authService.$signInWithRedirect(provider).then(() => {
+      this.authService.getRedirectResult().then((result) => {
+        
+      });
     }).catch((error) => {
+      console.log(error); // TODO error handling
     });
   }
 
@@ -399,6 +426,20 @@ class AngularFireService {
     if (timeouting) {
       this.$timeout.cancel(timeouting);
     }
+  }
+  
+  isProviderASocial(provider){
+    if(this.contains(provider,'google') || this.contains(provider,'facebook') || this.contains(provider,'github')){
+      return true;
+    }
+    return false;''
+  }
+  
+  contains(searchIn, searchFor){
+    if(searchIn === null || searchIn === undefined){
+      return false;
+    }
+    return searchIn.indexOf(searchFor) !== -1;
   }
 
 }
