@@ -28,7 +28,7 @@
               <i class="fa fa-google-plus visible-xs"></i>
               <span class="hidden-xs">Google+</span>
             </a>
-          </div>	
+          </div>
         </div>
 
         <div class="row omb_row-sm-offset-3 omb_loginOr">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="row omb_row-sm-offset-3">
-          <div class="col-xs-24 col-sm-12">	
+          <div class="col-xs-24 col-sm-12">
             <div class="omb_loginForm">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -53,7 +53,7 @@
               </div>
               <span class="help-block"><!-- Password error -->&nbsp;</span>
 
-              <button class="btn btn-lg btn-success btn-block" ng-click="authLoginController.login()" translate="AUTH.LOG_IN"></button>
+              <button class="btn btn-lg btn-success btn-block" ng-click="authLoginController.login()" translate="AUTH.LOGIN"></button>
             </div>
           </div>
         </div>
@@ -66,13 +66,13 @@
           </div>
           <div class="col-xs-24 col-sm-6">
             <p class="omb_forgotPwd">
-              <a ng-click="authLoginController.goToRecoverPassword()" style="cursor: pointer;" translate="AUTH.FORGOT_PASSWORD"></a>
+              <a ng-click="authLoginController.goToRecoverPassword()" style="cursor: pointer;" translate="AUTH.FORGOT_PASSWORD">?</a>
             </p>
           </div>
-        </div>	    	
+        </div>
       </div>
       </div>
-      
+
       <div ng-if="authLoginController.user != null" >
         <auth-already-logged></auth-already-logged>
       </div>

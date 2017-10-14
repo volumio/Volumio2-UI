@@ -14,7 +14,7 @@
     <div class="panel-body">
 
       <div ng-if="authSubscribeController.user && authSubscribeController.product">
-        
+
         <auth-back-button label='AUTH.PLANS' route-destination="volumio.auth.plans"></auth-back-button>
 
         <h3 translate="AUTH.COMPLETE_UPGRADE"></h3>
@@ -73,7 +73,7 @@
               stripe-product='authSubscribeController.product'
               callback='authSubscribeController.subscriptionCallback(subscribing)'
               user-id="authSubscribeController.user.uid"
-              button-label="Buy now!"
+              button-label="{{'AUTH.SELECT_PLAN' | translate}}"
               button-class="btn-block"
               ></stripe-pay-button>
           </div>
@@ -82,7 +82,7 @@
 
       <div id="" ng-if="!authSubscribeController.user" >
         <h4 translate="AUTH.YOURENT_LOGGED_DESC"></h4>
-        <a ng-click="authSubscribeController.logIn()" class="btn btn-lg btn-success" translate="AUTH.LOG_IN"></a>
+        <a ng-click="authSubscribeController.logIn()" class="btn btn-lg btn-success" translate="AUTH.LOGIN"></a>
       </div>
 
       <div id="" ng-if="!authSubscribeController.product" >

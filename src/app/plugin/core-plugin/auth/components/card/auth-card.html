@@ -15,14 +15,14 @@
       </div>
     </div>
     <div class="profile-userbuttons">
-      <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.goToProfile()" translate="AUTH.MY_PROFILE"></button>
-      <button type="button" class="btn btn-danger btn-sm" ng-click="authCardController.logOut()" translate="AUTH.LOG_OUT"></button>
+      <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.goToProfile()" translate="AUTH.PROFILE"></button>
+      <button type="button" class="btn btn-danger btn-sm" ng-click="authCardController.logOut()" translate="AUTH.LOGOUT"></button>
     </div>
   </div>
 </div>
 <div ng-if="authCardController.user == null" id="auth-card-not-logged">
   <div class="profile-userbuttons">
-    <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.logIn()" translate="AUTH.LOG_IN"></button>
-    <button type="button" class="btn btn-info btn-sm" ng-click="authCardController.signUp()" translate="AUTH.SIGN_UP"></button>
+    <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.logIn()" translate="AUTH.LOGIN"></button>
+    <button type="button" class="btn btn-info btn-sm" ng-click="authCardController.signUp()" translate="AUTH.SIGNUP"></button>
   </div>
 </div>

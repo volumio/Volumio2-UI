@@ -25,7 +25,7 @@
             <div class="col-md-6">
               <div class="text-center" style="margin-bottom: 16px;">
                 <img firebase-src="{{'userAvatars/'+authEditProfileController.user.uid}}" class="avatar img-circle img-responsive" alt="avatar">
-                <h6 translate="AUTH.UPLOAD_PHOTO"></h6> 
+                <h6 translate="AUTH.UPLOAD_PHOTO"></h6>
                 <div>
                   <input type="file" class="form-control" ng-model="authEditProfileController.userAvatar" auth-file-on-change on-change-callback="authEditProfileController.avatarChange(file)">
                 </div>
@@ -39,9 +39,9 @@
             <div class="col-md-18 personal-info">
 
               <div class="alert alert-success alert-dismissable" ng-if="!authEditProfileController.isUserFilledWithMandatory()">
-                <a class="panel-close close" data-dismiss="alert">×</a> 
+                <a class="panel-close close" data-dismiss="alert">×</a>
                 <i class="glyphicon glyphicon-check"></i>
-                <span translate="AUTH.COMPLETE_YOUR_REGISTRATION"></span>
+                <span translate="AUTH.COMPLETE_YOUR_PROFILE"></span>
               </div>
               <h3 translate="AUTH.PERSONAL_INFO"></h3>
 
@@ -77,14 +77,14 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-6 control-label"><span translate="AUTH.EMAIL"></span>* :</label>
+                  <label class="col-md-6 control-label"><span translate="AUTH.EMAIL_ADDRESS"></span>* :</label>
                   <div class="col-md-16">
                     <input class="form-control" type="text" ng-model="authEditProfileController.user.email" ng-change="authEditProfileController.notifyEmailChanged()">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-6 control-label">
-                    <span translate="AUTH.PASSWORD"></span>: 
+                    <span translate="AUTH.PASSWORD"></span>:
                   </label>
                   <div class="col-md-16">
                     <input class="form-control" type="password" ng-model="authEditProfileController.user.password" placeholder="Leave blank to keep current">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group">
                   <label class="col-md-6 control-label">
-                    <span translate="AUTH.CONFIRM_PASSWORD"></span>: 
+                    <span translate="AUTH.CONFIRM_PASSWORD"></span>:
                   </label>
                   <div class="col-md-16">
                     <input class="form-control" type="password"  ng-model="authEditProfileController.passwordCheck">
@@ -100,8 +100,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-md-24">
-                    <input type="button" class="btn btn-success" value="Save Changes" ng-click="authEditProfileController.doEdit();"> 
-                    <a ng-if="authEditProfileController.isUserFilledWithMandatory()" ng-click="authEditProfileController.goToProfile()" class="btn btn-default pull-right">Go to profile</a>
+                    <input type="button" class="btn btn-success pull-right" value="Save Changes" ng-click="authEditProfileController.doEdit();">
                   </div>
                 </div>
               </form>
@@ -111,8 +110,8 @@
       </div>
 
       <div id="" ng-if="authEditProfileController.user === null" >
-        <h4>You're not logged in</h4>
-        <a ng-click="authEditProfileController.logIn()" class="btn btn-lg btn-success">Log In</a>
+        <h4 translate="AUTH.NOT_LOGGED_IN"></h4>
+        <a ng-click="authEditProfileController.logIn()" class="btn btn-lg btn-success" translate="AUTH.LOGIN"></a>
       </div>
 
 
