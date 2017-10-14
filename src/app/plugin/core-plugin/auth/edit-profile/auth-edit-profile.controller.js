@@ -1,11 +1,15 @@
 class AuthEditProfileController {
-  constructor($state, authService, $q) {
+  constructor($scope, $state, authService, $q) {
+    this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
     this.$q = $q;
 
     this.user = null;
     this.emailChanged = false;
+    
+    this.avatarFile = {};
+    this.isAvatarChanged = false;
 
     this.init();
   }
@@ -59,6 +63,8 @@ class AuthEditProfileController {
       var updatingEmail = this.updateEmail();
       promises.push(updatingEmail);
     }
+    console.log(this.user);
+    console.log(this.user.lastName);
     this.$q.all(promises).then(() => {
       console.log("resolved");
       this.updateUserData();
@@ -109,6 +115,20 @@ class AuthEditProfileController {
   
   notifyEmailChanged(){
     this.emailChanged = true;
+  }
+  
+  avatarChange(file){
+    this.isAvatarChanged = true;
+    this.$scope.$apply();
+    this.avatarFile = file;
+  }
+  
+  saveAvatar(){
+    this.authService.changeAvatar(this.avatarFile,this.user.uid).then((url) => {
+      this.user.photoUrl = url;
+    }).catch((error) => {
+      alert(error); //TODO
+    });
   }
 
 }

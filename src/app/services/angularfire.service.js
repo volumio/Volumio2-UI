@@ -1,6 +1,6 @@
 class AngularFireService {
 
-  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $q) {
+  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q) {
     'ngInject';
     //consts
     this.USERS_REF = "users";
@@ -13,6 +13,7 @@ class AngularFireService {
     this.$firebaseAuth = $firebaseAuth;
     this.$firebaseObject = $firebaseObject;
     this.$firebaseArray = $firebaseArray;
+    this.$firebaseStorage = $firebaseStorage;
     this.$q = $q;
     this.authService;
     this.database;
@@ -95,21 +96,21 @@ class AngularFireService {
       if (dbUser.$value === undefined || dbUser.$value === null) { //if user'snt on db
         var userData = {};
         //email
-        if(authUser.email !== undefined || authUser.email !== null){
+        if (authUser.email !== undefined || authUser.email !== null) {
           userData.email = authUser.email;
         }
         const provider = authUser.providerId || '';
         const providerDataProvider = authUser.providerData[0].providerId || '';
-        if( this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider) ){
+        if (this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider)) {
           //photo
           userData.photoURL = authUser.photoUrl || null;
           //name
-          if(authUser.displayName){
+          if (authUser.displayName) {
             var splittedName = authUser.displayName.split(" ");
-            if(splittedName.length > 1){
+            if (splittedName.length > 1) {
               userData.firstName = splittedName[0];
               splittedName.shift();
-              userData.lastName = splittedName.join().replace(","," ");
+              userData.lastName = splittedName.join().replace(",", " ");
             }
           }
         }
@@ -211,7 +212,7 @@ class AngularFireService {
     //$signInWithPopup could be an alternative flow to the following
     this.authService.$signInWithRedirect(provider).then(() => {
       this.authService.getRedirectResult().then((result) => {
-        
+
       });
     }).catch((error) => {
       console.log(error); // TODO error handling
@@ -427,19 +428,41 @@ class AngularFireService {
       this.$timeout.cancel(timeouting);
     }
   }
-  
-  isProviderASocial(provider){
-    if(this.contains(provider,'google') || this.contains(provider,'facebook') || this.contains(provider,'github')){
+
+  isProviderASocial(provider) {
+    if (this.contains(provider, 'google') || this.contains(provider, 'facebook') || this.contains(provider, 'github')) {
       return true;
     }
-    return false;''
+    return false;
+    ''
   }
-  
-  contains(searchIn, searchFor){
-    if(searchIn === null || searchIn === undefined){
+
+  contains(searchIn, searchFor) {
+    if (searchIn === null || searchIn === undefined) {
       return false;
     }
     return searchIn.indexOf(searchFor) !== -1;
+  }
+
+  //FILE STORAGE
+  uploadFile(path,file) {
+    var uploading = this.$q.defer();
+    var storageRef = firebase.storage().ref(path);
+    var storage = this.$firebaseStorage(storageRef);
+    var uploadTask = storage.$put(file);
+    console.log(uploadTask);
+    uploadTask.$complete((snapshot) => {
+      uploading.resolve(snapshot.downloadURL);
+    });
+    uploadTask.$error((error) => {
+      uploading.reject(error);
+    });
+//    uploadTask.then((snapshot) => {
+//      uploading.resolve(snapshot.downloadURL);
+//    }).catch((error) => {
+//      uploading.reject(error);
+//    });
+    return uploading.promise;
   }
 
 }

@@ -27,7 +27,6 @@ class AuthBackButtonController {
   }
   
   goBack(){
-    console.log(this.routeDestination);
     this.$state.go(this.routeDestination);
   }
 

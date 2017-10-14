@@ -9,8 +9,9 @@
           <h1>
             {{authCurrentPlanCardController.user.plan || 'FREE'  | uppercase}}
           </h1>
-          <small>
-            Expiring: 7 Dec 2017
+          <small ng-if="authCurrentPlanCardController.user.expire_at">
+            <span translate="AUTH.EXPIRING"></span>: 
+            {{authCurrentPlanCardController.user.expire_at}}
           </small>
         </div>
       </div>

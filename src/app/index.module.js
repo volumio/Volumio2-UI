@@ -26,6 +26,7 @@ import PaymentsService from './services/payments.service';
 import StripeService from './services/stripe.service';
 import DatabaseService from './services/database.service';
 import ProductsService from './services/products.service';
+import RemoteStorageService from './services/remote-storage.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -65,6 +66,7 @@ import AuthBackButtonDirective from './plugin/core-plugin/auth/components/shared
 import PluginComponent from './plugin/components/plugin.component';
 import AuthAlreadyLoggedDirective from './plugin/core-plugin/auth/components/shareds/already-logged/auth-already-logged.directive'
 import AuthCurrentPlanCardDirective from './plugin/core-plugin/auth/components/shareds/current-plan-card/auth-current-plan-card.directive'
+import AuthFileOnChangeDirective from './plugin/core-plugin/auth/components/shareds/file-on-change/auth-file-on-change.directive'
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -193,6 +195,7 @@ angular.module('volumio', [
   .service('stripeService', StripeService)
   .service('databaseService',DatabaseService)
   .service('productsService',ProductsService)
+  .service('remoteStorageService',RemoteStorageService)
 
 
   .provider('themeManager', ThemeManagerProvider)
@@ -231,6 +234,7 @@ angular.module('volumio', [
   .directive('authBackButton', () => new AuthBackButtonDirective())
   .directive('authAlreadyLogged', () => new AuthAlreadyLoggedDirective())
   .directive('authCurrentPlanCard', () => new AuthCurrentPlanCardDirective())
+  .directive('authFileOnChange', () => new AuthFileOnChangeDirective())
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)

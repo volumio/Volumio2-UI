@@ -33,7 +33,7 @@
           <div class="row omb_row-sm-offset-3 omb_loginOr">
             <div class="col-xs-24 col-sm-12">
               <hr class="omb_hrOr">
-              <span class="omb_spanOr">or</span>
+              <span class="omb_spanOr" translate="AUTH.OR"></span>
             </div>
           </div>
 
@@ -43,42 +43,43 @@
                 <div class="row">
                   <div class="col-xs-24 col-sm-12 col-md-12">
                     <div class="form-group">
-                      <input type="text" ng-model="authSignupController.firstName" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                      <input type="text" ng-model="authSignupController.firstName" id="first_name" class="form-control input-lg" placeholder="{{AUTH.FIRST_NAME | translate}}" tabindex="1">
                     </div>
                   </div>
                   <div class="col-xs-24 col-sm-12 col-md-12">
                     <div class="form-group">
-                      <input type="text" ng-model="authSignupController.lastName" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                      <input type="text" ng-model="authSignupController.lastName" id="last_name" class="form-control input-lg" placeholder="{{AUTH.LAST_NAME | translate}}" tabindex="2">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" ng-model="authSignupController.username" id="display_name" class="form-control input-lg" placeholder="Username" tabindex="3" pattern="[A-Za-z0-9]{5,}">
+                  <input type="text" ng-model="authSignupController.username" id="display_name" class="form-control input-lg" placeholder="{{AUTH.USERNAME | translate}}" tabindex="3" pattern="[A-Za-z0-9]{5,}">
                 </div>
                 <div class="form-group">
-                  <input type="email" ng-model="authSignupController.email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                  <input type="email" ng-model="authSignupController.email" id="email" class="form-control input-lg" placeholder="{{AUTH.EMAIL_ADDRESS | translate}}" tabindex="4">
                 </div>
                 <div class="row">
                   <div class="col-xs-24 col-sm-12 col-md-12">
                     <div class="form-group">
-                      <input type="password" ng-model="authSignupController.password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5"  pattern=".{8,}">
+                      <input type="password" ng-model="authSignupController.password" id="password" class="form-control input-lg" placeholder="{{AUTH.PASSWORD | translate}}" tabindex="5"  pattern=".{8,}">
                     </div>
                   </div>
                   <div class="col-xs-24 col-sm-6 col-md-12">
                     <div class="form-group">
-                      <input type="password" ng-model="authSignupController.passwordConfirm" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6"  pattern=".{8,}">
+                      <input type="password" ng-model="authSignupController.passwordConfirm" id="password_confirmation" class="form-control input-lg" placeholder="{{AUTH.PASSORD_CONFIRM | translate}}" tabindex="6"  pattern=".{8,}">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-xs-8 col-sm-6 col-md-6">
                     <span class="button-checkbox">
-                      <button type="button" class="btn" tabindex="7" ng-click="authSignupController.clickAgreementButton()" >I Agree</button>
+                      <button type="button" class="btn" tabindex="7" ng-click="authSignupController.clickAgreementButton()">{{AUTH.FIRST_NAME | translate}}</button>
                       <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
                     </span>
                   </div>
                   <div class="col-xs-16 col-sm-18 col-md-18">
-                    By clicking <strong class="label label-primary">Register</strong>, you agree to the <a ng-click="authSignupController.clickShowTerms()" style="text-decoration: underline;">Terms and Conditions</a> set out by this site, including our Cookie Use.
+                    By clicking <strong class="label label-primary">Register</strong>, you agree to the <a ng-click="authSignupController.clickShowTerms()" style="text-decoration: underline;" >Terms and Conditions</a> set out by this site, including our Cookie Use.
+                    <!-- TODO -->
                   </div>
                 </div>
 

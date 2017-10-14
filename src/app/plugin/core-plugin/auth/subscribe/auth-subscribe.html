@@ -81,13 +81,13 @@
       </div>
 
       <div id="" ng-if="!authSubscribeController.user" >
-        <h4>You're not logged in.</h4>
-        <a ng-click="authSubscribeController.logIn()" class="btn btn-lg btn-success">Log In</a>
+        <h4 translate="AUTH.YOURENT_LOGGED_DESC"></h4>
+        <a ng-click="authSubscribeController.logIn()" class="btn btn-lg btn-success" translate="AUTH.LOG_IN"></a>
       </div>
 
       <div id="" ng-if="!authSubscribeController.product" >
-        <h4>You've not selected any subscription or the selected subscription doesn't exist any more.</h4>
-        <a ng-click="authSubscribeController.goToPlans()" class="btn btn-lg btn-success">Retry</a>
+        <h4 translate="AUTH.NO_SUBSCRIPTION_SELECTED_DESC"></h4>
+        <a ng-click="authSubscribeController.goToPlans()" class="btn btn-lg btn-success" translate="AUTH.RETRY"></a>
       </div>
 
     </div>

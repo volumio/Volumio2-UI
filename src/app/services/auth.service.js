@@ -1,11 +1,12 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService) {
+  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService) {
     'ngInject';
     this.rootScope = $rootScope;
     this.angularFireService = angularFireService;
     this.$q = $q;
     this.$state = $state;
     this.databaseService = databaseService;
+    this.remoteStorageService = remoteStorageService;
 
     this.mandatoryFields = [
       'username',
@@ -173,6 +174,21 @@ class AuthService {
 
   recoverPassword(email) {
     return this.angularFireService.recoverPassword(email);
+  }
+  
+  changeAvatar(file,userId){
+    var changing = this.$q.defer();
+    this.remoteStorageService.uploadFile(file,userId).then((url) => {
+      console.log("url");
+      console.log(url);
+      const userAvatarPath = `/users/${userId}/photoUrl`;
+      this.databaseService.write(userAvatarPath,url).then(() => {
+        changing.resolve(url);
+      });
+    }).catch((error) => {
+      changing.reject(error);
+    });
+    return changing.promise;
   }
 
 }

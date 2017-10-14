@@ -8,21 +8,21 @@
         <div ng-if="authCardController.isUserFilledWithMandatory()">
           {{authCardController.user.firstName}} {{authCardController.user.lastName}}
         </div>
-        <span ng-if="!authCardController.isUserFilledWithMandatory()">Logged by Social</span>
+        <span ng-if="!authCardController.isUserFilledWithMandatory()" translate="AUTH.LOGGED_BY_SOCIAL"></span>
       </div>
       <div class="profile-usertitle-username">
         {{authCardController.user.username}}
       </div>
     </div>
     <div class="profile-userbuttons">
-      <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.goToProfile()">My Profile</button>
-      <button type="button" class="btn btn-danger btn-sm" ng-click="authCardController.logOut()">Log Out</button>
+      <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.goToProfile()"></button>
+      <button type="button" class="btn btn-danger btn-sm" ng-click="authCardController.logOut()" translate="AUTH.LOG_OUT"></button>
     </div>
   </div>
 </div>
 <div ng-if="authCardController.user == null" id="auth-card-not-logged">
   <div class="profile-userbuttons">
-    <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.logIn()">Log In</button>
-    <button type="button" class="btn btn-info btn-sm" ng-click="authCardController.signUp()">Sign Up</button>
+    <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.logIn()" translate="AUTH.LOG_IN"></button>
+    <button type="button" class="btn btn-info btn-sm" ng-click="authCardController.signUp()" translate="AUTH.SIGN_UP"></button>
   </div>
 </div>

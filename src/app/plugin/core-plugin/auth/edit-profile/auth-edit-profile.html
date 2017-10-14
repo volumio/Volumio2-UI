@@ -11,7 +11,7 @@
       <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.LOGIN"></span></h3>
     </div>
 
-    <div class="panel-body">
+    <div class="panel-body edit-profile-box">
 
       <div id="" ng-if="authEditProfileController.user !== null" >
         <div class="container">
@@ -23,35 +23,39 @@
           <div class="row">
             <!-- left column -->
             <div class="col-md-6">
-              <div class="text-center">
-                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                <h6>Upload a different photo...</h6>
-
-                <input type="file" class="form-control">
+              <div class="text-center" style="margin-bottom: 16px;">
+                <img firebase-src="{{'userAvatars/'+authEditProfileController.user.uid}}" class="avatar img-circle img-responsive" alt="avatar">
+                <h6 translate="AUTH.UPLOAD_PHOTO"></h6> 
+                <div>
+                  <input type="file" class="form-control" ng-model="authEditProfileController.userAvatar" auth-file-on-change on-change-callback="authEditProfileController.avatarChange(file)">
+                </div>
+                <div ng-if="authEditProfileController.isAvatarChanged === true">
+                  <a class="btn btn-success btn-block" style="margin-top: 16px;" translate="AUTH.SAVE_AVATAR" ng-click="authEditProfileController.saveAvatar();"></a>
+                </div>
               </div>
             </div>
 
             <!-- edit form column -->
             <div class="col-md-18 personal-info">
 
-              <div class="alert alert-info alert-dismissable" ng-if="!authEditProfileController.isUserFilledWithMandatory()">
+              <div class="alert alert-success alert-dismissable" ng-if="!authEditProfileController.isUserFilledWithMandatory()">
                 <a class="panel-close close" data-dismiss="alert">×</a> 
                 <i class="glyphicon glyphicon-check"></i>
-                Complete your registration
+                <span translate="AUTH.COMPLETE_YOUR_REGISTRATION"></span>
               </div>
-              <h3>Personal info</h3>
+              <h3 translate="AUTH.PERSONAL_INFO"></h3>
 
               <form class="form-horizontal" role="form">
                 <div class="form-group">
                   <label class="col-lg-6 control-label"><span translate="AUTH.FIRST_NAME"></span>* :</label>
                   <div class="col-lg-16">
-                    <input class="form-control" type="text" ng-model="authEditProfileController.user.firstName" pattern="[A-Za-z0-9]{2,}">
+                    <input class="form-control" type="text" ng-model="authEditProfileController.user.firstName" pattern="[A-Za-z0-9 ']{2,}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-6 control-label"><span translate="AUTH.LAST_NAME"></span>* :</label>
                   <div class="col-lg-16">
-                    <input class="form-control" type="text" ng-model="authEditProfileController.user.lastName" pattern="[A-Za-z0-9]{2,}">
+                    <input class="form-control" type="text" ng-model="authEditProfileController.user.lastName" pattern="[A-Za-z0-9 ']{2,}">
                   </div>
                 </div>
                 <div class="form-group">
@@ -61,13 +65,13 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-lg-6 control-label"><span translate="AUTH.COUNTRY"></span>* :</label>
+                  <label class="col-lg-6 control-label"><span translate="AUTH.COUNTRY"></span> :</label>
                   <div class="col-lg-16">
                     <input class="form-control" type="text" >
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-lg-6 control-label"><span translate="AUTH.BIRTHDAY"></span>* :</label>
+                  <label class="col-lg-6 control-label"><span translate="AUTH.BIRTHDAY"></span> :</label>
                   <div class="col-lg-16">
                     <input class="form-control" type="text" >
                   </div>
@@ -79,13 +83,17 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-6 control-label">Password:</label>
+                  <label class="col-md-6 control-label">
+                    <span translate="AUTH.PASSWORD"></span>: 
+                  </label>
                   <div class="col-md-16">
                     <input class="form-control" type="password" ng-model="authEditProfileController.user.password" placeholder="Leave blank to keep current">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-6 control-label">Confirm password:</label>
+                  <label class="col-md-6 control-label">
+                    <span translate="AUTH.CONFIRM_PASSWORD"></span>: 
+                  </label>
                   <div class="col-md-16">
                     <input class="form-control" type="password"  ng-model="authEditProfileController.passwordCheck">
                   </div>
