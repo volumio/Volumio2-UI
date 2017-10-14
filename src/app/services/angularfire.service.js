@@ -91,9 +91,7 @@ class AngularFireService {
       return gettingUser.promise;
     }
     this.getDbUserPromise(authUser.uid).then((dbUser) => {
-      console.log("dbUser.$value");
-      console.log(dbUser.$value);
-      if (dbUser.$value === undefined || dbUser.$value === null) { //if user'snt on db
+      if ((dbUser === undefined || dbUser === null) && (dbUser.$value === undefined || dbUser.$value === null)) { //if user'snt on db
         var userData = {};
         //email
         if (authUser.email !== undefined || authUser.email !== null) {
@@ -353,7 +351,9 @@ class AngularFireService {
     console.log("firebaseObject");
     console.log(firebaseObject);
     var updating = this.$q.defer();
-    firebaseObject.$save().then(() => {
+    firebaseObject.$save().then((ref) => {
+      console.log(ref);
+      console.log("FIREBASE SAID OK");
       updating.resolve();
     }, (error) => {
       updating.reject(error);

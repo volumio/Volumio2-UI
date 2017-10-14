@@ -1,17 +1,23 @@
 <div ng-if="authCardController.user != null">
   <div id="auth-card-logged">
-    <div class="profile-userpic">
-      <img ng-src="{{authCardController.user.image}}" class="img-responsive" alt="">
-    </div>
-    <div class="profile-usertitle">
-      <div class="profile-usertitle-name">
-        <div ng-if="authCardController.isUserFilledWithMandatory()">
-          {{authCardController.user.firstName}} {{authCardController.user.lastName}}
+    <div class="row">
+      <div class="col-xs-8 nopadding avatar-box">
+        <div class="profile-userpic" style="padding-top: 8px;">
+          <auth-avatar-image></auth-avatar-image>
         </div>
-        <span ng-if="!authCardController.isUserFilledWithMandatory()" translate="AUTH.LOGGED_BY_SOCIAL"></span>
       </div>
-      <div class="profile-usertitle-username">
-        {{authCardController.user.username}}
+      <div class="col-xs-16 nopadding usedata-box">
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            <div ng-if="authCardController.isUserFilledWithMandatory()">
+              {{authCardController.user.firstName}} {{authCardController.user.lastName}}
+            </div>
+            <span ng-if="!authCardController.isUserFilledWithMandatory()" translate="AUTH.LOGGED_BY_SOCIAL"></span>
+          </div>
+          <div class="profile-usertitle-username">
+            {{authCardController.user.username}}
+          </div>
+        </div>
       </div>
     </div>
     <div class="profile-userbuttons">

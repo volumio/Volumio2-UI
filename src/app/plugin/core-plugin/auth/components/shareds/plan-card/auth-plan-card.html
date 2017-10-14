@@ -1,28 +1,102 @@
-<div ng-if="authCardController.user != null">
-  <div id="auth-card-logged">
-    <div class="profile-userpic">
-      <img ng-src="{{authCardController.user.image}}" class="img-responsive" alt="">
+<div class="plan-box">
+  <div class="panel panel-primary">
+    <div class="cnrflash" ng-if="authPlanCardController.product.ribbon === true">
+      <div class="cnrflash-inner">
+        <span class="cnrflash-label">MOST
+          <br>
+          POPULR</span>
+      </div>
     </div>
-    <div class="profile-usertitle">
-      <div class="profile-usertitle-name">
-        <div ng-if="authCardController.isUserFilledWithMandatory()">
-          {{authCardController.user.firstName}} {{authCardController.user.lastName}}
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{authPlanCardController.product.name}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="the-price">
+        <h1>
+          {{authPlanCardController.product.textualPrice}}
+        </h1>
+        <span ng-if="authPlanCardController.product.trialDays">{{authPlanCardController.product.trialDays}} {{'AUTH.FREE_DAYS_TRIAL' | translate}}</span>
+      </div>
+      <table class="table">
+        <tr ng-repeat="feature in authPlanCardController.product.features" ng-class-odd="'active'">
+          <td>
+            {{feature | translate}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="panel-footer">
+      <!-- FREE -->
+      <div ng-if="authPlanCardController.product.plan === 'free' && authPlanCardController.isDefaultBehaviour === true">
+        <button type="button" class="btn btn-labeled btn-success" ng-if="!authPlanCardController.user.plan || !authPlanCardController.user.plan === 'free'">
+          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
+          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>
+        </button>
+        <button ng-click="authPlanCardController.downgradeToFree();" type="button" class="btn btn-labeled btn-default" ng-if="authPlanCardController.user.plan !== authPlanCardController.product.plan && authPlanCardController.user.plan !== undefined">
+          <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
+          <span translate="AUTH.DOWNGRADE"></span>
+        </button>
+      </div>
+      <!-- VIRTUOSO -->
+      <div ng-if="authPlanCardController.product.plan === 'virtuoso' && authPlanCardController.isDefaultBehaviour === true">
+        <div ng-if="authPlanCardController.user.plan !== 'virtuoso' && authPlanCardController.user.plan !== 'superstar'"> <!-- TODO move hardcode in product service -->
+          <button ng-click="authPlanCardController.subscribe(authPlanCardController.product.plan)" class="btn btn-success btn-labeled">
+            <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+            <span translate="AUTH.UPGRADE"></span>
+          </button>
+          <br />
+          <span ng-if="authPlanCardController.product.trialDays">{{authPlanCardController.product.trialDays}} {{'AUTH.FREE_DAYS_TRIAL' | translate}}</span>
         </div>
-        <span ng-if="!authCardController.isUserFilledWithMandatory()" translate="AUTH.LOGGED_BY_SOCIAL"></span>
+        <button type="button" class="btn btn-labeled btn-success" ng-if="authPlanCardController.user.plan === authPlanCardController.product.plan">
+          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
+          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>
+        </button>
+        <button ng-click="authPlanCardController.goToChangePlan(authPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="authPlanCardController.user.plan === 'superstar'">
+          <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
+          <span translate="AUTH.DOWNGRADE"></span>
+        </button>
       </div>
-      <div class="profile-usertitle-username">
-        {{authCardController.user.username}}
+      <!-- SUPERSTAR -->
+      <div ng-if="authPlanCardController.product.plan === 'superstar' && authPlanCardController.isDefaultBehaviour === true">
+        <div ng-if="authPlanCardController.user.plan === undefined || authPlanCardController.user.plan === 'free'">
+          <button ng-click="authPlanCardController.subscribe(authPlanCardController.product.plan)" class="btn btn-success btn-labeled">
+            <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+            <span translate="AUTH.UPGRADE"></span>
+          </button>
+          <br />
+          <span ng-if="authPlanCardController.product.trialDays">{{authPlanCardController.product.trialDays}} {{'AUTH.FREE_DAYS_TRIAL' | translate}}</span>
+        </div>
+        <button type="button" class="btn btn-labeled btn-success" ng-if="authPlanCardController.user.plan && authPlanCardController.user.plan === authPlanCardController.product.planCode">
+          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
+          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>
+        </button>
+        <button ng-click="authPlanCardController.goToChangePlan(authPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="authPlanCardController.user.plan === 'virtuoso'">
+          <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+          <span translate="AUTH.UPGRADE"></span>
+        </button>
       </div>
     </div>
-    <div class="profile-userbuttons">
-      <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.goToProfile()"></button>
-      <button type="button" class="btn btn-danger btn-sm" ng-click="authCardController.logOut()" translate="AUTH.LOG_OUT"></button>
+    <div ng-if="authPlanCardController.activateSubscribe">
+      <stripe-pay-button
+        stripe-product='authPlanCardController.product'
+        callback='authPlanCardController.subscriptionCallback(subscribing)'
+        user-id="authPlanCardController.user.uid"
+        button-label="{{'AUTH.SUBSCRIBE' | translate}}"
+        button-class="btn-block"
+        ></stripe-pay-button>
     </div>
-  </div>
-</div>
-<div ng-if="authCardController.user == null" id="auth-card-not-logged">
-  <div class="profile-userbuttons">
-    <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.logIn()" translate="AUTH.LOG_IN"></button>
-    <button type="button" class="btn btn-info btn-sm" ng-click="authCardController.signUp()" translate="AUTH.SIGN_UP"></button>
+    <div ng-if="authPlanCardController.activateCancellation">
+      <button ng-click="authPlanCardController.doDowngrade()" type="button" class="btn btn-labeled btn-default">
+        <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>
+        <span translate="AUTH.CANCEL_SUBSCRIPTION"></span>
+      </button>
+    </div>
+    <div ng-if="authPlanCardController.activateChangeSubscription">
+      <button ng-click="authPlanCardController.changePlan();" type="button" class="btn btn-labeled btn-default">
+        <span class="btn-label"><i class="fa fa-random"></i></span>
+        <span translate="AUTH.UPDATE_SUBSCRIPTION"></span>
+      </button>
+    </div>
   </div>
 </div>

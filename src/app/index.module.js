@@ -67,6 +67,8 @@ import PluginComponent from './plugin/components/plugin.component';
 import AuthAlreadyLoggedDirective from './plugin/core-plugin/auth/components/shareds/already-logged/auth-already-logged.directive'
 import AuthCurrentPlanCardDirective from './plugin/core-plugin/auth/components/shareds/current-plan-card/auth-current-plan-card.directive'
 import AuthFileOnChangeDirective from './plugin/core-plugin/auth/components/shareds/file-on-change/auth-file-on-change.directive'
+import AuthAvatarImageDirective from './plugin/core-plugin/auth/components/shareds/avatar-image/auth-avatar-image.directive'
+import AuthPlanCardDirective from './plugin/core-plugin/auth/components/shareds/plan-card/auth-plan-card.directive'
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -235,6 +237,8 @@ angular.module('volumio', [
   .directive('authAlreadyLogged', () => new AuthAlreadyLoggedDirective())
   .directive('authCurrentPlanCard', () => new AuthCurrentPlanCardDirective())
   .directive('authFileOnChange', () => new AuthFileOnChangeDirective())
+  .directive('authAvatarImage', () => new AuthAvatarImageDirective())
+  .directive('authPlanCard', () => new AuthPlanCardDirective())
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)

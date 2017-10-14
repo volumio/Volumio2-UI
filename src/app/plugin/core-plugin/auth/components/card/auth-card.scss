@@ -1,16 +1,13 @@
 .profile-userpic img {
   float: none;
   margin: 0 auto;
-  width: 50%;
-  height: 50%;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
 }
 
 .profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
+  text-align: left;
 }
 
 .profile-usertitle-name {
@@ -43,4 +40,17 @@
 
 .profile-userbuttons .btn:last-child {
   margin-right: 0px;
+}
+
+.nopadding {
+   padding: 0;
+   margin: 0 ;
+}
+
+.avatar-box.nopadding{
+  padding-left: 8px;
+}
+
+.usedata-box.nopadding{
+  padding-left: 8px;
 }

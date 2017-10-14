@@ -1,8 +1,9 @@
 class AuthSignupController {
-  constructor($scope, $state, authService, modalService) {
+  constructor($scope, $state, authService, modalService, $translate) {
     this.$state = $state;
     this.modalService = modalService;
     this.authService = authService;
+    this.$translate = $translate;
 
     this.jqAgreeCheckbox = $('.button-checkbox').find('input:checkbox');
     this.jqAgreeButton = $('.button-checkbox').find('button');
@@ -11,14 +12,14 @@ class AuthSignupController {
       off: {icon: 'glyphicon glyphicon-unchecked'}
     };
 
-   this.init();
+    this.init();
   }
-  
-  init(){
+
+  init() {
     this.authInit();
     this.initTermsAgreementButton();
   }
-  
+
   authInit() {
     this.authService.getUserPromise().then((user) => {
       this.postAuthInit(user);
@@ -27,18 +28,18 @@ class AuthSignupController {
       console.log(error);
     });
   }
-  
-  getAuthWatcher(){
+
+  getAuthWatcher() {
     return (user) => {
       this.postAuthInit(user);
     };
   }
-  
-  postAuthInit(user){
+
+  postAuthInit(user) {
     this.setUser(user);
   }
-  
-  setUser(user){
+
+  setUser(user) {
     this.user = user;
   }
 
@@ -116,7 +117,7 @@ class AuthSignupController {
     };
     this.authService.signup(user).then((newUser) => {
       this.$state.go('volumio.auth.profile');
-    },(error) => {
+    }, (error) => {
       //TODO UI
       alert(error);
       console.log('Error');
@@ -126,12 +127,19 @@ class AuthSignupController {
 
   validate()
   {
-    //TODO "Server Side" validation
+    if (!this.formTermsCheck === true) {
+      return false;
+    }
     return true;
   }
 
   showFormErrors() {
-    //TODO 
+    this.$translate(['AUTH.VALIDATION_ERROR_PLEASE_CHECK_FORM']).then((translations) => {
+      var formError = translations['AUTH.VALIDATION_ERROR_PLEASE_CHECK_FORM'];
+      alert(formError);
+    }).catch((error) => {
+      alert(error);
+    });
   }
 
 }

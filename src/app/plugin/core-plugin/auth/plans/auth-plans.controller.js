@@ -9,6 +9,7 @@ class AuthPlansController {
 
     this.user = null;
     this.products = {};
+    this.product0 = null;
     this.product1 = null;
     this.product2 = null;
 
@@ -45,28 +46,9 @@ class AuthPlansController {
   
   initProducts(){
     this.products = this.productService.getProducts();
+    this.product0 = this.products.free;
     this.product1 = this.products.virtuoso;
     this.product2 = this.products.superstar;
-  }
-
-  subscribePlus() {
-    this.subscribe('plus');
-  }
-
-  subscribePro() {
-    this.subscribe('pro');
-  }
-
-  subscribe(plan) {
-    this.$state.go('volumio.auth.subscribe', {'plan': plan});
-  }
-  
-  goToChangePlan(plan){
-    this.$state.go('volumio.auth.change-subscription', {'plan': plan});
-  }
-  
-  downgradeToFree(){
-    this.$state.go('volumio.auth.cancel-subscription');
   }
 
 }

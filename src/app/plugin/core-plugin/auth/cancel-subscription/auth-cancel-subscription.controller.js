@@ -12,8 +12,9 @@ class AuthCancelSubscriptionController {
 
     this.openedModal = {};
 
-    this.subscription = null;
+    this.plan = null;
     this.user = null;
+    this.product = null;
 
     this.init();
   }
@@ -39,7 +40,8 @@ class AuthCancelSubscriptionController {
 
   postAuthInit(user) {
     this.setUser(user);
-    this.subscription = user.plan;
+    this.plan = user.plan;
+    this.loadProduct();
   }
 
   setUser(user) {
@@ -98,11 +100,8 @@ class AuthCancelSubscriptionController {
     this.$state.go('volumio.auth.payment-fail'); //TODO
   }
 
-  loadProduct() { //unused
-    var code = this.$stateParams['plan'];
-    console.log("this.$stateParams['plan']");
-    console.log(this.$stateParams['plan']);
-    this.product = this.productsService.getProductByCode(code);
+  loadProduct() {
+    this.product = this.productsService.getProductByCode(this.plan);
   }
 
   getCurrentPlanName() {

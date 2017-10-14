@@ -13,7 +13,7 @@
 
     <div class="panel-body">
 
-      <div ng-if="authCancelSubscriptionController.user && authCancelSubscriptionController.subscription">
+      <div ng-if="authCancelSubscriptionController.user && authCancelSubscriptionController.plan">
 
         <auth-back-button label='AUTH.PLANS' route-destination="volumio.auth.plans"></auth-back-button>
 
@@ -27,57 +27,8 @@
           <span translate="AUTH.YOUR_NEW_PLAN"></span>:
         </h4>
 
-        <div class="panel panel-primary product">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              FREE</h3>
-          </div>
-          <div class="panel-body">
-            <div class="the-price">
-              <h1>
-                Free
-              </h1>
-            </div>
-            <table class="table">
-              <tr>
-                <td>
-                  1 Account
-                </td>
-              </tr>
-              <tr class="active">
-                <td>
-                  1 Project
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  100K API Access
-                </td>
-              </tr>
-              <tr class="active">
-                <td>
-                  100MB Storage
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Custom Cloud Services
-                </td>
-              </tr>
-              <tr class="active">
-                <td>
-                  Weekly Reports
-                </td>
-              </tr>
-            </table>
-          </div>
-          <div class="panel-footer" style="text-align: center;">
-            <button ng-click="authCancelSubscriptionController.downgradeToFree();" type="button" class="btn btn-labeled btn-default">
-              <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>
-              <span translate="AUTH.CANCEL_SUBSCRIPTION"></span>
-            </button>
-          </div>
-        </div>
+        <auth-plan-card product="authCancelSubscriptionController.product" cancellation="true" cancellation-callback="authCancelSubscriptionController.downgradeToFree()" ></auth-plan-card>
+        
       </div>
 
       <div id="" ng-if="!authCancelSubscriptionController.user" >
@@ -85,7 +36,7 @@
         <a ng-click="authCancelSubscriptionController.logIn()" class="btn btn-lg btn-success">Log In</a>
       </div>
 
-      <div id="" ng-if="!authCancelSubscriptionController.subscription" >
+      <div id="" ng-if="!authCancelSubscriptionController.plan" >
         <h4 translate="AUTH.NOT_SUBSCRIBED"></h4>
         <a ng-click="authCancelSubscriptionController.goToPlans()" class="btn btn-lg btn-success">Retry</a>
       </div>

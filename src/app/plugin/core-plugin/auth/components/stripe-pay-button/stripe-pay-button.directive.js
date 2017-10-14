@@ -112,6 +112,7 @@ class StripePayButtonController {
   }
 
   handlePayment() {
+    console.log("YES");
     this.handler.open(this.product);
   }
 

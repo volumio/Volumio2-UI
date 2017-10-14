@@ -130,6 +130,10 @@ class AuthEditProfileController {
       alert(error); //TODO
     });
   }
+  
+  logIn(){
+    this.$state.go('volumio.auth.login');
+  }
 
 }
 
