@@ -2,7 +2,7 @@
   <div class=" plans-table">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title" translate='AUTH.YOUR_CURRENT_PLAN'></h3>
+        <h3 class="panel-title" translate='AUTH.CURRENT_PLAN'></h3>
       </div>
       <div class="panel-body">
         <div class="the-price">
@@ -10,7 +10,7 @@
             {{authCurrentPlanCardController.user.plan || 'FREE'  | uppercase}}
           </h1>
           <small ng-if="authCurrentPlanCardController.user.expire_at">
-            <span translate="AUTH.EXPIRING"></span>: 
+            <span translate="AUTH.EXPIRING"></span>:
             {{authCurrentPlanCardController.user.expire_at}}
           </small>
         </div>

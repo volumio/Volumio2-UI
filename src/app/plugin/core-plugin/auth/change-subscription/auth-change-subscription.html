@@ -19,9 +19,9 @@
         <h3 translate="AUTH.UPDATE_SUBSCRIPTION_TITLE" style="margin-bottom: 16px;"></h3>
 
         <h4 style="margin-bottom: 16px;">
-          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>: {{authChangeSubscriptionController.getCurrentPlanName() | uppercase }}
+          <span translate="AUTH.CURRENT_PLAN"></span>: {{authChangeSubscriptionController.getCurrentPlanName() | uppercase }}
         </h4>
-        
+
         <h4>
           <span translate="AUTH.YOUR_NEW_PLAN"></span>:
         </h4>
@@ -31,7 +31,7 @@
 
       <div id="" ng-if="!authChangeSubscriptionController.user" >
         <h4 translate="AUTH.YOURE_NOT_LOGGED"></h4>
-        <a ng-click="authChangeSubscriptionController.logIn()" class="btn btn-lg btn-success" translate="AUTH.LOG_IN"></a>
+        <a ng-click="authChangeSubscriptionController.logIn()" class="btn btn-lg btn-success" translate="AUTH.LOGIN"></a>
       </div>
 
       <div id="" ng-if="!authChangeSubscriptionController.product" >

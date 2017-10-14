@@ -3,10 +3,9 @@
     <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
   </div>
   <div class="modal-body">
-    <p translate="AUTH.TERMS"></p> 
+    <div ng-include="'app/plugin/core-plugin/auth/templates/terms-and-conditions.html'"></div>
   </div>
   <div class="modal-footer">
-    <!-- <button class="btn btn-primary" ng-click="modal.ok()">Add</button> -->
     <button class="btn btn-warning" ng-click="modal.cancel()">
       {{'COMMON.CLOSE' | translate}}
     </button>
