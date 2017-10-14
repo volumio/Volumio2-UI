@@ -69,7 +69,7 @@ class WizardController {
               'label': this.wizardData.selectedI2s.name
             },
             'output_device': {
-              'value': 0,
+              'value': 1,
               'label': this.wizardData.selectedI2s.name
             }
           };
