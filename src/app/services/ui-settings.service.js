@@ -114,7 +114,7 @@ class UiSettingsService {
     this.socketService.on('pushWizard', (data) => {
       this.$log.debug('pushWizard', data);
       if (data.openWizard) {
-        //this.$state.go('volumio.wizard'); //TODO RESET THIS FILE
+        this.$state.go('volumio.wizard');
       }
     });
   }
