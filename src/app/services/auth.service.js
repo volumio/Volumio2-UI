@@ -1,5 +1,5 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService) {
+  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService) {
     'ngInject';
     this.rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -7,6 +7,7 @@ class AuthService {
     this.$state = $state;
     this.databaseService = databaseService;
     this.remoteStorageService = remoteStorageService;
+    this.stripeService = stripeService;
 
     this.mandatoryFields = [
       'username',
@@ -106,8 +107,8 @@ class AuthService {
   isUserVerified() {
     return this.angularFireService.isLoggedAndVerified();
   }
-  
-  resendEmailVerification(){
+
+  resendEmailVerification() {
     return this.angularFireService.sendEmailVerification();
   }
 
@@ -175,20 +176,33 @@ class AuthService {
   recoverPassword(email) {
     return this.angularFireService.recoverPassword(email);
   }
-  
-  changeAvatar(file,userId){
+
+  changeAvatar(file, userId) {
     var changing = this.$q.defer();
-    this.remoteStorageService.uploadFile(file,userId).then((url) => {
-      console.log("url");
-      console.log(url);
+    this.remoteStorageService.uploadFile(file, userId).then((url) => {
       const userAvatarPath = `/users/${userId}/photoUrl`;
-      this.databaseService.write(userAvatarPath,url).then(() => {
+      this.databaseService.write(userAvatarPath, url).then(() => {
         changing.resolve(url);
       });
     }).catch((error) => {
       changing.reject(error);
     });
     return changing.promise;
+  }
+
+  getAvatarUrl(userId) {
+    const path = 'userAvatars/' + userId;
+    return this.remoteStorageService.getDownloadUrl(path);
+  }
+
+  deleteUser() {
+    var deleting = this.$q.defer();
+    this.databaseService.deleteUser(user.uid).then(() => {
+      //TODO FINISH THIS
+    }).catch(error => {
+      deleting.reject(error);
+    });
+    return deleting.promise;
   }
 
 }

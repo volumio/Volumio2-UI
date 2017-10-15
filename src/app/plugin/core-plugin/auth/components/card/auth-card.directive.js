@@ -48,9 +48,6 @@ class AuthCardController {
 
   setUser(user) {
     this.user = user;
-    if (this.user) {
-      this.user.image = "http://www.giacomodeglinnocenti.it/me.jpg"; //TODO IMAGE 
-    }
   }
 
   //auth section

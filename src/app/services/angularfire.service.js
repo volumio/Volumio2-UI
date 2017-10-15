@@ -91,7 +91,7 @@ class AngularFireService {
       return gettingUser.promise;
     }
     this.getDbUserPromise(authUser.uid).then((dbUser) => {
-      if ((dbUser === undefined || dbUser === null) && (dbUser.$value === undefined || dbUser.$value === null)) { //if user'snt on db
+      if (dbUser === undefined || dbUser === null || dbUser.$value === undefined || dbUser.$value === null) { //if user'snt on db
         var userData = {};
         //email
         if (authUser.email !== undefined || authUser.email !== null) {
@@ -101,6 +101,8 @@ class AngularFireService {
         const providerDataProvider = authUser.providerData[0].providerId || '';
         if (this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider)) {
           //photo
+          console.log("userData.photoURL");
+          console.log(userData.photoURL);
           userData.photoURL = authUser.photoUrl || null;
           //name
           if (authUser.displayName) {
@@ -428,6 +430,8 @@ class AngularFireService {
       this.$timeout.cancel(timeouting);
     }
   }
+  
+  //utilities
 
   isProviderASocial(provider) {
     if (this.contains(provider, 'google') || this.contains(provider, 'facebook') || this.contains(provider, 'github')) {
@@ -445,7 +449,7 @@ class AngularFireService {
   }
 
   //FILE STORAGE
-  uploadFile(path,file) {
+  uploadFile(path, file) {
     var uploading = this.$q.defer();
     var storageRef = firebase.storage().ref(path);
     var storage = this.$firebaseStorage(storageRef);
@@ -463,6 +467,18 @@ class AngularFireService {
 //      uploading.reject(error);
 //    });
     return uploading.promise;
+  }
+
+  getDownloadUrl(path) {
+    var getting = this.$q.defer();
+    var storageRef = firebase.storage().ref(path);
+    var storage = this.$firebaseStorage(storageRef);
+    storage.$getDownloadURL().then((url) => {
+      getting.resolve(url);
+    }).catch(error => {
+      getting.reject(error);
+    });
+    return getting.promise;
   }
 
 }

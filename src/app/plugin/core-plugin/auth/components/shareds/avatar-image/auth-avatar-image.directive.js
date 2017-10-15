@@ -5,7 +5,7 @@ class AuthAvatarImageDirective {
       restrict: 'E',
       templateUrl: 'app/plugin/core-plugin/auth/components/shareds/avatar-image/auth-avatar-image.html',
       controller: AuthAvatarImage,
-      controllerAs: 'authAvatarImage'
+      controllerAs: 'authAvatarImageController'
     };
     return directive;
   }
@@ -19,6 +19,8 @@ class AuthAvatarImage {
     this.authService = authService;
 
     this.user = null;
+    
+    this.imageUrl = '';
 
     this.authInit();
   }
@@ -27,7 +29,7 @@ class AuthAvatarImage {
     this.authService.getUserPromise(false).then((user) => {
       console.log("user");
       console.log(user);
-      this.init(user);
+      this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher(), false);
     }).catch((error) => {
       console.log(error);
@@ -38,19 +40,29 @@ class AuthAvatarImage {
     return (user) => {
       console.log("authWatcher");
       console.log(user);
-      this.init(user);
+      this.postAuthInit(user);
     };
   }
 
-  init(user) {
+  postAuthInit(user) {
     this.setUser(user);
+    this.loadImage();
   }
 
   setUser(user) {
     this.user = user;
-    if (this.user) {
-      this.user.image = "http://www.giacomodeglinnocenti.it/me.jpg"; //TODO IMAGE 
+  }
+
+  loadImage(){
+    if(!this.user || this.user.photoUrl === null || this.user.photoUrl === undefined){
+      return;
     }
+    this.imageUrl = this.user.photoUrl;
+//    this.authService().getAvatarUrl(this.user.uid).then(url => {
+//      this.imageUrl = url;
+//    }).catch(error => {
+//      alert(error);//TODO error in modal
+//    });
   }
 
 }

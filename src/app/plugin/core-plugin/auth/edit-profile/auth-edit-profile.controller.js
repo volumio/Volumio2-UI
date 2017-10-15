@@ -10,6 +10,7 @@ class AuthEditProfileController {
     
     this.avatarFile = {};
     this.isAvatarChanged = false;
+    this.uploadingAvatar = false;
 
     this.init();
   }
@@ -124,7 +125,10 @@ class AuthEditProfileController {
   }
   
   saveAvatar(){
+    this.uploadingAvatar = true;
     this.authService.changeAvatar(this.avatarFile,this.user.uid).then((url) => {
+      this.uploadingAvatar = false;
+      this.isAvatarChanged = false;
       this.user.photoUrl = url;
     }).catch((error) => {
       alert(error); //TODO

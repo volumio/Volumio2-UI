@@ -63,6 +63,11 @@ class DatabaseService {
     });
     return waitingForValue.promise;
   }
+  
+  deleteUser(userId){
+    const userPath = `users/${userId}`;
+    return this.angularFireService.deleteFromDb(userPath);
+  }
 
 }
 

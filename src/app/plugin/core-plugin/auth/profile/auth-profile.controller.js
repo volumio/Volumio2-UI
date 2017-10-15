@@ -3,7 +3,7 @@ class AuthProfileController {
     this.$state = $state;
     this.authService = authService;
     this.user = null;
-    
+
     this.isUserVerified = true;
 
     this.init();
@@ -35,12 +35,9 @@ class AuthProfileController {
 
   setUser(user) {
     this.user = user;
-    if (this.user) {
-      this.user.image = "http://www.giacomodeglinnocenti.it/me.jpg"; //TODO IMAGE 
-    }
   }
-  
-  checkUserVerified(){
+
+  checkUserVerified() {
     this.authService.isUserVerified().then(() => {
       console.log("VERIFIED");
       this.isUserVerified = true;
@@ -50,9 +47,9 @@ class AuthProfileController {
       this.isUserVerified = false;
     });
   }
-  
-  resendEmailVerification(){
-     this.authService.resendEmailVerification();
+
+  resendEmailVerification() {
+    this.authService.resendEmailVerification();
   }
 
   goToPlans() {
@@ -66,12 +63,39 @@ class AuthProfileController {
   goToEdit() {
     this.$state.go('volumio.auth.edit-profile');
   }
-  
-  reAuth(){
+
+  reAuth() {
     this.authService.logOut().then(() => {
       this.$state.go('volumio.auth.login');
     }).catch((error) => {
       alert(error);
+    });
+  }
+
+  deleteUser() {
+    if (!confirm('Are you sure to delete the user and remove all subscriptions?')) { //TODO Modal lang confirm
+      return;
+    }
+    if (this.isSubscribedToPlan()) { 
+      this.stripeService.cancelSubscription(this.user.subscriptionId, this.user.uid).then(() => {
+        this.deleteUserFromFirebase();
+      }).catch(error => {
+        alert(error); //todo error in modal
+      });
+      return;
+    }
+    this.deleteUserFromFirebase();
+  }
+  
+  isSubscribedToPlan(){
+    return (this.user.plan && (this.user.plan === 'virtuoso' || this.user.plan === 'superstar')); // TODO move logic in product service
+  }
+
+  deleteUserFromFirebase() {
+    this.authService.deleteUser(this.user.uid).then(() => {
+      this.$state.go('volumio.auth.login');
+    }).catch(error => {
+      alert(error); //todo error in modal
     });
   }
 

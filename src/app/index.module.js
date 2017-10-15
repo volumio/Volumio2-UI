@@ -159,6 +159,9 @@ angular.module('volumio', [
   // 'ngCookies',
   'ngTouch',
   'ngSanitize',
+  'ngLetterAvatar',
+  'angular-country-select',
+  '720kb.datepicker',
   
   //firebase module
   'firebase',

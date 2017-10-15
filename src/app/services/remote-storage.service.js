@@ -9,8 +9,8 @@ class RemoteStorageService {
     return this.angularFireService.uploadFile(path,file);
   }
   
-  downloadAvatar(){
-    return this.angularFireService.downloadImage(path);
+  getDownloadUrl(path){
+    return this.angularFireService.getDownloadUrl(path);
   }
 
 }
