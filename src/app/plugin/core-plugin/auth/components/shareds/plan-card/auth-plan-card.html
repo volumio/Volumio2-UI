@@ -31,7 +31,7 @@
       <div ng-if="authPlanCardController.product.plan === 'free' && authPlanCardController.isDefaultBehaviour === true">
         <button type="button" class="btn btn-labeled btn-success" ng-if="!authPlanCardController.user.plan || !authPlanCardController.user.plan === 'free'">
           <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
-          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>
+          <span translate="AUTH.CURRENT_PLAN"></span>
         </button>
         <button ng-click="authPlanCardController.downgradeToFree();" type="button" class="btn btn-labeled btn-default" ng-if="authPlanCardController.user.plan !== authPlanCardController.product.plan && authPlanCardController.user.plan !== undefined">
           <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
@@ -43,14 +43,14 @@
         <div ng-if="authPlanCardController.user.plan !== 'virtuoso' && authPlanCardController.user.plan !== 'superstar'"> <!-- TODO move hardcode in product service -->
           <button ng-click="authPlanCardController.subscribe(authPlanCardController.product.plan)" class="btn btn-success btn-labeled">
             <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
-            <span translate="AUTH.UPGRADE"></span>
+            <span translate="AUTH.UPGRADE_PLAN"></span>
           </button>
           <br />
           <span ng-if="authPlanCardController.product.trialDays">{{authPlanCardController.product.trialDays}} {{'AUTH.FREE_DAYS_TRIAL' | translate}}</span>
         </div>
         <button type="button" class="btn btn-labeled btn-success" ng-if="authPlanCardController.user.plan === authPlanCardController.product.plan">
           <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
-          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>
+          <span translate="AUTH.CURRENT_PLAN"></span>
         </button>
         <button ng-click="authPlanCardController.goToChangePlan(authPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="authPlanCardController.user.plan === 'superstar'">
           <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
@@ -62,18 +62,18 @@
         <div ng-if="authPlanCardController.user.plan === undefined || authPlanCardController.user.plan === 'free'">
           <button ng-click="authPlanCardController.subscribe(authPlanCardController.product.plan)" class="btn btn-success btn-labeled">
             <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
-            <span translate="AUTH.UPGRADE"></span>
+            <span translate="AUTH.UPGRADE_PLAN"></span>
           </button>
           <br />
           <span ng-if="authPlanCardController.product.trialDays">{{authPlanCardController.product.trialDays}} {{'AUTH.FREE_DAYS_TRIAL' | translate}}</span>
         </div>
         <button type="button" class="btn btn-labeled btn-success" ng-if="authPlanCardController.user.plan && authPlanCardController.user.plan === authPlanCardController.product.planCode">
           <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
-          <span translate="AUTH.YOUR_CURRENT_PLAN"></span>
+          <span translate="AUTH.CURRENT_PLAN"></span>
         </button>
         <button ng-click="authPlanCardController.goToChangePlan(authPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="authPlanCardController.user.plan === 'virtuoso'">
           <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
-          <span translate="AUTH.UPGRADE"></span>
+          <span translate="AUTH.UPGRADE_PLAN"></span>
         </button>
       </div>
     </div>

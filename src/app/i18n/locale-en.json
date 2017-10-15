@@ -260,6 +260,7 @@
     "UPGRADE_PLAN":"Upgrade plan",
     "SAVE_AVATAR":"Save profile picture",
     "NOT_LOGGED_IN":"You're not logged in. Please login to continue",
-    "MOST_POPULAR":"Most popular"
+    "MOST_POPULAR":"Most popular",
+    "FREE_DAYS_TRIAL":"Free days trial"
   }
 }
