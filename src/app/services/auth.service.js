@@ -68,16 +68,15 @@ class AuthService {
       return;
     }
     if (!this.isUserFilledWithMandatory(user)) {
-      this.redirectToEditProfile();
       promise.reject(this.filteredTranslate('AUTH.USER_MISSING_MANDATORY_FIELDS'));
+      this.redirectToEditProfile();
+      return;
     }
-    //promise.resolve(user);
-    //return;
     this.isUserVerified().then(() => {
       promise.resolve(user);
     }).catch(() => {
-      this.redirectToVerifyUser();
       promise.reject(this.filteredTranslate('AUTH.USER_NOT_VERIFIED')); 
+      this.redirectToVerifyUser();
     });
   }
 

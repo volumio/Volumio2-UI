@@ -10,10 +10,12 @@ class AuthEditProfileController {
     this.user = null;
     this.emailChanged = false;
 
+    this.form = {};
+
     this.avatarFile = {};
     this.isAvatarChanged = false;
     this.uploadingAvatar = false;
-    
+
     this.deletingUser = false;
 
     this.init();
@@ -44,6 +46,25 @@ class AuthEditProfileController {
 
   setUser(user) {
     this.user = user;
+    this.copyValuesToForm();
+  }
+
+  copyValuesToForm() {
+    for (var key in this.user) {
+      if(key.startsWith("$") || key === 'forEach'){
+        continue;
+      }
+      this.form[key] = this.user[key];
+    }
+  }
+  
+  copyValuesToUser() {
+    for (var key in this.form) {
+      if(key.startsWith("$") || key === 'forEach'){
+        continue;
+      }
+      this.user[key] = this.form[key];
+    }
   }
 
   goToProfile() {
@@ -56,7 +77,7 @@ class AuthEditProfileController {
 
   doEdit() {
     var promises = [];
-    if (this.user.password) {
+    if (this.form.password) {
       if (!this.validatePasswordMatch()) {
         return;
       }
@@ -75,6 +96,7 @@ class AuthEditProfileController {
   }
 
   updateUserData() {
+    this.copyValuesToUser();
     this.authService.saveUserData(this.user).then(() => {
       this.goToProfile();
     }).catch((error) => {
@@ -84,7 +106,7 @@ class AuthEditProfileController {
 
   updatePassword() {
     var updating = this.$q.defer();
-    this.authService.updatePassword(this.user.password).then(() => {
+    this.authService.updatePassword(this.form.password).then(() => {
       updating.resolve();
     }).catch((error) => {
       updating.reject(error);
@@ -94,7 +116,7 @@ class AuthEditProfileController {
 
   updateEmail() {
     var updating = this.$q.defer();
-    this.authService.updateEmail(this.user.email).then(() => {
+    this.authService.updateEmail(this.form.email).then(() => {
       updating.resolve();
     }).catch((error) => {
       updating.reject(error);
@@ -103,7 +125,7 @@ class AuthEditProfileController {
   }
 
   validatePasswordMatch() {
-    if (this.password === this.passwordConfirm) {
+    if (this.form.password === this.passwordConfirm) {
       return true;
     }
 

@@ -92,7 +92,7 @@ class AngularFireService {
       return gettingUser.promise;
     }
     this.getDbUserPromise(authUser.uid).then((dbUser) => {
-      if (dbUser === undefined || dbUser === null || dbUser.$value === undefined || dbUser.$value === null) { //if user'snt on db
+      if ( (dbUser.uid === undefined || dbUser.uid === null) && dbUser.$value === null ) { //if user'snt on db
         var userData = {};
         //email
         if (authUser.email !== undefined || authUser.email !== null) {
@@ -349,7 +349,7 @@ class AngularFireService {
     return writing.promise;
   }
 
-  updateObject(firebaseObject) {
+  saveObject(firebaseObject) {
     var updating = this.$q.defer();
     firebaseObject.$save().then((ref) => {
       updating.resolve();

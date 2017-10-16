@@ -31,7 +31,7 @@ class DatabaseService {
   
   updateFirebaseObject(object) {
     var updating = this.$q.defer();
-    this.angularFireService.updateObject(object).then(() => {
+    this.angularFireService.saveObject(object).then(() => {
       updating.resolve();
     }, (error) => {
       updating.reject(error);
