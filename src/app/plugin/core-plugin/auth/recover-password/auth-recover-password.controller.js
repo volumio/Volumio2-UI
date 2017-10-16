@@ -1,10 +1,10 @@
 class AuthRecoverPasswordController{
-  constructor($state,authService){
+  constructor($state,authService, modalService){
     this.authService = authService;
     this.$state = $state;
+    this.modalService = modalService;
     
     this.email = "";
-    
     this.sent = false;
     
   }
@@ -14,7 +14,7 @@ class AuthRecoverPasswordController{
       this.authService.recoverPassword(this.email).then(() => {
         this.sent = true;
       }).catch((error) => {
-        alert(error); //TODO error in modal
+        this.modalService.openDefaultErrorModal(error);
       });
     }
   }

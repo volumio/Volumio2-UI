@@ -37,22 +37,9 @@
                 </p>
 
                 <div ng-if="!authProfileController.isUserVerified">
-                  <div class="panel panel-default">
-                    <div class="panel-body">
-                      <h4>
-                        <span class="glyphicon glyphicon-warning-sign"></span>
-                        <span translate="AUTH.PLEASE_VERIFY_TITLE"></span>
-                      </h4>
-                      <p translate="AUTH.PLEASE_VERIFY_DESC"></p>
-                      <p><a ng-click="authProfileController.resendEmailVerification()" translate="AUTH.RESEND_VERIFICATION_EMAIL" ></a></p>
-                      <p><a ng-click="authProfileController.reAuth()" translate="AUTH.VERIFICATION_DONE_NOW_REAUTH" ></a></p>
-                    </div>
-                  </div>
+                  <auth-verification-card></auth-verification-card>
                 </div>
-                
-                <p>
-                  <a ng-click='authProfileController.deleteUser()' translate="AUTH.DELETE_USER"></a>
-                </p>
+               
               </div>
 
               <div class="col-sm-24 col-md-12 plans-table">

@@ -1,11 +1,12 @@
 class AuthPlansController {
-  constructor(paymentsService, $state, $q, authService,productsService) {
+  constructor(paymentsService, $state, $q, authService,productsService,modalService) {
     this.paymentsService = paymentsService;
     this.authService = authService;
     this.productService = productsService;
     this.$state = $state;
     this.$q = $q;
     this.paymentsService = paymentsService;
+    this.modalService = modalService;
 
     this.user = null;
     this.products = {};
@@ -26,7 +27,7 @@ class AuthPlansController {
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher());
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 

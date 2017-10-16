@@ -1,6 +1,6 @@
 class AngularFireService {
 
-  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q) {
+  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, modalService) {
     'ngInject';
     //consts
     this.USERS_REF = "users";
@@ -17,6 +17,7 @@ class AngularFireService {
     this.$q = $q;
     this.authService;
     this.database;
+    this.modalService = modalService;
 
     this.authListeners = [];
 
@@ -101,8 +102,6 @@ class AngularFireService {
         const providerDataProvider = authUser.providerData[0].providerId || '';
         if (this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider)) {
           //photo
-          console.log("userData.photoURL");
-          console.log(userData.photoURL);
           userData.photoURL = authUser.photoUrl || null;
           //name
           if (authUser.displayName) {
@@ -215,7 +214,7 @@ class AngularFireService {
 
       });
     }).catch((error) => {
-      console.log(error); // TODO error handling
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
@@ -225,12 +224,14 @@ class AngularFireService {
 
   signup(user) {
     var userCreationing = this.$q.defer();
-    this.createAuthUser(user).then((uid) => {
-      this.createDbUser(uid, user).then((newUser) => {
+    this.createAuthUser(user).then((authUser) => {
+      this.createDbUser(authUser.uid, user).then((newUser) => {
+        this.authUser = authUser;
+        this.dbUser = newUser;
         this.sendEmailVerification();
         userCreationing.resolve(newUser);
       }, (error) => {
-        //TODO DELETE AUTH USER
+        authUser.delete();
         userCreationing.reject(error);
       });
     }, (error) => {
@@ -241,8 +242,8 @@ class AngularFireService {
 
   createAuthUser(user) {
     var authUserCreationing = this.$q.defer();
-    this.authService.$createUserWithEmailAndPassword(user.email, user.password).then(function (userData) {
-      authUserCreationing.resolve(userData.uid);
+    this.authService.$createUserWithEmailAndPassword(user.email, user.password).then(function (authUser) {
+      authUserCreationing.resolve(authUser);
     }).catch(function (error) {
       authUserCreationing.reject(error);
     });
@@ -281,21 +282,16 @@ class AngularFireService {
     var actionCodeSettings = {
       url: callbackUrl
     };
-    console.log(this.authUser);
     this.authUser.sendEmailVerification(/*actionCodeSettings*/)
-            .then(function () {
-              // Verification email sent.
-              console.log("Email verification sent");
+            .then(() => {
+              this.modalService.openDefaultModal('AUTH.USER_VERIFICATION_EMAIL_SENT_TITLE', 'AUTH.USER_VERIFICATION_EMAIL_SENT_DESC');
             })
-            .catch(function (error) {
-              // Error occurred. Inspect error.code.
-              console.log(error);
+            .catch((error) => {
+              this.modalService.openDefaultErrorModal(error);
             });
   }
 
   isLoggedAndVerified() {
-    console.log("authUser");
-    console.log(this.authUser.emailVerified);
     return this.authService.$requireSignIn(true);
   }
 
@@ -321,6 +317,10 @@ class AngularFireService {
 
   recoverPassword(email) {
     return this.authService.$sendPasswordResetEmail(email);
+  }
+
+  deleteAuthUser() {
+    return this.authUser.delete();
   }
 
   /* ------------ DATABASE ------------- */
@@ -350,12 +350,8 @@ class AngularFireService {
   }
 
   updateObject(firebaseObject) {
-    console.log("firebaseObject");
-    console.log(firebaseObject);
     var updating = this.$q.defer();
     firebaseObject.$save().then((ref) => {
-      console.log(ref);
-      console.log("FIREBASE SAID OK");
       updating.resolve();
     }, (error) => {
       updating.reject(error);
@@ -391,28 +387,16 @@ class AngularFireService {
 
   waitForValue(refPath, timeout = 30) {
     var waitingFor = this.$q.defer();
-
     var ref = this.database.ref(refPath);
-    //var obj = this.$firebaseObject(ref);
-
     ref.on("value", (snapshot) => {
       if (!snapshot || snapshot.val() === undefined || snapshot.val() === null) {
         return;
       }
-
       var value = snapshot.val();
-
-      console.log(value);
       waitingFor.resolve(value);
       ref.off();
       this.clearWaitForValueTimeout(timeouting);
-
     });
-
-//    console.log(error);
-//    waitingFor.reject(error);
-//    this.clearWaitForValueTimeout(timeouting);
-
     var timeouting = this.setWaitForValueTimeout(ref, waitingFor, timeout);
 
     return waitingFor.promise;
@@ -421,7 +405,7 @@ class AngularFireService {
   setWaitForValueTimeout(ref, waitingFor, timeout) {
     return this.$timeout(() => {
       ref.off();
-      waitingFor.reject('timeout'); //TODO ERROR 
+      waitingFor.reject(this.filteredTranslate('AUTH.ERROR_SERVER_TIMEOUT'));
     }, timeout * 1000);
   }
 
@@ -430,15 +414,20 @@ class AngularFireService {
       this.$timeout.cancel(timeouting);
     }
   }
-  
-  //utilities
+
+  deleteFromDb(path) {
+    var ref = this.database.ref(path);
+    var obj = this.$firebaseObject(ref);
+    return obj.$remove();
+  }
+
+  /* ------ UTILITIES ------- */
 
   isProviderASocial(provider) {
     if (this.contains(provider, 'google') || this.contains(provider, 'facebook') || this.contains(provider, 'github')) {
       return true;
     }
     return false;
-    ''
   }
 
   contains(searchIn, searchFor) {
@@ -448,19 +437,20 @@ class AngularFireService {
     return searchIn.indexOf(searchFor) !== -1;
   }
 
-  //FILE STORAGE
+  /* ------ STORAGE ------- */
+
   uploadFile(path, file) {
     var uploading = this.$q.defer();
-    var storageRef = firebase.storage().ref(path);
+    var storageRef = this.firebase.storage().ref(path);
     var storage = this.$firebaseStorage(storageRef);
     var uploadTask = storage.$put(file);
-    console.log(uploadTask);
     uploadTask.$complete((snapshot) => {
       uploading.resolve(snapshot.downloadURL);
     });
     uploadTask.$error((error) => {
       uploading.reject(error);
     });
+//oh really angularfire doc?
 //    uploadTask.then((snapshot) => {
 //      uploading.resolve(snapshot.downloadURL);
 //    }).catch((error) => {
@@ -471,7 +461,7 @@ class AngularFireService {
 
   getDownloadUrl(path) {
     var getting = this.$q.defer();
-    var storageRef = firebase.storage().ref(path);
+    var storageRef = this.firebase.storage().ref(path);
     var storage = this.$firebaseStorage(storageRef);
     storage.$getDownloadURL().then((url) => {
       getting.resolve(url);

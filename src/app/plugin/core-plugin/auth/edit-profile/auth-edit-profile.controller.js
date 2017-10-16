@@ -1,16 +1,20 @@
 class AuthEditProfileController {
-  constructor($scope, $state, authService, $q) {
+  constructor($scope, $state, authService, $q, $filter, modalService) {
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
     this.$q = $q;
+    this.filteredTranslate = $filter('translate');
+    this.modalService = modalService;
 
     this.user = null;
     this.emailChanged = false;
-    
+
     this.avatarFile = {};
     this.isAvatarChanged = false;
     this.uploadingAvatar = false;
+    
+    this.deletingUser = false;
 
     this.init();
   }
@@ -24,7 +28,7 @@ class AuthEditProfileController {
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher(), false);
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
@@ -53,8 +57,7 @@ class AuthEditProfileController {
   doEdit() {
     var promises = [];
     if (this.user.password) {
-      if (!this.checkPasswordMatch()) {
-        this.showPasswordNotMatchError();
+      if (!this.validatePasswordMatch()) {
         return;
       }
       var updatingPassword = this.updatePassword();
@@ -64,29 +67,24 @@ class AuthEditProfileController {
       var updatingEmail = this.updateEmail();
       promises.push(updatingEmail);
     }
-    console.log(this.user);
-    console.log(this.user.lastName);
     this.$q.all(promises).then(() => {
-      console.log("resolved");
       this.updateUserData();
     }).catch(error => {
-      alert(error); //TODO error
+      this.modalService.openDefaultErrorModal(error);
     });
   }
-  
-  updateUserData(){
-    console.log(this.user);
+
+  updateUserData() {
     this.authService.saveUserData(this.user).then(() => {
       this.goToProfile();
     }).catch((error) => {
-      alert(error); //TODO error in modoal
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
   updatePassword() {
     var updating = this.$q.defer();
     this.authService.updatePassword(this.user.password).then(() => {
-      console.log("update pass");
       updating.resolve();
     }).catch((error) => {
       updating.reject(error);
@@ -97,7 +95,6 @@ class AuthEditProfileController {
   updateEmail() {
     var updating = this.$q.defer();
     this.authService.updateEmail(this.user.email).then(() => {
-      console.log("update email");
       updating.resolve();
     }).catch((error) => {
       updating.reject(error);
@@ -105,38 +102,52 @@ class AuthEditProfileController {
     return updating.promise;
   }
 
-  checkPasswordMatch() { //TODO
-    return true;
+  validatePasswordMatch() {
+    if (this.password === this.passwordConfirm) {
+      return true;
+    }
+
+    this.modalService.openDefaultErrorModal("AUTH.ERROR_VALIDATION_PASSWORD_MATCH");
+    return false;
   }
 
-  showPasswordNotMatchError() {
-    //TODO
-    alert('Pass not match');
-  }
-  
-  notifyEmailChanged(){
+  notifyEmailChanged() {
     this.emailChanged = true;
   }
-  
-  avatarChange(file){
+
+  avatarChange(file) {
     this.isAvatarChanged = true;
     this.$scope.$apply();
     this.avatarFile = file;
   }
-  
-  saveAvatar(){
+
+  saveAvatar() {
     this.uploadingAvatar = true;
-    this.authService.changeAvatar(this.avatarFile,this.user.uid).then((url) => {
+    this.authService.changeAvatar(this.avatarFile, this.user.uid).then((url) => {
       this.uploadingAvatar = false;
       this.isAvatarChanged = false;
       this.user.photoUrl = url;
     }).catch((error) => {
-      alert(error); //TODO
+      this.modalService.openDefaultErrorModal(error);
     });
   }
-  
-  logIn(){
+
+  logIn() {
     this.$state.go('volumio.auth.login');
+  }
+
+  deleteUser() {
+    if (!confirm(this.filteredTranslate('AUTH.CONFIRM_DELETE_USER_AND_PASSWORD'))) { //TODO Y/N MODAL
+      return;
+    }
+    this.deletingUser = true;
+    this.authService.deleteUser(this.user).then(() => {
+      this.deletingUser = false;
+      this.$state.go('volumio.auth.login');
+    }).catch(error => {
+      this.deletingUser = false;
+      this.modalService.openDefaultErrorModal(error);
+    });
   }
 
 }

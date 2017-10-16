@@ -1,5 +1,5 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService) {
+  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter) {
     'ngInject';
     this.rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -7,6 +7,8 @@ class AuthService {
     this.$state = $state;
     this.databaseService = databaseService;
     this.remoteStorageService = remoteStorageService;
+    this.stripeService = stripeService;
+    this.filteredTranslate = $filter('translate');
 
     this.mandatoryFields = [
       'username',
@@ -62,21 +64,21 @@ class AuthService {
 
   filterAccessPromise(user, promise) {
     if (user === null) {
-      console.log("user is null");
       promise.resolve(user);
       return;
     }
     if (!this.isUserFilledWithMandatory(user)) {
       this.redirectToEditProfile();
-      promise.reject('Missing mandatory user fields'); //TODO error
+      promise.reject(this.filteredTranslate('AUTH.USER_MISSING_MANDATORY_FIELDS'));
     }
-    promise.resolve(user);
-//    this.isUserVerified().then(() => {
-//      promise.resolve(user);
-//    }).catch(() => {
-//      this.redirectToVerifyUser();
-//      promise.reject('User is not verified'); //TODO error
-//    });
+    //promise.resolve(user);
+    //return;
+    this.isUserVerified().then(() => {
+      promise.resolve(user);
+    }).catch(() => {
+      this.redirectToVerifyUser();
+      promise.reject(this.filteredTranslate('AUTH.USER_NOT_VERIFIED')); 
+    });
   }
 
   getFilterAccessMethod(watcher) {
@@ -94,7 +96,7 @@ class AuthService {
       if (user &&
               (!user.hasOwnProperty(this.mandatoryFields[i]) ||
                       user[this.mandatoryFields[i]] === undefined ||
-                      user[this.mandatoryFields[i]].length == 0
+                      user[this.mandatoryFields[i]].length === 0
                       )
               ) {
         return false;
@@ -139,10 +141,8 @@ class AuthService {
       delete user.password;
     }
     this.databaseService.updateFirebaseObject(user).then(() => {
-      console.log("saved");
       saving.resolve();
     }).catch((error) => {
-      console.log("error");
       saving.reject(error);
     });
     return saving.promise;
@@ -194,10 +194,32 @@ class AuthService {
     return this.remoteStorageService.getDownloadUrl(path);
   }
 
-  deleteUser() {
+  deleteUser(user) {
+    if (this.isSubscribedToPlan(user)) {
+      var deleting = this.$q.defer();
+      this.stripeService.cancelSubscription(user.subscriptionId, user.uid).then(() => {
+        this.deleteUserFromFirebase(user).then(() => {
+          deleting.resolve();
+        });
+      }).catch(error => {
+        deleting.reject(error);
+      });
+      return deleting.promise;
+    }
+    return this.deleteUserFromFirebase(user);
+  }
+
+  isSubscribedToPlan(user) {
+    return (user.plan && (user.plan === 'virtuoso' || user.plan === 'superstar')); // TODO move logic in product service
+  }
+
+  deleteUserFromFirebase(user) {
     var deleting = this.$q.defer();
-    this.databaseService.deleteUser(user.uid).then(() => {
-      //TODO FINISH THIS
+    const userPath = `users/${user.uid}`;
+    this.databaseService.delete(userPath).then(() => {
+      this.angularFireService.deleteAuthUser().then(() => {
+        deleting.resolve();
+      });
     }).catch(error => {
       deleting.reject(error);
     });

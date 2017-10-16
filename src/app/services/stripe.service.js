@@ -1,19 +1,8 @@
 class StripeService {
-  constructor(databaseService, authService, $q) {
+  constructor(databaseService, $q, firebase) {
     this.databaseService = databaseService;
-    this.authService = authService;
     this.$q = $q;
-
-    this.user = {};
-
-    this.init();
-  }
-
-  init() {
-    this.authService.getUserPromise();
-  }
-
-  processPayment() {
+    this.firebase = firebase;
 
   }
 
@@ -23,7 +12,6 @@ class StripeService {
 
     this.databaseService.push(ref, subscription).then((subscriptionId) => {
       this.getSubscriptionResponse(subscriptionId, userId).then((status) => {
-        console.log(status);
         if (status === true) {
           subscribing.resolve(status);
           return;
@@ -33,7 +21,6 @@ class StripeService {
         });
       });
     }).catch((error) => {
-      console.log(error);
       subscribing.reject(error);
     });
     return subscribing.promise;
@@ -43,10 +30,8 @@ class StripeService {
     var getting = this.$q.defer();
     var ref = `/payments/subscriptions/${userId}/${subscriptionId}/status`;
     this.databaseService.waitForValue(ref).then((status) => {
-      console.log(status);
       getting.resolve(status);
     }, (error) => {
-      console.log(error);
       getting.reject(error);
     });
     return getting.promise;
@@ -84,12 +69,11 @@ class StripeService {
 
     const cancellation = {
       subscriptionId: subscriptionId,
-      created_at: firebase.database.ServerValue.TIMESTAMP
+      created_at: this.firebase.database.ServerValue.TIMESTAMP
     };
 
     this.databaseService.push(ref, cancellation).then((cancellationId) => {
       this.getCancellationResponse(cancellationId, userId).then((status) => {
-        console.log(status);
         if (status === true) {
           cancellating.resolve(status);
           return;
@@ -99,7 +83,6 @@ class StripeService {
         });
       });
     }).catch((error) => {
-      console.log(error);
       cancellating.reject(error);
     });
     return cancellating.promise;
@@ -109,10 +92,8 @@ class StripeService {
     var getting = this.$q.defer();
     var ref = `/payments/cancellations/${userId}/${cancellationId}/status`;
     this.databaseService.waitForValue(ref).then((status) => {
-      console.log(status);
       getting.resolve(status);
     }, (error) => {
-      console.log(error);
       getting.reject(error);
     });
     return getting.promise;
@@ -139,12 +120,11 @@ class StripeService {
 
     const update = {
       planCode: planCode,
-      created_at: firebase.database.ServerValue.TIMESTAMP
+      created_at: this.firebase.database.ServerValue.TIMESTAMP
     };
 
     this.databaseService.push(ref, update).then((updateId) => {
       this.getUpdateResponse(updateId, userId).then((status) => {
-        console.log(status);
         if (status === true) {
           updating.resolve(status);
           return;
@@ -154,7 +134,6 @@ class StripeService {
         });
       });
     }).catch((error) => {
-      console.log(error);
       updating.reject(error);
     });
     return updating.promise;
@@ -164,10 +143,8 @@ class StripeService {
     var getting = this.$q.defer();
     var ref = `/payments/updates/${userId}/${updateId}/status`;
     this.databaseService.waitForValue(ref).then((status) => {
-      console.log(status);
       getting.resolve(status);
     }, (error) => {
-      console.log(error);
       getting.reject(error);
     });
     return getting.promise;

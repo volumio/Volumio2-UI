@@ -1,5 +1,5 @@
 class AuthChangeSubscriptionController {
-  constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService) {
+  constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService,$filter) {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -9,6 +9,7 @@ class AuthChangeSubscriptionController {
     this.authService = authService;
     this.stripeCheckout = StripeCheckout;
     this.productsService = productsService;
+    this.filteredTranslate = $filter('translate');
 
     this.openedModal = {};
 
@@ -28,17 +29,12 @@ class AuthChangeSubscriptionController {
     this.product = this.productsService.getProductByCode(plan);
   }
 
-  loadProduct() {
-    var code = this.$stateParams['plan'];
-    this.product = this.productsService.getProductByCode(code);
-  }
-
   authInit() {
     this.authService.getUserPromise().then((user) => {
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher());
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
@@ -58,11 +54,11 @@ class AuthChangeSubscriptionController {
 
   changePlan() {
     if (this.user.subscriptionId === undefined || this.user.subscriptionId === null) {
-      alert("Error, no subscription id."); //TODO
+      this.modalService.openDefaultErrorModal("AUTH.ERROR_CHANGE_PLAN_NO_PREVIOUS_PLAN_FOUND");
       return;
     }
     if (this.product === undefined || this.product === null || this.product.planCode === undefined) {
-      alert("Error, no plan to change to."); //TODO
+      this.modalService.openDefaultErrorModal("AUTH.ERROR_CHANGE_PLAN_NO_PLAN_SELECTED");
       return;
     }
     this.updateCallback(this.paymentsService.updateSubscription(this.product.planCode, this.user.uid));
@@ -71,7 +67,6 @@ class AuthChangeSubscriptionController {
   updateCallback(cancelling) {
     this.openUpdatingModal();
     cancelling.then((status) => {
-      console.log(status);
       this.closeUpdatingModal();
       if (status === true) {
         this.goToUpdatingSuccess();
@@ -79,10 +74,10 @@ class AuthChangeSubscriptionController {
       }
       this.goToUpdatingFail();
     }).catch((error) => {
-      console.log("error");
-      console.log(error); //TODO Modal Error and THEN redirect
-      this.closeUpdatingModal();
-      this.goToUpdatingFail();
+      this.modalService.openDefaultErrorModal(error,()=>{
+        this.closeUpdatingModal();
+        this.goToUpdatingFail();
+      });
     });
   }
 
@@ -91,7 +86,7 @@ class AuthChangeSubscriptionController {
             templateUrl = 'app/plugin/core-plugin/auth/modals/auth-paying-modal/auth-paying-modal.html',
             controller = 'AuthPayingModalController',
             params = {
-              title: 'Paying...' //TODO
+              title: this.filteredTranslate('AUTH.PAYING')
             };
     this.openedModal = this.modalService.openModal(
             controller,
@@ -105,11 +100,11 @@ class AuthChangeSubscriptionController {
   }
 
   goToUpdatingSuccess() {
-    this.$state.go('volumio.auth.payment-success'); //TODO
+    this.$state.go('volumio.auth.payment-success');
   }
 
   goToUpdatingFail() {
-    this.$state.go('volumio.auth.payment-fail'); //TODO
+    this.$state.go('volumio.auth.payment-fail');
   }
 
   logIn() {

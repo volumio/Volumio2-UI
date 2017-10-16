@@ -12,11 +12,12 @@ class AuthCardDirective {
 }
 
 class AuthCardController {
-  constructor($rootScope, $scope, $state, authService) {
+  constructor($rootScope, $scope, $state, authService, modalService) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
+    this.modalService = modalService;
 
     this.user = null;
 
@@ -25,19 +26,15 @@ class AuthCardController {
 
   authInit() {
     this.authService.getUserPromise(false).then((user) => {
-      console.log("user");
-      console.log(user);
       this.init(user);
       this.authService.bindWatcher(this.getAuthWatcher(), false);
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
   getAuthWatcher() {
     return (user) => {
-      console.log("authWatcher");
-      console.log(user);
       this.init(user);
     };
   }
@@ -56,7 +53,6 @@ class AuthCardController {
   }
 
   signUp() {
-    console.log("signUp");
     this.$state.go('volumio.auth.signup');
   }
 

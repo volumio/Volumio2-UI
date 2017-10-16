@@ -5,11 +5,14 @@ class AuthSignupController {
     this.authService = authService;
     this.$translate = $translate;
 
-    this.jqAgreeCheckbox = $('.button-checkbox').find('input:checkbox');
-    this.jqAgreeButton = $('.button-checkbox').find('button');
     this.agreeButtonSettings = {
-      on: {icon: 'glyphicon glyphicon-check'},
-      off: {icon: 'glyphicon glyphicon-unchecked'}
+      on:  'glyphicon glyphicon-check',
+      off: 'glyphicon glyphicon-unchecked'
+    };
+    this.termsButtonIcon = this.agreeButtonSettings.off;
+    
+    this.form = {
+      termsCheckbox: false
     };
 
     this.init();
@@ -25,7 +28,7 @@ class AuthSignupController {
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher());
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
@@ -56,34 +59,18 @@ class AuthSignupController {
   }
 
   //agreement UI behaviour
-  initTermsAgreementButton() { //TODO ANGULARIZE THIS
+  initTermsAgreementButton() {
     this.updateAgreementDisplay();
-    if (this.jqAgreeButton.find('.state-icon').length === 0) {
-      this.jqAgreeButton.prepend('<i class="state-icon ' + this.agreeButtonSettings[this.jqAgreeButton.data('state')].icon + '"></i>&nbsp;');
-    }
   }
 
   clickAgreementButton() {
-    this.jqAgreeCheckbox.prop('checked', !this.jqAgreeCheckbox.is(':checked'));
-    this.jqAgreeCheckbox.triggerHandler('change');
-    this.updateAgreementDisplay();
-  }
-
-  changeAgreementCheckbox() {
+    this.form.termsCheckbox = !this.form.termsCheckbox;
     this.updateAgreementDisplay();
   }
 
   updateAgreementDisplay() {
-    var isChecked = this.jqAgreeCheckbox.is(':checked');
-    this.jqAgreeButton.data('state', (isChecked) ? "on" : "off");
-    this.jqAgreeButton.find('.state-icon').removeClass().addClass('state-icon ' + this.agreeButtonSettings[this.jqAgreeButton.data('state')].icon);
-    if (isChecked) {
-      this.jqAgreeButton.removeClass('btn-default').addClass('btn-info active');
-    } else {
-      this.jqAgreeButton.removeClass('btn-info active').addClass('btn-default');
-    }
+    this.termsButtonIcon = this.agreeButtonSettings[(this.form.termsCheckbox) ? "on" : "off"];
   }
-  //end
 
   openTermsModal() {
     let
@@ -101,7 +88,6 @@ class AuthSignupController {
 
   submitForm() {
     if (this.validate() !== true) {
-      this.showFormErrors();
       return;
     }
     //TODO STANDARDIZE THIS (1/2)
@@ -118,28 +104,31 @@ class AuthSignupController {
     this.authService.signup(user).then((newUser) => {
       this.$state.go('volumio.auth.profile');
     }, (error) => {
-      //TODO UI
-      alert(error);
-      console.log('Error');
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
   validate()
   {
-    if (!this.formTermsCheck === true) {
-      return false;
-    }
-    return true;
+    //other validations are made in HTML5
+    return (this.validateFormCheckBox() && this.validatePasswordMatch());
   }
 
-  showFormErrors() {
-    this.$translate(['AUTH.VALIDATION_ERROR_PLEASE_CHECK_FORM']).then((translations) => {
-      var formError = translations['AUTH.VALIDATION_ERROR_PLEASE_CHECK_FORM'];
-      alert(formError);
-    }).catch((error) => {
-      alert(error);
-    });
+  validateFormCheckBox() {
+    if (this.form.termsCheckbox === true) {
+      return true;
+    }
+    this.modalService.openDefaultErrorModal("AUTH.ERROR_VALIDATION_TERMS_UNACCEPTED");
+    return false;
+  }
+
+  validatePasswordMatch() {
+    if (this.password === this.passwordConfirm) {
+      return true;
+    }
+
+    this.modalService.openDefaultErrorModal("AUTH.ERROR_VALIDATION_PASSWORD_MATCH");
+    return false;
   }
 
 }

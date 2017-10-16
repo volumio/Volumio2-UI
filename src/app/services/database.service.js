@@ -14,7 +14,6 @@ class DatabaseService {
       const keyRef = ref.key;
       putting.resolve(keyRef);
     }).catch((error) => {
-      console.log(error);
       putting.reject(error);
     });
     return putting.promise;
@@ -53,20 +52,15 @@ class DatabaseService {
   waitForValue(ref) {
     var waitingForValue = this.$q.defer();
     this.angularFireService.waitForValue(ref).then((result) => {
-      console.log("dbs result");
-      console.log(result);
       waitingForValue.resolve(result);
     }, (error) => {
-      console.log("dbs error");
-      console.log(error);
       waitingForValue.reject(error);
     });
     return waitingForValue.promise;
   }
   
-  deleteUser(userId){
-    const userPath = `users/${userId}`;
-    return this.angularFireService.deleteFromDb(userPath);
+  delete(path){
+    return this.angularFireService.deleteFromDb(path);
   }
 
 }

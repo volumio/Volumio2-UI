@@ -80,12 +80,10 @@ class StripePayButtonController {
       var subscribing = this.$q.defer();
 
       this.paymentsService.subscribe(payment, this.userId).then((success) => {
-        console.log(success);
         this.stopLoading();
         subscribing.resolve(success);
       }, (error) => {
         this.stopLoading();
-        console.log(error);
         subscribing.reject(error);
       });
       
@@ -112,7 +110,6 @@ class StripePayButtonController {
   }
 
   handlePayment() {
-    console.log("YES");
     this.handler.open(this.product);
   }
 

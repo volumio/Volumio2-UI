@@ -1,5 +1,5 @@
 class AuthSubscribeController {
-  constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService) {
+  constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService, $filter) {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -9,6 +9,7 @@ class AuthSubscribeController {
     this.authService = authService;
     this.stripeCheckout = StripeCheckout;
     this.productsService = productsService;
+    this.filteredTranslate = $filter('translate');
 
     this.openedModal = {};
 
@@ -28,7 +29,7 @@ class AuthSubscribeController {
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher());
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
@@ -49,7 +50,6 @@ class AuthSubscribeController {
   subscriptionCallback(subscribing) {
     this.openPayingModal();
     subscribing.then((status) => {
-      console.log(status);
       this.closePayingModal();
       if (status === true) {
         this.goToPaymentSuccess();
@@ -57,10 +57,10 @@ class AuthSubscribeController {
       }
       this.goToPaymentFail();
     }, (error) => {
-      console.log("error");
-      console.log(error); //TODO Modal Error and THEN redirect
-      this.closePayingModal();
-      this.goToPaymentFail();
+      this.modalService.openDefaultErrorModal(error, () => {
+        this.closePayingModal();
+        this.goToPaymentFail();
+      });
     });
   }
 
@@ -69,7 +69,7 @@ class AuthSubscribeController {
             templateUrl = 'app/plugin/core-plugin/auth/modals/auth-paying-modal/auth-paying-modal.html',
             controller = 'AuthPayingModalController',
             params = {
-              title: 'Paying...' //TODO
+              title: this.filteredTranslate('AUTH.PAYNG')
             };
     this.openedModal = this.modalService.openModal(
             controller,
@@ -89,13 +89,13 @@ class AuthSubscribeController {
   goToPaymentFail() {
     this.$state.go('volumio.auth.payment-fail');
   }
-  
-  loadProduct(){
+
+  loadProduct() {
     var code = this.$stateParams['plan'];
     this.product = this.productsService.getProductByCode(code);
   }
-  
-  goToPlans(){
+
+  goToPlans() {
     this.$state.go('volumio.auth.plans');
   }
 

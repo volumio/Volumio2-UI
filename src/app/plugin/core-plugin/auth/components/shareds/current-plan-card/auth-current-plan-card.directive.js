@@ -15,11 +15,12 @@ class AuthCurrentPlanCardDirective {
 }
 
 class AuthCurrentPlanCardController {
-  constructor($rootScope, $scope, $state, authService) {
+  constructor($rootScope, $scope, $state, authService, modalService) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
+    this.modalService = modalService;
 
     this.action = this.$scope.action;
 
@@ -37,7 +38,7 @@ class AuthCurrentPlanCardController {
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher());
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 

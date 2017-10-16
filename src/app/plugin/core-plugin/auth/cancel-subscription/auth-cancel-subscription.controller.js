@@ -1,5 +1,5 @@
 class AuthCancelSubscriptionController {
-  constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService) {
+  constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService, $filter) {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -9,6 +9,7 @@ class AuthCancelSubscriptionController {
     this.authService = authService;
     this.stripeCheckout = StripeCheckout;
     this.productsService = productsService;
+    this.filteredTranslate = $filter('translate');
 
     this.openedModal = {};
 
@@ -28,7 +29,7 @@ class AuthCancelSubscriptionController {
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher());
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
@@ -49,17 +50,16 @@ class AuthCancelSubscriptionController {
   }
 
   downgradeToFree() {
-    if(!this.user.subscriptionId){
+    if (!this.user.subscriptionId) {
       alert("Error, no subscription id");
       return;
     }
-    this.cancellationCallback(this.paymentsService.cancelSubscription(this.user.subscriptionId, this.user.uid ));
+    this.cancellationCallback(this.paymentsService.cancelSubscription(this.user.subscriptionId, this.user.uid));
   }
 
   cancellationCallback(cancelling) {
     this.openCancellingModal();
     cancelling.then((status) => {
-      console.log(status);
       this.closeCancellingModal();
       if (status === true) {
         this.goToCancellingSuccess();
@@ -67,10 +67,10 @@ class AuthCancelSubscriptionController {
       }
       this.goToCancellingFail();
     }).catch((error) => {
-      console.log("error");
-      console.log(error); //TODO Modal Error and THEN redirect
-      this.closeCancellingModal();
-      this.goToCancellingFail();
+      this.modalService.openDefaultErrorModal(error,() => {
+        this.closeCancellingModal();
+        this.goToCancellingFail();
+      });
     });
   }
 
@@ -79,7 +79,7 @@ class AuthCancelSubscriptionController {
             templateUrl = 'app/plugin/core-plugin/auth/modals/auth-paying-modal/auth-paying-modal.html',
             controller = 'AuthPayingModalController',
             params = {
-              title: 'Paying...' //TODO
+              title: this.filteredTranslate('AUTH.PAYING')
             };
     this.openedModal = this.modalService.openModal(
             controller,
@@ -93,11 +93,11 @@ class AuthCancelSubscriptionController {
   }
 
   goToCancellingSuccess() {
-    this.$state.go('volumio.auth.payment-success'); //TODO
+    this.$state.go('volumio.auth.payment-success');
   }
 
   goToCancellingFail() {
-    this.$state.go('volumio.auth.payment-fail'); //TODO
+    this.$state.go('volumio.auth.payment-fail');
   }
 
   loadProduct() {

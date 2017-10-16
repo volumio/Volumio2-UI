@@ -1,7 +1,8 @@
 class AuthLoginController {
-  constructor($scope,authService,$state) {
+  constructor($scope,authService,$state,modalService) {
     this.authService = authService;
     this.$state = $state;
+    this.modalService = modalService;
     
     this.user = null;
     this.authInit();
@@ -12,7 +13,7 @@ class AuthLoginController {
       this.init(user);
       this.authService.bindWatcher(this.getAuthWatcher());
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
   
@@ -34,7 +35,7 @@ class AuthLoginController {
     this.authService.login(this.username,this.pass).then((user) => {
       this.$state.go('volumio.auth.profile');
     },(error) => {
-      alert(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
   
@@ -56,5 +57,4 @@ class AuthLoginController {
   
 }
 
-//is it possible to export with namespace (ie. Auth.LoginController ) ?
 export default AuthLoginController;

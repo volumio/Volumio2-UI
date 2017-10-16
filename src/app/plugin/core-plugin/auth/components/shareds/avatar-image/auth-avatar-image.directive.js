@@ -12,7 +12,7 @@ class AuthAvatarImageDirective {
 }
 
 class AuthAvatarImage {
-  constructor($rootScope, $scope, $state, authService) {
+  constructor($rootScope, $scope, $state, authService, modalService) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -21,25 +21,22 @@ class AuthAvatarImage {
     this.user = null;
     
     this.imageUrl = '';
+    this.modalService = modalService;
 
     this.authInit();
   }
 
   authInit() {
     this.authService.getUserPromise(false).then((user) => {
-      console.log("user");
-      console.log(user);
       this.postAuthInit(user);
       this.authService.bindWatcher(this.getAuthWatcher(), false);
     }).catch((error) => {
-      console.log(error);
+      this.modalService.openDefaultErrorModal(error);
     });
   }
 
   getAuthWatcher() {
     return (user) => {
-      console.log("authWatcher");
-      console.log(user);
       this.postAuthInit(user);
     };
   }
@@ -58,11 +55,6 @@ class AuthAvatarImage {
       return;
     }
     this.imageUrl = this.user.photoUrl;
-//    this.authService().getAvatarUrl(this.user.uid).then(url => {
-//      this.imageUrl = url;
-//    }).catch(error => {
-//      alert(error);//TODO error in modal
-//    });
   }
 
 }

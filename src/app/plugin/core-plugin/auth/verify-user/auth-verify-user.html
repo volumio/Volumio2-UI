@@ -13,11 +13,14 @@
 
     <div class="panel-body">
 
-      <div id="" ng-if="authVerifyUserController.user.verified !== true" translate="AUTH.YOURENT_VERIFIED_YET_DESC">
+      <div id="" ng-if="authVerifyUserController.user.verified !== true">
+        <p translate="AUTH.YOURENT_VERIFIED_YET_DESC"></p>
+        <auth-verification-card></auth-verification-card>
+        <a ng-click="authVerifyUserController.goToProfile()" class="btn btn-lg btn-default" translate="AUTH.PROFILE"></a>
       </div>
 
       <div id="" ng-if="authVerifyUserController.user.verified === true" >
-        <h4 translate="AUTH.YOURE_VERIFIED_DESC"></h4> <!--TODO lang / component -->s
+        <h4 translate="AUTH.YOURE_VERIFIED_DESC"></h4>
         <a ng-click="authVerifyUserController.goToProfile()" class="btn btn-lg btn-success" translate="AUTH.PROFILE"></a>
       </div>
 

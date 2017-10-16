@@ -64,11 +64,12 @@ import StripePayButtonDirective from './plugin/core-plugin/auth/components/strip
 import AuthCardDirective from './plugin/core-plugin/auth/components/card/auth-card.directive';
 import AuthBackButtonDirective from './plugin/core-plugin/auth/components/shareds/back-button/auth-back-button.directive';
 import PluginComponent from './plugin/components/plugin.component';
-import AuthAlreadyLoggedDirective from './plugin/core-plugin/auth/components/shareds/already-logged/auth-already-logged.directive'
-import AuthCurrentPlanCardDirective from './plugin/core-plugin/auth/components/shareds/current-plan-card/auth-current-plan-card.directive'
-import AuthFileOnChangeDirective from './plugin/core-plugin/auth/components/shareds/file-on-change/auth-file-on-change.directive'
-import AuthAvatarImageDirective from './plugin/core-plugin/auth/components/shareds/avatar-image/auth-avatar-image.directive'
-import AuthPlanCardDirective from './plugin/core-plugin/auth/components/shareds/plan-card/auth-plan-card.directive'
+import AuthAlreadyLoggedDirective from './plugin/core-plugin/auth/components/shareds/already-logged/auth-already-logged.directive';
+import AuthCurrentPlanCardDirective from './plugin/core-plugin/auth/components/shareds/current-plan-card/auth-current-plan-card.directive';
+import AuthFileOnChangeDirective from './plugin/core-plugin/auth/components/shareds/file-on-change/auth-file-on-change.directive';
+import AuthAvatarImageDirective from './plugin/core-plugin/auth/components/shareds/avatar-image/auth-avatar-image.directive';
+import AuthPlanCardDirective from './plugin/core-plugin/auth/components/shareds/plan-card/auth-plan-card.directive';
+import AuthVerificationCardDirective from './plugin/core-plugin/auth/components/shareds/verification-card/auth-verification-card.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -242,6 +243,7 @@ angular.module('volumio', [
   .directive('authFileOnChange', () => new AuthFileOnChangeDirective())
   .directive('authAvatarImage', () => new AuthAvatarImageDirective())
   .directive('authPlanCard', () => new AuthPlanCardDirective())
+  .directive('authVerificationCard', () => new AuthVerificationCardDirective())
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)

@@ -1,5 +1,18 @@
-class AuthProfileController {
-  constructor($scope, $state, $stateParams, authService, modalService) {
+class AuthVerificationCardDirective {
+  constructor() {
+    'ngInject';
+    let directive = {
+      restrict: 'E',
+      templateUrl: 'app/plugin/core-plugin/auth/components/shareds/verification-card/auth-verification-card.html',
+      controller: AuthVerificationCardController,
+      controllerAs: 'authVerificationCardController'
+    };
+    return directive;
+  }
+}
+
+class AuthVerificationCardController {
+   constructor($scope, $state, $stateParams, authService, modalService) {
     this.$state = $state;
     this.authService = authService;
     this.user = null;
@@ -50,18 +63,6 @@ class AuthProfileController {
     this.authService.resendEmailVerification();
   }
 
-  goToPlans() {
-    this.$state.go('volumio.auth.plans');
-  }
-
-  logIn() {
-    this.$state.go('volumio.auth.login');
-  }
-
-  goToEdit() {
-    this.$state.go('volumio.auth.edit-profile');
-  }
-
   reAuth() {
     this.authService.logOut().then(() => {
       this.$state.go('volumio.auth.login');
@@ -70,6 +71,7 @@ class AuthProfileController {
     });
   }
 
+
 }
 
-export default AuthProfileController;
+export default AuthVerificationCardDirective;
