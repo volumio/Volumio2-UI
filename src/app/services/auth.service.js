@@ -1,5 +1,5 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService) {
+  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService) {
     'ngInject';
     this.rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -7,7 +7,6 @@ class AuthService {
     this.$state = $state;
     this.databaseService = databaseService;
     this.remoteStorageService = remoteStorageService;
-    this.stripeService = stripeService;
 
     this.mandatoryFields = [
       'username',
