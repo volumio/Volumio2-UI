@@ -31,15 +31,19 @@
                 <p class="user-details">
                   <i class="glyphicon glyphicon-envelope"></i> {{authProfileController.user.email}}
                   <br />
-                  <i class="glyphicon glyphicon-gift"></i> {{authProfileController.user.birthday}}
+                  <span ng-if="authProfileController.user.birthday">
+                    <i class="glyphicon glyphicon-gift"></i> {{authProfileController.user.birthday}}
+                  </span>
                   <br />
-                  <i class="glyphicon glyphicon-globe"></i> {{authProfileController.user.country}}
+                  <span ng-if="authProfileController.user.country">
+                    <i class="glyphicon glyphicon-globe"></i> {{authProfileController.user.country}}
+                  </span>
                 </p>
 
                 <div ng-if="!authProfileController.isUserVerified">
                   <auth-verification-card></auth-verification-card>
                 </div>
-               
+
               </div>
 
               <div class="col-sm-24 col-md-12 plans-table">
@@ -54,6 +58,6 @@
       <div ng-if="authProfileController.user === null">
 
 
+      </div>
     </div>
   </div>
-</div>
