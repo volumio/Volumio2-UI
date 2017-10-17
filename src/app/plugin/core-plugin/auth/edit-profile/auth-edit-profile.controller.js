@@ -57,7 +57,7 @@ class AuthEditProfileController {
       this.form[key] = this.user[key];
     }
   }
-  
+
   copyValuesToUser() {
     for (var key in this.form) {
       if(key.startsWith("$") || key === 'forEach'){
@@ -159,7 +159,7 @@ class AuthEditProfileController {
   }
 
   deleteUser() {
-    if (!confirm(this.filteredTranslate('AUTH.CONFIRM_DELETE_USER_AND_PASSWORD'))) { //TODO Y/N MODAL
+    if (!confirm(this.filteredTranslate('AUTH.CONFIRM_DELETE_ACCOUNT'))) { //TODO Y/N MODAL
       return;
     }
     this.deletingUser = true;

@@ -106,14 +106,14 @@
                 </div>
                 <div class="form-group">
                   <div class="col-md-24">
-                    <input type="submit" class="btn btn-success" value="Save Changes" /> 
+                    <input type="submit" class="btn btn-success" value="Save Changes" />
                     <a ng-if="authEditProfileController.isUserFilledWithMandatory()" ng-click="authEditProfileController.goToProfile()" class="btn btn-default pull-right">Go to profile</a>
                   </div>
                 </div>
               </form>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="col-xs-24">
               <hr />
@@ -121,12 +121,12 @@
                 <a ng-click='authEditProfileController.deleteUser()' style="cursor: pointer;">
                   <i ng-if="authEditProfileController.deletingUser === false" class="glyphicon glyphicon-remove-sign"></i>
                   <i ng-if="authEditProfileController.deletingUser === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
-                  <span translate="AUTH.DELETE_USER"></span>
+                  <span translate="AUTH.DELETE_ACCOUNT"></span>
                 </a>
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
 

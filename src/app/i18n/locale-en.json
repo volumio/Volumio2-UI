@@ -226,6 +226,7 @@
   },
   "AUTH": {
     "MY_VOLUMIO":"MyVolumio",
+    "ERROR":"Error",
     "LOGIN":"Login",
     "LOGOUT":"Logout",
     "SIGNUP":"Signup",
@@ -236,6 +237,7 @@
     "PLANS":"Plans",
     "PROFILE":"Profile",
     "RECOVER_PASSWORD":"Recover password",
+    "PASSWORD_RESET":"Reset password",
     "RECOVER_PASSWORD_TEXT":"Please fill the form to recover your password",
     "FORGOT_PASSWORD":"Forgot password",
     "SUBSCRIBE":"Subscribe",
@@ -261,6 +263,19 @@
     "SAVE_AVATAR":"Save profile picture",
     "NOT_LOGGED_IN":"You're not logged in. Please login to continue",
     "MOST_POPULAR":"Most popular",
-    "FREE_DAYS_TRIAL":"Free days trial"
+    "FREE_DAYS_TRIAL":"Free days trial",
+    "ALREADY_LOGGED_IN":"Already logged in",
+    "DELETE_ACCOUNT":"Delete Account",
+    "CONFIRM_DELETE_ACCOUNT":"Are you sure you want to delete your account? All your profile data and settings will be deleted",
+    "RESEND_VERIFICATION_EMAIL":"Resend verification email",
+    "VERIFICATION_DONE_NOW_REAUTH":"Your mail has been successfully verified, please login",
+    "PLEASE_VERIFY_EMAIL_TITLE":"Please verify your email",
+    "PLEASE_VERIFY_EMAIL_DESC":"To use MyVolumio at its full potential, please click on the verification link we've sent to your email",
+    "USER_EMAIL_NOT_VERIFIED":"Your email has not been verified",
+    "ERROR_CHANGE_PLAN_NO_PREVIOUS_PLAN_FOUND":"Error, you don't have any plan yet",
+    "ERROR_CHANGE_PLAN_NO_PLAN_SELECTED":"Please select a plan",
+    "PAYMENT_IN_PROGRESS":"Payment in progress",
+    "PLEASE_VERIFY_EMAIL_TITLE":"",
+    "PLEASE_VERIFY_EMAIL_TITLE":""
   }
 }

@@ -284,7 +284,7 @@ class AngularFireService {
     };
     this.authUser.sendEmailVerification(/*actionCodeSettings*/)
             .then(() => {
-              this.modalService.openDefaultModal('AUTH.USER_VERIFICATION_EMAIL_SENT_TITLE', 'AUTH.USER_VERIFICATION_EMAIL_SENT_DESC');
+              this.modalService.openDefaultModal('AUTH.PLEASE_VERIFY_EMAIL_TITLE', 'AUTH.USER_VERIFICATION_EMAIL_SENT_DESC');
             })
             .catch((error) => {
               this.modalService.openDefaultErrorModal(error);

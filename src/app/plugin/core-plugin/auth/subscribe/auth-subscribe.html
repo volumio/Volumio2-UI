@@ -15,15 +15,15 @@
 
       <div ng-if="authSubscribeController.user && authSubscribeController.product">
 
-        <auth-back-button label='AUTH.PLANS' route-destination="volumio.auth.plans"></auth-back-button>
+        <auth-back-button label="{{'AUTH.PLANS' | translate}}" route-destination="volumio.auth.plans"></auth-back-button>
 
         <h3 translate="AUTH.COMPLETE_UPGRADE"></h3>
 
         <h4 translate="AUTH.PAY"></h4>
         <p translate="AUTH.PAY_DESC"></p>
 
-        <auth-plan-card subscribe='true' 
-                        subscribe-callback='authSubscribeController.subscriptionCallback(subscribing)' 
+        <auth-plan-card subscribe='true'
+                        subscribe-callback='authSubscribeController.subscriptionCallback(subscribing)'
                         product='authSubscribeController.product'></auth-plan-card>
 
       </div>

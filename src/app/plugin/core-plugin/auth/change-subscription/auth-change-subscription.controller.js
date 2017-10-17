@@ -86,7 +86,7 @@ class AuthChangeSubscriptionController {
             templateUrl = 'app/plugin/core-plugin/auth/modals/auth-paying-modal/auth-paying-modal.html',
             controller = 'AuthPayingModalController',
             params = {
-              title: this.filteredTranslate('AUTH.PAYING')
+              title: this.filteredTranslate('AUTH.PAYMENT_IN_PROGRESS')
             };
     this.openedModal = this.modalService.openModal(
             controller,
@@ -114,7 +114,7 @@ class AuthChangeSubscriptionController {
   goToPlans() {
     this.$state.go('volumio.auth.plans');
   }
-  
+
   getCurrentPlanName() {
     return this.user.plan;
   }

@@ -15,7 +15,7 @@
 
       <div ng-if="authCancelSubscriptionController.user && authCancelSubscriptionController.plan">
 
-        <auth-back-button label='AUTH.PLANS' route-destination="volumio.auth.plans"></auth-back-button>
+        <auth-back-button label="{{'AUTH.PLANS' | translate}}" route-destination="volumio.auth.plans"></auth-back-button>
 
         <h3 translate="AUTH.CANCEL_SUBSCRIPTION_TITLE" style="margin-bottom: 16px;"></h3>
 
@@ -28,7 +28,7 @@
         </h4>
 
         <auth-plan-card product="authCancelSubscriptionController.product" cancellation="true" cancellation-callback="authCancelSubscriptionController.downgradeToFree()" ></auth-plan-card>
-        
+
       </div>
 
       <div id="" ng-if="!authCancelSubscriptionController.user" >

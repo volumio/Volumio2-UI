@@ -35,7 +35,7 @@ class ModalService {
     };
     return this.openModal(undefined, undefined, params);
   }
-  
+
   openDefaultErrorModal(descLangKey, callback = null) {
     return this.openDefaultModal("AUTH.ERROR",descLangKey, callback);
   }

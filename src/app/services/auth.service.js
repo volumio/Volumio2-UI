@@ -75,7 +75,7 @@ class AuthService {
     this.isUserVerified().then(() => {
       promise.resolve(user);
     }).catch(() => {
-      promise.reject(this.filteredTranslate('AUTH.USER_NOT_VERIFIED')); 
+      promise.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED')); 
       this.redirectToVerifyUser();
     });
   }
