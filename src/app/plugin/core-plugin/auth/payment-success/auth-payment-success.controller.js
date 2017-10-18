@@ -1,5 +1,6 @@
 class AuthPaymentSuccessController{
   constructor($scope, $state){
+    'ngInject';
     this.$state = $state;
   }
   

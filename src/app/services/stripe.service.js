@@ -1,5 +1,6 @@
 class StripeService {
   constructor(databaseService, $q, firebase) {
+    'ngInject';
     this.databaseService = databaseService;
     this.$q = $q;
     this.firebase = firebase;

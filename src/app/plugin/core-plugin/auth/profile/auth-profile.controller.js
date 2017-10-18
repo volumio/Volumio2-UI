@@ -1,5 +1,6 @@
 class AuthProfileController {
   constructor($scope, $state, $stateParams, authService, modalService) {
+    'ngInject';
     this.$state = $state;
     this.authService = authService;
     this.user = null;

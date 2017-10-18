@@ -1,5 +1,6 @@
 class AuthVerifyUserController{
   constructor(){
+    'ngInject';
     
   }
   

@@ -1,5 +1,6 @@
 class AuthSignupController {
   constructor($scope, $state, authService, modalService, $translate) {
+    'ngInject';
     this.$state = $state;
     this.modalService = modalService;
     this.authService = authService;

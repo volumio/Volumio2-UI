@@ -1,5 +1,6 @@
 class DatabaseService {
   constructor(angularFireService, $q) {
+    'ngInject';
     this.angularFireService = angularFireService;
     this.$q = $q;
   }

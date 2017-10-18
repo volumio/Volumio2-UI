@@ -1,5 +1,6 @@
 class AuthCancelSubscriptionController {
   constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService, $filter) {
+    'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;

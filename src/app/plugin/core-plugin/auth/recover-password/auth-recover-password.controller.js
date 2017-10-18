@@ -1,5 +1,6 @@
 class AuthRecoverPasswordController{
   constructor($state,authService, modalService){
+    'ngInject';
     this.authService = authService;
     this.$state = $state;
     this.modalService = modalService;

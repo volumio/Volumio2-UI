@@ -72,12 +72,14 @@ class AuthService {
       this.redirectToEditProfile();
       return;
     }
-    this.isUserVerified().then(() => {
-      promise.resolve(user);
-    }).catch(() => {
-      promise.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED')); 
-      this.redirectToVerifyUser();
-    });
+    promise.resolve(user);
+    return;
+//    this.isUserVerified().then(() => {
+//      promise.resolve(user);
+//    }).catch(() => {
+//      promise.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED')); 
+//      this.redirectToVerifyUser();
+//    });
   }
 
   getFilterAccessMethod(watcher) {
