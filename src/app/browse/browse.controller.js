@@ -67,12 +67,14 @@ class BrowseController {
   }
 
   clickListItem(item) {
-    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong') {
+    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'cd') {
       this.fetchLibrary(item);
-    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
+    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album') {
       this.play(item);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
+    } else if (item.type === 'cd') {
+      this.playQueueService.replaceAndPlay(item);
     }
   }
   clickListItemByIndex(listIndex, itemIndex) {
@@ -208,8 +210,50 @@ class BrowseController {
 
     this.$timeout(() => {
       let angularThis = `angular.element('#browseTablesWrapper').scope().browse`;
+      var item=this.browseService.info;
 
       this.table = '';
+
+      if(this.browseService.info) {
+        this.table += `<div class="rowInfo">`;
+        this.table += `<div class="imageInfo">`;
+        if (!this.browseService.info.icon && this.browseService.info.albumart) {
+          this.table += `
+          <img src="${this.playerService.getAlbumart(this.browseService.info.albumart)}" alt=""/>`;
+        }
+
+        if (this.browseService.info.icon) {
+          // this.table += `<img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PearlJam1.jpg/220px-PearlJam1.jpg"/>`;
+          this.table += `<i class="${this.browseService.info.icon}"></i>`;
+        }
+                this.table += `</div>`;
+        this.table += `
+          <div class="infoButton">
+            <div class="hamburgerMenu">
+              <button class="dropdownToggle btn-link"
+                  onclick="${angularThis}.clickListItem(${angularThis}.browseService.info)"
+                  title="Options...">
+                <i class="fa fa-play"></i>
+              </button>
+            </div>
+          </div>`;
+
+          this.table += `
+            <div class="description breakMe">
+              <div class="album-title">
+                ${(this.browseService.info.album) ? this.browseService.info.album : ''}
+              </div>
+              <div class="album-artist">
+                ${(this.browseService.info.artist) ? this.browseService.info.artist : ''}
+              </div>
+              <div class="album-time ${(this.browseService.info.duration || this.browseService.info.year) ? '' : 'onlyTitle'}">
+                ${(this.browseService.info.duration) ? this.browseService.info.duration : ''} ${(this.browseService.info.year) ? '- ' + this.browseService.info.year : ''}
+              </div>
+            </div>`;
+
+          this.table += `</div></div>`;
+
+      }
       this.browseService.lists.forEach((list, listIndex) => {
         //Print title
         if (list.title) {

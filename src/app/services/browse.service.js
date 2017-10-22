@@ -198,6 +198,7 @@ class BrowseService {
       if (data.navigation) {
         this.$log.debug('pushBrowseLibrary', data);
         this.lists = data.navigation.lists;
+        this.info = data.navigation.info;
 
         this.breadcrumbs = data.navigation.prev;
         this.eject = data.navigation.eject;
