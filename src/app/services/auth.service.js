@@ -1,7 +1,7 @@
 class AuthService {
   constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter) {
     'ngInject';
-    this.rootScope = $rootScope;
+    this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
     this.$q = $q;
     this.$state = $state;
@@ -10,11 +10,20 @@ class AuthService {
     this.stripeService = stripeService;
     this.filteredTranslate = $filter('translate');
 
+    this.user = null;
     this.mandatoryFields = [
       'username',
       'firstName',
       'lastName'
     ];
+    
+    this.init();
+  }
+
+  init() {
+    this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
+      this.user = user;
+    });
   }
 
   login(user, pass) {
@@ -22,44 +31,15 @@ class AuthService {
   }
 
   loginWithFacebook() {
-    this.loginWithProvider('facebook');
+    return this.loginWithProvider('facebook');
   }
 
   loginWithGoogle() {
-    this.loginWithProvider('google');
+    return this.loginWithProvider('google');
   }
 
   loginWithProvider(provider) {
-    this.angularFireService.loginWithProvider(provider);
-  }
-
-  promiseIsLogged() {
-
-  }
-
-  getUserPromise(filter = true) {
-    var getting = this.$q.defer();
-    this.angularFireService.getUserPromise().then((user) => {
-      if (filter) {
-        this.filterAccessPromise(user, getting);
-        return;
-      }
-      getting.resolve(user);
-    }).catch(error => {
-      getting.reject(error);
-    });
-    return getting.promise;
-  }
-
-  bindWatcher(watcher, filter = true) {
-    if (filter) {
-      return this.angularFireService.addAuthListener(this.getFilterAccessMethod(watcher));
-    }
-    return this.angularFireService.addAuthListener(watcher);
-  }
-
-  unbindWatcher() {
-    //TODO
+    return this.angularFireService.loginWithProvider(provider);
   }
 
   filterAccessPromise(user, promise) {
@@ -80,16 +60,6 @@ class AuthService {
 //      promise.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED')); 
 //      this.redirectToVerifyUser();
 //    });
-  }
-
-  getFilterAccessMethod(watcher) {
-    return (user) => {
-      if (this.isUserFilledWithMandatory(user)) {
-        return watcher;
-      }
-      this.redirectToEditProfile();
-      return null;
-    };
   }
 
   isUserFilledWithMandatory(user) {

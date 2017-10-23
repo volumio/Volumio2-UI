@@ -54,26 +54,9 @@ class AuthPlanCardController {
   }
 
   authInit() {
-    this.authService.getUserPromise(false).then((user) => {
-      this.postInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher(), false);
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user,(user) => {
+      this.user = user;
     });
-  }
-
-  getAuthWatcher() {
-    return (user) => {
-      this.postInit(user);
-    };
-  }
-
-  postInit(user) {
-    this.setUser(user);
-  }
-
-  setUser(user) {
-    this.user = user;
   }
 
   //auth section

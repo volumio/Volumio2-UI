@@ -17,41 +17,25 @@ class AuthAvatarImage {
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
+    this.$watch = $scope.$watch;
 
     this.user = null;
     
-    this.imageUrl = '';
+    this.imageUrl = null;
     this.modalService = modalService;
 
     this.authInit();
   }
 
   authInit() {
-    this.authService.getUserPromise(false).then((user) => {
-      this.postAuthInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher(), false);
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user,(user) => {
+      this.user = user;
     });
-  }
-
-  getAuthWatcher() {
-    return (user) => {
-      this.postAuthInit(user);
-    };
-  }
-
-  postAuthInit(user) {
-    this.setUser(user);
-    this.loadImage();
-  }
-
-  setUser(user) {
-    this.user = user;
   }
 
   loadImage(){
     if(!this.user || this.user.photoUrl === null || this.user.photoUrl === undefined){
+      this.imageUrl = null;
       return;
     }
     this.imageUrl = this.user.photoUrl;

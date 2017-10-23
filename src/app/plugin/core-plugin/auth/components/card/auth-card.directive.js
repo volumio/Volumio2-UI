@@ -25,26 +25,9 @@ class AuthCardController {
   }
 
   authInit() {
-    this.authService.getUserPromise(false).then((user) => {
-      this.init(user);
-      this.authService.bindWatcher(this.getAuthWatcher(), false);
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user,(user) => {
+      this.user = user;
     });
-  }
-
-  getAuthWatcher() {
-    return (user) => {
-      this.init(user);
-    };
-  }
-
-  init(user) {
-    this.setUser(user);
-  }
-
-  setUser(user) {
-    this.user = user;
   }
 
   //auth section
@@ -61,7 +44,11 @@ class AuthCardController {
   }
 
   logOut() {
-    this.authService.logOut();
+    this.authService.logOut().then(() => {
+      this.$state.go('volumio.auth.login');
+    }).catch(error => {
+      this.modalService.openDefaultErrorModal(error);
+    });
   }
 
   isUserFilledWithMandatory() {

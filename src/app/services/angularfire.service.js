@@ -5,8 +5,8 @@ class AngularFireService {
     //consts
     this.USERS_REF = "users";
 
-    //instances
-    this.rootScope = $rootScope;
+    //services
+    this.$rootScope = $rootScope;
     this.$timeout = $timeout;
     this.firebase = firebase;
     this.firebaseModule = firebase;
@@ -19,27 +19,29 @@ class AngularFireService {
     this.database;
     this.modalService = modalService;
 
-    this.authListeners = [];
-
     this.authUser = null;
     this.dbUser = null;
-
-    this.initFirebase();
+    
+    this.init();
   }
 
   //init and config
+  init() {
+    this.initFirebase();
+    this.initServices();
+    this.startAuthListening();
+  }
+
   initFirebase() {
     let config = this.getFirebaseConfig();
     this.firebaseModule.initializeApp(config);
-    this.initServices();
   }
 
   initServices() {
     this.authService = this.$firebaseAuth();
     this.database = this.firebase.database();
-    this.startAuthListening();
   }
-
+  
   getFirebaseConfig() {
     let config = {
       apiKey: "AIzaSyDzEZmwJZS4KZtG9pEXOxlm1XcZikP0KbA",
@@ -61,26 +63,11 @@ class AngularFireService {
   startAuthListening() {
     this.authService.$onAuthStateChanged((authUser) => {
       this.setUserByAuth(authUser).then((dbUser) => {
-        this.callAuthListeners(dbUser);
+        //user set done
+      }).catch(error => {
+        this.modalService.openDefaultErrorModal(error);
       });
     }, this);
-  }
-
-  callAuthListeners(user) {
-    for (var i in this.authListeners) {
-      if (this.authListeners[i]) {
-        this.authListeners[i](user);
-      }
-    }
-  }
-
-  addAuthListener(listener) {
-    this.authListeners.push(listener);
-  }
-
-  removeAuthListener(listener) {
-    var index = this.authListeners.indexOf(listener);
-    this.authListeners.splice(index, 1);
   }
 
   setUserByAuth(authUser) {
@@ -91,28 +78,12 @@ class AngularFireService {
       gettingUser.resolve(null);
       return gettingUser.promise;
     }
-    this.getDbUserPromise(authUser.uid).then((dbUser) => {
-      if ( (dbUser.uid === undefined || dbUser.uid === null) && dbUser.$value === null ) { //if user'snt on db
-        var userData = {};
-        //email
-        if (authUser.email !== undefined || authUser.email !== null) {
-          userData.email = authUser.email;
-        }
-        const provider = authUser.providerId || '';
-        const providerDataProvider = authUser.providerData[0].providerId || '';
-        if (this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider)) {
-          //photo
-          userData.photoURL = authUser.photoUrl || null;
-          //name
-          if (authUser.displayName) {
-            var splittedName = authUser.displayName.split(" ");
-            if (splittedName.length > 1) {
-              userData.firstName = splittedName[0];
-              splittedName.shift();
-              userData.lastName = splittedName.join().replace(",", " ");
-            }
-          }
-        }
+    this.getRemoteDbUser(authUser.uid).then((dbUser) => {
+      if ((dbUser.uid === undefined || dbUser.uid === null) && dbUser.$value === null) { //if user'snt on db
+        var userData = {
+          plan: 'free'
+        };
+        this.loadSocialData(authUser, userData);
         this.createDbUser(authUser.uid, userData).then((dbUser) => {
           this.authUser = authUser;
           this.dbUser = dbUser;
@@ -129,6 +100,28 @@ class AngularFireService {
     return gettingUser.promise;
   }
 
+  loadSocialData(authUser, userData) {
+    //email
+    if (authUser.email !== undefined || authUser.email !== null) {
+      userData.email = authUser.email;
+    }
+    const provider = authUser.providerId || '';
+    const providerDataProvider = authUser.providerData[0].providerId || '';
+    if (this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider)) {
+      //photo
+      userData.photoURL = authUser.photoUrl || null;
+      //name
+      if (authUser.displayName) {
+        var splittedName = authUser.displayName.split(" ");
+        if (splittedName.length > 1) {
+          userData.firstName = splittedName[0];
+          splittedName.shift();
+          userData.lastName = splittedName.join().replace(",", " ");
+        }
+      }
+    }
+  }
+
   setUser(dbUser) {
     this.dbUser = dbUser;
   }
@@ -137,45 +130,27 @@ class AngularFireService {
     return this.dbUser;
   }
 
+  getRemoteAuthUser() {
+    return this.authService.$getAuth();
+  }
+
   getUserPromise() {
     var gettingUser = this.$q.defer();
-    var user = this.getUser();
-    if (user !== null) {
-      gettingUser.resolve(user);
-      return gettingUser.promise;
-    }
-    this.getRemoteUserPromise().then((user) => {
-      gettingUser.resolve(user);
-    }).catch((error) => {
-      gettingUser.reject(error);
-    });
+//    var user = this.getUser();
+//    if (user !== null) {
+//      gettingUser.resolve(user);
+//      return gettingUser.promise;
+//    }
+//    this.getRemoteUserPromise().then((user) => {
+//      gettingUser.resolve(user);
+//    }).catch((error) => {
+//      gettingUser.reject(error);
+//    });
+    gettingUser.resolve(this.dbUser);
     return gettingUser.promise;
   }
 
-  isLogged() {
-    return this.dbUser !== null;
-  }
-
-  getRemoteUserPromise() {
-    var gettingUser = this.$q.defer();
-    var authData = this.authService.$getAuth();
-    if (authData) {
-      this.getDbUserPromise(authData.uid).then((dbUser) => {
-        this.setUser(dbUser);
-        gettingUser.resolve(dbUser);
-      }, (error) => {
-        this.setUser(null);
-        gettingUser.reject(error);
-      });
-    } else {
-      this.setUser(null);
-      gettingUser.resolve(null);
-    }
-
-    return gettingUser.promise;
-  }
-
-  getDbUserPromise(userId) {
+  getRemoteDbUser(userId) {
     var gettingDbUser = this.$q.defer();
 
     var userRef = this.database.ref(this.USERS_REF).child(userId);
@@ -189,18 +164,20 @@ class AngularFireService {
     return gettingDbUser.promise;
   }
 
-  login(user, pass) {
-    this.rootScope.firebaseUser = null;
-    this.rootScope.error = null;
+  isLogged() {
+    return this.dbUser !== null;
+  }
 
+  login(user, pass) {
     var userPromise = this.$q.defer();
 
     this.authService.$signInWithEmailAndPassword(user, pass).then((authUser) => {
-      this.authUser = authUser;
-      this.sendEmailVerification();
-      userPromise.resolve(authUser);
+      //this.checkSendVerificationEmail();
+      this.setUserByAuth(authUser).then(user => {
+        userPromise.resolve(user);
+      });
     }).catch((error) => {
-      this.rootScope.error = error;
+      this.error = error;
       userPromise.reject(error);
     });
 
@@ -209,13 +186,15 @@ class AngularFireService {
 
   loginWithProvider(provider) { //social login works as signup too
     //$signInWithPopup could be an alternative flow to the following
+    var logging = this.$q.defer();
     this.authService.$signInWithRedirect(provider).then(() => {
       this.authService.getRedirectResult().then((result) => {
-
+        logging.resolve(result);
       });
     }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+      logging.reject(error);
     });
+    logging.promise;
   }
 
   logOut() {
@@ -274,6 +253,14 @@ class AngularFireService {
     });
 
     return dbUserCreationing.promise;
+  }
+
+  checkSendVerificationEmail() {
+    this.isLoggedAndVerified().then((verified) => {
+      if (!verified) {
+        this.sendEmailVerification();
+      }
+    });
   }
 
   sendEmailVerification() {

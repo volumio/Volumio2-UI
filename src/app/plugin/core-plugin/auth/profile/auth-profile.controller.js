@@ -1,12 +1,15 @@
 class AuthProfileController {
-  constructor($scope, $state, $stateParams, authService, modalService) {
+  constructor($scope, $state, $stateParams, authService, modalService, $q, angularFireService) {
     'ngInject';
+    this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
-    this.user = null;
     this.modalService = modalService;
+    this.$q = $q;
+    this.angularFireService = angularFireService;
 
-    this.isUserVerified = true;
+    this.user = null;
+    this.isUserVerified = false;
 
     this.init();
   }
@@ -16,35 +19,22 @@ class AuthProfileController {
   }
 
   authInit() {
-    this.authService.getUserPromise().then((user) => {
-      this.postAuthInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher());
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user,(user) => {
+      this.user = user;
+      this.initUserVerified();
     });
   }
 
-  getAuthWatcher() {
-    return (user) => {
-      this.postAuthInit(user);
-    };
-  }
-
-  postAuthInit(user) {
-    this.setUser(user);
-    this.getUserVerified();
-  }
-
-  setUser(user) {
-    this.user = user;
-  }
-
-  getUserVerified() {
+  initUserVerified() {
+    var verifying = this.$q.defer();
     this.authService.isUserVerified().then(() => {
       this.isUserVerified = true;
+      verifying.resolve(true);
     }).catch((error) => {
       this.isUserVerified = false;
+      verifying.resolve(false);
     });
+    return verifying.promise;
   }
 
   resendEmailVerification() {

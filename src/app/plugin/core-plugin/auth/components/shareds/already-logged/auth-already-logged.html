@@ -1,5 +1,11 @@
 <div>
-  <h4 translate="AUTH.ALREADY_LOGGED_IN"></h4>
-  <a ng-click="authAlreadyLoggedController.goToProfile()" class="btn btn-lg btn-success" translate="AUTH.PROFILE"></a>
-  <a ng-click="authAlreadyLoggedController.logOut()" class="btn btn-lg btn-default" translate="AUTH.LOGOUT"></a>
+  <h4 translate="AUTH.ALREADY_LOGGED_IN" style="margin-bottom: 16px;"></h4>
+  <a ng-click="authAlreadyLoggedController.goToProfile()" class="btn btn-lg btn-success">
+    <span class="glyphicon glyphicon-user"></span> 
+    <span translate="AUTH.PROFILE"></span>
+  </a>
+  <a ng-click="authAlreadyLoggedController.logOut()" class="btn btn-lg btn-default pull-right">
+    <span class="glyphicon glyphicon-log-out"></span> 
+    <span translate="AUTH.LOGOUT"></span>
+  </a>
 </div>

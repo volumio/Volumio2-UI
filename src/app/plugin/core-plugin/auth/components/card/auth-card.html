@@ -1,12 +1,12 @@
-<div ng-if="authCardController.user != null">
-  <div id="auth-card-logged">
+<div class="auth-card-container">
+  <div id="auth-card-logged" ng-if="authCardController.user != null" >
     <div class="row">
-      <div class="col-xs-8 nopadding avatar-box">
+      <div class="col-xs-8 avatar-box">
         <div class="profile-userpic" style="padding-top: 8px;">
           <auth-avatar-image></auth-avatar-image>
         </div>
       </div>
-      <div class="col-xs-16 nopadding usedata-box">
+      <div class="col-xs-16 usedata-box">
         <div class="profile-usertitle">
           <div class="profile-usertitle-name">
             <div ng-if="authCardController.isUserFilledWithMandatory()">
@@ -21,14 +21,41 @@
       </div>
     </div>
     <div class="profile-userbuttons">
-      <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.goToProfile()" translate="AUTH.PROFILE"></button>
-      <button type="button" class="btn btn-danger btn-sm" ng-click="authCardController.logOut()" translate="AUTH.LOGOUT"></button>
+      <div class="row">
+        <div class="col-xs-12 small-padding-right">
+          <button type="button" class="btn btn-block btn-success btn-sm" ng-click="authCardController.goToProfile()">
+            <span class="glyphicon glyphicon-user"></span> 
+            <span translate="AUTH.PROFILE"></span>
+          </button>
+        </div>
+        <div class="col-xs-12  small-padding-left">
+          <button type="button" class="btn btn-block btn-danger btn-sm" ng-click="authCardController.logOut()">
+            <span class="glyphicon glyphicon-log-out"></span> 
+            <span translate="AUTH.LOGOUT"></span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div ng-if="authCardController.user == null" id="auth-card-not-logged">
-  <div class="profile-userbuttons">
-    <button type="button" class="btn btn-success btn-sm" ng-click="authCardController.logIn()" translate="AUTH.LOGIN"></button>
-    <button type="button" class="btn btn-info btn-sm" ng-click="authCardController.signUp()" translate="AUTH.SIGNUP"></button>
+  <div ng-if="authCardController.user == null" id="auth-card-not-logged">
+    <div class="row">
+      <div class="col-xs-24">
+        <h4 class="myvolumio-card-title" translate="AUTH.MY_VOLUMIO"></h4>
+      </div>
+      <div class="profile-userbuttons">
+        <div class="col-xs-12 small-padding-right">
+          <button type="button" class="btn btn-block btn-success btn-sm" ng-click="authCardController.logIn()">
+            <span class="glyphicon glyphicon-log-in"></span> 
+            <span translate="AUTH.LOGIN"></span>
+          </button>
+        </div>
+        <div class="col-xs-12 small-padding-left">
+          <button type="button" class="btn btn-block btn-info btn-sm" ng-click="authCardController.signUp()">
+            <span class="glyphicon glyphicon-user"></span> 
+            <span translate="AUTH.SIGNUP"></span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

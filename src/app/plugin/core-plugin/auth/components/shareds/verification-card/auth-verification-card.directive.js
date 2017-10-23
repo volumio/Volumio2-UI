@@ -14,11 +14,14 @@ class AuthVerificationCardDirective {
 class AuthVerificationCardController {
    constructor($scope, $state, $stateParams, authService, modalService) {
     'ngInject';
+    this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
     this.user = null;
     this.modalService = modalService;
+    this.$watch = $scope.$watch;
 
+    this.user = null;
     this.isUserVerified = true;
 
     this.init();
@@ -29,27 +32,14 @@ class AuthVerificationCardController {
   }
 
   authInit() {
-    this.authService.getUserPromise().then((user) => {
-      this.postAuthInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher());
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user,(user) => {
+      this.user = user;
+      this.postAuthInit();
     });
   }
 
-  getAuthWatcher() {
-    return (user) => {
-      this.postAuthInit(user);
-    };
-  }
-
   postAuthInit(user) {
-    this.setUser(user);
     this.getUserVerified();
-  }
-
-  setUser(user) {
-    this.user = user;
   }
 
   getUserVerified() {

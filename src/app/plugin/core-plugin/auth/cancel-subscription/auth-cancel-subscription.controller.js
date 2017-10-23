@@ -26,28 +26,17 @@ class AuthCancelSubscriptionController {
   }
 
   authInit() {
-    this.authService.getUserPromise().then((user) => {
-      this.postAuthInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher());
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user, (user) => {
+      this.user = user;
+      this.postAuthInit();
     });
   }
 
-  getAuthWatcher() {
-    return (user) => {
-      this.postAuthInit(user);
-    };
-  }
-
-  postAuthInit(user) {
-    this.setUser(user);
-    this.plan = user.plan;
-    this.loadProduct();
-  }
-
-  setUser(user) {
-    this.user = user;
+  postAuthInit() {
+    if (this.user) {
+      this.plan = this.user.plan || 'free';
+      this.loadProduct();
+    }
   }
 
   downgradeToFree() {
@@ -68,7 +57,7 @@ class AuthCancelSubscriptionController {
       }
       this.goToCancellingFail();
     }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error,() => {
+      this.modalService.openDefaultErrorModal(error, () => {
         this.closeCancellingModal();
         this.goToCancellingFail();
       });

@@ -31,26 +31,9 @@ class AuthChangeSubscriptionController {
   }
 
   authInit() {
-    this.authService.getUserPromise().then((user) => {
-      this.postAuthInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher());
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user,(user) => {
+      this.user = user;
     });
-  }
-
-  getAuthWatcher() {
-    return (user) => {
-      this.postAuthInit(user);
-    };
-  }
-
-  postAuthInit(user) {
-    this.setUser(user);
-  }
-
-  setUser(user) {
-    this.user = user;
   }
 
   changePlan() {

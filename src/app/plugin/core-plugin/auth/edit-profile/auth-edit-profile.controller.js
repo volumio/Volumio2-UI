@@ -27,26 +27,13 @@ class AuthEditProfileController {
   }
 
   authInit() {
-    this.authService.getUserPromise(false).then((user) => {
-      this.postAuthInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher(), false);
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user,(user) => {
+      this.user = user;
+      this.postAuthInit();
     });
   }
-
-  getAuthWatcher() {
-    return (user) => {
-      this.postAuthInit(user);
-    };
-  }
-
-  postAuthInit(user) {
-    this.setUser(user);
-  }
-
-  setUser(user) {
-    this.user = user;
+  
+  postAuthInit(){
     this.copyValuesToForm();
   }
 
@@ -126,7 +113,7 @@ class AuthEditProfileController {
   }
 
   validatePasswordMatch() {
-    if (this.form.password === this.passwordConfirm) {
+    if (this.form.password === this.passwordCheck) {
       return true;
     }
 

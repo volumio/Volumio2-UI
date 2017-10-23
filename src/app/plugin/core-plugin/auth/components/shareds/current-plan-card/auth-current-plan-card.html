@@ -11,7 +11,7 @@
           </h1>
           <small ng-if="authCurrentPlanCardController.user.expire_at">
             <span translate="AUTH.EXPIRING"></span>:
-            {{authCurrentPlanCardController.user.expire_at}}
+            {{authCurrentPlanCardController.getDate(authCurrentPlanCardController.user.expire_at) | date}}
           </small>
         </div>
       </div>

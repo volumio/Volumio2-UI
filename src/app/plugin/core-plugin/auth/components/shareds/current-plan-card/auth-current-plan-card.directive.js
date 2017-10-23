@@ -24,6 +24,7 @@ class AuthCurrentPlanCardController {
 
     this.action = this.$scope.action;
 
+    this.user = null;
     this.isUserVerified;
 
     this.init();
@@ -34,35 +35,25 @@ class AuthCurrentPlanCardController {
   }
 
   authInit() {
-    this.authService.getUserPromise().then((user) => {
-      this.postAuthInit(user);
-      this.authService.bindWatcher(this.getAuthWatcher());
-    }).catch((error) => {
-      this.modalService.openDefaultErrorModal(error);
+    this.$scope.$watch(() => this.authService.user, (user) => {
+      this.user = user;
+      this.postAuthInit();
     });
   }
 
-  getAuthWatcher() {
-    return (user) => {
-      this.postAuthInit(user);
-    };
-  }
-
   postAuthInit(user) {
-    this.setUser(user);
     this.checkUserVerified();
   }
 
   checkUserVerified() {
+    if (this.user == null) {
+      return;
+    }
     this.authService.isUserVerified().then(() => {
       this.isUserVerified = true;
     }).catch((error) => {
       this.isUserVerified = false;
     });
-  }
-
-  setUser(user) {
-    this.user = user;
   }
 
   goToProfile() {
@@ -72,13 +63,18 @@ class AuthCurrentPlanCardController {
   goToPlans() {
     this.$state.go('volumio.auth.plans');
   }
-  
-  isTargetingProfile(){
+
+  isTargetingProfile() {
     return this.action === 'profile';
   }
-  
-  isTargetingUpgrade(){
+
+  isTargetingUpgrade() {
     return this.action === 'upgrade';
+  }
+
+  getDate(timestamp) {
+    var date = new Date(timestamp * 1000);
+    return date;
   }
 
 }
