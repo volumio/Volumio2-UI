@@ -173,7 +173,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
                 controllerAs: 'authLoginController',
                 resolve: {
                   "user": ["authService", function (authService) {
-                      return authService.waitForUser();
+                      return authService.requireNullUserOrRedirect();
                     }]
                 }
               }
@@ -189,7 +189,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
                 controllerAs: 'authSignupController',
                 resolve: {
                   "user": ["authService", function (authService) {
-                      return authService.waitForUser();
+                      return authService.requireNullUserOrRedirect();
                     }]
                 }
               }

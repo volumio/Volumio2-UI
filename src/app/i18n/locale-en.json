@@ -275,6 +275,8 @@
     "ERROR_CHANGE_PLAN_NO_PREVIOUS_PLAN_FOUND":"Error, you don't have any plan yet",
     "ERROR_CHANGE_PLAN_NO_PLAN_SELECTED":"Please select a plan",
     "PAYMENT_IN_PROGRESS":"Payment in progress",
-    "PLEASE_VERIFY_EMAIL_TITLE":""
+    "PLEASE_VERIFY_EMAIL_TITLE":"",
+    "USER_MISSING_MANDATORY_FIELDS": "In order to complete your registration, please complete your profile with the mandatory fields.",
+    "USER_VERIFICATION_EMAIL_SENT_DESC": "A verification email has just been sent to your mailbox. It may occour some minutes to be delivered."
   }
 }

@@ -40,6 +40,19 @@ class AuthService {
     return this.angularFireService.requireUser();
   }
 
+  requireNullUserOrRedirect(){
+    return this.angularFireService.waitForUser().then(user => {
+      var gettingUser = this.$q.defer();
+      if(user == null){
+        gettingUser.resolve(null);
+      }else{
+        this.$state.go('volumio.auth.profile');
+        gettingUser.reject('AUTH.USER_ALREADY_LOGGED');
+      }
+      return gettingUser.promise;
+    })
+  }
+
   requireVerifiedUserOrRedirect() {
     return this.angularFireService.requireUser().then(user => {
       return this.validateUser(user);
