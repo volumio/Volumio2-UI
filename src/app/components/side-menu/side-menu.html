@@ -17,7 +17,7 @@
     </button>
     
     <div ng-if="sideMenu.isAuthActive()" id="auth-card-container">
-      <auth-card></auth-card>
+      <auth-card action-callback="sideMenu.toggleMenu()"></auth-card>
     </div>
 
     <button

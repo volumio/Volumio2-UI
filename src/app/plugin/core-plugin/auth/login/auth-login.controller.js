@@ -1,19 +1,25 @@
 class AuthLoginController {
-  constructor($scope, authService, $state, modalService) {
+  constructor($scope, $state, modalService, authService, user) {
     'ngInject';
     this.$scope = $scope;
     this.authService = authService;
     this.$state = $state;
     this.modalService = modalService;
 
-    this.user = null;
+    this.user = user;
     this.authInit();
   }
 
   authInit() {
     this.$scope.$watch(() => this.authService.user,(user) => {
-      this.user = user;
+      this.postAuthInit();
     });
+  }
+  
+  postAuthInit(){
+    if(this.user != null){
+      this.$state.go('volumio.auth.profile');
+    }
   }
 
   login() {
@@ -25,17 +31,19 @@ class AuthLoginController {
   }
   
   loginWithFacebook() {
-    return this.loginWithProvider('facebook');
+    this.loginWithProvider('facebook');
   }
 
   loginWithGoogle() {
-    return this.loginWithProvider('google');
+    this.loginWithProvider('google');
+  }
+  
+  loginWithGithub() {
+    this.loginWithProvider('github');
   }
   
   loginWithProvider(provider) {
-    return this.authService.loginWithProvider(provider).then(() => {
-      this.$state.go('volumio.auth.profile');
-    }).catch(error => {
+    this.authService.loginWithProvider(provider).catch(error => {
       this.modalService.openDefaultErrorModal(error);
     });
   }

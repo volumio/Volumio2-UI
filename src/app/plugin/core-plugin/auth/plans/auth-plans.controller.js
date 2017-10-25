@@ -1,5 +1,5 @@
 class AuthPlansController {
-  constructor($scope, paymentsService, $state, $q, authService,productsService,modalService) {
+  constructor($scope, paymentsService, $state, $q, authService, productsService, modalService, user) {
     'ngInject';
     this.$scope = $scope;
     this.paymentsService = paymentsService;
@@ -10,7 +10,8 @@ class AuthPlansController {
     this.paymentsService = paymentsService;
     this.modalService = modalService;
 
-    this.user = null;
+    this.user = user;
+    
     this.products = {};
     this.product0 = null;
     this.product1 = null;

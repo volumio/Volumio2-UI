@@ -1,5 +1,5 @@
 class AuthCancelSubscriptionController {
-  constructor($scope, $state, $stateParams, $q, authService, paymentsService, StripeCheckout, modalService, productsService, $filter) {
+  constructor($scope, $state, $stateParams, $q, authService, user, paymentsService, StripeCheckout, modalService, productsService, $filter) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -15,7 +15,7 @@ class AuthCancelSubscriptionController {
     this.openedModal = {};
 
     this.plan = null;
-    this.user = null;
+    this.user = user;
     this.product = null;
 
     this.init();

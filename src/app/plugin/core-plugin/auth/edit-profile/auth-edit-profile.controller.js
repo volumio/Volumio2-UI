@@ -1,5 +1,5 @@
 class AuthEditProfileController {
-  constructor($scope, $state, authService, $q, $filter, modalService) {
+  constructor($scope, $state, authService, $q, $filter, modalService, user) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -8,7 +8,7 @@ class AuthEditProfileController {
     this.filteredTranslate = $filter('translate');
     this.modalService = modalService;
 
-    this.user = null;
+    this.user = user;
     this.emailChanged = false;
 
     this.form = {};
@@ -136,8 +136,11 @@ class AuthEditProfileController {
     this.authService.changeAvatar(this.avatarFile, this.user.uid).then((url) => {
       this.uploadingAvatar = false;
       this.isAvatarChanged = false;
-      this.user.photoUrl = url;
+      this.form.photoUrl = url;
+      console.log("this.form.photoUrl");
+      console.log(this.form.photoUrl);
     }).catch((error) => {
+      this.uploadingAvatar = false;
       this.modalService.openDefaultErrorModal(error);
     });
   }

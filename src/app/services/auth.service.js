@@ -1,5 +1,5 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter) {
+  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -9,6 +9,7 @@ class AuthService {
     this.remoteStorageService = remoteStorageService;
     this.stripeService = stripeService;
     this.filteredTranslate = $filter('translate');
+    this.modalService = modalService;
 
     this.user = null;
     this.mandatoryFields = [
@@ -16,7 +17,7 @@ class AuthService {
       'firstName',
       'lastName'
     ];
-    
+
     this.init();
   }
 
@@ -30,34 +31,43 @@ class AuthService {
     return this.angularFireService.login(user, pass);
   }
 
-  loginWithFacebook() {
-    return this.loginWithProvider('facebook');
-  }
-
-  loginWithGoogle() {
-    return this.loginWithProvider('google');
-  }
-
   loginWithProvider(provider) {
+    //facebook, google, github, ...
     return this.angularFireService.loginWithProvider(provider);
   }
 
-  filterAccessPromise(user, promise) {
+  requireUser() {
+    return this.angularFireService.requireUser();
+  }
+
+  requireVerifiedUserOrRedirect() {
+    return this.angularFireService.requireUser().then(user => {
+      return this.validateUser(user);
+    })
+  }
+  
+  waitForUser(){
+    return this.angularFireService.waitForUser();
+  }
+
+  validateUser(user) {
+    var validating = this.$q.defer();
     if (user === null) {
-      promise.resolve(user);
+      validating.resolve(user);
       return;
     }
     if (!this.isUserFilledWithMandatory(user)) {
-      promise.reject(this.filteredTranslate('AUTH.USER_MISSING_MANDATORY_FIELDS'));
+      validating.reject(this.filteredTranslate('AUTH.USER_MISSING_MANDATORY_FIELDS'));
+      this.modalService.openDefaultErrorModal('AUTH.USER_MISSING_MANDATORY_FIELDS');
       this.redirectToEditProfile();
       return;
     }
-    promise.resolve(user);
-    return;
+    validating.resolve(user);
+    return validating.promise;
 //    this.isUserVerified().then(() => {
-//      promise.resolve(user);
+//      validating.resolve(user);
 //    }).catch(() => {
-//      promise.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED')); 
+//      validating.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED')); 
 //      this.redirectToVerifyUser();
 //    });
   }
@@ -139,10 +149,6 @@ class AuthService {
     return updating.promise;
   }
 
-  getFirebaseAuthService() {
-    return this.angularFireService.getAuthService();
-  }
-
   recoverPassword(email) {
     return this.angularFireService.recoverPassword(email);
   }
@@ -190,6 +196,8 @@ class AuthService {
     this.databaseService.delete(userPath).then(() => {
       this.angularFireService.deleteAuthUser().then(() => {
         deleting.resolve();
+      }).catch(error => {
+        deleting.reject(error);
       });
     }).catch(error => {
       deleting.reject(error);

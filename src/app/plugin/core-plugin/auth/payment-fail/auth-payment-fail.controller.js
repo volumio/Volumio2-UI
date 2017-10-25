@@ -1,7 +1,9 @@
 class AuthPaymentFailController{
-  constructor($scope, $state){
+  constructor($scope, $state, user){
     'ngInject';
     this.$state = $state;
+    
+    this.user = user;
   }
   
   retryPayment(){

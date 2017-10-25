@@ -61,13 +61,23 @@ class AngularFireService {
   }
 
   startAuthListening() {
-    this.authService.$onAuthStateChanged((authUser) => {
+    this.authService.$onAuthStateChanged((authUser) => {      
       this.setUserByAuth(authUser).then((dbUser) => {
         //user set done
       }).catch(error => {
         this.modalService.openDefaultErrorModal(error);
       });
     }, this);
+  }
+  
+  requireUser(){
+    return this.authService.$requireSignIn().then((authUser) => {
+      return this.setUserByAuth(authUser);
+    });
+  }
+  
+  waitForUser(){
+    return this.authService.$waitForSignIn();
   }
 
   setUserByAuth(authUser) {
@@ -134,22 +144,6 @@ class AngularFireService {
     return this.authService.$getAuth();
   }
 
-  getUserPromise() {
-    var gettingUser = this.$q.defer();
-//    var user = this.getUser();
-//    if (user !== null) {
-//      gettingUser.resolve(user);
-//      return gettingUser.promise;
-//    }
-//    this.getRemoteUserPromise().then((user) => {
-//      gettingUser.resolve(user);
-//    }).catch((error) => {
-//      gettingUser.reject(error);
-//    });
-    gettingUser.resolve(this.dbUser);
-    return gettingUser.promise;
-  }
-
   getRemoteDbUser(userId) {
     var gettingDbUser = this.$q.defer();
 
@@ -188,13 +182,12 @@ class AngularFireService {
     //$signInWithPopup could be an alternative flow to the following
     var logging = this.$q.defer();
     this.authService.$signInWithRedirect(provider).then(() => {
-      this.authService.getRedirectResult().then((result) => {
-        logging.resolve(result);
-      });
+      // Never called because of page redirect
+      // Instead, look at $onAuthStateChanged() to detect successful authentication
     }).catch((error) => {
       logging.reject(error);
     });
-    logging.promise;
+    return logging.promise;
   }
 
   logOut() {
@@ -242,7 +235,7 @@ class AngularFireService {
 
     userRef.set(user).then((ref) => {
 
-      this.getDbUserPromise(userRef.key).then((user) => {
+      this.getRemoteDbUser(userRef.key).then((user) => {
         dbUserCreationing.resolve(user);
       }, (error) => {
         dbUserCreationing.reject(error);

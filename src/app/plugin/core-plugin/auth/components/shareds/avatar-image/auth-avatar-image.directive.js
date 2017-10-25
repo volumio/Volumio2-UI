@@ -5,7 +5,10 @@ class AuthAvatarImageDirective {
       restrict: 'E',
       templateUrl: 'app/plugin/core-plugin/auth/components/shareds/avatar-image/auth-avatar-image.html',
       controller: AuthAvatarImage,
-      controllerAs: 'authAvatarImageController'
+      controllerAs: 'authAvatarImageController',
+      scope:{
+        imageOverride: '<'
+      }
     };
     return directive;
   }
@@ -24,13 +27,31 @@ class AuthAvatarImage {
     this.imageUrl = null;
     this.modalService = modalService;
 
+    this.init();
+  }
+  
+  init(){
     this.authInit();
+    this.watchImageOverride();
   }
 
   authInit() {
     this.$scope.$watch(() => this.authService.user,(user) => {
       this.user = user;
+      this.postAuthInit();
     });
+  }
+  
+  postAuthInit(){
+    this.loadImage();
+  }
+  
+  watchImageOverride(){
+    this.$scope.$watch(() => this.$scope.imageOverride,(image) => {
+      if(image){
+        this.imageUrl = image;
+      }
+    })
   }
 
   loadImage(){

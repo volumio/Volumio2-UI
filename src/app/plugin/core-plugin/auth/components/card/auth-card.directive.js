@@ -5,7 +5,10 @@ class AuthCardDirective {
       restrict: 'E',
       templateUrl: 'app/plugin/core-plugin/auth/components/card/auth-card.html',
       controller: AuthCardController,
-      controllerAs: 'authCardController'
+      controllerAs: 'authCardController',
+      scope:{
+        'actionCallback': '&'
+      }
     };
     return directive;
   }
@@ -18,6 +21,7 @@ class AuthCardController {
     this.$state = $state;
     this.authService = authService;
     this.modalService = modalService;
+    this.actionCallback = this.$scope.actionCallback;
 
     this.user = null;
 
@@ -32,19 +36,23 @@ class AuthCardController {
 
   //auth section
   logIn() {
+    this.actionCallback();
     this.$state.go('volumio.auth.login');
   }
 
   signUp() {
+    this.actionCallback();
     this.$state.go('volumio.auth.signup');
   }
 
   goToProfile() {
+    this.actionCallback();
     this.$state.go('volumio.auth.profile');
   }
 
   logOut() {
     this.authService.logOut().then(() => {
+      this.actionCallback();
       this.$state.go('volumio.auth.login');
     }).catch(error => {
       this.modalService.openDefaultErrorModal(error);

@@ -1,5 +1,5 @@
 class AuthProfileController {
-  constructor($scope, $state, $stateParams, authService, modalService, $q, angularFireService) {
+  constructor($scope, $state, $stateParams, authService, modalService, $q, angularFireService, user) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -8,7 +8,7 @@ class AuthProfileController {
     this.$q = $q;
     this.angularFireService = angularFireService;
 
-    this.user = null;
+    this.user = user;
     this.isUserVerified = false;
 
     this.init();

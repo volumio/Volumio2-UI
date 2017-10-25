@@ -1,11 +1,13 @@
 class AuthSignupController {
-  constructor($scope, $state, authService, modalService, $translate) {
+  constructor($scope, $state, authService, modalService, $translate, user) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.modalService = modalService;
     this.authService = authService;
     this.$translate = $translate;
+    
+    this.user = user;
 
     this.agreeButtonSettings = {
       on:  'glyphicon glyphicon-check',
@@ -27,16 +29,32 @@ class AuthSignupController {
 
   authInit() {
     this.$scope.$watch(() => this.authService.user,(user) => {
-      this.user = user;
+      this.postAuthInit();
     });
   }
-
+  
+  postAuthInit(){
+    if(this.user != null){
+      this.$state.go('volumio.auth.profile');
+    }
+  }
+  
   loginWithFacebook() {
-    this.authService.loginWithFacebook();
+    this.loginWithProvider('facebook');
   }
 
   loginWithGoogle() {
-    this.authService.loginWithGoogle();
+    this.loginWithProvider('google');
+  }
+  
+  loginWithGithub() {
+    this.loginWithProvider('github');
+  }
+  
+  loginWithProvider(provider) {
+    this.authService.loginWithProvider(provider).catch(error => {
+      this.modalService.openDefaultErrorModal(error);
+    });
   }
 
   clickShowTerms() {

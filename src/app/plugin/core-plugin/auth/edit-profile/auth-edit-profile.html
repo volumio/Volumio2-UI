@@ -24,7 +24,7 @@
             <!-- left column -->
             <div class="col-md-6">
               <div class="text-center" style="margin-bottom: 16px;">
-                <auth-avatar-image></auth-avatar-image>
+                <auth-avatar-image image-override="authEditProfileController.form.photoUrl"></auth-avatar-image>
                 <h6 translate="AUTH.UPLOAD_PHOTO"></h6>
                 <div>
                   <input type="file" class="form-control" ng-model="authEditProfileController.userAvatar" auth-file-on-change on-change-callback="authEditProfileController.avatarChange(file)">
@@ -106,8 +106,14 @@
                 </div>
                 <div class="form-group">
                   <div class="col-md-24">
-                    <input type="submit" class="btn btn-success" value="Save Changes" />
-                    <a ng-if="authEditProfileController.isUserFilledWithMandatory()" ng-click="authEditProfileController.goToProfile()" class="btn btn-default pull-right">Go to profile</a>
+                    <button type="submit" class="btn btn-success">
+                      <span class="glyphicon glyphicon-cloud-upload"></span>
+                      <span translate="AUTH.SAVE"></span>
+                    </button>
+                    <a ng-if="authEditProfileController.isUserFilledWithMandatory()" ng-click="authEditProfileController.goToProfile()" class="btn btn-default pull-right">
+                      <span class="glyphicon glyphicon-user"></span>
+                      <span translate="AUTH.PROFILE"></span>
+                    </a>
                   </div>
                 </div>
               </form>
