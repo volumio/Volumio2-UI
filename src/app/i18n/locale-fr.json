@@ -8,7 +8,7 @@
     "SELECT_BACKGROUND_COLOR": "Choisir une couleur de fond",
     "APPLY_BACKGROUND": "Appliquer l'image de fond d'écran",
     "APPLY_BACKGROUND_COLOR": "Appliquer la couleur de fond d'écran",
-    "DELETE_BACKGROUND": "Effacer l'arrière plan"
+    "DELETE_BACKGROUND": "Supprimer l'arrière plan"
   },
   "COMMON": {
     "SAVE": "Sauver",
@@ -53,7 +53,7 @@
     "OPTIONS":"Options",
     "CHOOSE_PLAYLIST":"Choisir la Playlist",
     "STOP_MUSIC":"Arrêter la lecture",
-    "HOME": "Home",
+    "HOME": "Accueil",
     "VOLUME_MUTE":"Rendre Muet",
     "VOLUME_MUTED":"Muet",
     "VOLUME_UP":"Monter Volume",
@@ -71,7 +71,7 @@
     "EMAIL": "Email",
     "SUBSCRIBE_ME": "M'inscrire",
     "SHARE": "Partager",
-    "EJECT":"Eject"
+    "EJECT":"Ejecter"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -104,14 +104,14 @@
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Retour aux plugins",
     "PLUGINS":"Plugins",
-    "PLUGINS_MANAGEMENT":"Gestion des Plugins",
+    "PLUGINS_MANAGEMENT":"Gestion des plugins",
     "SHOW_DETAILS":"+ Montrer les détails",
     "HIDE_DETAILS":"- Cacher les détails",
     "INSTALL":"Installer",
     "UNINSTALL":"Désinstaller",
     "UPDATE":"Mettre à jour",
     "DETAILS":"Details",
-    "DROP":"Cliquer et sélectionner un plugin ou le glisser le ici.",
+    "DROP":"Cliquer et sélectionner un plugin ou le glisser ici.",
     "INSTALL_PROGRESS":"Avancement de l'installation",
     "INSTALLED_PLUGINS":"Plugins installés",
     "SEARCH_PLUGINS":"Chercher des Plugins",
@@ -149,8 +149,8 @@
     "USERNAME":"Nom d'utilisateur",
     "PASSWORD":"Mot de passe",
     "OPTIONS":"Options",
-    "SHOW_OPTIONS":"Montrer les Options avancées",
-    "HIDE_OPTIONS":"Cacher les Options avancées",
+    "SHOW_OPTIONS":"Montrer les options avancées",
+    "HIDE_OPTIONS":"Cacher les options avancées",
     "NETWORK_DRIVES":"Disques Réseau",
     "ADD_DRIVE":"Ajouter un nouveau disque",
     "NAME":"Nom",
@@ -160,7 +160,7 @@
     "SCANNING_FOR_NETWORK_DRIVES": "Scan des disques réseau",
     "DELETE_DRIVE":"Supprimer un disque",
     "EDIT_DRIVE":"Editer un disque",
-    "DELETE_DRIVE_CONFIRM":"Voulez vous vraiment éffacer ?",
+    "DELETE_DRIVE_CONFIRM":"Voulez vous vraiment effacer ?",
     "PLACEHOLDER_NAME":"Nom",
     "PLACEHOLDER_IP_ADDRESS":"Address IP du NAS ou Nom",
     "PLACEHOLDER_PATH_TO_SHARE":"Chemin du partage"
@@ -189,7 +189,7 @@
      "FOLLOW": "Suivant",
      "DONE": "Fait",
      "WELCOME": "Bienvenue dans Volumio, c'est parti!",
-     "SELECT_YOUR_LANGUAGE": "Selectionnez votre langue",
+     "SELECT_YOUR_LANGUAGE": "Sélectionnez votre langue",
      "DEVICE_NAME": "Donnez un nom unique pour ce périphérique",
      "DEVICE_ADDRESS": "Ce périphérique sera disponible à cette adresse :",
      "SELECT_YOUR_AUDIO_OUTPUT": "Selectionnez votre sortie audio",
