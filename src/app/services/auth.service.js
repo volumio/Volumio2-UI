@@ -43,22 +43,22 @@ class AuthService {
   requireNullUserOrRedirect(){
     return this.angularFireService.waitForUser().then(user => {
       var gettingUser = this.$q.defer();
-      if(user == null){
+      if(user === null){
         gettingUser.resolve(null);
       }else{
         this.$state.go('volumio.auth.profile');
         gettingUser.reject('AUTH.USER_ALREADY_LOGGED');
       }
       return gettingUser.promise;
-    })
+    });
   }
 
   requireVerifiedUserOrRedirect() {
     return this.angularFireService.requireUser().then(user => {
       return this.validateUser(user);
-    })
+    });
   }
-  
+
   waitForUser(){
     return this.angularFireService.waitForUser();
   }
@@ -80,7 +80,7 @@ class AuthService {
 //    this.isUserVerified().then(() => {
 //      validating.resolve(user);
 //    }).catch(() => {
-//      validating.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED')); 
+//      validating.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED'));
 //      this.redirectToVerifyUser();
 //    });
   }

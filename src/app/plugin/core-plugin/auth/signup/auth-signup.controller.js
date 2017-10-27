@@ -6,7 +6,7 @@ class AuthSignupController {
     this.modalService = modalService;
     this.authService = authService;
     this.$translate = $translate;
-    
+
     this.user = user;
 
     this.agreeButtonSettings = {
@@ -14,7 +14,7 @@ class AuthSignupController {
       off: 'glyphicon glyphicon-unchecked'
     };
     this.termsButtonIcon = this.agreeButtonSettings.off;
-    
+
     this.form = {
       termsCheckbox: false
     };
@@ -32,13 +32,13 @@ class AuthSignupController {
       this.postAuthInit();
     });
   }
-  
+
   postAuthInit(){
-    if(this.user != null){
+    if(this.user !== null){
       this.$state.go('volumio.auth.profile');
     }
   }
-  
+
   loginWithFacebook() {
     this.loginWithProvider('facebook');
   }
@@ -46,11 +46,11 @@ class AuthSignupController {
   loginWithGoogle() {
     this.loginWithProvider('google');
   }
-  
+
   loginWithGithub() {
     this.loginWithProvider('github');
   }
-  
+
   loginWithProvider(provider) {
     this.authService.loginWithProvider(provider).catch(error => {
       this.modalService.openDefaultErrorModal(error);

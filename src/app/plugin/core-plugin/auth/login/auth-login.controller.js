@@ -15,9 +15,9 @@ class AuthLoginController {
       this.postAuthInit();
     });
   }
-  
+
   postAuthInit(){
-    if(this.user != null){
+    if(this.user !== null){
       this.$state.go('volumio.auth.profile');
     }
   }
@@ -29,7 +29,7 @@ class AuthLoginController {
       this.modalService.openDefaultErrorModal(error);
     });
   }
-  
+
   loginWithFacebook() {
     this.loginWithProvider('facebook');
   }
@@ -37,11 +37,11 @@ class AuthLoginController {
   loginWithGoogle() {
     this.loginWithProvider('google');
   }
-  
+
   loginWithGithub() {
     this.loginWithProvider('github');
   }
-  
+
   loginWithProvider(provider) {
     this.authService.loginWithProvider(provider).catch(error => {
       this.modalService.openDefaultErrorModal(error);

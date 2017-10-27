@@ -46,7 +46,7 @@ class AuthCurrentPlanCardController {
   }
 
   checkUserVerified() {
-    if (this.user == null) {
+    if (this.user === null) {
       return;
     }
     this.authService.isUserVerified().then(() => {
