@@ -25,15 +25,14 @@
             <div class="col-md-6">
               <div class="text-center" style="margin-bottom: 16px;">
                 <auth-avatar-image image-override="authEditProfileController.form.photoUrl"></auth-avatar-image>
-                <h6 translate="AUTH.UPLOAD_PHOTO"></h6>
+                <h6 translate="AUTH.EDIT_AVATAR"></h6>
                 <div>
                   <input type="file" class="form-control" ng-model="authEditProfileController.userAvatar" auth-file-on-change on-change-callback="authEditProfileController.avatarChange(file)">
                 </div>
                 <div ng-if="authEditProfileController.isAvatarChanged === true">
                   <a class="btn btn-success btn-block" style="margin-top: 16px;" ng-click="authEditProfileController.saveAvatar();">
                     <span ng-if="authEditProfileController.uploadingAvatar === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-                    <span ng-if="authEditProfileController.uploadingAvatar !== true" class="glyphicon glyphicon-upload"></span>
-                    <span translate="UPLOAD"></span>
+                    <span translate="AUTH.SAVE_AVATAR"></span>
                   </a>
                 </div>
               </div>
@@ -107,13 +106,8 @@
                 <div class="form-group">
                   <div class="col-md-24">
                     <button type="submit" class="btn btn-success">
-                      <span class="glyphicon glyphicon-cloud-upload"></span>
-                      <span translate="AUTH.SAVE"></span>
+                      <span translate="COMMON.SAVE"></span>
                     </button>
-                    <a ng-if="authEditProfileController.isUserFilledWithMandatory()" ng-click="authEditProfileController.goToProfile()" class="btn btn-default pull-right">
-                      <span class="glyphicon glyphicon-user"></span>
-                      <span translate="AUTH.PROFILE"></span>
-                    </a>
                   </div>
                 </div>
               </form>

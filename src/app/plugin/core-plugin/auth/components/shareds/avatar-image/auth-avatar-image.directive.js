@@ -23,13 +23,13 @@ class AuthAvatarImage {
     this.$watch = $scope.$watch;
 
     this.user = null;
-    
+
     this.imageUrl = null;
     this.modalService = modalService;
 
     this.init();
   }
-  
+
   init(){
     this.authInit();
     this.watchImageOverride();
@@ -41,17 +41,17 @@ class AuthAvatarImage {
       this.postAuthInit();
     });
   }
-  
+
   postAuthInit(){
     this.loadImage();
   }
-  
+
   watchImageOverride(){
     this.$scope.$watch(() => this.$scope.imageOverride,(image) => {
       if(image){
         this.imageUrl = image;
       }
-    })
+    });
   }
 
   loadImage(){
