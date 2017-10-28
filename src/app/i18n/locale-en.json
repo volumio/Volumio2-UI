@@ -267,7 +267,7 @@
     "FREE_DAYS_TRIAL":"Free days trial",
     "ALREADY_LOGGED_IN":"Already logged in",
     "DELETE_ACCOUNT":"Delete Account",
-    "CONFIRM_DELETE_ACCOUNT":"Are you sure you want to delete your account? All your profile data and settings will be deleted",
+    "CONFIRM_DELETE_ACCOUNT": "Are you sure you want to delete your account? All your profile data, subscriptions and settings will be deleted",
     "RESEND_VERIFICATION_EMAIL":"Resend verification email",
     "VERIFICATION_DONE_NOW_REAUTH":"I have already verified my account, make me log-in again now!",
     "PLEASE_VERIFY_EMAIL_TITLE":"Please verify your email",
@@ -278,6 +278,7 @@
     "PAYMENT_IN_PROGRESS":"Payment in progress",
     "PLEASE_VERIFY_EMAIL_TITLE":"",
     "USER_MISSING_MANDATORY_FIELDS": "In order to complete your registration, please complete your profile with the mandatory fields.",
-    "USER_VERIFICATION_EMAIL_SENT_DESC": "A verification email has just been sent to your mailbox. It may occour some minutes to be delivered."
+    "USER_VERIFICATION_EMAIL_SENT_DESC": "A verification email has just been sent to your mailbox. It may occour some minutes to be delivered.",
+    "CONFIRM_DELETE_ACCOUNT_TITLE": "Delete user?"
   }
 }

@@ -27,19 +27,19 @@ class AuthEditProfileController {
   }
 
   authInit() {
-    this.$scope.$watch(() => this.authService.user,(user) => {
+    this.$scope.$watch(() => this.authService.user, (user) => {
       this.user = user;
       this.postAuthInit();
     });
   }
-  
-  postAuthInit(){
+
+  postAuthInit() {
     this.copyValuesToForm();
   }
 
   copyValuesToForm() {
     for (var key in this.user) {
-      if(key.startsWith("$") || key === 'forEach'){
+      if (key.startsWith("$") || key === 'forEach') {
         continue;
       }
       this.form[key] = this.user[key];
@@ -48,7 +48,7 @@ class AuthEditProfileController {
 
   copyValuesToUser() {
     for (var key in this.form) {
-      if(key.startsWith("$") || key === 'forEach'){
+      if (key.startsWith("$") || key === 'forEach') {
         continue;
       }
       this.user[key] = this.form[key];
@@ -150,9 +150,12 @@ class AuthEditProfileController {
   }
 
   deleteUser() {
-    if (!confirm(this.filteredTranslate('AUTH.CONFIRM_DELETE_ACCOUNT'))) { //TODO Y/N MODAL
-      return;
-    }
+    this.modalService.openDefaultModal('AUTH.CONFIRM_DELETE_ACCOUNT_TITLE', 'AUTH.CONFIRM_DELETE_ACCOUNT', () => {
+      this.doDeleteUser();
+    });
+  }
+
+  doDeleteUser() {
     this.deletingUser = true;
     this.authService.deleteUser(this.user).then(() => {
       this.deletingUser = false;
