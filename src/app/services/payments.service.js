@@ -1,5 +1,6 @@
 class PaymentsService {
   constructor(stripeService, $q) {
+    'ngInject';
     this.stripeService = stripeService;
     this.$q = $q;
   }
