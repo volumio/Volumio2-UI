@@ -81,6 +81,7 @@ import ModalPowerOffController from './components/side-menu/elements/modal-power
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
 import ModalAlarmClockController from './components/side-menu/elements/modal-alarm-clock.controller';
 import ModalUpdaterController from './components/modals/modal-updater.controller';
+import ModalProgressCustomController from './components/modals/modal-progress.controller';
 import ModalGotitController from './components/modals/modal-gotit.controller';
 import ModalConfirmController from './components/modals/modal-confirm.controller';
 import ModalRipperController from './components/modals/modal-ripper.controller';
@@ -210,6 +211,7 @@ angular.module('volumio', [
   .controller('ModalSleepController', ModalSleepController)
   .controller('ModalAlarmClockController', ModalAlarmClockController)
   .controller('ModalUpdaterController', ModalUpdaterController)
+  .controller('ModalProgressCustomController', ModalProgressCustomController)
   .controller('ModalGotitController', ModalGotitController)
   .controller('ModalConfirmController', ModalConfirmController)
   .controller('ModalRipperController', ModalRipperController)
