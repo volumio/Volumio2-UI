@@ -19,7 +19,7 @@
 <div class="modal-footer">
   <div ng-if="modal.modalService.status === 'modalDone'">
     <button ng-class="button.class"
-        ng-repeat="button in modal.dataObj.buttons track by $index"
+        ng-repeat="button in modal.modalService.modalProgress.buttons track by $index"
         ng-click="modal.btnClick(button)">
       {{::button.name}}
     </button>
