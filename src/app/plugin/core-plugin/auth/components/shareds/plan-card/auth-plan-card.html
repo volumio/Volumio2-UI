@@ -76,27 +76,29 @@
           <span translate="AUTH.UPGRADE_PLAN"></span>
         </button>
       </div>
-    </div>
-    <div ng-if="authPlanCardController.activateSubscribe">
-      <stripe-pay-button
-        stripe-product='authPlanCardController.product'
-        callback='authPlanCardController.subscriptionCallback(subscribing)'
-        user-id="authPlanCardController.user.uid"
-        button-label="{{'AUTH.SUBSCRIBE' | translate}}"
-        button-class="btn-block"
-        ></stripe-pay-button>
-    </div>
-    <div ng-if="authPlanCardController.activateCancellation">
-      <button ng-click="authPlanCardController.doDowngrade()" type="button" class="btn btn-labeled btn-default">
-        <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>
-        <span translate="AUTH.CANCEL_SUBSCRIPTION"></span>
-      </button>
-    </div>
-    <div ng-if="authPlanCardController.activateChangeSubscription">
-      <button ng-click="authPlanCardController.changePlan();" type="button" class="btn btn-labeled btn-default">
-        <span class="btn-label"><i class="fa fa-random"></i></span>
-        <span translate="AUTH.UPDATE_SUBSCRIPTION"></span>
-      </button>
+      <!-- SUBSCRIBE BUTTONS -->
+      <div ng-if="authPlanCardController.activateSubscribe">
+        <stripe-pay-button
+          stripe-product='authPlanCardController.product'
+          callback='authPlanCardController.subscriptionCallback(subscribing)'
+          user-id="authPlanCardController.user.uid"
+          button-label="{{'AUTH.SUBSCRIBE' | translate}}"
+          button-class="btn-block"
+          user-email="authPlanCardController.user.email"
+          ></stripe-pay-button>
+      </div>
+      <div ng-if="authPlanCardController.activateCancellation">
+        <button ng-click="authPlanCardController.doDowngrade()" type="button" class="btn btn-labeled btn-default">
+          <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>
+          <span translate="AUTH.CANCEL_SUBSCRIPTION"></span>
+        </button>
+      </div>
+      <div ng-if="authPlanCardController.activateChangeSubscription">
+        <button ng-click="authPlanCardController.changePlan();" type="button" class="btn btn-labeled btn-default">
+          <span class="btn-label"><i class="fa fa-random"></i></span>
+          <span translate="AUTH.UPDATE_SUBSCRIPTION"></span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

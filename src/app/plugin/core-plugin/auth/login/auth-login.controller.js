@@ -55,6 +55,10 @@ class AuthLoginController {
   goToRecoverPassword() {
     this.$state.go('volumio.auth.recover-password');
   }
+  
+  isSocialEnabled(){
+    return this.authService.isSocialEnabled();
+  }
 
 }
 

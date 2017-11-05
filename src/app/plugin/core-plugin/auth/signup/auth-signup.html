@@ -15,35 +15,37 @@
       <div ng-show="authSignupController.user == null">
         <div class="omb_login">
           <h3 class="omb_authTitle" translate="AUTH.SIGNUP"></h3>
-          
-          <div class="row omb_row-sm-offset-3 omb_socialButtons">
-            <div class="col-xs-8 col-sm-4">
-              <a ng-click="authSignupController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
-                <i class="fa fa-facebook"></i> 
-                <span class="hidden-xs">Facebook</span>
-              </a>
+
+          <div ng-if="authSignupController.isSocialEnabled()">
+            <div class="row omb_row-sm-offset-3 omb_socialButtons">
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="authSignupController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                  <i class="fa fa-facebook"></i> 
+                  <span class="hidden-xs">Facebook</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="authSignupController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
+                  <i class="fa fa-google-plus"></i> 
+                  <span class="hidden-xs">Google+</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="authSignupController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
+                  <i class="fa fa-github"></i> 
+                  <span class="hidden-xs">GitHub</span>
+                </a>
+              </div>
             </div>
-            <div class="col-xs-8 col-sm-4">
-              <a ng-click="authSignupController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
-                <i class="fa fa-google-plus"></i> 
-                <span class="hidden-xs">Google+</span>
-              </a>
-            </div>
-            <div class="col-xs-8 col-sm-4">
-              <a ng-click="authSignupController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
-                <i class="fa fa-github"></i> 
-                <span class="hidden-xs">GitHub</span>
-              </a>
+
+            <div class="row omb_row-sm-offset-3 omb_loginOr">
+              <div class="col-xs-24 col-sm-12">
+                <hr class="omb_hrOr">
+                <span class="omb_spanOr" translate="AUTH.OR"></span>
+              </div>
             </div>
           </div>
 
-          <div class="row omb_row-sm-offset-3 omb_loginOr">
-            <div class="col-xs-24 col-sm-12">
-              <hr class="omb_hrOr">
-              <span class="omb_spanOr" translate="AUTH.OR"></span>
-            </div>
-          </div>
-          
           <div class="row">
             <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
               <form role="form" ng-submit="authSignupController.submitForm()">

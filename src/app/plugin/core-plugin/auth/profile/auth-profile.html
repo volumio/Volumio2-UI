@@ -1,19 +1,22 @@
 <div class="box">
+  
   <div class="boxHeader">
     <div class="title">
       <h2 translate="AUTH.MY_VOLUMIO"></h2>
     </div>
   </div>
+  
   <div
     id="authLoginPlugin"
-    class="panel panel-default">
+    class="panel panel-default"
+    ng-if="authProfileController.user !== null" >
     <div class="panel-heading">
       <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.PROFILE"></span></h3>
     </div>
 
     <div class="panel-body">
 
-      <div ng-if="authProfileController.user !== null">
+      <div>
         <div class="row my-profile">
           <div class="col-sm-6 col-md-4">
             <auth-avatar-image></auth-avatar-image>
@@ -55,10 +58,11 @@
         </div>
       </div>
 
-      <div ng-if="authProfileController.user === null">
+    </div>
+  </div>
+  
+        <div ng-if="authProfileController.user === null">
 
         NOT LOGGED
 
       </div>
-    </div>
-  </div>

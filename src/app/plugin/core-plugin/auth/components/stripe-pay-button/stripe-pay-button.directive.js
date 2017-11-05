@@ -11,7 +11,8 @@ class StripePayButtonDirective {
         callback: "&",
         userId: '<',
         buttonLabel: '@',
-        buttonClass: '@'
+        buttonClass: '@',
+        userEmail: '='
       }
     };
     return directive;
@@ -41,6 +42,7 @@ class StripePayButtonController {
     this.userId = this.$scope.userId;
     this.buttonLabel = this.$scope.buttonLabel;
     this.buttonClass = this.$scope.buttonClass;
+    this.userEmail = this.$scope.userEmail || '';
 
     this.init();
   }
@@ -68,7 +70,9 @@ class StripePayButtonController {
       key: 'pk_test_utxQAjiMNEdVZFel9iQlDkyH', //TODO insert in a config
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
-      token: this.getPayFunction()
+      token: this.getPayFunction(),
+      bitcoin: true,
+      email: this.userEmail
     });
   }
 

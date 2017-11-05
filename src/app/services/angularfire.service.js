@@ -1,6 +1,6 @@
 class AngularFireService {
 
-  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, modalService) {
+  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, $filter, modalService) {
     'ngInject';
     //consts
     this.USERS_REF = "users";
@@ -18,6 +18,7 @@ class AngularFireService {
     this.authService;
     this.database;
     this.modalService = modalService;
+    this.filteredTranslate = $filter('translate');
 
     this.authUser = null;
     this.dbUser = null;
@@ -81,6 +82,8 @@ class AngularFireService {
   }
 
   setUserByAuth(authUser) {
+    console.log("authUser");
+    console.log(authUser);
     var gettingUser = this.$q.defer();
     if (authUser === null || authUser === undefined) {
       this.dbUser = null;
@@ -90,9 +93,10 @@ class AngularFireService {
     }
     this.getRemoteDbUser(authUser.uid).then((dbUser) => {
       if ((dbUser.uid === undefined || dbUser.uid === null) && dbUser.$value === null) { //if user'snt on db
-        var userData = {
-          plan: 'free'
-        };
+//        var userData = {
+//          plan: 'free'
+//        };
+        var userData = {};
         this.loadSocialData(authUser, userData);
         this.createDbUser(authUser.uid, userData).then((dbUser) => {
           this.authUser = authUser;
@@ -189,9 +193,15 @@ class AngularFireService {
     });
     return logging.promise;
   }
+  
+  loginWithToken(token){
+    return this.authService.$signInWithCustomToken(token);
+  }
 
   logOut() {
-    return this.authService.$signOut();
+    this.setUserByAuth(null);
+    var signingOut = this.authService.$signOut();
+    return signingOut;
   }
 
   signup(user) {
@@ -231,6 +241,7 @@ class AngularFireService {
     user.uid = uid;
     user.createdAt = this.firebase.database.ServerValue.TIMESTAMP;
     user.updatedAt = this.firebase.database.ServerValue.TIMESTAMP;
+    //user.plan = 'free';
     delete user.password;
 
     userRef.set(user).then((ref) => {

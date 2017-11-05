@@ -16,32 +16,34 @@
       <div id="" ng-if="authLoginController.user == null" >
         <div class="omb_login">
           <h3 class="omb_authTitle">Login</h3>
-          
-          <div class="row omb_row-sm-offset-3 omb_socialButtons">
-            <div class="col-xs-8 col-sm-4">
-              <a ng-click="authLoginController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
-                <i class="fa fa-facebook"></i> 
-                <span class="hidden-xs">Facebook</span>
-              </a>
-            </div>
-            <div class="col-xs-8 col-sm-4">
-              <a ng-click="authLoginController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
-                <i class="fa fa-google-plus"></i> 
-                <span class="hidden-xs">Google+</span>
-              </a>
-            </div>
-            <div class="col-xs-8 col-sm-4">
-              <a ng-click="authLoginController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
-                <i class="fa fa-github"></i> 
-                <span class="hidden-xs">GitHub</span>
-              </a>
-            </div>
-          </div>
 
-          <div class="row omb_row-sm-offset-3 omb_loginOr">
-            <div class="col-xs-24 col-sm-12">
-              <hr class="omb_hrOr">
-              <span class="omb_spanOr">or</span>
+          <div ng-if="authLoginController.isSocialEnabled()">
+            <div class="row omb_row-sm-offset-3 omb_socialButtons">
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="authLoginController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                  <i class="fa fa-facebook"></i> 
+                  <span class="hidden-xs">Facebook</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="authLoginController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
+                  <i class="fa fa-google-plus"></i> 
+                  <span class="hidden-xs">Google+</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="authLoginController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
+                  <i class="fa fa-github"></i> 
+                  <span class="hidden-xs">GitHub</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="row omb_row-sm-offset-3 omb_loginOr">
+              <div class="col-xs-24 col-sm-12">
+                <hr class="omb_hrOr">
+                <span class="omb_spanOr">or</span>
+              </div>
             </div>
           </div>
 

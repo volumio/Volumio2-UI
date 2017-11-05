@@ -133,6 +133,10 @@ class AuthSignupController {
     this.modalService.openDefaultErrorModal("AUTH.ERROR_VALIDATION_PASSWORD_MATCH");
     return false;
   }
+  
+  isSocialEnabled(){
+    return this.authService.isSocialEnabled();
+  }
 
 }
 

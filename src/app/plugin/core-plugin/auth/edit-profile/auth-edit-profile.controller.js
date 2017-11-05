@@ -150,7 +150,7 @@ class AuthEditProfileController {
   }
 
   deleteUser() {
-    this.modalService.openDefaultModal('AUTH.CONFIRM_DELETE_ACCOUNT_TITLE', 'AUTH.CONFIRM_DELETE_ACCOUNT', () => {
+    this.modalService.openDefaultConfirm('AUTH.CONFIRM_DELETE_ACCOUNT_TITLE', 'AUTH.CONFIRM_DELETE_ACCOUNT', () => {
       this.doDeleteUser();
     });
   }

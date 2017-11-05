@@ -51,7 +51,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             resolve: {
               //NOTE this resolver init also global services like toast
               socketResolver: ($rootScope, $http, $window, socketService, ripperService, modalListenerService,
-                      toastMessageService, uiSettingsService, updaterService) => {
+                      toastMessageService, uiSettingsService, updaterService, authService) => {
                 let localhostApiURL = `http://${$window.location.hostname}/api`;
                 return $http.get(localhostApiURL + '/host')
                         .then((response) => {

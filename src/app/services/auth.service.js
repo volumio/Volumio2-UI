@@ -1,5 +1,5 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService) {
+  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService, socketService, $http, $location) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -10,6 +10,9 @@ class AuthService {
     this.stripeService = stripeService;
     this.filteredTranslate = $filter('translate');
     this.modalService = modalService;
+    this.socketService = socketService;
+    this.$http = $http;
+    this.$location = $location;
 
     this.user = null;
     this.mandatoryFields = [
@@ -18,34 +21,210 @@ class AuthService {
       'lastName'
     ];
 
+    this.socketPromise;
+    this.socketDeferred;
+
+    this.isFirstSyncroDone = false;
+    this.isJustLogged = false;
+    
+    this.isMyVolumioEnabled = false;
+
     this.init();
   }
 
   init() {
-    this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
-      this.user = user;
+    this.initSocket();
+    //this.checkLoadMyVolumio();
+    this.startSyncronizationWithBackend();
+    this.watchUser();
+  }
+  
+  checkLoadMyVolumio(){
+    this.socketService.on('pushMenuItems', (data) => {
+      let found = false;
+      for(var i in data){
+        if(data[i].id === 'auth'){
+          this.isMyVolumioEnabled = true;
+          found = true;
+        }
+      }
+      if(!found){
+        this.isMyVolumioEnabled = false;
+      }
+    });
+
+    this.$rootScope.$on('$destroy', () => {
+      this.socketService.off('pushMenuItems');
     });
   }
 
+  startSyncronizationWithBackend() {
+    this.waitForUser().then(user => {
+      this.user = user;
+      this.syncronizeWithBackend(true);
+    }).catch(error => {
+      this.modalService.openDefaultErrorModal(error);
+    });
+  }
+
+  watchUser() {
+    this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
+      this.user = user;
+      this.syncronizeWithBackend();
+    });
+  }
+
+  initSocket() {
+    this.socketDeferred = this.$q.defer();
+    this.socketPromise = this.socketDeferred.promise;
+
+    this.$rootScope.$on('socket:init', () => {
+      this.registerListner();
+      this.socketDeferred.resolve();
+    });
+
+    this.$rootScope.$on('socket:disconnect', () => {
+      this.socketDeferred = this.$q.defer();
+      this.socketPromise = this.socketDeferred.promise;
+    });
+
+    this.$rootScope.$on('socket:reconnect', () => {
+      this.registerListner();
+      this.socketDeferred.resolve();
+    });
+  }
+
+  syncronizeWithBackend(overrideRaceCondition = false) {
+    if (overrideRaceCondition === true || this.isFirstSyncroDone) {
+      this.socketPromise.then(() => {
+        if (this.isJustLogged) { //TODO CHECK USER
+          this.isJustLogged = false;
+          this.sendUserTokenToBackend().then(() => {
+            this.isFirstSyncroDone = true;
+          });
+        } else {
+          this.getMyVolumioStatus().then((status) => {
+            var loggedIn = status.loggedIn;
+            var uid = status.uid;
+            if (loggedIn === true) { //BE logged
+              if (this.user === null) {
+                this.requestUserToBackend().then(() => {
+                  this.isFirstSyncroDone = true;
+                });
+              } else if (this.user.uid !== uid) {
+                //TODO MODAL
+                this.logOut().then(() => {
+                  this.requestUserToBackend().then(() => {
+                    this.isFirstSyncroDone = true;
+                  });
+                });
+              } else {
+                //BE & FE are already synced
+                this.isFirstSyncroDone = true;
+              }
+            } else { //BE not logged
+              if (this.user !== null) {
+                this.sendUserTokenToBackend().then(() => {
+                  this.isFirstSyncroDone = true;
+                });
+              } else {
+                this.isFirstSyncroDone = true;
+              }
+            }
+          });
+        }
+      }).catch(error => {
+        this.modalService.openDefaultErrorModal(error);
+      });
+  }
+  }
+
+  getMyVolumioStatus() {
+    var getting = this.$q.defer();
+
+    this.socketService.on('pushMyVolumioStatus', (data) => {
+      getting.resolve(data);
+    });
+
+    this.$rootScope.$on('$destroy', () => {
+      this.socketService.off('pushMyVolumioStatus');
+    });
+
+    this.socketService.emit('getMyVolumioStatus');
+
+    return getting.promise;
+  }
+
+  sendUserTokenToBackend() {
+    var sending = this.$q.defer();
+    this.getUserToken(this.user.uid).then((response) => {
+      var token = response.data;
+      this.socketService.emit('setMyVolumioToken', {
+        "token": token
+      }, () => {
+        sending.resolve();
+      });
+    }).catch(error => {
+      sending.reject(error);
+    });
+    return sending.promise;
+  }
+
+  getUserToken(uid) {
+    return this.$http({
+      url: 'https://us-central1-myvolumio.cloudfunctions.net/generateToken', //TODO dynamic conf + auth
+      method: "GET",
+      params: {uid: uid}
+    });
+  }
+
+  requestUserToBackend() {
+    var requesting = this.$q.defer();
+    this.emitUserRequest().then(() => {
+      requesting.resolve();
+    }).catch((error) => {
+      requesting.reject(error);
+    });
+    return requesting.promise;
+  }
+
+  emitUserRequest() {
+    var emitting = this.$q.defer();
+    this.socketService.emit('getMyVolumioToken', undefined, () => {
+      emitting.resolve();
+    });
+    return emitting.promise;
+  }
+
   login(user, pass) {
-    return this.angularFireService.login(user, pass);
+    return this.angularFireService.login(user, pass).then(() => {
+      this.isJustLogged = true;
+      window.isJustLogged = true;
+    });
   }
 
   loginWithProvider(provider) {
     //facebook, google, github, ...
-    return this.angularFireService.loginWithProvider(provider);
+    return this.angularFireService.loginWithProvider(provider).then(() => {
+      this.isJustLogged = true;
+      window.isJustLogged = true;
+    });
+  }
+
+  loginWithToken(token) {
+    return this.angularFireService.loginWithToken(token);
   }
 
   requireUser() {
     return this.angularFireService.requireUser();
   }
 
-  requireNullUserOrRedirect(){
+  requireNullUserOrRedirect() {
     return this.angularFireService.waitForUser().then(user => {
       var gettingUser = this.$q.defer();
-      if(user === null){
+      if (user === null) {
         gettingUser.resolve(null);
-      }else{
+      } else {
         this.$state.go('volumio.auth.profile');
         gettingUser.reject('AUTH.USER_ALREADY_LOGGED');
       }
@@ -59,7 +238,7 @@ class AuthService {
     });
   }
 
-  waitForUser(){
+  waitForUser() {
     return this.angularFireService.waitForUser();
   }
 
@@ -126,6 +305,29 @@ class AuthService {
   }
 
   logOut() {
+    var loggingOut = this.$q.defer();
+    this.logOutBackend().then(() => {
+      this.logOutFrontend().then(() => {
+        loggingOut.resolve();
+      });
+    }).catch((error) => {
+      loggingOut.reject(error);
+    });
+    return loggingOut.promise;
+  }
+
+  logOutBackend() {
+    var emitting = this.$q.defer();
+    this.socketPromise.then(() => {
+      this.socketService.emit('myVolumioLogout');
+      emitting.resolve();
+    }).catch(error => {
+      emitting.reject(error);
+    });
+    return emitting.promise;
+  }
+
+  logOutFrontend() {
     return this.angularFireService.logOut();
   }
 
@@ -206,16 +408,51 @@ class AuthService {
   deleteUserFromFirebase(user) {
     var deleting = this.$q.defer();
     const userPath = `users/${user.uid}`;
-    this.databaseService.delete(userPath).then(() => {
-      this.angularFireService.deleteAuthUser().then(() => {
-        deleting.resolve();
-      }).catch(error => {
-        deleting.reject(error);
-      });
+    this.angularFireService.deleteAuthUser().then(() => {
+      deleting.resolve();
     }).catch(error => {
       deleting.reject(error);
     });
     return deleting.promise;
+  }
+
+  registerListner() {
+    this.registerLogoutListener();
+    this.registerLoginListener();
+  }
+
+  registerLogoutListener() {
+    this.socketService.on('pushMyVolumioLogout', () => {
+      this.logOutFrontend();
+    });
+
+    this.$rootScope.$on('$destroy', () => {
+      this.socketService.off('pushMyVolumioLogout');
+    });
+  }
+
+  registerLoginListener() {
+    this.socketService.on('pushMyVolumioToken', (data) => {
+      if (data !== null && data.token !== null) {
+        this.loginWithToken(data.token);
+      }
+    });
+
+    this.$rootScope.$on('$destroy', () => {
+      this.socketService.off('pushMyVolumioToken');
+    });
+  }
+
+  isSocialEnabled() {
+    if (this.isIP(this.$location.host())) {
+      return false;
+    }
+    return true;
+  }
+
+  isIP(address) {
+    var r = new RegExp('^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])');
+    return r.test(address);
   }
 
 }
