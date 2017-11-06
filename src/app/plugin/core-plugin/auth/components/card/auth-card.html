@@ -1,12 +1,12 @@
 <div class="auth-card-container">
   <div id="auth-card-logged" ng-if="authCardController.user != null" >
     <div class="row">
-      <div class="col-xs-8 avatar-box">
-        <div class="profile-userpic" style="padding-top: 8px;">
+      <div class="col-xs-6 col-xs-offset-1 avatar-box">
+        <div class="profile-userpic">
           <auth-avatar-image></auth-avatar-image>
         </div>
       </div>
-      <div class="col-xs-16 usedata-box">
+      <div class="col-xs-16 col-xs-offset-1 usedata-box">
         <div class="profile-usertitle">
           <div class="profile-usertitle-name">
             <div ng-if="authCardController.isUserFilledWithMandatory()">

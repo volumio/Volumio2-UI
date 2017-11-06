@@ -23,6 +23,7 @@
     <button
         ng-repeat="item in sideMenu.menuItems track by $index"
         ng-click="sideMenu.itemClick(item)"
+        ng-if="item.id !== sideMenu.MYVOLUMIO_KEY"
         class="btn-link btn-block">
           {{::item.name}}
     </button>
