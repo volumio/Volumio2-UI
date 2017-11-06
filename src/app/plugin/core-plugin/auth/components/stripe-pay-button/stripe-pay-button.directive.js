@@ -68,7 +68,7 @@ class StripePayButtonController {
   initButton() {
     this.handler = this.stripeCheckoutService.configure({
       key: 'pk_test_utxQAjiMNEdVZFel9iQlDkyH', //TODO insert in a config
-      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      image: 'app/themes/volumio/assets/variants/volumio/graphics/volumio-icon.png',
       locale: 'auto',
       token: this.getPayFunction(),
       bitcoin: true,

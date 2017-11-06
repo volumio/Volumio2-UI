@@ -1,5 +1,5 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService, socketService, $http, $location) {
+  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService, socketService, $http, $location, themeManager) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -13,6 +13,11 @@ class AuthService {
     this.socketService = socketService;
     this.$http = $http;
     this.$location = $location;
+    this.themeManager = themeManager;
+
+    this.isEnabled = false;
+    this.abilitationDefer = this.$q.defer();
+    this.abilitationPromise = this.abilitationDefer.promise;
 
     this.user = null;
     this.mandatoryFields = [
@@ -26,36 +31,37 @@ class AuthService {
 
     this.isFirstSyncroDone = false;
     this.isJustLogged = false;
-    
-    this.isMyVolumioEnabled = false;
 
+    this.preInit();
     this.init();
+  }
+  
+  preInit(){
+    //TODO move this logic after enabled by pushMenuItems
+    if(this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio'){
+      this.enableAuth(true);
+    }else{
+      this.enableAuth(false);
+    }
   }
 
   init() {
-    this.initSocket();
-    //this.checkLoadMyVolumio();
-    this.startSyncronizationWithBackend();
-    this.watchUser();
+    if (this.isEnabled) {
+      this.initSocket();
+      //this.checkLoadMyVolumio();
+      this.startSyncronizationWithBackend();
+      this.watchUser();
+    }
+  }
+
+  enableAuth(enabled = true) {
+    this.isEnabled = enabled;
+    this.abilitationDefer.resolve(this.isEnabled);
+    this.init();
   }
   
-  checkLoadMyVolumio(){
-    this.socketService.on('pushMenuItems', (data) => {
-      let found = false;
-      for(var i in data){
-        if(data[i].id === 'auth'){
-          this.isMyVolumioEnabled = true;
-          found = true;
-        }
-      }
-      if(!found){
-        this.isMyVolumioEnabled = false;
-      }
-    });
-
-    this.$rootScope.$on('$destroy', () => {
-      this.socketService.off('pushMenuItems');
-    });
+  isAuthEnabled(){
+    return this.abilitationPromise;
   }
 
   startSyncronizationWithBackend() {
@@ -444,15 +450,22 @@ class AuthService {
   }
 
   isSocialEnabled() {
-    if (this.isIP(this.$location.host())) {
-      return false;
+    if (this.isValidDomainForSocialLogin(this.$location.host())) {
+      return true;
     }
-    return true;
+    return false;
   }
 
   isIP(address) {
     var r = new RegExp('^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])');
     return r.test(address);
+  }
+
+  isValidDomainForSocialLogin(domain) {
+    if (domain === 'localhost') {
+      return true;
+    }
+    return false;
   }
 
 }

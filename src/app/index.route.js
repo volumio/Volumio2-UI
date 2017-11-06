@@ -157,11 +157,23 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             }
           })
 
-          //AUTH ROUTES TO BE ENABLED JUST WHEN MODULE IS ACTIVATED BY B-E
+          /* --------- AUTH ----------- */
 
           .state('volumio.auth', {
             abstract: true,
-            template: '<div ui-view></div>'
+            template: '<div ui-view></div>',
+            resolve: {
+              "authEnabled": function (authService, $q) {
+                  let enabling = $q.defer();
+                  authService.isAuthEnabled().then((enabled) => {
+                    if (!enabled) {
+                      throw "AUTH_NOT_ENABLED";
+                    }
+                    enabling.resolve(true);
+                  });
+                  return enabling.promise;
+                }
+            }
           })
 
           .state('volumio.auth.login', {
@@ -356,7 +368,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             }
           })
 
-          //end auth
+          /* --------- END AUTH ----------- */
 
           .state('volumio.static-page', {
             url: 'static-page/:pageName',
