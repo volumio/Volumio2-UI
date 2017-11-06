@@ -82,8 +82,6 @@ class AngularFireService {
   }
 
   setUserByAuth(authUser) {
-    console.log("authUser");
-    console.log(authUser);
     var gettingUser = this.$q.defer();
     if (authUser === null || authUser === undefined) {
       this.dbUser = null;

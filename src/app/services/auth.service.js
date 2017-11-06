@@ -324,12 +324,12 @@ class AuthService {
 
   logOutBackend() {
     var emitting = this.$q.defer();
-    this.socketPromise.then(() => {
+//    this.socketPromise.then(() => {
       this.socketService.emit('myVolumioLogout');
       emitting.resolve();
-    }).catch(error => {
-      emitting.reject(error);
-    });
+//    }).catch(error => {
+//      emitting.reject(error);
+//    });
     return emitting.promise;
   }
 

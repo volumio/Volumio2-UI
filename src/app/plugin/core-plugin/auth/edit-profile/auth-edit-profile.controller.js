@@ -137,8 +137,6 @@ class AuthEditProfileController {
       this.uploadingAvatar = false;
       this.isAvatarChanged = false;
       this.form.photoUrl = url;
-      console.log("this.form.photoUrl");
-      console.log(this.form.photoUrl);
     }).catch((error) => {
       this.uploadingAvatar = false;
       this.modalService.openDefaultErrorModal(error);
