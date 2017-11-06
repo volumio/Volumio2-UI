@@ -1,11 +1,11 @@
 <div class="box">
-  
+
   <div class="boxHeader">
     <div class="title">
       <h2 translate="AUTH.MY_VOLUMIO"></h2>
     </div>
   </div>
-  
+
   <div
     id="authLoginPlugin"
     class="panel panel-default"
@@ -34,13 +34,15 @@
                 <p class="user-details">
                   <i class="glyphicon glyphicon-envelope"></i> {{authProfileController.user.email}}
                   <br />
-                  <span ng-if="authProfileController.user.birthday">
-                    <i class="glyphicon glyphicon-gift"></i> {{authProfileController.user.birthday}}
-                  </span>
-                  <br />
-                  <span ng-if="authProfileController.user.country">
-                    <i class="glyphicon glyphicon-globe"></i> {{authProfileController.user.country}}
-                  </span>
+                  <div ng-if="false">
+                    <span ng-if="authProfileController.user.birthday">
+                      <i class="glyphicon glyphicon-gift"></i> {{authProfileController.user.birthday}}
+                    </span>
+                    <br />
+                    <span ng-if="authProfileController.user.country">
+                      <i class="glyphicon glyphicon-globe"></i> {{authProfileController.user.country}}
+                    </span>
+                  </div>
                 </p>
 
                 <div ng-if="!authProfileController.isUserVerified">
@@ -60,9 +62,9 @@
 
     </div>
   </div>
-  
-        <div ng-if="authProfileController.user === null">
 
-        NOT LOGGED
+  <div ng-if="authProfileController.user === null">
 
-      </div>
+    NOT LOGGED
+
+  </div>

@@ -67,18 +67,20 @@
                     <input class="form-control" type="text" ng-model="authEditProfileController.form.username" required pattern="[A-Za-z0-9]{5,}">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-lg-6 control-label"><span translate="AUTH.COUNTRY"></span> :</label>
-                  <div class="col-lg-16 country-select">
-                    <input class="form-control" country-select data-ng-model="authEditProfileController.form.country" value="{{authEditProfileController.form.country}}">
+                <div ng-if="false">
+                  <div class="form-group">
+                    <label class="col-lg-6 control-label"><span translate="AUTH.COUNTRY"></span> :</label>
+                    <div class="col-lg-16 country-select">
+                      <input class="form-control" country-select data-ng-model="authEditProfileController.form.country" value="{{authEditProfileController.form.country}}">
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-lg-6 control-label"><span translate="AUTH.BIRTHDAY"></span> :</label>
-                  <div class="col-lg-16 birthday-picker">
-                    <datepicker date-format="dd/MM/yyyy">
-                      <input ng-model="authEditProfileController.form.birthday" type="text" date-typer="true"/>
-                    </datepicker>
+                  <div class="form-group">
+                    <label class="col-lg-6 control-label"><span translate="AUTH.BIRTHDAY"></span> :</label>
+                    <div class="col-lg-16 birthday-picker">
+                      <datepicker date-format="dd/MM/yyyy">
+                        <input ng-model="authEditProfileController.form.birthday" type="text" date-typer="true"/>
+                      </datepicker>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
