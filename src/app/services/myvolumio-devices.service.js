@@ -5,9 +5,7 @@ class MyVolumioDevicesService {
     this.$q = $q;
     this.authService = authService;
     this.databaseService = databaseService;
-    
-    this.USER_DEVICES_REF = 'user_devices'
-
+    this.USER_DEVICES_REF = 'user_devices';
     this.init();
   }
 
@@ -20,7 +18,7 @@ class MyVolumioDevicesService {
       this.user = user;
     });
   }
-  
+
   getDevicesByUserId(uid){
     return this.databaseService.getArray(`/${this.USER_DEVICES_REF}/${uid}`);
   }

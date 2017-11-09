@@ -22,7 +22,7 @@ class AngularFireService {
 
     this.authUser = null;
     this.dbUser = null;
-    
+
     this.init();
   }
 
@@ -42,7 +42,7 @@ class AngularFireService {
     this.authService = this.$firebaseAuth();
     this.database = this.firebase.database();
   }
-  
+
   getFirebaseConfig() {
     let config = {
       apiKey: "AIzaSyDzEZmwJZS4KZtG9pEXOxlm1XcZikP0KbA",
@@ -62,7 +62,7 @@ class AngularFireService {
   }
 
   startAuthListening() {
-    this.authService.$onAuthStateChanged((authUser) => {      
+    this.authService.$onAuthStateChanged((authUser) => {
       this.setUserByAuth(authUser).then((dbUser) => {
         //user set done
       }).catch(error => {
@@ -70,13 +70,13 @@ class AngularFireService {
       });
     }, this);
   }
-  
+
   requireUser(){
     return this.authService.$requireSignIn().then((authUser) => {
       return this.setUserByAuth(authUser);
     });
   }
-  
+
   waitForUser(){
     return this.authService.$waitForSignIn();
   }
@@ -191,7 +191,7 @@ class AngularFireService {
     });
     return logging.promise;
   }
-  
+
   loginWithToken(token){
     return this.authService.$signInWithCustomToken(token);
   }
@@ -311,9 +311,9 @@ class AngularFireService {
   deleteAuthUser() {
     return this.authUser.delete();
   }
-  
+
   getToken(){
-    return firebase.auth().currentUser.getToken(false);
+    return this.firebase.auth().currentUser.getToken(false);
   }
 
   /* ------------ DATABASE ------------- */
@@ -377,7 +377,7 @@ class AngularFireService {
     );
     return getting.promise;
   }
-  
+
   getArray(ref){
     var getting = this.$q.defer();
     var ref = this.database.ref(ref);

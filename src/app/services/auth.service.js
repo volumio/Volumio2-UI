@@ -49,7 +49,7 @@ class AuthService {
     this.initSocket();
     this.postAuthInit();
   }
-  
+
   postAuthInit(){
     if (this.isEnabled) {
       //this.checkLoadMyVolumio();
@@ -171,7 +171,7 @@ class AuthService {
   sendUserTokenToBackend() {
     var sending = this.$q.defer();
     this.getUserToken(this.user.uid).then((response) => {
-      var token = response.data;
+      var token = response;
       this.socketService.emit('setMyVolumioToken', {
         "token": token
       }, () => {

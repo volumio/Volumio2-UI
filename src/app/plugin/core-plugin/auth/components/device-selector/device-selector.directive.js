@@ -62,7 +62,7 @@ class AuthDeviceSelectorController {
       console.log(devices);
     }).catch(error => {
       this.modalService.openDefaultErrorModal(error);
-    })
+    });
   }
 
   enableDevice(device) {
