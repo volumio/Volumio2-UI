@@ -41,13 +41,11 @@ class DatabaseService {
   }
 
   get(ref) {
-    var getting = this.$q.defer();
-    this.angularFireService.get(ref).then((result) => {
-      getting.resolve(result);
-    }, (error) => {
-      getting.reject(error);
-    });
-    return getting.promise;
+    return this.angularFireService.get(ref);
+  }
+  
+  getArray(ref){
+    return this.angularFireService.getArray(ref);
   }
 
   waitForValue(ref) {

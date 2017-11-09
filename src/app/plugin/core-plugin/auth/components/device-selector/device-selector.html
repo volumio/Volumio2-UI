@@ -1,0 +1,42 @@
+<div id="device-selector">
+  <table class="table tableSmall">
+    <tr>
+      <th><span translate="AUTH.DEVICE_NAME"></span></th>
+      <th><span translate="AUTH.DEVICE_TYPE"></span></th>
+      <th><span translate="AUTH.DEVICE_ENABLED"></span></th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="device in authDeviceSelectorController.devices">
+      <td>
+        {{device.name}}
+      </td>
+      <td>
+        {{device.device}}
+      </td>
+      <td>
+        <i class="fa fa-check true" ng-if="device.enabled"></i>
+        <i class="fa fa-remove false" ng-if="!device.enabled"></i>
+      </td>
+      <td class="commandCol">
+        <button ng-click="authDeviceSelectorController.enableDevice(device)"
+                type="button"
+                class="btn btn-success"
+                title="{{'AUTH.ENABLE_DEVICE' | translate}}">
+          <i class="fa fa-check"></i>
+        </button>
+        <button ng-click="authDeviceSelectorController.disableDevice(device)"
+                type="button"
+                class="btn btn-warning"
+                title="{{'AUTH.DISABLE_DEVICE' | translate}}">
+          <i class="fa fa-remove"></i>
+        </button>
+        <button ng-click="authDeviceSelectorController.deleteDevice(device)"
+                type="button"
+                class="btn btn-danger"
+                title="{{'AUTH.DELETE_DEVICE' | translate}}">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

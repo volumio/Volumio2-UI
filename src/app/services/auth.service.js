@@ -35,19 +35,23 @@ class AuthService {
     this.preInit();
     this.init();
   }
-  
-  preInit(){
+
+  preInit() {
     //TODO move this logic after enabled by pushMenuItems
-    if(this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio'){
+    if (this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio') {
       this.enableAuth(true);
-    }else{
+    } else {
       this.enableAuth(false);
     }
   }
 
   init() {
+    this.initSocket();
+    this.postAuthInit();
+  }
+  
+  postAuthInit(){
     if (this.isEnabled) {
-      this.initSocket();
       //this.checkLoadMyVolumio();
       this.startSyncronizationWithBackend();
       this.watchUser();
@@ -57,10 +61,10 @@ class AuthService {
   enableAuth(enabled = true) {
     this.isEnabled = enabled;
     this.abilitationDefer.resolve(this.isEnabled);
-    this.init();
+    this.postAuthInit();
   }
-  
-  isAuthEnabled(){
+
+  isAuthEnabled() {
     return this.abilitationPromise;
   }
 
@@ -101,8 +105,11 @@ class AuthService {
   }
 
   syncronizeWithBackend(overrideRaceCondition = false) {
+    console.log("syncronizeWithBackend");
     if (overrideRaceCondition === true || this.isFirstSyncroDone) {
+      console.log("syncronizeWithBackend go");
       this.socketPromise.then(() => {
+        console.log("syncronizeWithBackend socket ok");
         if (this.isJustLogged) { //TODO CHECK USER
           this.isJustLogged = false;
           this.sendUserTokenToBackend().then(() => {
@@ -142,7 +149,7 @@ class AuthService {
       }).catch(error => {
         this.modalService.openDefaultErrorModal(error);
       });
-  }
+    }
   }
 
   getMyVolumioStatus() {
@@ -325,8 +332,8 @@ class AuthService {
   logOutBackend() {
     var emitting = this.$q.defer();
 //    this.socketPromise.then(() => {
-      this.socketService.emit('myVolumioLogout');
-      emitting.resolve();
+    this.socketService.emit('myVolumioLogout');
+    emitting.resolve();
 //    }).catch(error => {
 //      emitting.reject(error);
 //    });

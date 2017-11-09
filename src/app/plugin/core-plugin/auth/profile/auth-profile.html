@@ -62,6 +62,21 @@
 
     </div>
   </div>
+  
+  <div
+    id="device-selector-container"
+    class="panel panel-default"
+    ng-if="authProfileController.user !== null" >
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-check-circle-o"></i> <span translate="AUTH.SELECT_DEVICE"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <auth-device-selector></auth-device-selector>
+
+    </div>
+  </div>
 
   <div ng-if="authProfileController.user === null">
 

@@ -279,6 +279,15 @@
     "PLEASE_VERIFY_EMAIL_TITLE":"",
     "USER_MISSING_MANDATORY_FIELDS": "In order to complete your registration, please complete your profile with the mandatory fields.",
     "USER_VERIFICATION_EMAIL_SENT_DESC": "A verification email has just been sent to your mailbox. It may occour some minutes to be delivered.",
-    "CONFIRM_DELETE_ACCOUNT_TITLE": "Delete user?"
+    "CONFIRM_DELETE_ACCOUNT_TITLE": "Delete user?",
+    "DEVICE_NAME": "Name",
+    "DEVICE_TYPE": "Type",
+    "DEVICE_ENABLED": "Enabled?",
+    "DEVICE_CONFIRM_ENABLE": "Are you sure to enable this device?",
+    "DEVICE_CONFIRM_DISABLE": "Are you sure to disable this device?",
+    "DEVICE_CONFIRM_DELETE": "Are you sure to delete this device?",
+    "ENABLE_DEVICE": "Enable Device",
+    "DISABLE_DEVICE": "Disable Device",
+    "DELETE_DEVICE": "Delete Device"
   }
 }

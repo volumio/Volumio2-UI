@@ -359,10 +359,25 @@ class AngularFireService {
     }
   }
 
-  get() {
+  get(ref) {
     var getting = this.$q.defer();
     var ref = this.database.ref(ref);
     var obj = this.$firebaseObject(ref);
+    obj.$loaded(
+            function (data) {
+              getting.resolve(data);
+            },
+            function (error) {
+              getting.reject(error);
+            }
+    );
+    return getting.promise;
+  }
+  
+  getArray(ref){
+    var getting = this.$q.defer();
+    var ref = this.database.ref(ref);
+    var obj = this.$firebaseArray(ref);
     obj.$loaded(
             function (data) {
               getting.resolve(data);

@@ -27,6 +27,7 @@ import StripeService from './services/stripe.service';
 import DatabaseService from './services/database.service';
 import ProductsService from './services/products.service';
 import RemoteStorageService from './services/remote-storage.service';
+import MyVolumioDevicesService from './services/myvolumio-devices.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -70,6 +71,7 @@ import AuthFileOnChangeDirective from './plugin/core-plugin/auth/components/shar
 import AuthAvatarImageDirective from './plugin/core-plugin/auth/components/shareds/avatar-image/auth-avatar-image.directive';
 import AuthPlanCardDirective from './plugin/core-plugin/auth/components/shareds/plan-card/auth-plan-card.directive';
 import AuthVerificationCardDirective from './plugin/core-plugin/auth/components/shareds/verification-card/auth-verification-card.directive';
+import AuthDeviceSelectorDirective from './plugin/core-plugin/auth/components/device-selector/device-selector.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -202,6 +204,7 @@ angular.module('volumio', [
   .service('databaseService',DatabaseService)
   .service('productsService',ProductsService)
   .service('remoteStorageService',RemoteStorageService)
+  .service('myVolumioDevicesService',MyVolumioDevicesService)
 
 
   .provider('themeManager', ThemeManagerProvider)
@@ -244,6 +247,7 @@ angular.module('volumio', [
   .directive('authAvatarImage', () => new AuthAvatarImageDirective())
   .directive('authPlanCard', () => new AuthPlanCardDirective())
   .directive('authVerificationCard', () => new AuthVerificationCardDirective())
+  .directive('authDeviceSelector', () => new AuthDeviceSelectorDirective())
 
   .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)
