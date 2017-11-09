@@ -311,6 +311,10 @@ class AngularFireService {
   deleteAuthUser() {
     return this.authUser.delete();
   }
+  
+  getToken(){
+    return firebase.auth().currentUser.getToken(false);
+  }
 
   /* ------------ DATABASE ------------- */
 

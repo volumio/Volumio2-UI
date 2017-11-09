@@ -183,12 +183,14 @@ class AuthService {
     return sending.promise;
   }
 
-  getUserToken(uid) {
-    return this.$http({
-      url: 'https://us-central1-myvolumio.cloudfunctions.net/generateToken', //TODO dynamic conf + auth
-      method: "GET",
-      params: {uid: uid}
-    });
+  getUserToken(uid = null) {
+    return this.angularFireService.getToken();
+//    LEGACY
+//    this.$http({
+//      url: 'https://us-central1-myvolumio.cloudfunctions.net/generateToken', //TODO dynamic conf + auth
+//      method: "GET",
+//      params: {uid: uid}
+//    });
   }
 
   requestUserToBackend() {
