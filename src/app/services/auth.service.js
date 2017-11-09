@@ -50,7 +50,7 @@ class AuthService {
     this.postAuthInit();
   }
 
-  postAuthInit(){
+  postAuthInit() {
     if (this.isEnabled) {
       //this.checkLoadMyVolumio();
       this.startSyncronizationWithBackend();
@@ -149,7 +149,7 @@ class AuthService {
       }).catch(error => {
         this.modalService.openDefaultErrorModal(error);
       });
-    }
+  }
   }
 
   getMyVolumioStatus() {
@@ -184,13 +184,17 @@ class AuthService {
   }
 
   getUserToken(uid = null) {
-    return this.angularFireService.getToken();
-//    LEGACY
-//    this.$http({
-//      url: 'https://us-central1-myvolumio.cloudfunctions.net/generateToken', //TODO dynamic conf + auth
-//      method: "GET",
-//      params: {uid: uid}
-//    });
+    return this.angularFireService.getToken().then(idToken => {
+      return this.$http({
+        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/getCustomToken',
+        method: "GET",
+        params: {idToken: idToken}
+      }).then(response => {
+        return response.data;
+      });
+    }).catch(error => {
+      this.modalService.openDefaultErrorModal(error);
+    });
   }
 
   requestUserToBackend() {
