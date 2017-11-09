@@ -105,11 +105,8 @@ class AuthService {
   }
 
   syncronizeWithBackend(overrideRaceCondition = false) {
-    console.log("syncronizeWithBackend");
     if (overrideRaceCondition === true || this.isFirstSyncroDone) {
-      console.log("syncronizeWithBackend go");
       this.socketPromise.then(() => {
-        console.log("syncronizeWithBackend socket ok");
         if (this.isJustLogged) { //TODO CHECK USER
           this.isJustLogged = false;
           this.sendUserTokenToBackend().then(() => {
