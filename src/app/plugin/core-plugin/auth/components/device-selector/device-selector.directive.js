@@ -59,7 +59,6 @@ class AuthDeviceSelectorController {
     }
     this.myVolumioDevicesService.getDevicesByUserId(this.user.uid).then((devices) => {
       this.devices = devices;
-      console.log(devices);
     }).catch(error => {
       this.modalService.openDefaultErrorModal(error);
     });
@@ -67,32 +66,33 @@ class AuthDeviceSelectorController {
 
   enableDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_ENABLE', () => {
-      var device = this.sanitizeAngularfireObject(device);
-      this.socketService.emit('enableMyVolumioDevice', device);
+      var deviceObj = this.sanitizeAngularfireObject(device);
+      this.socketService.emit('enableMyVolumioDevice', deviceObj);
     });
   }
 
   disableDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_DISABLE', () => {
-      var device = this.sanitizeAngularfireObject(device);
-      this.socketService.emit('disableMyVolumioDevice', device);
+      var deviceObj = this.sanitizeAngularfireObject(device);
+      this.socketService.emit('disableMyVolumioDevice', deviceObj);
     });
   }
 
   deleteDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_DELETE', () => {
-      var device = this.sanitizeAngularfireObject(device);
-      this.socketService.emit('deleteMyVolumioDevice', device);
+      var deviceObj = this.sanitizeAngularfireObject(device);
+      this.socketService.emit('deleteMyVolumioDevice', deviceObj);
     });
   }
 
   sanitizeAngularfireObject(object) {
+    var response = {};
     for (var key in object) {
-      if (object[key].startsWith("$")) {
-        delete object.key;
+      if (key.indexOf('$') !== 0) {
+        response[key] = object[key];
       }
     }
-    return object;
+    return response;
   }
 
 }
