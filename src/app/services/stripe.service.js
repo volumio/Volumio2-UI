@@ -91,7 +91,7 @@ class StripeService {
 
   getCancellationResponse(cancellationId, userId) {
     var getting = this.$q.defer();
-    var ref = `/payments/cancellations/${userId}/${cancellationId}/status`;
+    var ref = `payments/cancellations/${userId}/${cancellationId}/status`;
     this.databaseService.waitForValue(ref).then((status) => {
       getting.resolve(status);
     }, (error) => {

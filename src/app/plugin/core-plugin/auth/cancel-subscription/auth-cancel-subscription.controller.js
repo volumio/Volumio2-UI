@@ -14,7 +14,7 @@ class AuthCancelSubscriptionController {
 
     this.openedModal = {};
 
-    this.plan = null;
+    this.plan = 'free';
     this.user = user;
     this.product = null;
 
@@ -33,15 +33,12 @@ class AuthCancelSubscriptionController {
   }
 
   postAuthInit() {
-    if (this.user) {
-      this.plan = this.user.plan || 'free';
-      this.loadProduct();
-    }
+    this.loadProduct();
   }
 
   downgradeToFree() {
     if (!this.user.subscriptionId) {
-      alert("Error, no subscription id");
+      this.modalService.openDefaultErrorModal("AUTH.CANNOT_DOWNGRADE_NO_PLAN")
       return;
     }
     this.cancellationCallback(this.paymentsService.cancelSubscription(this.user.subscriptionId, this.user.uid));

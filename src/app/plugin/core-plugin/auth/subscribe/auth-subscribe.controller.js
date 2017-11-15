@@ -41,6 +41,9 @@ class AuthSubscribeController {
       }
       this.goToPaymentFail();
     }, (error) => {
+      if(error )
+      //error = JSON.stringify(error);
+      console.log(error);
       this.modalService.openDefaultErrorModal(error, () => {
         this.closePayingModal();
         this.goToPaymentFail();

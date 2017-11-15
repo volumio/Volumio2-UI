@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box" id="change-subscription">
   <div class="boxHeader">
     <div class="title">
       <h2 translate="AUTH.MY_VOLUMIO"></h2>
@@ -18,8 +18,9 @@
 
         <h3 translate="AUTH.UPDATE_SUBSCRIPTION_TITLE" style="margin-bottom: 16px;"></h3>
 
-        <h4 style="margin-bottom: 16px;">
-          <span translate="AUTH.CURRENT_PLAN"></span>: {{authChangeSubscriptionController.getCurrentPlanName() | uppercase }}
+        <h4 class="badged-block">
+          <span translate="AUTH.CURRENT_PLAN"></span>:
+          <span class="badge">{{authChangeSubscriptionController.getCurrentPlanName() | uppercase }}</span>
         </h4>
 
         <h4>

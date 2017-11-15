@@ -360,7 +360,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
                 controller: 'AuthChangeSubscriptionController',
                 controllerAs: 'authChangeSubscriptionController',
                 resolve: {
-                  "user": ["auth", function (authService) {
+                  "user": ["authService", function (authService) {
                       return authService.requireVerifiedUserOrRedirect();
                     }]
                 }

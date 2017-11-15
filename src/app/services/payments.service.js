@@ -6,19 +6,13 @@ class PaymentsService {
   }
 
   subscribe(subscription, userId) {
-    var subscribing = this.$q.defer();
-    this.stripeService.subscribe(subscription, userId).then((success) => {
-      subscribing.resolve(success);
-    }).catch((error) => {
-      subscribing.reject(error);
-    });
-    return subscribing.promise;
+    return this.stripeService.subscribe(subscription, userId);
   }
 
   cancelSubscription(subscriptionId,userId) {
     return this.stripeService.cancelSubscription(subscriptionId,userId);
   }
-  
+
   updateSubscription(planCode,userId) {
     return this.stripeService.updateSubscription(planCode,userId);
   }

@@ -39,11 +39,6 @@ function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider
           .fallbackLanguage('en');
   $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
-  //set default stripe account public key
-  StripeCheckoutProvider.defaults({
-    key: "pk_test_utxQAjiMNEdVZFel9iQlDkyH"
-  });
-
 }
 
 export default config;

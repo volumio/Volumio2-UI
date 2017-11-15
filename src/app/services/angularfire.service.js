@@ -396,6 +396,9 @@ class AngularFireService {
   waitForValue(refPath, timeout = 30) {
     var waitingFor = this.$q.defer();
     var ref = this.database.ref(refPath);
+
+    var timeouting = this.setWaitForValueTimeout(ref, waitingFor, timeout);
+
     ref.on("value", (snapshot) => {
       if (!snapshot || snapshot.val() === undefined || snapshot.val() === null) {
         return;
@@ -405,7 +408,6 @@ class AngularFireService {
       ref.off();
       this.clearWaitForValueTimeout(timeouting);
     });
-    var timeouting = this.setWaitForValueTimeout(ref, waitingFor, timeout);
 
     return waitingFor.promise;
   }

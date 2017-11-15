@@ -5,7 +5,7 @@
     </div>
   </div>
   <div
-    id="authLoginPlugin"
+    id="auth-cancel-subscription"
     class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="AUTH.CANCEL_SUBSCRIPTION"></span></h3>
@@ -17,10 +17,11 @@
 
         <auth-back-button label="{{'AUTH.PLANS' | translate}}" route-destination="volumio.auth.plans"></auth-back-button>
 
-        <h3 translate="AUTH.CANCEL_SUBSCRIPTION_TITLE" style="margin-bottom: 16px;"></h3>
+        <h3 translate="AUTH.CANCEL_SUBSCRIPTION_TITLE" style="margin-bottom: 16px"></h3>
 
-        <h4 style="margin-bottom: 16px;">
-          <span translate="AUTH.CURRENT_PLAN"></span>: {{authCancelSubscriptionController.getCurrentPlanName() | uppercase }}
+        <h4 class="badged-block">
+          <span translate="AUTH.CURRENT_PLAN"></span>:
+          <span class="badge"> {{authCancelSubscriptionController.getCurrentPlanName() | uppercase }}</span>
         </h4>
 
         <h4>
