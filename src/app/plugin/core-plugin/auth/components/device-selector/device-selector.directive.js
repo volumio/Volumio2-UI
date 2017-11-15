@@ -30,7 +30,7 @@ class AuthDeviceSelectorController {
 
   init() {
     this.authInit();
-    this.preInitSocket();
+    this.initSocket();
   }
 
   authInit() {
@@ -40,16 +40,16 @@ class AuthDeviceSelectorController {
     });
   }
 
-  preInitSocket() {
+  initSocket() {
     this.$rootScope.$on('socket:init', () => {
-      this.initSocket();
+      this.initSocketEvents();
     });
     this.$rootScope.$on('socket:reconnect', () => {
-      this.initSocket();
+      this.initSocketEvents();
     });
   }
 
-  initSocket() {
+  initSocketEvents() {
     //
   }
 
@@ -68,6 +68,7 @@ class AuthDeviceSelectorController {
   enableDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_ENABLE', () => {
       var device = this.sanitizeAngularfireObject(device);
+      //console.log('emit enableMyVolumioDevice');
       this.socketService.emit('enableMyVolumioDevice', device);
     });
   }
@@ -75,6 +76,7 @@ class AuthDeviceSelectorController {
   disableDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_DISABLE', () => {
       var device = this.sanitizeAngularfireObject(device);
+      //console.log('emit disableMyVolumioDevice');
       this.socketService.emit('disableMyVolumioDevice', device);
     });
   }
@@ -82,6 +84,7 @@ class AuthDeviceSelectorController {
   deleteDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_DELETE', () => {
       var device = this.sanitizeAngularfireObject(device);
+      //console.log('emit deleteMyVolumioDevice');
       this.socketService.emit('deleteMyVolumioDevice', device);
     });
   }

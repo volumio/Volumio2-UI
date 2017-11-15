@@ -18,17 +18,17 @@
         <i class="fa fa-remove false" ng-if="!device.enabled"></i>
       </td>
       <td class="commandCol">
-        <button ng-click="authDeviceSelectorController.enableDevice(device)"
+        <button ng-if="device.enabled !== true" ng-click="authDeviceSelectorController.enableDevice(device)"
                 type="button"
                 class="btn btn-success"
                 title="{{'AUTH.ENABLE_DEVICE' | translate}}">
-          <i class="fa fa-check"></i>
+          <i class="fa fa-toggle-on"></i>
         </button>
-        <button ng-click="authDeviceSelectorController.disableDevice(device)"
+        <button ng-if="device.enabled === true" ng-click="authDeviceSelectorController.disableDevice(device)"
                 type="button"
                 class="btn btn-warning"
                 title="{{'AUTH.DISABLE_DEVICE' | translate}}">
-          <i class="fa fa-remove"></i>
+          <i class="fa fa-toggle-off"></i>
         </button>
         <button ng-click="authDeviceSelectorController.deleteDevice(device)"
                 type="button"

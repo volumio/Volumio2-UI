@@ -29,55 +29,39 @@ class AuthService {
     this.socketPromise;
     this.socketDeferred;
 
-    this.isFirstSyncroDone = false;
-    this.isJustLogged = false;
+    //race conditions
+    this.isJustFeLogged = false;
+    this.isUserBeingWatched = false;
 
-    this.preInit();
     this.init();
-  }
-
-  preInit() {
-    //TODO move this logic after enabled by pushMenuItems
-    if (this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio') {
-      this.enableAuth(true);
-    } else {
-      this.enableAuth(false);
-    }
   }
 
   init() {
     this.initSocket();
-    this.postAuthInit();
+    this.initAuth();
   }
 
-  postAuthInit() {
-    if (this.isEnabled) {
-      //this.checkLoadMyVolumio();
-      this.startSyncronizationWithBackend();
-      this.watchUser();
-    }
+  initAuth() {
+    //TODO move this logic after enabled by pushMenuItems
+    var isEnabled = this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio';
+    this.enableAuth(isEnabled);
   }
-
+  
   enableAuth(enabled = true) {
     this.isEnabled = enabled;
     this.abilitationDefer.resolve(this.isEnabled);
-    this.postAuthInit();
+
+    if (this.isEnabled === true && this.isUserBeingWatched === false) {
+      this.watchUser();
+    }
   }
 
   isAuthEnabled() {
     return this.abilitationPromise;
   }
 
-  startSyncronizationWithBackend() {
-    this.waitForUser().then(user => {
-      this.user = user;
-      this.syncronizeWithBackend(true);
-    }).catch(error => {
-      this.modalService.openDefaultErrorModal(error);
-    });
-  }
-
   watchUser() {
+    this.isUserBeingWatched = true;
     this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
       this.user = user;
       this.syncronizeWithBackend();
@@ -104,49 +88,41 @@ class AuthService {
     });
   }
 
-  syncronizeWithBackend(overrideRaceCondition = false) {
-    if (overrideRaceCondition === true || this.isFirstSyncroDone) {
-      this.socketPromise.then(() => {
-        if (this.isJustLogged) { //TODO CHECK USER
-          this.isJustLogged = false;
-          this.sendUserTokenToBackend().then(() => {
-            this.isFirstSyncroDone = true;
-          });
-        } else {
-          this.getMyVolumioStatus().then((status) => {
-            var loggedIn = status.loggedIn;
-            var uid = status.uid;
-            if (loggedIn === true) { //BE logged
-              if (this.user === null) {
-                this.requestUserToBackend().then(() => {
-                  this.isFirstSyncroDone = true;
-                });
-              } else if (this.user.uid !== uid) {
-                //TODO MODAL
-                this.logOut().then(() => {
-                  this.requestUserToBackend().then(() => {
-                    this.isFirstSyncroDone = true;
-                  });
-                });
-              } else {
-                //BE & FE are already synced
-                this.isFirstSyncroDone = true;
-              }
-            } else { //BE not logged
-              if (this.user !== null) {
-                this.sendUserTokenToBackend().then(() => {
-                  this.isFirstSyncroDone = true;
-                });
-              } else {
-                this.isFirstSyncroDone = true;
-              }
-            }
-          });
+  syncronizeWithBackend() {
+    this.socketPromise.then(() => {
+      if (this.isJustFeLogged) { //JUST LOGGED
+        this.isJustFeLogged = false;
+        this.sendUserTokenToBackend().then(() => {
+        });
+        return;
+      }
+      this.getMyVolumioStatus().then((status) => { //NEED SYNC
+        var loggedIn = status.loggedIn;
+        var uid = status.uid;
+        if (loggedIn === true) { //BE LOGGED
+          if (this.user === null) { //FE NOT LOGGED
+            this.requestUserToBackend().then(() => {
+            });
+          } else if (this.user.uid !== uid) { //FE LOGGED MISMATCH
+            this.logOutFrontend().then(() => {
+              this.requestUserToBackend().then(() => {
+              });
+            });
+          } else { //BE & FE SYNCED
+            //DO NOTHING
+          }
+        } else { //BE NOT LOGGED
+          if (this.user !== null) { //FE LOGGED
+            this.sendUserTokenToBackend().then(() => {
+            });
+          } else { //FE & BE NOT LOGGED
+            //DO NOTHING
+          }
         }
-      }).catch(error => {
-        this.modalService.openDefaultErrorModal(error);
       });
-  }
+    }).catch(error => {
+      this.modalService.openDefaultErrorModal(error);
+    });
   }
 
   getMyVolumioStatus() {
@@ -214,16 +190,14 @@ class AuthService {
 
   login(user, pass) {
     return this.angularFireService.login(user, pass).then(() => {
-      this.isJustLogged = true;
-      window.isJustLogged = true;
+      this.isJustFeLogged = true;
     });
   }
 
   loginWithProvider(provider) {
     //facebook, google, github, ...
     return this.angularFireService.loginWithProvider(provider).then(() => {
-      this.isJustLogged = true;
-      window.isJustLogged = true;
+      this.isJustFeLogged = true;
     });
   }
 
