@@ -19,7 +19,9 @@ class ModalTrackManagerActionsController {
     this.$state.go('volumio.browse');
     let emitPayload = {
       type: type,
-      value: this.playerService.state[type]
+      value: this.playerService.state[type],
+      artist: this.playerService.state.artist,
+      album: this.playerService.state.album
     };
     this.browseService.goTo(emitPayload);
     this.closeModal();
