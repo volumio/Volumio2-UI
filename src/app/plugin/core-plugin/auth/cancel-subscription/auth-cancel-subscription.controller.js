@@ -38,7 +38,7 @@ class AuthCancelSubscriptionController {
 
   downgradeToFree() {
     if (!this.user.subscriptionId) {
-      this.modalService.openDefaultErrorModal("AUTH.CANNOT_DOWNGRADE_NO_PLAN")
+      this.modalService.openDefaultErrorModal("AUTH.CANNOT_DOWNGRADE_NO_PLAN");
       return;
     }
     this.cancellationCallback(this.paymentsService.cancelSubscription(this.user.subscriptionId, this.user.uid));
