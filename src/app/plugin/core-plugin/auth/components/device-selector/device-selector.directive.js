@@ -12,7 +12,7 @@ class AuthDeviceSelectorDirective {
 }
 
 class AuthDeviceSelectorController {
-  constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService) {
+  constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService, $http) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -20,8 +20,11 @@ class AuthDeviceSelectorController {
     this.myVolumioDevicesService = myVolumioDevicesService;
     this.modalService = modalService;
     this.socketService = socketService;
+    this.productsService = productsService;
+    this.$http = $http;
 
     this.user = null;
+    this.product = {};
 
     this.devices = [];
 
@@ -57,6 +60,7 @@ class AuthDeviceSelectorController {
     if (this.user === null) {
       return;
     }
+    this.initProduct();
     this.myVolumioDevicesService.getDevicesByUserId(this.user.uid).then((devices) => {
       this.devices = devices;
     }).catch(error => {
@@ -64,17 +68,56 @@ class AuthDeviceSelectorController {
     });
   }
 
+  initProduct(){
+    this.product = this.productsService.getProductForUser(this.user);
+  }
+
   enableDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_ENABLE', () => {
-      var deviceObj = this.sanitizeAngularfireObject(device);
-      this.socketService.emit('enableMyVolumioDevice', deviceObj);
+      var maxDevices = this.product.maxDevices || 1;
+      var currentActiveDevices = this.getCurrentActiveDevices();
+      if(currentActiveDevices >= maxDevices){
+        this.modalService.openDefaultConfirm('AUTH.MAX_DEVICES_ALERT_TITLE','AUTH.MAX_DEVICES_ALERT_DESCRIPTION',() => {
+          this.doEnableDevice(device);
+        });
+        return;
+      }
+      this.doEnableDevice(device);
     });
+  }
+
+  doEnableDevice(device){
+    var deviceObj = this.sanitizeAngularfireObject(device);
+    this.socketService.emit('enableMyVolumioDevice', deviceObj);
+  }
+
+  getCurrentActiveDevices(){
+    var activeDevices = 0;
+    for(var k in this.devices){
+      if(this.devices[k].enabled === true){
+        activeDevices++;
+      }
+    }
+    return activeDevices;
   }
 
   disableDevice(device) {
     this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_DISABLE', () => {
-      var deviceObj = this.sanitizeAngularfireObject(device);
-      this.socketService.emit('disableMyVolumioDevice', deviceObj);
+//      var deviceObj = this.sanitizeAngularfireObject(device);
+//      this.socketService.emit('disableMyVolumioDevice', deviceObj);
+      this.doDisableDeviceApiCall(device);
+    });
+  }
+
+  doDisableDeviceApiCall(device){
+    this.authService.getUserToken().then(token => {
+      this.$http({
+        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/disableMyVolumioDevice',
+        method: "POST",
+        params: {token: token, uid: this.user.uid, hwuuid: device.hwuuid}
+      }).then(response => {
+        return response.data;
+      });
     });
   }
 

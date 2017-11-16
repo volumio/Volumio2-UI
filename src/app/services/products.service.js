@@ -19,7 +19,8 @@ class ProductService {
           'AUTH.FREE_FEATURE4',
           'AUTH.FREE_FEATURE5',
           'AUTH.FREE_FEATURE6'
-        ]
+        ],
+        maxDevices: 1
       },
       'virtuoso': {
         name: "VIRTUOSO",
@@ -37,7 +38,8 @@ class ProductService {
           'AUTH.VIRTUOSO_FEATURE4',
           'AUTH.VIRTUOSO_FEATURE5',
           'AUTH.VIRTUOSO_FEATURE6'
-        ]
+        ],
+        maxDevices: 1
       },
       'superstar': {
         name: "SUPERSTAR",
@@ -53,13 +55,18 @@ class ProductService {
           'AUTH.SUPERSTAR_FEATURE4',
           'AUTH.SUPERSTAR_FEATURE5',
           'AUTH.SUPERSTAR_FEATURE6'
-        ]
+        ],
+        maxDevices: 6
       }
     };
   }
 
   getProductByCode(code) {
     return this.getProducts()[code];
+  }
+
+  getProductForUser(user){
+    return this.getProductByCode(user.plan || 'free');
   }
 
 }

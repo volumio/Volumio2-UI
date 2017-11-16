@@ -303,6 +303,8 @@
     "PAYMENT_SUCCESS_TITLE": "The payment has been successfull.",
     "GO_TO_PROFILE": "Your profile",
     "EXPIRING": "Expiring on",
-    "UPDATE_SUBSCRIPTION_TITLE": "Switch your plan"
+    "UPDATE_SUBSCRIPTION_TITLE": "Switch your plan",
+    "MAX_DEVICES_ALERT_TITLE": "MyVolumio devices limit",
+    "MAX_DEVICES_ALERT_DESCRIPTION": "You have already activated the max number of allowed MyVolumio Devices, please disable MyVolumio from one of the previous devices or upgrade your plan. If you continue the oldest MyVolumio Device will be disabled in favor of the new one. Do you wish to continue?"
   }
 }
