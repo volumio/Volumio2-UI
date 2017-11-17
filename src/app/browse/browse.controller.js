@@ -67,14 +67,16 @@ class BrowseController {
   }
 
   clickListItem(item) {
-    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'cd') {
+    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
       this.fetchLibrary(item);
-    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album') {
+    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
       this.play(item);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
       this.playQueueService.replaceAndPlay(item);
+    } else if ( item.type === 'play-playlist') {
+      this.playQueueService.playPlaylist({title: item.name});
     }
   }
   clickListItemByIndex(listIndex, itemIndex) {
@@ -232,25 +234,32 @@ class BrowseController {
             <div class="hamburgerMenu">
               <button class="dropdownToggle btn-link"
                   onclick="${angularThis}.clickListItem(${angularThis}.browseService.info)"
-                  title="Options...">
+                  title="Play">
                 <i class="fa fa-play"></i>
               </button>
             </div>
           </div>`;
-
-          this.table += `
-            <div class="description breakMe">
-              <div class="album-title">
-                ${(this.browseService.info.album) ? this.browseService.info.album : ''}
-              </div>
-              <div class="album-artist">
-                ${(this.browseService.info.artist) ? this.browseService.info.artist : ''}
-              </div>
-              <div class="album-time ${(this.browseService.info.duration || this.browseService.info.year) ? '' : 'onlyTitle'}">
-                ${(this.browseService.info.duration) ? this.browseService.info.duration : ''} ${(this.browseService.info.year) ? '- ' + this.browseService.info.year : ''}
-              </div>
+          if (this.browseService.info.title) {
+            this.table += `<div class="description breakMe">
+            <div class="info-title">
+              ${(this.browseService.info.title) ? this.browseService.info.title : ''}
+            </div>
             </div>`;
 
+          } else {
+            this.table += `
+              <div class="description breakMe">
+                <div class="album-title">
+                  ${(this.browseService.info.album) ? this.browseService.info.album : ''}
+                </div>
+                <div class="album-artist">
+                  ${(this.browseService.info.artist) ? this.browseService.info.artist : ''}
+                </div>
+                <div class="album-time ${(this.browseService.info.duration || this.browseService.info.year) ? '' : 'onlyTitle'}">
+                  ${(this.browseService.info.duration) ? this.browseService.info.duration : ''} ${(this.browseService.info.year) ? '- ' + this.browseService.info.year : ''}
+                </div>
+              </div>`;
+          }
           this.table += `</div></div>`;
 
       }
@@ -267,7 +276,7 @@ class BrowseController {
         list.items.forEach((item, itemIndex) => {
           //Print items
           this.table += `<div class="itemWrapper"><div class="itemTab">`;
-
+          if (item.icon || item.albumart) {
           this.table += `<div class="image" id="${item.active ? 'source-active': ''}"
               onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
           if (!item.icon && item.albumart) {
@@ -280,7 +289,7 @@ class BrowseController {
             this.table += `<i class="${item.icon}"></i>`;
           }
           this.table += `</div>`;
-
+          }
           this.table += `
             <div class="commandButtons">
               <div class="hamburgerMenu
