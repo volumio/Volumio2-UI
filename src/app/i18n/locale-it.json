@@ -92,7 +92,8 @@
     "PREVIOUS_TRACK":"Traccia Precedente",
     "PAUSE":"Pausa",
     "CLEAR_AND_PLAY": "Pulisci e riproduci",
-    "SAFE_REMOVE": "Rimozione sicura"
+    "SAFE_REMOVE": "Rimozione sicura",
+    "UPDATE_FOLDER": "Aggiorna cartella"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
