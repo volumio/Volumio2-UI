@@ -149,6 +149,10 @@ class BrowseController {
     this.socketService.emit('safeRemoveDrive', item);
   }
 
+  updateFolder(item) {
+    this.socketService.emit('updateDb', item);
+  }
+
   search() {
     if (this.searchField.length >= 3) {
       this.browseService.isSearching = true;
