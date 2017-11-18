@@ -34,6 +34,11 @@
     title="{{'BROWSER.SAFE_REMOVE' | translate}}">
   <a href><i class="fa fa-eject"></i>{{'BROWSER.SAFE_REMOVE' | translate}}</a>
 </li>
+<li ng-if="::item.type === 'folder'"
+    ng-click="browse.updateFolder(item.uri)"
+    title="{{'BROWSER.UPDATE_FOLDER' | translate}}">
+  <a href><i class="fa fa-refresh"></i>{{'BROWSER.UPDATE_FOLDER' | translate}}</a>
+</li>
 
 
 <li ng-if="::(item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites'"
