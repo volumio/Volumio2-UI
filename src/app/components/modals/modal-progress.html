@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{modal.modalService.modalProgress.title}}</h3>
+</div>
+<div class="modal-body">
+  <div ng-if="modal.modalService.status === 'modalProgress'">
+    <h4>{{modal.modalService.modalProgress.message}}</h4>
+    <uib-progressbar
+        class="progress-striped active"
+        value="modal.modalService.modalProgress.progressNumber"
+        type="default">{{modal.modalService.modalProgress.progressNumber}}%
+    </uib-progressbar>
+  </div>
+
+  <div ng-if="modal.modalService.status === 'modalDone'">
+    <h3>{{modal.modalService.modalProgress.message}}</h3>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <div ng-if="modal.modalService.status === 'modalDone'">
+    <button ng-class="button.class"
+        ng-repeat="button in modal.modalService.modalProgress.buttons track by $index"
+        ng-click="modal.btnClick(button)">
+      {{::button.name}}
+    </button>
+  </div>
+</div>

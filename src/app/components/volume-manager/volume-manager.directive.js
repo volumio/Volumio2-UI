@@ -3,7 +3,15 @@ class VolumeManagerDirective {
     'ngInject';
     let directive = {
       restrict: 'E',
-      templateUrl: themeManager.getHtmlPath('volume-manager', 'components/volume-manager'),
+      templateUrl: (el, attrs) => {
+        let templateName = 'volume-manager';
+        let templatePath = 'components/volume-manager';
+        if (attrs.templateName && attrs.templatePath) {
+          templateName = attrs.templateName;
+          templatePath = attrs.templatePath;
+        }
+        return themeManager.getHtmlPath(templateName, templatePath);
+      },
       scope: {
         type: '@'
       },
@@ -17,7 +25,15 @@ class VolumeManagerDirective {
 }
 
 class VolumeManagerController {
-  constructor($rootScope, $scope, playerService, $timeout, matchmediaService, themeManager, uiSettingsService) {
+  constructor(
+    $rootScope,
+    $scope,
+    playerService,
+    $timeout,
+    matchmediaService,
+    themeManager,
+    uiSettingsService
+  ) {
     'ngInject';
     this.timeoutHandler = null;
     this.playerService = playerService;
@@ -25,7 +41,6 @@ class VolumeManagerController {
     this.showVerticalSlider = false;
     this.themeManager = themeManager;
     this.$scope = $scope;
-    
 
     if (this.type === 'knob') {
       this.knobOptions = {
@@ -43,37 +58,50 @@ class VolumeManagerController {
       };
       this.volume = playerService.volume;
       console.info('playerService.volume', playerService.volume);
-      $scope.$watch(() => playerService.volume,  (value) => {
-        if (value) {
-         this._updateKnobState();
+      $scope.$watch(
+        () => playerService.volume,
+        value => {
+          if (value) {
+            this._updateKnobState();
+          }
         }
-      });
-    } else if(this.type === 'slider') {
+      );
+    } else if (this.type === 'slider') {
       // this.volume = playerService.volume;
 
       // NOTE this watches are for decouple the playerService.volume
       // from the knob value. The playerService.volume (getter) value
       // is delayed by the BE callback. This prevent the knob from go
       // back and forward two times
-      $scope.$watch(() => this.volume,  (value) => {
-        if (value) {
-          $timeout.cancel(this.timeoutHandler);
-          $timeout.cancel(this.timeoutHandler2);
-          this.timeoutHandler = $timeout(() => {
-            playerService.volume = value;
-          }, 300);
+      $scope.$watch(
+        () => this.volume,
+        value => {
+          if (value) {
+            $timeout.cancel(this.timeoutHandler);
+            $timeout.cancel(this.timeoutHandler2);
+            this.timeoutHandler = $timeout(() => {
+              playerService.volume = value;
+            }, 300);
+          }
         }
-      });
+      );
 
-      $scope.$watch(() => playerService.volume,  (value) => {
-        if (value) {
-          $timeout.cancel(this.timeoutHandler2);
-          $timeout.cancel(this.timeoutHandler);
-          this.timeoutHandler2 = $timeout(() => {
-            this.volume = value;
-          }, 20, true);
+      $scope.$watch(
+        () => playerService.volume,
+        value => {
+          if (value) {
+            $timeout.cancel(this.timeoutHandler2);
+            $timeout.cancel(this.timeoutHandler);
+            this.timeoutHandler2 = $timeout(
+              () => {
+                this.volume = value;
+              },
+              20,
+              true
+            );
+          }
         }
-      });
+      );
     }
   }
 
@@ -89,12 +117,12 @@ class VolumeManagerController {
       this.knobOptions.fgColor = this.themeManager.getCssValue('color');
     }
   }
-  
-  toggleVolumeSlider(){
+
+  toggleVolumeSlider() {
     this.showVerticalSlider = !this.showVerticalSlider;
   }
-  
-  closeVolumeSlider($event){
+
+  closeVolumeSlider($event) {
     this.showVerticalSlider = false;
   }
 }

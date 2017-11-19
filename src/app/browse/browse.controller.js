@@ -67,12 +67,16 @@ class BrowseController {
   }
 
   clickListItem(item) {
-    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong') {
+    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
       this.fetchLibrary(item);
-    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio') {
+    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
       this.play(item);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
+    } else if (item.type === 'cd') {
+      this.playQueueService.replaceAndPlay(item);
+    } else if ( item.type === 'play-playlist') {
+      this.playQueueService.playPlaylist({title: item.name});
     }
   }
   clickListItemByIndex(listIndex, itemIndex) {
@@ -145,6 +149,10 @@ class BrowseController {
     this.socketService.emit('safeRemoveDrive', item);
   }
 
+  updateFolder(item) {
+    this.socketService.emit('updateDb', item);
+  }
+
   search() {
     if (this.searchField.length >= 3) {
       this.browseService.isSearching = true;
@@ -208,8 +216,57 @@ class BrowseController {
 
     this.$timeout(() => {
       let angularThis = `angular.element('#browseTablesWrapper').scope().browse`;
+      var item=this.browseService.info;
 
       this.table = '';
+
+      if(this.browseService.info) {
+        this.table += `<div class="rowInfo">`;
+        this.table += `<div class="imageInfo">`;
+        if (!this.browseService.info.icon && this.browseService.info.albumart) {
+          this.table += `
+          <img src="${this.playerService.getAlbumart(this.browseService.info.albumart)}" alt=""/>`;
+        }
+
+        if (this.browseService.info.icon) {
+          // this.table += `<img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/PearlJam1.jpg/220px-PearlJam1.jpg"/>`;
+          this.table += `<i class="${this.browseService.info.icon}"></i>`;
+        }
+                this.table += `</div>`;
+        this.table += `
+          <div class="infoButton">
+            <div class="hamburgerMenu">
+              <button class="dropdownToggle btn-link"
+                  onclick="${angularThis}.clickListItem(${angularThis}.browseService.info)"
+                  title="Play">
+                <i class="fa fa-play"></i>
+              </button>
+            </div>
+          </div>`;
+          if (this.browseService.info.title) {
+            this.table += `<div class="description breakMe">
+            <div class="info-title">
+              ${(this.browseService.info.title) ? this.browseService.info.title : ''}
+            </div>
+            </div>`;
+
+          } else {
+            this.table += `
+              <div class="description breakMe">
+                <div class="album-title">
+                  ${(this.browseService.info.album) ? this.browseService.info.album : ''}
+                </div>
+                <div class="album-artist">
+                  ${(this.browseService.info.artist) ? this.browseService.info.artist : ''}
+                </div>
+                <div class="album-time ${(this.browseService.info.duration || this.browseService.info.year) ? '' : 'onlyTitle'}">
+                  ${(this.browseService.info.duration) ? this.browseService.info.duration : ''} ${(this.browseService.info.year) ? '- ' + this.browseService.info.year : ''}
+                </div>
+              </div>`;
+          }
+          this.table += `</div></div>`;
+
+      }
       this.browseService.lists.forEach((list, listIndex) => {
         //Print title
         if (list.title) {
@@ -223,7 +280,7 @@ class BrowseController {
         list.items.forEach((item, itemIndex) => {
           //Print items
           this.table += `<div class="itemWrapper"><div class="itemTab">`;
-
+          if (item.icon || item.albumart) {
           this.table += `<div class="image" id="${item.active ? 'source-active': ''}"
               onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
           if (!item.icon && item.albumart) {
@@ -236,7 +293,7 @@ class BrowseController {
             this.table += `<i class="${item.icon}"></i>`;
           }
           this.table += `</div>`;
-
+          }
           this.table += `
             <div class="commandButtons">
               <div class="hamburgerMenu
