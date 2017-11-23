@@ -11,7 +11,7 @@ class AuthPlansController {
     this.modalService = modalService;
 
     this.user = user;
-    
+
     this.products = {};
     this.product0 = null;
     this.product1 = null;
@@ -30,12 +30,14 @@ class AuthPlansController {
       this.user = user;
     });
   }
-  
+
   initProducts(){
-    this.products = this.productService.getProducts();
-    this.product0 = this.products.free;
-    this.product1 = this.products.virtuoso;
-    this.product2 = this.products.superstar;
+    this.productService.getProducts().then(products => {
+      this.products = products;
+      this.product0 = this.products.free;
+      this.product1 = this.products.virtuoso;
+      this.product2 = this.products.superstar;
+    });
   }
 
 }

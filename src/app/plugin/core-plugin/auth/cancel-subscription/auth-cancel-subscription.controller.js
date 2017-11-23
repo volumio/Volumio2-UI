@@ -88,7 +88,9 @@ class AuthCancelSubscriptionController {
   }
 
   loadProduct() {
-    this.product = this.productsService.getProductByCode(this.plan);
+    this.productsService.getProductByCode(this.plan).then(product => {
+      this.product = product;
+    });
   }
 
   getCurrentPlanName() {

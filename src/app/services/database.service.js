@@ -29,7 +29,7 @@ class DatabaseService {
     });
     return writing.promise;
   }
-  
+
   updateFirebaseObject(object) {
     var updating = this.$q.defer();
     this.angularFireService.saveObject(object).then(() => {
@@ -43,7 +43,11 @@ class DatabaseService {
   get(ref) {
     return this.angularFireService.get(ref);
   }
-  
+
+  getInfByKey(ref,limit){
+    return this.angularFireService.getInfByKey(ref,limit);
+  }
+
   getArray(ref){
     return this.angularFireService.getArray(ref);
   }
@@ -57,7 +61,7 @@ class DatabaseService {
     });
     return waitingForValue.promise;
   }
-  
+
   delete(path){
     return this.angularFireService.deleteFromDb(path);
   }

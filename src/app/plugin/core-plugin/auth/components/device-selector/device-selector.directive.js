@@ -69,7 +69,9 @@ class AuthDeviceSelectorController {
   }
 
   initProduct(){
-    this.product = this.productsService.getProductForUser(this.user);
+    this.productsService.getProductForUser(this.user).then(product => {
+      this.product = product;
+    });
   }
 
   enableDevice(device) {
@@ -136,6 +138,14 @@ class AuthDeviceSelectorController {
       }
     }
     return response;
+  }
+
+  toggleAbilitation(device){
+    if(device.enabled){
+      this.enableDevice(device);
+      return;
+    }
+    this.disableDevice(device);
   }
 
 }

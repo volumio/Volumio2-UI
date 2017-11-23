@@ -118,7 +118,7 @@ class AngularFireService {
       userData.email = authUser.email;
     }
     const provider = authUser.providerId || '';
-    const providerDataProvider = authUser.providerData[0].providerId || '';
+    const providerDataProvider = authUser.providerData.length>0?authUser.providerData[0].providerId || '':'';
     if (this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider)) {
       //photo
       userData.photoURL = authUser.photoUrl || null;
@@ -378,6 +378,16 @@ class AngularFireService {
     return getting.promise;
   }
 
+  getInfByKey(ref,limitKey){
+    var getting = this.$q.defer();
+    this.firebase.database().ref(ref).orderByKey().endAt(limitKey).limitToLast(1).once('value').then(value => {
+      getting.resolve(value.val());
+    },error => {
+      getting.reject(error);
+    });
+    return getting.promise;
+  }
+
   getArray(ref){
     var getting = this.$q.defer();
     var ref = this.database.ref(ref);
@@ -414,6 +424,7 @@ class AngularFireService {
 
   setWaitForValueTimeout(ref, waitingFor, timeout) {
     return this.$timeout(() => {
+      console.log("TIMEOUT!");
       ref.off();
       waitingFor.reject(this.filteredTranslate('AUTH.ERROR_SERVER_TIMEOUT'));
     }, timeout * 1000);

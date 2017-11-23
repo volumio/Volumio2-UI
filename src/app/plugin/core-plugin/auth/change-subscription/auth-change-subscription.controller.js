@@ -27,7 +27,9 @@ class AuthChangeSubscriptionController {
 
   loadProduct() {
     var plan = this.$stateParams['plan'];
-    this.product = this.productsService.getProductByCode(plan);
+    this.productsService.getProductByCode(plan).then(product => {
+      this.product = product;
+    });
   }
 
   authInit() {
