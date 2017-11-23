@@ -1,10 +1,25 @@
 class StripeService {
-  constructor(databaseService, $q, firebase) {
+  constructor(databaseService, $q, firebase, devService) {
     'ngInject';
     this.databaseService = databaseService;
     this.$q = $q;
     this.firebase = firebase;
+    this.devService = devService;
 
+  }
+
+  getPublicKey(){
+    let publicKey = 'pk_test_utxQAjiMNEdVZFel9iQlDkyH';
+    let devPublicKey = 'pk_test_utxQAjiMNEdVZFel9iQlDkyH';
+    var getting = this.$q.defer();
+    this.devService.isDev().then(isDev => {
+      if(isDev){
+        getting.resolve(devPublicKey);
+      }else{
+        getting.resolve(publicKey);
+      }
+    });
+    return getting.promise;
   }
 
   subscribe(subscription, userId) {

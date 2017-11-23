@@ -20,7 +20,7 @@ class StripePayButtonDirective {
 }
 
 class StripePayButtonController {
-  constructor($rootScope, $scope, $window, $timeout, $q, paymentsService, StripeCheckout) {
+  constructor($rootScope, $scope, $window, $timeout, $q, paymentsService, StripeCheckout, stripeService) {
     'ngInject';
     this.$scope = $scope;
     this.$window = $window;
@@ -29,12 +29,13 @@ class StripePayButtonController {
     this.paymentsService = paymentsService;
     this.stripeCheckoutService = StripeCheckout;
     this.handler = {};
-    
+    this.stripeService = stripeService;
+
     this.btnIconClasses = {
       normal: "glyphicon glyphicon-shopping-cart",
       loading: "glyphicon glyphicon-refresh"
     };
-    
+
     this.btnIconClass = this.btnIconClasses.normal;
 
     this.product = this.$scope.stripeProduct;
@@ -51,7 +52,7 @@ class StripePayButtonController {
     this.loadStripe();
     this.initButtonUI();
   }
-  
+
   initButtonUI(){
     if(this.buttonLabel === undefined){
       this.buttonLabel = "Buy now";
@@ -66,13 +67,15 @@ class StripePayButtonController {
   }
 
   initButton() {
-    this.handler = this.stripeCheckoutService.configure({
-      key: 'pk_test_utxQAjiMNEdVZFel9iQlDkyH', //TODO insert in a config
-      image: 'app/themes/volumio/assets/variants/volumio/graphics/volumio-icon.png',
-      locale: 'auto',
-      token: this.getPayFunction(),
-      bitcoin: true,
-      email: this.userEmail
+    this.stripeService.getPublicKey().then((key) => {
+      this.handler = this.stripeCheckoutService.configure({
+        key: key,
+        image: 'app/themes/volumio/assets/variants/volumio/graphics/volumio-icon.png',
+        locale: 'auto',
+        token: this.getPayFunction(),
+        bitcoin: true,
+        email: this.userEmail
+      });
     });
   }
 
@@ -90,15 +93,15 @@ class StripePayButtonController {
         this.stopLoading();
         subscribing.reject(error);
       });
-      
+
       this.callback({subscribing: subscribing.promise});
     };
   }
-  
+
   startLoading(){
     this.btnIconClass = this.btnIconClass.loading;
   }
-  
+
   stopLoading(){
     this.btnIconClass = this.btnIconClasses.normal;
   }

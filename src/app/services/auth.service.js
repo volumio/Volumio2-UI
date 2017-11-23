@@ -33,6 +33,8 @@ class AuthService {
     this.isJustFeLogged = false;
     this.isUserBeingWatched = false;
 
+    this.isDev = null;
+
     this.init();
   }
 
@@ -46,7 +48,7 @@ class AuthService {
     var isEnabled = this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio';
     this.enableAuth(isEnabled);
   }
-  
+
   enableAuth(enabled = true) {
     this.isEnabled = enabled;
     this.abilitationDefer.resolve(this.isEnabled);

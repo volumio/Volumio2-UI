@@ -28,6 +28,7 @@ import DatabaseService from './services/database.service';
 import ProductsService from './services/products.service';
 import RemoteStorageService from './services/remote-storage.service';
 import MyVolumioDevicesService from './services/myvolumio-devices.service';
+import DevService from './services/dev.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -166,13 +167,13 @@ angular.module('volumio', [
   'ngLetterAvatar',
   'angular-country-select',
   '720kb.datepicker',
-  
+
   //firebase module
   'firebase',
-  
+
   //stripe module
   'stripe.checkout'
-  
+
   ])
 
   //.constant('', toastr)
@@ -182,7 +183,7 @@ angular.module('volumio', [
   .config(routerConfig)
 
   .run(runBlock)
-  
+
   .service('socketService', SocketService)
   .service('playerService', PlayerService)
   .service('browseService', BrowseService)
@@ -206,6 +207,7 @@ angular.module('volumio', [
   .service('productsService',ProductsService)
   .service('remoteStorageService',RemoteStorageService)
   .service('myVolumioDevicesService',MyVolumioDevicesService)
+  .service('devService',DevService)
 
 
   .provider('themeManager', ThemeManagerProvider)
@@ -236,8 +238,8 @@ angular.module('volumio', [
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
-  .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))  
-  
+  .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))
+
   //auth
   .directive('stripePayButton', () => new StripePayButtonDirective())
   .directive('authCard', () => new AuthCardDirective())

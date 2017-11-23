@@ -1,6 +1,6 @@
 class AngularFireService {
 
-  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, $filter, modalService) {
+  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, $filter, modalService, devService ) {
     'ngInject';
     //consts
     this.USERS_REF = "users";
@@ -19,6 +19,7 @@ class AngularFireService {
     this.database;
     this.modalService = modalService;
     this.filteredTranslate = $filter('translate');
+    this.devService = devService;
 
     this.authUser = null;
     this.dbUser = null;
@@ -28,14 +29,19 @@ class AngularFireService {
 
   //init and config
   init() {
-    this.initFirebase();
-    this.initServices();
-    this.startAuthListening();
+    this.initFirebase().then(() => {
+      this.initServices();
+      this.startAuthListening();
+    });
   }
 
   initFirebase() {
-    let config = this.getFirebaseConfig();
-    this.firebaseModule.initializeApp(config);
+    var initing = this.$q.defer();
+    this.getFirebaseConfig().then(config => {
+      this.firebaseModule.initializeApp(config);
+      initing.resolve();
+    });
+    return initing.promise;
   }
 
   initServices() {
@@ -44,6 +50,7 @@ class AngularFireService {
   }
 
   getFirebaseConfig() {
+    var getting = this.$q.defer();
     let config = {
       apiKey: "AIzaSyDzEZmwJZS4KZtG9pEXOxlm1XcZikP0KbA",
       authDomain: "myvolumio.firebaseapp.com",
@@ -52,7 +59,22 @@ class AngularFireService {
       storageBucket: "myvolumio.appspot.com",
       messagingSenderId: "560540102538"
     };
-    return config;
+    let devConfig = {
+      apiKey: "AIzaSyAcZzzO2ALWG7zigJ7SGZMwSpl5kIE0wzY",
+      authDomain: "myvolumio-dev.firebaseapp.com",
+      databaseURL: "https://myvolumio-dev.firebaseio.com",
+      projectId: "myvolumio-dev",
+      storageBucket: "myvolumio-dev.appspot.com",
+      messagingSenderId: "636746507464"
+    };
+    this.devService.isDev().then(isDev => {
+      if(isDev){
+        getting.resolve(devConfig);
+      }else{
+        getting.resolve(config);
+      }
+    });
+    return getting.promise;
   }
 
   /* ------------ AUTH ------------- */
