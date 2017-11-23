@@ -70,7 +70,8 @@
     "DONE": "Fertig",
     "EMAIL": "Email",
     "SUBSCRIBE_ME": "Newsletter erhalten",
-    "SHARE": "Teilen"
+    "SHARE": "Teilen",
+    "EJECT": "Auswerfen"
   },
   "BROWSER": {
     "PLAY": "Wiedergeben",
@@ -92,7 +93,8 @@
     "PREVIOUS_TRACK":"Vorheriger Titel",
     "PAUSE":"Pause",
     "CLEAR_AND_PLAY":"Warteschlange hiermit ersetzen",
-    "SAFE_REMOVE": "Medium sicher auswerfen"
+    "SAFE_REMOVE": "Medium sicher auswerfen",
+    "UPDATE_FOLDER": "Ordner aktualisieren"
   },
 "MY_MUSIC": {
     "UPDATE":"Aktualisieren",
