@@ -50,31 +50,9 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             },
             resolve: {
               //NOTE this resolver init also global services like toast
-              socketResolver: ($rootScope, $http, $window, socketService, ripperService, modalListenerService,
-                      toastMessageService, uiSettingsService, updaterService, authService) => {
-                let localhostApiURL = `http://${$window.location.hostname}/api`;
-                return $http.get(localhostApiURL + '/host')
-                        .then((response) => {
-                          console.info('IP from API', response);
-                          $rootScope.initConfig = response.data;
-                          const hosts = response.data;
-                          const firstHostKey = Object.keys(hosts)[0];
-                          socketService.hosts = hosts;
-                          socketService.host = hosts[firstHostKey];
-                        }, () => {
-                          //Fallback socket
-                          console.info('Dev mode: IP from local-config.json');
-                          return $http.get('/app/local-config.json').then((response) => {
-                            // const hosts = {
-                            //   'host1': 'http://192.168.0.65',
-                            //   'host2': 'http://192.168.0.66',
-                            //   'host3': 'http://192.168.0.67'};
-                            const hosts = {'devHost': response.data.localhost};
-                            const firstHostKey = Object.keys(hosts)[0];
-                            socketService.hosts = hosts;
-                            socketService.host = hosts[firstHostKey];
-                          });
-                        });
+              socketResolver: ($rootScope, ripperService, modalListenerService,
+                               toastMessageService, uiSettingsService, updaterService, deviceEndpointsService, $state) => {
+                  return deviceEndpointsService.requireSocketHost($state);
               }
             }
           })
@@ -369,6 +347,82 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
           })
 
           /* --------- END AUTH ----------- */
+
+          /* --------- MYVOLUMIO ----------- */
+
+          .state('myvolumio', {
+            url: '/myvolumio',
+            abstract: true,
+            views: {
+              'layout': {
+                templateUrl: themeManagerProvider.getHtmlPath('layout'),
+                controller: 'LayoutController',
+                controllerAs: 'layout'
+              },
+              'header@myvolumio': {
+                template: '<div ui-view></div>'
+              },
+              'footer@myvolumio': {
+                template: '<div ui-view></div>'
+              }
+            },
+            resolve: {
+              socketResolver: ($rootScope, ripperService, modalListenerService,
+                               toastMessageService, uiSettingsService, updaterService, deviceEndpointsService, $state, $stateParams) => {
+                return deviceEndpointsService.checkSocketHost();
+              }
+            }
+          })
+
+          .state('myvolumio.login', {
+            url: '/login',
+            views: {
+              'content@myvolumio': {
+                templateUrl: 'app/plugin/core-plugin/auth/login/auth-login.html',
+                controller: 'AuthLoginController',
+                controllerAs: 'authLoginController',
+                resolve: {
+                  "user": ["authService", function (authService) {
+                    return authService.requireNullUserOrRedirect(true);
+                  }]
+                }
+              }
+            }
+          })
+
+          .state('myvolumio.signup', {
+            url: '/signup',
+            views: {
+              'content@myvolumio': {
+                templateUrl: 'app/plugin/core-plugin/auth/signup/auth-signup.html',
+                controller: 'AuthSignupController',
+                controllerAs: 'authSignupController',
+                resolve: {
+                  "user": ["authService", function (authService) {
+                    return authService.requireNullUserOrRedirect(true);
+                  }]
+                }
+              }
+            }
+          })
+
+          .state('myvolumio.select_device', {
+            url: '/select-device',
+            views: {
+              'content@myvolumio': {
+                templateUrl: 'app/plugin/core-plugin/auth/cloud/select-device/auth-cloud-select-device.html',
+                controller: 'AuthCloudSelectDeviceController',
+                controllerAs: 'authCloudSelectDeviceController',
+                resolve: {
+                  "user": ["authService", function (authService) {
+                    return authService.requireUserOrRedirectToCloudLogin();
+                  }]
+                }
+              }
+            }
+          })
+
+          /* --------- END MYVOLUMIO ----------- */
 
           .state('volumio.static-page', {
             url: 'static-page/:pageName',

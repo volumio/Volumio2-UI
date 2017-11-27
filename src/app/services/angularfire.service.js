@@ -24,6 +24,8 @@ class AngularFireService {
     this.authUser = null;
     this.dbUser = null;
 
+    this.initing = this.$q.defer();
+
     this.init();
   }
 
@@ -36,12 +38,11 @@ class AngularFireService {
   }
 
   initFirebase() {
-    var initing = this.$q.defer();
     this.getFirebaseConfig().then(config => {
       this.firebaseModule.initializeApp(config);
-      initing.resolve();
+      this.initing.resolve();
     });
-    return initing.promise;
+    return this.initing.promise;
   }
 
   initServices() {
@@ -101,6 +102,19 @@ class AngularFireService {
 
   waitForUser(){
     return this.authService.$waitForSignIn();
+  }
+
+  waitForDbUser(){
+    return this.initing.promise.then(() => {
+      return this.waitForUser().then(user => {
+        if (user === null) {
+          var userPromise = this.$q.defer();
+          userPromise.resolve(null);
+          return userPromise.promise;
+        }
+        return this.getRemoteDbUser(user.uid);
+      });
+    });
   }
 
   setUserByAuth(authUser) {

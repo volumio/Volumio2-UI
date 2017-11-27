@@ -15,6 +15,11 @@ function runBlock(themeManager, $state, $rootScope) {
       $state.go("volumio.auth.login");
       return;
     }
+    if (error === "MYVOLUMIO_NO_ALIVE_DEVICES") {
+      //$state.go("myvolumio.login");
+      alert("YAA");
+      return;
+    }
     $state.go("volumio.browse");
   });
 }

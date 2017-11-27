@@ -1,5 +1,5 @@
 class AuthService {
-  constructor($rootScope, $timeout, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService, socketService, $http, $location, themeManager) {
+  constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService, socketService, $http, $location, themeManager) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -14,6 +14,7 @@ class AuthService {
     this.$http = $http;
     this.$location = $location;
     this.themeManager = themeManager;
+    this.$window = $window;
 
     this.isEnabled = false;
     this.abilitationDefer = this.$q.defer();
@@ -32,6 +33,7 @@ class AuthService {
     //race conditions
     this.isJustFeLogged = false;
     this.isUserBeingWatched = false;
+    this.isSocketInit = false;
 
     this.isDev = null;
 
@@ -39,19 +41,31 @@ class AuthService {
   }
 
   init() {
-    this.initSocket();
     this.initAuth();
   }
 
   initAuth() {
     //TODO move this logic after enabled by pushMenuItems
     var isEnabled = this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio';
+    isEnabled = isEnabled || this.isOnCloud();
     this.enableAuth(isEnabled);
+  }
+
+  getUser(){
+    return this.waitForDbUser();
+  }
+
+  isOnCloud(){
+    return this.$window.location.hostname === 'myvolumio.org';
   }
 
   enableAuth(enabled = true) {
     this.isEnabled = enabled;
     this.abilitationDefer.resolve(this.isEnabled);
+
+    if(this.isEnabled === true && this.isSocketInit === false){
+      this.initSocket();
+    }
 
     if (this.isEnabled === true && this.isUserBeingWatched === false) {
       this.watchUser();
@@ -71,6 +85,7 @@ class AuthService {
   }
 
   initSocket() {
+    this.isSocketInit = true;
     this.socketDeferred = this.$q.defer();
     this.socketPromise = this.socketDeferred.promise;
 
@@ -130,6 +145,11 @@ class AuthService {
   getMyVolumioStatus() {
     var getting = this.$q.defer();
 
+    if(this.isSocketInit === false){
+      getting.resolve(false);
+      return getting.promise;
+    }
+
     this.socketService.on('pushMyVolumioStatus', (data) => {
       getting.resolve(data);
     });
@@ -145,6 +165,12 @@ class AuthService {
 
   sendUserTokenToBackend() {
     var sending = this.$q.defer();
+
+    if(this.isSocketInit === false){
+      sending.resolve(false);
+      return sending.promise;
+    }
+
     this.getUserToken(this.user.uid).then((response) => {
       var token = response;
       this.socketService.emit('setMyVolumioToken', {
@@ -184,6 +210,12 @@ class AuthService {
 
   emitUserRequest() {
     var emitting = this.$q.defer();
+
+    if(this.isSocketInit === false){
+      emitting.resolve(false);
+      return emitting.promise;
+    }
+
     this.socketService.emit('getMyVolumioToken', undefined, () => {
       emitting.resolve();
     });
@@ -211,13 +243,28 @@ class AuthService {
     return this.angularFireService.requireUser();
   }
 
-  requireNullUserOrRedirect() {
+  requireUserOrRedirectToCloudLogin() {
+    return this.angularFireService.requireUser().then((user) => {
+      if(user){
+        return user;
+      }else{
+        this.$state.go('myvolumio.login');
+        throw('AUTH.USER_NOT_LOGGED');
+      }
+    });
+  }
+
+  requireNullUserOrRedirect(isOnCloud = false) {
     return this.angularFireService.waitForUser().then(user => {
       var gettingUser = this.$q.defer();
       if (user === null) {
         gettingUser.resolve(null);
       } else {
-        this.$state.go('volumio.auth.profile');
+        if(!isOnCloud){
+          this.$state.go('volumio.auth.profile');
+        }else{
+          this.$state.go('myvolumio.select_device');
+        }
         gettingUser.reject('AUTH.USER_ALREADY_LOGGED');
       }
       return gettingUser.promise;
@@ -232,6 +279,10 @@ class AuthService {
 
   waitForUser() {
     return this.angularFireService.waitForUser();
+  }
+
+  waitForDbUser() {
+    return this.angularFireService.waitForDbUser();
   }
 
   validateUser(user) {
@@ -310,12 +361,15 @@ class AuthService {
 
   logOutBackend() {
     var emitting = this.$q.defer();
-//    this.socketPromise.then(() => {
+
+    if(this.isSocketInit === false){
+      emitting.resolve(false);
+      return emitting.promise;
+    }
+
     this.socketService.emit('myVolumioLogout');
     emitting.resolve();
-//    }).catch(error => {
-//      emitting.reject(error);
-//    });
+
     return emitting.promise;
   }
 
@@ -414,6 +468,10 @@ class AuthService {
   }
 
   registerLogoutListener() {
+    if(this.isSocketInit === false){
+      return;
+    }
+
     this.socketService.on('pushMyVolumioLogout', () => {
       this.logOutFrontend();
     });
@@ -424,6 +482,10 @@ class AuthService {
   }
 
   registerLoginListener() {
+    if(this.isSocketInit === false){
+      return;
+    }
+
     this.socketService.on('pushMyVolumioToken', (data) => {
       if (data !== null && data.token !== null) {
         this.loginWithToken(data.token);
@@ -448,7 +510,7 @@ class AuthService {
   }
 
   isValidDomainForSocialLogin(domain) {
-    if (domain === 'localhost') {
+    if (domain === 'localhost' || domain === 'myvolumio.org') {
       return true;
     }
     return false;

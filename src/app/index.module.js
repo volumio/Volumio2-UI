@@ -29,6 +29,7 @@ import ProductsService from './services/products.service';
 import RemoteStorageService from './services/remote-storage.service';
 import MyVolumioDevicesService from './services/myvolumio-devices.service';
 import DevService from './services/dev.service';
+import DeviceEndpointsService from './services/device-endpoints.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -138,6 +139,7 @@ import AuthEditProfileController from './plugin/core-plugin/auth/edit-profile/au
 import AuthVerifyUserController from './plugin/core-plugin/auth/verify-user/auth-verify-user.controller';
 import AuthCancelSubscriptionController from './plugin/core-plugin/auth/cancel-subscription/auth-cancel-subscription.controller';
 import AuthChangeSubscriptionController from './plugin/core-plugin/auth/change-subscription/auth-change-subscription.controller';
+import AuthCloudSelectDeviceController from './plugin/core-plugin/auth/cloud/select-device/auth-cloud-select-device.controller';
 
 
 angular.module('volumio', [
@@ -208,6 +210,7 @@ angular.module('volumio', [
   .service('remoteStorageService',RemoteStorageService)
   .service('myVolumioDevicesService',MyVolumioDevicesService)
   .service('devService',DevService)
+  .service('deviceEndpointsService',DeviceEndpointsService)
 
 
   .provider('themeManager', ThemeManagerProvider)
@@ -311,4 +314,5 @@ angular.module('volumio', [
   .controller('AuthEditProfileController',AuthEditProfileController)
   .controller('AuthVerifyUserController',AuthVerifyUserController)
   .controller('AuthCancelSubscriptionController',AuthCancelSubscriptionController)
-  .controller('AuthChangeSubscriptionController',AuthChangeSubscriptionController);
+  .controller('AuthChangeSubscriptionController',AuthChangeSubscriptionController)
+  .controller('AuthCloudSelectDeviceController', AuthCloudSelectDeviceController);
