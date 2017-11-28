@@ -49,10 +49,12 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
               }
             },
             resolve: {
-              //NOTE this resolver init also global services like toast
-              socketResolver: ($rootScope, ripperService, modalListenerService,
-                               toastMessageService, uiSettingsService, updaterService, deviceEndpointsService, $state) => {
-                  return deviceEndpointsService.requireSocketHost($state);
+              dependenciesResolver: ($rootScope, ripperService, modalListenerService,
+                                   toastMessageService, uiSettingsService, updaterService) => {
+                //NOTE this resolver init global services like toast
+              },
+              socketResolver: ($rootScope, deviceEndpointsService) => {
+                    return deviceEndpointsService.initSocket();
               }
             }
           })
@@ -141,16 +143,19 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             abstract: true,
             template: '<div ui-view></div>',
             resolve: {
-              "authEnabled": function (authService, $q) {
-                  let enabling = $q.defer();
-                  authService.isAuthEnabled().then((enabled) => {
-                    if (!enabled) {
-                      throw "AUTH_NOT_ENABLED";
-                    }
-                    enabling.resolve(true);
-                  });
-                  return enabling.promise;
-                }
+              authEnabled: function (authService, $q) {
+                let enabling = $q.defer();
+                authService.isAuthEnabled().then((enabled) => {
+                  if (!enabled) {
+                    throw "AUTH_NOT_ENABLED";
+                  }
+                  enabling.resolve(true);
+                });
+                return enabling.promise;
+              },
+              socketResolver: ($rootScope, deviceEndpointsService) => {
+                return deviceEndpointsService.initSocket(false);
+              }
             }
           })
 

@@ -11,61 +11,83 @@ class DeviceEndpointsService{
 
   }
 
-  requireSocketHost($state){
-    console.log("INIT RESOLVE");
-    console.log($state);
-    if(this.authService.isOnCloud()){
-      console.log("IS ON CLOUD");
-      return this.authService.waitForDbUser().then(user => {
-        console.log("waitForDbUser then ");
-        console.log(user);
-        if(user === null){
-          console.log("FLOW 1");
-          this.$state.go('myvolumio.login');
-          return true;
-        }else{
-          //TODO CHECK IF VIRTUOSO OR UPPER
-          //TODO CONNECT WITH THE VALID REMOTE DEVICE (Last)
-          console.log("FLOW 2");
+  initSocket(isSocketRequired = true){
+   return this.requireSocketHosts(isSocketRequired).then(hosts => {
+      return this.setSocketHosts(hosts);
+    }).catch(error => {
+      if(error === 'NO_SOCKET_ENDPOINTS'){
+        return false;
+      }
+      throw error;
+   });
+  }
 
-          return this.myVolumioDevicesService.getCurrentRemoteDeviceHost().then(host => {
-            console.log("REMOTE DEVICE HOST");
-            console.log(host);
-            if(host === null || host === undefined){
-              //this.$state.go('myvolumio.login');
-              return true;
-            }
-            this.socketService.host = host;
-            return true;
-          });
-
-        }
-      });
-    } else {
-      let localhostApiURL = `http://${this.$window.location.hostname}/api`;
-      return this.$http.get(localhostApiURL + '/host')
-        .then((response) => {
-          console.info('IP from API', response);
-          this.$rootScope.initConfig = response.data;
-          const hosts = response.data;
-          const firstHostKey = Object.keys(hosts)[0];
-          this.socketService.hosts = hosts;
-          this.socketService.host = hosts[firstHostKey];
-        }, () => {
-          //Fallback socket
-          console.info('Dev mode: IP from local-config.json');
-          return this.$http.get('/app/local-config.json').then((response) => {
-            // const hosts = {
-            //   'host1': 'http://192.168.0.65',
-            //   'host2': 'http://192.168.0.66',
-            //   'host3': 'http://192.168.0.67'};
-            const hosts = {'devHost': response.data.localhost};
-            const firstHostKey = Object.keys(hosts)[0];
-            this.socketService.hosts = hosts;
-            this.socketService.host = hosts[firstHostKey];
-          });
-        });
+  requireSocketHosts(){
+    if(!this.authService.isOnCloud()){
+      return this.getLocalSocketHosts();
     }
+    return this.getRemoteSocketHosts();
+  }
+
+  getLocalSocketHosts(){
+    let localhostApiURL = `http://${this.$window.location.hostname}/api`;
+    return this.$http.get(localhostApiURL + '/host')
+      .then((response) => {
+        console.info('IP from API', response);
+        this.$rootScope.initConfig = response.data;
+        const hosts = response.data;
+        return hosts;
+      }, () => {
+        //Fallback socket
+        console.info('Dev mode: IP from local-config.json');
+        return this.$http.get('/app/local-config.json').then((response) => {
+          const hosts = {'devHost': response.data.localhost};
+          return hosts;
+        });
+      });
+  }
+
+  getRemoteSocketHosts() {
+    return this.authService.waitForDbUser().then(user => {
+      if (user === null) {
+        console.log("USER IS NULL");
+        throw 'NO_SOCKET_ENDPOINTS';
+      }
+
+      //TODO ADD IF ENABLED AND ONLINE
+      if ('lastHwuuid' in user) {
+        let lastHwuuid = user.lastHwuuid;
+        let geoServer = user.geoServer || 'eu1';
+        let remoteDeviceHost = `https://${lastHwuuid}.${geoServer}.myvolumio.org`;
+        return [remoteDeviceHost];
+      }
+
+      return this.myVolumioDevicesService.getDevicesByUserId(user.uid).then(devices => {
+        console.log("getDevicesByUserId");
+        let eligibleRemoteHosts = [];
+        let geoServer = user.geoServer || 'eu1';
+        for (var i in devices) {
+          let device = devices[i];
+          if (device.enabled === true && device.online === true) {
+            let deviceHwuuid = device.hwuuid;
+            let remoteDeviceHost = `https://${deviceHwuuid}.${geoServer}.myvolumio.org`;
+            eligibleRemoteHosts.push(remoteDeviceHost);
+          }
+        }
+        //TODO GET FIRST ITEM BY DATE OR OTHER PARAM
+        if (eligibleRemoteHosts.length === 0) {
+          throw 'NO_SOCKET_ENDPOINTS';
+        }
+        return eligibleRemoteHosts;
+      });
+    });
+  }
+
+  setSocketHosts(hosts){
+    const firstHostKey = Object.keys(hosts)[0];
+    this.socketService.hosts = hosts;
+    this.socketService.host = hosts[firstHostKey];
+    return true;
   }
 
   checkSocketHost(){

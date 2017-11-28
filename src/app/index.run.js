@@ -15,9 +15,9 @@ function runBlock(themeManager, $state, $rootScope) {
       $state.go("volumio.auth.login");
       return;
     }
-    if (error === "MYVOLUMIO_NO_ALIVE_DEVICES") {
-      //$state.go("myvolumio.login");
-      alert("YAA");
+    if (error === "NO_SOCKET_ENDPOINTS") {
+      //$state.go("volumio.login");
+      alert('yahhh');
       return;
     }
     $state.go("volumio.browse");
