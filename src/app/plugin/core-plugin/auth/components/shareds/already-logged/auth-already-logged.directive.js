@@ -22,13 +22,13 @@ class AuthAlreadyLoggedController {
   }
 
   init() {
-    
+
   }
-  
+
   goToProfile(){
-    this.$state.go('volumio.auth.profile');
+    this.$state.go('myvolumio.profile');
   }
-  
+
   logOut(){
     this.authService.logOut();
   }

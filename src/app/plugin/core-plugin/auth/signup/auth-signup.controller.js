@@ -35,7 +35,7 @@ class AuthSignupController {
 
   postAuthInit(){
     if(this.user !== null){
-      this.$state.go('volumio.auth.profile');
+      this.$state.go('myvolumio.profile');
     }
   }
 
@@ -105,7 +105,7 @@ class AuthSignupController {
       country: ''
     };
     this.authService.signup(user).then((newUser) => {
-      this.$state.go('volumio.auth.profile');
+      this.$state.go('myvolumio.profile');
     }, (error) => {
       this.modalService.openDefaultErrorModal(error);
     });
@@ -133,7 +133,7 @@ class AuthSignupController {
     this.modalService.openDefaultErrorModal("AUTH.ERROR_VALIDATION_PASSWORD_MATCH");
     return false;
   }
-  
+
   isSocialEnabled(){
     return this.authService.isSocialEnabled();
   }

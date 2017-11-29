@@ -6,9 +6,11 @@
         ui-sref="volumio.playback"/>
   </div>
 
-  <player-buttons></player-buttons>
+  <div ng-if="header.canUseSocket">
+    <player-buttons></player-buttons>
 
-  <side-menu></side-menu>
+    <side-menu></side-menu>
+  </div>
 </div>
 
 <ng-include

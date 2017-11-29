@@ -1,29 +1,37 @@
 class DeviceEndpointsService{
 
-  constructor($rootScope,socketService,authService,$state,$window,$http,myVolumioDevicesService){
+  constructor($rootScope,socketService,$state,$window,$http,myVolumioDevicesService, cloudService, authService){
     this.$rootScope = $rootScope;
     this.socketService = socketService;
-    this.authService = authService;
     this.$state = $state;
     this.$window = $window;
     this.$http = $http;
     this.myVolumioDevicesService = myVolumioDevicesService;
+    this.cloudService = cloudService;
+    this.authService = authService;
+
+    this.i = 10;
 
   }
 
-  initSocket(isSocketRequired = true){
-   return this.requireSocketHosts(isSocketRequired).then(hosts => {
-      return this.setSocketHosts(hosts);
-    }).catch(error => {
-      if(error === 'NO_SOCKET_ENDPOINTS'){
+  initSocket(){
+
+    return this.getSocketHosts().then(hosts => {
+      console.log("HOSTS");
+      console.log(hosts);
+      if(hosts === null){
         return false;
       }
-      throw error;
-   });
+      return this.setSocketHosts(hosts);
+    }).catch(error => {
+      console.log("ERROR");
+      console.log(error);
+      return false;
+    });
   }
 
-  requireSocketHosts(){
-    if(!this.authService.isOnCloud()){
+  getSocketHosts(){
+    if(!this.cloudService.isOnCloud()){
       return this.getLocalSocketHosts();
     }
     return this.getRemoteSocketHosts();
@@ -51,7 +59,7 @@ class DeviceEndpointsService{
     return this.authService.waitForDbUser().then(user => {
       if (user === null) {
         console.log("USER IS NULL");
-        throw 'NO_SOCKET_ENDPOINTS';
+        return null;
       }
 
       //TODO ADD IF ENABLED AND ONLINE
@@ -76,7 +84,7 @@ class DeviceEndpointsService{
         }
         //TODO GET FIRST ITEM BY DATE OR OTHER PARAM
         if (eligibleRemoteHosts.length === 0) {
-          throw 'NO_SOCKET_ENDPOINTS';
+          return null;
         }
         return eligibleRemoteHosts;
       });

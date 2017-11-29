@@ -18,13 +18,13 @@ class AuthLoginController {
 
   postAuthInit(){
     if(this.user !== null){
-      this.$state.go('volumio.auth.profile');
+      this.$state.go('myvolumio.profile');
     }
   }
 
   login() {
     this.authService.login(this.username, this.pass).then((user) => {
-      this.$state.go('volumio.auth.profile');
+      this.$state.go('myvolumio.profile');
     }, (error) => {
       this.modalService.openDefaultErrorModal(error);
     });
@@ -53,9 +53,9 @@ class AuthLoginController {
   }
 
   goToRecoverPassword() {
-    this.$state.go('volumio.auth.recover-password');
+    this.$state.go('myvolumio.recover-password');
   }
-  
+
   isSocialEnabled(){
     return this.authService.isSocialEnabled();
   }

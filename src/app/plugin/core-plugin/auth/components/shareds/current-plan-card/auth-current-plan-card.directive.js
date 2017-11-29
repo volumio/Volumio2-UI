@@ -57,11 +57,11 @@ class AuthCurrentPlanCardController {
   }
 
   goToProfile() {
-    this.$state.go('volumio.auth.profile');
+    this.$state.go('myvolumio.profile');
   }
 
   goToPlans() {
-    this.$state.go('volumio.auth.plans');
+    this.$state.go('myvolumio.plans');
   }
 
   isTargetingProfile() {

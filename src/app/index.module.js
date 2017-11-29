@@ -30,6 +30,7 @@ import RemoteStorageService from './services/remote-storage.service';
 import MyVolumioDevicesService from './services/myvolumio-devices.service';
 import DevService from './services/dev.service';
 import DeviceEndpointsService from './services/device-endpoints.service';
+import CloudService from './services/cloud.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -211,6 +212,7 @@ angular.module('volumio', [
   .service('myVolumioDevicesService',MyVolumioDevicesService)
   .service('devService',DevService)
   .service('deviceEndpointsService',DeviceEndpointsService)
+  .service('cloudService',CloudService)
 
 
   .provider('themeManager', ThemeManagerProvider)

@@ -56,7 +56,7 @@ class AuthEditProfileController {
   }
 
   goToProfile() {
-    this.$state.go('volumio.auth.profile');
+    this.$state.go('myvolumio.profile');
   }
 
   isUserFilledWithMandatory() {
@@ -144,7 +144,7 @@ class AuthEditProfileController {
   }
 
   logIn() {
-    this.$state.go('volumio.auth.login');
+    this.$state.go('myvolumio.login');
   }
 
   deleteUser() {
@@ -157,7 +157,7 @@ class AuthEditProfileController {
     this.deletingUser = true;
     this.authService.deleteUser(this.user).then(() => {
       this.deletingUser = false;
-      this.$state.go('volumio.auth.login');
+      this.$state.go('myvolumio.login');
     }).catch(error => {
       this.deletingUser = false;
       this.modalService.openDefaultErrorModal(error);

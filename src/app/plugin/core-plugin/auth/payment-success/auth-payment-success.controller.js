@@ -2,12 +2,12 @@ class AuthPaymentSuccessController{
   constructor($scope, $state, user){
     'ngInject';
     this.$state = $state;
-    
+
     this.user = user;
   }
-  
+
   goToProfile(){
-    this.$state.go('volumio.auth.profile');
+    this.$state.go('myvolumio.profile');
   }
 }
 

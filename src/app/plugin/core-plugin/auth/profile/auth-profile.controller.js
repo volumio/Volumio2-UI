@@ -42,20 +42,20 @@ class AuthProfileController {
   }
 
   goToPlans() {
-    this.$state.go('volumio.auth.plans');
+    this.$state.go('myvolumio.plans');
   }
 
   logIn() {
-    this.$state.go('volumio.auth.login');
+    this.$state.go('myvolumio.login');
   }
 
   goToEdit() {
-    this.$state.go('volumio.auth.edit-profile');
+    this.$state.go('myvolumio.edit-profile');
   }
 
   reAuth() {
     this.authService.logOut().then(() => {
-      this.$state.go('volumio.auth.login');
+      this.$state.go('myvolumio.login');
     }).catch((error) => {
       alert(error);
     });

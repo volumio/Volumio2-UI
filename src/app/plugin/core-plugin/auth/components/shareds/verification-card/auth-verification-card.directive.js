@@ -56,7 +56,7 @@ class AuthVerificationCardController {
 
   reAuth() {
     this.authService.logOut().then(() => {
-      this.$state.go('volumio.auth.login');
+      this.$state.go('myvolumio.login');
     }).catch((error) => {
       alert(error);
     });

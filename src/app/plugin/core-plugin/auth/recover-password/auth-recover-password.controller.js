@@ -4,13 +4,13 @@ class AuthRecoverPasswordController{
     this.authService = authService;
     this.$state = $state;
     this.modalService = modalService;
-    
+
     this.email = "";
     this.sent = false;
-    
+
     this.user = user;
   }
-  
+
   doRecover(){
     if(this.email){
       this.authService.recoverPassword(this.email).then(() => {
@@ -20,11 +20,11 @@ class AuthRecoverPasswordController{
       });
     }
   }
-  
+
   goToLogin(){
-    this.$state.go('volumio.auth.login');
+    this.$state.go('myvolumio.login');
   }
-  
+
 }
 
 export default AuthRecoverPasswordController;

@@ -1,5 +1,6 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q) {
+  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q,
+              deviceEndpointsService, cloudService) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -9,6 +10,8 @@ class UiSettingsService {
     this.$http = $http;
     this.$q = $q;
     this.$state = $state;
+    this.deviceEndpointsService = deviceEndpointsService;
+    this.cloudService = cloudService;
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
@@ -52,6 +55,11 @@ class UiSettingsService {
   }
 
   setLanguage() {
+    //TODO GET FROM DB
+    if(this.cloudService.isOnCloud()){
+      this.$translate.use('en');
+      return;
+    }
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
     } else {

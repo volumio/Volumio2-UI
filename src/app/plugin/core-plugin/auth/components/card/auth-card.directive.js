@@ -37,23 +37,23 @@ class AuthCardController {
   //auth section
   logIn() {
     this.actionCallback();
-    this.$state.go('volumio.auth.login');
+    this.$state.go('myvolumio.login');
   }
 
   signUp() {
     this.actionCallback();
-    this.$state.go('volumio.auth.signup');
+    this.$state.go('myvolumio.signup');
   }
 
   goToProfile() {
     this.actionCallback();
-    this.$state.go('volumio.auth.profile');
+    this.$state.go('myvolumio.profile');
   }
 
   logOut() {
     this.authService.logOut().then(() => {
       this.actionCallback();
-      this.$state.go('volumio.auth.login');
+      this.$state.go('myvolumio.login');
     }).catch(error => {
       this.modalService.openDefaultErrorModal(error);
     });

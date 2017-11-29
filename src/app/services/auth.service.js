@@ -1,5 +1,6 @@
 class AuthService {
-  constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService, stripeService, $filter, modalService, socketService, $http, $location, themeManager) {
+  constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
+              stripeService, $filter, modalService, socketService, $http, $location, themeManager, cloudService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -15,6 +16,7 @@ class AuthService {
     this.$location = $location;
     this.themeManager = themeManager;
     this.$window = $window;
+    this.cloudService = cloudService;
 
     this.isEnabled = false;
     this.abilitationDefer = this.$q.defer();
@@ -47,16 +49,12 @@ class AuthService {
   initAuth() {
     //TODO move this logic after enabled by pushMenuItems
     var isEnabled = this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio';
-    isEnabled = isEnabled || this.isOnCloud();
+    isEnabled = isEnabled || this.cloudService.isOnCloud();
     this.enableAuth(isEnabled);
   }
 
   getUser(){
     return this.waitForDbUser();
-  }
-
-  isOnCloud(){
-    return this.$window.location.hostname === 'myvolumio.org';
   }
 
   enableAuth(enabled = true) {
@@ -254,16 +252,16 @@ class AuthService {
     });
   }
 
-  requireNullUserOrRedirect(isOnCloud = false) {
+  requireNullUserOrRedirect() {
     return this.angularFireService.waitForUser().then(user => {
       var gettingUser = this.$q.defer();
       if (user === null) {
         gettingUser.resolve(null);
       } else {
-        if(!isOnCloud){
-          this.$state.go('volumio.auth.profile');
+        if(!this.cloudService.isOnCloud){
+          this.$state.go('volumio.profile');
         }else{
-          this.$state.go('myvolumio.select_device');
+          this.$state.go('myvolumio.login');
         }
         gettingUser.reject('AUTH.USER_ALREADY_LOGGED');
       }
@@ -330,11 +328,11 @@ class AuthService {
   }
 
   redirectToEditProfile() {
-    this.$state.go('volumio.auth.edit-profile');
+    this.$state.go('volumio.edit-profile');
   }
 
   redirectToVerifyUser() {
-    this.$state.go('volumio.auth.verify-user');
+    this.$state.go('volumio.verify-user');
   }
 
   signup(user) {

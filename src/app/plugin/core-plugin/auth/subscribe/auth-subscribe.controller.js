@@ -69,11 +69,11 @@ class AuthSubscribeController {
   }
 
   goToPaymentSuccess() {
-    this.$state.go('volumio.auth.payment-success');
+    this.$state.go('myvolumio.payment-success');
   }
 
   goToPaymentFail() {
-    this.$state.go('volumio.auth.payment-fail');
+    this.$state.go('myvolumio.payment-fail');
   }
 
   loadProduct() {
@@ -84,7 +84,7 @@ class AuthSubscribeController {
   }
 
   goToPlans() {
-    this.$state.go('volumio.auth.plans');
+    this.$state.go('myvolumio.plans');
   }
 
 }

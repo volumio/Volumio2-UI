@@ -27,7 +27,7 @@ class AuthPlanCardController {
     this.$state = $state;
     this.authService = authService;
     this.modalService = modalService;
-    
+
     this.product = this.$scope.product;
     this.isDefaultBehaviour = true;
     this.activateSubscribe = this.$scope.subscribe;
@@ -41,12 +41,12 @@ class AuthPlanCardController {
 
     this.init();
   }
-  
+
   init(){
     this.setConfiguration();
     this.authInit();
   }
-  
+
   setConfiguration(){
     if(this.activateSubscribe === true || this.activateCancellation === true || this.activateChangeSubscription === true){
       this.isDefaultBehaviour = false;
@@ -61,15 +61,15 @@ class AuthPlanCardController {
 
   //auth section
   logIn() {
-    this.$state.go('volumio.auth.login');
+    this.$state.go('myvolumio.login');
   }
 
   signUp() {
-    this.$state.go('volumio.auth.signup');
+    this.$state.go('myvolumio.signup');
   }
 
   goToProfile() {
-    this.$state.go('volumio.auth.profile');
+    this.$state.go('myvolumio.profile');
   }
 
   logOut() {
@@ -79,27 +79,27 @@ class AuthPlanCardController {
   isUserFilledWithMandatory() {
     return this.authService.isUserFilledWithMandatory();
   }
-  
+
   subscribe(plan) {
-    this.$state.go('volumio.auth.subscribe', {'plan': plan});
+    this.$state.go('myvolumio.subscribe', {'plan': plan});
   }
-  
+
   goToChangePlan(plan){
-    this.$state.go('volumio.auth.change-subscription', {'plan': plan});
+    this.$state.go('myvolumio.change-subscription', {'plan': plan});
   }
-  
+
   downgradeToFree(){
-    this.$state.go('volumio.auth.cancel-subscription');
+    this.$state.go('myvolumio.cancel-subscription');
   }
-  
+
   subscriptionCallback(subscribing) {
     this.subscribeCallback({subscribing: subscribing});
   }
-  
+
   doDowngrade(){
     this.cancellationCallback();
   }
-  
+
   changePlan(){
     this.changeSubscriptionCallback();
   }

@@ -80,11 +80,11 @@ class AuthCancelSubscriptionController {
   }
 
   goToCancellingSuccess() {
-    this.$state.go('volumio.auth.payment-success');
+    this.$state.go('myvolumio.payment-success');
   }
 
   goToCancellingFail() {
-    this.$state.go('volumio.auth.payment-fail');
+    this.$state.go('myvolumio.payment-fail');
   }
 
   loadProduct() {
@@ -98,11 +98,11 @@ class AuthCancelSubscriptionController {
   }
 
   logIn() {
-    this.$state.go('volumio.auth.login');
+    this.$state.go('myvolumio.login');
   }
 
   goToPlans() {
-    this.$state.go('volumio.auth.plans');
+    this.$state.go('myvolumio.plans');
   }
 
 }
