@@ -259,7 +259,7 @@ class AuthService {
         gettingUser.resolve(null);
       } else {
         if(!this.cloudService.isOnCloud){
-          this.$state.go('volumio.profile');
+          this.$state.go('myvolumio.profile');
         }else{
           this.$state.go('myvolumio.login');
         }

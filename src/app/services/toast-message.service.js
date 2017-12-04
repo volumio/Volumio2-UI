@@ -36,6 +36,9 @@ class ToastMessageService {
   }
 
   registerListner() {
+    if(!this.socketService.isSocketAvalaible()){
+      return;
+    }
     this.socketService.on('pushToastMessage', (data) => {
       // this.$log.debug('pushToastMessage', data);
       this.showMessage(data.type, data.message, data.title);

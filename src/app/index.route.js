@@ -36,7 +36,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
                   console.log("SOK RES");
                   console.log(isAvalaible);
                   if(isAvalaible === false){
-                    checking.reject('NO_SOCKET_ENDPOINTS');
+                    checking.reject('NO_SOCKET_ENDPOINTS'); //this is catched by index.run.js
                     return;
                   }
                   checking.resolve(isAvalaible);
@@ -147,19 +147,30 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
               }
             },
             resolve: {
-              dependenciesResolver: ($rootScope, ripperService, modalListenerService,
-                                     toastMessageService, uiSettingsService, updaterService) => {
+              dependenciesResolver: ($rootScope, modalListenerService,
+                                     toastMessageService, uiSettingsService) => {
                 //NOTE this resolver init global services like toast
+                return true;
               },
-              socketResolver: function($rootScope, deviceEndpointsService) {
+              socketResolver: function($rootScope, deviceEndpointsService, $q) {
                 console.log("SOK RES MY");
-                return deviceEndpointsService.initSocket().then(isAvalaible => {
-                  return true;
+                var initing = $q.defer();
+                deviceEndpointsService.initSocket().then(isAvalaible => {
+                  console.log("CALLBACK");
+                  console.log(isAvalaible);
+                  initing.resolve(true); //for some reason it goes in loop after here
+                }).catch(error => {
+                  console.log("SOK ERROR");
+                  console.log(error);
+                  initing.resolve(true);
                 });
+                return initing.promise;
               },
               authEnabled: function (authService, $q) {
                 let enabling = $q.defer();
                 authService.isAuthEnabled().then((enabled) => {
+                  console.log("AUTH ENABLED");
+                  console.log(enabled);
                   if (!enabled) {
                     enabling.reject("AUTH_NOT_ENABLED");
                   }
@@ -381,7 +392,11 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             views: {
               'content@volumio': {
                 template: '',
-                controller: function ($state, uiSettingsService) {
+                controller: function ($state, uiSettingsService, cloudService) {
+                  if(cloudService.isOnCloud() === true){
+                    $state.go('myvolumio.login');
+                    return;
+                  }
                   uiSettingsService.initService().then(data => {
                     if (data && data.indexState) {
                       $state.go(`volumio.${data.indexState}`);

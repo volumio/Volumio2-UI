@@ -10,16 +10,15 @@ class DeviceEndpointsService{
     this.cloudService = cloudService;
     this.authService = authService;
 
-    this.i = 10;
-
+    this.hosts = null;
   }
 
   initSocket(){
-
     return this.getSocketHosts().then(hosts => {
       console.log("HOSTS");
       console.log(hosts);
       if(hosts === null){
+        console.log("Return false");
         return false;
       }
       return this.setSocketHosts(hosts);
@@ -93,13 +92,14 @@ class DeviceEndpointsService{
 
   setSocketHosts(hosts){
     const firstHostKey = Object.keys(hosts)[0];
+    this.hosts = hosts;
     this.socketService.hosts = hosts;
     this.socketService.host = hosts[firstHostKey];
     return true;
   }
 
-  checkSocketHost(){
-    console.log("CHECK");
+  isSocketAvalaible(){
+    return this.hosts !== null;
   }
 
 }

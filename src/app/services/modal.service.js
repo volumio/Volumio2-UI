@@ -4,6 +4,7 @@ class ModalService {
     this.$uibModal = $uibModal;
     this.$filteredTranslate = $filter('translate');
     this.socketService = socketService;
+
     this.openedModals = [];
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -72,6 +73,9 @@ class ModalService {
   }
 
   registerListner() {
+      if(!this.socketService.isSocketAvalaible()){
+      return;
+    }
     this.socketService.on('closeAllModals', () => {
       this.openedModals.forEach(modal => {
         modal.close();
