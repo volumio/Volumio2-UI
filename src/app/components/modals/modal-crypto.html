@@ -1,0 +1,18 @@
+<div id="modalDonate">
+  <div class="modal-header">
+    <h3 class="modal-title"><span translate="WIZARD.DONATE"></span> {{::modal.dataObj.name}}</h3>
+  </div>
+  <div class="modal-body">
+    <div class="modal-donate-address">
+      <h5 class="modal-title">{{::modal.dataObj.address}}</h3>
+    </div>
+    <div class="modal-donate-qr">
+      <img src="app/themes/volumio/assets/graphics/qr-{{::modal.dataObj.alias}}.png" alt="qr-code" class="btc-qr-code">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-warning" ng-click="modal.close()">
+      {{'COMMON.CLOSE' | translate}}
+    </button>
+  </div>
+</div>
