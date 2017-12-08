@@ -93,7 +93,8 @@
     "PREVIOUS_TRACK":"Piste précédente",
     "PAUSE":"Pause",
     "CLEAR_AND_PLAY": "Remplacer et jouer",
-    "SAFE_REMOVE": "Ejection des médias"
+    "SAFE_REMOVE": "Ejection des médias",
+    "UPDATE_FOLDER": "Mise à jour du dossier"
   },
 "MY_MUSIC": { 
     "UPDATE":"Mettre à jour", 
