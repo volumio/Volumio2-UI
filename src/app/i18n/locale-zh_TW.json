@@ -27,7 +27,7 @@
     "SHOW_SETTINGS":"顯示設定",
     "TAB_BROWSE":"瀏覽",
     "TAB_PLAYBACK":"播放",
-    "TAB_QUEUE":"佇列",
+    "TAB_QUEUE":"貯列",
     "ARTISTS":"演出者",
     "ARTIST":"演出者",
     "ALBUMS":"專輯",
@@ -53,7 +53,7 @@
   },
   "BROWSER": {
     "PLAY": "播放",
-    "ADD_TO_QUEUE":"加入佇列中",
+    "ADD_TO_QUEUE":"加入貯列中",
     "ADD_TO_PLAYLIST":"加到播放列表",
     "REMOVE_FROM_PLAYLIST":"從播放列表中刪除",
     "ADD_TO_FAVOURITES":"加到收藏",
@@ -71,12 +71,12 @@
     "PREVIOUS_TRACK":"上一軌",
     "PAUSE":"暫停"
   },
-"MY_MUSIC": { 
-    "UPDATE":"更新", 
-    "UPDATE_DOC":"更新", 
-    "RESCAN":"重新掃瞄", 
-    "RESCAN_DOC":"重新掃瞄"  
-  }, 
+"MY_MUSIC": {
+    "UPDATE":"更新",
+    "UPDATE_DOC":"更新",
+    "RESCAN":"重新掃瞄",
+    "RESCAN_DOC":"重新掃瞄"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "返回外掛列表",
     "PLUGINS":"外掛",
@@ -109,9 +109,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "隨機",
     "REPEAT": "重複",
-    "SAVE_QUEUE_AS_PLAYLIST": "把佇列保存為播放列表",
+    "SAVE_QUEUE_AS_PLAYLIST": "把貯列保存為播放列表",
     "CONSUME_PLAYLIST": "打亂播放列表",
-    "CLEAR_QUEUE": "清除播放佇列"
+    "CLEAR_QUEUE": "清除播放貯列"
   },
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"未發現網路磁碟",
