@@ -49,7 +49,7 @@ class AuthService {
   initAuth() {
     //TODO move this logic after enabled by pushMenuItems
     var isEnabled = this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio';
-    isEnabled = isEnabled || this.cloudService.isOnCloud();
+    isEnabled = isEnabled || this.cloudService.isOnCloud;
     this.enableAuth(isEnabled);
   }
 
@@ -258,11 +258,11 @@ class AuthService {
       if (user === null) {
         gettingUser.resolve(null);
       } else {
-        if(!this.cloudService.isOnCloud){
-          this.$state.go('myvolumio.profile');
-        }else{
-          this.$state.go('myvolumio.login');
-        }
+        this.$state.go('myvolumio.profile');
+        // if(!this.cloudService.isOnCloud){
+        // }else{
+        //   this.$state.go('myvolumio.login');
+        // }
         gettingUser.reject('AUTH.USER_ALREADY_LOGGED');
       }
       return gettingUser.promise;

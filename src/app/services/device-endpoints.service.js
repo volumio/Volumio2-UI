@@ -30,7 +30,7 @@ class DeviceEndpointsService{
   }
 
   getSocketHosts(){
-    if(!this.cloudService.isOnCloud()){
+    if(!this.cloudService.isOnCloud){
       return this.getLocalSocketHosts();
     }
     return this.getRemoteSocketHosts();

@@ -6,8 +6,13 @@ class CloudService{
 
   }
 
-  isOnCloud(){
-    return this.$window.location.hostname === 'myvolumio.org';
+  get isOnCloud() {
+    if (this._isOnCloud !== undefined) {
+      return this._isOnCloud;
+    } else {
+      this._isOnCloud = this.$window.location.hostname === 'myvolumio.org';
+      return this._isOnCloud;
+    }
   }
 
 }

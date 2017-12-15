@@ -17,7 +17,7 @@ function runBlock(themeManager, $state, $rootScope, cloudService) {
       $state.go("myvolumio.login");
       return;
     }
-    if (error === "NO_SOCKET_ENDPOINTS"  && cloudService.isOnCloud() ) {
+    if (error === "NO_SOCKET_ENDPOINTS"  && cloudService.isOnCloud ) {
       console.log("CATCH NO SOK END");
       $state.go("myvolumio.login");
       return;
