@@ -451,7 +451,6 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         layout: {
           template: '',
           controller: function($state, uiSettingsService, cloudService) {
-            debugger;
             if(cloudService.isOnCloud === true){
               $state.go('myvolumio.login');
               return;
@@ -464,21 +463,8 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
               }
             });
           }
-        },
-        // 'header@volumio': {
-        //   templateUrl: themeManagerProvider.getHtmlPath('header'),
-        //   controller: 'HeaderController',
-        //   controllerAs: 'header'
-        // },
-        // 'footer@volumio': {
-        //   templateUrl: themeManagerProvider.getHtmlPath('footer'),
-        //   controller: 'FooterController',
-        //   controllerAs: 'footer'
-        // }
+        }
       },
-      // template: '',
-
-      // controllerAs: 'redirect'
     })
 
     .state('volumio.wizard', {
