@@ -1,9 +1,8 @@
 class CloudService{
-
   constructor($rootScope,$window){
+    'ngInject';
     this.$rootScope = $rootScope;
     this.$window = $window;
-
   }
 
   get isOnCloud() {
@@ -14,7 +13,6 @@ class CloudService{
       return this._isOnCloud;
     }
   }
-
 }
 
 export default CloudService;

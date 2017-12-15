@@ -1,6 +1,7 @@
 class DeviceEndpointsService{
 
   constructor($rootScope,socketService,$state,$window,$http,myVolumioDevicesService, cloudService, authService){
+    'ngInject';
     this.$rootScope = $rootScope;
     this.socketService = socketService;
     this.$state = $state;

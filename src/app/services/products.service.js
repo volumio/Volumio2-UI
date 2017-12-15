@@ -1,5 +1,6 @@
 class ProductsService {
   constructor(databaseService,socketService,$q) {
+    'ngInject';
     this.databaseService = databaseService;
     this.socketService = socketService;
     this.$q = $q;
