@@ -5,14 +5,17 @@
     "UPLOAD_BACKGROUND_FILE": "Klik en selecteer een nieuwe achtergrond of sleep hier naartoe.",
     "UPLOAD_PROGRESS": "Voortgang uploaden:",
     "SELECT_BACKGROUND": "Selecteer achtergrond",
-    "SELECT_BACKGROUND_COLOR": "Selecteer achtergrond kleur"
+    "SELECT_BACKGROUND_COLOR": "Selecteer achtergrond kleur",
+    "APPLY_BACKGROUND": "Achtergrond toepassen",
+    "APPLY_BACKGROUND_COLOR": "Achtergrond kleur toepassen",
+    "DELETE_BACKGROUND": "Achtergrond verwijderen"
   },
   "COMMON": {
     "SAVE": "Opslaan",
     "OK":"Ok",
     "YES":"Ja",
     "NO":"Nee",
-    "GOT_IT":"Got it",
+    "GOT_IT":"Begrepen",
     "CANCEL": "Annuleren",
     "RESTART_SYSTEM":"Herstart Systeem",
     "TRY_AGAIN":"Probeer nogmaals",
@@ -24,12 +27,16 @@
     "ACTIVE":"Actief",
     "INACTIVE":"Inactief",
     "SHOW_SETTINGS":"Instellingen Weergeven",
+    "SETTINGS":"Instellingen",
     "TAB_BROWSE":"Bladeren",
     "TAB_PLAYBACK":"Afspelen",
     "TAB_QUEUE":"Wachtrij",
+    "ARTIST":"Artiest",
     "ARTISTS":"Artiesten",
+    "ALBUM":"Album",
     "ALBUMS":"Albums",
-    "SONGS":"Nummers",
+    "SONG":"Nummer",
+    "SONGS":"Tracks",
     "PLAYTIME":"Speeltijd",
     "TIME":"Tijd",
     "RESCAN":"Opnieuw Scannen",
@@ -45,7 +52,26 @@
     "BACK":"Terug",
     "OPTIONS":"Opties",
     "CHOOSE_PLAYLIST":"Kies Afspeellijst",
-    "STOP_MUSIC":"Stop Muziek"
+    "STOP_MUSIC":"Stop Muziek",
+    "HOME": "Home",
+    "VOLUME_MUTE":"Volume dempen",
+    "VOLUME_MUTED":"Volume gedempt",
+    "VOLUME_UP":"Volume Up",
+    "VOLUME_DOWN":"Volume Down",
+    "HIDDEN": "Verborgen",
+    "LIST": "Lijst",
+    "PLAY_QUEUE": "Speel wachtrij af",
+    "ENTER_PASSWORD": "Voer uw wachtwoord in",
+    "INVALID_PASSWORD": "Verkeerd wachtwoord",
+    "RIP": "RIP",
+    "SKIP": "Overslaan",
+    "NEXT": "Volgende",
+    "PREVIOUS": "Vorige",
+    "DONE": "Gereed",
+    "EMAIL": "E-mail",
+    "SUBSCRIBE_ME": "Abonneer mij",
+    "SHARE": "Delen",
+    "EJECT": "Uitwerpen"
   },
   "BROWSER": {
     "PLAY": "Afspelen",
@@ -65,9 +91,12 @@
     "GO_TO_SHARE":"Ga Naar - Delen",
     "NEXT_TRACK":"Volgende Nummer",
     "PREVIOUS_TRACK":"Vorige Nummer",
-    "PAUSE":"Pauze"
+    "PAUSE":"Pauze",
+    "CLEAR_AND_PLAY": "Wissen en afspelen",
+    "SAFE_REMOVE": "Verwisselbare media veilig verwijderen",
+    "UPDATE_FOLDER": "Map Updaten"
   },
-"MY_MUSIC": { 
+  "MY_MUSIC": { 
     "UPDATE":"Update", 
     "UPDATE_DOC":"Update", 
     "RESCAN":"Opnieuw Scannen", 
@@ -145,6 +174,55 @@
     "SPEED":"Snelheid",
     "ONLINE":"Online",
     "CONNECT":"Verbinden",
-    "REFRESH":"Vernieuwen"
+    "REFRESH":"Vernieuwen",
+    "OPEN_NETWORK":"Open netwerk",
+    "SECURE_NETWORK":"Veilig netwerk",
+    "SECURITY": "Beveiliging",
+    "MANUAL_WIFI_CONNECTION":"Handmatige WiFi verbinding",
+    "NETWORK_NAME":"Netwerk naam"
+  },
+  "WIZARD": {
+    "LANGUAGE": "Taal",
+    "NAME": "Naam",
+    "OUTPUT": "Uitvoer",
+    "NETWORK": "Netwerk",
+    "MUSIC": "Muziek",
+    "FOLLOW": "Volgen",
+    "DONE": "Gereed",
+    "WELCOME": "Welkom, laten we aan de slag gaan.",
+    "SELECT_YOUR_LANGUAGE": "Selecteer uw taal",
+    "DEVICE_NAME": "Kies een unieke naam voor uw systeem",
+    "DEVICE_ADDRESS": "Dit systeem is beschikbaar op dit adres:",
+    "SELECT_YOUR_AUDIO_OUTPUT": "Selecteer uw audio uitvoer",
+    "SELECT_YOUR_I2S_DAC": "Selecteer uw i2s DAC",
+    "I_HAVE_DAC": "I heb een i2s DAC",
+    "CUSTOM_AMOUNT": "Aangepaste hoeveelheid",
+    "DONE_MESSAGE": "Gereed, uw systeem is klaar.",
+    "MAIL_LIST_SUBSCRIPTION": "Mail lijst abonnement",
+    "SOCIAL_SHARE": "Sociaal delen",
+    "DONATE": "Doneer",
+    "SUBSCRIBED_SUCCESFULLY": "Inschrijving su succesvol",
+    "ADD_YOUR_MUSIC":"Om uw muziek toe te voegen, sluit u eenvoudig een USB-stick aan of klikt u op de onderstaande knop om uw netwerkschijf toe te voegen",
+    "STEP":"Volgende",
+    "VOLUMIOAPPS":"Apps",
+    "GET_APPS":"Voor uw gebruiksgemak, kunt u ook onza handeige apps gebruiken"
+  },
+  "SLEEP": {
+    "POWER_OFF": "Uitzetten",
+    "STOP_MUSIC": "Muziek stoppen"
+  },
+  "ALARM": {
+    "CRATE_PLAYLIST_FIRST": "Om de wekker te gebruiken is het noodzakelijk om eerst een afspeellijst te maken"
+  },
+  "MULTIDEVICE": {
+    "EDIT_GROUPS": "Bewerk groepen",
+    "ROOMS_AND_GROUPS": "Ruimtes en groepen",
+    "MULTI_ROOM_CONFIGURATION": "Multi-kamer configuratie",
+    "GROUP": "Groep",
+    "NOW_PLAYING": "Speelt nu af"
+  },
+  "SIDEMENU": {
+    "ANALOG_INPUT": "ANALOGE INVOER",
+    "BLUETOOTH": "BLUETOOTH"
   }
 }
