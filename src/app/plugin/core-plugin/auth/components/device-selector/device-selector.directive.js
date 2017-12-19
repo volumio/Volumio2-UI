@@ -12,7 +12,8 @@ class AuthDeviceSelectorDirective {
 }
 
 class AuthDeviceSelectorController {
-  constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService, $http) {
+  constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService,
+        $http, $state) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -22,6 +23,7 @@ class AuthDeviceSelectorController {
     this.socketService = socketService;
     this.productsService = productsService;
     this.$http = $http;
+    this.$state = $state;
 
     this.user = null;
     this.product = {};
@@ -146,6 +148,11 @@ class AuthDeviceSelectorController {
       return;
     }
     this.disableDevice(device);
+  }
+
+  gotoDevice(device) {
+    this.socketService.host = device.host;
+    this.$state.go('volumio.playback');
   }
 
 }

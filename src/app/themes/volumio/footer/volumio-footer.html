@@ -1,16 +1,14 @@
-<ng-include
-    src="'app/themes/volumio/partials/volumio-tab-bar.html'"
-    ng-if="!footer.matchmediaService.isPhone">
-</ng-include>
-<div ng-if="footer.matchmediaService.isPhone" id="phoneFooter">
+<div ng-if="footer.isSocketReady" class="footerContent">
+  <ng-include src="'app/themes/volumio/partials/volumio-tab-bar.html'" ng-if="!footer.matchmediaService.isPhone">
+  </ng-include>
+  <div ng-if="footer.matchmediaService.isPhone" id="phoneFooter">
 
-  <div ng-if="footer.canUseSocket">
-    <volume-manager type="slider"></volume-manager>
+    <div>
+      <volume-manager type="slider"></volume-manager>
 
-    <player-buttons></player-buttons>
+      <player-buttons></player-buttons>
+    </div>
+
+    <side-menu></side-menu>
   </div>
-
-  <side-menu></side-menu>
-
-  <h1>HELLO</h1>
 </div>

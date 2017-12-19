@@ -8,6 +8,7 @@ class AuthLoginController {
 
     this.user = user;
     this.authInit();
+
   }
 
   authInit() {

@@ -21,6 +21,14 @@
 
       </td>
       <td class="commandCol">
+        <button ng-click="authDeviceSelectorController.gotoDevice(device)"
+                type="button"
+                class="btn btn-info"
+                title="{{'AUTH.OPEN_DEVICE' | translate}}">
+           <i class="fa fa-level-down fa-rotate-90"></i>
+           <!-- <span translate="AUTH.OPEN_DEVICE"></span> -->
+        </button>
+
         <button ng-click="authDeviceSelectorController.deleteDevice(device)"
                 type="button"
                 class="btn btn-danger"

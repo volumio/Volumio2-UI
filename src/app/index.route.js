@@ -1,6 +1,14 @@
-function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, themeManagerProvider) {
+function routerConfig(
+  $stateProvider,
+  $urlRouterProvider,
+  $locationProvider,
+  themeManagerProvider
+) {
   'ngInject';
-  console.info('[TEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
+  console.info(
+    '[TEME]: ' + themeManagerProvider.theme,
+    '[VARIANT]: ' + themeManagerProvider.variant
+  );
 
   $locationProvider.html5Mode(true);
   $stateProvider
@@ -36,15 +44,16 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
           //NOTE this resolver init global services like toast
           console.log('ROUTE VOLUMIO');
         },
-        socketResolver: function($rootScope, deviceEndpointsService, $q) {
+        socketResolver: function($rootScope, deviceEndpointsService, $q, $document) {
           var checking = $q.defer();
           deviceEndpointsService.initSocket().then(isAvalaible => {
-            console.log("SOK RES");
+            console.log('SOK RES');
             console.log(isAvalaible);
-            if(isAvalaible === false){
+            if (isAvalaible === false) {
               checking.reject('NO_SOCKET_ENDPOINTS'); //this is catched by index.run.js
               return;
             }
+            $document[0].body.classList.remove('myVolumioBkg');
             checking.resolve(isAvalaible);
           });
           return checking.promise;
@@ -163,9 +172,17 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
           //NOTE this resolver init global services like toast
           return true;
         },
-        socketResolver: function($rootScope, deviceEndpointsService, $q) {
+        socketResolver: function(
+          $rootScope,
+          deviceEndpointsService,
+          $q,
+          uiSettingsService,
+          $document
+        ) {
           console.log('SOK RES MY');
           var initing = $q.defer();
+          $document[0].body.classList.add('myVolumioBkg');
+          uiSettingsService.setLanguage();
           deviceEndpointsService
             .initSocket()
             .then(isAvalaible => {
@@ -176,6 +193,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             .catch(error => {
               console.log('SOK ERROR');
               console.log(error);
+              uiSettingsService.setLanguage();
               initing.resolve(true);
             });
           return initing.promise;
@@ -237,8 +255,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
       url: '/profile',
       views: {
         'content@myvolumio': {
-          templateUrl:
-            'app/plugin/core-plugin/auth/profile/auth-profile.html',
+          templateUrl: 'app/plugin/core-plugin/auth/profile/auth-profile.html',
           controller: 'AuthProfileController',
           controllerAs: 'authProfileController',
           resolve: {
@@ -451,7 +468,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         layout: {
           template: '',
           controller: function($state, uiSettingsService, cloudService) {
-            if(cloudService.isOnCloud === true){
+            if (cloudService.isOnCloud === true) {
               $state.go('myvolumio.login');
               return;
             }
@@ -464,7 +481,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             });
           }
         }
-      },
+      }
     })
 
     .state('volumio.wizard', {
@@ -477,7 +494,6 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         }
       }
     });
-
 
   $urlRouterProvider.otherwise('/redirect');
 }

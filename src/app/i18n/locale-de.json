@@ -222,5 +222,8 @@
   "SIDEMENU": {
     "ANALOG_INPUT": "Analoger Input",
     "BLUETOOTH": "Bluetooth"
-   }
+  },
+  "AUTH": {
+    "MY_VOLUMIO":"MyVolumio de"
+  }
 }
