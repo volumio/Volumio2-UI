@@ -255,6 +255,11 @@ class WizardController {
       }
     });
 
+    this.socketService.on('closeWizard', () => {
+      this.$log.debug('closeWizard');
+      this.$state.go('volumio.playback');
+    });
+
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushWizardSteps');
       this.socketService.off('pushAvailableLanguages');
