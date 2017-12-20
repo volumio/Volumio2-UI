@@ -22,6 +22,7 @@
       </td>
       <td class="commandCol">
         <button ng-click="authDeviceSelectorController.gotoDevice(device)"
+                ng-class="{invisible: !device.enabled || !device.online}"
                 type="button"
                 class="btn btn-info"
                 title="{{'AUTH.OPEN_DEVICE' | translate}}">
