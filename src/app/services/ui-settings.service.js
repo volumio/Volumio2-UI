@@ -75,7 +75,7 @@ class UiSettingsService {
       return;
     }
     //TODO GET FROM DB
-    if (!this.socketService.isSocketAvalaible()) {
+    if (!this.socketService.isSocketAvalaible) {
       this.$translate.use(this.getBrowserDefaultLanguage());
       return;
     }
@@ -109,9 +109,11 @@ class UiSettingsService {
   }
 
   registerListner() {
+    /*
+    //TODO VERIFY WHY THIS WAS NECESSARY
     if (!this.socketService.isSocketAvalaible()) {
       return;
-    }
+    }*/
     this.socketService.on('pushUiSettings', data => {
       if (data.background) {
         delete this.uiSettings.color;
