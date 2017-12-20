@@ -95,7 +95,9 @@ class DeviceEndpointsService{
     const firstHostKey = Object.keys(hosts)[0];
     this.hosts = hosts;
     this.socketService.hosts = hosts;
-    // this.socketService.host = hosts[firstHostKey];
+    if (!this.cloudService.isOnCloud) {
+      this.socketService.host = hosts[firstHostKey];
+    }
     return true;
   }
 

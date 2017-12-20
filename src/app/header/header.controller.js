@@ -1,7 +1,8 @@
 class HeaderController {
-  constructor(matchmediaService, socketService, uiSettingsService) {
+  constructor(matchmediaService, socketService, uiSettingsService, $scope, themeManager) {
     'ngInject';
     this.matchmediaService = matchmediaService;
+    this.themeManager = themeManager;
     this.uiSettingsService = uiSettingsService;
     this.isSocketReady = false;
     this.language = {};
@@ -99,11 +100,16 @@ class HeaderController {
         "label": "繁體中文"
       }
     ];
-    if(socketService.host) {
-      this.isSocketReady = true;
-    } else {
+    if(!socketService.host) {
       this.setDefaultLanguage();
     }
+    $scope.$watch(() => socketService.host, () => {
+      if(socketService.host) {
+        this.isSocketReady = true;
+      } else {
+        this.isSocketReady = false;
+      }
+    });
   }
 
   setDefaultLanguage() {
