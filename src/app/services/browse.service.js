@@ -62,6 +62,7 @@ class BrowseService {
 
   sendEject(data) {
     this.socketService.emit('callMethod', data);
+    this.backHome();
   }
 
   sendRip(data) {
