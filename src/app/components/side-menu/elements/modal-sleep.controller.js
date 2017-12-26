@@ -8,6 +8,9 @@ class ModalSleepController {
     this.$log = $log;
     this.$translate = $translate;
 
+
+    this.sleepPresets = [ 0, 15, 30, 45, 60, 90, 120 ];
+
     this.sleepTime = new Date();
     this.sleepTime.setHours(0, 0);
     this.enabled = false;
@@ -26,6 +29,31 @@ class ModalSleepController {
         ];
       });
     this.init();
+  }
+
+  whenSleepPresetSelect () {
+    var preset;
+
+    if (this.sleepPreset >= 0 && this.sleepPreset < this.sleepPresets.length) {
+      var preset = this.sleepPresets[this.sleepPreset];
+      var hours = Math.floor(preset/60);
+      var minutes = preset % 60;
+
+      this.sleepTime = new Date(0, 0, 0, hours, minutes, 0);
+    }
+  }
+
+  timeChanged()  {
+    var duration = (this.sleepTime.getHours() * 60) + this.sleepTime.getMinutes();
+
+    for (var idx = 0; idx < this.sleepPresets.length; idx++) {
+      if (duration === this.sleepPresets[idx]) {
+        this.sleepPreset = idx;
+        return;
+      }
+    }
+
+    this.sleepPreset = null;
   }
 
   setSleep() {

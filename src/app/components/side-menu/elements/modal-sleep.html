@@ -32,6 +32,22 @@
           show-meridian="modal.showMeridian">
       </uib-timepicker>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <h4>Preset time</h4>
+      <div class="btn-group btn-group-xs" role="group" aria-label="Preset times">
+        <label ng-repeat="preset in modal.sleepPresets track by $index" ng-if="$index > 0 && $index < 4" class="btn btn-info" ng-model="modal.sleepPreset" uib-btn-radio="$index" ng-click="modal.whenSleepPresetSelect()">{{ preset }}m</label>
+      </div>
+      <div class="btn-group btn-group-xs" role="group" aria-label="Preset times">
+        <label ng-repeat="preset in modal.sleepPresets track by $index" ng-if="$index >= 4"  class="btn btn-info" ng-model="modal.sleepPreset" uib-btn-radio="$index" ng-click="modal.whenSleepPresetSelect()">{{ preset }}m</label>
+      </div>
+      <div>
+        <button type="button" class="btn btn-warning btn-xs" ng-model="modal.sleepPreset" uib-btn-radio="-0" ng-click="modal.whenSleepPresetSelect()">
+          Clear
+        </button>
+      </div>
+    </div>
     <div class="col-sm-8">
       <h4 translate="COMMON.ACTIVE"></h4>
       <input
