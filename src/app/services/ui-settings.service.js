@@ -69,13 +69,13 @@ class UiSettingsService {
     }
   }
 
-  setLanguage(lang) {
+  setLanguage(lang = null) {
     if (lang) {
       this.$translate.use(lang);
       return;
     }
     //TODO GET FROM DB
-    if (!this.socketService.isSocketAvalaible) {
+    if (!this.socketService.isSocketAvalaible()) {
       this.$translate.use(this.getBrowserDefaultLanguage());
       return;
     }
@@ -186,11 +186,10 @@ class UiSettingsService {
         return this.uiSettings;
       })
       .finally(() => {
-        if (!this.socketService.isSocketAvalaible()) {
-          return;
+        if (this.socketService.isSocketAvalaible()) {
+          this.socketService.emit('getUiSettings');
+          this.socketService.emit('getWizard');
         }
-        this.socketService.emit('getUiSettings');
-        this.socketService.emit('getWizard');
       });
     return this.settingsPromise;
   }
