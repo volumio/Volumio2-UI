@@ -1,6 +1,6 @@
-class DeviceEndpointsService{
+class DeviceEndpointsService {
 
-  constructor($rootScope,socketService,$state,$window,$http,myVolumioDevicesService, cloudService, authService){
+  constructor($rootScope, socketService, $state, $window, $http, myVolumioDevicesService, cloudService, authService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.socketService = socketService;
@@ -14,11 +14,12 @@ class DeviceEndpointsService{
     this.hosts = null;
   }
 
-  initSocket(){
+  initSocket() {
+    console.log("DEVICE ENDPOINTS INIT SOCKET");
     return this.getSocketHosts().then(hosts => {
       console.log("HOSTS");
       console.log(hosts);
-      if(hosts === null){
+      if (hosts === null) {
         console.log("Return false");
         return false;
       }
@@ -30,14 +31,14 @@ class DeviceEndpointsService{
     });
   }
 
-  getSocketHosts(){
-    if(!this.cloudService.isOnCloud){
+  getSocketHosts() {
+    if (!this.cloudService.isOnCloud) {
       return this.getLocalSocketHosts();
     }
     return this.getRemoteSocketHosts();
   }
 
-  getLocalSocketHosts(){
+  getLocalSocketHosts() {
     let localhostApiURL = `http://${this.$window.location.hostname}/api`;
     return this.$http.get(localhostApiURL + '/host')
       .then((response) => {
@@ -49,7 +50,7 @@ class DeviceEndpointsService{
         //Fallback socket
         console.info('Dev mode: IP from local-config.json');
         return this.$http.get('/app/local-config.json').then((response) => {
-          const hosts = {'devHost': response.data.localhost};
+          const hosts = { 'devHost': response.data.localhost };
           return hosts;
         });
       });
@@ -91,17 +92,19 @@ class DeviceEndpointsService{
     });
   }
 
-  setSocketHosts(hosts){
-    const firstHostKey = Object.keys(hosts)[0];
+  setSocketHosts(hosts) {
+    console.log("DEVICE ENDPOINTS setSocketHosts");
     this.hosts = hosts;
     this.socketService.hosts = hosts;
     if (!this.cloudService.isOnCloud) {
+      console.log("DEVICE ENDPOINTS setSocketHosts DO");
+      const firstHostKey = Object.keys(hosts)[0];
       this.socketService.host = hosts[firstHostKey];
     }
     return true;
   }
 
-  isSocketAvalaible(){
+  isSocketAvalaible() {
     return this.hosts !== null;
   }
 

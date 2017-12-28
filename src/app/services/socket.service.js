@@ -11,10 +11,13 @@ class SocketService {
   }
 
   isSocketAvalaible() {
+    console.log("IS SOCKET AVALAIBLE?");
+    console.log(this._host !== null);
     return this._host !== null;
   }
 
   changeHost(host) {
+    console.log("SOCKET SERVICE change host");
     if (this.$window.socket) {
       this.$window.socket.disconnect();
       this.$window.socket.removeAllListeners();
@@ -29,6 +32,7 @@ class SocketService {
       this.$log.debug(`Socket connect_timeout for host ${this.host}`);
       this._connectToNextHost();
     });
+    console.log("SOCKET SERVICE emit socket:init");
     this.$rootScope.$emit('socket:init');
   }
 
@@ -107,8 +111,10 @@ class SocketService {
   }
 
   set host(host) {
+    console.log("SOCKET SERVICE set host");
     this._host = host;
     this.changeHost(host);
+    console.log(`New host: ${this._host}`);
     this.$log.debug(`New host: ${this._host}`);
   }
 

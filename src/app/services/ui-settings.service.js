@@ -21,6 +21,8 @@ class UiSettingsService {
     this.$q = $q;
     this.$state = $state;
 
+    console.log("ui settings service");
+
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
 
@@ -28,16 +30,30 @@ class UiSettingsService {
       backgroundImg: 'default bkg'
     };
 
+    console.log("this.uiSettings 0");
+    console.log(this.uiSettings);
+
     $rootScope.$on('socket:init', () => {
+      console.log("UiSettingsService on socket:init");
       this.init();
     });
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
     });
+
+    console.log("this.uiSettings 1");
+    console.log(this.uiSettings);
   }
 
   init() {
+    console.log("this.uiSettings 2");
+    console.log(this.uiSettings);
+
     this.registerListner();
+
+    console.log("this.uiSettings 3");
+    console.log(this.uiSettings);
+
     this.initService();
 
     this.defaultThumbnailBackgroundUrl = `${
@@ -70,6 +86,7 @@ class UiSettingsService {
   }
 
   setLanguage(lang = null) {
+    console.log("setLanguage");
     if (lang) {
       this.$translate.use(lang);
       return;
@@ -82,6 +99,8 @@ class UiSettingsService {
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
     } else {
+      console.log("ui settings service set language");
+      console.log(this.uiSettings);
       this.$translate.use(this.uiSettings.language);
     }
   }
@@ -109,18 +128,14 @@ class UiSettingsService {
   }
 
   registerListner() {
-    /*
-    //TODO VERIFY WHY THIS WAS NECESSARY
-    if (!this.socketService.isSocketAvalaible()) {
-      return;
-    }*/
+    console.log("SETTING SERVICE register listener");
+
     this.socketService.on('pushUiSettings', data => {
+      console.log("SETTING SERVICE on pushUiSettings");
       if (data.background) {
         delete this.uiSettings.color;
         if (data.background.path.indexOf(this.socketService.host) === -1) {
-          var bg = `${this.socketService.host}/backgrounds/${
-            data.background.path
-          }`;
+          var bg = `${this.socketService.host}/backgrounds/${data.background.path}`;
           data.background.path = bg;
         }
       }
@@ -145,21 +160,19 @@ class UiSettingsService {
     });
 
     this.socketService.on('pushBackgrounds', data => {
+      console.log("SETTING SERVICE on pushBackgrounds");
       this.$log.debug('pushBackgrounds', data);
       this.backgrounds = data;
       this.backgrounds.list = data.available.map(background => {
-        background.path = `${this.socketService.host}/backgrounds/${
-          background.path
-        }`;
-        background.thumbnail = `${this.socketService.host}/backgrounds/${
-          background.thumbnail
-        }`;
+        background.path = `${this.socketService.host}/backgrounds/${background.path}`;
+        background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
         return background;
       });
       this.setBackground();
     });
 
     this.socketService.on('pushWizard', data => {
+      console.log("SETTING SERVICE on pushWizard");
       this.$log.debug('pushWizard', data);
       if (data.openWizard) {
         this.$state.go('volumio.wizard');
@@ -168,16 +181,24 @@ class UiSettingsService {
   }
 
   initService() {
-    let settingsUrl = `/app/themes/${this.themeManager.theme}/assets/variants/${
-      this.themeManager.variant
-    }`;
+    console.log("SETTING SERVICE init service");
+    let settingsUrl = `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
     // Return pending promise or cached results
+    /*   
+        ------ 28/12/17 BUG. This caching mechanism stops the execution if this.uiSettings is already assigned,
+        and this happens at first boot of the app (still don't know why) -----
+
     if (this.uiSettings) {
+      console.log("SETTING SERVICE case this.uiSettings");
+      console.log(this.uiSettings);
       return this.$q.resolve(this.uiSettings);
-    } else if (this.settingsPromise) {
+    } 
+    if (this.settingsPromise) {
+      console.log("SETTING SERVICE case this.settingsPromise");
       return this.settingsPromise;
     }
+    */
     this.settingsPromise = this.$http
       .get(settingsUrl)
       .then(response => {
@@ -186,7 +207,9 @@ class UiSettingsService {
         return this.uiSettings;
       })
       .finally(() => {
+        console.log("SETTING SERVICE emit getUiSettings PRE");
         if (this.socketService.isSocketAvalaible()) {
+          console.log("SETTING SERVICE emit getUiSettings");
           this.socketService.emit('getUiSettings');
           this.socketService.emit('getWizard');
         }

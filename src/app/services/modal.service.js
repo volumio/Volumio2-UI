@@ -64,7 +64,7 @@ class ModalService {
   }
 
   openDefaultErrorModal(descLangKey, callback = null) {
-    return this.openDefaultModal("AUTH.ERROR",descLangKey, callback);
+    return this.openDefaultModal("AUTH.ERROR", descLangKey, callback);
   }
 
   init() {
@@ -73,9 +73,9 @@ class ModalService {
   }
 
   registerListner() {
-      if(!this.socketService.isSocketAvalaible()){
-      return;
-    }
+    /*     if (!this.socketService.isSocketAvalaible()) {
+          return;
+        } */
     this.socketService.on('closeAllModals', () => {
       this.openedModals.forEach(modal => {
         modal.close();
