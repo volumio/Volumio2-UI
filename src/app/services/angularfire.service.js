@@ -1,6 +1,6 @@
 class AngularFireService {
 
-  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, $filter, modalService, devService ) {
+  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, $filter, modalService, devService) {
     'ngInject';
     //consts
     this.USERS_REF = "users";
@@ -69,10 +69,13 @@ class AngularFireService {
       messagingSenderId: "636746507464"
     };
     this.devService.isDev().then(isDev => {
-      if(isDev){
+      console.log("IS DEV?");
+      console.log(isDev);
+      if (isDev) {
         getting.resolve(devConfig);
-      }else{
+      } else {
         getting.resolve(config);
+        console.log(config);
       }
     });
     return getting.promise;
@@ -94,17 +97,17 @@ class AngularFireService {
     }, this);
   }
 
-  requireUser(){
+  requireUser() {
     return this.authService.$requireSignIn().then((authUser) => {
       return this.setUserByAuth(authUser);
     });
   }
 
-  waitForUser(){
+  waitForUser() {
     return this.authService.$waitForSignIn();
   }
 
-  waitForDbUser(){
+  waitForDbUser() {
     return this.initing.promise.then(() => {
       return this.waitForUser().then(user => {
         if (user === null) {
@@ -127,9 +130,9 @@ class AngularFireService {
     }
     this.getRemoteDbUser(authUser.uid).then((dbUser) => {
       if ((dbUser.uid === undefined || dbUser.uid === null) && dbUser.$value === null) { //if user'snt on db
-//        var userData = {
-//          plan: 'free'
-//        };
+        //        var userData = {
+        //          plan: 'free'
+        //        };
         var userData = {};
         this.loadSocialData(authUser, userData);
         this.createDbUser(authUser.uid, userData).then((dbUser) => {
@@ -154,7 +157,7 @@ class AngularFireService {
       userData.email = authUser.email;
     }
     const provider = authUser.providerId || '';
-    const providerDataProvider = authUser.providerData.length>0?authUser.providerData[0].providerId || '':'';
+    const providerDataProvider = authUser.providerData.length > 0 ? authUser.providerData[0].providerId || '' : '';
     if (this.isProviderASocial(provider) || this.isProviderASocial(providerDataProvider)) {
       //photo
       userData.photoURL = authUser.photoUrl || null;
@@ -228,7 +231,7 @@ class AngularFireService {
     return logging.promise;
   }
 
-  loginWithToken(token){
+  loginWithToken(token) {
     return this.authService.$signInWithCustomToken(token);
   }
 
@@ -258,9 +261,9 @@ class AngularFireService {
 
   createAuthUser(user) {
     var authUserCreationing = this.$q.defer();
-    this.authService.$createUserWithEmailAndPassword(user.email, user.password).then(function (authUser) {
+    this.authService.$createUserWithEmailAndPassword(user.email, user.password).then(function(authUser) {
       authUserCreationing.resolve(authUser);
-    }).catch(function (error) {
+    }).catch(function(error) {
       authUserCreationing.reject(error);
     });
     return authUserCreationing.promise;
@@ -307,13 +310,13 @@ class AngularFireService {
     var actionCodeSettings = {
       url: callbackUrl
     };
-    this.authUser.sendEmailVerification(/*actionCodeSettings*/)
-            .then(() => {
-              this.modalService.openDefaultModal('AUTH.PLEASE_VERIFY_EMAIL_TITLE', 'AUTH.USER_VERIFICATION_EMAIL_SENT_DESC');
-            })
-            .catch((error) => {
-              this.modalService.openDefaultErrorModal(error);
-            });
+    this.authUser.sendEmailVerification( /*actionCodeSettings*/ )
+      .then(() => {
+        this.modalService.openDefaultModal('AUTH.PLEASE_VERIFY_EMAIL_TITLE', 'AUTH.USER_VERIFICATION_EMAIL_SENT_DESC');
+      })
+      .catch((error) => {
+        this.modalService.openDefaultErrorModal(error);
+      });
   }
 
   isLoggedAndVerified() {
@@ -348,7 +351,7 @@ class AngularFireService {
     return this.authUser.delete();
   }
 
-  getToken(){
+  getToken() {
     return this.firebase.auth().currentUser.getToken(false);
   }
 
@@ -404,37 +407,37 @@ class AngularFireService {
     var ref = this.database.ref(ref);
     var obj = this.$firebaseObject(ref);
     obj.$loaded(
-            function (data) {
-              getting.resolve(data);
-            },
-            function (error) {
-              getting.reject(error);
-            }
+      function(data) {
+        getting.resolve(data);
+      },
+      function(error) {
+        getting.reject(error);
+      }
     );
     return getting.promise;
   }
 
-  getInfByKey(ref,limitKey){
+  getInfByKey(ref, limitKey) {
     var getting = this.$q.defer();
     this.firebase.database().ref(ref).orderByKey().endAt(limitKey).limitToLast(1).once('value').then(value => {
       getting.resolve(value.val());
-    },error => {
+    }, error => {
       getting.reject(error);
     });
     return getting.promise;
   }
 
-  getArray(ref){
+  getArray(ref) {
     var getting = this.$q.defer();
     var ref = this.database.ref(ref);
     var obj = this.$firebaseArray(ref);
     obj.$loaded(
-            function (data) {
-              getting.resolve(data);
-            },
-            function (error) {
-              getting.reject(error);
-            }
+      function(data) {
+        getting.resolve(data);
+      },
+      function(error) {
+        getting.reject(error);
+      }
     );
     return getting.promise;
   }
@@ -507,12 +510,12 @@ class AngularFireService {
     uploadTask.$error((error) => {
       uploading.reject(error);
     });
-//oh really angularfire doc?
-//    uploadTask.then((snapshot) => {
-//      uploading.resolve(snapshot.downloadURL);
-//    }).catch((error) => {
-//      uploading.reject(error);
-//    });
+    //oh really angularfire doc?
+    //    uploadTask.then((snapshot) => {
+    //      uploading.resolve(snapshot.downloadURL);
+    //    }).catch((error) => {
+    //      uploading.reject(error);
+    //    });
     return uploading.promise;
   }
 

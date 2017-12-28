@@ -1,25 +1,16 @@
 class DevService {
 
-  constructor($rootScope, $http, $q) {
+  constructor($rootScope, $http, $q, env) {
     'ngInject';
 
     this.$http = $http;
     this.$q = $q;
 
-    this.isDevelopment = null;
+    this.isDevelopment = env || 'dev';
   }
 
-  isDev(){
-    var checking = this.$q.defer();
-    console.log(location.href);
-      this.$http.get('/app/plugin/core-plugin/auth/.dev').then(() => {
-        this.isDevelopment = true;
-        checking.resolve(this.isDevelopment);
-      }).catch(() => {
-        this.isDevelopment = false;
-        checking.resolve(this.isDevelopment);
-      });
-    return checking.promise;
+  isDev() {
+    return this.$q.resolve(this.isDevelopment === 'dev');
   }
 
 }
