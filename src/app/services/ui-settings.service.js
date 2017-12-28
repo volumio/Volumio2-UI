@@ -75,6 +75,13 @@ class UiSettingsService {
     return langArray[0].substr(0, 2) || 'en';
   }
 
+  setGA() {
+    if (this.uiSettings.analyticsEnabled && this.themeManager.variant === 'volumio') {
+      window.ga('create', 'UA-92970181-1', 'auto');
+      window.ga('send', 'pageview');
+    }
+  }
+
   registerListner() {
     this.socketService.on('pushUiSettings', (data) => {
       if (data.background) {
@@ -98,6 +105,7 @@ class UiSettingsService {
       this.$log.debug('pushUiSettings', this.uiSettings);
       this.setLanguage();
       this.setBackground();
+      this.setGA();
     });
 
     this.socketService.on('pushBackgrounds', (data) => {
