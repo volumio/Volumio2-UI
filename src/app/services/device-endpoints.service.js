@@ -1,10 +1,9 @@
 class DeviceEndpointsService {
 
-  constructor($rootScope, socketService, $state, $window, $http, myVolumioDevicesService, cloudService, authService) {
+  constructor($rootScope, socketService, $window, $http, myVolumioDevicesService, cloudService, authService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.socketService = socketService;
-    this.$state = $state;
     this.$window = $window;
     this.$http = $http;
     this.myVolumioDevicesService = myVolumioDevicesService;
@@ -15,27 +14,22 @@ class DeviceEndpointsService {
   }
 
   initSocket() {
-    console.log("DEVICE ENDPOINTS INIT SOCKET");
     return this.getSocketHosts().then(hosts => {
-      console.log("HOSTS");
-      console.log(hosts);
       if (hosts === null) {
-        console.log("Return false");
         return false;
       }
       return this.setSocketHosts(hosts);
     }).catch(error => {
-      console.log("ERROR");
-      console.log(error);
       return false;
     });
   }
 
   getSocketHosts() {
-    if (!this.cloudService.isOnCloud) {
+    if (this.cloudService.isOnCloud) {
+      return this.getRemoteSocketHosts();
+    } else {
       return this.getLocalSocketHosts();
     }
-    return this.getRemoteSocketHosts();
   }
 
   getLocalSocketHosts() {
@@ -59,7 +53,6 @@ class DeviceEndpointsService {
   getRemoteSocketHosts() {
     return this.authService.waitForDbUser().then(user => {
       if (user === null) {
-        console.log("USER IS NULL");
         return null;
       }
 
@@ -72,7 +65,6 @@ class DeviceEndpointsService {
       }
 
       return this.myVolumioDevicesService.getDevicesByUserId(user.uid).then(devices => {
-        console.log("getDevicesByUserId");
         let eligibleRemoteHosts = [];
         let geoServer = user.geoServer || 'eu1';
         for (var i in devices) {
@@ -93,11 +85,9 @@ class DeviceEndpointsService {
   }
 
   setSocketHosts(hosts) {
-    console.log("DEVICE ENDPOINTS setSocketHosts");
     this.hosts = hosts;
     this.socketService.hosts = hosts;
     if (!this.cloudService.isOnCloud) {
-      console.log("DEVICE ENDPOINTS setSocketHosts DO");
       const firstHostKey = Object.keys(hosts)[0];
       this.socketService.host = hosts[firstHostKey];
     }

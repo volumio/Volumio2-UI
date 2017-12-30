@@ -42,13 +42,10 @@ function routerConfig(
           updaterService
         ) => {
           //NOTE this resolver init global services like toast
-          console.log('ROUTE VOLUMIO');
         },
         socketResolver: function($rootScope, deviceEndpointsService, $q, $document) {
           var checking = $q.defer();
           deviceEndpointsService.initSocket().then(isAvalaible => {
-            console.log('SOK RES');
-            console.log(isAvalaible);
             if (isAvalaible === false) {
               checking.reject('NO_SOCKET_ENDPOINTS'); //this is catched by index.run.js
               return;
@@ -178,22 +175,17 @@ function routerConfig(
         uiSettingsService,
         $document
       ) {
-        console.log('SOK RES MY');
         var initing = $q.defer();
         $document[0].body.classList.add('myVolumioBkg');
         deviceEndpointsService
           .initSocket()
           .then(isAvalaible => {
-            console.log('CALLBACK');
-            console.log(isAvalaible);
             if (!isAvalaible) {
               uiSettingsService.setLanguage();
             }
             initing.resolve(true);
           })
           .catch(error => {
-            console.log('SOK ERROR');
-            console.log(error);
             uiSettingsService.setLanguage();
             initing.resolve(true);
           });
@@ -202,8 +194,6 @@ function routerConfig(
       authEnabled: function(authService, $q) {
         let enabling = $q.defer();
         authService.isAuthEnabled().then(enabled => {
-          console.log('AUTH ENABLED');
-          console.log(enabled);
           if (!enabled) {
             enabling.reject('AUTH_NOT_ENABLED');
           }
@@ -218,9 +208,9 @@ function routerConfig(
     url: '/login',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/login/auth-login.html',
-        controller: 'AuthLoginController',
-        controllerAs: 'authLoginController',
+        templateUrl: 'app/components/myvolumio/login/auth-login.html',
+        controller: 'MyVolumioLoginController',
+        controllerAs: 'MyVolumioLoginController',
         resolve: {
           user: [
             'authService',
@@ -237,9 +227,9 @@ function routerConfig(
     url: '/signup',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/signup/auth-signup.html',
-        controller: 'AuthSignupController',
-        controllerAs: 'authSignupController',
+        templateUrl: 'app/components/myvolumio/signup/auth-signup.html',
+        controller: 'MyVolumioSignupController',
+        controllerAs: 'myVolumioSignupController',
         resolve: {
           user: [
             'authService',
@@ -256,9 +246,9 @@ function routerConfig(
     url: '/profile',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/profile/auth-profile.html',
-        controller: 'AuthProfileController',
-        controllerAs: 'authProfileController',
+        templateUrl: 'app/components/myvolumio/profile/auth-profile.html',
+        controller: 'MyVolumioProfileController',
+        controllerAs: 'myVolumioProfileController',
         resolve: {
           user: [
             'authService',
@@ -275,9 +265,9 @@ function routerConfig(
     url: 'profile/edit',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/edit-profile/auth-edit-profile.html',
-        controller: 'AuthEditProfileController',
-        controllerAs: 'authEditProfileController',
+        templateUrl: 'app/components/myvolumio/edit-profile/auth-edit-profile.html',
+        controller: 'MyVolumioEditProfileController',
+        controllerAs: 'myVolumioEditProfileController',
         resolve: {
           user: [
             'authService',
@@ -294,9 +284,9 @@ function routerConfig(
     url: '/plans',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/plans/auth-plans.html',
-        controller: 'AuthPlansController',
-        controllerAs: 'authPlansController',
+        templateUrl: 'app/components/myvolumio/plans/auth-plans.html',
+        controller: 'MyVolumioPlansController',
+        controllerAs: 'myVolumioPlansController',
         resolve: {
           user: [
             'authService',
@@ -313,9 +303,9 @@ function routerConfig(
     url: '/subscribe/:plan',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/subscribe/auth-subscribe.html',
-        controller: 'AuthSubscribeController',
-        controllerAs: 'authSubscribeController',
+        templateUrl: 'app/components/myvolumio/subscribe/auth-subscribe.html',
+        controller: 'MyVolumioSubscribeController',
+        controllerAs: 'myVolumioSubscribeController',
         resolve: {
           user: [
             'authService',
@@ -332,9 +322,9 @@ function routerConfig(
     url: '/payment/success',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/payment-success/auth-payment-success.html',
-        controller: 'AuthPaymentSuccessController',
-        controllerAs: 'authPaymentSuccessController',
+        templateUrl: 'app/components/myvolumio/payment-success/auth-payment-success.html',
+        controller: 'MyVolumioPaymentSuccessController',
+        controllerAs: 'myVolumioPaymentSuccessController',
         resolve: {
           user: [
             'authService',
@@ -351,9 +341,9 @@ function routerConfig(
     url: '/payment/fail',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/payment-fail/auth-payment-fail.html',
-        controller: 'AuthPaymentFailController',
-        controllerAs: 'authPaymentFailController',
+        templateUrl: 'app/components/myvolumio/payment-fail/auth-payment-fail.html',
+        controller: 'MyVolumioPaymentFailController',
+        controllerAs: 'myVolumioPaymentFailController',
         resolve: {
           user: [
             'authService',
@@ -370,9 +360,9 @@ function routerConfig(
     url: '/recover-password',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/recover-password/auth-recover-password.html',
-        controller: 'AuthRecoverPasswordController',
-        controllerAs: 'authRecoverPasswordController',
+        templateUrl: 'app/components/myvolumio/recover-password/auth-recover-password.html',
+        controller: 'MyVolumioRecoverPasswordController',
+        controllerAs: 'myVolumioRecoverPasswordController',
         resolve: {
           user: [
             'authService',
@@ -389,9 +379,9 @@ function routerConfig(
     url: '/profile/verify',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/verify-user/auth-verify-user.html',
-        controller: 'AuthVerifyUserController',
-        controllerAs: 'authVerifyUserController',
+        templateUrl: 'app/components/myvolumio/verify-user/auth-verify-user.html',
+        controller: 'MyVolumioVerifyUserController',
+        controllerAs: 'myVolumioVerifyUserController',
         resolve: {
           user: [
             'authService',
@@ -408,9 +398,9 @@ function routerConfig(
     url: '/subscribe/cancel',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/cancel-subscription/auth-cancel-subscription.html',
-        controller: 'AuthCancelSubscriptionController',
-        controllerAs: 'authCancelSubscriptionController',
+        templateUrl: 'app/components/myvolumio/cancel-subscription/auth-cancel-subscription.html',
+        controller: 'MyVolumioCancelSubscriptionController',
+        controllerAs: 'myVolumioCancelSubscriptionController',
         resolve: {
           user: [
             'authService',
@@ -427,9 +417,9 @@ function routerConfig(
     url: '/subscribe/change/:plan',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/plugin/core-plugin/auth/change-subscription/auth-change-subscription.html',
-        controller: 'AuthChangeSubscriptionController',
-        controllerAs: 'authChangeSubscriptionController',
+        templateUrl: 'app/components/myvolumio/change-subscription/auth-change-subscription.html',
+        controller: 'MyVolumioChangeSubscriptionController',
+        controllerAs: 'myVolumioChangeSubscriptionController',
         resolve: {
           user: [
             'authService',
