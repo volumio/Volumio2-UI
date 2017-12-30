@@ -9,11 +9,11 @@ function runBlock(themeManager, $state, $rootScope, cloudService) {
     console.log("OnRouteCanLoad ERROR");
     console.log(error);
 
-    if (error === "AUTH_NOT_ENABLED") {
+    if (error === "MYVOLUMIO_NOT_ENABLED") {
       $state.go("volumio.browse");
       return;
     }
-    if (error === "AUTH_REQUIRED") {
+    if (error === "MYVOLUMIO_REQUIRED") {
       $state.go("myvolumio.login");
       return;
     }

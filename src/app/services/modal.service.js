@@ -64,7 +64,7 @@ class ModalService {
   }
 
   openDefaultErrorModal(descLangKey, callback = null) {
-    return this.openDefaultModal("AUTH.ERROR", descLangKey, callback);
+    return this.openDefaultModal("MYVOLUMIO.ERROR", descLangKey, callback);
   }
 
   init() {

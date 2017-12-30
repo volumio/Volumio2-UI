@@ -136,7 +136,7 @@ function routerConfig(
     }
   })
 
-  /* --------- AUTH ----------- */
+  /* --------- MYVOLUMIO ----------- */
 
   .state('myvolumio', {
     url: '/myvolumio',
@@ -195,7 +195,7 @@ function routerConfig(
         let enabling = $q.defer();
         authService.isAuthEnabled().then(enabled => {
           if (!enabled) {
-            enabling.reject('AUTH_NOT_ENABLED');
+            enabling.reject('MYVOLUMIO_NOT_ENABLED');
           }
           enabling.resolve(true);
         });
@@ -208,7 +208,7 @@ function routerConfig(
     url: '/login',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/login/auth-login.html',
+        templateUrl: 'app/components/myvolumio/login/myvolumio-login.html',
         controller: 'MyVolumioLoginController',
         controllerAs: 'MyVolumioLoginController',
         resolve: {
@@ -227,7 +227,7 @@ function routerConfig(
     url: '/signup',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/signup/auth-signup.html',
+        templateUrl: 'app/components/myvolumio/signup/myvolumio-signup.html',
         controller: 'MyVolumioSignupController',
         controllerAs: 'myVolumioSignupController',
         resolve: {
@@ -246,7 +246,7 @@ function routerConfig(
     url: '/profile',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/profile/auth-profile.html',
+        templateUrl: 'app/components/myvolumio/profile/myvolumio-profile.html',
         controller: 'MyVolumioProfileController',
         controllerAs: 'myVolumioProfileController',
         resolve: {
@@ -265,7 +265,7 @@ function routerConfig(
     url: 'profile/edit',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/edit-profile/auth-edit-profile.html',
+        templateUrl: 'app/components/myvolumio/edit-profile/myvolumio-edit-profile.html',
         controller: 'MyVolumioEditProfileController',
         controllerAs: 'myVolumioEditProfileController',
         resolve: {
@@ -284,7 +284,7 @@ function routerConfig(
     url: '/plans',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/plans/auth-plans.html',
+        templateUrl: 'app/components/myvolumio/plans/myvolumio-plans.html',
         controller: 'MyVolumioPlansController',
         controllerAs: 'myVolumioPlansController',
         resolve: {
@@ -303,7 +303,7 @@ function routerConfig(
     url: '/subscribe/:plan',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/subscribe/auth-subscribe.html',
+        templateUrl: 'app/components/myvolumio/subscribe/myvolumio-subscribe.html',
         controller: 'MyVolumioSubscribeController',
         controllerAs: 'myVolumioSubscribeController',
         resolve: {
@@ -322,7 +322,7 @@ function routerConfig(
     url: '/payment/success',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/payment-success/auth-payment-success.html',
+        templateUrl: 'app/components/myvolumio/payment-success/myvolumio-payment-success.html',
         controller: 'MyVolumioPaymentSuccessController',
         controllerAs: 'myVolumioPaymentSuccessController',
         resolve: {
@@ -341,7 +341,7 @@ function routerConfig(
     url: '/payment/fail',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/payment-fail/auth-payment-fail.html',
+        templateUrl: 'app/components/myvolumio/payment-fail/myvolumio-payment-fail.html',
         controller: 'MyVolumioPaymentFailController',
         controllerAs: 'myVolumioPaymentFailController',
         resolve: {
@@ -360,7 +360,7 @@ function routerConfig(
     url: '/recover-password',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/recover-password/auth-recover-password.html',
+        templateUrl: 'app/components/myvolumio/recover-password/myvolumio-recover-password.html',
         controller: 'MyVolumioRecoverPasswordController',
         controllerAs: 'myVolumioRecoverPasswordController',
         resolve: {
@@ -379,7 +379,7 @@ function routerConfig(
     url: '/profile/verify',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/verify-user/auth-verify-user.html',
+        templateUrl: 'app/components/myvolumio/verify-user/myvolumio-verify-user.html',
         controller: 'MyVolumioVerifyUserController',
         controllerAs: 'myVolumioVerifyUserController',
         resolve: {
@@ -398,7 +398,7 @@ function routerConfig(
     url: '/subscribe/cancel',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/cancel-subscription/auth-cancel-subscription.html',
+        templateUrl: 'app/components/myvolumio/cancel-subscription/myvolumio-cancel-subscription.html',
         controller: 'MyVolumioCancelSubscriptionController',
         controllerAs: 'myVolumioCancelSubscriptionController',
         resolve: {
@@ -417,7 +417,7 @@ function routerConfig(
     url: '/subscribe/change/:plan',
     views: {
       'content@myvolumio': {
-        templateUrl: 'app/components/myvolumio/change-subscription/auth-change-subscription.html',
+        templateUrl: 'app/components/myvolumio/change-subscription/myvolumio-change-subscription.html',
         controller: 'MyVolumioChangeSubscriptionController',
         controllerAs: 'myVolumioChangeSubscriptionController',
         resolve: {
@@ -432,7 +432,7 @@ function routerConfig(
     }
   })
 
-  /* --------- END AUTH ----------- */
+  /* --------- END MYVOLUMIO ----------- */
 
   .state('volumio.static-page', {
     url: 'static-page/:pageName',

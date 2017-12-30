@@ -78,7 +78,7 @@ class AngularFireService {
     return getting.promise;
   }
 
-  /* ------------ AUTH ------------- */
+  /* ------------ MYVOLUMIO ------------- */
 
   getAuthService() {
     return this.authService;
@@ -309,7 +309,7 @@ class AngularFireService {
     };
     this.authUser.sendEmailVerification( /*actionCodeSettings*/ )
       .then(() => {
-        this.modalService.openDefaultModal('AUTH.PLEASE_VERIFY_EMAIL_TITLE', 'AUTH.USER_VERIFICATION_EMAIL_SENT_DESC');
+        this.modalService.openDefaultModal('MYVOLUMIO.PLEASE_VERIFY_EMAIL_TITLE', 'MYVOLUMIO.USER_VERIFICATION_EMAIL_SENT_DESC');
       })
       .catch((error) => {
         this.modalService.openDefaultErrorModal(error);
@@ -462,7 +462,7 @@ class AngularFireService {
     return this.$timeout(() => {
       console.log("TIMEOUT!");
       ref.off();
-      waitingFor.reject(this.filteredTranslate('AUTH.ERROR_SERVER_TIMEOUT'));
+      waitingFor.reject(this.filteredTranslate('MYVOLUMIO.ERROR_SERVER_TIMEOUT'));
     }, timeout * 1000);
   }
 

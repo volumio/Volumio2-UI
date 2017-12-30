@@ -225,7 +225,7 @@
     "ANALOG_INPUT": "ANALOG INPUT",
     "BLUETOOTH": "BLUETOOTH"
   },
-  "AUTH": {
+  "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
     "ERROR": "Error",
     "LOGIN": "Login",
@@ -275,7 +275,7 @@
     "DELETE_ACCOUNT": "Delete Account",
     "CONFIRM_DELETE_ACCOUNT": "Are you sure you want to delete your account? All your profile data, subscriptions and settings will be deleted",
     "RESEND_VERIFICATION_EMAIL": "Resend verification email",
-    "VERIFICATION_DONE_NOW_REAUTH": "I have already verified my account, make me log-in again now!",
+    "VERIFICATION_DONE_NOW_REMYVOLUMIO": "I have already verified my account, make me log-in again now!",
     "PLEASE_VERIFY_EMAIL_TITLE": "Please verify your email",
     "PLEASE_VERIFY_EMAIL_DESC": "To use MyVolumio at its full potential, please click on the verification link we've sent to your email",
     "USER_EMAIL_NOT_VERIFIED": "Your email has not been verified",

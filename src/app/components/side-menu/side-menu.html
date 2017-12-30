@@ -1,53 +1,35 @@
 <div id="sideMenuScrim" ng-if="sideMenu.visible" ng-click="sideMenu.toggleMenu()"></div>
 <div id="sideMenu">
-  <button
-      id="openMenuBtn"
-      ng-click="sideMenu.toggleMenu()"
-      class="btn btn-link"
-      title="{{'COMMON.SHOW_SETTINGS' | translate}}">
+  <button id="openMenuBtn" ng-click="sideMenu.toggleMenu()" class="btn btn-link" title="{{'COMMON.SHOW_SETTINGS' | translate}}">
     <i class="fa fa-cog"></i>
   </button>
 
   <div id="menuList" role="group" ng-if="sideMenu.visible">
-    <button
-        id="closeMenuBtn"
-        ng-click="sideMenu.toggleMenu()"
-        class="btn btn-link">
+    <button id="closeMenuBtn" ng-click="sideMenu.toggleMenu()" class="btn btn-link">
       <i class="fa fa-times"></i>
     </button>
-    
-    <div ng-if="sideMenu.isAuthActive()" id="auth-card-container">
-      <auth-card action-callback="sideMenu.toggleMenu()"></auth-card>
+
+    <div ng-if="sideMenu.isAuthActive()" id="myvolumio-card-container">
+      <my-volumio-user-card action-callback="sideMenu.toggleMenu()">
+        </my-volumio-card>
     </div>
 
-    <button
-        ng-repeat="item in sideMenu.menuItems track by $index"
-        ng-click="sideMenu.itemClick(item)"
-        ng-if="item.id !== sideMenu.MYVOLUMIO_KEY"
-        class="btn-link btn-block">
+    <button ng-repeat="item in sideMenu.menuItems track by $index" ng-click="sideMenu.itemClick(item)" ng-if="item.id !== sideMenu.MYVOLUMIO_KEY" class="btn-link btn-block">
           {{::item.name}}
     </button>
 
-    <div class="hardwareToggleCheckbox"
-        ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.analogInput">
-      <input type="checkbox"
-          ng-model="sideMenu.analogIn"
-          ng-click="sideMenu.toggleAnalogInput()">
-        <span translate="SIDEMENU.ANALOG_INPUT"></span>
+    <div class="hardwareToggleCheckbox" ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.analogInput">
+      <input type="checkbox" ng-model="sideMenu.analogIn" ng-click="sideMenu.toggleAnalogInput()">
+      <span translate="SIDEMENU.ANALOG_INPUT"></span>
     </div>
 
-    <div class="hardwareToggleCheckbox"
-        ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.bluetooth">
-      <input type="checkbox"
-          ng-model="sideMenu.bluetooth"
-          ng-click="sideMenu.toggleBluetooth()">
-        <span translate="SIDEMENU.BLUETOOTH"></span>
+    <div class="hardwareToggleCheckbox" ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.checkboxes.bluetooth">
+      <input type="checkbox" ng-model="sideMenu.bluetooth" ng-click="sideMenu.toggleBluetooth()">
+      <span translate="SIDEMENU.BLUETOOTH"></span>
     </div>
 
     <div class="side-logo" ng-if="::sideMenu.uiSettingsService.uiSettings.sideMenu.showLogo">
-      <img
-        ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo-sidebar.png"
-        alt="{{header.themeManager.theme}}"/>
+      <img ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo-sidebar.png" alt="{{header.themeManager.theme}}" />
     </div>
   </div>
 </div>

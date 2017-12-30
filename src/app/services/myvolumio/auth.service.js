@@ -1,6 +1,6 @@
 class AuthService {
   constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
-              stripeService, $filter, modalService, socketService, $http, $location, themeManager, cloudService) {
+    stripeService, $filter, modalService, socketService, $http, $location, themeManager, cloudService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -53,7 +53,7 @@ class AuthService {
     this.enableAuth(isEnabled);
   }
 
-  getUser(){
+  getUser() {
     return this.waitForDbUser();
   }
 
@@ -61,7 +61,7 @@ class AuthService {
     this.isEnabled = enabled;
     this.abilitationDefer.resolve(this.isEnabled);
 
-    if(this.isEnabled === true && this.isSocketInit === false){
+    if (this.isEnabled === true && this.isSocketInit === false) {
       this.initSocket();
     }
 
@@ -107,8 +107,7 @@ class AuthService {
     this.socketPromise.then(() => {
       if (this.isJustFeLogged) { //JUST LOGGED
         this.isJustFeLogged = false;
-        this.sendUserTokenToBackend().then(() => {
-        });
+        this.sendUserTokenToBackend().then(() => {});
         return;
       }
       this.getMyVolumioStatus().then((status) => { //NEED SYNC
@@ -116,20 +115,17 @@ class AuthService {
         var uid = status.uid;
         if (loggedIn === true) { //BE LOGGED
           if (this.user === null) { //FE NOT LOGGED
-            this.requestUserToBackend().then(() => {
-            });
+            this.requestUserToBackend().then(() => {});
           } else if (this.user.uid !== uid) { //FE LOGGED MISMATCH
             this.logOutFrontend().then(() => {
-              this.requestUserToBackend().then(() => {
-              });
+              this.requestUserToBackend().then(() => {});
             });
           } else { //BE & FE SYNCED
             //DO NOTHING
           }
         } else { //BE NOT LOGGED
           if (this.user !== null) { //FE LOGGED
-            this.sendUserTokenToBackend().then(() => {
-            });
+            this.sendUserTokenToBackend().then(() => {});
           } else { //FE & BE NOT LOGGED
             //DO NOTHING
           }
@@ -143,7 +139,7 @@ class AuthService {
   getMyVolumioStatus() {
     var getting = this.$q.defer();
 
-    if(this.isSocketInit === false){
+    if (this.isSocketInit === false) {
       getting.resolve(false);
       return getting.promise;
     }
@@ -164,7 +160,7 @@ class AuthService {
   sendUserTokenToBackend() {
     var sending = this.$q.defer();
 
-    if(this.isSocketInit === false){
+    if (this.isSocketInit === false) {
       sending.resolve(false);
       return sending.promise;
     }
@@ -187,7 +183,7 @@ class AuthService {
       return this.$http({
         url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/getCustomToken',
         method: "GET",
-        params: {idToken: idToken}
+        params: { idToken: idToken }
       }).then(response => {
         return response.data;
       });
@@ -209,7 +205,7 @@ class AuthService {
   emitUserRequest() {
     var emitting = this.$q.defer();
 
-    if(this.isSocketInit === false){
+    if (this.isSocketInit === false) {
       emitting.resolve(false);
       return emitting.promise;
     }
@@ -243,11 +239,11 @@ class AuthService {
 
   requireUserOrRedirectToCloudLogin() {
     return this.angularFireService.requireUser().then((user) => {
-      if(user){
+      if (user) {
         return user;
-      }else{
+      } else {
         this.$state.go('myvolumio.login');
-        throw('AUTH.USER_NOT_LOGGED');
+        throw ('MYVOLUMIO.USER_NOT_LOGGED');
       }
     });
   }
@@ -263,7 +259,7 @@ class AuthService {
         // }else{
         //   this.$state.go('myvolumio.login');
         // }
-        gettingUser.reject('AUTH.USER_ALREADY_LOGGED');
+        gettingUser.reject('MYVOLUMIO.USER_ALREADY_LOGGED');
       }
       return gettingUser.promise;
     });
@@ -290,29 +286,29 @@ class AuthService {
       return;
     }
     if (!this.isUserFilledWithMandatory(user)) {
-      validating.reject(this.filteredTranslate('AUTH.USER_MISSING_MANDATORY_FIELDS'));
-      this.modalService.openDefaultErrorModal('AUTH.USER_MISSING_MANDATORY_FIELDS');
+      validating.reject(this.filteredTranslate('MYVOLUMIO.USER_MISSING_MANDATORY_FIELDS'));
+      this.modalService.openDefaultErrorModal('MYVOLUMIO.USER_MISSING_MANDATORY_FIELDS');
       this.redirectToEditProfile();
       return;
     }
     validating.resolve(user);
     return validating.promise;
-//    this.isUserVerified().then(() => {
-//      validating.resolve(user);
-//    }).catch(() => {
-//      validating.reject(this.filteredTranslate('AUTH.USER_EMAIL_NOT_VERIFIED'));
-//      this.redirectToVerifyUser();
-//    });
+    //    this.isUserVerified().then(() => {
+    //      validating.resolve(user);
+    //    }).catch(() => {
+    //      validating.reject(this.filteredTranslate('MYVOLUMIO.USER_EMAIL_NOT_VERIFIED'));
+    //      this.redirectToVerifyUser();
+    //    });
   }
 
   isUserFilledWithMandatory(user) {
     for (var i in this.mandatoryFields) {
       if (user &&
-              (!user.hasOwnProperty(this.mandatoryFields[i]) ||
-                      user[this.mandatoryFields[i]] === undefined ||
-                      user[this.mandatoryFields[i]].length === 0
-                      )
-              ) {
+        (!user.hasOwnProperty(this.mandatoryFields[i]) ||
+          user[this.mandatoryFields[i]] === undefined ||
+          user[this.mandatoryFields[i]].length === 0
+        )
+      ) {
         return false;
       }
     }
@@ -360,7 +356,7 @@ class AuthService {
   logOutBackend() {
     var emitting = this.$q.defer();
 
-    if(this.isSocketInit === false){
+    if (this.isSocketInit === false) {
       emitting.resolve(false);
       return emitting.promise;
     }
@@ -466,7 +462,7 @@ class AuthService {
   }
 
   registerLogoutListener() {
-    if(this.isSocketInit === false){
+    if (this.isSocketInit === false) {
       return;
     }
 
@@ -480,7 +476,7 @@ class AuthService {
   }
 
   registerLoginListener() {
-    if(this.isSocketInit === false){
+    if (this.isSocketInit === false) {
       return;
     }
 

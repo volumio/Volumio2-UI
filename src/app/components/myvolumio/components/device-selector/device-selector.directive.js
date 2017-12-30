@@ -1,17 +1,17 @@
-class AuthDeviceSelectorDirective {
+class MyVolumioDeviceSelectorDirective {
   constructor() {
     'ngInject';
     let directive = {
       restrict: 'E',
       templateUrl: 'app/components/myvolumio/components/device-selector/device-selector.html',
-      controller: AuthDeviceSelectorController,
-      controllerAs: 'authDeviceSelectorController'
+      controller: MyVolumioDeviceSelectorController,
+      controllerAs: 'myVolumioDeviceSelectorController'
     };
     return directive;
   }
 }
 
-class AuthDeviceSelectorController {
+class MyVolumioDeviceSelectorController {
   constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService,
     $http, $state) {
     'ngInject';
@@ -77,11 +77,11 @@ class AuthDeviceSelectorController {
   }
 
   enableDevice(device) {
-    this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_ENABLE', () => {
+    this.modalService.openDefaultConfirm(null, 'MYVOLUMIO.DEVICE_CONFIRM_ENABLE', () => {
       var maxDevices = this.product.maxDevices || 1;
       var currentActiveDevices = this.getCurrentActiveDevices();
       if (currentActiveDevices >= maxDevices) {
-        this.modalService.openDefaultConfirm('AUTH.MAX_DEVICES_ALERT_TITLE', 'AUTH.MAX_DEVICES_ALERT_DESCRIPTION', () => {
+        this.modalService.openDefaultConfirm('MYVOLUMIO.MAX_DEVICES_ALERT_TITLE', 'MYVOLUMIO.MAX_DEVICES_ALERT_DESCRIPTION', () => {
           this.doEnableDevice(device);
         });
         return;
@@ -106,7 +106,7 @@ class AuthDeviceSelectorController {
   }
 
   disableDevice(device) {
-    this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_DISABLE', () => {
+    this.modalService.openDefaultConfirm(null, 'MYVOLUMIO.DEVICE_CONFIRM_DISABLE', () => {
       //      var deviceObj = this.sanitizeAngularfireObject(device);
       //      this.socketService.emit('disableMyVolumioDevice', deviceObj);
       this.doDisableDeviceApiCall(device);
@@ -126,7 +126,7 @@ class AuthDeviceSelectorController {
   }
 
   deleteDevice(device) {
-    this.modalService.openDefaultConfirm(null, 'AUTH.DEVICE_CONFIRM_DELETE', () => {
+    this.modalService.openDefaultConfirm(null, 'MYVOLUMIO.DEVICE_CONFIRM_DELETE', () => {
       var deviceObj = this.sanitizeAngularfireObject(device);
       this.socketService.emit('deleteMyVolumioDevice', deviceObj);
     });
@@ -157,4 +157,4 @@ class AuthDeviceSelectorController {
 
 }
 
-export default AuthDeviceSelectorDirective;
+export default MyVolumioDeviceSelectorDirective;

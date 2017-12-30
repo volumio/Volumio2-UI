@@ -1,6 +1,0 @@
-<div class="avatar-image-box">
-  <div ng-if="authAvatarImageController.imageUrl" class="avatar-image img-circle img-responsive" style="background-image: url('{{authAvatarImageController.imageUrl}}');"></div>
-  <div ng-if="!authAvatarImageController.imageUrl" class="avatar-letter">
-    <ng-letter-avatar dynamic="true" shape="round" data="{{authAvatarImageController.user.username || '?'}}"></ng-letter-avatar>
-  </div>
-</div>

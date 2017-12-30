@@ -1,12 +1,12 @@
 <div id="device-selector">
   <table class="table tableSmall">
     <tr>
-      <th><span translate="AUTH.DEVICE_NAME"></span></th>
-      <th><span translate="AUTH.DEVICE_TYPE"></span></th>
-      <th><span translate="AUTH.DEVICE_ENABLED"></span></th>
+      <th><span translate="MYVOLUMIO.DEVICE_NAME"></span></th>
+      <th><span translate="MYVOLUMIO.DEVICE_TYPE"></span></th>
+      <th><span translate="MYVOLUMIO.DEVICE_ENABLED"></span></th>
       <th></th>
     </tr>
-    <tr ng-repeat="device in authDeviceSelectorController.devices">
+    <tr ng-repeat="device in myVolumioDeviceSelectorController.devices">
       <td>
         {{device.name}}
       </td>
@@ -15,25 +15,17 @@
       </td>
       <td>
 
-        <input bs-switch ng-model="device.enabled" type="checkbox" switch-size="medium" switch-animate="false"
-               switch-on-text="{{'AUTH.ENABLED' | translate}}" switch-off-text="{{'AUTH.DISABLED' | translate}}"
-               ng-true-value="true" ng-false-value="false" ng-change="authDeviceSelectorController.toggleAbilitation(device)">
+        <input bs-switch ng-model="device.enabled" type="checkbox" switch-size="medium" switch-animate="false" switch-on-text="{{'MYVOLUMIO.ENABLED' | translate}}" switch-off-text="{{'MYVOLUMIO.DISABLED' | translate}}" ng-true-value="true" ng-false-value="false"
+          ng-change="myVolumioDeviceSelectorController.toggleAbilitation(device)">
 
       </td>
       <td class="commandCol">
-        <button ng-click="authDeviceSelectorController.gotoDevice(device)"
-                ng-class="{invisible: !device.enabled || !device.online}"
-                type="button"
-                class="btn btn-info"
-                title="{{'AUTH.OPEN_DEVICE' | translate}}">
+        <button ng-click="myVolumioDeviceSelectorController.gotoDevice(device)" ng-class="{invisible: !device.enabled || !device.online}" type="button" class="btn btn-info" title="{{'MYVOLUMIO.OPEN_DEVICE' | translate}}">
            <i class="fa fa-level-down fa-rotate-90"></i>
-           <!-- <span translate="AUTH.OPEN_DEVICE"></span> -->
+           <!-- <span translate="MYVOLUMIO.OPEN_DEVICE"></span> -->
         </button>
 
-        <button ng-click="authDeviceSelectorController.deleteDevice(device)"
-                type="button"
-                class="btn btn-danger"
-                title="{{'AUTH.DELETE_DEVICE' | translate}}">
+        <button ng-click="myVolumioDeviceSelectorController.deleteDevice(device)" type="button" class="btn btn-danger" title="{{'MYVOLUMIO.DELETE_DEVICE' | translate}}">
           <i class="fa fa-trash"></i>
         </button>
       </td>
