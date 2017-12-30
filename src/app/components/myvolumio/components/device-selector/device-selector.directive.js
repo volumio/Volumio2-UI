@@ -83,18 +83,23 @@ class MyVolumioDeviceSelectorController {
     this.modalService.openDefaultConfirm(null, 'MYVOLUMIO.DEVICE_CONFIRM_ENABLE', () => {
       var maxDevices = this.product.maxDevices || 1;
       var currentActiveDevices = this.getCurrentActiveDevices();
+      if (device.enabled === true) {
+        currentActiveDevices--;
+      }
       if (currentActiveDevices >= maxDevices) {
-        this.modalService.openDefaultConfirm('MYVOLUMIO.MAX_DEVICES_ALERT_TITLE', 'MYVOLUMIO.MAX_DEVICES_ALERT_DESCRIPTION', () => {
-          this.doEnableDevice(device);
-        });
+        this.modalService.openDefaultConfirm('MYVOLUMIO.MAX_DEVICES_ALERT_TITLE', 'MYVOLUMIO.MAX_DEVICES_ALERT_DESCRIPTION',
+          () => { this.doEnableDevice(device); },
+          () => { device.enabled = false; }
+        );
         return;
       }
       this.doEnableDevice(device);
-    });
+    }, () => { device.enabled = false; });
   }
 
   doEnableDevice(device) {
     var deviceObj = this.sanitizeAngularfireObject(device);
+    console.log("doEnableDevice", deviceObj);
     this.socketService.emit('enableMyVolumioDevice', deviceObj);
   }
 
@@ -113,12 +118,15 @@ class MyVolumioDeviceSelectorController {
       //      var deviceObj = this.sanitizeAngularfireObject(device);
       //      this.socketService.emit('disableMyVolumioDevice', deviceObj);
       this.doDisableDeviceApiCall(device);
+    }, () => {
+      device.enabled = true;
     });
   }
 
   doDisableDeviceApiCall(device) {
-    this.authService.getUserToken().then(token => {
-      this.$http({
+    console.log("doDisableDevice", device);
+    return this.authService.getUserToken().then(token => {
+      return this.$http({
         url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/disableMyVolumioDevice',
         method: "POST",
         params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
@@ -151,7 +159,14 @@ class MyVolumioDeviceSelectorController {
     } else {
       this.enableDevice(device);
     }
+  }
 
+  toggleAbilitationAfterChange(device) {
+    if (device.enabled) {
+      this.enableDevice(device);
+    } else {
+      this.disableDevice(device);
+    }
   }
 
   gotoDevice(device) {

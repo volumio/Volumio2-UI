@@ -11,12 +11,12 @@
         {{device.name}}
       </td>
       <td>
-        {{device.device}}
+        {{device.device}} {{device.enabled}}
       </td>
       <td>
 
-        <input ng-if="!myVolumioDeviceSelectorController.isPhone" bs-switch ng-model="device.enabled" type="checkbox" switch-size="medium" switch-animate="false" switch-on-text="{{'MYVOLUMIO.ENABLED' | translate}}" switch-off-text="{{'MYVOLUMIO.DISABLED' | translate}}"
-          ng-true-value="true" ng-false-value="false" ng-change="myVolumioDeviceSelectorController.toggleAbilitation(device)">
+        <input ng-if="!myVolumioDeviceSelectorController.isPhone" bs-switch ng-model="device.enabled" type="checkbox" switch-size="medium" switch-animate="true" switch-on-text="{{'MYVOLUMIO.ENABLED' | translate}}" switch-off-text="{{'MYVOLUMIO.DISABLED' | translate}}"
+          ng-change="myVolumioDeviceSelectorController.toggleAbilitationAfterChange(device)">
 
         <button ng-if="myVolumioDeviceSelectorController.isPhone" class="btn btn-small" style="width: 100%; font-size: small;" ng-click="myVolumioDeviceSelectorController.toggleAbilitation(device)" ng-class=" { 'btn-success': device.enabled, 'btn-danger': !device.enabled}">
           <span ng-if="device.enabled" class="fa fa-toggle-on"></span>

@@ -53,12 +53,13 @@ class ModalService {
     return this.openModal(undefined, undefined, params);
   }
 
-  openDefaultConfirm(titleLangKey, descLangKey, callback = null) {
+  openDefaultConfirm(titleLangKey, descLangKey, callback = null, cancelCallback = null) {
     var params = {
       title: this.$filteredTranslate(titleLangKey),
       message: this.$filteredTranslate(descLangKey),
       disableCancelButton: false,
-      callback: callback
+      callback: callback,
+      cancelCallback: cancelCallback
     };
     return this.openModal(undefined, undefined, params);
   }
