@@ -395,7 +395,7 @@ function routerConfig(
   })
 
   .state('myvolumio.cancel-subscription', {
-    url: '/subscribe/cancel',
+    url: '/subscription/cancel',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/cancel-subscription/myvolumio-cancel-subscription.html',
@@ -414,7 +414,7 @@ function routerConfig(
   })
 
   .state('myvolumio.change-subscription', {
-    url: '/subscribe/change/:plan',
+    url: '/subscription/change/:plan',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/change-subscription/myvolumio-change-subscription.html',

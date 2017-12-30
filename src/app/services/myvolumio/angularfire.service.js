@@ -439,7 +439,7 @@ class AngularFireService {
     return getting.promise;
   }
 
-  waitForValue(refPath, timeout = 30) {
+  waitForValue(refPath, timeout = 60) {
     var waitingFor = this.$q.defer();
     var ref = this.database.ref(refPath);
 
@@ -460,7 +460,6 @@ class AngularFireService {
 
   setWaitForValueTimeout(ref, waitingFor, timeout) {
     return this.$timeout(() => {
-      console.log("TIMEOUT!");
       ref.off();
       waitingFor.reject(this.filteredTranslate('MYVOLUMIO.ERROR_SERVER_TIMEOUT'));
     }, timeout * 1000);

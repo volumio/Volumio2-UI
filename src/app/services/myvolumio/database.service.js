@@ -44,11 +44,11 @@ class DatabaseService {
     return this.angularFireService.get(ref);
   }
 
-  getInfByKey(ref,limit){
-    return this.angularFireService.getInfByKey(ref,limit);
+  getInfByKey(ref, limit) {
+    return this.angularFireService.getInfByKey(ref, limit);
   }
 
-  getArray(ref){
+  getArray(ref) {
     return this.angularFireService.getArray(ref);
   }
 
@@ -62,7 +62,7 @@ class DatabaseService {
     return waitingForValue.promise;
   }
 
-  delete(path){
+  delete(path) {
     return this.angularFireService.deleteFromDb(path);
   }
 

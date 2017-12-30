@@ -8,14 +8,14 @@ class StripeService {
 
   }
 
-  getPublicKey(){
+  getPublicKey() {
     let publicKey = 'pk_test_utxQAjiMNEdVZFel9iQlDkyH';
     let devPublicKey = 'pk_test_utxQAjiMNEdVZFel9iQlDkyH';
     var getting = this.$q.defer();
     this.devService.isDev().then(isDev => {
-      if(isDev){
+      if (isDev) {
         getting.resolve(devPublicKey);
-      }else{
+      } else {
         getting.resolve(publicKey);
       }
     });
@@ -140,7 +140,7 @@ class StripeService {
     };
 
     this.databaseService.push(ref, update).then((updateId) => {
-      this.getUpdateResponse(updateId, userId).then((status) => {
+      return this.getUpdateResponse(updateId, userId).then((status) => {
         if (status === true) {
           updating.resolve(status);
           return;

@@ -60,8 +60,9 @@ class MyVolumioChangeSubscriptionController {
       }
       this.goToUpdatingFail();
     }).catch((error) => {
+      console.log("ERRORRRR");
+      this.closeUpdatingModal();
       this.modalService.openDefaultErrorModal(error, () => {
-        this.closeUpdatingModal();
         this.goToUpdatingFail();
       });
     });

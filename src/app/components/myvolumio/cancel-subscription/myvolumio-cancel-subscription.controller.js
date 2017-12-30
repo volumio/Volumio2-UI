@@ -54,8 +54,8 @@ class MyVolumioCancelSubscriptionController {
       }
       this.goToCancellingFail();
     }).catch((error) => {
+      this.closeCancellingModal();
       this.modalService.openDefaultErrorModal(error, () => {
-        this.closeCancellingModal();
         this.goToCancellingFail();
       });
     });
