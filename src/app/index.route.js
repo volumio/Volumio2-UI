@@ -210,7 +210,7 @@ function routerConfig(
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/login/myvolumio-login.html',
         controller: 'MyVolumioLoginController',
-        controllerAs: 'MyVolumioLoginController',
+        controllerAs: 'myVolumioLoginController',
         resolve: {
           user: [
             'authService',

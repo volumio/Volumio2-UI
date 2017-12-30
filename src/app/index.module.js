@@ -139,7 +139,7 @@ import MyVolumioEditProfileController from './components/myvolumio/edit-profile/
 import MyVolumioVerifyUserController from './components/myvolumio/verify-user/myvolumio-verify-user.controller';
 import MyVolumioCancelSubscriptionController from './components/myvolumio/cancel-subscription/myvolumio-cancel-subscription.controller';
 import MyVolumioChangeSubscriptionController from './components/myvolumio/change-subscription/myvolumio-change-subscription.controller';
-import MyVolumioCloudSelectDeviceController from './components/myvolumio/cloud/select-device/myvolumio-cloud-select-device.controller';
+import MyVolumioCloudSelectDeviceController from './components/myvolumio/select-device/myvolumio-cloud-select-device.controller';
 
 
 angular.module('volumio', [
