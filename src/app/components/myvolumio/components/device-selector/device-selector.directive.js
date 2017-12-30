@@ -13,7 +13,7 @@ class MyVolumioDeviceSelectorDirective {
 
 class MyVolumioDeviceSelectorController {
   constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService,
-    $http, $state) {
+    $http, $state, matchmediaService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -24,11 +24,14 @@ class MyVolumioDeviceSelectorController {
     this.productsService = productsService;
     this.$http = $http;
     this.$state = $state;
+    this.matchmediaService = matchmediaService;
 
     this.user = null;
     this.product = {};
 
     this.devices = [];
+
+    this.isPhone = matchmediaService.isPhone;
 
     this.init();
   }
@@ -144,10 +147,11 @@ class MyVolumioDeviceSelectorController {
 
   toggleAbilitation(device) {
     if (device.enabled) {
+      this.disableDevice(device);
+    } else {
       this.enableDevice(device);
-      return;
     }
-    this.disableDevice(device);
+
   }
 
   gotoDevice(device) {

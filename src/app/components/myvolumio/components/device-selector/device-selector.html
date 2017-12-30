@@ -15,18 +15,25 @@
       </td>
       <td>
 
-        <input bs-switch ng-model="device.enabled" type="checkbox" switch-size="medium" switch-animate="false" switch-on-text="{{'MYVOLUMIO.ENABLED' | translate}}" switch-off-text="{{'MYVOLUMIO.DISABLED' | translate}}" ng-true-value="true" ng-false-value="false"
-          ng-change="myVolumioDeviceSelectorController.toggleAbilitation(device)">
+        <input ng-if="!myVolumioDeviceSelectorController.isPhone" bs-switch ng-model="device.enabled" type="checkbox" switch-size="medium" switch-animate="false" switch-on-text="{{'MYVOLUMIO.ENABLED' | translate}}" switch-off-text="{{'MYVOLUMIO.DISABLED' | translate}}"
+          ng-true-value="true" ng-false-value="false" ng-change="myVolumioDeviceSelectorController.toggleAbilitation(device)">
 
-      </td>
-      <td class="commandCol">
-        <button ng-click="myVolumioDeviceSelectorController.gotoDevice(device)" ng-class="{invisible: !device.enabled || !device.online}" type="button" class="btn btn-info" title="{{'MYVOLUMIO.OPEN_DEVICE' | translate}}">
-           <i class="fa fa-level-down fa-rotate-90"></i>
-           <!-- <span translate="MYVOLUMIO.OPEN_DEVICE"></span> -->
+        <button ng-if="myVolumioDeviceSelectorController.isPhone" class="btn btn-small" style="width: 100%; font-size: small;" ng-click="myVolumioDeviceSelectorController.toggleAbilitation(device)" ng-class=" { 'btn-success': device.enabled, 'btn-danger': !device.enabled}">
+          <span ng-if="device.enabled" class="fa fa-toggle-on"></span>
+          <span ng-if="!device.enabled" class="fa fa-toggle-off"></span>
+          <span ng-if="device.enabled">Enabled</span>
+          <span ng-if="!device.enabled">Disabled</span>
         </button>
 
-        <button ng-click="myVolumioDeviceSelectorController.deleteDevice(device)" type="button" class="btn btn-danger" title="{{'MYVOLUMIO.DELETE_DEVICE' | translate}}">
-          <i class="fa fa-trash"></i>
+      </td>
+      <td class="commandCol ">
+        <button ng-click="myVolumioDeviceSelectorController.gotoDevice(device) " ng-class="{invisible: !device.enabled || !device.online} " type="button " class="btn btn-info " title="{{ 'MYVOLUMIO.OPEN_DEVICE' | translate}} ">
+           <i class="fa fa-level-down fa-rotate-90 "></i>
+           <!-- <span translate="MYVOLUMIO.OPEN_DEVICE "></span> -->
+        </button>
+
+        <button ng-click="myVolumioDeviceSelectorController.deleteDevice(device) " type="button " class="btn btn-danger " title="{{ 'MYVOLUMIO.DELETE_DEVICE' | translate}} ">
+          <i class="fa fa-trash "></i>
         </button>
       </td>
     </tr>

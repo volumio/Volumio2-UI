@@ -354,17 +354,11 @@ class AuthService {
   }
 
   logOutBackend() {
-    var emitting = this.$q.defer();
-
     if (this.isSocketInit === false) {
-      emitting.resolve(false);
-      return emitting.promise;
+      return this.$q.resolve(false);
     }
-
     this.socketService.emit('myVolumioLogout');
-    emitting.resolve();
-
-    return emitting.promise;
+    return this.$q.resolve(true);
   }
 
   logOutFrontend() {
