@@ -47,7 +47,7 @@ function routerConfig(
           var checking = $q.defer();
           deviceEndpointsService.initSocket().then(isAvalaible => {
             if (isAvalaible === false) {
-              checking.reject('NO_SOCKET_ENDPOINTS'); //this is catched by index.run.js
+              checking.reject('NO_SOCKET_ENDPOINTS');
               return;
             }
             $document[0].body.classList.remove('myVolumioBkg');
@@ -180,9 +180,7 @@ function routerConfig(
         deviceEndpointsService
           .initSocket()
           .then(isAvalaible => {
-            if (!isAvalaible) {
-              uiSettingsService.setLanguage();
-            }
+            uiSettingsService.setLanguage();
             initing.resolve(true);
           })
           .catch(error => {

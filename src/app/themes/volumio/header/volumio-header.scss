@@ -21,10 +21,16 @@
       min-width: auto;
     }
   }
+  .logout-container {
+    float: right;
+    margin: 16px;
+    button {
+      font-size: 16px;
+    }
+  }
   button {
     font-size: 24px;
   }
-
   #logo {
     @include make-sm-column(6);
     @extend .hidden-xs;

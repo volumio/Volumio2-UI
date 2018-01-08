@@ -49,6 +49,10 @@ class MyVolumioProfileController {
     this.$state.go('myvolumio.login');
   }
 
+  signUp() {
+    this.$state.go('myvolumio.signup');
+  }
+
   goToEdit() {
     this.$state.go('myvolumio.edit-profile');
   }

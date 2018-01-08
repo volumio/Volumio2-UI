@@ -1,13 +1,13 @@
 class HeaderController {
-  constructor(matchmediaService, socketService, uiSettingsService, $scope, themeManager) {
+  constructor(matchmediaService, socketService, uiSettingsService, $scope, themeManager, authService) {
     'ngInject';
     this.matchmediaService = matchmediaService;
     this.themeManager = themeManager;
     this.uiSettingsService = uiSettingsService;
     this.isSocketReady = false;
     this.language = {};
-    this.languages = [
-      {
+    this.authService = authService;
+    this.languages = [{
         "value": "ca",
         "label": "Català"
       },
@@ -100,11 +100,11 @@ class HeaderController {
         "label": "繁體中文"
       }
     ];
-    if(!socketService.host) {
+    if (!socketService.host) {
       this.setDefaultLanguage();
     }
     $scope.$watch(() => socketService.host, () => {
-      if(socketService.host) {
+      if (socketService.host) {
         this.isSocketReady = true;
       } else {
         this.isSocketReady = false;
@@ -122,6 +122,10 @@ class HeaderController {
 
   changeLanguage() {
     this.uiSettingsService.setLanguage(this.language.value);
+  }
+
+  logout() {
+    this.authService.logOut();
   }
 }
 

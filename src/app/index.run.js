@@ -17,6 +17,10 @@ function runBlock(themeManager, $state, $rootScope, cloudService) {
       $state.go("myvolumio.login");
       return;
     }
+    if (error === "AUTH_REQUIRED") {
+      $state.go("myvolumio.login");
+      return;
+    }
     if (error === "NO_SOCKET_ENDPOINTS" && cloudService.isOnCloud) {
       $state.go("myvolumio.login");
       return;

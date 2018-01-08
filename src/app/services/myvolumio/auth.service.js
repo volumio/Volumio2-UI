@@ -83,6 +83,9 @@ class AuthService {
   }
 
   initSocket() {
+    if (!this.socketService.isSocketAvalaible()) {
+      return;
+    }
     this.isSocketInit = true;
     this.socketDeferred = this.$q.defer();
     this.socketPromise = this.socketDeferred.promise;
@@ -104,6 +107,9 @@ class AuthService {
   }
 
   syncronizeWithBackend() {
+    if (!this.socketService.isSocketAvalaible()) {
+      return;
+    }
     this.socketPromise.then(() => {
       if (this.isJustFeLogged) { //JUST LOGGED
         this.isJustFeLogged = false;

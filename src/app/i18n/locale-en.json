@@ -313,6 +313,8 @@
     "NO_SUBSCRIPTION_SELECTED_DESC": "Error. No subscribtion has been selected! Please select a subscription.",
     "RETRY": "Retry",
     "SUPERSTAR_FEATURE1": "An amazing superstar feature",
-    "ERROR_SERVER_TIMEOUT": "We're sorry but the server it's taking too much to respond. Please try again."
+    "ERROR_SERVER_TIMEOUT": "We're sorry but the server it's taking too much to respond. Please try again.",
+    "NOT_LOGGED": "You're not logged. Please log-in or sign-up.",
+    "OPEN_DEVICE": "Connect with this device"
   }
 }

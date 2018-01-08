@@ -49,6 +49,9 @@ class MyVolumioDeviceSelectorController {
   }
 
   initSocket() {
+    if (!this.socketService.isSocketAvalaible) {
+      return;
+    }
     this.$rootScope.$on('socket:init', () => {
       this.initSocketEvents();
     });
@@ -170,7 +173,11 @@ class MyVolumioDeviceSelectorController {
   }
 
   gotoDevice(device) {
-    this.socketService.host = device.host;
+    //TODO add host or at least datacenter info on device object to compose the endpoint URL
+    //this.socketService.host = device.host;
+    const endpointUrlExp = "http://$1.eu1.myvolumio.org";
+    const endpointUrl = endpointUrlExp.replace("$1", device.hwuuid);
+    this.socketService.host = endpointUrl;
     this.$state.go('volumio.playback');
   }
 

@@ -21,6 +21,11 @@ class WaitBackendScrimController {
     this.$window = $window;
     this.$log = $log;
 
+    if (!this.socketService.isSocketAvalaible()) {
+      this.hideSrcrim();
+      return;
+    }
+
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
