@@ -173,11 +173,7 @@ class MyVolumioDeviceSelectorController {
   }
 
   gotoDevice(device) {
-    //TODO add host or at least datacenter info on device object to compose the endpoint URL
-    //this.socketService.host = device.host;
-    const endpointUrlExp = "http://$1.eu1.myvolumio.org";
-    const endpointUrl = endpointUrlExp.replace("$1", device.hwuuid);
-    this.socketService.host = endpointUrl;
+    this.socketService.host = device.host;
     this.$state.go('volumio.playback');
   }
 
