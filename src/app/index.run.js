@@ -12,19 +12,19 @@ function runBlock(themeManager, $state, $rootScope, cloudService) {
     if (error === "MYVOLUMIO_NOT_ENABLED") {
       $state.go("volumio.browse");
       return;
-    }
-    if (error === "MYVOLUMIO_REQUIRED") {
+    }else if (error === "MYVOLUMIO_REQUIRED") {
       $state.go("myvolumio.login");
       return;
-    }
-    if (error === "AUTH_REQUIRED") {
+    }else if (error === "AUTH_REQUIRED") {
       $state.go("myvolumio.login");
       return;
-    }
-    if (error === "NO_SOCKET_ENDPOINTS" && cloudService.isOnCloud) {
+    }else if (error === "NO_SOCKET_ENDPOINTS" && cloudService.isOnCloud) {
       $state.go("myvolumio.login");
       return;
-    }
+    }else if(error === "MYVOLUMIO_USER_ALREADY_LOGGED"){
+      $state.go('myvolumio.profile');
+      return;
+    } 
 
   });
 

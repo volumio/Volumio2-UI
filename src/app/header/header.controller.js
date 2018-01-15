@@ -1,12 +1,13 @@
 class HeaderController {
-  constructor(matchmediaService, socketService, uiSettingsService, $scope, themeManager, authService) {
+  constructor(matchmediaService, socketService, uiSettingsService, $scope, themeManager, $state, authService) {
     'ngInject';
     this.matchmediaService = matchmediaService;
     this.themeManager = themeManager;
     this.uiSettingsService = uiSettingsService;
     this.isSocketReady = false;
-    this.language = {};
     this.authService = authService;
+    this.$state = $state;
+    this.language = {};
     this.languages = [{
         "value": "ca",
         "label": "Català"
@@ -125,7 +126,7 @@ class HeaderController {
   }
 
   logout() {
-    this.authService.logOut();
+    this.$state.go("myvolumio.logout");
   }
 }
 

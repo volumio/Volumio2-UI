@@ -19,8 +19,6 @@ class AuthService {
     this.cloudService = cloudService;
 
     this.isEnabled = false;
-    this.abilitationDefer = this.$q.defer();
-    this.abilitationPromise = this.abilitationDefer.promise;
 
     this.user = null;
     this.mandatoryFields = [
@@ -29,13 +27,13 @@ class AuthService {
       'lastName'
     ];
 
-    this.socketPromise;
-    this.socketDeferred;
+    this.socketDeferred = this.$q.defer();
+    this.socketPromise = this.socketDeferred.promise;
 
     //race conditions
     this.isJustFeLogged = false;
     this.isUserBeingWatched = false;
-    this.isSocketInit = false;
+    this.isSocketInitialized = false;
 
     this.isDev = null;
 
@@ -47,31 +45,32 @@ class AuthService {
   }
 
   initAuth() {
-    //TODO move this logic after enabled by pushMenuItems
-    var isEnabled = this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio';
-    isEnabled = isEnabled || this.cloudService.isOnCloud;
-    this.enableAuth(isEnabled);
+    var canEnable = this.themeManager.theme === 'volumio' && this.themeManager.variant === 'volumio';
+    canEnable = canEnable || this.cloudService.isOnCloud;
+    
+    if(canEnable){
+      this.enableAuth();
+    }
   }
 
-  getUser() {
-    return this.waitForDbUser();
-  }
+  enableAuth() {
+    this.isEnabled = true;
 
-  enableAuth(enabled = true) {
-    this.isEnabled = enabled;
-    this.abilitationDefer.resolve(this.isEnabled);
-
-    if (this.isEnabled === true && this.isSocketInit === false) {
+    if (this.isSocketInitialized === false) {
       this.initSocket();
     }
 
-    if (this.isEnabled === true && this.isUserBeingWatched === false) {
+    if (this.isUserBeingWatched === false) {
       this.watchUser();
     }
   }
 
   isAuthEnabled() {
-    return this.abilitationPromise;
+    return this.$q.resolve(this.isEnabled);
+  }
+
+  getUser() {
+    return this.waitForDbUser();
   }
 
   watchUser() {
@@ -86,7 +85,7 @@ class AuthService {
     if (!this.socketService.isSocketAvalaible()) {
       return;
     }
-    this.isSocketInit = true;
+    this.isSocketInitialized = true;
     this.socketDeferred = this.$q.defer();
     this.socketPromise = this.socketDeferred.promise;
 
@@ -145,7 +144,7 @@ class AuthService {
   getMyVolumioStatus() {
     var getting = this.$q.defer();
 
-    if (this.isSocketInit === false) {
+    if (this.isSocketInitialized === false) {
       getting.resolve(false);
       return getting.promise;
     }
@@ -166,7 +165,7 @@ class AuthService {
   sendUserTokenToBackend() {
     var sending = this.$q.defer();
 
-    if (this.isSocketInit === false) {
+    if (this.isSocketInitialized === false) {
       sending.resolve(false);
       return sending.promise;
     }
@@ -211,7 +210,7 @@ class AuthService {
   emitUserRequest() {
     var emitting = this.$q.defer();
 
-    if (this.isSocketInit === false) {
+    if (this.isSocketInitialized === false) {
       emitting.resolve(false);
       return emitting.promise;
     }
@@ -258,14 +257,9 @@ class AuthService {
     return this.angularFireService.waitForUser().then(user => {
       var gettingUser = this.$q.defer();
       if (user === null) {
-        gettingUser.resolve(null);
+        gettingUser.resolve(user); //(user = null)
       } else {
-        this.$state.go('myvolumio.profile');
-        // if(!this.cloudService.isOnCloud){
-        // }else{
-        //   this.$state.go('myvolumio.login');
-        // }
-        gettingUser.reject('MYVOLUMIO.USER_ALREADY_LOGGED');
+        gettingUser.reject('MYVOLUMIO_USER_ALREADY_LOGGED');
       }
       return gettingUser.promise;
     });
@@ -360,7 +354,7 @@ class AuthService {
   }
 
   logOutBackend() {
-    if (this.isSocketInit === false) {
+    if (this.isSocketInitialized === false) {
       return this.$q.resolve(false);
     }
     this.socketService.emit('myVolumioLogout');
@@ -462,7 +456,7 @@ class AuthService {
   }
 
   registerLogoutListener() {
-    if (this.isSocketInit === false) {
+    if (this.isSocketInitialized === false) {
       return;
     }
 
@@ -476,7 +470,7 @@ class AuthService {
   }
 
   registerLoginListener() {
-    if (this.isSocketInit === false) {
+    if (this.isSocketInitialized === false) {
       return;
     }
 

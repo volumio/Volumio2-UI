@@ -6,11 +6,17 @@ class DevService {
     this.$http = $http;
     this.$q = $q;
 
-    this.isDevelopment = env || 'dev';
+    this.env = env || 'dev';
+
+    this.isDev().then(isDev => {
+      if(isDev){
+        console.log("ENV:", this.env);
+      }
+    });
   }
 
   isDev() {
-    return this.$q.resolve(this.isDevelopment === 'dev');
+    return this.$q.resolve(this.env === 'dev');
   }
 
 }
