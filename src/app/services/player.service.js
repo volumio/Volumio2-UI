@@ -142,13 +142,10 @@ class PlayerService {
       hours = momentDuration.hours(),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
-    if (this.hours > 0) {
-      this.elapsedTimeString = hours + ':' + minutes + ':' +
-        ((seconds < 10) ? ('0' + seconds) : seconds);
-    } else {
-      this.elapsedTimeString = minutes + ':' +
-        ((seconds < 10) ? ('0' + seconds) : seconds);
-    }
+    // Track length is shown as mm:ss - do the same for elapsed time
+    minutes += hours*60;
+    this.elapsedTimeString = minutes + ':' +
+                             ((seconds < 10) ? ('0' + seconds) : seconds);
   }
 
   startSeek() {
