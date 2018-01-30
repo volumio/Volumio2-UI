@@ -77,3 +77,6 @@ And deploy by copying the content of dist directory on Volumio2 device to:
 ```shell
 /volumio/http/www
 ```
+
+
+
