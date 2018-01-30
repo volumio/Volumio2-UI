@@ -260,10 +260,10 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        height: 42px;
         &.onlyTitle {
           white-space: normal;
           margin: 0;
-          height: 42px;
         }
       }
 
@@ -289,8 +289,4 @@
     }
   }
   //End grid overrides
-}
-
-.title.ng-binding {
-    height: 42px;
 }
