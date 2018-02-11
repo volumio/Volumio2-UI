@@ -208,6 +208,9 @@
     "GET_APPS":"For your convenience, you can also use our handy apps"
   },
   "SLEEP": {
+    "AT": "at",
+    "IN": "in",
+    "WHEN": "when",
     "POWER_OFF": "Power off",
     "STOP_MUSIC": "Stop music"
   },
