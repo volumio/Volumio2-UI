@@ -209,7 +209,12 @@
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
-    "STOP_MUSIC": "Stop music"
+    "STOP_MUSIC": "Stop music",
+    "PRESET_TIMES": "Preset times",
+    "CHOOSE_PRESET": "Choose a preset",
+    "HR": "hr",
+    "MIN": "min",
+    "OFF": "Off"
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "In order to use Alarm Clock, you must create at least one Playlist first"
