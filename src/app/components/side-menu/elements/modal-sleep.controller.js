@@ -8,26 +8,19 @@ class ModalSleepController {
     this.$log = $log;
     this.$translate = $translate;
 
-
+    // defaults before translation occurs
     this.sleepPresets = [
-      { text: 'Off', val: 0 },
-      { text: '15 min', val: 15 },
-      { text: '30 min', val: 30 },
-      { text: '45 min', val: 45 },
-      { text: '1 hr', val: 60 },
-      { text: '1½ hr', val: 90 },
-      { text: '2 hr', val: 120 },
-      { text: '2½ hr', val: 150 },
-      { text: '3 hr', val: 180 },
-      { text: '4 hr', val: 240 }
+      { text: '...', val: 0 }
     ];
+
+    this.preset_placeholder = "Choose a preset";
 
     this.sleepTime = new Date();
     this.sleepTime.setHours(0, 0);
     this.enabled = false;
 
 
-    $translate(['SLEEP.POWER_OFF', 'SLEEP.STOP_MUSIC']).then(translations => {
+    $translate(['SLEEP.POWER_OFF', 'SLEEP.STOP_MUSIC', 'SLEEP.HR', 'SLEEP.MIN', 'SLEEP.OFF', 'SLEEP.CHOOSE_PRESET']).then(translations => {
         this.whenSleepSelect = [
           {
             val: 'stop',
@@ -38,6 +31,24 @@ class ModalSleepController {
             text: translations['SLEEP.POWER_OFF']
           }
         ];
+        var hr = translations['SLEEP.HR'];
+        var min = translations['SLEEP.MIN'];
+
+        this.preset_placeholder = translations['SLEEP.CHOOSE_PRESET'];
+
+        this.sleepPresets = [
+          { text: translations['SLEEP.OFF'], val: 0 },
+          { text: '15 ' + min, val: 15 },
+          { text: '30 ' + min, val: 30 },
+          { text: '45 ' + min, val: 45 },
+          { text: '1 ' + hr, val: 60 },
+          { text: '1½ ' + hr, val: 90 },
+          { text: '2 ' + hr, val: 120 },
+          { text: '2½ ' + hr, val: 150 },
+          { text: '3 ' + hr, val: 180 },
+          { text: '4 ' + hr, val: 240 }
+        ];
+
       });
     this.init();
   }

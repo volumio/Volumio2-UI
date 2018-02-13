@@ -33,7 +33,7 @@
       </uib-timepicker>
     </div>
     <div class="col-sm-6">
-      <h4>Preset time</h4>
+      <h4 translate="SLEEP.PRESET_TIMES"></h4>
       <ui-select
         id="presetTime"
         ng-model="modal.sleepPreset"
@@ -44,7 +44,7 @@
       >
         <ui-select-match
           class="ui-select-match"
-          placeholder="Quick pick">
+          placeholder={{modal.preset_placeholder}}>
           {{$select.selected.text}}
         </ui-select-match>
         <ui-select-choices
