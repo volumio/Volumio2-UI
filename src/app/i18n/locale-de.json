@@ -181,7 +181,7 @@
     "MANUAL_WIFI_CONNECTION":"Manuelle WLAN-Verbindung",
     "NETWORK_NAME": "Netzwerkname"
   },
-    "WIZARD": {
+  "WIZARD": {
     "LANGUAGE": "Sprache",
     "NAME": "Name",
     "OUTPUT": "Ausgang",
@@ -209,7 +209,12 @@
   },
   "SLEEP": {
     "POWER_OFF": "Ausschalten",
-    "STOP_MUSIC": "Musik anhalten"
+    "STOP_MUSIC": "Musik anhalten",
+    "PRESET_TIMES": "Voreinstellungen",
+    "CHOOSE_PRESET": "Voreinstellung wählen",
+    "HR": "Std",
+    "MIN": "Min",
+    "OFF": "Aus"
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Um die Weckfunktion nutzen zu können, muss mindestens eine Wiedergabeliste angelegt sein."
