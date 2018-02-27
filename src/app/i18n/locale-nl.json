@@ -209,7 +209,12 @@
   },
   "SLEEP":{
     "POWER_OFF":"Uitzetten",
-    "STOP_MUSIC":"Muziek stoppen"
+    "STOP_MUSIC":"Muziek stoppen",
+    "PRESET_TIMES":"Vooraf ingestelde tijden",
+    "CHOOSE_PRESET":"Kies een vooraf ingestelde tijd",
+    "HR":"u",
+    "MIN":"min",
+    "OFF":"Uit"
   },
   "ALARM":{
     "CRATE_PLAYLIST_FIRST":"Om de wekker te gebruiken is het noodzakelijk om eerst een afspeellijst te maken"
