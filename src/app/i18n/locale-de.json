@@ -119,7 +119,7 @@
     "UPLOAD_PLUGINS":"Aktualisiere Plugin"
   },
   "UPDATER": {
-    "DOWNLOAD_SPEED": "Download-Geschwindigkeit:",
+    "DOWNLOAD_SPEED": "Download-Geschwindigkeit",
     "TIME_REMAINING": "Restzeit",
     "UPDATE_NOW": "Jetzt aktualisieren"
   },
