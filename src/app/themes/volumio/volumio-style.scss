@@ -721,3 +721,7 @@ span {
   	color: $theme-dark-color;
   }
 }
+
+body.noScroll { /* ...or body.dialogShowing */
+  overflow: hidden;
+}
