@@ -132,13 +132,16 @@ class VolumeManagerController {
   }
 
   disableScroll() {
-    document.getElementById('contentWrapper').ontouchmove = function(e){
+    document.ontouchmove = function(e){
       e.preventDefault();
+    };
+    document.getElementById('volumeVerticalSlider').ontouchmove = function(e){
+      return true;
     };
   }
 
   enableScroll() {
-      document.getElementById('contentWrapper').ontouchmove = function(e){
+      document.ontouchmove = function(e){
         return true;
       };
   }
