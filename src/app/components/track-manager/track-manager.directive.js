@@ -123,8 +123,10 @@ class TrackManagerController {
       this.$timeout.cancel(this.timeoutHandler);
       this.timeoutHandler = this.$timeout(() => {
         this.$log.debug('track manager', value);
-        this.playerService.stopSeek();
-        this.playerService.seek = value;
+        if (!this.playerService.state.disableUi) {
+          this.playerService.stopSeek();
+          this.playerService.seek = value;
+        }
       }, 200, false);
     };
   }
