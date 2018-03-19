@@ -209,7 +209,12 @@
    },
   "SLEEP": {
     "POWER_OFF": "Eteindre dans",
-    "STOP_MUSIC": "Arrêter la musique dans"
+    "STOP_MUSIC": "Arrêter la musique dans",
+    "PRESET_TIMES": "Pré-réglages de la durée",
+    "CHOOSE_PRESET": "Choississez un pré-réglage",
+    "HR": "hr",
+    "MIN": "min",
+    "OFF": "Stop"
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist"
