@@ -24,7 +24,7 @@
   <button class="btn btn-twitter btn-block"
       ng-if="modal.playerService.state.album &&
           modal.uiSettingsService.uiSettings.trackManagerButtonBar.actions.twitter !== false"
-      ng-click="modal.tweetTrack()">
+      ng-click="modal.tweetTrack(modal.uiSettingsService.uiSettings.trackManagerButtonBar.actions.twitterData)">
     <i class="fa fa-twitter"></i> <span translate="TRACK_MANAGER.TWEET_TRACK"></span>
   </button>
   <button class="btn btn-warning btn-block" ng-click="modal.cancel()">
