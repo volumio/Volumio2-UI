@@ -124,6 +124,11 @@ class UiSettingsService {
         this.$state.go('volumio.wizard');
       }
     });
+
+    this.socketService.on('reloadUi', (data) => {
+      this.$log.debug('reloadUi');
+      window.location.reload(true);
+    });
   }
 
   initService() {
