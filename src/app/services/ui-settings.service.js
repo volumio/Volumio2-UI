@@ -52,10 +52,17 @@ class UiSettingsService {
   }
 
   setLanguage() {
+    this.$log.debug('SetLanguage');
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
     } else {
-      this.$translate.use(this.uiSettings.language);
+      if(this.uiSettings.language) {
+        this.$translate.use(this.uiSettings.language);
+      } else {
+        setTimeout(function(){
+          this.setLanguage();
+        }.bind(this), 1000);
+      }
     }
   }
 
