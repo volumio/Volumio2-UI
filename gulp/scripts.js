@@ -15,8 +15,7 @@ var $ = require('gulp-load-plugins')();
 // Check node.js version
 var requiredNodeVersion = '6.*';
 if (compareVersions(process.versions.node, requiredNodeVersion) !== 0) {
-  console.log('ERROR! Unsupported nodejs version: ' + process.versions.node +' found, required: ' + requiredNodeVersion);
-  process.exit();
+  console.log('WARNING! Unsupported nodejs version: ' + process.versions.node +' found, required: ' + requiredNodeVersion);
 }
 
 function webpack(watch, callback) {
