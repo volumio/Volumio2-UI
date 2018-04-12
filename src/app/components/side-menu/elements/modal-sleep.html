@@ -32,6 +32,29 @@
           show-meridian="modal.showMeridian">
       </uib-timepicker>
     </div>
+    <div class="col-sm-6">
+      <h4 translate="SLEEP.PRESET_TIMES"></h4>
+      <ui-select
+        id="presetTime"
+        ng-model="modal.sleepPreset"
+        search-enabled="false"
+        append-to-body="false"
+        theme="bootstrap"
+        on-select="modal.whenSleepPresetSelect()"
+      >
+        <ui-select-match
+          class="ui-select-match"
+          placeholder={{modal.preset_placeholder}}>
+          {{$select.selected.text}}
+        </ui-select-match>
+        <ui-select-choices
+          class="ui-select-choices"
+          repeat="preset in modal.sleepPresets track by $index">
+          <div id="sleepPreset-{{preset.val}}" ng-bind-html="preset.text"></div>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+  </div>
     <div class="col-sm-8">
       <h4 translate="COMMON.ACTIVE"></h4>
       <input

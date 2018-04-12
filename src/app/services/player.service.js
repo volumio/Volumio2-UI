@@ -95,7 +95,7 @@ class PlayerService {
   }
 
   set seek(val) {
-    if (this.state) {
+    if (this.state && !this.state.disableUi) {
       this.stopSeek();
       // if (val === 0) {
       //   val = 1;
@@ -142,13 +142,10 @@ class PlayerService {
       hours = momentDuration.hours(),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
-    if (this.hours > 0) {
-      this.elapsedTimeString = hours + ':' + minutes + ':' +
-        ((seconds < 10) ? ('0' + seconds) : seconds);
-    } else {
-      this.elapsedTimeString = minutes + ':' +
-        ((seconds < 10) ? ('0' + seconds) : seconds);
-    }
+    // Track length is shown as mm:ss - do the same for elapsed time
+    minutes += hours*60;
+    this.elapsedTimeString = minutes + ':' +
+                             ((seconds < 10) ? ('0' + seconds) : seconds);
   }
 
   startSeek() {
@@ -331,7 +328,7 @@ class PlayerService {
       this.$log.debug('pushState', data);
       this.state = data;
 
-      this.state.disableUi = this.state.service === 'airplay' || this.state.service === 'analogin';
+      this.state.disableUi = this.state.disableUiControls || this.state.service === 'analogin';
 
       this.elapsedTime = this.state.seek;
       if (this.state.status === 'play') {

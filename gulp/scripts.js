@@ -6,10 +6,18 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 var gutil = require('gulp-util');
+var compareVersions = require('compare-versions');
 
 var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
+
+// Check node.js version
+var requiredNodeVersion = '6.*';
+if (compareVersions(process.versions.node, requiredNodeVersion) !== 0) {
+  console.log('ERROR! Unsupported nodejs version: ' + process.versions.node +' found, required: ' + requiredNodeVersion);
+  process.exit();
+}
 
 function webpack(watch, callback) {
   var webpackOptions = {

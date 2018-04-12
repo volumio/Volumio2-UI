@@ -56,6 +56,7 @@ class MultiRoomDockController {
   changeDevice(device) {
     if (!device.isChild && !device.isSelf) {
       this.socketService.host = device.host;
+      this.socketService.emit('getUiSettings');
     }
   }
 

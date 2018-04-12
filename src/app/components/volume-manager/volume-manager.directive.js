@@ -124,10 +124,30 @@ class VolumeManagerController {
 
   toggleVolumeSlider() {
     this.showVerticalSlider = !this.showVerticalSlider;
+    if (this.showVerticalSlider) {
+      this.disableScroll();
+    } else {
+      this.enableScroll();
+    }
   }
 
   closeVolumeSlider($event) {
     this.showVerticalSlider = false;
+  }
+
+  disableScroll() {
+    document.ontouchmove = function(e){
+      e.preventDefault();
+    };
+    document.getElementById('volumeVerticalSlider').ontouchmove = function(e){
+      return true;
+    };
+  }
+
+  enableScroll() {
+      document.ontouchmove = function(e){
+        return true;
+      };
   }
 }
 

@@ -1,12 +1,14 @@
 <div ng-if="header.isSocketReady" class="headerContent">
   <div ng-if="!header.matchmediaService.isPhone">
     <div id="logo">
-      <img ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo.png" alt="{{header.themeManager.theme}}" ui-sref="volumio.playback" />
+      <img
+          ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo.png"
+          alt="{{header.themeManager.theme}}"
+          ui-sref="volumio.redirect"/>
     </div>
 
     <div>
       <player-buttons></player-buttons>
-
       <side-menu></side-menu>
     </div>
   </div>

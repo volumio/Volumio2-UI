@@ -27,6 +27,7 @@ class PlayQueueService {
     this.socketService.emit('addPlay', {
       uri: item.uri,
       title: item.title,
+      albumart: (item.albumart || null),
       service: (item.service || null)
     });
   }
@@ -36,6 +37,7 @@ class PlayQueueService {
     this.socketService.emit('replaceAndPlay', {
       uri: item.uri,
       title: item.title,
+      albumart: (item.albumart || null),
       service: (item.service || null)
     });
   }
@@ -60,6 +62,7 @@ class PlayQueueService {
     this.socketService.emit('addToQueue', {
       uri: item.uri,
       title: item.title,
+      albumart: (item.albumart || null),
       service: (item.service || null)
     });
   }

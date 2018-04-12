@@ -58,7 +58,7 @@
     <script src="/app/lib/babel-polyfill/polyfill.min.js"></script>
     <script src="/app/lib/socket/socket.io-1.4.5.js"></script>
     <script src="/app/lib/sortable/sortable-1.4.2.js"></script>
-    <script src="/app/ngConstants.js"></script>
+    <script src="/app/volumio.constant.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp/serve,.tmp/partials}) scripts/app.js -->
@@ -81,12 +81,4 @@
     <script async src='https://www.google-analytics.com/analytics.js'></script>
     <!-- End Google Analytics -->
   </body>
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v2.6&appId=286245614720671";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
 </html>

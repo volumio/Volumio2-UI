@@ -112,7 +112,7 @@ import ModalKaraokeController from './components/side-menu/elements/modal-karaok
 import ModalPluginInstallerController from './plugin-manager/components/modals/modal-plugin-installer.controller';
 import ModalTrackManagerActionsController from './components/track-manager/components/modals/modal-track-manager-actions.controller';
 import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/modal-network-drive-password.controller';
-//auth modals
+import ModalCryptoController from './components/modals/modal-crypto.controller';
 import MyVolumioTermsModalController from './components/myvolumio/modals/myvolumio-terms-modal/myvolumio-terms-modal.controller';
 import MyVolumioPayingModalController from './components/myvolumio/modals/myvolumio-paying-modal/myvolumio-paying-modal.controller';
 
@@ -292,10 +292,10 @@ angular.module('volumio', [
   .controller('ModalPluginInstallerController', ModalPluginInstallerController)
   .controller('ModalTrackManagerActionsController', ModalTrackManagerActionsController)
   .controller('ModalNetwordDrivesPasswordController', ModalNetwordDrivesPasswordController)
+  .controller('ModalCryptoController', ModalCryptoController)
   .controller('MyVolumioTermsModalController', MyVolumioTermsModalController)
   .controller('MyVolumioPayingModalController', MyVolumioPayingModalController)
-
-.controller('WifiPluginController', WifiPluginController)
+  .controller('WifiPluginController', WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)
   .controller('MyMusicPluginController', MyMusicPluginController)
   .controller('NetworkDrivesPluginController', NetworkDrivesPluginController)

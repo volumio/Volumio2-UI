@@ -13,14 +13,11 @@
 
     <div class="panel-body">
       <uib-tabset active="pluginManager.activeTab">
-        <uib-tab index="0" heading="{{'PLUGINS.INSTALLED_PLUGINS' | translate}}">
-          <ng-include src="'app/plugin-manager/elements/installed-plugin.html'"></ng-include>
-        </uib-tab>
-        <uib-tab index="1" heading="{{'PLUGINS.SEARCH_PLUGINS' | translate}}">
+        <uib-tab index="0" heading="{{'PLUGINS.SEARCH_PLUGINS' | translate}}">
           <ng-include src="'app/plugin-manager/elements/search-plugin.html'"></ng-include>
         </uib-tab>
-        <uib-tab index="2" heading="{{'PLUGINS.UPLOAD_PLUGINS' | translate}}">
-          <ng-include src="'app/plugin-manager/elements/upload-plugin.html'"></ng-include>
+        <uib-tab index="1" heading="{{'PLUGINS.INSTALLED_PLUGINS' | translate}}">
+          <ng-include src="'app/plugin-manager/elements/installed-plugin.html'"></ng-include>
         </uib-tab>
       </uib-tabset>
     </div>

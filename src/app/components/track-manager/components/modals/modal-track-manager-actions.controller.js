@@ -27,14 +27,22 @@ class ModalTrackManagerActionsController {
     this.closeModal();
   }
 
-  tweetTrack() {
+  tweetTrack(data) {
     let windowWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     let windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     let twitterUrl = 'http://twitter.com/share?';
     let shareQuerystring = encodeURI(`text=♫ ${this.playerService.state.artist} - ${this.playerService.state.title}`);
     shareQuerystring += '&hashtags=nowplaying';
-    shareQuerystring += '&via=volumio';
-    shareQuerystring += '&url=http://www.volumio.com';
+    if (data && data.via) {
+      shareQuerystring += '&via=' + data.via;
+    } else {
+      shareQuerystring += '&via=volumio';
+    }
+    if (data && data.url) {
+      shareQuerystring += '&url=' + data.url;
+    } else {
+      shareQuerystring += '&url=http://www.volumio.com';
+    }
     let shareUrl = `${twitterUrl}${shareQuerystring}`;
     let width  = 500,
         height = 400,

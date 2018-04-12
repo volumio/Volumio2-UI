@@ -63,6 +63,7 @@
   font-size: 18px;
   padding: 5px 10px 5px 5px;
   height: 100px!important;
+  overflow: hidden;
   cursor: auto;
   color: $theme-primary-color;
   border-bottom: solid 1px $theme-primary-color;
@@ -178,8 +179,11 @@
   }
 
   .info-title {
-    padding-top: 30px;
     font-weight: bolder;
+    position: relative;
+    top: 50%;
+    height: 90%;
+    overflow: hidden;
   }
 
   .commandButtons {
@@ -285,4 +289,8 @@
     }
   }
   //End grid overrides
+}
+
+.title.ng-binding {
+    height: 42px;
 }

@@ -1,6 +1,6 @@
 class WizardController {
   constructor($log, $scope, mockService, $state, socketService, $translate, uiSettingsService, CgMailChimpService,
-      $window, matchmediaService, themeManager) {
+      $window, matchmediaService, themeManager, modalService) {
     'ngInject';
     this.$log = $log;
     this.mockService = mockService;
@@ -12,6 +12,7 @@ class WizardController {
     this.uiSettingsService = uiSettingsService;
     this.CgMailChimpService = CgMailChimpService;
     this.matchmediaService = matchmediaService;
+    this.modalService = modalService;
     this.init();
   }
 
@@ -182,6 +183,29 @@ class WizardController {
     }
   }
 
+  donate(currency) {
+    let
+      templateUrl = 'app/components/modals/modal-crypto.html',
+      controller = 'ModalCryptoController',
+      params = {name:'Bitcoin',address:'3HxbUDkrQAuX2XPPLg8xYNuEA8tJ2s6UjF'};
+      switch(currency) {
+    case 'ltc':
+        params = {name:'Litecoin',address:'LKjJWNwYMGfhmCRBj11yLFjfM1yG3TKTCZ', alias: 'ltc'};
+        break;
+        case 'xrp':
+        params = {name:'Ripple',address:'rnCRvU45awv3ZySymzLCLFq3HCKfma2Utb', alias: 'xrp'};
+        break;
+    default:
+        params = {name:'Bitcoin',address:'3HxbUDkrQAuX2XPPLg8xYNuEA8tJ2s6UjF', alias: 'btc'};
+}
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'md');
+  }
+
+
   setBrowserLangAsDefault() {
     const browserLang = this.uiSettingsService.getBrowserDefaultLanguage();
     let isLangAvailable = this.wizardDetails.language.available.find((lang) => {
@@ -229,6 +253,11 @@ class WizardController {
       if (data.donation) {
         this.setDonationAmount(data.donationAmount.donationAmount);
       }
+    });
+
+    this.socketService.on('closeWizard', () => {
+      this.$log.debug('closeWizard');
+      this.$state.go('volumio.playback');
     });
 
     this.$scope.$on('$destroy', () => {

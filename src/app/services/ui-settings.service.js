@@ -83,7 +83,13 @@ class UiSettingsService {
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
     } else {
-      this.$translate.use(this.uiSettings.language);
+      if(this.uiSettings.language) {
+        this.$translate.use(this.uiSettings.language);
+      } else {
+        setTimeout(function(){
+          this.setLanguage();
+        }.bind(this), 1000);
+      }
     }
   }
 
@@ -155,19 +161,24 @@ class UiSettingsService {
         this.$state.go('volumio.wizard');
       }
     });
+
+    this.socketService.on('reloadUi', (data) => {
+      this.$log.debug('reloadUi');
+      window.location.reload(true);
+    });
   }
 
   initService() {
     let settingsUrl = `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
     // Return pending promise or cached results
-    /*   
+    /*
         ------ 28/12/17 BUG. This caching mechanism stops the execution if this.uiSettings is already assigned,
         and this happens at first boot of the app (still don't know why) -----
 
     if (this.uiSettings) {
       return this.$q.resolve(this.uiSettings);
-    } 
+    }
     if (this.settingsPromise) {
       return this.settingsPromise;
     }

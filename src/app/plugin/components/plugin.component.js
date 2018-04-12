@@ -112,6 +112,8 @@ class PluginComponentController {
         this.socketService.emit(item.onClick.message, item.onClick.data);
       } else if (item.onClick.type === 'openUrl'){
         this.$window.open(item.onClick.url);
+      } else if (item.onClick.type === 'goto'){
+        this.$state.go('volumio.static-page', {pageName: item.onClick.pageName});
       } else {
         this.socketService.emit('callMethod', item.onClick);
       }
