@@ -10,16 +10,31 @@ var exec = require('child_process').exec;
 
 var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
 var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
+var env = gutil.env.env ? gutil.env.env : 'dev';
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
-gulp.task('partials', function () {
+gulp.task('angularConfig', function() {
+  var env = gutil.env.env ? gutil.env.env : 'dev';
+
+  constants.env = { 'env': env };
+
+  var obj = {
+    name: 'volumio.constant',
+    constants: constants,
+    stream: true
+  };
+
+  return $.ngConstant(obj).pipe(gulp.dest(path.join(conf.paths.dist)));
+});
+
+gulp.task('partials', function() {
   return gulp.src([
-    path.join(conf.paths.src, '/app/**/*.html'),
-    path.join(conf.paths.tmp, '/serve/app/**/*.html')
-  ])
+      path.join(conf.paths.src, '/app/**/*.html'),
+      path.join(conf.paths.tmp, '/serve/app/**/*.html')
+    ])
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
@@ -32,7 +47,7 @@ gulp.task('partials', function () {
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
 });
 
-gulp.task('html', ['inject', 'partials'], function (cb) {
+gulp.task('html', ['inject', 'partials'], function(cb) {
   var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/partials/templateCacheHtml.js'), { read: false });
   var partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',
@@ -71,12 +86,12 @@ gulp.task('html', ['inject', 'partials'], function (cb) {
     .pipe(htmlFilter.restore())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
-    cb(err);
+  cb(err);
 });
 
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
-gulp.task('fonts', function () {
+gulp.task('fonts', function() {
   var paths = $.mainBowerFiles()
   paths.push('bower_components/bootstrap-sass-official/**');
   return gulp.src(paths)
@@ -87,44 +102,44 @@ gulp.task('fonts', function () {
 
 gulp.task('fontawesome', function() {
   return gulp.src('bower_components/components-font-awesome/fonts/*.*')
-          .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 
-gulp.task('other', function () {
-  var fileFilter = $.filter(function (file) {
+gulp.task('other', function() {
+  var fileFilter = $.filter(function(file) {
     return file.stat.isFile();
   });
 
   return gulp.src([
-    path.join(conf.paths.src, '/**/*'),
-    path.join('!' + conf.paths.src, '/app/themes/**/*'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
-  ])
+      path.join(conf.paths.src, '/**/*'),
+      path.join('!' + conf.paths.src, '/app/themes/**/*'),
+      path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
+    ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
-gulp.task('theme', function () {
-  var fileFilter = $.filter(function (file) {
+gulp.task('theme', function() {
+  var fileFilter = $.filter(function(file) {
     return file.stat.isFile();
   });
 
   return gulp.src([
-    path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/**/*'),
-    path.join('!' + conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/!(' + variantSelected + ')/**/*'),
-    // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/'+variantSelected+'/**/*'),
-    // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/' + variantSelected + '/**/*')
-    // path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
-  ])
-  .pipe(fileFilter)
-  .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected + '/assets')));
+      path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/**/*'),
+      path.join('!' + conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/!(' + variantSelected + ')/**/*'),
+      // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/'+variantSelected+'/**/*'),
+      // path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/' + variantSelected + '/**/*')
+      // path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
+    ])
+    .pipe(fileFilter)
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected + '/assets')));
 });
 
 //Set static page title to remove FOUC
-gulp.task('replace-page-title', ['html'], function () {
+gulp.task('replace-page-title', ['html'], function() {
   var fs = require('fs');
   var themeSettings =
-      fs.readFileSync(`${conf.paths.src}/app/themes/${themeSelected}/assets/variants/${variantSelected}/${variantSelected}-settings.json`, 'utf8');
+    fs.readFileSync(`${conf.paths.src}/app/themes/${themeSelected}/assets/variants/${variantSelected}/${variantSelected}-settings.json`, 'utf8');
   themeSettings = JSON.parse(themeSettings);
 
   var pageTitle = themeSettings.pageTitle || 'Audiophile music player';
@@ -135,28 +150,28 @@ gulp.task('replace-page-title', ['html'], function () {
   fs.writeFileSync('dist/index.html', index);
 });
 
-gulp.task('static-pages', ['credits'], function () {
-  var fileFilter = $.filter(function (file) {
+gulp.task('static-pages', ['credits'], function() {
+  var fileFilter = $.filter(function(file) {
     return file.stat.isFile();
   });
 
   return gulp.src([
-    path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/static-pages/*')
-  ])
-  // .pipe(fileFilter)
-  .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected + '/assets/static-pages')));
+      path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/static-pages/*')
+    ])
+    // .pipe(fileFilter)
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/app/themes/' + themeSelected + '/assets/static-pages')));
 });
 
-gulp.task('clean', function (done) {
+gulp.task('clean', function(done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('credits', function (cb) {
-  exec('node src/app/themes/' + themeSelected + '/scripts/credits.js ' + themeSelected + ' ' + variantSelected, function (err, stdout, stderr) {
+gulp.task('credits', function(cb) {
+  exec('node src/app/themes/' + themeSelected + '/scripts/credits.js ' + themeSelected + ' ' + variantSelected, function(err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
   });
 })
 
-gulp.task('build-app', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title']);
+gulp.task('build-app', ['angularConfig', 'credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title']);

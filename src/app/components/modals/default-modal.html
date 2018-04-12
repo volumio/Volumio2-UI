@@ -5,6 +5,6 @@
   {{modal.dataObj.message}}
 </div>
 <div class="modal-footer">
+  <button ng-if="modal.disableCancelButton !== true" class="btn btn-warning" ng-click="modal.cancel()"><span translate="COMMON.CANCEL"></span></button>
   <button class="btn btn-primary" ng-click="modal.ok()"><span translate="COMMON.OK"></span></button>
-  <button class="btn btn-warning" ng-click="modal.cancel()"><span translate="COMMON.CANCEL"></span></button>
 </div>

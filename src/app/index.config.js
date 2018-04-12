@@ -1,5 +1,5 @@
-function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
-    $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, CgMailChimpServiceProvider) {
+function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
+        $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider, CgMailChimpServiceProvider, authServiceProvider) {
   'ngInject';
 
   $touchProvider.enabled = true;
@@ -20,24 +20,25 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
   localStorageServiceProvider.setPrefix('volumio');
   //Mailchimp
   CgMailChimpServiceProvider.setConfig({
-      username: 'volumio',
-      dc: 'us11',
-      u: '64b4a843c27713ee9da781aa9',
-      id: '030f96ce5c'
-    });
+    username: 'volumio',
+    dc: 'us11',
+    u: '64b4a843c27713ee9da781aa9',
+    id: '030f96ce5c'
+  });
 
 
   //i18n Configs
   $translateProvider
-    .useStaticFilesLoader({
-      prefix: 'app/i18n/locale-',
-      suffix: '.json'
-    })
-    //Back end send default language, this improve translation consistency
-    // .determinePreferredLanguage()
-    // .preferredLanguage('en')
-    .fallbackLanguage('en');
+          .useStaticFilesLoader({
+            prefix: 'app/i18n/locale-',
+            suffix: '.json'
+          })
+          //Back end send default language, this improve translation consistency
+          // .determinePreferredLanguage()
+          // .preferredLanguage('en')
+          .fallbackLanguage('en');
   $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+
 }
 
 export default config;

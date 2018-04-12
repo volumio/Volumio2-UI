@@ -103,6 +103,14 @@ class TrackManagerController {
     if (this.type !== 'knob') {
       return;
     }
+    this.knobThicknessMobile = 0.09;
+    this.knobThicknessDesktop = 0.2;
+    if (this.uiSettingsService.uiSettings !== undefined && this.uiSettingsService.uiSettings.knobThicknessMobile !== undefined) {
+      this.knobThicknessMobile = this.uiSettingsService.uiSettings.knobThicknessMobile;
+    }
+    if (this.uiSettingsService.uiSettings !== undefined && this.uiSettingsService.uiSettings.knobThicknessDesktop !== undefined) {
+      this.knobThicknessDesktop = this.uiSettingsService.uiSettings.knobThicknessDesktop;
+    }
     this.knobOptions = {
       min: 0,
       max: 1001,
@@ -114,9 +122,8 @@ class TrackManagerController {
       step: 1,
       angleOffset: 0,
       angleArc: 360,
-      thickness: ((isPhone) ?
-          this.uiSettingsService.uiSettings.knobThicknessMobile :
-          this.uiSettingsService.uiSettings.knobThicknessDesktop) || 0.2
+      thickness: ((isPhone) ? this.knobThicknessMobile :
+          this.knobThicknessDesktop) || 0.2
     };
 
     this.onChange = (value) => {

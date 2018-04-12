@@ -1,0 +1,100 @@
+<div class="box">
+
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+
+  <div ng-if="myVolumioProfileController.user !== null">
+
+    <div id="authLoginPlugin" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.PROFILE"></span></h3>
+      </div>
+
+      <div class="panel-body">
+
+        <div>
+          <div class="row my-profile">
+            <div class="col-sm-6 col-md-4">
+              <my-volumio-avatar-image>
+              </my-volumio-avatar-image>
+            </div>
+            <div class="col-sm-18 col-md-20">
+
+              <div class="row">
+                <div class="col-sm-24 col-md-12 user-data">
+                  <h3 class="user-title">{{myVolumioProfileController.user.firstName}} {{myVolumioProfileController.user.lastName}}
+                    <span class="pull-right">
+                    <a ng-click="myVolumioProfileController.goToEdit()" style="cursor: pointer;"><i class="glyphicon glyphicon-pencil glyphicon-2x"></i></a>
+                  </span>
+                  </h3>
+                  <h4 class='active user-username'> {{myVolumioProfileController.user.username}} </h4>
+                  <p class="user-details">
+                    <i class="glyphicon glyphicon-envelope"></i> {{myVolumioProfileController.user.email}}
+                    <br />
+                    <div ng-if="false">
+                      <span ng-if="myVolumioProfileController.user.birthday">
+                      <i class="glyphicon glyphicon-gift"></i> {{myVolumioProfileController.user.birthday}}
+                    </span>
+                      <br />
+                      <span ng-if="myVolumioProfileController.user.country">
+                      <i class="glyphicon glyphicon-globe"></i> {{myVolumioProfileController.user.country}}
+                    </span>
+                    </div>
+                  </p>
+
+                  <div ng-if="!myVolumioProfileController.isUserVerified">
+                    <my-volumio-verification-card>
+                    </my-volumio-verification-card>
+                  </div>
+
+                </div>
+
+                <div class="col-sm-24 col-md-12 plans-table">
+                  <my-volumio-current-plan-card action='upgrade'>
+                  </my-volumio-current-plan-card>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="device-selector-container" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-check-circle-o"></i> <span translate="MYVOLUMIO.SELECT_DEVICE"></span></h3>
+      </div>
+
+      <div class="panel-body">
+
+        <my-volumio-device-selector>
+        </my-volumio-device-selector>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div ng-if="myVolumioProfileController.user === null" class="panel panel-default">
+    <div class="panel-body">
+      <h3>
+        {{'MYVOLUMIO.NOT_LOGGED' | translate}}
+      </h3>
+
+      <button class="btn btn-success" ng-click="myVolumioProfileController.logIn();">
+        {{'MYVOLUMIO.LOGIN' | translate}}
+    </button>
+      <button class="btn btn-success" ng-click="myVolumioProfileController.signUp();">
+        {{'MYVOLUMIO.SIGNUP' | translate}}
+    </button>
+    </div>
+
+
+  </div>
+
+</div>

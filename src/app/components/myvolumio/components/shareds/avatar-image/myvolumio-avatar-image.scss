@@ -1,0 +1,27 @@
+.avatar-image-box{
+
+  .avatar-image{
+    background-color: #fff;
+    width:100%;
+    height:auto;
+    display:block;
+    /* div height to be the same as width*/
+    padding-top:100%;
+    
+    object-fit: cover;
+
+    /* Centering on image`s center*/
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+
+    /* it makes the clue thing, takes smaller dimension to fill div */
+    background-size: cover;
+  }
+  
+  .avatar-letter img{
+    width: 100%;
+    height: auto;
+  }
+
+}

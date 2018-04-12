@@ -15,7 +15,7 @@ class SideMenuDirective {
 
 class SideMenuController {
   constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log, 
-      $http, $window, uiSettingsService) {
+      $http, $window, uiSettingsService, authService) {
     'ngInject';
     this.$state = $state;
     this.$window = $window;
@@ -27,7 +27,10 @@ class SideMenuController {
     this.$log = $log;
     this.$scope = $scope;
     this.uiSettingsService = uiSettingsService;
+    this.authService = authService;
     // this.menuItems = mockService.get('getMenuItems');
+    
+    this.MYVOLUMIO_KEY = 'my-volumio';
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -111,6 +114,7 @@ class SideMenuController {
     this.socketService.on('pushMenuItems', (data) => {
       this.$log.debug('pushMenuItems', data);
       this.menuItems = data;
+      this.checkEnableMyVolumio();
     });
 
     this.$scope.$on('$destroy', () => {
@@ -121,6 +125,27 @@ class SideMenuController {
   initService() {
     this.socketService.emit('getMenuItems');
   }
+  
+  checkEnableMyVolumio(){
+    if(this.isAuthActive()){
+      this.authService.enableAuth();
+    }
+  }
+  
+  isAuthActive(){
+    return this.isPluginActiveById('my-volumio');
+  }
+  
+  isPluginActiveById(pluginId){
+    for(var i in this.menuItems){
+      var plugin = this.menuItems[i];
+      if(plugin.hasOwnProperty('id') && plugin.id === pluginId){
+        return true;
+      } 
+    }
+    return false;
+  }
+  
 }
 
 export default SideMenuDirective;
