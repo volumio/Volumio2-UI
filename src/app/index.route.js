@@ -180,9 +180,10 @@ function routerConfig(
         deviceEndpointsService
           .initSocket()
           .then(isAvalaible => {
-            if (!isAvalaible) {
-              uiSettingsService.setLanguage();
-            }
+            //NOTE: WARNING, this is to set language properly if socket is not avalaible
+            //if (!isAvalaible) {
+            uiSettingsService.setLanguage();
+            //}
             initing.resolve(true);
           })
           .catch(error => {
@@ -195,7 +196,7 @@ function routerConfig(
         authService.isAuthEnabled().then(enabled => {
           if (!enabled) {
             enabling.reject('MYVOLUMIO_NOT_ENABLED');
-          }else{
+          } else {
             enabling.resolve(true);
           }
         });
@@ -213,8 +214,8 @@ function routerConfig(
         controllerAs: 'myVolumioLoginController',
         resolve: {
           user: function(authService) {
-              return authService.requireNullUserOrRedirect();
-            }
+            return authService.requireNullUserOrRedirect();
+          }
         }
       }
     }
@@ -222,10 +223,10 @@ function routerConfig(
 
   .state('myvolumio.logout', {
     url: '/logout',
-    onEnter: function(authService, $state){
+    onEnter: function(authService, $state) {
       authService.logOut().then(() => {
-          $state.go("myvolumio.login");
-          return true;
+        $state.go("myvolumio.login");
+        return true;
       });
     }
   })

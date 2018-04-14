@@ -13,7 +13,7 @@ class MyVolumioDeviceSelectorDirective {
 
 class MyVolumioDeviceSelectorController {
   constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService,
-    $http, $state, matchmediaService) {
+    $http, $state, matchmediaService, databaseService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -25,6 +25,7 @@ class MyVolumioDeviceSelectorController {
     this.$http = $http;
     this.$state = $state;
     this.matchmediaService = matchmediaService;
+    this.databaseService = databaseService;
 
     this.user = null;
     this.product = {};
@@ -174,7 +175,17 @@ class MyVolumioDeviceSelectorController {
 
   gotoDevice(device) {
     this.socketService.host = device.host;
-    this.$state.go('volumio.playback');
+    this.saveLastDevice(device).then(() => {
+      this.$state.go('volumio.playback');
+    }).catch(() => {
+      this.$state.go('volumio.playback');
+    });
+  }
+
+  saveLastDevice(device) {
+    return this.authService.getUser().then(user => {
+      return this.databaseService.write('users/' + user.uid + '/lastHwuuid', device.hwuuid);
+    }).catch(err => { return err; });
   }
 
 }
