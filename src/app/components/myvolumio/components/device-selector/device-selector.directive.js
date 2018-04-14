@@ -142,8 +142,15 @@ class MyVolumioDeviceSelectorController {
 
   deleteDevice(device) {
     this.modalService.openDefaultConfirm(null, 'MYVOLUMIO.DEVICE_CONFIRM_DELETE', () => {
-      var deviceObj = this.sanitizeAngularfireObject(device);
-      this.socketService.emit('deleteMyVolumioDevice', deviceObj);
+      return this.authService.getUserToken().then(token => {
+        return this.$http({
+          url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/deleteMyVolumioDevice',
+          method: "POST",
+          params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
+        }).then(response => {
+          return response.data;
+        });
+      });
     });
   }
 
