@@ -1,5 +1,16 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q) {
+  constructor(
+    $rootScope,
+    socketService,
+    $state,
+    mockService,
+    $log,
+    themeManager,
+    $document,
+    $translate,
+    $http,
+    $q
+  ) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -29,10 +40,14 @@ class UiSettingsService {
     this.registerListner();
     this.initService();
 
-    this.defaultThumbnailBackgroundUrl =
-      `${this.socketService.host}/app/themes/${this.themeManager.theme}/assets/graphics/thumb-${this.themeManager.theme}-bg.jpg`;
-    this.defaultBackgroundUrl =
-      `${this.socketService.host}/app/themes/${this.themeManager.theme}/assets/graphics/${this.themeManager.theme}-bg.jpg`;
+    this.defaultThumbnailBackgroundUrl = `${
+      this.socketService.host
+    }/app/themes/${this.themeManager.theme}/assets/graphics/thumb-${
+      this.themeManager.theme
+    }-bg.jpg`;
+    this.defaultBackgroundUrl = `${this.socketService.host}/app/themes/${
+      this.themeManager.theme
+    }/assets/graphics/${this.themeManager.theme}-bg.jpg`;
   }
 
   setBackground() {
@@ -41,25 +56,37 @@ class UiSettingsService {
       this.$document[0].body.style.backgroundColor = this.uiSettings.color;
     } else {
       if (this.uiSettings.background.title === 'Default') {
-        this.$document[0].body.style.background = `#333 url(${this.defaultBackgroundUrl}) repeat top left`;
+        this.$document[0].body.style.background = `#333 url(${
+          this.defaultBackgroundUrl
+        }) repeat top left`;
         this.$document[0].body.style.backgroundSize = 'auto';
       } else {
-        this.$document[0].body.style.background =
-            `#333 url(${this.uiSettings.background.path}) no-repeat center center`;
+        this.$document[0].body.style.background = `#333 url(${
+          this.uiSettings.background.path
+        }) no-repeat center center`;
         this.$document[0].body.style.backgroundSize = 'cover';
       }
     }
   }
 
-  setLanguage() {
-    this.$log.debug('SetLanguage');
+  setLanguage(lang = null) {
+    console.log("SET LANGUAGE");
+    if (lang) {
+      this.$translate.use(lang);
+      return;
+    }
+    //TODO GET FROM DB
+    if (!this.socketService.isSocketAvalaible()) {
+      this.$translate.use(this.getBrowserDefaultLanguage());
+      return;
+    }
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
     } else {
-      if(this.uiSettings.language) {
+      if (this.uiSettings && this.uiSettings.language) {
         this.$translate.use(this.uiSettings.language);
       } else {
-        setTimeout(function(){
+        setTimeout(function() {
           this.setLanguage();
         }.bind(this), 1000);
       }
@@ -67,9 +94,15 @@ class UiSettingsService {
   }
 
   getBrowserDefaultLanguage() {
-    const browserLanguagePropertyKeys = ['languages', 'language', 'browserLanguage', 'userLanguage', 'systemLanguage'];
+    const browserLanguagePropertyKeys = [
+      'languages',
+      'language',
+      'browserLanguage',
+      'userLanguage',
+      'systemLanguage'
+    ];
     let langArray = [];
-    browserLanguagePropertyKeys.forEach((prop) => {
+    browserLanguagePropertyKeys.forEach(prop => {
       if (prop in window.navigator) {
         if (angular.isArray(window.navigator[prop])) {
           langArray.push(...window.navigator[prop]);
@@ -83,7 +116,7 @@ class UiSettingsService {
   }
 
   registerListner() {
-    this.socketService.on('pushUiSettings', (data) => {
+    this.socketService.on('pushUiSettings', data => {
       if (data.background) {
         delete this.uiSettings.color;
         if (data.background.path.indexOf(this.socketService.host) === -1) {
@@ -93,10 +126,14 @@ class UiSettingsService {
       }
 
       // Page title
-      this.defaultPageTitle = this.uiSettings.pageTitle || 'Audiophile music player';
+      this.defaultPageTitle =
+        this.uiSettings.pageTitle || 'Audiophile music player';
 
       //Check for language switch
-      if (this.uiSettings.language && this.uiSettings.language !== data.language) {
+      if (
+        this.uiSettings.language &&
+        this.uiSettings.language !== data.language
+      ) {
         location.reload();
       }
 
@@ -107,18 +144,18 @@ class UiSettingsService {
       this.setBackground();
     });
 
-    this.socketService.on('pushBackgrounds', (data) => {
+    this.socketService.on('pushBackgrounds', data => {
       this.$log.debug('pushBackgrounds', data);
       this.backgrounds = data;
-      this.backgrounds.list = data.available.map((background) => {
-          background.path = `${this.socketService.host}/backgrounds/${background.path}`;
-          background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
-          return background;
-        });
+      this.backgrounds.list = data.available.map(background => {
+        background.path = `${this.socketService.host}/backgrounds/${background.path}`;
+        background.thumbnail = `${this.socketService.host}/backgrounds/${background.thumbnail}`;
+        return background;
+      });
       this.setBackground();
     });
 
-    this.socketService.on('pushWizard', (data) => {
+    this.socketService.on('pushWizard', data => {
       this.$log.debug('pushWizard', data);
       if (data.openWizard) {
         this.$state.go('volumio.wizard');
@@ -132,27 +169,34 @@ class UiSettingsService {
   }
 
   initService() {
-    let settingsUrl =
-        `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
+    let settingsUrl = `/app/themes/${this.themeManager.theme}/assets/variants/${this.themeManager.variant}`;
     settingsUrl += `/${this.themeManager.variant}-settings.json`;
     // Return pending promise or cached results
+    /*
+        ------ 28/12/17 BUG. This caching mechanism stops the execution if this.uiSettings is already assigned,
+        and this happens at first boot of the app (still don't know why) -----
+
     if (this.uiSettings) {
       return this.$q.resolve(this.uiSettings);
-    } else if (this.settingsPromise) {
+    }
+    if (this.settingsPromise) {
       return this.settingsPromise;
     }
-    this.settingsPromise = this.$http.get(settingsUrl)
-      .then((response) => {
+    */
+    this.settingsPromise = this.$http
+      .get(settingsUrl)
+      .then(response => {
         this.uiSettings = response.data;
         this.$log.debug('Variant settings', response.data);
         return this.uiSettings;
       })
       .finally(() => {
-        this.socketService.emit('getUiSettings');
-        this.socketService.emit('getWizard');
+        if (this.socketService.isSocketAvalaible()) {
+          this.socketService.emit('getUiSettings');
+          this.socketService.emit('getWizard');
+        }
       });
     return this.settingsPromise;
-
   }
 }
 

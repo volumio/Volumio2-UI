@@ -1,10 +1,16 @@
 class FooterController {
-  constructor(themeManager, matchmediaService, playerService) {
+  constructor(matchmediaService, socketService, $scope, $injector) {
     'ngInject';
-    this.themeManager = themeManager;
     this.matchmediaService = matchmediaService;
-    this.playerService = playerService;
-    this.test = true;
+
+    $scope.$watch(() => socketService.host, () => {
+      if(socketService.host) {
+        this.isSocketReady = true;
+        this.playerService = $injector.get('playerService');
+      } else {
+        this.isSocketReady = false;
+      }
+    });
   }
 }
 

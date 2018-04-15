@@ -722,10 +722,13 @@ span {
   }
 }
 
-body.noScroll { /* ...or body.dialogShowing */
+body.noScroll {
   overflow: hidden;
 }
 
 img.section-image {
     max-height: 18px;
+
+.myVolumioBkg {
+  background: #333 url(/app/themes/volumio/assets/graphics/my-volumio-bkg.jpg) no-repeat center center
 }
