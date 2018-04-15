@@ -41,12 +41,8 @@ class VolumeManagerController {
     this.showVerticalSlider = false;
     this.themeManager = themeManager;
     this.$scope = $scope;
-    this.knobDesktopThickness = 0.2;
 
     if (this.type === 'knob') {
-      if (uiSettingsService.uiSettings !== undefined && uiSettingsService.uiSettings.knobDesktopThickness !== undefined) {
-        this.knobDesktopThickness = uiSettingsService.uiSettings.knobDesktopThickness;
-      }
       this.knobOptions = {
         min: 0,
         max: 100,
@@ -58,7 +54,7 @@ class VolumeManagerController {
         step: 1,
         angleOffset: -160,
         angleArc: 320,
-        thickness: this.knobDesktopThickness
+        thickness: uiSettingsService.uiSettings.knobDesktopThickness || 0.2
       };
       this.volume = playerService.volume;
       console.info('playerService.volume', playerService.volume);

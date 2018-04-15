@@ -11,5 +11,4 @@ src/app/themes/
 src/app/themes/volumio/assets/variants/
 !src/app/themes/volumio/assets/variants/volumio/*
 load-variant.scss
-/nbproject/
 .DS_Store

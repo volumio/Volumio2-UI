@@ -64,7 +64,8 @@ class ModalListenerService {
     });
   }
 
-  initService() {}
+  initService() {
+  }
 }
 
 export default ModalListenerService;
