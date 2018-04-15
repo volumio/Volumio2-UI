@@ -21,7 +21,8 @@
 
         <div ng-if="!section.coreSection" class="panel-heading">
           <h3 class="panel-title">
-            <i class="fa {{section.icon}}"></i> {{section.label}}
+            <i ng-if="section.icon" class="fa {{section.icon}}"></i>
+            <img ng-if="!section.icon && section.image" src={{::pluginComponent.pluginObj.host+'/albumart?sectionimage='+section.image}} class="section-image"/> {{this.socketService.host}}{{section.label}}
           </h3>
         </div>
 

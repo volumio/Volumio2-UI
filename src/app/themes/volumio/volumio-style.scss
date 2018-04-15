@@ -725,3 +725,7 @@ span {
 body.noScroll { /* ...or body.dialogShowing */
   overflow: hidden;
 }
+
+img.section-image {
+    max-height: 18px;
+}
