@@ -13,7 +13,7 @@ class MyVolumioDeviceSelectorDirective {
 
 class MyVolumioDeviceSelectorController {
   constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService,
-    $http, $state, matchmediaService) {
+    $http, $state, matchmediaService, databaseService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -25,6 +25,7 @@ class MyVolumioDeviceSelectorController {
     this.$http = $http;
     this.$state = $state;
     this.matchmediaService = matchmediaService;
+    this.databaseService = databaseService;
 
     this.user = null;
     this.product = {};
@@ -141,8 +142,15 @@ class MyVolumioDeviceSelectorController {
 
   deleteDevice(device) {
     this.modalService.openDefaultConfirm(null, 'MYVOLUMIO.DEVICE_CONFIRM_DELETE', () => {
-      var deviceObj = this.sanitizeAngularfireObject(device);
-      this.socketService.emit('deleteMyVolumioDevice', deviceObj);
+      return this.authService.getUserToken().then(token => {
+        return this.$http({
+          url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/deleteMyVolumioDevice',
+          method: "POST",
+          params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
+        }).then(response => {
+          return response.data;
+        });
+      });
     });
   }
 
@@ -174,7 +182,17 @@ class MyVolumioDeviceSelectorController {
 
   gotoDevice(device) {
     this.socketService.host = device.host;
-    this.$state.go('volumio.playback');
+    this.saveLastDevice(device).then(() => {
+      this.$state.go('volumio.playback');
+    }).catch(() => {
+      this.$state.go('volumio.playback');
+    });
+  }
+
+  saveLastDevice(device) {
+    return this.authService.getUser().then(user => {
+      return this.databaseService.write('users/' + user.uid + '/lastHwuuid', device.hwuuid);
+    }).catch(err => { return err; });
   }
 
 }

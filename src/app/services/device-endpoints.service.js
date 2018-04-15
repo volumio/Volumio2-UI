@@ -56,12 +56,9 @@ class DeviceEndpointsService {
         return null;
       }
 
-      //TODO ADD IF ENABLED AND ONLINE
+      let lastHwuuid = null;
       if ('lastHwuuid' in user) {
-        let lastHwuuid = user.lastHwuuid;
-        let geoServer = user.geoServer || 'eu1';
-        let remoteDeviceHost = `https://${lastHwuuid}.${geoServer}.myvolumio.org`;
-        return [remoteDeviceHost];
+        lastHwuuid = user.lastHwuuid;
       }
 
       return this.myVolumioDevicesService.getDevicesByUserId(user.uid).then(devices => {
@@ -72,7 +69,11 @@ class DeviceEndpointsService {
           if (device.enabled === true && device.online === true) {
             let deviceHwuuid = device.hwuuid;
             let remoteDeviceHost = `https://${deviceHwuuid}.${geoServer}.myvolumio.org`;
-            eligibleRemoteHosts.push(remoteDeviceHost);
+            if (lastHwuuid === deviceHwuuid) {
+              eligibleRemoteHosts.unshift(`https://${deviceHwuuid}.${geoServer}.myvolumio.org`);
+            } else {
+              eligibleRemoteHosts.push(remoteDeviceHost);
+            }
           }
         }
         //TODO GET FIRST ITEM BY DATE OR OTHER PARAM
@@ -87,10 +88,12 @@ class DeviceEndpointsService {
   setSocketHosts(hosts) {
     this.hosts = hosts;
     this.socketService.hosts = hosts;
-    if (!this.cloudService.isOnCloud) {
-      const firstHostKey = Object.keys(hosts)[0];
-      this.socketService.host = hosts[firstHostKey];
-    }
+    //NOTE WARNING: this is commented to prevent empty socket situation
+    //if (!this.cloudService.isOnCloud) {
+
+    const firstHostKey = Object.keys(hosts)[0];
+    this.socketService.host = hosts[firstHostKey];
+    //}
     return true;
   }
 

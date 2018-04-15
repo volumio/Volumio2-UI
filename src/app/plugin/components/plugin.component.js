@@ -153,6 +153,7 @@ class PluginComponentController {
       // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
+      this.pluginObj.host = this.socketService.host;
       if (
         !this.pluginObj.page.passwordProtection ||
         !this.pluginObj.page.passwordProtection.enabled

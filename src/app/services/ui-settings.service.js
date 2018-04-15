@@ -83,10 +83,10 @@ class UiSettingsService {
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
     } else {
-      if(this.uiSettings.language) {
+      if (this.uiSettings && this.uiSettings.language) {
         this.$translate.use(this.uiSettings.language);
       } else {
-        setTimeout(function(){
+        setTimeout(function() {
           this.setLanguage();
         }.bind(this), 1000);
       }
