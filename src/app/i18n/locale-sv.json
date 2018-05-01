@@ -135,7 +135,7 @@
     "DELETE_DRIVE_CONFIRM":"Vill du radera",
     "PLACEHOLDER_NAME":"Namn",
     "PLACEHOLDER_IP_ADDRESS":"NAS Ipadress eller Namn",
-    "PLACEHOLDER_PATH_TO_SHARE":"Sökväg/till/Share"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Sökväg/till/Share"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Nätverks Status",

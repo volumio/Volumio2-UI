@@ -151,7 +151,7 @@
     "DELETE_DRIVE_CONFIRM":"제거하시겠습니까?",
     "PLACEHOLDER_NAME":"이름",
     "PLACEHOLDER_IP_ADDRESS":"NAS IP 주소 또는 이름",
-    "PLACEHOLDER_PATH_TO_SHARE":"Path/to/Share"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Path/to/Share"
   },
   "NETWORK":{
     "NETWORK_STATUS":"네트웍 상태",

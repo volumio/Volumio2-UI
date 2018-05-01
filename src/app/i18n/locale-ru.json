@@ -136,7 +136,7 @@
     "DELETE_DRIVE_CONFIRM":"Вы действительно хотите удалить?",
     "PLACEHOLDER_NAME":"Имя",
     "PLACEHOLDER_IP_ADDRESS":"IP адрес NAS или Имя",
-    "PLACEHOLDER_PATH_TO_SHARE":"Путь/к/шаре"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Путь/к/шаре"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Статус сети",

@@ -136,7 +136,7 @@
     "DELETE_DRIVE_CONFIRM":"Biztos, hogy törölni akarod?",
     "PLACEHOLDER_NAME":"Név",
     "PLACEHOLDER_IP_ADDRESS":"NAS IP címe vagy neve",
-    "PLACEHOLDER_PATH_TO_SHARE":"megosztott/fájlok/útvonala"
+    "PLACEHOLDER_PATH_TO_SHARE":"/megosztott/fájlok/útvonala"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Hálózat állapota",

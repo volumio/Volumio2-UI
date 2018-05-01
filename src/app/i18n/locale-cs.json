@@ -154,7 +154,7 @@
     "DELETE_DRIVE_CONFIRM":"Opravdu chcete vymazat nastavení síťového disku?",
     "PLACEHOLDER_NAME":"Jméno",
     "PLACEHOLDER_IP_ADDRESS":"IP adresa nebo název NAS",
-    "PLACEHOLDER_PATH_TO_SHARE":"cesta/k/moji/hudbe"
+    "PLACEHOLDER_PATH_TO_SHARE":"/cesta/k/moji/hudbe"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Stav sítě",

@@ -136,7 +136,7 @@
     "DELETE_DRIVE_CONFIRM":"Haluatko poistaa",
     "PLACEHOLDER_NAME":"Nimi",
     "PLACEHOLDER_IP_ADDRESS":"Verkkoaseman nimi tai IP",
-    "PLACEHOLDER_PATH_TO_SHARE":"Polku/jako"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Polku/jako"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Verkon tila",

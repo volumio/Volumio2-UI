@@ -135,7 +135,7 @@
     "DELETE_DRIVE_CONFIRM":"Czy chcesz usunąć",
     "PLACEHOLDER_NAME":"Nazwa",
     "PLACEHOLDER_IP_ADDRESS":"Adres IP Serwera NAS lub Nazwa",
-    "PLACEHOLDER_PATH_TO_SHARE":"Ścieżka do katalogu"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Ścieżka/do/katalogu"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Status Sieci",

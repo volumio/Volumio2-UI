@@ -164,7 +164,7 @@
     "DELETE_DRIVE_CONFIRM":"De schijf echt wissen",
     "PLACEHOLDER_NAME":"Naam",
     "PLACEHOLDER_IP_ADDRESS":"NAS IP adres of Naam",
-    "PLACEHOLDER_PATH_TO_SHARE":"Pad/naar/Gedeelde Map"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Pad/naar/Gedeelde Map"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Netwerk status",

@@ -137,7 +137,7 @@
     "DELETE_DRIVE_CONFIRM":"Vil du virkelig slette",
     "PLACEHOLDER_NAME":"Navn",
     "PLACEHOLDER_IP_ADDRESS":"NAS Ip adresse eller navn",
-    "PLACEHOLDER_PATH_TO_SHARE":"Katalog/til/resurs"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Katalog/til/resurs"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Nettverkstatus",

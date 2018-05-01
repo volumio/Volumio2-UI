@@ -139,7 +139,7 @@
     "DELETE_DRIVE_CONFIRM":"您确定要删除吗",
     "PLACEHOLDER_NAME":"名称",
     "PLACEHOLDER_IP_ADDRESS":"NAS Ip地址或名称",
-    "PLACEHOLDER_PATH_TO_SHARE":"路径/到/共享"
+    "PLACEHOLDER_PATH_TO_SHARE":"/路径/到/共享"
   },
   "NETWORK":{
     "NETWORK_STATUS":"网络状态",
