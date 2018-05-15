@@ -174,10 +174,15 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
       views: {
         'content@volumio': {
           template: '',
-          controller: function($state, uiSettingsService) {
-            uiSettingsService.initService().then(data => {
+          controller: function($state, uiSettingsService, browseService) {
+            uiSettingsService.initService().then((data) => {
               if (data && data.indexState) {
-                $state.go(`volumio.${data.indexState}`);
+                if (data.indexStateHome) {
+                  browseService.backHome();
+                  $state.go(`volumio.${data.indexState}`);
+                } else {
+                  $state.go(`volumio.${data.indexState}`);
+                }
               } else {
                 $state.go('volumio.playback');
               }
