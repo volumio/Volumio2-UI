@@ -31,9 +31,45 @@
         </div>
       </div>
     </form>
+    <div
+        ng-if="modal.dataObj.availableDrives && modal.dataObj.availableDrives.length">
+        <div class="row">
+          <div class="col-md-12 col-xs-22">
+            <h4>{{::modal.dataObj.ripLocationMessage}}</h3>
+          </div>
+            <div class="col-md-12 col-xs-22">
+    <ui-select
+        id="drive"
+        ng-model="modal.availableDrives"
+        search-enabled="false"
+        append-to-body="false"
+        theme="bootstrap"
+        on-select="modal.dataObj.destinationDrive=$select.selected">
+      <ui-select-match
+          class="ui-select-match"
+          placeholder={{modal.dataObj.availableDrives[0].name}}>
+        {{$select.selected.name}}
+      </ui-select-match>
+      <ui-select-choices
+          class="ui-select-choices"
+          repeat="item in modal.dataObj.availableDrives track by $index">
+        <div id="{{item.name}}" ng-bind-html="item.name"></div>
+      </ui-select-choices>
+    </ui-select>
+    </div>
+    </div>
+  </div>
+  <div
+      ng-if="modal.dataObj.availableDrives && !modal.dataObj.availableDrives.length">
+      <div class="row">
+        <div class="col-md-22 col-xs-22">
+          <h4>{{::modal.dataObj.ripLocationMessage}}</h3>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-warning" ng-click="modal.cancel()">{{'COMMON.CANCEL' | translate}}</button>
-  <button class="btn btn-default" ng-click="modal.startToRipCd()">{{'COMMON.RIP' | translate}}</button>
+  <button class="btn btn-default" ng-if="modal.dataObj.rippingAvailable" ng-click="modal.startToRipCd()">{{'COMMON.RIP' | translate}}</button>
 </div>
