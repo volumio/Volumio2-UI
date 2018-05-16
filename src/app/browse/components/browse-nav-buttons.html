@@ -21,14 +21,14 @@
 </button>
 <button
     class="btn-link"
-    ng-if="browse.browseService.isBrowsing && browse.browseService.eject"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.eject && browse.browseService.eject.enabled"
     ng-click="browse.browseService.sendEject(browse.browseService.eject.data)"
     title="{{'COMMON.EJECT' | translate}}">
   <i class="fa fa-eject"></i>
 </button>
 <button
     class="btn-link"
-    ng-if="browse.browseService.isBrowsing && browse.browseService.rip"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.rip && browse.browseService.rip.enabled"
     ng-click="browse.browseService.sendRip(browse.browseService.rip.data)"
     title="{{'COMMON.RIP' | translate}}">
   <i class="fa fa-download"></i>
