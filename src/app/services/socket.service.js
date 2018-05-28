@@ -1,10 +1,11 @@
 class SocketService {
-  constructor($rootScope, $http, $window, $log) {
+  constructor($rootScope, $http, $window, $log, cfpLoadingBar) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$http = $http;
     this.$window = $window;
     this.$log = $log;
+    this.loadingBar = cfpLoadingBar;
 
     this._host = null;
     this.hosts = {};
@@ -52,6 +53,7 @@ class SocketService {
     return this.$window.socket.on(eventName, (data) => {
       //this.$log.debug(arguments);
       //this.$log.debug(data);
+      this.loadingBar.complete();
       this.$rootScope.$apply(function() {
         if (callback) {
           //this.$log.debug(data);
@@ -69,6 +71,7 @@ class SocketService {
 
   emit(eventName, data, callback) {
     //this.$log.debug('emit', eventName);
+    this.loadingBar.start();
     this.$window.socket.emit(eventName, data, (data) => {
       //let arg = arguments;
       this.$rootScope.$apply(function() {

@@ -125,6 +125,8 @@ angular.module('volumio', [
   'pascalprecht.translate',
   'LocalStorageModule',
   'cg.mailchimp',
+  'cfp.loadingBar',
+
   //Angular core modules
   // 'ngAnimate',
   // 'ngCookies',
