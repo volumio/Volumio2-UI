@@ -1,6 +1,6 @@
-<form id="searchForm" class="pull-right">
+<form action="." id="searchForm" class="pull-right" ng-submit="browse.searchSubmit($event)">
   <input
-      type="text"
+      type="search"
       ng-model="browse.searchField"
       ng-change="browse.search()"
       class="form-control"

@@ -177,6 +177,11 @@ class BrowseController {
     }
   }
 
+  searchSubmit($event) {
+    $event.preventDefault(); // Search has been done on input change, so don't submit
+    this.$document[0].activeElement.blur(); // blur the input so that iOS keyboard closes
+  }
+
   showHamburgerMenu(item) {
     let ret = item.type === 'radio-favourites' || item.type === 'radio-category';
     return !ret;
