@@ -135,7 +135,7 @@
     "DELETE_DRIVE_CONFIRM":"Επιβεβαίωση διαγραφής μονάδας",
     "PLACEHOLDER_NAME":"Όνομα",
     "PLACEHOLDER_IP_ADDRESS":"Διεύθυνση IP ή όνομα NAS",
-    "PLACEHOLDER_PATH_TO_SHARE":"Διαδρομή/για/share"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Διαδρομή/για/share"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Κατάσταση δικτύου",

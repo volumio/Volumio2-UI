@@ -164,7 +164,7 @@
     "DELETE_DRIVE_CONFIRM":"Voulez vous vraiment effacer ?",
     "PLACEHOLDER_NAME":"Nom",
     "PLACEHOLDER_IP_ADDRESS":"Address IP du NAS ou Nom",
-    "PLACEHOLDER_PATH_TO_SHARE":"Chemin du partage"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Chemin/du/partage"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Etat du réseau",

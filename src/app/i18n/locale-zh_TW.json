@@ -164,7 +164,7 @@
     "DELETE_DRIVE_CONFIRM":"您確定要刪除嗎",
     "PLACEHOLDER_NAME":"名稱",
     "PLACEHOLDER_IP_ADDRESS":"NAS Ip地址或名稱",
-    "PLACEHOLDER_PATH_TO_SHARE":"路徑/到/共享"
+    "PLACEHOLDER_PATH_TO_SHARE":"/路徑/到/共享"
   },
   "NETWORK":{
     "NETWORK_STATUS":"網路狀態",

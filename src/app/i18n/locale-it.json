@@ -163,7 +163,7 @@
     "DELETE_DRIVE_CONFIRM":"Vuoi eliminare il disco",
     "PLACEHOLDER_NAME":"Nome",
     "PLACEHOLDER_IP_ADDRESS":"Indirizzo IP o Nome del NAS",
-    "PLACEHOLDER_PATH_TO_SHARE":"Indirizzo/della/Share"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Indirizzo/della/Share"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Stato della rete",

@@ -156,7 +156,7 @@
      "DELETE_DRIVE_CONFIRM":"削除しますか",
      "PLACEHOLDER_NAME":"名前",
      "PLACEHOLDER_IP_ADDRESS":"NAS IP アドレスまたは名前",
-     "PLACEHOLDER_PATH_TO_SHARE":"共有パス"
+     "PLACEHOLDER_PATH_TO_SHARE":"/共有/パス"
    },
    "NETWORK":{
      "NETWORK_STATUS":"ネットワークの状態",

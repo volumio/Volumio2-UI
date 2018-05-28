@@ -154,7 +154,7 @@
     "DELETE_DRIVE_CONFIRM":"Segur que la vols esborrar?",
     "PLACEHOLDER_NAME":"Nom",
     "PLACEHOLDER_IP_ADDRESS":"Adressa IP o nom",
-    "PLACEHOLDER_PATH_TO_SHARE":"Ruta/per/Compartir"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Ruta/per/Compartir"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Estat de la xarxa",

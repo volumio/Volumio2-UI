@@ -136,7 +136,7 @@
     "DELETE_DRIVE_CONFIRM":"Дійсно хочете видалити?",
     "PLACEHOLDER_NAME":"Назва",
     "PLACEHOLDER_IP_ADDRESS":"IP-адреса або назва",
-    "PLACEHOLDER_PATH_TO_SHARE":"Шлях до загальнодоступних тек"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Шлях/до/загальнодоступних/тек"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Стан мережі",

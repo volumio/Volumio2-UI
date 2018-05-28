@@ -164,7 +164,7 @@
     "DELETE_DRIVE_CONFIRM":"¿Quieres eliminar",
     "PLACEHOLDER_NAME":"Nombre",
     "PLACEHOLDER_IP_ADDRESS":"Dirección IP o Nombre",
-    "PLACEHOLDER_PATH_TO_SHARE":"Ruta/Del/Recurso"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Ruta/Del/Recurso"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Estado de la red",

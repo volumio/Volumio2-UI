@@ -164,7 +164,7 @@
     "DELETE_DRIVE_CONFIRM":"Silmek istiyormusunuz?",
     "PLACEHOLDER_NAME":"Adı",
     "PLACEHOLDER_IP_ADDRESS":"NAS Ip Adresi veya Adı",
-    "PLACEHOLDER_PATH_TO_SHARE":"PAylaşım Yolu - Path/to/Share"
+    "PLACEHOLDER_PATH_TO_SHARE":"/PAylaşım/Yolu"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Ağ Durumu",

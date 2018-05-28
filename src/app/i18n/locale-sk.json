@@ -163,7 +163,7 @@
     "DELETE_DRIVE_CONFIRM":"Opravdu chcete vymazať nastavenie",
     "PLACEHOLDER_NAME":"Meno",
     "PLACEHOLDER_IP_ADDRESS":"IP adresa alebo názov NAS",
-    "PLACEHOLDER_PATH_TO_SHARE":"cesta/k/hudbe"
+    "PLACEHOLDER_PATH_TO_SHARE":"/cesta/k/hudbe"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Stav siete",

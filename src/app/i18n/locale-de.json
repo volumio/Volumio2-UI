@@ -164,7 +164,7 @@
     "DELETE_DRIVE_CONFIRM":"Laufwerk wirklich löschen",
     "PLACEHOLDER_NAME":"Name des Netzwerklaufwerks",
     "PLACEHOLDER_IP_ADDRESS":"IP-Adresse oder Name des Netzwerklaufwerks",
-    "PLACEHOLDER_PATH_TO_SHARE":"Pfad/für/Freigabe"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Pfad/für/Freigabe"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Netzwerkstatus",

@@ -149,7 +149,7 @@
     "DELETE_DRIVE_CONFIRM":"Quer mesmo apagar",
     "PLACEHOLDER_NAME":"Nome",
     "PLACEHOLDER_IP_ADDRESS":"Endereço IP ou Nome da NAS",
-    "PLACEHOLDER_PATH_TO_SHARE":"Endereço/até á/Partilha"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Endereço/até/á/Partilha"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Estado da Rede",

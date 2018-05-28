@@ -164,7 +164,7 @@
     "DELETE_DRIVE_CONFIRM":"Do you want to delete",
     "PLACEHOLDER_NAME":"Name",
     "PLACEHOLDER_IP_ADDRESS":"NAS Ip Address or Name",
-    "PLACEHOLDER_PATH_TO_SHARE":"Path/to/Share"
+    "PLACEHOLDER_PATH_TO_SHARE":"/Path/to/Share"
   },
   "NETWORK":{
     "NETWORK_STATUS":"Network Status",
