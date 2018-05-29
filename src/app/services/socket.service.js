@@ -12,7 +12,7 @@ class SocketService {
 
     // List of events to trigger the page loading bar.
     // Each request event should have at least 1 response event
-    this.UIRequestEvents = [
+    this.requestEvents = [
       'getQueue',
       'getState',
       'getDeviceInfo',
@@ -45,7 +45,7 @@ class SocketService {
       'getDonePage'
     ];
 
-    this.UIResponseEvents = [
+    this.responseEvents = [
       'pushQueue',
       'pushState',
       'pushDeviceInfo',
@@ -172,13 +172,13 @@ class SocketService {
   }
 
   startLoadingBar(eventName) {
-    if (this.UIRequestEvents.includes(eventName)) {
+    if (this.requestEvents.includes(eventName)) {
       this.loadingBar.start();
     }
   }
 
   stopLoadingBar(eventName) {
-    if (this.UIResponseEvents.includes(eventName)) {
+    if (this.responseEvents.includes(eventName)) {
       this.loadingBar.complete();
     }
   }
