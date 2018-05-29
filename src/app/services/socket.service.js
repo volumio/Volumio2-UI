@@ -13,11 +13,6 @@ class SocketService {
     // List of events to trigger the page loading bar.
     // Each request event should have at least 1 response event
     this.requestEvents = [
-      'getQueue',
-      'getState',
-      'getDeviceInfo',
-      'getUiConfig',
-      'getBrowseSources',
       'browseLibrary',
       'search',
       'goTo',
@@ -32,25 +27,15 @@ class SocketService {
       'addToRadioFavourites',
       'removeFromRadioFavourites',
       'playRadioFavourites',
-      'getMenuItems',
       'getSleep',
       'getAlarms',
       'saveAlarm',
       'setMultiroom',
       'getWirelessNetworks',
-      'getInfoNetwork',
-      'getWizard',
-      'getWizardSteps',
-      'getDeviceName',
-      'getDonePage'
+      'getInfoNetwork'
     ];
 
     this.responseEvents = [
-      'pushQueue',
-      'pushState',
-      'pushDeviceInfo',
-      'pushUiConfig',
-      'pushBrowseSources',
       'pushBrowseLibrary',
       'pushGetTrackInfo',
       'pushCreatePlaylist',
@@ -63,17 +48,12 @@ class SocketService {
       'pushAddToRadioFavourites',
       'pushRemoveFromRadioFavourites',
       'pushPlayRadioFavourites',
-      'pushMenuItems',
       'pushSleep',
       'pushAlarm',
       'pushSleep',
       'pushMultiroom',
       'pushWirelessNetworks',
-      'pushInfoNetwork',
-      'pushWizard',
-      'pushWizardSteps',
-      'pushDeviceName',
-      'pushDonePage'
+      'pushInfoNetwork'
     ];
   }
 
