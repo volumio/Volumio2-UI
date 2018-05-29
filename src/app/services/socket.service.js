@@ -10,9 +10,9 @@ class SocketService {
     this._host = null;
     this.hosts = {};
 
-    // List of events to trigger the page loading bar.
+    // List of events to trigger the loading bar.
     // Each request event should have at least 1 response event
-    this.requestEvents = [
+    this.loadingBarRequestEvents = [
       'browseLibrary',
       'search',
       'goTo',
@@ -35,7 +35,7 @@ class SocketService {
       'getInfoNetwork'
     ];
 
-    this.responseEvents = [
+    this.loadingBarResponseEvents = [
       'pushBrowseLibrary',
       'pushGetTrackInfo',
       'pushCreatePlaylist',
@@ -152,13 +152,13 @@ class SocketService {
   }
 
   startLoadingBar(eventName) {
-    if (this.requestEvents.includes(eventName)) {
+    if (this.loadingBarRequestEvents.includes(eventName)) {
       this.loadingBar.start();
     }
   }
 
   stopLoadingBar(eventName) {
-    if (this.responseEvents.includes(eventName)) {
+    if (this.loadingBarResponseEvents.includes(eventName)) {
       this.loadingBar.complete();
     }
   }
