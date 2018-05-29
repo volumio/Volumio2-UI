@@ -6,6 +6,7 @@ class SocketService {
     this.$window = $window;
     this.$log = $log;
     this.loadingBar = cfpLoadingBar;
+    this.loadingBarEnabled = true;
 
     this._host = null;
     this.hosts = {};
@@ -152,7 +153,7 @@ class SocketService {
   }
 
   startLoadingBar(eventName) {
-    if (this.loadingBarRequestEvents.includes(eventName)) {
+    if (this.loadingBarEnabled && this.loadingBarRequestEvents.includes(eventName)) {
       this.loadingBar.start();
     }
   }
