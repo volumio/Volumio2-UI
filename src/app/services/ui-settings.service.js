@@ -66,6 +66,10 @@ class UiSettingsService {
     }
   }
 
+  setLoadingBar() {
+    this.socketService.loadingBarEnabled = this.uiSettings.loadingBar === false ? false : true;
+  }
+
   getBrowserDefaultLanguage() {
     const browserLanguagePropertyKeys = ['languages', 'language', 'browserLanguage', 'userLanguage', 'systemLanguage'];
     let langArray = [];
@@ -105,6 +109,7 @@ class UiSettingsService {
       this.$log.debug('pushUiSettings', this.uiSettings);
       this.setLanguage();
       this.setBackground();
+      this.setLoadingBar();
     });
 
     this.socketService.on('pushBackgrounds', (data) => {
