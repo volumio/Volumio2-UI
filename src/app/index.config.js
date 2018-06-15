@@ -1,6 +1,8 @@
 function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
-    $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, CgMailChimpServiceProvider) {
+    $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, CgMailChimpServiceProvider, cfpLoadingBarProvider) {
   'ngInject';
+
+  cfpLoadingBarProvider.includeSpinner = false;
 
   $touchProvider.enabled = true;
 

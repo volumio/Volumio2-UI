@@ -62,13 +62,13 @@ The file will look like
 Now, feel free to edit and see live changes on a local browser with dynamically generated UI. To do so:
 
 ```shell
-gulp serve --theme="volumio"
+npm run gulp serve --theme="volumio"
 ```
 
 Once finished, to deploy on Volumio 2, first build it. if you want production optimization use --env="production"
 
 ```shell
-gulp build --theme="volumio" --env="production"
+npm run gulp build --theme="volumio" --env="production"
 ```
 
 

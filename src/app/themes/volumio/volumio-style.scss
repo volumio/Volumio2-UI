@@ -372,6 +372,11 @@ table {
   animation-direction: reverse !important;
 }
 
+//Loading bar
+#loading-bar .bar {
+  background-color: $theme-primary-color;
+}
+
 //Select override
 .ui-select-toggle, .ui-select-container, .ui-select-match {
   background-color: $theme-accent-color;
