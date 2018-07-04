@@ -140,16 +140,6 @@
       </label>
       <div class="control-item">
         <div class="input-group">
-          <span class="input-group-addon clickable" ng-click="networkDrives.togglePasswordVisibility()">
-            <i
-                ng-if="networkDrives.passwordInputType === 'password'"
-                class="fa fa-eye"
-                aria-hidden="true"></i>
-            <i
-                ng-if="networkDrives.passwordInputType === 'input'"
-                class="fa fa-eye-slash"
-                aria-hidden="true"></i>
-          </span>
           <input id="{{networkDrives.drive.password}}"
               type="{{networkDrives.passwordInputType}}"
               ng-model="networkDrives.drive.password"
