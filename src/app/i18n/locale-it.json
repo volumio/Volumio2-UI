@@ -70,7 +70,9 @@
     "DONE": "Fatto",
     "EMAIL": "Email",
     "SUBSCRIBE_ME": "Iscrivimi",
-    "SHARE": "Condividi"
+    "SHARE": "Condividi",
+    "EJECT": "Espelli",
+    "FUNCTIONALIES_CONTROL":"Functionalities control"
   },
   "BROWSER": {
     "PLAY": "Riproduci",

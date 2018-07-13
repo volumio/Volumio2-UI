@@ -71,7 +71,8 @@
     "EMAIL": "Email",
     "SUBSCRIBE_ME": "Subscribe me",
     "SHARE": "Share",
-    "EJECT": "Eject"
+    "EJECT": "Eject",
+    "FUNCTIONALIES_CONTROL":"Functionalities control"
   },
   "BROWSER": {
     "PLAY": "Play",
