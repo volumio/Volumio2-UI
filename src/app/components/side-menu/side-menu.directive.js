@@ -14,7 +14,7 @@ class SideMenuDirective {
 }
 
 class SideMenuController {
-  constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log, 
+  constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log,
       $http, $window, uiSettingsService) {
     'ngInject';
     this.$state = $state;
@@ -83,6 +83,8 @@ class SideMenuController {
         for (let param in item.params) {
           item.params[param] = String(item.params[param]).replace('/', '-');
         }
+        console.log(item.state)
+        console.log(item.params)
         this.$state.go(item.state, item.params);
       } else {
         this.$state.go(item.state);
