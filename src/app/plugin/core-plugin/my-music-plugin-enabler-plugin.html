@@ -1,9 +1,9 @@
 <div id="myMusicPlugins" ng-controller="MyMusicPluginEnablerController as MyMusicPlugins"
    class="panel panel-default">
-   <div class="panel-heading">
+   <div class="panel-heading" ng-if="MyMusicPlugins.plugins.length">
       <h3 class="panel-title"><i class="fa fa-toggle-on"></i>   <span translate="COMMON.FUNCTIONALIES_CONTROL"></span></h3>
    </div>
-   <div class="panel-body">
+   <div class="panel-body" ng-if="MyMusicPlugins.plugins.length">
       <div id="installed-plugin-lists" ng-repeat="plugin in MyMusicPlugins.plugins track by $index">
          <div class="row">
             <div class="col-xs-24 col-sm-24 col-md-12" id="list-group">
