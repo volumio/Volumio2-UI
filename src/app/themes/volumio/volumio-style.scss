@@ -610,7 +610,7 @@ ul {
   padding: 40px 0px;
   border: dotted 1px grey;
   &.dragover {
-    border: dotted 1px #54C698;
+    border: dotted 1px $theme-primary-color;
   }
 }
 
@@ -682,7 +682,7 @@ div#installed-plugin-lists {
   padding-bottom: 15px;
   padding-top: 25px;
   font-size: 16px;
-  border-bottom: 1px solid #54C698;
+  border-bottom: 1px solid $theme-primary-color;
   }
 
 div#list-group {
