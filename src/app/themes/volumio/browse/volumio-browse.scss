@@ -7,7 +7,10 @@
 }
 .navButtons {
   button {
-    padding: 4px 10px;
+    padding: 4px 4px;
+    @media screen and (min-width: 380px) {
+        padding: 4px 10px;
+    }
     font-size: 24px;
   }
 }

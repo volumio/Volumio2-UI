@@ -93,7 +93,7 @@ import ModalTrackManagerActionsController from
   './components/track-manager/components/modals/modal-track-manager-actions.controller';
 import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/modal-network-drive-password.controller';
 import ModalCryptoController from './components/modals/modal-crypto.controller';
-
+import ModalAlphanavController from './browse/components/modal/modal-alphanav.controller';
 
 //Core plugin controller
 import WifiPluginController from './plugin/core-plugin/wifi-plugin.controller';
@@ -226,6 +226,7 @@ angular.module('volumio', [
   .controller('ModalTrackManagerActionsController', ModalTrackManagerActionsController)
   .controller('ModalNetwordDrivesPasswordController', ModalNetwordDrivesPasswordController)
   .controller('ModalCryptoController', ModalCryptoController)
+  .controller('ModalAlphanavController', ModalAlphanavController)
 
 
   .controller('WifiPluginController',  WifiPluginController)
