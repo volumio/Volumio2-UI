@@ -83,8 +83,6 @@ class SideMenuController {
         for (let param in item.params) {
           item.params[param] = String(item.params[param]).replace('/', '-');
         }
-        console.log(item.state)
-        console.log(item.params)
         this.$state.go(item.state, item.params);
       } else {
         this.$state.go(item.state);
