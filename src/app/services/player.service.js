@@ -309,6 +309,9 @@ class PlayerService {
         case 'YouTube':
         case 'rr':
         case 'bt':
+        case 'cd':
+        case 'tidal':
+        case 'qobuz':
         case 'wma':
           this.state.fileFormat = {
             url: this.state.trackType,
