@@ -13,7 +13,6 @@ class ModalPasswordController {
   ok() {
     this.showError = false;
     if (this.form.$valid) {
-      console.log(this.password);
       this.socketService.emit('checkPassword', {
         password: this.password,
         pluginName: this.dataObj.pluginName
