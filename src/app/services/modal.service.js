@@ -48,12 +48,15 @@ class ModalService {
 
   registerListner() {
     this.socketService.on('closeAllModals', () => {
-      this.openedModals.forEach(modal => {
-        modal.close();
-      });
+      this.closeAllModals();
     });
   }
 
+  closeAllModals(){
+    this.openedModals.forEach(modal => {
+      modal.close();
+    });
+  }
   initService() {}
 }
 
