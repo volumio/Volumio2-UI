@@ -153,6 +153,10 @@ class BrowseController {
     this.socketService.emit('updateDb', item);
   }
 
+  deleteFolder(curUri, item) {
+    this.socketService.emit('deleteFolder', {'curUri':curUri, 'item':item});
+  }
+
   search() {
     if (this.searchField.length >= 3) {
       this.browseService.isSearching = true;
@@ -192,19 +196,21 @@ class BrowseController {
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'cuesong' ||
         item.type === 'remdisk' || item.type === 'cuefile' ||
-        item.type === 'folder-with-favourites';
+        item.type === 'folder-with-favourites' || item.type === 'internal-folder';
     return ret;
   }
   showAddToQueueButton(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'remdisk' ||
-        item.type === 'cuefile' || item.type === 'folder-with-favourites';
+        item.type === 'cuefile' || item.type === 'folder-with-favourites' ||
+        item.type === 'internal-folder';
     return ret;
   }
   showAddToPlaylist(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
-    item.type === 'remdisk' || item.type === 'folder-with-favourites';
+    item.type === 'remdisk' || item.type === 'folder-with-favourites' ||
+    item.type === 'internal-folder';
     return ret;
   }
 
