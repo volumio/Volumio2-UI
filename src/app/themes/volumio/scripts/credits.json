@@ -17,7 +17,8 @@
         {"name":"Morning","author":"Justin Thomas","link":"https://www.flickr.com/photos/reddodger123"},
         {"name":"Stars","author":"Andrew King","link":"http://andrewking.info"},
         {"name":"Yosemite","author":"Wasim Muklashy","link":"http://www.wasimofnazareth.com"},
-        {"name":"Berlin","author":"Fabrizio Nisi","link":"http://www.fabrizionisi.com"}
+        {"name":"Berlin","author":"Fabrizio Nisi","link":"http://www.fabrizionisi.com"},
+        {"name":"Cymatic","author":"Mordechai Braunstein","link":"http://www.facebook.com/cymagic.art"}
     ]},
     {"name":"Services","icon":"fa-code","credits":[
         {"name":"Shoutcast Web Radio API","logo":"app/themes/volumio/assets/graphics/shoutcast-logo.png","author":"Shoutcast","link":"http://www.shoutcast.com/"},
