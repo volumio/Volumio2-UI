@@ -46,6 +46,11 @@ class PlayerService {
     this.socketService.emit('play');
   }
 
+  volatilePlay() {
+    this.$log.debug('volatilePlay');
+    this.socketService.emit('volatilePlay');
+  }
+
   pause() {
     this.$log.debug('pause');
     this.stopSeek();
@@ -330,7 +335,6 @@ class PlayerService {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
       this.state = data;
-
       this.state.disableUi = this.state.disableUiControls || this.state.service === 'analogin';
 
       this.elapsedTime = this.state.seek;

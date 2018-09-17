@@ -10,8 +10,17 @@
   <div class="playPauseBtnWrapper">
     <div class="playPauseBtnGreyWrapper">
       <button
-          ng-if="playerButtons.playerService.state.status !== 'play'"
+          ng-if="playerButtons.playerService.state.status !== 'play' && !playerButtons.playerService.state.volatile"
           ng-click="playerButtons.playerService.play()"
+          class="btn btn-link playPause play"
+          title="{{'BROWSER.PLAY' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-play"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status !== 'play' && playerButtons.playerService.state.volatile"
+          ng-click="playerButtons.playerService.volatilePlay()"
           class="btn btn-link playPause play"
           title="{{'BROWSER.PLAY' | translate}}"
           ng-disabled="playerButtons.playerService.state.disableUi">
