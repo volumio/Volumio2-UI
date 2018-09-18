@@ -45,6 +45,14 @@ class UpdaterService {
   }
 
   registerListner() {
+    this.socketService.on('updateWaitMsg', (data) => {
+      this.$log.debug('updateWaitMsg', data);
+      this.modalService.closeAllModals();
+      this.updateReady = data;
+      setTimeout(()=>{
+        this.openUpdateModal();
+      }, 100);
+    });
     this.socketService.on('updateReady', (data) => {
       this.$log.debug('updateReady', data);
       this.modalService.closeAllModals();
