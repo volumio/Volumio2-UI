@@ -23,7 +23,7 @@
 </div>
 
 <div class="modal-footer">
-  <div ng-if="modal.updaterService.status === 'updateReady'" >
+  <div ng-if="modal.updaterService.status === 'updateReady' || modal.updaterService.status === 'updateWaitMsg'" >
     <button
         ng-if="modal.updaterService.updateReady.updateavailable"
         class="btn btn-warning"
