@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
+</div>
+<div class="modal-body">
+  <ul style="list-style-type:none;">
+        <li style="display:inline-block; padding: 4px; font-family: monospace;" ng-repeat="alpha in modal.dataObj.alphabet">
+          <button class="btn btn-primary" ng-click="modal.alphaClick(alpha)"><span>{{alpha}}</span></button>
+        </li>
+    </ul>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="modal.ok()"><span translate="COMMON.OK"></span></button>
+</div>

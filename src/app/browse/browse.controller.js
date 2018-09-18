@@ -17,6 +17,7 @@ class BrowseController {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.uiSettingsService = uiSettingsService;
+    this.isMusicLibrary = false;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();
@@ -30,6 +31,8 @@ class BrowseController {
 
   fetchLibrary(item, back = false) {
     this.$log.debug(item);
+    if (item.uri.startsWith('music-library')) { this.isMusicLibrary = true;}
+    else { this.isMusicLibrary = false;}
     if (item.uri !== 'cd') {
       this.browseService.fetchLibrary(item, back);
     }
@@ -37,6 +40,7 @@ class BrowseController {
 
   backHome() {
     this.searchField = '';
+    this.isMusicLibrary = false;
     this.browseService.backHome();
   }
 
@@ -288,9 +292,27 @@ class BrowseController {
         }
 
         this.table += `<div class="listWrapper">`;
+        var firstChar = '';
         list.items.forEach((item, itemIndex) => {
           //Print items
           this.table += `<div class="itemWrapper"><div class="itemTab">`;
+
+          var currentChar = item.title.charAt(0).toLowerCase();
+          var isNumber = RegExp('[0-9]');
+          var isAlpha = RegExp('[a-z]');
+          if (!isNumber.test(currentChar) && !isAlpha.test(currentChar)) {
+            // if 1char is not a number and not an alpha, then use # as first char
+            currentChar = '0';
+          }
+          else if (isNumber.test(currentChar)) {
+            // if 1char is a number, then use # as first char
+            currentChar = '0';
+          }
+          if (firstChar != currentChar) {
+            this.table += `<a id="scrollto-${currentChar}"></a>`;
+            firstChar = currentChar;
+          }
+
           if (item.icon || item.albumart) {
           this.table += `<div class="image" id="${item.active ? 'source-active': ''}"
               onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
@@ -397,6 +419,33 @@ class BrowseController {
       if (this.browseService.breadcrumbs) {
         this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
       }
+    }
+  }
+
+  showAlphaFilter() {
+    var alphalist = "0abcdefghijklmnopqrstuvwxyz".split("");
+    let
+      templateUrl = 'app/browse/components/modal/modal-alphanav.html',
+      controller = 'ModalAlphanavController',
+      params = {
+        browseController: this,
+        title: 'Alphabetic Navigation',
+        alphabet: alphalist,
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'lg');
+  }
+
+  scrollTo(hash) {
+    var element = angular.element('#scrollto-'+hash);
+    if(element.length > 0) {
+      var container = angular.element('#browseTablesWrapper');
+      container.scrollTop(0);
+      var scrolling = element.offset().top - container.offset().top;
+      container.animate({scrollTop: scrolling}, "fast");
     }
   }
 }
