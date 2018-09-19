@@ -734,3 +734,8 @@ body.noScroll { /* ...or body.dialogShowing */
 img.section-image {
     max-height: 18px;
 }
+
+.panel-body a {
+    color: $theme-text-color;
+    font-weight: bold;
+}
