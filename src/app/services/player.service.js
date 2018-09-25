@@ -22,6 +22,8 @@ class PlayerService {
 
     this._volume = 80;
     this._volumeStep = 10;
+    this.mute = undefined;
+    this.disableVolumeControl = false;
 
     this._shuffle = false;
     this._repeatTrack = false;
@@ -192,7 +194,7 @@ class PlayerService {
     } else if (volume > 100) {
       volume = 100;
     }
-    this.$log.log('volume', volume);
+    this.$log.debug('volume', volume);
     this.socketService.emit('volume', volume);
   }
 
@@ -357,6 +359,8 @@ class PlayerService {
         this.elapsedTimeString = undefined;
         this.songLength = undefined;
       }
+      this.mute = data.mute;
+      this.disableVolumeControl = data.disableVolumeControl;
 
       //Forward emit event
       this.$rootScope.$broadcast('socket:pushState', this.state);
