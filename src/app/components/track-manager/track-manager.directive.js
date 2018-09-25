@@ -83,7 +83,6 @@ class TrackManagerController {
     });
 
     this.$scope.$watch(() => this.matchmediaService.isPhone, (newVal) => {
-      console.info(this.matchmediaService.isPhone);
       if (this.matchmediaService.isPhone) {
         let albumart = this.playerService.state && this.playerService.state.albumart;
         if (albumart) {
