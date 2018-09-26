@@ -16,7 +16,8 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
   $httpProvider.useApplyAsync(true);
 
   angular.extend(toastrConfig, {
-    timeOut: 2000
+    maxOpened: true,
+    preventOpenDuplicates: true
   });
 
   localStorageServiceProvider.setPrefix('volumio');
