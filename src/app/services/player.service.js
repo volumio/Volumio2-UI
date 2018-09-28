@@ -319,6 +319,8 @@ class PlayerService {
         case 'cd':
         case 'tidal':
         case 'qobuz':
+        case 'mg':
+        case 'mb':
         case 'wma':
           this.state.fileFormat = {
             url: this.state.trackType,
