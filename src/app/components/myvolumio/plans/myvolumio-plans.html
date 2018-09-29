@@ -1,0 +1,35 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div id="authPlansPlugin" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.PLANS"></span></h3>
+    </div>
+
+    <div class="panel-body">
+      <my-volumio-back-button label="{{'MYVOLUMIO.PROFILE' | translate}}" route-destination="myvolumio.profile">
+      </my-volumio-back-button>
+      <div class="container plans-table">
+        <div class="row" style="margin-top:20px;">
+          <div class="col-xs-24 col-md-8">
+            <my-volumio-plan-card product="myVolumioPlansController.product0">
+            </my-volumio-plan-card>
+          </div>
+          <div class="col-xs-24 col-md-8" ng-if="myVolumioPlansController.product1">
+            <my-volumio-plan-card product="myVolumioPlansController.product1">
+            </my-volumio-plan-card>
+          </div>
+          <div class="col-xs-24 col-md-8" ng-if="myVolumioPlansController.product2">
+            <my-volumio-plan-card product="myVolumioPlansController.product2">
+            </my-volumio-plan-card>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>

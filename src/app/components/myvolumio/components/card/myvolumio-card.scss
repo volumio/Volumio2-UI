@@ -1,0 +1,66 @@
+.myvolumio-card-container {
+  overflow: hidden;
+  .avatar-box {
+    padding-right: 0px !important;
+  }
+  .profile-userpic img {
+    float: none;
+    margin: 0 auto;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+  }
+  .profile-usertitle {
+    text-align: left;
+  }
+  .profile-usertitle-name {
+    color: #5cb85c;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
+  .profile-usertitle-username {
+    text-transform: uppercase;
+    color: #5b9bd1;
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .profile-userbuttons {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .profile-userbuttons .btn {
+    text-transform: uppercase;
+    font-size: 11px !important;
+    font-weight: 600;
+    padding: 6px 4px !important;
+    margin-right: 5px;
+  }
+  .profile-userbuttons .btn:last-child {
+    margin-right: 0px;
+  }
+  .nopadding {
+    padding: 0;
+    margin: 0;
+  }
+  .avatar-box.nopadding {
+    padding-left: 8px;
+  }
+  .usedata-box.nopadding {
+    padding-left: 8px;
+  }
+  .myvolumio-card-title {
+    text-align: center;
+  }
+  .profile-userbuttons .btn {
+    text-align: center !important;
+    text-transform: uppercase;
+  }
+  .small-padding-right {
+    padding-right: 4px;
+  }
+  .small-padding-left {
+    padding-left: 4px;
+  }
+}

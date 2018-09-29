@@ -58,6 +58,10 @@ class SocketService {
     ];
   }
 
+  isSocketAvalaible() {
+    return this._host !== null;
+  }
+
   changeHost(host) {
     if (this.$window.socket) {
       this.$window.socket.disconnect();

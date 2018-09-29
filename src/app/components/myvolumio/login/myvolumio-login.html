@@ -1,0 +1,102 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div id="authLoginPlugin" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.LOGIN"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div id="" ng-if="myVolumioLoginController.user == null">
+
+        <h4 style="text-align: right; margin-right: 16px;">
+          <a ng-click="myVolumioLoginController.goToSignUp()">
+            <i class="fa fa-user"></i>
+            <span translate="MYVOLUMIO.SIGNUP"></span>
+          </a>
+        </h4>
+
+        <div class="omb_login">
+          <h3 class="omb_authTitle">Login</h3>
+
+          <div ng-if="myVolumioLoginController.isSocialEnabled()">
+            <div class="row omb_row-sm-offset-3 omb_socialButtons">
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="myVolumioLoginController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                  <i class="fa fa-facebook"></i>
+                  <span class="hidden-xs">Facebook</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="myVolumioLoginController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
+                  <i class="fa fa-google-plus"></i>
+                  <span class="hidden-xs">Google+</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="myVolumioLoginController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
+                  <i class="fa fa-github"></i>
+                  <span class="hidden-xs">GitHub</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="row omb_row-sm-offset-3 omb_loginOr">
+              <div class="col-xs-24 col-sm-12">
+                <hr class="omb_hrOr">
+                <span class="omb_spanOr">or</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row omb_row-sm-offset-3">
+            <div class="col-xs-24 col-sm-12">
+              <form ng-submit="myVolumioLoginController.login()">
+                <div class="omb_loginForm">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="email" class="form-control" required placeholder="{{'MYVOLUMIO.EMAIL_ADDRESS' | translate}}" ng-model="myVolumioLoginController.username">
+                  </div>
+                  <span class="help-block"></span>
+
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" required placeholder="{{'MYVOLUMIO.PASSWORD' | translate}}" ng-model="myVolumioLoginController.pass" pattern=".{8,}">
+                  </div>
+                  <span class="help-block"><!-- Password error -->&nbsp;</span>
+
+                  <input type="submit" class="btn btn-lg btn-success btn-block" translate="MYVOLUMIO.LOGIN">
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row omb_row-sm-offset-3">
+            <div class="col-xs-24 col-sm-6">
+              <label class="checkbox hidden">
+                <input type="checkbox" value="remember-me">
+                <span translate="MYVOLUMIO.REMEMBER_ME"></span>
+              </label>
+            </div>
+            <div class="col-xs-24 col-sm-6">
+              <p class="omb_forgotPwd">
+                <a ng-click="myVolumioLoginController.goToRecoverPassword()" style="cursor: pointer;" translate="MYVOLUMIO.FORGOT_PASSWORD">?</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="myVolumioLoginController.user != null">
+        <my-volumio-already-logged>
+        </my-volumio-already-logged>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

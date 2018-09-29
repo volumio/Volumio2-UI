@@ -1,0 +1,99 @@
+<div class="plan-box">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{myVolumioPlanCardController.product.name}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="the-price">
+        <h1>
+          {{myVolumioPlanCardController.product.textualPrice}}
+        </h1>
+        <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
+      </div>
+      <table class="table">
+        <tr ng-repeat="feature in myVolumioPlanCardController.product.features track by $index" ng-class-odd="'active'">
+          <td ng-if="feature === 'EMPTY'">
+            &nbsp;
+          </td>
+          <td ng-if="feature  !== 'EMPTY'">
+            {{feature | translate}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="panel-footer">
+      <!-- FREE -->
+      <div ng-if="myVolumioPlanCardController.product.plan === 'free' && myVolumioPlanCardController.isDefaultBehaviour === true">
+        <button type="button" class="btn btn-labeled btn-success" ng-if="!myVolumioPlanCardController.user.plan || myVolumioPlanCardController.user.plan === 'free'">
+          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
+          <span translate="MYVOLUMIO.CURRENT_PLAN"></span>
+        </button>
+        <button ng-click="myVolumioPlanCardController.downgradeToFree();" type="button" class="btn btn-labeled btn-default" ng-if="myVolumioPlanCardController.user.plan !== myVolumioPlanCardController.product.plan && myVolumioPlanCardController.user.plan !== undefined">
+          <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
+          <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
+        </button>
+      </div>
+      <!-- VIRTUOSO -->
+      <div ng-if="myVolumioPlanCardController.product.plan === 'virtuoso' && myVolumioPlanCardController.isDefaultBehaviour === true">
+        <div ng-if="myVolumioPlanCardController.user.plan !== 'virtuoso' && myVolumioPlanCardController.user.plan !== 'superstar'">
+          <!-- TODO move hardcode in product service -->
+          <button ng-click="myVolumioPlanCardController.subscribe(myVolumioPlanCardController.product.plan)" class="btn btn-success btn-labeled">
+            <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+            <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
+          </button>
+          <br />
+          <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
+        </div>
+        <button type="button" class="btn btn-labeled btn-success" ng-if="myVolumioPlanCardController.user.plan === myVolumioPlanCardController.product.plan">
+          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
+          <span translate="MYVOLUMIO.CURRENT_PLAN"></span>
+        </button>
+        <button ng-click="myVolumioPlanCardController.goToChangePlan(myVolumioPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="myVolumioPlanCardController.user.plan === 'superstar'">
+          <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
+          <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
+        </button>
+      </div>
+      <!-- SUPERSTAR -->
+      <div ng-if="myVolumioPlanCardController.product.plan === 'superstar' && myVolumioPlanCardController.isDefaultBehaviour === true">
+        <div ng-if="myVolumioPlanCardController.user.plan === undefined || myVolumioPlanCardController.user.plan === 'free'">
+          <button ng-click="myVolumioPlanCardController.subscribe(myVolumioPlanCardController.product.plan)" class="btn btn-success btn-labeled">
+            <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+            <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
+          </button>
+          <br />
+          <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
+        </div>
+        <button type="button" class="btn btn-labeled btn-success" ng-if="myVolumioPlanCardController.user.plan && myVolumioPlanCardController.user.plan === myVolumioPlanCardController.product.planCode">
+          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
+          <span translate="MYVOLUMIO.CURRENT_PLAN"></span>
+        </button>
+        <button ng-click="myVolumioPlanCardController.goToChangePlan(myVolumioPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="myVolumioPlanCardController.user.plan === 'virtuoso'">
+          <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+          <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
+        </button>
+      </div>
+      <!-- SUBSCRIBE BUTTONS -->
+      <!--<div ng-if="myVolumioPlanCardController.activateSubscribe">
+        <stripe-pay-button stripe-product='myVolumioPlanCardController.product' callback='myVolumioPlanCardController.subscriptionCallback(subscribing)' user-id="myVolumioPlanCardController.user.uid" button-label="{{'MYVOLUMIO.SUBSCRIBE' | translate}}" button-class="btn-block"
+          user-email="myVolumioPlanCardController.user.email"></stripe-pay-button>
+      </div>-->
+      <div ng-if="myVolumioPlanCardController.activateSubscribe">
+        <paddle-pay-button paddle-product='myVolumioPlanCardController.product' callback='myVolumioPlanCardController.subscriptionCallback(subscribing)' user-id="myVolumioPlanCardController.user.uid" button-label="{{'MYVOLUMIO.SUBSCRIBE' | translate}}" button-class="btn-block"
+          user-email="myVolumioPlanCardController.user.email"></paddle-pay-button>
+      </div>
+      <div ng-if="myVolumioPlanCardController.activateCancellation">
+        <button ng-click="myVolumioPlanCardController.doDowngrade()" type="button" class="btn btn-labeled btn-default">
+          <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>
+          <span translate="MYVOLUMIO.CANCEL_SUBSCRIPTION"></span>
+        </button>
+      </div>
+      <div ng-if="myVolumioPlanCardController.activateChangeSubscription">
+        <button ng-click="myVolumioPlanCardController.changePlan();" type="button" class="btn btn-labeled btn-default">
+          <span class="btn-label"><i class="fa fa-random"></i></span>
+          <span translate="MYVOLUMIO.UPDATE_SUBSCRIPTION"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

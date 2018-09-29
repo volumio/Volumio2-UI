@@ -1,0 +1,34 @@
+<div id="device-selector">
+  <table class="table tableSmall">
+    <tr>
+      <th><span translate="MYVOLUMIO.DEVICE_NAME"></span></th>
+      <th ng-if="!myVolumioDeviceSelectorController.isPhone"><span ng-if="!myVolumioDeviceSelectorController.isPhone" translate="MYVOLUMIO.DEVICE_TYPE"></span></th>
+      <th><span translate="MYVOLUMIO.DEVICE_ENABLED"></span></th>
+      <th></th>
+    </tr>
+    <tr ng-if="device.name" ng-repeat="device in myVolumioDeviceSelectorController.devices">
+      <td>
+        {{device.name}}
+      </td>
+      <td ng-if="!myVolumioDeviceSelectorController.isPhone">
+        {{device.device}}
+      </td>
+      <td>
+
+        <input bs-switch ng-model="device.enabled" type="checkbox"  switch-animate="true" ng-change="myVolumioDeviceSelectorController.toggleAbilitationAfterChange(device)">
+        </button>
+
+      </td>
+      <td class="commandCol ">
+        <button ng-click="myVolumioDeviceSelectorController.gotoDevice(device) " ng-class="{invisible: !device.enabled || !device.online} " type="button " class="btn btn-info " title="{{ 'MYVOLUMIO.OPEN_DEVICE' | translate}} ">
+           <i class="fa fa-play"></i>
+           <!-- <span translate="MYVOLUMIO.OPEN_DEVICE "></span> -->
+        </button>
+
+        <button ng-if="!myVolumioDeviceSelectorController.isPhone" ng-click="myVolumioDeviceSelectorController.deleteDevice(device) " type="button " class="btn btn-danger " title="{{ 'MYVOLUMIO.DELETE_DEVICE' | translate}} ">
+          <i class="fa fa-trash "></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

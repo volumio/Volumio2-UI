@@ -14,10 +14,43 @@ class MultiRoomDockDirective {
 }
 
 class MultiRoomDockController {
-  constructor($rootScope, socketService, multiRoomService, themeManager) {
+  constructor(
+    $scope,
+    socketService,
+    multiRoomService,
+    themeManager,
+    authService,
+    myVolumioDevicesService,
+    cloudService
+  ) {
     'ngInject';
     this.socketService = socketService;
-    this.multiRoomService = multiRoomService;
+    this.multiRoomServiceLocal = multiRoomService;
+    this.$scope = $scope;
+    this.myVolumioDevicesService = myVolumioDevicesService;
+    this.authService = authService;
+    this.cloudService = cloudService;
+    this.init();
+  }
+
+  init() {
+    if (this.cloudService.isOnCloud) {
+      const watcherHandler = this.$scope.$watch(() => this.authService.user, user => {
+        if (user) {
+          this.myVolumioDevicesService.getDevicesByUserId(user.uid).then(devices => {
+            this.multiRoomService = {
+              devices
+            };
+          });
+        }
+      });
+
+      this.$scope.$on('$destroy', () => {
+        watcherHandler();
+      });
+    } else {
+      this.multiRoomService = this.multiRoomServiceLocal;
+    }
   }
 
   changeDevice(device) {
@@ -25,6 +58,13 @@ class MultiRoomDockController {
       this.socketService.host = device.host;
       this.socketService.emit('getUiSettings');
     }
+  }
+
+  showDevice(device) {
+    if(this.cloudService && this.cloudService.isOnCloud) {
+      return device.enabled && device.online;
+    }
+    return true;
   }
 }
 
