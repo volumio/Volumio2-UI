@@ -132,4 +132,56 @@
 
     </div>
   </div>
+
+  <div id="user-info-container" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-info-circle"></i> <span translate="MYVOLUMIO.SUBSCRIPTION"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-24">
+            <h2 translate="MYVOLUMIO.SUBSCRIPTION_SUMMARY"> </h2>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_STATUS"></span>:</td>
+                  <td ng-if="myVolumioEditProfileController.isUserSubscriptionActive()" style="text-transform: uppercase;">{{myVolumioEditProfileController.getUserSubscriptionStatus()}}</td>
+                  <td ng-if="!myVolumioEditProfileController.isUserSubscriptionActive()" style="text-transform: uppercase;"><span translate="MYVOLUMIO.INACTIVE"></span></td>
+                  </td>
+                </tr>
+                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive()">
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_PLAN"></span>:</td>
+                  <td style="text-transform: uppercase;">{{myVolumioEditProfileController.user.plan}}</td>
+                </tr>
+                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.getSignupDate() != null">
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_SIGNED_UP_ON"></span>:</td>
+                  <td>{{myVolumioEditProfileController.getSignupDate() | date : 'longDate'}}</td>
+                </tr>
+                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.nextPayment">
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_NEXT_PAYMENT"></span>:</td>
+                  <td>
+                    {{myVolumioEditProfileController.user.planData.nextPayment.amount}} {{myVolumioEditProfileController.user.planData.nextPayment.currency}} <span translate="MYVOLUMIO.SUBSCRIPTION_ON"></span> {{myVolumioEditProfileController.user.planData.nextPayment.date
+                    | date : 'longDate'}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="text-right">
+              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.updateUrl" ng-click="myVolumioEditProfileController.updateSubscriptionMethod()" class="btn btn-success" style="margin-bottom: 8px;"> <i class="fa fa-exchange"></i> <span translate="MYVOLUMIO.CHANGE_PAYMENT_METHOD"></span> </a>
+              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.cancelUrl" ng-click="myVolumioEditProfileController.cancelSubscription()" class="btn btn-danger" style="margin-bottom: 8px;"> <i class="fa fa-times"></i> <span translate="MYVOLUMIO.CANCEL_SUBSCRIPTION"></span> </a>
+              <a ng-if="!myVolumioEditProfileController.isUserSubscriptionActive()" ng-click="myVolumioEditProfileController.subscribe()" class="btn btn-success" style="margin-bottom: 8px;"> <i class="fa fa-play-circle"></i> <span translate="MYVOLUMIO.SUBSCRIBE"></span> </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
 </div>
