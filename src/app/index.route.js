@@ -1,4 +1,4 @@
-function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, themeManagerProvider) {
+function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, themeManagerProvider) {
   'ngInject';
   console.info('[TEME]: ' + themeManagerProvider.theme, '[VARIANT]: ' + themeManagerProvider.variant);
 
@@ -12,19 +12,19 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
     toastMessageService,
     uiSettingsService,
     updaterService) => {
-      let localhostApiURL = `http://${$window.location.hostname }/api`;
-      return $http.get(localhostApiURL + '/host').then((response) => {
-        console.info('IP from API', response);
-        $rootScope.initConfig = response.data;
-        socketService.host  = response.data.host;
-      }, () => {
-        //Fallback socket
-        console.info('IP from fallback');
-        return $http.get('/app/local-config.json').then((response) => {
-          socketService.host  = response.data.localhost;
-        });
+    let localhostApiURL = `http://${$window.location.hostname }/api`;
+    return $http.get(localhostApiURL + '/host').then((response) => {
+      console.info('IP from API', response);
+      $rootScope.initConfig = response.data;
+      socketService.host = response.data.host;
+    }, () => {
+      //Fallback socket
+      console.info('IP from fallback');
+      return $http.get('/app/local-config.json').then((response) => {
+        socketService.host = response.data.localhost;
       });
-    };
+    });
+  };
 
   $locationProvider.html5Mode(true);
   $stateProvider
@@ -306,7 +306,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
   })
 
   .state('myvolumio.edit-profile', {
-    url: 'profile/edit',
+    url: '/profile/edit',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/edit-profile/myvolumio-edit-profile.html',
@@ -490,44 +490,44 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
   })
 
   .state('redirect', {
-     url: '/redirect',
-     views: {
-       layout: {
-         template: '',
-         controller: function($state, cloudService) {
-           if (cloudService.isOnCloud === true) {
-             $state.go('myvolumio.access');
-             return;
-           }
-           $state.go('volumio.redirect');
-         }
-       }
-     }
-   })
-
-  .state('volumio.redirect', {
-      url: 'indexstate-redirect',
-      views: {
-        'content@volumio': {
-          template: '',
-          controller: function($state, uiSettingsService, browseService) {
-            uiSettingsService.initService().then((data) => {
-              if (data && data.indexState) {
-                if (data.indexStateHome) {
-                  browseService.backHome();
-                  $state.go(`volumio.${data.indexState}`);
-                } else {
-                  $state.go(`volumio.${data.indexState}`);
-                }
-              } else {
-                $state.go('volumio.playback');
-              }
-            });
-          },
-          controllerAs: 'redirect'
+    url: '/redirect',
+    views: {
+      layout: {
+        template: '',
+        controller: function($state, cloudService) {
+          if (cloudService.isOnCloud === true) {
+            $state.go('myvolumio.access');
+            return;
+          }
+          $state.go('volumio.redirect');
         }
       }
-    })
+    }
+  })
+
+  .state('volumio.redirect', {
+    url: 'indexstate-redirect',
+    views: {
+      'content@volumio': {
+        template: '',
+        controller: function($state, uiSettingsService, browseService) {
+          uiSettingsService.initService().then((data) => {
+            if (data && data.indexState) {
+              if (data.indexStateHome) {
+                browseService.backHome();
+                $state.go(`volumio.${data.indexState}`);
+              } else {
+                $state.go(`volumio.${data.indexState}`);
+              }
+            } else {
+              $state.go('volumio.playback');
+            }
+          });
+        },
+        controllerAs: 'redirect'
+      }
+    }
+  })
 
   .state('volumio.wizard', {
     url: 'wizard',

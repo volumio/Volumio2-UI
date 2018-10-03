@@ -9,7 +9,7 @@ class DevService {
     this.env = env || 'dev';
 
     this.isDev().then(isDev => {
-      if(isDev){
+      if (isDev) {
         console.log("ENV:", this.env);
       }
     });

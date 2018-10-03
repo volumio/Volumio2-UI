@@ -146,6 +146,21 @@ class PaddleService {
     return promise;
   }
 
+  openUpdateSubscriptionMethod(updateUrl) {
+    /* jshint ignore:start */
+    Paddle.Checkout.open({
+      override: updateUrl
+    });
+    /* jshint ignore:end */
+  }
+
+  openCancelSubscriptionByUrl(cancelUrl) {
+    /* jshint ignore:start */
+    Paddle.Checkout.open({
+      override: cancelUrl
+    });
+    /* jshint ignore:end */
+  }
 
 }
 export default PaddleService;
