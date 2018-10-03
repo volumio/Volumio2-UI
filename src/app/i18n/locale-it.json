@@ -339,7 +339,19 @@
     "CONFIRM_CHANGE_PLAN_TITLE": "Cambia abbonamento",
     "CONFIRM_CHANGE_PLAN": "Vuoi veramente cambiare il tuo abbonamento? La differenza di prezzo ti verrà addebitata immediatamente",
     "CONFIRM_CANCEL_PLAN_TITLE": "Cancella abbonamento",
-    "CONFIRM_CANCEL_PLAN": "Vuoi veramente cancellare il tuo abbonamento?"
+    "CONFIRM_CANCEL_PLAN": "Vuoi veramente cancellare il tuo abbonamento?",
+    "SUBSCRIPTION": "Abbonamento MyVolumio",
+    "SUBSCRIPTION_SUMMARY": "Informazioni sull'abbonamento",
+    "SUBSCRIPTION_STATUS": "Stato",
+    "SUBSCRIPTION_PLAN": "Piano",
+    "SUBSCRIPTION_SIGNED_UP_ON": "Iscritto il",
+    "SUBSCRIPTION_NEXT_PAYMENT": "Prossimo pagamento",
+    "SUBSCRIPTION_ON": "il",
+    "CHANGE_PAYMENT_METHOD": "Aggiorna metodo di pagamento",
+    "ACTIVE": "Attivo",
+    "TRIALING": "Periodo di prova",
+    "PROBLEMS_WITH_PAYMENT": "Problemi con il metodo di pagamento, aggiorna o verifica il metodo di pagamento",
+    "INACTIVE": "Non attivo"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
