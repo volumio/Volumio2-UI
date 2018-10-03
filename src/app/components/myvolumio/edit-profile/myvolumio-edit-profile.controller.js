@@ -180,16 +180,36 @@ class MyVolumioEditProfileController {
   }
 
   isUserSubscriptionActive() {
-    if (!this.user.planData) {
+      if (!this.user.planData) {
+        return false;
+      }
+      if (!this.user.planData.status) {
+        return false;
+      }
+      if (this.user.planData.status == 'active' || this.user.planData.status == 'trialing' || this.user.planData.status == 'past_due') {
+        return true;
+      }
       return false;
-    }
-    if (!this.user.planData.status) {
-      return false;
-    }
-    if (this.user.planData.status == 'active') {
-      return true;
-    }
-    return false;
+  }
+
+  getUserSubscriptionStatus() {
+    if (!this.user.planData || !this.user.planData.status) {
+      return null;
+    } else {
+      switch(this.user.planData.status) {
+        case 'active':
+          return this.filteredTranslate('MYVOLUMIO.ACTIVE');
+        break;
+        case 'trialing':
+          return this.filteredTranslate('MYVOLUMIO.TRIALING');
+        break;
+        case 'past_due':
+          return this.filteredTranslate('MYVOLUMIO.PROBLEMS_WITH_PAYMENT');
+        break;
+        default:
+          return this.filteredTranslate('MYVOLUMIO.INACTIVE');
+        }
+      }
   }
 
   updateSubscriptionMethod() {

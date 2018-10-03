@@ -347,9 +347,11 @@
     "SUBSCRIPTION_SIGNED_UP_ON": "Signed up on",
     "SUBSCRIPTION_NEXT_PAYMENT": "Next payment",
     "SUBSCRIPTION_ON": "on",
-    "CHANGE_PAYMENT_METHOD": "Change Payment Method",
+    "CHANGE_PAYMENT_METHOD": "Update Payment Method",
     "ACTIVE": "Active",
-    "UNACTIVE": "Unactive"
+    "TRIALING": "In trial period",
+    "PROBLEMS_WITH_PAYMENT": "Problems with your payment method, please update it",
+    "INACTIVE": "Inactive"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

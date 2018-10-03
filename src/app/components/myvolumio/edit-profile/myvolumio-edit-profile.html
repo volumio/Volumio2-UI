@@ -149,9 +149,8 @@
               <tbody>
                 <tr>
                   <td><span translate="MYVOLUMIO.SUBSCRIPTION_STATUS"></span>:</td>
-                  <td style="text-transform: capitalize;">
-                    <span ng-if="myVolumioEditProfileController.isUserSubscriptionActive()" translate="MYVOLUMIO.ACTIVE"></span>
-                    <span ng-if="!myVolumioEditProfileController.isUserSubscriptionActive()" translate="MYVOLUMIO.UNACTIVE"></span>
+                  <td ng-if="myVolumioEditProfileController.isUserSubscriptionActive()" style="text-transform: uppercase;">{{myVolumioEditProfileController.getUserSubscriptionStatus()}}</td>
+                  <td ng-if="!myVolumioEditProfileController.isUserSubscriptionActive()" style="text-transform: uppercase;"><span translate="MYVOLUMIO.INACTIVE"></span></td>
                   </td>
                 </tr>
                 <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive()">
