@@ -232,6 +232,13 @@
     "ANALOG_INPUT": "ANALOG INPUT",
     "BLUETOOTH": "BLUETOOTH"
   },
+  "BLUETOOTH": {
+    "AUDIO":"Audio Device",
+    "COMPUTER":"Computer",
+    "CONNECT":"Connect",
+    "DISCONNECT":"Disconnect",
+    "SCAN":"Scan"
+  },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio (Beta)",
     "ERROR": "Error",
@@ -363,5 +370,12 @@
     "AUTO_SYNC": "Automatic Sync of Personal items",
     "MYVOLUMIO_6_DEVICES": "Use MyVolumio on up to 6 devices",
     "REMOTE_CONNECTION_6_DEVICES": "Remote connection to up to 6 devices"
+  },
+  "BLUETOOTH": {
+    "AUDIO":"Audio Device",
+    "COMPUTER":"Computer",
+    "CONNECT":"Connect",
+    "DISCONNECT":"Disconnect",
+    "REFRESH":"Refresh"
   }
 }

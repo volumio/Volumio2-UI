@@ -231,5 +231,12 @@
   "SIDEMENU": {
     "ANALOG_INPUT": "Analoger Eingang",
     "BLUETOOTH": "Bluetooth"
-   }
+   },
+  "BLUETOOTH": {
+    "AUDIO":"Audio Device",
+    "COMPUTER":"Computer",
+    "CONNECT":"Verbinden",
+    "DISCONNECT":"Trennen",
+    "SCAN":"Suchen"
+  }
 }
