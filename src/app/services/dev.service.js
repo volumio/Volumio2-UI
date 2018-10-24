@@ -6,7 +6,7 @@ class DevService {
     this.$http = $http;
     this.$q = $q;
 
-    this.env = env || 'dev';
+    this.env = env || 'development';
 
     this.isDev().then(isDev => {
       if(isDev){
