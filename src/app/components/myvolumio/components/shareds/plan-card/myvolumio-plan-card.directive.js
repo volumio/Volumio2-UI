@@ -13,7 +13,8 @@ class MyVolumioPlanCardDirective {
         cancellation: '=',
         cancellationCallback: '&',
         changeSubscription: '=',
-        changeSubscriptionCallback: '&'
+        changeSubscriptionCallback: '&',
+        showMode: '='
       }
     };
     return directive;
@@ -21,7 +22,7 @@ class MyVolumioPlanCardDirective {
 }
 
 class MyVolumioPlanCardController {
-  constructor($rootScope, $scope, $state, authService, modalService) {
+  constructor($rootScope, $scope, $state, authService, modalService, productsService) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -36,6 +37,8 @@ class MyVolumioPlanCardController {
     this.cancellationCallback = this.$scope.cancellationCallback;
     this.activateChangeSubscription = this.$scope.changeSubscription;
     this.changeSubscriptionCallback = this.$scope.changeSubscriptionCallback;
+    this.showMode = this.$scope.showMode;
+    this.productsService = productsService;
 
     this.user = null;
 
@@ -57,6 +60,19 @@ class MyVolumioPlanCardController {
     this.$scope.$watch(() => this.authService.user, (user) => {
       this.user = user;
     });
+  }
+
+  getShownPrice(){
+    var planDuration = this.getCurrentPlanDuration();
+    return this.product.prices[planDuration].textualPrice;
+  }
+
+  getCurrentPlanDuration(){
+    var planDuration = this.productsService.MONTHLY_PLAN;
+    if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
+      planDuration = this.showMode.planDuration;
+    }
+    return planDuration;
   }
 
   //auth section
@@ -81,11 +97,13 @@ class MyVolumioPlanCardController {
   }
 
   subscribe(plan) {
-    this.$state.go('myvolumio.subscribe', { 'plan': plan });
+    var planDuration = this.getCurrentPlanDuration();
+    this.$state.go('myvolumio.subscribe', { 'plan': plan, 'planDuration': planDuration });
   }
 
   goToChangePlan(plan) {
-    this.$state.go('myvolumio.change-subscription', { 'plan': plan });
+    var planDuration = this.getCurrentPlanDuration();
+    this.$state.go('myvolumio.change-subscription', { 'plan': plan, 'planDuration': planDuration  });
   }
 
   downgradeToFree() {

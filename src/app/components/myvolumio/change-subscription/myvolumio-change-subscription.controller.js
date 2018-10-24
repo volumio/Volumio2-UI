@@ -16,6 +16,7 @@ class MyVolumioChangeSubscriptionController {
 
     this.user = user;
     this.product = null;
+    this.planDuration = null;
 
     this.init();
   }
@@ -23,6 +24,7 @@ class MyVolumioChangeSubscriptionController {
   init() {
     this.loadProduct();
     this.authInit();
+    this.loadPlanDuration();
   }
 
   loadProduct() {
@@ -38,6 +40,10 @@ class MyVolumioChangeSubscriptionController {
     });
   }
 
+  loadPlanDuration(){
+    this.planDuration = this.$stateParams['planDuration'];
+  }
+
   changePlan() {
     if (this.user.planData.subscriptionId === undefined || this.user.planData.subscriptionId === null) {
       this.modalService.openDefaultErrorModal("MYVOLUMIO.ERROR_CHANGE_PLAN_NO_PREVIOUS_PLAN_FOUND");
@@ -50,7 +56,7 @@ class MyVolumioChangeSubscriptionController {
     this.modalService.openDefaultConfirm('MYVOLUMIO.CONFIRM_CHANGE_PLAN_TITLE', 'MYVOLUMIO.CONFIRM_CHANGE_PLAN', () => {
       this.openUpdatingModal();
       this.authService.getUserToken().then(token => {
-        this.paymentsService.updateSubscription(this.product, this.user.uid, token)
+        this.paymentsService.updateSubscription(this.product, this.planDuration, this.user.uid, token)
           .then(success => {
             this.closeUpdatingModal();
             this.goToUpdatingSuccess();

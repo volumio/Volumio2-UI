@@ -1,6 +1,7 @@
 class AuthService {
   constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
-    paymentsService, $filter, modalService, socketService, $http, $location, themeManager, cloudService) {
+    paymentsService, $filter, modalService, socketService, $http, $location, themeManager, cloudService,
+    firebaseApiFunctionsService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -17,6 +18,7 @@ class AuthService {
     this.themeManager = themeManager;
     this.$window = $window;
     this.cloudService = cloudService;
+    this.firebaseApiFunctionsService = firebaseApiFunctionsService;
 
     this.isEnabled = false;
 
@@ -183,17 +185,7 @@ class AuthService {
   }
 
   getUserToken(uid = null) {
-    return this.angularFireService.getToken().then(idToken => {
-      return this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/getCustomToken',
-        method: "GET",
-        params: { idToken: idToken }
-      }).then(response => {
-        return response.data;
-      });
-    }).catch(error => {
-      this.modalService.openDefaultErrorModal(error);
-    });
+    return this.firebaseApiFunctionsService.getUserToken(uid);
   }
 
   requestUserToBackend() {

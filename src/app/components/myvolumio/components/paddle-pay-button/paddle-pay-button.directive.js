@@ -12,7 +12,8 @@ class PaddlePayButtonDirective {
         userId: '<',
         buttonLabel: '@',
         buttonClass: '@',
-        userEmail: '='
+        userEmail: '=',
+        planDuration: '='
       }
     };
     return directive;
@@ -44,6 +45,7 @@ class PaddlePayButtonController {
     this.buttonLabel = this.$scope.buttonLabel;
     this.buttonClass = this.$scope.buttonClass;
     this.userEmail = this.$scope.userEmail || '';
+    this.planDuration = this.$scope.planDuration;
 
     this.init();
   }
@@ -70,10 +72,22 @@ class PaddlePayButtonController {
     //
   }
 
+  getPaddleProductId(){
+    if(this.product.prices === undefined || this.planDuration === undefined){
+      return undefined;
+    }
+    return this.product.prices[this.planDuration].paddleId;
+  }
+
   handlePayment() {
+    var paddleId = this.getPaddleProductId();
+    if(paddleId === undefined || !Number.isInteger(paddleId) ){
+      alert("Error, no transaction occurred, no paddleId found.");
+      return;
+    }
     /* jshint ignore:start */
     Paddle.Checkout.open({
-      product: this.product.paddleId,
+      product: paddleId,
       email: this.userEmail,
       passthrough: { "email": this.userEmail, "uid": this.userId },
       successCallback: (data) => {

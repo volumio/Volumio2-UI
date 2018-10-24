@@ -1,5 +1,5 @@
 class PaddleService {
-  constructor(angularFireService, modalService, databaseService, $q, $http, $log) {
+  constructor(angularFireService, modalService, databaseService, $q, $http, $log, firebaseApiFunctionsService) {
     'ngInject';
 
     this.angularFireService = angularFireService;
@@ -8,7 +8,7 @@ class PaddleService {
     this.$q = $q;
     this.$http = $http;
     this.$log = $log;
-
+    this.firebaseApiFunctionsService = firebaseApiFunctionsService;
 
     this.paddleJsUrl = 'https://cdn.paddle.com/paddle/paddle.js';
     this.paddleS2SUrl = '';
@@ -58,10 +58,10 @@ class PaddleService {
 
   }
 
-  updateSubscription(newPlan, userId, token) {
+  updateSubscription(newPlan, planDuration, userId, token) {
     var updating = this.$q.defer();
     var newPlanId = newPlan.paddleId;
-    var subscription = this.executeUpdateSuscription(newPlanId, userId, token);
+    var subscription = this.executeUpdateSuscription(newPlanId, planDuration, userId, token);
     subscription.then((response) => {
       if (response && response.data && response.data.success) {
         updating.resolve(true);
@@ -91,59 +91,16 @@ class PaddleService {
   }
 
   getSubscriptionCancelUrl(userId, token) {
-    let promise = new Promise((resolve, reject) => {
-      this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/getSubscriptionCancelUrl',
-        method: "POST",
-        params: { "token": token, "uid": userId }
-      }).then(
-        res => {
-          resolve(res);
-        },
-        msg => {
-          reject(msg);
-        }
-      );
-    });
-    return promise;
+    return this.firebaseApiFunctionsService.getSubscriptionCancelUrl(userId, token);
   }
 
 
-  executeUpdateSuscription(newPlan, userId, token) {
-
-    let promise = new Promise((resolve, reject) => {
-      this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/updateSubscription',
-        method: "POST",
-        params: { "token": token, "uid": userId, "newPlan": newPlan }
-      }).then(
-        res => {
-          resolve(res);
-        },
-        msg => {
-          reject(msg);
-        }
-      );
-    });
-    return promise;
+  executeUpdateSuscription(newPlan, planDuration, userId, token) {
+    return this.executeUpdateSuscription(newPlan, planDuration, userId, token);
   }
 
   executeCancelSubscription(userId, token) {
-    let promise = new Promise((resolve, reject) => {
-      this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/cancelSubscription',
-        method: "POST",
-        params: { "token": token, "uid": userId }
-      }).then(
-        res => {
-          resolve(res);
-        },
-        msg => {
-          reject(msg);
-        }
-      );
-    });
-    return promise;
+    return this.executeCancelSubscription(userId, token);
   }
 
 

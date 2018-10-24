@@ -7,7 +7,7 @@
     <div class="panel-body">
       <div class="the-price">
         <h1>
-          {{myVolumioPlanCardController.product.textualPrice}}
+          {{myVolumioPlanCardController.getShownPrice()}}
         </h1>
         <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
       </div>
@@ -80,7 +80,7 @@
       </div>-->
       <div ng-if="myVolumioPlanCardController.activateSubscribe">
         <paddle-pay-button paddle-product='myVolumioPlanCardController.product' callback='myVolumioPlanCardController.subscriptionCallback(subscribing)' user-id="myVolumioPlanCardController.user.uid" button-label="{{'MYVOLUMIO.SUBSCRIBE' | translate}}" button-class="btn-block"
-          user-email="myVolumioPlanCardController.user.email"></paddle-pay-button>
+          user-email="myVolumioPlanCardController.user.email" plan-duration="myVolumioPlanCardController.getCurrentPlanDuration()"></paddle-pay-button>
       </div>
       <div ng-if="myVolumioPlanCardController.activateCancellation">
         <button ng-click="myVolumioPlanCardController.doDowngrade()" type="button" class="btn btn-labeled btn-default">

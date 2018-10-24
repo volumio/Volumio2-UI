@@ -344,7 +344,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
   })
 
   .state('myvolumio.subscribe', {
-    url: '/subscribe/:plan',
+    url: '/subscribe/:plan/:planDuration',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/subscribe/myvolumio-subscribe.html',
@@ -458,7 +458,7 @@ function routerConfig ($stateProvider, $urlRouterProvider, $locationProvider, th
   })
 
   .state('myvolumio.change-subscription', {
-    url: '/subscription/change/:plan',
+    url: '/subscription/change/:plan/:planDuration',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/change-subscription/myvolumio-change-subscription.html',

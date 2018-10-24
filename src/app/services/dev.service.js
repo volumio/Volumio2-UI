@@ -19,6 +19,10 @@ class DevService {
     return this.$q.resolve(this.env === 'dev');
   }
 
+  isDevSync(){
+    return this.env === 'dev';
+  }
+
 }
 
 export default DevService;

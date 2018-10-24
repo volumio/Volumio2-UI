@@ -26,8 +26,8 @@ class PaymentsService {
     return this.paddleService.cancelSubscription(subscriptionId, userId, token);
   }
 
-  updateSubscription(planCode, userId, token) {
-    return this.paddleService.updateSubscription(planCode, userId, token);
+  updateSubscription(planCode, planDuration, userId, token) {
+    return this.paddleService.updateSubscription(planCode, planDuration, userId, token);
   }
 
 }
