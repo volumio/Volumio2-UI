@@ -1,12 +1,13 @@
 class FirebaseApiFunctionsService {
 
-  constructor($rootScope, $http, $q, devService, modalService) {
+  constructor($rootScope, $http, $q, devService, modalService, angularFireService) {
     'ngInject';
 
     this.$http = $http;
     this.$q = $q;
     this.devService = devService;
     this.modalService = modalService;
+    this.angularFireService = angularFireService;
 
     this.API_URL_PROD = 'https://us-central1-myvolumio.cloudfunctions.net/api/v1';
     this.API_URL_DEV = 'https://us-central1-myvolumio-dev.cloudfunctions.net/api/v1';
