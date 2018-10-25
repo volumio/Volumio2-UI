@@ -1,5 +1,6 @@
 class PaddleService {
-  constructor(angularFireService, modalService, databaseService, $q, $http, $log, firebaseApiFunctionsService) {
+  constructor(angularFireService, modalService, databaseService, $q, $http, $log, firebaseApiFunctionsService,
+              devService) {
     'ngInject';
 
     this.angularFireService = angularFireService;
@@ -9,10 +10,13 @@ class PaddleService {
     this.$http = $http;
     this.$log = $log;
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
+    this.devService = devService;
 
     this.paddleJsUrl = 'https://cdn.paddle.com/paddle/paddle.js';
     this.paddleS2SUrl = '';
-    this.paddleVendorId = 29290;
+
+    this.PADDLE_VENDOR_ID_PROD = 29290;
+    this.PADDLE_VENDOR_ID_DEV = 36336;
 
     this.isLoaded = false;
     this.isInit = false;
@@ -41,13 +45,20 @@ class PaddleService {
   }
 
   initPaddle() {
+    var isDev = this.isDev();
+    var paddleVendorId = isDev ? this.PADDLE_VENDOR_ID_DEV : this.PADDLE_VENDOR_ID_PROD;
+    var isDebug = isDev ? true : false;
     /* jshint ignore:start */
     Paddle.Setup({
-      vendor: this.paddleVendorId,
-      debug: false
+      vendor: paddleVendorId,
+      debug: isDebug
     });
     /* jshint ignore:end */
     this.isInit = true;
+  }
+
+  isDev(){
+    return this.devService.isDevSync();
   }
 
   subscribe(subscription, userId) {
@@ -96,11 +107,11 @@ class PaddleService {
 
 
   executeUpdateSuscription(newPlan, planDuration, userId, token) {
-    return this.executeUpdateSuscription(newPlan, planDuration, userId, token);
+    return this.firebaseApiFunctionsService.executeUpdateSuscription(newPlan, planDuration, userId, token);
   }
 
   executeCancelSubscription(userId, token) {
-    return this.executeCancelSubscription(userId, token);
+    return this.firebaseApiFunctionsService.executeCancelSubscription(userId, token);
   }
 
 
