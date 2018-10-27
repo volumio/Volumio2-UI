@@ -72,10 +72,11 @@ class PaddleService {
   updateSubscription(newPlan, planDuration, userId, token) {
     var updating = this.$q.defer();
 
+    var newPlanId;
     if (newPlan.paddleId){
-      var newPlanId = newPlan.paddleId;
+      newPlanId = newPlan.paddleId;
     } else {
-      var newPlanId = newPlan.prices[planDuration].planId;
+      newPlanId = newPlan.prices[planDuration].planId;
     }
     var subscription = this.executeUpdateSuscription(newPlanId, planDuration, userId, token);
     subscription.then((response) => {
