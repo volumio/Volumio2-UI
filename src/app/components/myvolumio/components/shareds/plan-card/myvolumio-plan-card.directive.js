@@ -58,6 +58,9 @@ class MyVolumioPlanCardController {
 
   authInit() {
     this.$scope.$watch(() => this.authService.user, (user) => {
+      if(user.planDuration === undefined){
+        user.planDuration = 'monthly';
+      }
       this.user = user;
     });
   }

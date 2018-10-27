@@ -13,6 +13,9 @@
             <span translate="MYVOLUMIO.EXPIRING"></span>:
             {{myVolumioCurrentPlanCardController.getDate(myVolumioCurrentPlanCardController.user.expire_at) | date}}
           </small>
+          <small style="text-transform: capitalize;">
+              {{myVolumioCurrentPlanCardController.user.planDuration}}
+          </small>
         </div>
       </div>
       <div class="panel-footer">
