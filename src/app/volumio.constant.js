@@ -4,6 +4,6 @@ angular.module("volumio.constant", [])
 
 .constant("variant", "volumio")
 
-.constant("env", "dev")
+.constant("env", "development")
 
 ;

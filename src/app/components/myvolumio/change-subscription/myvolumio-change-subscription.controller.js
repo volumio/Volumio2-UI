@@ -1,10 +1,11 @@
 class MyVolumioChangeSubscriptionController {
-  constructor($scope, $state, $stateParams, $q, authService, user, paymentsService, StripeCheckout, modalService, productsService, $filter, $document) {
+  constructor($scope, $state, $stateParams, $q, $log, authService, user, paymentsService, StripeCheckout, modalService, productsService, $filter, $document) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$q = $q;
+    this.$log = $log;
     this.modalService = modalService;
     this.paymentsService = paymentsService;
     this.authService = authService;
@@ -62,7 +63,12 @@ class MyVolumioChangeSubscriptionController {
             this.goToUpdatingSuccess();
           })
           .catch(error => {
-            this.modalService.openDefaultErrorModal(error.data.error.message);
+            this.$log.debug(error);
+            var errorMessage = 'Payment Failed';
+            if (error.data.error.message) {
+              errorMessage = error.data.error.message;
+            }
+            this.modalService.openDefaultErrorModal(errorMessage);
             this.closeUpdatingModal();
             this.goToUpdatingFail();
           });

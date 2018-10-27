@@ -44,7 +44,6 @@ class FirebaseApiFunctionsService {
 
   executeUpdateSubscription(newPlan, planDuration, userId, token){
     var url = this.getApiUrl()+'/updateSubscription';
-
     let promise = new Promise((resolve, reject) => {
       this.$http({
         url: url,

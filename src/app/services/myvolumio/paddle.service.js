@@ -76,9 +76,9 @@ class PaddleService {
     if (newPlan.paddleId){
       newPlanId = newPlan.paddleId;
     } else {
-      newPlanId = newPlan.prices[planDuration].planId;
+      newPlanId = newPlan.prices[planDuration].paddleId;
     }
-    var subscription = this.executeUpdateSuscription(newPlanId, planDuration, userId, token);
+    var subscription = this.executeUpdateSubscription(newPlanId, planDuration, userId, token);
     subscription.then((response) => {
       if (response && response.data && response.data.success) {
         updating.resolve(true);
@@ -112,8 +112,8 @@ class PaddleService {
   }
 
 
-  executeUpdateSuscription(newPlan, planDuration, userId, token) {
-    return this.firebaseApiFunctionsService.executeUpdateSuscription(newPlan, planDuration, userId, token);
+  executeUpdateSubscription(newPlan, planDuration, userId, token) {
+    return this.firebaseApiFunctionsService.executeUpdateSubscription(newPlan, planDuration, userId, token);
   }
 
   executeCancelSubscription(userId, token) {
