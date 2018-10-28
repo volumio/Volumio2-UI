@@ -24,7 +24,7 @@
       </table>
     </div>
     <div class="panel-footer">
-      <!-- FREE GO TO CANCEL SUBSCRIPT. OR CURRENT STATUS-->
+      <!-- FREE PLAN: GO TO CANCEL SUBSCRIPTION OR SHOW CURRENT STATUS -->
       <div ng-if="myVolumioPlanCardController.product.plan === 'free' && myVolumioPlanCardController.isDefaultBehaviour === true">
         <button type="button" class="btn btn-labeled btn-success" ng-if="!myVolumioPlanCardController.user.plan || myVolumioPlanCardController.user.plan === 'free'">
           <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
@@ -35,55 +35,29 @@
           <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
         </button>
       </div>
-      <!-- VIRTUOSO GO TO PAYMENTS OR CURRENT STATUS -->
-      <div ng-if="myVolumioPlanCardController.product.plan === 'virtuoso' && myVolumioPlanCardController.isDefaultBehaviour === true">
-        <!-- GO TO SUBSCRIBE TO VIRTUOSO -->
-        <div ng-if="myVolumioPlanCardController.user.plan !== 'virtuoso' && myVolumioPlanCardController.user.plan !== 'superstar'">
-          <button ng-click="myVolumioPlanCardController.subscribe(myVolumioPlanCardController.product.plan)" class="btn btn-success btn-labeled">
-            <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+      <!-- PAYMENT PLANS: GO TO SUBSCRIBE, UPGRADE, DOWNGRADE OR SHOW CURRENT STATUS -->
+      <div ng-if="myVolumioPlanCardController.isDefaultBehaviour === true && myVolumioPlanCardController.product.plan !== 'free'">
+          <!-- GO TO SUBSCRIBE -->
+          <div ng-if="myVolumioPlanCardController.user.plan === undefined || myVolumioPlanCardController.user.plan === 'free'" >
+            <button ng-click="myVolumioPlanCardController.subscribe(myVolumioPlanCardController.product.plan)" class="btn btn-success btn-labeled">
+              <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
+              <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
+            </button>
+            <br />
+            <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
+          </div>
+          <!-- SHOW CURRENT STATUS -->
+          <button type="button" class="btn btn-labeled btn-success" ng-if="myVolumioPlanCardController.user.plan === myVolumioPlanCardController.product.plan && myVolumioPlanCardController.user.planDuration === myVolumioPlanCardController.showMode.planDuration">
+            <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
+            <span translate="MYVOLUMIO.CURRENT_PLAN"></span>
+          </button>
+          <!-- GO TO CHANGE PLAN -->
+          <button ng-click="myVolumioPlanCardController.goToChangePlan(myVolumioPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="myVolumioPlanCardController.user.plan !== 'free' && (myVolumioPlanCardController.user.planDuration !== myVolumioPlanCardController.showMode.planDuration || myVolumioPlanCardController.user.plan !== myVolumioPlanCardController.product.plan)" ng-disabled="myVolumioPlanCardController.user.planDuration === 'yearly' && myVolumioPlanCardController.showMode.planDuration === 'monthly'">
+            <span class="btn-label"><i class="fa fa-random"></i></span>
             <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
           </button>
-          <br />
-          <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
         </div>
-        <!-- SHOW VIRTUOSO AS CURRENT STATUS -->
-        <button type="button" class="btn btn-labeled btn-success" ng-if="myVolumioPlanCardController.user.plan === myVolumioPlanCardController.product.plan && myVolumioPlanCardController.user.planDuration === myVolumioPlanCardController.showMode.planDuration">
-          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
-          <span translate="MYVOLUMIO.CURRENT_PLAN"></span>
-        </button>
-        <!-- GO TO CHANGE PLAN TO VIRTUOSO -->
-        <button ng-click="myVolumioPlanCardController.goToChangePlan(myVolumioPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="myVolumioPlanCardController.user.plan === 'superstar' || (myVolumioPlanCardController.user.plan === 'virtuoso' && myVolumioPlanCardController.user.planDuration !== myVolumioPlanCardController.showMode.planDuration)" ng-disabled="myVolumioPlanCardController.user.planDuration === 'yearly' && myVolumioPlanCardController.showMode.planDuration === 'monthly'">
-          <span class="btn-label"><i class="glyphicon glyphicon-triangle-bottom"></i></span>
-          <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
-        </button>
-      </div>
-      <!-- SUPERSTAR GO TO PAYMENTS OR CURRENT STATUS -->
-      <div ng-if="myVolumioPlanCardController.product.plan === 'superstar' && myVolumioPlanCardController.isDefaultBehaviour === true">
-        <!-- GO TO SUBSCRIBE TO SUPERSTAR -->
-        <div ng-if="myVolumioPlanCardController.user.plan === undefined || myVolumioPlanCardController.user.plan === 'free' && myVolumioPlanCardController.user.plan !== 'superstar'" >
-          <button ng-click="myVolumioPlanCardController.subscribe(myVolumioPlanCardController.product.plan)" class="btn btn-success btn-labeled">
-            <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
-            <span translate="MYVOLUMIO.CHANGE_PLAN"></span> -
-          </button>
-          <br />
-          <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
-        </div>
-        <!-- SHOW SUPERSTAR AS CURRENT STATUS -->
-        <button type="button" class="btn btn-labeled btn-success" ng-if="myVolumioPlanCardController.user.plan === myVolumioPlanCardController.product.plan && myVolumioPlanCardController.user.planDuration === myVolumioPlanCardController.showMode.planDuration">
-          <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>
-          <span translate="MYVOLUMIO.CURRENT_PLAN"></span>
-        </button>
-        <!-- GO TO CHANGE PLAN TO SUPERSTAR -->
-        <button ng-click="myVolumioPlanCardController.goToChangePlan(myVolumioPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="myVolumioPlanCardController.user.plan === 'virtuoso' || (myVolumioPlanCardController.user.plan === 'superstar' && myVolumioPlanCardController.user.planDuration !== myVolumioPlanCardController.showMode.planDuration )" ng-disabled="myVolumioPlanCardController.user.planDuration === 'yearly' && myVolumioPlanCardController.showMode.planDuration === 'monthly'">
-          <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
-          <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
-        </button>
-      </div>
       <!-- PADDLE ACTUAL SUBSCRIBE/UNSUB/CHANGE BUTTONS -->
-      <!--<div ng-if="myVolumioPlanCardController.activateSubscribe">
-        <stripe-pay-button stripe-product='myVolumioPlanCardController.product' callback='myVolumioPlanCardController.subscriptionCallback(subscribing)' user-id="myVolumioPlanCardController.user.uid" button-label="{{'MYVOLUMIO.SUBSCRIBE' | translate}}" button-class="btn-block"
-          user-email="myVolumioPlanCardController.user.email"></stripe-pay-button>
-      </div>-->
       <div ng-if="myVolumioPlanCardController.activateSubscribe">
         <paddle-pay-button paddle-product='myVolumioPlanCardController.product' callback='myVolumioPlanCardController.subscriptionCallback(subscribing)' user-id="myVolumioPlanCardController.user.uid" button-label="{{'MYVOLUMIO.SUBSCRIBE' | translate}}" button-class="btn-block"
           user-email="myVolumioPlanCardController.user.email" plan-duration="myVolumioPlanCardController.getCurrentPlanDuration()"></paddle-pay-button>
