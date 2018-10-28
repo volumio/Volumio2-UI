@@ -18,6 +18,7 @@ class MyVolumioChangeSubscriptionController {
     this.user = user;
     this.product = null;
     this.planDuration = null;
+    this.showMode = { planDuration: 'monthly' };
 
     this.init();
   }
@@ -43,6 +44,7 @@ class MyVolumioChangeSubscriptionController {
 
   loadPlanDuration(){
     this.planDuration = this.$stateParams['planDuration'];
+    this.showMode.planDuration = this.planDuration;
   }
 
   changePlan() {
