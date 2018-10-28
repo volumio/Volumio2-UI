@@ -8,7 +8,6 @@ class DevService {
 
     this.DEV_ENV = 'development';
     this.PROD_ENV = 'production';
-
     this.env = env || this.DEV_ENV;
 
     if(this.isDevSync()){

@@ -47,7 +47,9 @@ class WaitBackendScrimController {
       this.hideSrcrim();
     });
     this.socketService.disconnect((socket) => {
-      this.$document.querySelector('#waitBackendScrim').classList.remove('hideScrim');
+      if (this.$document.querySelector('#waitBackendScrim')) {
+        this.$document.querySelector('#waitBackendScrim').classList.remove('hideScrim');
+      }
       //this.$state.go('volumio.playback');
     });
   }

@@ -1,5 +1,5 @@
 class MyVolumioEditProfileController {
-  constructor($scope, $state, authService, $q, $filter, modalService, user) {
+  constructor($scope, $state, authService, $q, $filter, modalService, user, paddleService) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -7,6 +7,7 @@ class MyVolumioEditProfileController {
     this.$q = $q;
     this.filteredTranslate = $filter('translate');
     this.modalService = modalService;
+    this.paddleService = paddleService;
 
     this.user = user;
     this.emailChanged = false;
@@ -162,6 +163,64 @@ class MyVolumioEditProfileController {
       this.deletingUser = false;
       this.modalService.openDefaultErrorModal(error);
     });
+  }
+
+  getSignupDate() {
+    if (!this.user.planData) {
+      return null;
+    }
+    if (!this.user.planData.signupDate) {
+      return null;
+    }
+    //converts SQL like date string to Date Object
+    var input = this.user.planData.signupDate;
+    var t = input.split(/[- :]/);
+    var d = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
+    return d;
+  }
+
+  isUserSubscriptionActive() {
+      if (!this.user.planData) {
+        return false;
+      }
+      if (!this.user.planData.status) {
+        return false;
+      }
+      if (this.user.planData.status === 'active' || this.user.planData.status === 'trialing' || this.user.planData.status === 'past_due') {
+        return true;
+      }
+      return false;
+  }
+
+  getUserSubscriptionStatus() {
+    if (!this.user.planData || !this.user.planData.status) {
+      return null;
+    } else {
+      switch(this.user.planData.status) {
+        case 'active':
+          return this.filteredTranslate('MYVOLUMIO.ACTIVE');
+        case 'trialing':
+          return this.filteredTranslate('MYVOLUMIO.TRIALING');
+        case 'past_due':
+          return this.filteredTranslate('MYVOLUMIO.PROBLEMS_WITH_PAYMENT');
+        default:
+          return this.filteredTranslate('MYVOLUMIO.INACTIVE');
+        }
+      }
+  }
+
+  updateSubscriptionMethod() {
+    var updateUrl = this.user.planData.updateUrl;
+    this.paddleService.openUpdateSubscriptionMethod(updateUrl);
+  }
+
+  cancelSubscription() {
+    var cancelUrl = this.user.planData.cancelUrl;
+    this.paddleService.openCancelSubscriptionByUrl(cancelUrl);
+  }
+
+  subscribe() {
+    this.$state.go('myvolumio.plans');
   }
 
 }

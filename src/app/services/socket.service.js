@@ -54,7 +54,8 @@ class SocketService {
       'pushSleep',
       'pushMultiroom',
       'pushWirelessNetworks',
-      'pushInfoNetwork'
+      'pushInfoNetwork',
+      'pushToastMessage'
     ];
   }
 
