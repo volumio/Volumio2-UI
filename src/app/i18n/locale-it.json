@@ -339,7 +339,12 @@
     "CONFIRM_CHANGE_PLAN_TITLE": "Cambia abbonamento",
     "CONFIRM_CHANGE_PLAN": "Vuoi veramente cambiare il tuo abbonamento? La differenza di prezzo ti verrà addebitata immediatamente",
     "CONFIRM_CANCEL_PLAN_TITLE": "Cancella abbonamento",
-    "CONFIRM_CANCEL_PLAN": "Vuoi veramente cancellare il tuo abbonamento?"
+    "CONFIRM_CANCEL_PLAN": "Vuoi veramente cancellare il tuo abbonamento?",
+    "MONTHLY": "Mensile",
+    "MONTHLY_PER": "Al mese",
+    "YEARLY": "Annuale",
+    "YEARLY_PER": "Per anno",
+    "SAVE_20": "Risparmia il 20% con il piano annuale!"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",

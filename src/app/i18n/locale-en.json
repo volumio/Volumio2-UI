@@ -341,8 +341,10 @@
     "CONFIRM_CANCEL_PLAN_TITLE": "Cancel Plan",
     "CONFIRM_CANCEL_PLAN": "Do you really want to cancel your plan?",
     "MONTHLY": "Monthly",
+    "MONTHLY_PER": "Per Month",
     "YEARLY": "Yearly",
-    "SAVE_20": "SAVE 20% ON YEARLY"
+    "YEARLY_PER": "Per Year",
+    "SAVE_20": "Save 20% with a Yearly Plan!"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
