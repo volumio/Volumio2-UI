@@ -71,7 +71,8 @@
     "EMAIL": "Email",
     "SUBSCRIBE_ME": "M'inscrire",
     "SHARE": "Partager",
-    "EJECT":"Ejecter"
+    "EJECT":"Ejecter",
+    "FUNCTIONALIES_CONTROL":"Contrôle des fonctionnalités" 
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -94,7 +95,8 @@
     "PAUSE":"Pause",
     "CLEAR_AND_PLAY": "Remplacer et jouer",
     "SAFE_REMOVE": "Ejection des médias",
-    "UPDATE_FOLDER": "Mise à jour du dossier"
+    "UPDATE_FOLDER": "Mise à jour du dossier",
+    "DELETE_FOLDER":"Effacer le dossier"
   },
 "MY_MUSIC": { 
     "UPDATE":"Mettre à jour", 
