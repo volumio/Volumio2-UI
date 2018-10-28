@@ -2,6 +2,8 @@
   <div class="boxHeader">
     <div class="title">
       <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+      <a href="https://volumio.org/myvolumio" target="_blank" class="btn btn-outline pull-right" id="myvolumio-info">
+          <i class="fa fa-question"></i> <span class="hidden-xs" translate="MYVOLUMIO.WHAT_IS_MYVOLUMIO" class="ng-scope"></span></a>
     </div>
   </div>
   <div id="authLoginPlugin" class="panel panel-default">
@@ -14,14 +16,14 @@
       <div id="" ng-if="myVolumioLoginController.user == null">
 
         <h4 style="text-align: right; margin-right: 16px;">
-          <a ng-click="myVolumioLoginController.goToSignUp()">
+          <a ng-click="myVolumioLoginController.goToSignUp()" class="btn btn-outline pull-right">
             <i class="fa fa-user"></i>
             <span translate="MYVOLUMIO.SIGNUP"></span>
           </a>
         </h4>
 
         <div class="omb_login">
-          <h3 class="omb_authTitle">Login</h3>
+          <h3 class="omb_authTitle" translate="MYVOLUMIO.LOGIN"></h3>
 
           <div ng-if="myVolumioLoginController.isSocialEnabled()">
             <div class="row omb_row-sm-offset-3 omb_socialButtons">
@@ -48,7 +50,7 @@
             <div class="row omb_row-sm-offset-3 omb_loginOr">
               <div class="col-xs-24 col-sm-12">
                 <hr class="omb_hrOr">
-                <span class="omb_spanOr">or</span>
+                <span class="omb_spanOr" translate="MYVOLUMIO.OR"></span>
               </div>
             </div>
           </div>
