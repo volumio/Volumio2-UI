@@ -1,10 +1,11 @@
 class MyVolumioChangeSubscriptionController {
-  constructor($scope, $state, $stateParams, $q, authService, user, paymentsService, StripeCheckout, modalService, productsService, $filter, $document) {
+  constructor($scope, $state, $stateParams, $q, $log, authService, user, paymentsService, StripeCheckout, modalService, productsService, $filter, $document) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$q = $q;
+    this.$log = $log;
     this.modalService = modalService;
     this.paymentsService = paymentsService;
     this.authService = authService;
@@ -16,6 +17,8 @@ class MyVolumioChangeSubscriptionController {
 
     this.user = user;
     this.product = null;
+    this.planDuration = null;
+    this.showMode = { planDuration: 'monthly' };
 
     this.init();
   }
@@ -23,6 +26,7 @@ class MyVolumioChangeSubscriptionController {
   init() {
     this.loadProduct();
     this.authInit();
+    this.loadPlanDuration();
   }
 
   loadProduct() {
@@ -38,6 +42,11 @@ class MyVolumioChangeSubscriptionController {
     });
   }
 
+  loadPlanDuration(){
+    this.planDuration = this.$stateParams['planDuration'];
+    this.showMode.planDuration = this.planDuration;
+  }
+
   changePlan() {
     if (this.user.planData.subscriptionId === undefined || this.user.planData.subscriptionId === null) {
       this.modalService.openDefaultErrorModal("MYVOLUMIO.ERROR_CHANGE_PLAN_NO_PREVIOUS_PLAN_FOUND");
@@ -50,13 +59,18 @@ class MyVolumioChangeSubscriptionController {
     this.modalService.openDefaultConfirm('MYVOLUMIO.CONFIRM_CHANGE_PLAN_TITLE', 'MYVOLUMIO.CONFIRM_CHANGE_PLAN', () => {
       this.openUpdatingModal();
       this.authService.getUserToken().then(token => {
-        this.paymentsService.updateSubscription(this.product, this.user.uid, token)
+        this.paymentsService.updateSubscription(this.product, this.planDuration, this.user.uid, token)
           .then(success => {
             this.closeUpdatingModal();
             this.goToUpdatingSuccess();
           })
           .catch(error => {
-            this.modalService.openDefaultErrorModal(error.data.error.message);
+            this.$log.debug(error);
+            var errorMessage = 'Payment Failed';
+            if (error.data.error.message) {
+              errorMessage = error.data.error.message;
+            }
+            this.modalService.openDefaultErrorModal(errorMessage);
             this.closeUpdatingModal();
             this.goToUpdatingFail();
           });

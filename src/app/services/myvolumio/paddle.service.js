@@ -1,5 +1,6 @@
 class PaddleService {
-  constructor(angularFireService, modalService, databaseService, $q, $http, $log) {
+  constructor(angularFireService, modalService, databaseService, $q, $http, $log, firebaseApiFunctionsService,
+              devService) {
     'ngInject';
 
     this.angularFireService = angularFireService;
@@ -8,11 +9,14 @@ class PaddleService {
     this.$q = $q;
     this.$http = $http;
     this.$log = $log;
-
+    this.firebaseApiFunctionsService = firebaseApiFunctionsService;
+    this.devService = devService;
 
     this.paddleJsUrl = 'https://cdn.paddle.com/paddle/paddle.js';
     this.paddleS2SUrl = '';
-    this.paddleVendorId = 29290;
+
+    this.PADDLE_VENDOR_ID_PROD = 29290;
+    this.PADDLE_VENDOR_ID_DEV = 36336;
 
     this.isLoaded = false;
     this.isInit = false;
@@ -41,13 +45,20 @@ class PaddleService {
   }
 
   initPaddle() {
+    var isDev = this.isDev();
+    var paddleVendorId = isDev ? this.PADDLE_VENDOR_ID_DEV : this.PADDLE_VENDOR_ID_PROD;
+    var isDebug = isDev ? true : false;
     /* jshint ignore:start */
     Paddle.Setup({
-      vendor: this.paddleVendorId,
-      debug: false
+      vendor: paddleVendorId,
+      debug: isDebug
     });
     /* jshint ignore:end */
     this.isInit = true;
+  }
+
+  isDev(){
+    return this.devService.isDevSync();
   }
 
   subscribe(subscription, userId) {
@@ -58,10 +69,16 @@ class PaddleService {
 
   }
 
-  updateSubscription(newPlan, userId, token) {
+  updateSubscription(newPlan, planDuration, userId, token) {
     var updating = this.$q.defer();
-    var newPlanId = newPlan.paddleId;
-    var subscription = this.executeUpdateSuscription(newPlanId, userId, token);
+
+    var newPlanId;
+    if (newPlan.paddleId){
+      newPlanId = newPlan.paddleId;
+    } else {
+      newPlanId = newPlan.prices[planDuration].paddleId;
+    }
+    var subscription = this.executeUpdateSubscription(newPlanId, planDuration, userId, token);
     subscription.then((response) => {
       if (response && response.data && response.data.success) {
         updating.resolve(true);
@@ -91,59 +108,16 @@ class PaddleService {
   }
 
   getSubscriptionCancelUrl(userId, token) {
-    let promise = new Promise((resolve, reject) => {
-      this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/getSubscriptionCancelUrl',
-        method: "POST",
-        params: { "token": token, "uid": userId }
-      }).then(
-        res => {
-          resolve(res);
-        },
-        msg => {
-          reject(msg);
-        }
-      );
-    });
-    return promise;
+    return this.firebaseApiFunctionsService.getSubscriptionCancelUrl(userId, token);
   }
 
 
-  executeUpdateSuscription(newPlan, userId, token) {
-
-    let promise = new Promise((resolve, reject) => {
-      this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/updateSubscription',
-        method: "POST",
-        params: { "token": token, "uid": userId, "newPlan": newPlan }
-      }).then(
-        res => {
-          resolve(res);
-        },
-        msg => {
-          reject(msg);
-        }
-      );
-    });
-    return promise;
+  executeUpdateSubscription(newPlan, planDuration, userId, token) {
+    return this.firebaseApiFunctionsService.executeUpdateSubscription(newPlan, planDuration, userId, token);
   }
 
   executeCancelSubscription(userId, token) {
-    let promise = new Promise((resolve, reject) => {
-      this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/cancelSubscription',
-        method: "POST",
-        params: { "token": token, "uid": userId }
-      }).then(
-        res => {
-          resolve(res);
-        },
-        msg => {
-          reject(msg);
-        }
-      );
-    });
-    return promise;
+    return this.firebaseApiFunctionsService.executeCancelSubscription(userId, token);
   }
 
   openUpdateSubscriptionMethod(updateUrl) {

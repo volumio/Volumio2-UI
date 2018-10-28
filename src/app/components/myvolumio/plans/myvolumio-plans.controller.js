@@ -1,5 +1,5 @@
 class MyVolumioPlansController {
-  constructor($scope, paymentsService, $state, $q, authService, productsService, modalService, user) {
+  constructor($scope, paymentsService, $state, $q, authService, productsService, modalService, user, $filter) {
     'ngInject';
     this.$scope = $scope;
     this.paymentsService = paymentsService;
@@ -12,10 +12,20 @@ class MyVolumioPlansController {
 
     this.user = user;
 
+    this.$translate = $filter('translate');
+
     this.products = {};
     this.product0 = null;
     this.product1 = null;
     this.product2 = null;
+
+    this.showYearly = false;
+    this.showMode = {
+      planDuration: this.getSelectedPlanDuration()
+    };
+
+    this.switchLabelMonthly = this.$translate('MYVOLUMIO.MONTHLY');
+    this.switchLabelYearly = this.$translate('MYVOLUMIO.YEARLY');
 
     this.init();
   }
@@ -23,6 +33,7 @@ class MyVolumioPlansController {
   init() {
     this.authInit();
     this.initProducts();
+    this.initShowMode();
   }
 
   authInit() {
@@ -38,6 +49,16 @@ class MyVolumioPlansController {
       this.product1 = this.products.virtuoso;
       this.product2 = this.products.superstar;
     });
+  }
+
+  initShowMode(){
+    this.$scope.$watch(() => this.showYearly, (showYearly,was,scope) => {
+      this.showMode.planDuration = this.getSelectedPlanDuration();
+    });
+  }
+
+  getSelectedPlanDuration(){
+    return this.showYearly === true ? this.productService.YEARLY_PLAN : this.productService.MONTHLY_PLAN;
   }
 
 }

@@ -351,7 +351,12 @@
     "ACTIVE": "Active",
     "TRIALING": "In trial period",
     "PROBLEMS_WITH_PAYMENT": "Problems with your payment method, please update it",
-    "INACTIVE": "Inactive"
+    "INACTIVE": "Inactive",
+    "MONTHLY": "Monthly",
+    "MONTHLY_PER": "Per Month",
+    "YEARLY": "Yearly",
+    "YEARLY_PER": "Per Year",
+    "SAVE_20": "Save 20% with a Yearly Plan!"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
