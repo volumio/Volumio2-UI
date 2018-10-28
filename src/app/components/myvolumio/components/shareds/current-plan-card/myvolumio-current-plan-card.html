@@ -14,7 +14,7 @@
             {{myVolumioCurrentPlanCardController.getDate(myVolumioCurrentPlanCardController.user.expire_at) | date}}
           </small>
           <small style="text-transform: capitalize;" ng-if="myVolumioCurrentPlanCardController.user.plan !== undefined && myVolumioCurrentPlanCardController.user.plan !== 'free'">
-              {{myVolumioCurrentPlanCardController.user.planDuration}}
+              {{'MYVOLUMIO.'+myVolumioCurrentPlanCardController.user.planDuration | uppercase | translate}}
           </small>
         </div>
       </div>

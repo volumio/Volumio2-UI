@@ -66,6 +66,9 @@ class MyVolumioPlanCardController {
   }
 
   getShownPrice(){
+    if(this.product === undefined){
+      return '';
+    }
     var planDuration = this.getCurrentPlanDuration();
     return this.product.prices[planDuration].textualPrice;
   }

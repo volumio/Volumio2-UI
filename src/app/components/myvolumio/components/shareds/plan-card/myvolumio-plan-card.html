@@ -9,6 +9,7 @@
         <h1>
           {{myVolumioPlanCardController.getShownPrice()}}
         </h1>
+        <span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free'" style="font-size: small;">/{{'MYVOLUMIO.'+myVolumioPlanCardController.showMode.planDuration | uppercase | translate | lowercase}}</span>
         <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
       </div>
       <table class="table">
