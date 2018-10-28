@@ -13,7 +13,7 @@ class MyVolumioDeviceSelectorDirective {
 
 class MyVolumioDeviceSelectorController {
   constructor($rootScope, $scope, authService, myVolumioDevicesService, modalService, socketService, productsService,
-    $http, $state, matchmediaService, databaseService) {
+    $http, $state, matchmediaService, databaseService, firebaseApiFunctionsService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -26,6 +26,7 @@ class MyVolumioDeviceSelectorController {
     this.$state = $state;
     this.matchmediaService = matchmediaService;
     this.databaseService = databaseService;
+    this.firebaseApiFunctionsService = firebaseApiFunctionsService;
 
     this.user = null;
     this.product = {};
@@ -128,40 +129,16 @@ class MyVolumioDeviceSelectorController {
   }
 
   doDisableDeviceApiCall(device) {
-    return this.authService.getUserToken().then(token => {
-      return this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/disableMyVolumioDevice',
-        method: "POST",
-        params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
-      }).then(response => {
-        return response.data;
-      });
-    });
+    return this.firebaseApiFunctionsService.doDisableDeviceApiCall(device);
   }
 
   doEnableDeviceApiCall(device) {
-    return this.authService.getUserToken().then(token => {
-      return this.$http({
-        url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/enableMyVolumioDevice',
-        method: "POST",
-        params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
-      }).then(response => {
-        return response.data;
-      });
-    });
+    return this.firebaseApiFunctionsService.doEnableDeviceApiCall(device);
   }
 
   deleteDevice(device) {
     this.modalService.openDefaultConfirm(null, 'MYVOLUMIO.DEVICE_CONFIRM_DELETE', () => {
-      return this.authService.getUserToken().then(token => {
-        return this.$http({
-          url: 'https://us-central1-myvolumio.cloudfunctions.net/api/v1/deleteMyVolumioDevice',
-          method: "POST",
-          params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
-        }).then(response => {
-          return response.data;
-        });
-      });
+      return this.firebaseApiFunctionsService.deleteDevice(device,this.user.uid);
     });
   }
 

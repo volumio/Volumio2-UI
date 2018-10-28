@@ -351,7 +351,12 @@
     "ACTIVE": "Attivo",
     "TRIALING": "Periodo di prova",
     "PROBLEMS_WITH_PAYMENT": "Problemi con il metodo di pagamento, aggiorna o verifica il metodo di pagamento",
-    "INACTIVE": "Non attivo"
+    "INACTIVE": "Non attivo",
+    "MONTHLY": "Mensile",
+    "MONTHLY_PER": "Al mese",
+    "YEARLY": "Annuale",
+    "YEARLY_PER": "Per anno",
+    "SAVE_20": "Risparmia il 20% con il piano annuale!"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",

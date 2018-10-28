@@ -15,6 +15,7 @@ class MyVolumioSubscribeController {
     this.openedModal = {};
 
     this.product = null;
+    this.showMode = { planDuration : null };
     this.user = user;
 
     this.init();
@@ -23,6 +24,7 @@ class MyVolumioSubscribeController {
   init() {
     this.authInit();
     this.loadProduct();
+    this.loadPlanDuration();
   }
 
   authInit() {
@@ -84,6 +86,10 @@ class MyVolumioSubscribeController {
 
   goToPlans() {
     this.$state.go('myvolumio.plans');
+  }
+
+  loadPlanDuration(){
+    this.showMode.planDuration = this.$stateParams['planDuration'];
   }
 
 }

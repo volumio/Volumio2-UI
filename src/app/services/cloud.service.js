@@ -9,7 +9,7 @@ class CloudService{
     if (this._isOnCloud !== undefined) {
       return this._isOnCloud;
     } else {
-      this._isOnCloud = this.$window.location.hostname === 'myvolumio.org' || this.$window.location.hostname === 'myvolumio-dev-33c3d.firebaseapp.com';
+      this._isOnCloud = this.$window.location.hostname === 'myvolumio.org' || this.$window.location.hostname === 'myvolumio-dev.firebaseapp.com';
       return this._isOnCloud;
     }
   }
