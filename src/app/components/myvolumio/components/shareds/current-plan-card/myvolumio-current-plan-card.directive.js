@@ -77,6 +77,21 @@ class MyVolumioCurrentPlanCardController {
     return date;
   }
 
+  isFreePlan(){
+    var isFreePlan = this.user.plan === undefined ||
+    this.user.plan === null || 
+    this.user.plan === 'free';
+    return isFreePlan;
+  }
+
+  getPlanDuration(){
+    var planDuration = this.user.planDuration;
+    if(planDuration === undefined || planDuration === null){
+      planDuration = 'monthly';
+    }
+    return planDuration;
+  }
+
 }
 
 export default MyVolumioCurrentPlanCardDirective;

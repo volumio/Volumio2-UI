@@ -27,8 +27,11 @@
                 <div class="col-sm-24 col-md-12 user-data">
                   <h3 class="user-title">{{myVolumioProfileController.user.firstName}} {{myVolumioProfileController.user.lastName}}
                     <span class="pull-right">
-                    <button ng-click="myVolumioProfileController.goToEdit()" type="button " class="btn btn-info"><i class="fa fa-cog"></i></button>
-                  </span>
+                      <button ng-click="myVolumioProfileController.goToEdit()" class="btn btn-info">
+                        <i class="fa fa-cog"></i>
+                      </button>
+                    </span>
+                    <div class="clearfix"></div>
                   </h3>
                   <h4 class='active user-username'> {{myVolumioProfileController.user.username}} </h4>
                   <p class="user-details">
