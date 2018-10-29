@@ -38,7 +38,7 @@
       <!-- PAYMENT PLANS: GO TO SUBSCRIBE, UPGRADE, DOWNGRADE OR SHOW CURRENT STATUS -->
       <div ng-if="myVolumioPlanCardController.isDefaultBehaviour === true && myVolumioPlanCardController.product.plan !== 'free'">
           <!-- GO TO SUBSCRIBE -->
-          <div ng-if="myVolumioPlanCardController.user.plan === undefined || myVolumioPlanCardController.user.plan === 'free'" >
+          <div ng-if="myVolumioPlanCardController.user.plan === undefined || myVolumioPlanCardController.user.plan === null || myVolumioPlanCardController.user.plan === 'free'" >
             <button ng-click="myVolumioPlanCardController.subscribe(myVolumioPlanCardController.product.plan)" class="btn btn-success btn-labeled">
               <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
               <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
