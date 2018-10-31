@@ -129,11 +129,11 @@ class MyVolumioDeviceSelectorController {
   }
 
   doDisableDeviceApiCall(device) {
-    return this.firebaseApiFunctionsService.doDisableDeviceApiCall(device);
+    return this.firebaseApiFunctionsService.doDisableDeviceApiCall(device,this.user.uid);
   }
 
   doEnableDeviceApiCall(device) {
-    return this.firebaseApiFunctionsService.doEnableDeviceApiCall(device);
+    return this.firebaseApiFunctionsService.doEnableDeviceApiCall(device,this.user.uid);
   }
 
   deleteDevice(device) {

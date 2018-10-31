@@ -81,28 +81,28 @@ class FirebaseApiFunctionsService {
     return promise;
   }
 
-  doDisableDeviceApiCall(device){
+  doDisableDeviceApiCall(device, uid){
     var url = this.getApiUrl()+'/disableMyVolumioDevice';
 
-    return this.authService.getUserToken().then(token => {
+    return this.getUserToken().then(token => {
       return this.$http({
         url: url,
         method: "POST",
-        params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
+        params: { token: token, uid: uid, hwuuid: device.hwuuid }
       }).then(response => {
         return response.data;
       });
     });
   }
 
-  doEnableDeviceApiCall(device){
+  doEnableDeviceApiCall(device, uid){
     var url = this.getApiUrl()+'/enableMyVolumioDevice';
 
-    return this.authService.getUserToken().then(token => {
+    return this.getUserToken().then(token => {
       return this.$http({
         url: url,
         method: "POST",
-        params: { token: token, uid: this.user.uid, hwuuid: device.hwuuid }
+        params: { token: token, uid: uid, hwuuid: device.hwuuid }
       }).then(response => {
         return response.data;
       });
@@ -112,7 +112,7 @@ class FirebaseApiFunctionsService {
   deleteDevice(device, uid){
     var url = this.getApiUrl()+'/deleteMyVolumioDevice';
 
-    return this.authService.getUserToken().then(token => {
+    return this.getUserToken().then(token => {
       return this.$http({
         url: url,
         method: "POST",
