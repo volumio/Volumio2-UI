@@ -56,7 +56,8 @@ class MultiRoomDockController {
   changeDevice(device) {
     if (!device.isChild && !device.isSelf) {
       this.socketService.host = device.host;
-      this.socketService.emit('getUiSettings');
+      // Disabled because it was breaking device change
+      //this.socketService.emit('getUiSettings');
     }
   }
 
