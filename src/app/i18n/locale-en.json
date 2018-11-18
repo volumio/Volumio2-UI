@@ -233,7 +233,7 @@
     "BLUETOOTH": "BLUETOOTH"
   },
   "MYVOLUMIO": {
-    "MY_VOLUMIO": "MyVolumio (Beta)",
+    "MY_VOLUMIO": "MyVolumio",
     "ERROR": "Error",
     "LOGIN": "Login",
     "LOGOUT": "Logout",
