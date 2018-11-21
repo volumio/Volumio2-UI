@@ -8,6 +8,7 @@
       <i ng-if="plugin.icon" class="fa {{plugin.icon}} fa-lg"></i>
       <i ng-if="!plugin.icon" class="fa fa-cube fa-lg"></i>
       {{::plugin.prettyName}}
+      <small ng-if="plugin.version" class="text-muted"> {{plugin.version}}</small>
     </div>
     <div class="col-xs-8 col-sm-8 col-md-8">
       <input
