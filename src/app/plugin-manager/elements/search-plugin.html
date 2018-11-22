@@ -18,7 +18,6 @@
             <i ng-if="plugin.icon" class="fa {{plugin.icon}}"></i>
             <i ng-if="!plugin.icon" class="fa fa-cube"></i>
             {{plugin.prettyName}}
-            <small ng-if="plugin.version" class="text-muted"> {{plugin.version}}</small>
           </h3>
         </div>
 
@@ -33,6 +32,11 @@
             </div>
             <div class="col-xs-12 text-right">
               <strong>Updated: </strong>{{plugin.updated}}
+            </div>
+          </div>
+          <div class="row pluginDetailsRow">
+            <div class="col-xs-12">
+              <strong>Version: </strong>{{plugin.version}}
             </div>
           </div>
           <br>
