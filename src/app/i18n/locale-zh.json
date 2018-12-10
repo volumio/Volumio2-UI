@@ -8,6 +8,9 @@
     "SELECT_BACKGROUND_COLOR": "选择背景色"
   },
   "COMMON": {
+    "DONE": "完成",
+    "SETTINGS": "设置",
+    "NEXT": "下一步",
     "SAVE": "保存",
     "OK":"确定",
     "YES":"是",
@@ -154,5 +157,23 @@
   "SLEEP": {
     "POWER_OFF": "关机",
     "STOP_MUSIC": "停止播放"
+  },
+  "WIZARD": {
+    "SELECT_YOUR_AUDIO_OUTPUT": "输出设备",
+    "DEVICE_NAME": "播放器名称",
+    "DEVICE_ADDRESS": "",
+    "WELCOME": "欢迎，让我们从这里开始",
+    "SELECT_YOUR_LANGUAGE": "选择语言",
+    "DONE": "完成",
+    "ADD_YOUR_MUSIC": "加载你的音乐，最简单的步骤就是在USB口上插一个记忆体或者按一下“添加新驱动器”按键加载网络硬盘"
+  },
+  "MYVOLUMIO": {
+    "LOGIN": "登陆",
+    "USERNAME": "用户名",
+    "PASSWORD": "密码",
+  },
+  "NETWORKFS": {
+    "USERNAME": "用户名",
+    "PASSWORD": "密码",
   }
 }
