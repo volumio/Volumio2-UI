@@ -170,10 +170,6 @@
   "MYVOLUMIO": {
     "LOGIN": "登陆",
     "USERNAME": "用户名",
-    "PASSWORD": "密码",
-  },
-  "NETWORKFS": {
-    "USERNAME": "用户名",
-    "PASSWORD": "密码",
+    "PASSWORD": "密码"
   }
 }
