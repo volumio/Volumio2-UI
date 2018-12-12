@@ -35,6 +35,9 @@ class ModalPluginInstallerController {
     this.socketService.on('installPluginStatus', (data) => {
       this.dataObj = data;
       this._scrollLog();
+      if (data.progress === 100) {
+        this.socketService.off('installPluginStatus');
+      }
     });
 
     this.$scope.$on('$destroy', () => {
