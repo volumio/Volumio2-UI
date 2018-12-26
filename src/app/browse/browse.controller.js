@@ -321,11 +321,19 @@ class BrowseController {
 
           this.table += `
             <div class="description breakMe"
-                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
-              <div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
-                ${(item.title) ? item.title : ''}
-              </div>
-              <div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
+                if (item.tagImage) {
+                  this.table += `<div class="title tagImage">
+                    ${(item.title) ? item.title : ''}
+                  </div>`;
+                  this.table +=  `<img class="tag-image" src="${this.playerService.getAlbumart(item.tagImage)}" alt=""/>`;
+                } else {
+                  this.table += `<div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                    ${(item.title) ? item.title : ''}
+                  </div>`;
+                }
+
+              this.table += `<div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
                 ${(item.artist) ? item.artist : ''} ${(item.album) ? '- ' + item.album : ''}
               </div>
             </div>`;
