@@ -52,7 +52,7 @@
             <span translate="MYVOLUMIO.CURRENT_PLAN"></span>
           </button>
           <!-- GO TO CHANGE PLAN -->
-          <button ng-click="myVolumioPlanCardController.goToChangePlan(myVolumioPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="myVolumioPlanCardController.user.plan !== 'free' && (myVolumioPlanCardController.user.planDuration !== myVolumioPlanCardController.showMode.planDuration || myVolumioPlanCardController.user.plan !== myVolumioPlanCardController.product.plan)" ng-disabled="myVolumioPlanCardController.user.planDuration === 'yearly' && myVolumioPlanCardController.showMode.planDuration === 'monthly'">
+          <button ng-click="myVolumioPlanCardController.goToChangePlan(myVolumioPlanCardController.product.plan)" type="button" class="btn btn-labeled btn-default" ng-if="(myVolumioPlanCardController.user.plan !== 'free' && myVolumioPlanCardController.user.plan !== undefined) && (myVolumioPlanCardController.user.planDuration !== myVolumioPlanCardController.showMode.planDuration || myVolumioPlanCardController.user.plan !== myVolumioPlanCardController.product.plan)" ng-disabled="myVolumioPlanCardController.user.planDuration === 'yearly' && myVolumioPlanCardController.showMode.planDuration === 'monthly'">
             <span class="btn-label"><i class="fa fa-random"></i></span>
             <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
           </button>

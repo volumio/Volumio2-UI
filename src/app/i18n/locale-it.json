@@ -339,7 +339,7 @@
     "CONFIRM_CHANGE_PLAN_TITLE": "Cambia abbonamento",
     "CONFIRM_CHANGE_PLAN": "Vuoi veramente cambiare il tuo abbonamento? La differenza di prezzo ti verrà addebitata immediatamente",
     "CONFIRM_CANCEL_PLAN_TITLE": "Cancella abbonamento",
-    "CONFIRM_CANCEL_PLAN": "Vuoi veramente cancellare il tuo abbonamento?",
+    "CONFIRM_CANCEL_PLAN": "Vuoi veramente cancellare il tuo abbonamento? Da questo momento in poi non potrai più utillizare MyVolumio.",
     "SUBSCRIPTION": "Abbonamento MyVolumio",
     "SUBSCRIPTION_SUMMARY": "Informazioni sull'abbonamento",
     "SUBSCRIPTION_STATUS": "Stato",
