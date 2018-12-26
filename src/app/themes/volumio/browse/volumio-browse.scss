@@ -164,6 +164,18 @@
     &.onlyTitle {
       margin: 10px 0;
     }
+    &.tagImage {
+      display: inline-block;
+      max-width: 85%;
+      margin-bottom: -6px;
+    }
+  }
+
+  img.tag-image {
+    height: 20px;
+    max-width: 10%;
+    vertical-align: top;
+    margin-left: 4px;
   }
 
   .artist-album {
@@ -265,6 +277,17 @@
           margin: 0;
           height: 42px;
         }
+        &.tagImage {
+          display: inline-block;
+          max-width: 85%;
+          margin-bottom: -6px;
+        }
+      }
+
+      img.tag-image {
+        height: 20px;
+        vertical-align: top;
+        float: right;
       }
 
       .artist-album {
@@ -291,6 +314,6 @@
   //End grid overrides
 }
 
-.title.ng-binding {
+.title-tag.ng-binding {
     height: 42px;
 }
