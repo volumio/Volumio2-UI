@@ -338,7 +338,7 @@
     "CONFIRM_CHANGE_PLAN_TITLE": "Change Plan",
     "CONFIRM_CHANGE_PLAN": "Do you really want to change your plan? You will be automatically charged with the new plan price difference",
     "CONFIRM_CANCEL_PLAN_TITLE": "Cancel Plan",
-    "CONFIRM_CANCEL_PLAN": "Do you really want to cancel your plan?",
+    "CONFIRM_CANCEL_PLAN": "Do you really want to cancel your plan? From now on, you will not be able to use MyVolumio Services.",
     "SUBSCRIPTION": "MyVolumio Subscription",
     "SUBSCRIPTION_SUMMARY": "Subscription Summary",
     "SUBSCRIPTION_STATUS": "Status",
@@ -356,7 +356,9 @@
     "YEARLY": "Yearly",
     "YEARLY_PER": "Per Year",
     "SAVE_20": "Save 20% with a Yearly Plan!",
-    "WHAT_IS_MYVOLUMIO":"What is MyVolumio?"
+    "WHAT_IS_MYVOLUMIO":"What is MyVolumio?",
+    "RECOVER_PASSWORD_SENT_MESSAGE":"We just sent instructions on how to reset your password to your mail, check it out",
+    "GO_TO_LOGIN":"Done? Go to login"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
