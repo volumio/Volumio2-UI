@@ -223,6 +223,21 @@ class MyVolumioEditProfileController {
     this.$state.go('myvolumio.plans');
   }
 
+  clickShowTerms() {
+      let
+        templateUrl = 'app/components/myvolumio/modals/myvolumio-terms-modal/myvolumio-terms-modal.html',
+        controller = 'MyVolumioTermsModalController',
+        params = {
+          title: 'Terms and conditions'
+        };
+      this.modalService.openModal(
+        controller,
+        templateUrl,
+        params,
+        'md');
+  }
+
+
 }
 
 export default MyVolumioEditProfileController;
