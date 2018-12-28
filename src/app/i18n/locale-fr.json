@@ -102,7 +102,7 @@
     "UPDATE": "Mettre à jour", 
     "UPDATE_DOC": "Mettre à jour", 
     "RESCAN": "Scanner à nouveau", 
-    "RESCAN_DOC": "Scanner à nouveau"  
+    "RESCAN_DOC": "Scanner à nouveau les sources de musique"  
   }, 
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Retour aux plugins",
@@ -143,7 +143,7 @@
   "NETWORKFS":{
     "NO_DRIVES_FOUND": "Pas de disque réseau trouvé",
     "ALIAS": "Alias",
-    "ALIAS_DOC": "Choisir un le nom qui sera affiché dans les disques NAS montés",
+    "ALIAS_DOC": "Choisir le nom qui sera affiché dans les disques NAS montés",
     "NAS_IP_ADDRESS": "Adresse IP du NAS",
     "NAS_IP_ADDRESS_DOC": "Adresse IP du disque réseau",
     "NAS_PATH": "Chemin",
@@ -200,7 +200,7 @@
      "I_HAVE_DAC": "J'ai un DAC I2s",
      "CUSTOM_AMOUNT": "Montant personnalisé",
      "DONE_MESSAGE": "Fait, votre système Volumio est prèt.",
-     "MAIL_LIST_SUBSCRIPTION": "Adresse mail de suscription",
+     "MAIL_LIST_SUBSCRIPTION": "Adresse courriel de suscription",
      "SOCIAL_SHARE": "Partage social",
      "DONATE": "Donner",
      "SUBSCRIBED_SUCCESFULLY": "Inscription réussie!",
@@ -274,7 +274,7 @@
     "CANCEL_SUBSCRIPTION_TITLE": "Annuler votre abonnement actuel",
     "CANCEL_SUBSCRIPTION": "Annuler la suscription",
     "YOUR_NEW_PLAN": "Le nouveau plan sera",
-    "CANNOT_DOWNGRADE_NO_PLAN": "Une erreur à eut lieu, il semble que vous ne payez pas d'abonnement pour ce plan. Merci de contacter le support.",
+    "CANNOT_DOWNGRADE_NO_PLAN": "Une erreur a eut lieu, il semble que vous ne payez pas d'abonnement pour ce plan. Merci de contacter le support.",
     "NOT_LOGGED_IN": "Connectez vous pour continuer",
     "MOST_POPULAR": "Le plus populaire",
     "FREE_DAYS_TRIAL": "Essai gratuit",
@@ -318,10 +318,10 @@
     "ENABLED": "Activé",
     "DISABLED": "Désactivé",
     "UPDATE_SUBSCRIPTION": "Changer de plan",
-    "NO_SUBSCRIPTION_SELECTED_DESC": "Erreur. Aucun abonnement séléctinonné! Choisissez en un!",
+    "NO_SUBSCRIPTION_SELECTED_DESC": "Erreur. Aucun abonnement séléctionné! Choisissez en un!",
     "RETRY": "Ré-essayer",
     "SUPERSTAR_FEATURE1": "D'incroyables fontionnalités de Superstar",
-    "ERROR_SERVER_TIMEOUT": "Désolé, le server met trop de temps à répondre. Essayez à nouveau.",
+    "ERROR_SERVER_TIMEOUT": "Désolé, le serveur met trop de temps à répondre. Essayez à nouveau.",
     "NOT_LOGGED": "Vous n'êtes pas connecté. Connectez-vous ou enregistrez vous.",
     "OPEN_DEVICE": "se connecter avec cet appareil",
     "ACCESS": "Accès",
@@ -365,7 +365,7 @@
     "QOBUZ_INTEGRATION": "Integration de Qobuz ",
     "TIDAL_INTEGRATION": "Integration de TIDAL ",
     "NATIVE_TIDAL_QOBUZ_INTEGRATION": "Integration native de TIDAL et Qobuz",
-    "AUTO_SYNC": "Synchronisation automatique d'articles Personnels",
+    "AUTO_SYNC": "Synchronisation automatique des playlist et autres réglages Personnels",
     "MYVOLUMIO_6_DEVICES": "MyVolumio sur 6 appareils maximum",
     "REMOTE_CONNECTION_6_DEVICES": "Connexion à distance pour 6 appareils"
 } 
