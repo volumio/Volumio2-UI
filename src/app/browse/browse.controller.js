@@ -323,10 +323,10 @@ class BrowseController {
             <div class="description breakMe"
                 onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
                 if (item.tagImage) {
-                  this.table += `<div class="title tagImage">
-                    ${(item.title) ? item.title : ''}
-                  </div>`;
-                  this.table +=  `<img class="tag-image" src="${this.playerService.getAlbumart(item.tagImage)}" alt=""/>`;
+                  this.table +=  `<img class="tag-image" src="${this.playerService.getAlbumart(item.tagImage)}" alt=""/>
+                    <div class="title tagImage">
+                      ${(item.title) ? item.title : ''}
+                    </div>`;
                 } else {
                   this.table += `<div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
                     ${(item.title) ? item.title : ''}
