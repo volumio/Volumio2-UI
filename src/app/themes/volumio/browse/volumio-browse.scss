@@ -165,9 +165,8 @@
       margin: 10px 0;
     }
     &.tagImage {
-      display: inline-block;
       max-width: 85%;
-      margin-bottom: -6px;
+      display: inline-block;
     }
   }
 
@@ -175,7 +174,7 @@
     height: 20px;
     max-width: 10%;
     vertical-align: top;
-    margin-left: 4px;
+    margin-right: 4px;
   }
 
   .artist-album {
@@ -185,6 +184,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    clear: both;
     &.onlyTitle {
       display: none;
     }
@@ -278,9 +278,9 @@
           height: 42px;
         }
         &.tagImage {
-          display: inline-block;
           max-width: 85%;
-          margin-bottom: -6px;
+          margin-right: 15%;
+          display: block;
         }
       }
 
@@ -288,12 +288,8 @@
         height: 20px;
         vertical-align: top;
         float: right;
-      }
-
-      .artist-album {
-        &.onlyTitle {
-          // display: block;
-        }
+        display: block;
+        margin-right: 0px;
       }
 
       .description {
