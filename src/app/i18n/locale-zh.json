@@ -51,7 +51,8 @@
     "OPTIONS":"选项",
     "CHOOSE_PLAYLIST":"选择播放列表",
     "STOP_MUSIC":"停止音乐",
-    "RIP": "抓轨到存储设备"
+    "RIP": "抓轨到存储设备",
+    "PREVIOUS": "以前"
   },
   "BROWSER": {
     "PLAY": "播放",
@@ -161,11 +162,15 @@
   "WIZARD": {
     "SELECT_YOUR_AUDIO_OUTPUT": "输出设备",
     "DEVICE_NAME": "播放器名称",
-    "DEVICE_ADDRESS": "",
+    "LANGUAGE":"语言",
+    "NAME":"名称",
+    "MUSIC":"音乐",
+    "DEVICE_ADDRESS": "在浏览器上输入 进入播放界面",
     "WELCOME": "欢迎，让我们从这里开始",
     "SELECT_YOUR_LANGUAGE": "选择语言",
     "DONE": "完成",
-    "ADD_YOUR_MUSIC": "加载你的音乐，最简单的步骤就是在USB口上插一个记忆体或者按一下“添加新驱动器”按键加载网络硬盘"
+    "ADD_YOUR_MUSIC": "加载你的音乐，最简单的步骤就是在USB口上插一个记忆体或者按一下“添加新驱动器”按键加载网络硬盘",
+    "DEVICE_NAME": "播放器名称"
   },
   "MYVOLUMIO": {
     "LOGIN": "登陆",
