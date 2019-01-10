@@ -52,7 +52,8 @@
     "CHOOSE_PLAYLIST":"选择播放列表",
     "STOP_MUSIC":"停止音乐",
     "RIP": "抓轨到存储设备",
-    "PREVIOUS": "以前"
+    "PREVIOUS": "以前",
+    "FUNCTIONALIES_CONTROL": "功能控制"
   },
   "BROWSER": {
     "PLAY": "播放",
