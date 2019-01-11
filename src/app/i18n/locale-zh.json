@@ -163,6 +163,8 @@
   "WIZARD": {
     "SELECT_YOUR_AUDIO_OUTPUT": "输出设备",
     "DEVICE_NAME": "播放器名称",
+    "OUTPUT": "输出",
+    "NETWORK": "网络",
     "LANGUAGE":"语言",
     "NAME":"名称",
     "MUSIC":"音乐",
