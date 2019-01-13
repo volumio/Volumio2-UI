@@ -13,7 +13,7 @@ class ZoneMenuDirective {
   }
 }
 
-const mockData = {
+const MOCK_DATA = {
   "availableOutputs": [
     {
       "name": "Browser",
@@ -72,7 +72,7 @@ class ZoneMenuController {
 
   itemClick(item) {
     this.$log.debug('Clicked on', item);
-    console.log('Clicked on', item);
+    // Implement method here
   }
 
   init() {
@@ -81,7 +81,7 @@ class ZoneMenuController {
   }
 
   registerListner() {
-    this.menuItems = mockData.availableOutputs;
+    this.menuItems = MOCK_DATA.availableOutputs;
     this.socketService.on('pushZoneItems', (data) => {
       this.$log.debug('pushZoneItems', data);
       this.menuItems = data;
@@ -93,7 +93,7 @@ class ZoneMenuController {
   }
 
   initService() {
-    this.socketService.emit('pushZoneItems');
+    this.socketService.emit('getZoneItems');
   }
 }
 

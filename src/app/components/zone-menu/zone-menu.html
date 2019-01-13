@@ -5,7 +5,7 @@
   </button>
 
   <div id="menuList" role="group" ng-if="zoneMenu.visible" style="width:400px; max-width: 100%;">
-    <div style="height:60px">
+    <div style="height:35px">
       <button id="closeMenuBtnZone" ng-click="zoneMenu.toggleMenu()" class="btn btn-link">
         <i class="fa fa-times"></i>
       </button>
@@ -15,6 +15,24 @@
       Zones
     </div>
 
+    <div ng-repeat="item in zoneMenu.menuItems track by $index">
+      <button ng-click="zoneMenu.itemClick(item)" class="btn-link btn-block list-item-button" disabled>
+        <span class="list-item-icon"><i class="{{::item.icon}}" /></span>
+        <span class="list-item-name">{{::item.name}}</span>
+        <span class="list-item-type">{{::item.type}}</span>
+        <!-- <span class="list-item-volume-bar"></span>
+        <span class="list-item-volume-bar-slider"></span> -->
+        <input
+          type="range"
+          name="volume-slider"
+          id="volume-slider"
+          min="0"
+          max="100"
+          value="{{::item.volume}}"
+          class="list-item-volume-bar"
+        />
+      </button>
+    </div>
     <div ng-repeat="item in zoneMenu.menuItems track by $index">
       <button ng-click="zoneMenu.itemClick(item)" class="btn-link btn-block list-item-button">
         <span class="list-item-icon"><i class="{{::item.icon}}" /></span>
