@@ -1,54 +1,38 @@
 <div id="sideMenuScrim" ng-if="zoneMenu.visible" ng-click="zoneMenu.toggleMenu()"></div>
 <div id="sideMenu">
-  <button
-      id="openMenuBtn"
-      ng-click="zoneMenu.toggleMenu()"
-      class="btn btn-link"
-      title="{{'COMMON.SHOW_SETTINGS' | translate}}">
+  <button id="openMenuBtn" ng-click="zoneMenu.toggleMenu()" class="btn btn-link" title="{{'COMMON.SHOW_SETTINGS' | translate}}">
     <i class="fa fa-rss"></i>
   </button>
 
-  <div id="menuList" role="group" ng-if="zoneMenu.visible">
-    <button
-        id="closeMenuBtn"
-        ng-click="zoneMenu.toggleMenu()"
-        class="btn btn-link">
-      <i class="fa fa-times"></i>
-    </button>
-
-    <div ng-if="zoneMenu.isAuthActive()" id="myvolumio-card-container">
-      <my-volumio-user-card action-callback="zoneMenu.toggleMenu()">
-        </my-volumio-card>
+  <div id="menuList" role="group" ng-if="zoneMenu.visible" style="width:400px; max-width: 100%;">
+    <div style="height:60px">
+      <button id="closeMenuBtn" ng-click="zoneMenu.toggleMenu()" class="btn btn-link">
+        <i class="fa fa-times"></i>
+      </button>
     </div>
 
-    <button
-      ng-repeat="item in zoneMenu.menuItems track by $index"
-      ng-click="zoneMenu.itemClick(item)"
-      ng-if="item.id !== zoneMenu.MYVOLUMIO_KEY"
-      class="btn-link btn-block">
-          {{::item.name}}
-    </button>
-
-    <div class="hardwareToggleCheckbox"
-        ng-if="::zoneMenu.uiSettingsService.uiSettings.zoneMenu.checkboxes.analogInput">
-      <input type="checkbox"
-          ng-model="zoneMenu.analogIn"
-          ng-click="zoneMenu.toggleAnalogInput()">
-        <span translate="zoneMenu.ANALOG_INPUT"></span>
+    <div class="list-title">
+      Zones
     </div>
 
-    <div class="hardwareToggleCheckbox"
-        ng-if="::zoneMenu.uiSettingsService.uiSettings.zoneMenu.checkboxes.bluetooth">
-      <input type="checkbox"
-          ng-model="zoneMenu.bluetooth"
-          ng-click="zoneMenu.toggleBluetooth()">
-        <span translate="zoneMenu.BLUETOOTH"></span>
+    <div ng-repeat="item in zoneMenu.menuItems track by $index">
+      <button ng-click="zoneMenu.itemClick(item)" class="btn-link btn-block list-item-button">
+        <span class="list-item-icon"><i class="{{::item.icon}}" /></span>
+        <span class="list-item-name">{{::item.name}}</span>
+        <span class="list-item-type">{{::item.type}}</span>
+        <!-- <span class="list-item-volume-bar"></span>
+        <span class="list-item-volume-bar-slider"></span> -->
+        <input
+          type="range"
+          name="volume-slider"
+          id="volume-slider"
+          min="0"
+          max="100"
+          value="{{::item.volume}}"
+          class="list-item-volume-bar"
+        />
+      </button>
     </div>
 
-    <div class="side-logo" ng-if="::zoneMenu.uiSettingsService.uiSettings.zoneMenu.showLogo">
-      <img
-        ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo-sidebar.png"
-        alt="{{header.themeManager.theme}}"/>
-    </div>
   </div>
 </div>
