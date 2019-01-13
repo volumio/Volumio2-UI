@@ -84,21 +84,17 @@
 }
 
 .list-item-volume-bar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-
   width: 12px;
   height: 12px;
   border-radius: 100px;
   background-color: white; 
-
-
+  
+  -webkit-appearance: none;
+  appearance: none;
   cursor: pointer;
 }
 
 .list-item-volume-bar::-moz-range-thumb {
-
-
   width: 12px;
   height: 12px;
   border-radius: 100px;
