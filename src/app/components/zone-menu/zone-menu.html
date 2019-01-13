@@ -1,0 +1,54 @@
+<div id="sideMenuScrim" ng-if="zoneMenu.visible" ng-click="zoneMenu.toggleMenu()"></div>
+<div id="sideMenu">
+  <button
+      id="openMenuBtn"
+      ng-click="zoneMenu.toggleMenu()"
+      class="btn btn-link"
+      title="{{'COMMON.SHOW_SETTINGS' | translate}}">
+    <i class="fa fa-rss"></i>
+  </button>
+
+  <div id="menuList" role="group" ng-if="zoneMenu.visible">
+    <button
+        id="closeMenuBtn"
+        ng-click="zoneMenu.toggleMenu()"
+        class="btn btn-link">
+      <i class="fa fa-times"></i>
+    </button>
+
+    <div ng-if="zoneMenu.isAuthActive()" id="myvolumio-card-container">
+      <my-volumio-user-card action-callback="zoneMenu.toggleMenu()">
+        </my-volumio-card>
+    </div>
+
+    <button
+      ng-repeat="item in zoneMenu.menuItems track by $index"
+      ng-click="zoneMenu.itemClick(item)"
+      ng-if="item.id !== zoneMenu.MYVOLUMIO_KEY"
+      class="btn-link btn-block">
+          {{::item.name}}
+    </button>
+
+    <div class="hardwareToggleCheckbox"
+        ng-if="::zoneMenu.uiSettingsService.uiSettings.zoneMenu.checkboxes.analogInput">
+      <input type="checkbox"
+          ng-model="zoneMenu.analogIn"
+          ng-click="zoneMenu.toggleAnalogInput()">
+        <span translate="zoneMenu.ANALOG_INPUT"></span>
+    </div>
+
+    <div class="hardwareToggleCheckbox"
+        ng-if="::zoneMenu.uiSettingsService.uiSettings.zoneMenu.checkboxes.bluetooth">
+      <input type="checkbox"
+          ng-model="zoneMenu.bluetooth"
+          ng-click="zoneMenu.toggleBluetooth()">
+        <span translate="zoneMenu.BLUETOOTH"></span>
+    </div>
+
+    <div class="side-logo" ng-if="::zoneMenu.uiSettingsService.uiSettings.zoneMenu.showLogo">
+      <img
+        ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo-sidebar.png"
+        alt="{{header.themeManager.theme}}"/>
+    </div>
+  </div>
+</div>
