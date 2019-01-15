@@ -33,7 +33,7 @@ const MOCK_DATA = {
       "enabled": "true",
       "volumeAvailable": true,
       "volume": 30,
-      "mute": false
+      "mute": true
     },
     {
       "name": "Volumio Studio",
