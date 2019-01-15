@@ -30,7 +30,7 @@ class BrowseService {
       this.init();
     });
     $rootScope.$on('socket:reconnect', () => {
-      this.initService(false);
+      this.initService();
     });
   }
 
@@ -176,7 +176,7 @@ class BrowseService {
 
   init() {
     this.registerListner();
-    this.initService(true);
+    this.initService();
   }
 
   registerListner() {
@@ -221,12 +221,9 @@ class BrowseService {
     }
   }
 
-  initService(resetState) {
+  initService() {
     this.socketService.emit('getBrowseFilters');
     this.socketService.emit('getBrowseSources');
-    if (resetState) {
-      this._isBrowsing = false;
-    }
     this._listBy = 'track';
     //TODO or from sessionStorage
     // this._showGridView = false;
