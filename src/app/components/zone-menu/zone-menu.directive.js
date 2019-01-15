@@ -21,7 +21,7 @@ const MOCK_DATA = {
       "icon": "fa fa-volume-up",
       "available": true,
       "enabled": "true",
-      "volumeAvailable": "true",
+      "volumeAvailable": false,
       "volume": 50,
       "mute": false
     },
@@ -31,7 +31,7 @@ const MOCK_DATA = {
       "icon": "fa fa-volume-up",
       "available": true,
       "enabled": "true",
-      "volumeAvailable": "true",
+      "volumeAvailable": true,
       "volume": 30,
       "mute": false
     },
@@ -41,12 +41,12 @@ const MOCK_DATA = {
       "icon": "fa fa-volume-up",
       "available": true,
       "enabled": "true",
-      "volumeAvailable": "true",
+      "volumeAvailable": true,
       "volume": 92,
       "mute": false
     }
   ]
-}
+};
 
 class ZoneMenuController {
   constructor($scope, $rootScope, socketService, $state, $log) {

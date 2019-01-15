@@ -23,6 +23,7 @@
         <!-- <span class="list-item-volume-bar"></span>
         <span class="list-item-volume-bar-slider"></span> -->
         <input
+          ng-show="{{::item.volumeAvailable === true}}"
           type="range"
           name="volume-slider"
           id="volume-slider"
