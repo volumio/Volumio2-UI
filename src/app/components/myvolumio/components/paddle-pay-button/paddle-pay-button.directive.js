@@ -101,6 +101,7 @@ class PaddlePayButtonController {
   }
 
   successCallback(data) {
+    console.log(data);
     if (data.checkout.completed) {
       var checkoutId = data.checkout.id;
       //Paddle.Order.DetailsPopup(data.checkout.id);
