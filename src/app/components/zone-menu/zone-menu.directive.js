@@ -22,8 +22,8 @@ const MOCK_DATA = {
       "type": "browser",
       "icon": "fa fa-volume-up",
       "available": true,
-      "enabled": "true",
-      "volumeAvailable": false,
+      "enabled": true,
+      "volumeAvailable": true,
       "volume": 50,
       "mute": false
     },
@@ -32,7 +32,7 @@ const MOCK_DATA = {
       "type": "device",
       "icon": "fa fa-volume-up",
       "available": true,
-      "enabled": "true",
+      "enabled": false,
       "volumeAvailable": true,
       "volume": 30,
       "mute": true
@@ -42,11 +42,21 @@ const MOCK_DATA = {
       "type": "device",
       "icon": "fa fa-volume-up",
       "available": true,
-      "enabled": "true",
+      "enabled": true,
       "volumeAvailable": true,
       "volume": 92,
       "mute": false
-    }
+    },
+    {
+      "name": "Volumio Bedroom",
+      "type": "device",
+      "icon": "fa fa-volume-up",
+      "available": true,
+      "enabled": false,
+      "volumeAvailable": true,
+      "volume": 92,
+      "mute": false
+    },
   ]
 };
 
@@ -76,6 +86,8 @@ class ZoneMenuController {
     this.$log.debug('Clicked on', item);
     // Implement method here
   }
+
+  onSettingsClick
 
   init() {
     this.registerListner();
