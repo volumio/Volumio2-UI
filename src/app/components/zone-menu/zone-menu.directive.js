@@ -1,3 +1,5 @@
+import {groupBy} from 'lodash';
+
 class ZoneMenuDirective {
   constructor() {
     'ngInject';
@@ -81,7 +83,11 @@ class ZoneMenuController {
   }
 
   registerListner() {
-    this.menuItems = MOCK_DATA.availableOutputs;
+    this.menuItems = groupBy(MOCK_DATA.availableOutputs, 'type');
+    this.menuItemTypes = Object.keys(this.menuItems);
+
+    console.log(this.menuItems)
+
     this.socketService.on('pushZoneItems', (data) => {
       this.$log.debug('pushZoneItems', data);
       this.menuItems = data;
