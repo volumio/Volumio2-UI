@@ -1,10 +1,10 @@
-<div id="sideMenuScrim" ng-if="zoneMenu.visible" ng-click="zoneMenu.toggleMenu()"></div>
+<div id="sideMenuScrim" ng-if="zoneMenu.uiState.menuVisible" ng-click="zoneMenu.toggleMenu()"></div>
 <div id="sideMenu">
   <button id="openMenuBtn" ng-click="zoneMenu.toggleMenu()" class="btn btn-link" title="{{'COMMON.SHOW_SETTINGS' | translate}}">
     <i class="fa fa-rss"></i>
   </button>
 
-  <div id="menuList" role="group" ng-if="zoneMenu.visible" style="width:400px; max-width: 100%;">
+  <div id="menuList" role="group" ng-if="zoneMenu.uiState.menuVisible" style="width:400px; max-width: 100%;">
     <div style="height:35px">
       <button id="closeMenuBtnZone" ng-click="zoneMenu.toggleMenu()" class="btn btn-link">
         <i class="fa fa-times"></i>
@@ -17,13 +17,13 @@
       <span class="list-item-icon">
         <i class="fa fa-cog" />
       </span>
-      <span class="list-item-icon-settings">
-        <i class="{{zoneMenu.menuItems['browser'][0].mute === true ? 'fa fa-volume-off' : zoneMenu.menuItems['browser'][0].icon}}" />
+      <span class="list-item-icon-settings" ng-click="zoneMenu.toggleMute()">
+        <i class="{{zoneMenu.uiState.mute === true ? 'fa fa-volume-off' : 'fa fa-volume-up'}}" />
       </span>
       <span class="list-item-name">{{::zoneMenu.menuItems['browser'][0].name}}</span>
       <span class="list-item-type">{{::zoneMenu.menuItems['browser'][0].type}}</span>
-      <input ng-show="{{::zoneMenu.menuItems['browser'][0].volumeAvailable === true}}" type="range" name="volume-slider"
-        id="volume-slider" min="0" max="100" value="{{::zoneMenu.menuItems['browser'][0].volume}}" class="list-item-volume-bar" />
+      <input type="range" name="volume-slider" step="0.05" id="volume-slider" min="0" max="1" ng-model="zoneMenu.uiState.volume"
+        class="list-item-volume-bar" ng-change="zoneMenu.onVolumeChange()" />
     </button>
 
     <div class="group-container">

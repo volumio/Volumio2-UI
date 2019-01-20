@@ -1,5 +1,5 @@
 class PlayerService {
-  constructor($rootScope, $log, $interval, socketService, themeManager, uiSettingsService, $document) {
+  constructor($rootScope, $log, $interval, socketService, themeManager, uiSettingsService, $document, browserPlaybackService) {
     'ngInject';
     this.$log = $log;
     this.$interval = $interval;
@@ -8,6 +8,7 @@ class PlayerService {
     this.$rootScope = $rootScope;
     this.uiSettingsService = uiSettingsService;
     this.$document = $document;
+    this.browserPlaybackService = browserPlaybackService;
 
     this.state = null;
     this.trackInfo = null;
@@ -372,6 +373,7 @@ class PlayerService {
       this.updatePageTitle();
       this.updateFavicon();
       this.loadFileFormatIcon();
+      this.browserPlaybackService.syncServerState(this.state);
     });
 
     this.socketService.on('pushTrackInfo', (data) => {
