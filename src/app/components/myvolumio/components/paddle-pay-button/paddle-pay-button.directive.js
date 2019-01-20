@@ -102,6 +102,9 @@ class PaddlePayButtonController {
 
   successCallback(data) {
     console.log(data);
+    this.$state.go('myvolumio.payment-success');
+    // TEMPORARY FIX FOR PADDLE CALLBACK
+    /*
     if (data.checkout.completed) {
       var checkoutId = data.checkout.id;
       //Paddle.Order.DetailsPopup(data.checkout.id);
@@ -110,6 +113,7 @@ class PaddlePayButtonController {
     } else {
       this.modalService.openDefaultErrorModal('MYVOLUMIO.PAYMENT_FAIL');
     }
+    */
   }
 
   closeCallback(error) {
