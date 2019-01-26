@@ -1,7 +1,7 @@
 import { groupBy } from 'lodash';
 
 
-class ZoneMenuController {
+class AudioOutputsController {
   constructor($scope, socketService, $state, $log, browserPlaybackService) {
     'ngInject';
     this.$state = $state;
@@ -63,4 +63,4 @@ class ZoneMenuController {
 
 }
 
-export default ZoneMenuController;
+export default AudioOutputsController;
