@@ -1,19 +1,17 @@
-import { groupBy } from 'lodash';
-
-
 class AudioOutputsController {
-  constructor($scope, socketService, $state, $log, browserPlaybackService) {
+  constructor($scope, socketService, $state, $log, browserPlaybackService, audioOutputsService) {
     'ngInject';
     this.$state = $state;
     this.socketService = socketService;
     this.browserPlayerService = browserPlaybackService;
+    this.audioOutputsService = audioOutputsService;
     this.$log = $log;
     this.$scope = $scope;
 
-    this.registerServiceObserver();
-
+    
     // UI state, updated by the service
     this.uiState = this.mapUIState(this.browserPlayerService.state);
+    this.registerServiceObserver();
   }
 
   registerServiceObserver() {
@@ -29,13 +27,16 @@ class AudioOutputsController {
   mapUIState(serviceState) {
     // Local component state
     const defaultLocalState = {
-      menuVisible: false,
+      component: {
+        menuVisible: false,
+      }
     };
 
     const mappedState = {
-      mute: serviceState.mute,
-      volume: serviceState.volume.toString(),
-      availableOutputs: groupBy(serviceState.availableOutputs, 'type'),
+      browser: {
+        mute: serviceState.mute,
+        volume: serviceState.volume.toString(),
+      }
     };
 
     return Object.assign({}, defaultLocalState, this.uiState, mappedState);
@@ -48,11 +49,11 @@ class AudioOutputsController {
   }
 
   toggleMenu() {
-    this.uiState.menuVisible = !this.uiState.menuVisible;
+    this.uiState.component.menuVisible = !this.uiState.component.menuVisible;
   }
 
   onVolumeChange() {
-    const val = parseFloat(this.uiState.volume);
+    const val = parseFloat(this.uiState.browser.volume);
 
     this.browserPlayerService.setVolume(val);
   }

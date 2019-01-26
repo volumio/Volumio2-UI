@@ -34,22 +34,7 @@ class BrowserPlaybackService extends ObserverService {
     this.state = {
       mute: false,
       volume: 1.0,
-      availableOutputs: [],
     };
-
-    this.registerListener();
-    this.initService();
-  }
-
-  registerListener() {
-    this.socketService.on('pushAudioOutputs', (data) => {
-      this.$log.debug('pushAudioOutputs', data);
-      this.setAvailableOutputs(data.availableOutputs);
-    });
-  }
-
-  initService() {
-    this.socketService.emit('getAudioOutputs');
   }
 
   toggleMute() {
@@ -64,9 +49,6 @@ class BrowserPlaybackService extends ObserverService {
     // this.updateState({ volume: vol });
   }
 
-  setAvailableOutputs(data) {
-    this.updateState({ availableOutputs: data });
-  }
 
   syncServerState(obj) {
     console.log('hit sync state');

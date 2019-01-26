@@ -1,10 +1,10 @@
-<div id="sideMenuScrim" ng-if="audioOutputs.uiState.menuVisible" ng-click="audioOutputs.toggleMenu()"></div>
+<div id="sideMenuScrim" ng-if="audioOutputs.uiState.component.menuVisible" ng-click="audioOutputs.toggleMenu()"></div>
 <div id="sideMenu">
   <button id="openMenuBtn" ng-click="audioOutputs.toggleMenu()" class="btn btn-link" title="{{'COMMON.SHOW_SETTINGS' | translate}}">
     <i class="fa fa-rss"></i>
   </button>
 
-  <div id="menuList" role="group" ng-if="audioOutputs.uiState.menuVisible" style="width:400px; max-width: 100%;">
+  <div id="menuList" role="group" ng-if="audioOutputs.uiState.component.menuVisible" style="width:400px; max-width: 100%;">
     <div style="height:35px">
       <button id="closeMenuBtnOutputs" ng-click="audioOutputs.toggleMenu()" class="btn btn-link">
         <i class="fa fa-times"></i>
@@ -13,22 +13,22 @@
 
     <div class="list-title">Audio Outputs</div>
 
-    <button ng-click="audioOutputs.itemClick(audioOutputs.uiState.availableOutputs['browser'][0])" class="btn-link btn-block list-item-button">
+    <button ng-click="audioOutputs.itemClick(audioOutputs.audioOutputsService.outputs['browser'][0])" class="btn-link btn-block list-item-button">
       <span class="list-item-icon">
         <i class="fa fa-cog" />
       </span>
       <span class="list-item-icon-settings" ng-click="audioOutputs.toggleMute()">
         <i class="{{audioOutputs.uiState.mute === true ? 'fa fa-volume-off' : 'fa fa-volume-up'}}" />
       </span>
-      <span class="list-item-name">{{::audioOutputs.uiState.availableOutputs['browser'][0].name}}</span>
-      <span class="list-item-type">{{::audioOutputs.uiState.availableOutputs['browser'][0].type}}</span>
+      <span class="list-item-name">{{::audioOutputs.audioOutputsService.outputs['browser'][0].name}}</span>
+      <span class="list-item-type">{{::audioOutputs.audioOutputsService.outputs['browser'][0].type}}</span>
       <input type="range" name="volume-slider" step="0.05" id="volume-slider" min="0" max="1" ng-model="audioOutputs.uiState.volume"
         class="list-item-volume-bar" ng-change="audioOutputs.onVolumeChange()" />
     </button>
 
-    <div class="group-container" ng-if="typeof audioOutputs.uiState.availableOutputs['device'] !== 'undefined'">
+    <div class="group-container" ng-if="audioOutputs.audioOutputsService.outputs['device']">
       <div class="group-name">devices</div>
-      <div ng-repeat="item in audioOutputs.uiState.availableOutputs['device'] track by $index">
+      <div ng-repeat="item in audioOutputs.audioOutputsService.outputs['device'] track by $index">
         <button ng-click="audioOutputs.itemClick(item)" class="btn-link btn-block list-item-button">
           <span class="list-item-icon">
             <i class="{{item.enabled === true ? 'fa fa-check-square' : 'fa fa-square'}}" />

@@ -16,6 +16,7 @@ import UpdaterService from './services/updater.service';
 import ModalService from './services/modal.service';
 import ModalListenerService from './services/modal-listener.service';
 import BrowserPlaybackService from './services/browser-playback.service';
+import AudioOutputsService from './services/audio-outputs.service';
 import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
@@ -206,6 +207,7 @@ angular.module('volumio', [
   .service('modalService', ModalService)
   .service('modalListenerService', ModalListenerService)
   .service('browserPlaybackService', BrowserPlaybackService)
+  .service('audioOutputsService', AudioOutputsService)
   .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
   .service('ripperService', RipperService)
