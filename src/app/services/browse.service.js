@@ -196,6 +196,7 @@ class BrowseService {
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
       // data = this.mockService.get('getBrowseLibrary');
+      //console.log(data)
       if (data.navigation) {
         this.$log.debug('pushBrowseLibrary', data);
         this.lists = data.navigation.lists;
@@ -207,6 +208,16 @@ class BrowseService {
 
         this.$rootScope.$broadcast('browseService:fetchEnd');
       }
+    });
+    this.socketService.on('pushActiveDumbInput', (data) => {
+      for (var i in this.lists[0].items) {
+        if (this.lists[0].items[i].title === data) {
+          this.lists[0].items[i].active = true;
+        } else {
+          this.lists[0].items[i].active = false;
+        }
+      }
+      this.$rootScope.$broadcast('browseService:fetchEnd');
     });
   }
 
