@@ -41,9 +41,11 @@ class BrowserPlaybackService extends ObserverService {
     // only update this with updateState,
     // this object is pushed to observers
     this.state = {
-      mute: false,
+      mute: true,
       volume: 1.0,
     };
+
+    this.sound.mute();
   }
 
   toggleMute() {
