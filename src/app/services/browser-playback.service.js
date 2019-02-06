@@ -7,6 +7,7 @@ const exampleTrack = 'http://techslides.com/demos/samples/sample.flac';
 
 const hasTrackChanged = (a, b) => a.uri !== b.uri;
 const hasPlayPauseChanged = (a, b) => a.status !== b.status;
+const isPlaying = (a) => a.status === 'play';
 const hasSeekChanged = (a, b) => a.seek !== b.seek;
 const parseServerState = (obj) => ({
   uri: obj.uri,
@@ -60,11 +61,15 @@ class BrowserPlaybackService extends ObserverService {
 
 
   syncServerState(obj) {
-    console.log('hit sync state');
     const serverState = parseServerState(obj);
+
+    if (this.prevServerState === serverState) return;
 
     if (hasTrackChanged(this.prevServerState, serverState)) {
       this.sound.changeSrc(serverState.uri);
+      if (isPlaying(serverState)) {
+        this.howlerSoundID = this.sound.play(this.howlerSoundID);
+      }
     }
 
     if (hasPlayPauseChanged(this.prevServerState, serverState)) {
