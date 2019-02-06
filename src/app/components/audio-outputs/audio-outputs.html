@@ -22,7 +22,7 @@
       </span>
       <span class="list-item-name">{{::audioOutputs.audioOutputsService.outputs['browser'][0].name}}</span>
       <span class="list-item-type">{{::audioOutputs.audioOutputsService.outputs['browser'][0].type}}</span>
-      <input type="range" name="volume-slider" step="0.05" id="volume-slider" min="0" max="1" ng-model="audioOutputs.uiState.volume"
+      <input type="range" name="volume-slider" step="0.01" id="volume-slider" min="0" max="1" ng-model="audioOutputs.uiState.volume"
         class="list-item-volume-bar" ng-change="audioOutputs.onVolumeChange()" />
     </button>
 

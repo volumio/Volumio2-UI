@@ -5,6 +5,15 @@ import ObserverService from './utils/observer-service';
 const exampleTrack = 'http://techslides.com/demos/samples/sample.flac';
 
 
+const hasTrackChanged = (a, b) => a.uri !== b.uri;
+const hasPlayPauseChanged = (a, b) => a.status !== b.status;
+const hasSeekChanged = (a, b) => a.seek !== b.seek;
+const parseServerState = (obj) => ({
+  uri: obj.uri,
+  status: obj.status,
+  seek: obj.seek,
+});
+
 /**
  * https://github.com/goldfire/howler.js/issues/825#issuecomment-446322017
  */
@@ -38,70 +47,39 @@ class BrowserPlaybackService extends ObserverService {
   }
 
   toggleMute() {
-    console.log('hit toggle mute');
-    // this.sound.mute(!this.state.mute);
-    // this.updateState({ mute: !this.state.mute });
+    this.sound.mute(!this.state.mute, this.howlerSoundID);
+    this.updateState({ mute: !this.state.mute });
   }
 
   setVolume(vol) {
-    console.log('hit set volume');
-    // this.sound.volume(vol);
-    // this.updateState({ volume: vol });
+    this.sound.volume(vol, this.howlerSoundID);
+    this.updateState({ volume: vol });
   }
 
 
   syncServerState(obj) {
     console.log('hit sync state');
-    // const serverState = {
-    //   uri: obj.uri,
-    //   status: obj.status,
-    //   seek: obj.seek,
-    // };
+    const serverState = parseServerState(obj);
 
-    // if (this.prevServerState.uri === serverState.uri &&
-    //   this.prevServerState.status === serverState.status &&
-    //   this.prevServerState.seek === serverState.seek) {
-    //   return;
-    // } else {
-    //   this.prevServerState = serverState;
-    // }
+    if (hasTrackChanged(this.prevServerState, serverState)) {
+      this.sound.changeSrc(serverState.uri);
+    }
 
-    // const seekTime = parseInt((serverState.seek / 1000));
+    if (hasPlayPauseChanged(this.prevServerState, serverState)) {
+      if (serverState.status === 'play') {
+        this.howlerSoundID = this.sound.play(this.howlerSoundID);
+      } else {
+        this.sound.pause(this.howlerSoundID);
+      }
+    }
 
+    if (hasSeekChanged(this.prevServerState, serverState)) {
+      const seekSeconds = parseInt((serverState.seek / 1000));
 
-    // if (serverState.status === 'play') {
-    //   if (this.sound._src !== serverState.uri) {
-    //     this.sound.changeSrc(serverState.uri);
-    //     console.log('change src');
-    //   }
+      this.sound.seek(seekSeconds, this.howlerSoundID);
+    }
 
-    //   if (this.sound.playing() === false) {
-    //     if (this.sound.state() !== 'loaded') {
-    //       const d1 = new Date();
-    //       let self = this; // boo
-    //       this.sound.once('load', function () {
-    //         const d2 = new Date();
-    //         const deltaSeconds = ((d2.getTime() - d1.getTime()) / 1000);
-
-    //         self.sound.seek(seekTime + deltaSeconds, self.howlerSoundID);
-    //         self.howlerSoundID = self.sound.play(self.howlerSoundID);
-    //         console.log('loaded play event');
-    //       });
-    //     } else {
-    //       this.sound.seek(seekTime, this.howlerSoundID);
-    //       this.howlerSoundID = this.sound.play(this.howlerSoundID);
-    //       console.log('already loaded play event');
-    //     }
-    //   } else {
-    //     this.sound.seek(seekTime, this.howlerSoundID);
-    //     console.log('seek');
-    //   }
-    // } else if (serverState.status === 'pause') {
-    //   this.sound.pause(this.howlerSoundID);
-    //   console.log('pause');
-    // } else {
-    //   console.log('fell out');
-    // }
+    this.prevServerState = Object.assign({}, serverState);
   }
 }
 

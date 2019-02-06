@@ -8,7 +8,7 @@ class AudioOutputsController {
     this.$log = $log;
     this.$scope = $scope;
 
-    
+
     // UI state, updated by the service
     this.uiState = this.mapUIState(this.browserPlayerService.state);
     this.registerServiceObserver();
@@ -33,10 +33,8 @@ class AudioOutputsController {
     };
 
     const mappedState = {
-      browser: {
-        mute: serviceState.mute,
-        volume: serviceState.volume.toString(),
-      }
+      mute: serviceState.mute,
+      volume: serviceState.volume.toString(),
     };
 
     return Object.assign({}, defaultLocalState, this.uiState, mappedState);
@@ -53,7 +51,7 @@ class AudioOutputsController {
   }
 
   onVolumeChange() {
-    const val = parseFloat(this.uiState.browser.volume);
+    const val = parseFloat(this.uiState.volume);
 
     this.browserPlayerService.setVolume(val);
   }
