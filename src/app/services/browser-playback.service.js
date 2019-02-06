@@ -9,11 +9,7 @@ const hasTrackChanged = (a, b) => a.uri !== b.uri;
 const hasPlayPauseChanged = (a, b) => a.status !== b.status;
 const isPlaying = (a) => a.status === 'play';
 const hasSeekChanged = (a, b) => a.seek !== b.seek;
-const parseServerState = (obj) => ({
-  uri: obj.uri,
-  status: obj.status,
-  seek: obj.seek,
-});
+const ensureURI = (uri, host) => uri.includes('://') ? uri : `${host}/api/streaming/native?uri=${encodeURIComponent(uri)}`;
 
 /**
  * https://github.com/goldfire/howler.js/issues/825#issuecomment-446322017
@@ -61,9 +57,13 @@ class BrowserPlaybackService extends ObserverService {
 
 
   syncServerState(obj) {
-    const serverState = parseServerState(obj);
+    const serverState = {
+      uri: ensureURI(obj.uri, this.socketService.host),
+      status: obj.status,
+      seek: obj.seek,
+    };
 
-    if (this.prevServerState === serverState) return;
+    if (this.prevServerState === serverState) { return; }
 
     if (hasTrackChanged(this.prevServerState, serverState)) {
       this.sound.changeSrc(serverState.uri);
