@@ -131,3 +131,14 @@ img.btc-qr-code {
     margin-top: 20px;
     font-size: 15px;
 }
+
+#wifiPlugin tr td.insertPasswordRowWizard input[type=password], #wifiPlugin tr td.insertPasswordRowWizard input[type=text] {
+  margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+div#wifiSecuritySelectorWizard {
+    width: 140px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

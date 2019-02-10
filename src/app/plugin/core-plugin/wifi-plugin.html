@@ -59,7 +59,7 @@
         <td class="commandCol">
           <button ng-if="::!wifi.insertPassword"
               type="button"
-              class="btn btn-info">
+              class="btn btn-info hidden-xs">
             <i class="fa fa-level-down fa-rotate-90"></i>
             <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
           </button>
@@ -108,16 +108,7 @@
               ng-model="wifi.password"
               type="{{wifi.showHidePassword || 'password'}}"
               placeholder="password">
-
-          <button
-              class="btn btn-info"
-              ng-click="wifiPlugin.connectToWifi(wifi, $index)"
-              type="button"
-              name="btn btn-info">
-              <i class="fa fa-level-down fa-rotate-90"></i>
-              <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
-          </button>
-
+              <br>
           <button
               ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'"
               ng-click="(wifi.showHidePassword === 'text') ? wifi.showHidePassword = 'password' : wifi.showHidePassword = 'text'"
@@ -125,6 +116,14 @@
               class="btn btn-info showHidePassword">
             <i ng-if="!wifi.showHidePassword || wifi.showHidePassword === 'password'" class="fa fa-eye"></i>
             <i ng-if="wifi.showHidePassword === 'text'" class="fa fa-eye-slash"></i>
+          </button>
+          <button
+              class="btn btn-info"
+              ng-click="wifiPlugin.connectToWifi(wifi, $index)"
+              type="button"
+              name="btn btn-info">
+              <i class="fa fa-level-down fa-rotate-90"></i>
+              <span translate="NETWORK.CONNECT"></span>
           </button>
         </td>
       </tr>
