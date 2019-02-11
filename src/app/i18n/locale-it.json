@@ -181,7 +181,8 @@
     "SECURE_NETWORK":"Rete Sicura",
     "SECURITY": "Sicurezza",
     "MANUAL_WIFI_CONNECTION":"Connessione Manuale",
-    "NETWORK_NAME":"Nome della rete"
+    "NETWORK_NAME":"Nome della rete",
+    "WIRELESS_NETWORK_CONNECTION":"Connessione alla rete senza fili"
   },
   "WIZARD": {
     "LANGUAGE": "Lingua",
