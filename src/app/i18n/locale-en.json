@@ -181,7 +181,8 @@
     "SECURE_NETWORK": "Secure Network",
     "SECURITY": "Security",
     "MANUAL_WIFI_CONNECTION": "Manual WiFi Connection",
-    "NETWORK_NAME": "Network Name"
+    "NETWORK_NAME": "Network Name",
+    "WIRELESS_NETWORK_CONNECTION":"Wireless Network Connection"
   },
   "WIZARD": {
     "LANGUAGE": "Language",
