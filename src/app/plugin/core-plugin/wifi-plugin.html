@@ -3,9 +3,9 @@
     ng-controller="WifiPluginController as wifiPlugin"
     ng-show="wifiPlugin.wirelessNetworks.available || wifiPlugin.wirelessNetworks.connectedTo"
     class="panel panel-default">
-  <!-- <div class="panel-heading">
+  <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-wifi"></i> Wireless network</h3>
-  </div> -->
+  </div>
 
   <div class="panel-body">
     <!-- <h4 ng-if="false" class="sectionDescription"></h4> -->
@@ -55,14 +55,6 @@
         <td>
           <span ng-if="!$last">{{::wifi.ssid}}</span>
           <span ng-if="$last" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
-        </td>
-        <td class="commandCol">
-          <button ng-if="::!wifi.insertPassword"
-              type="button"
-              class="btn btn-info hidden-xs">
-            <i class="fa fa-level-down fa-rotate-90"></i>
-            <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
-          </button>
         </td>
       </tr>
 

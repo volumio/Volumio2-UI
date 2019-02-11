@@ -207,7 +207,8 @@
     "ADD_YOUR_MUSIC":"Per aggiungere la tua musica, basta connettere un disco rigido USB oppure clicca sul bottone in basso per aggiungere un Disco di Rete",
     "STEP":"Passo",
     "VOLUMIOAPPS":"App",
-    "GET_APPS":"Per rendere tutto ancora più facile, puoi anche usare una delle nostre comode App"
+    "GET_APPS":"Per rendere tutto ancora più facile, puoi anche usare una delle nostre comode App",
+    "WIFI_CONNECTION":"Seleziona la rete senza fili a cui vuoi connetterti"
   },
   "SLEEP": {
     "POWER_OFF": "Spegni",

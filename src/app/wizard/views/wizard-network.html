@@ -1,3 +1,4 @@
+<h5 class="h-wizard" translate="WIZARD.WIFI_CONNECTION"></h5>
 <div
     id="wifiPlugin"
     ng-controller="WifiPluginController as wifiPlugin"
@@ -79,14 +80,6 @@
           <span ng-if="!$last">{{::wifi.ssid}}</span>
           <span ng-if="$last" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
         </td>
-        <td class="commandCol">
-          <button ng-if="::!wifi.insertPassword"
-              type="button"
-              class="btn btn-info">
-            <i class="fa fa-level-down fa-rotate-90"></i>
-            <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
-          </button>
-        </td>
       </tr>
 
       <tr ng-repeat-end ng-if="wifi.insertPassword">
@@ -126,7 +119,7 @@
               ng-model="wifi.password"
               type="{{wifi.showHidePassword || 'password'}}"
               placeholder="password">
-
+              <br>
           <button
               class="btn btn-info pull-right"
               ng-click="wifiPlugin.connectToWifiWizard(wifi, $index)"
