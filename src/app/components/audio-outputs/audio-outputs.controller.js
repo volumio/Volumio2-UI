@@ -10,39 +10,36 @@ class AudioOutputsController {
 
 
     // UI state, updated by the service
-    this.uiState = this.mapUIState(this.browserPlayerService.state);
+    this.uiState = {
+      component: {
+        menuVisible: false,
+      },
+      // Browser player
+      mute: this.browserPlayerService.state.mute,
+      volume: this.browserPlayerService.state.volume.toString(),
+    };
     this.registerServiceObserver();
   }
 
   registerServiceObserver() {
-    const uiStateListenerID = this.browserPlayerService.registerObserverCallback((state) => {
-      this.uiState = this.mapUIState(state);
+    const browserPlayerServiceID = this.browserPlayerService.registerObserverCallback((state) => {
+      this.uiState.mute = state.mute;
+      this.uiState.volume = state.volume.toString();
+    });
+
+    const audioOutputsServiceID = this.audioOutputsService.registerObserverCallback((state) => {
+      this.uiState.outputs = state.outputs;
     });
 
     this.$scope.$on('$destroy', () => {
-      this.browserPlayerService.deregisterObserverCallback(uiStateListenerID);
+      this.browserPlayerService.deregisterObserverCallback(browserPlayerServiceID);
+      this.audioOutputsService.deregisterObserverCallback(audioOutputsServiceID);
     });
-  }
-
-  mapUIState(serviceState) {
-    // Local component state
-    const defaultLocalState = {
-      component: {
-        menuVisible: false,
-      }
-    };
-
-    const mappedState = {
-      mute: serviceState.mute,
-      volume: serviceState.volume.toString(),
-    };
-
-    return Object.assign({}, defaultLocalState, this.uiState, mappedState);
   }
 
   /* Manage the UI state here */
   itemClick(item) {
-    this.$log.debug('Clicked on', item);
+    // this.$log.debug('Clicked on', item);
     // Implement method here
   }
 
@@ -60,6 +57,19 @@ class AudioOutputsController {
     this.browserPlayerService.toggleMute();
   }
 
+  toggleAudioOutput(id, enabled) {
+    if (enabled === true) {
+      this.audioOutputsService.disableAudioOutput(id);
+    } else {
+      this.audioOutputsService.enableAudioOutput(id);
+    }
+  }
+
+  onDeviceVolumeChange(id, level = '0') {
+    const volume = parseInt(level);
+
+    this.audioOutputsService.onDeviceVolumeChange(id, volume);
+  }
 }
 
 export default AudioOutputsController;
