@@ -233,7 +233,7 @@ class PlayerService {
   }
 
   init() {
-    this.registerListner();
+    this.registerListener();
     this.initService();
   }
 
@@ -337,7 +337,7 @@ class PlayerService {
     }
   }
 
-  registerListner() {
+  registerListener() {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
       this.state = data;
