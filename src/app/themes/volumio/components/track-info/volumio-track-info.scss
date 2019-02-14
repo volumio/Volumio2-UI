@@ -11,6 +11,12 @@
     max-height: 400px;
     border: 10px solid rgba(0,0,0,0.5);
   };
+
+  svg {
+    fill: $theme-primary-color;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px; border: 10px solid rgba(0, 0, 0, 0.5);
+  }
 }
 
 #trackDetails {

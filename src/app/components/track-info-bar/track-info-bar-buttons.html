@@ -14,6 +14,13 @@
    <i class="fa fa-repeat"></i>
   </button>
   <button
+     ng-class="{'active': trackInfoBarButtons.playerService.state.concertMode}"
+     ng-click="trackInfoBarButtons.playerService.concertMode()"
+     class="btn btn-link"
+     title="{{'TRACK_INFO_BAR.CONCERT_MODE' | translate}}">
+   <i class="fa fa-hourglass"></i>
+  </button>
+  <button
      ng-click="trackInfoBarButtons.addToPlaylist()"
      class="btn btn-link"
      title="{{'TRACK_INFO_BAR.SAVE_QUEUE_AS_PLAYLIST' | translate}}">

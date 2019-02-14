@@ -28,6 +28,7 @@ class PlayerService {
     this._shuffle = false;
     this._repeatTrack = false;
     this._repeatAlbum = false;
+    this._concertMode = false;
 
     this.localVolume = 0;
     this.lastVolumeUpdateTime = -1000;
@@ -90,6 +91,13 @@ class PlayerService {
   repeatAlbum() {
     if (this.state.trackType !== 'webradio') {
       this.socketService.emit('setRepeat', {value: !this.state.repeat});
+    }
+  }
+
+  concertMode() {
+    if (this.state.trackType !== 'webradio') {
+      this.$log.debug(!this.state.concertMode);
+      this.socketService.emit('setConcertMode', {value: !this.state.concertMode});
     }
   }
 

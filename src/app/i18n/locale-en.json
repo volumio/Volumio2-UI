@@ -72,7 +72,8 @@
     "SUBSCRIBE_ME": "Subscribe me",
     "SHARE": "Share",
     "EJECT": "Eject",
-    "FUNCTIONALIES_CONTROL": "Functionalities control"
+    "FUNCTIONALIES_CONTROL": "Functionalities control",
+    "CONCERT_MODE": "Concert Mode Active"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -136,6 +137,7 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Random",
     "REPEAT": "Repeat",
+    "CONCERT_MODE": "Concert Mode",
     "SAVE_QUEUE_AS_PLAYLIST": "Save queue as playlist",
     "CONSUME_PLAYLIST": "Consume playlist",
     "CLEAR_QUEUE": "Clear queue"
