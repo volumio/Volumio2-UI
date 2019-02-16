@@ -1,16 +1,10 @@
-import { groupBy } from 'lodash';
-import ObserverService from './utils/observer-service';
-
-
-class AudioOutputsService extends ObserverService {
+class AudioOutputsService {
   constructor(socketService, $log) {
     'ngInject';
-    super();
     this.socketService = socketService;
     this.$log = $log;
-    this.state = {
-      outputs: [],
-    };
+
+    this.outputs = [];
 
     this.registerListener();
     this.initService();
@@ -19,7 +13,8 @@ class AudioOutputsService extends ObserverService {
   registerListener() {
     this.socketService.on('pushAudioOutputs', (data) => {
       this.$log.debug('pushAudioOutputs', data);
-      this.updateState({ outputs: groupBy(data.availableOutputs, 'type') });
+      this.outputs = data.availableOutputs
+        .filter(output => output.type !== 'browser');
     });
   }
 
