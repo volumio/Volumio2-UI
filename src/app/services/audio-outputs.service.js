@@ -31,7 +31,7 @@ class AudioOutputsService {
   }
 
   onDeviceVolumeChange(id, volume, mute = false) {
-    this.socketService.emit('disableAudioOutput', { id, mute, volume });
+    this.socketService.emit('setAudioOutputVolume', { id, mute, volume });
   }
 }
 
