@@ -27,9 +27,8 @@ class AudioOutputsController {
     }
   }
 
-  onDeviceVolumeChange(id, level = '0') {
+  onDeviceVolumeChange(id, level) {
     const volume = parseInt(level);
-
     this.audioOutputsService.onDeviceVolumeChange(id, volume);
   }
 }

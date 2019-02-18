@@ -23,7 +23,7 @@
           <span class="list-item-name">{{::item.name}}</span>
           <span class="list-item-type">{{::item.type}}</span>
           <input ng-show="{{::item.volumeAvailable === true}}" type="range" name="volume-slider" id="volume-slider" min="0"
-            max="100" ng-model="item.volume" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(item.id, parseInt(item.volume))" />
+            max="100" ng-model="item.volume" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(item.id, item.volume)" />
         </button>
       </div>
     </div>
