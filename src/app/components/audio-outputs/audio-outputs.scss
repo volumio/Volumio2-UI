@@ -55,9 +55,10 @@
 
 .list-item-button {
   position: relative;
-  height: 100px;
+  height: 70px;
   outline: 0;
   padding: 10px !important;
+  border-bottom: none !important;
 }
 
 .list-item-icon {
@@ -106,16 +107,18 @@
   height: 3px;
   background-color: rgba(255,255,255,0.3);
   position: absolute;
-  bottom: 20px;
-  left: 0px;
+  //bottom: 20px;
+  left: 20px;
+  width: 80% !important;
+  margin-top: 5px;
 }
 
 .list-item-volume-bar::-webkit-slider-thumb {
   width: 12px;
   height: 12px;
   border-radius: 100px;
-  background-color: white; 
-  
+  background-color: white;
+
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
@@ -125,7 +128,22 @@
   width: 12px;
   height: 12px;
   border-radius: 100px;
-  background-color: white; 
+  background-color: white;
 
   cursor: pointer;
 }
+
+.list-item-div{
+  padding-bottom: 20px;
+  border-bottom: solid 1px #333;
+}
+
+
+/*this is used for changing the color on the left side of the volume slider in the sidebar
+  !works only on Firefox
+*/
+.list-item-volume-bar::-moz-range-progress {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 3px;
+}
+
