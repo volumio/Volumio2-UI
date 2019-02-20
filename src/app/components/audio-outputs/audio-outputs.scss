@@ -42,7 +42,7 @@
 }
 
 .group-container {
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .group-name {
@@ -92,7 +92,11 @@
   top: 47px;
   left: 60px;
   font-size: 10px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 260px;
+  white-space: nowrap;
 }
 
 .list-title {
@@ -105,7 +109,7 @@
   -webkit-appearance: none;
   outline: none;
   height: 3px;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   position: absolute;
   //bottom: 20px;
   left: 20px;
@@ -133,11 +137,10 @@
   cursor: pointer;
 }
 
-.list-item-div{
+.list-item-div {
   padding-bottom: 20px;
   border-bottom: solid 1px #333;
 }
-
 
 /*this is used for changing the color on the left side of the volume slider in the sidebar
   !works only on Firefox
@@ -146,4 +149,3 @@
   background-color: rgba(255, 255, 255, 0.8);
   height: 3px;
 }
-

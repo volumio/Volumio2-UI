@@ -17,12 +17,11 @@
       <div ng-repeat="item in audioOutputs.audioOutputsService.outputs track by $index" class="list-item-div">
         <button ng-click="audioOutputs.itemClick(item)" class="btn-link btn-block list-item-button">
           <span class="list-item-icon-right">
-            <i class="{{item.enabled === true ? 'fa fa-check-square' : 'fa fa-square'}}" ng-click="audioOutputs.toggleAudioOutput(item.id, item.enabled)" />
+            <i class="{{item.enabled === true ? 'fa fa-minus-circle' : 'fa fa-plus-circle'}}" ng-click="audioOutputs.toggleAudioOutput(item.id, item.enabled)" />
           </span>
           <img class="list-item-albumart" src="{{::(item.state.remoteAlbumart || item.state.albumart)}}" />
-          <span class="list-item-name">{{::item.name}}</span>
-          <span class="list-item-type">{{::item.type}}</span>
-
+          <span class="list-item-name">{{item.name}}</span>
+          <span class="list-item-type">{{audioOutputs.showArtistAndTitle(item.state.artist,item.state.track,item.type)}}</span>
         </button>
         <input ng-show="{{::item.volumeAvailable === true}}" type="range" name="volume-slider" id="volume-slider" min="0"
             max="100" ng-model="item.volume" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(item.id, item.volume)" />
