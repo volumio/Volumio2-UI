@@ -6,12 +6,12 @@
 
       <span ng-if="trackInfoBar.playerService.state.artist">
         <span class="small" translate="TRACK_MANAGER.BY"></span>
-        {{trackInfoBar.playerService.state.artist}}
+       <a style="cursor: pointer" ng-click="trackInfoBar.goTo('artist')"> {{trackInfoBar.playerService.state.artist}}</a>
       </span>
 
       <span ng-if="trackInfoBar.playerService.state.album">
         <span class="small" translate="TRACK_MANAGER.FROM"></span>
-        {{trackInfoBar.playerService.state.album}}
+        <a style="cursor: pointer" ng-click="trackInfoBar.goTo('album')">{{trackInfoBar.playerService.state.album}}</a>
       </span>
     </div>
   </div>
