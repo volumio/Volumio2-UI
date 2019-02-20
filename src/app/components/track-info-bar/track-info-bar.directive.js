@@ -14,13 +14,14 @@ class TrackInfoBarDirective {
 }
 
 class TrackInfoBarController {
-  constructor(playerService, playQueueService, modalService, $state, $translate) {
+  constructor(playerService, playQueueService, modalService, $state, $translate, browseService) {
     'ngInject';
     this.playerService = playerService;
     this.playQueueService = playQueueService;
     this.modalService = modalService;
     this.$state = $state;
     this.$translate = $translate;
+    this.browseService = browseService;
   }
 
   addToPlaylist() {
@@ -36,6 +37,17 @@ class TrackInfoBarController {
       templateUrl,
       params,
       'sm');
+  }
+
+  goTo(type) {
+    this.$state.go('volumio.browse');
+    let emitPayload = {
+      type: type,
+      value: this.playerService.state[type],
+      artist: this.playerService.state.artist,
+      album: this.playerService.state.album
+    };
+    this.browseService.goTo(emitPayload);
   }
 }
 
