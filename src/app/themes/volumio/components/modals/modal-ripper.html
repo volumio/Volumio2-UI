@@ -1,3 +1,4 @@
+
 <div class="modal-header">
   <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
 </div>
@@ -8,18 +9,40 @@
   <div ng-if="::modal.dataObj.artist || modal.dataObj.album">
     <h4>CD Informations</h4>
     <form novalidate name="modal.form" class="form-horizontal">
-      <div class="form-group" ng-if="::modal.dataObj.artist">
-        <label for="artist" class="col-xs-2 control-label">{{'COMMON.ARTIST' | translate}}</label>
-        <div class="col-xs-22">
-          <input ng-model="modal.dataObj.artist" type="text" class="form-control col-xs-18" id="artist" placeholder="Artist">
-        </div>
+        <div class="row" id="ripper-row" style="margin-right: unset;margin-left: unset;">
+            <div class="col-xs-24 col-sm-18">
+
+                <div class="row" style="margin-right: unset;margin-left: unset;">
+                    <div class="form-group" ng-if="::modal.dataObj.artist">
+                        <label for="artist" class="col-xs-3 col-sm-3 control-label">{{'COMMON.ARTIST' | translate}}</label>
+                        <div class="col-xs-24 col-sm-21">
+                          <input ng-model="modal.dataObj.artist" type="text" class="form-control col-xs-18" id="artist" placeholder="Artist">
+                        </div>
+                      </div>
+                </div>
+                <div class="row" style="margin-right: unset;margin-left: unset;">
+                    <div class="form-group" ng-if="::modal.dataObj.album">
+                        <label for="album" class="col-xs-3 col-sm-3 control-label">{{'COMMON.ALBUM' | translate}}</label>
+                        <div class="col-xs-24 col-sm-21">
+                          <input ng-model="modal.dataObj.album" type="text" class="form-control" id="album" placeholder="Album">
+                        </div>
+                      </div>
+
+                </div>
+            </div>
+            <div class="col-xs-24 col-sm-6">
+               <img ng-src={{modal.playerService.getAlbumart(modal.dataObj.albumart)}} alt="" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto" />
+               <button
+                class="btn btn-default"
+                ngf-select="modal.uploadAlbumart()"
+                ng-model="modal.albumart"
+                style="display: block; margin-left: auto; margin-right: auto; white-space: normal"
+                >
+                  {{'COMMON.UPDATE_ALBUMART' | translate}}
+              </button>
+            </div>
       </div>
-      <div class="form-group" ng-if="::modal.dataObj.album">
-        <label for="album" class="col-xs-2 control-label">{{'COMMON.ALBUM' | translate}}</label>
-        <div class="col-xs-22">
-          <input ng-model="modal.dataObj.album" type="text" class="form-control" id="album" placeholder="Album">
-        </div>
-      </div>
+      <div class="row"  id="ripper-row" style="margin-right: unset;margin-left: unset;">
 
       <div ng-if="::modal.dataObj.tracks">
         <h4>{{'COMMON.SONGS' | translate}}</h4>
@@ -30,6 +53,7 @@
           </div>
         </div>
       </div>
+    </div>
     </form>
     <div
         ng-if="modal.dataObj.availableDrives && modal.dataObj.availableDrives.length">
