@@ -1,14 +1,5 @@
 class ModalRipperController {
-  constructor(
-    $uibModalInstance,
-    dataObj,
-    ripperService,
-    browseService,
-    playerService,
-    Upload,
-    socketService,
-    $log
-  ) {
+  constructor($uibModalInstance, dataObj, ripperService, browseService, playerService, Upload, socketService, $log) {
     "ngInject";
     this.$uibModalInstance = $uibModalInstance;
     this.ripperService = ripperService;
@@ -32,7 +23,7 @@ class ModalRipperController {
 
   uploadAlbumart() {
     this.Upload.upload({
-      url: `${this.socketService.host}/backgrounds-upload`,
+      url: `${this.playerService.getAlbumart(this.dataObj.albumart)}`,
       data: {filename: this.albumart}
     }).then(
       resp => {
