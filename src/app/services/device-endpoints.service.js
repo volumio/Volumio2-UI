@@ -58,9 +58,9 @@ class DeviceEndpointsService {
         return null;
       }
 
-      let lastHwuuid = null;
-      if ('lastHwuuid' in user) {
-        lastHwuuid = user.lastHwuuid;
+      let lastHost = null;
+      if ('lastHost' in user) {
+        lastHost = user.lastHost;
       }
 
       return this.myVolumioDevicesService.getDevicesByUserId(user.uid).then(devices => {
@@ -70,9 +70,9 @@ class DeviceEndpointsService {
           let device = devices[i];
           if (device.enabled === true && device.online === true) {
             let deviceHwuuid = device.hwuuid;
-            let remoteDeviceHost = `https://${deviceHwuuid}.${geoServer}.myvolumio.org`;
-            if (lastHwuuid === deviceHwuuid) {
-              eligibleRemoteHosts.unshift(`https://${deviceHwuuid}.${geoServer}.myvolumio.org`);
+            let remoteDeviceHost = device.host;
+            if (lastHost === remoteDeviceHost) {
+              eligibleRemoteHosts.unshift(device.host);
             } else {
               eligibleRemoteHosts.push(remoteDeviceHost);
             }
