@@ -1,0 +1,56 @@
+ <div
+    id="bluetoothPlugin"
+    ng-controller="BluetoothPluginController as bluetoothPlugin"
+    class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-bluetooth"></i> Bluetooth devices </h3>
+  </div>
+
+  <div class="panel-body">
+    <!-- <h4 ng-if="false" class="sectionDescription"></h4> -->
+    <table class="table">
+      <tr 
+          ng-if="::bluetoothPlugin.bluetooth.devices.length > 0"
+          ng-repeat-start="device in bluetoothPlugin.bluetooth.devices track by $index">
+        <td class="bluetoothIcon">
+          <i ng-if="device.signal > 0" class="fa fa-signal" title="{{::device.signal}}"></i>   
+          <i ng-if="device.signal == 0" class="fa fa-eye-slash" title="{{::device.signal}}"></i>
+        </td>
+        <td class="deviceIcon">
+          <span>
+            <i ng-if="device.icon === 'audio-card'" class="fa fa-headphones" title="{{'BLUETOOTH.AUDIO' | translate}}"></i>
+            <i ng-if="device.icon === 'computer'" class="fa fa-laptop" title="{{'BLUETOOTH.COMPUTER' | translate}}"></i>
+          </span>
+        </td>
+        <td>
+          <span>{{::device.name}} ({{::device.mac}})</span>
+        </td>
+        <td class="commandCol">
+          <button ng-if="device.connected === 'yes'"
+              type="button"
+              class="btn btn-info"
+              ng-click="bluetoothPlugin.disconnectDevice(device.mac)">
+            <i class="fa fa-unlink"></i>
+            <span class="hidden-xs" translate="BLUETOOTH.DISCONNECT"></span>
+          </button>
+          <button ng-if="device.connected !== 'yes'"
+              type="button"
+              class="btn btn-info"
+              ng-click="bluetoothPlugin.connectDevice(device.mac)">
+            <i class="fa fa-link"></i>
+            <span class="hidden-xs" translate="BLUETOOTH.CONNECT"></span>
+          </button>
+        </td>
+      </tr >
+
+    <tr ng-repeat-end>
+      </tr> 
+    </table >
+    
+
+    <button type="button" class="btn btn-info scanBluetoothDevices" ng-click="bluetoothPlugin.startScan()">
+      <i class="fa fa-refresh" title="{{'BLUETOOTH.SCAN' | translate}}"></i>
+      <span translate="BLUETOOTH.SCAN"></span>
+    </button>
+  </div>
+</div>

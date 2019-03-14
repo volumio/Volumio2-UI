@@ -1,0 +1,54 @@
+#bluetoothPlugin {
+  tr {
+    td{
+      border-top: 0 !important;
+      border-bottom: 1px solid #7C7C7C;
+      &.insertPasswordRow {
+        label {
+          margin-right: 10px;
+        }
+        input[type=checkbox] {
+          width: auto;
+        }
+        input[type=text], input[type=password] {
+          width: 140px;
+          display: inline-block;
+          margin-right: 10px;
+        }
+        text-align: center;
+      }
+      &.commandCol {
+        max-width: 210px;
+        text-align: right;
+      }
+      &.bluetoothIcon {
+        width: 36px;
+        text-align: center;
+        img {
+          width: 20px;
+        }
+      }
+      &.deviceIcon {
+        width: 30px;
+        text-align: center;
+      }
+      .securitySelectWrapper {
+        width: 120px;
+        display: inline-block;
+        margin-right: 15px;
+        position: relative;
+        .ui-select-choices {
+          position: absolute;
+          top: -22px;
+          left: 0;
+        }
+      }
+      .showHidePassword {
+        margin-right: 10px;
+      }
+    }
+  }
+  .refreshbluetoothNetworks {
+    margin-top: 15px;
+  }
+}

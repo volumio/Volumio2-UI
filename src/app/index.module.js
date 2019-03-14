@@ -125,6 +125,7 @@ import MyVolumioPayingModalController from './components/myvolumio/modals/myvolu
 
 
 //Core plugin controller
+import BluetoothPluginController from './plugin/core-plugin/bluetooth-plugin.controller';
 import WifiPluginController from './plugin/core-plugin/wifi-plugin.controller';
 import NetworkStatusPluginController from './plugin/core-plugin/network-status-plugin.controller';
 import MyMusicPluginController from './plugin/core-plugin/my-music-plugin.controller';
@@ -307,6 +308,7 @@ angular.module('volumio', [
   .controller('ModalCryptoController', ModalCryptoController)
   .controller('MyVolumioTermsModalController', MyVolumioTermsModalController)
   .controller('MyVolumioPayingModalController', MyVolumioPayingModalController)
+  .controller('BluetoothPluginController', BluetoothPluginController)
   .controller('WifiPluginController',  WifiPluginController)
   .controller('NetworkStatusPluginController', NetworkStatusPluginController)
   .controller('MyMusicPluginController', MyMusicPluginController)
