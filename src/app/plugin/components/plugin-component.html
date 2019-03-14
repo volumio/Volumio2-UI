@@ -36,11 +36,11 @@
               <div ng-repeat="item in section.content track by $index" ng-if="!item.hidden" plugin-visible="item.visibleIf" section="section"
                 class="form-group">
 
-                <label for="{{item.id}}" class="control-label">
+                <label for="{{item.id}}" class="plugin-label control-label">
                   {{item.label}}
                 </label>
 
-                <div ng-switch="item.element" class="control-item">
+                <div ng-if='item.element!=="equalizer"' ng-switch="item.element" class="control-item">
                   <div class="">
                     <input ng-switch-when="input" id="{{item.id}}" type="{{item.type}}" plugin-attributes="item.attributes" ng-model="item.value"
                       class="form-control">
@@ -59,7 +59,7 @@
                       </ui-select>
                     </div>
 
-                    <div ng-switch-when="equalizer">
+                    <div ng-switch-when="equalizer" >
                       <equalizer id="{{item.id}}" config="item.config">
                       </equalizer>
                     </div>
@@ -70,6 +70,15 @@
                     </button>
 
                     <div ng-switch-default>
+                    </div>
+                  </div>
+                </div>
+
+                <div ng-if='item.element ==="equalizer"' class="equalizer-plugin">
+                  <div class="">
+                    <div>
+                      <equalizer id="{{item.id}}" config="item.config">
+                      </equalizer>
                     </div>
                   </div>
                 </div>
