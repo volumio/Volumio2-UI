@@ -1,0 +1,30 @@
+<div id="customTranslation " ng-controller="CustomTranslationController as customTranslation"
+    class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-language"></i> <span translate="Custom translation"></span>
+      <!--
+        crea un pulsante info
+        <i class="fa fa-info-circle pull-right" ng-click="customTranslation.test()"></i>
+       -->
+    </h3>
+
+  </div>
+  <div class="panel-body">
+    <label class="control-label ng-binding" translate="WIZARD.SELECT_YOUR_LANGUAGE"></label>
+    <!-- <span class="btn btn-default form-control ui-select-toggle">
+      <button
+      type="menu"
+      class="btn btn-secondary"
+      >ok</button>
+    </span> -->
+    <div>
+      <button
+          type="button"
+          class="btn btn-info"
+          ng-click="customTranslation.test()"
+          title="{{COMMON.SAVE | translate}}">
+          <span translate="COMMON.SAVE"></span>
+      </button>
+    </div>
+  </div>
+</div>

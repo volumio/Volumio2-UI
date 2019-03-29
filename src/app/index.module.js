@@ -133,6 +133,8 @@ import SystemVersionPluginController from './plugin/core-plugin/system-version-p
 import FirmwareUploadPluginController from './plugin/core-plugin/firmware-upload-plugin.controller';
 import UiSettingsPluginController from './plugin/core-plugin/ui-settings-plugin.controller';
 import MyMusicPluginEnablerController from './plugin/core-plugin/my-music-plugin-enabler-plugin.controller';
+import CustomTranslationController from './plugin/core-plugin/custom-translation-plugin.controller';
+
 
 //Core plugin: MyVolumio
 import MyVolumioLoginController from './components/myvolumio/login/myvolumio-login.controller';
@@ -315,6 +317,7 @@ angular.module('volumio', [
   .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
   .controller('UiSettingsPluginController', UiSettingsPluginController)
   .controller('MyMusicPluginEnablerController', MyMusicPluginEnablerController)
+  .controller('CustomTranslationController', CustomTranslationController)
 
   //MyVolumio
   .controller('MyVolumioLoginController', MyVolumioLoginController)
