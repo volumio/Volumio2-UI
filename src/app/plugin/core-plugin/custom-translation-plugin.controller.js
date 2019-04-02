@@ -6,35 +6,67 @@ class CustomTranslationController{
     this.$scope = $scope;
     this.$log = $log;
     this.$translate = $translate;
+    this.allLanguages;
     this.init();
+    this.value = {
+        value: "it",
+        label: "italiano"
+    };
+    this.translationLanguage = '';
   }
 
   init(){
+    this.showPlugin = false;
     this.registerListner();
     this.initService();
   }
 
   registerListner(){
-    this.socketService.on('pushAllLanguages', function (data)
+    let self = this;
+    self.socketService.on('pushAllLanguages', function (data)
     {
-      console.log("dati ricevuti:", data);
+      self.allLanguages = data.languages;
+      self.showPlugin = true;
+    });
+
+    self.socketService.on('pushPercentage', function (data)
+    {
+      self.percentageTranslated = data;
+      console.log("Percentuale tradotta =", self.percentageTranslated);
     });
   }
 
   initService() {
+    this.socketService.emit('getAllLanguages');
   }
 
   test(){
+    let self = this;
+
     console.log("funzione test è stata lanciata");
-    this.socketService.emit('getAllLanguages');
+
+  }
+
+  onChange(language){
+    let self = this;
+    self.translationLanguage = language.code;
+    console.log("language changed in :", language.nativeName);
+    console.log("language code :", self.translationLanguage);
+  }
+
+  showTranslation(){
+    let self = this;
+    if(self.translationLanguage !== '' && self.translationLanguage !== undefined){
+      var data = {
+        translation_language : {
+          value : self.translationLanguage
+        }
+      };
+      self.socketService.emit('showTranslations', data);
+    } else {
+      console.log("Error: Language not selected");
+    }
   }
 }
-
-/*per gestire tutto bisogna mettere emit per lanciare una funzione e on per ascoltare la risposta
-  nel backend bisogna andare in volumio/plugin/user_interface/index.js per mettere on sulla richiesta e emit per
-  mandare la risposta che stiamo ascoltando
-  quindi esempio: FE: this.socketService.emit('funzione');  BE: connWebSocket.on('funzione', function () {})
-  viceversa: FE: this.socketService.on('risposta', function (data){}) BE: selfConnWebSocket.emit('risposta', data);
-*/
 
 export default CustomTranslationController;
