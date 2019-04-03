@@ -1,6 +1,6 @@
 class AngularFireService {
 
-  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, $filter, modalService, devService) {
+  constructor($rootScope, $timeout, firebase, $firebaseAuth, $firebaseObject, $firebaseArray, $firebaseStorage, $q, $filter, modalService, devService, $http, $interval) {
     'ngInject';
     //consts
     this.USERS_REF = "users";
@@ -20,6 +20,8 @@ class AngularFireService {
     this.modalService = modalService;
     this.filteredTranslate = $filter('translate');
     this.devService = devService;
+    this.$http = $http;
+    this.$interval = $interval;
 
     this.authUser = null;
     this.dbUser = null;
@@ -38,10 +40,26 @@ class AngularFireService {
   }
 
   initFirebase() {
-    this.getFirebaseConfig().then(config => {
-      this.firebaseModule.initializeApp(config);
-      this.initing.resolve();
-    });
+
+    var getting = this.$q.defer();
+    var ref = `http://api.ipstack.com/check?access_key=3bcaa3ad9f5612cf9ff2df601212aa41`;
+    var self = this;
+
+    var getCountryTimer = this.$interval(function () {
+      self.$http({
+        method:'GET',
+        url: ref,
+        timeout: 3000
+      }).then(function successCallback(response) {
+        self.$interval.cancel(getCountryTimer);
+        self.getFirebaseConfig(response.data.country_code).then(config => {
+          self.firebaseModule.initializeApp(config);
+          self.initing.resolve();
+        });
+    }, function errorCallback(response) {
+        console.log("Something goes wrong in country source identification. Try again.");
+      });
+    }, 5000);
     return this.initing.promise;
   }
 
@@ -50,12 +68,13 @@ class AngularFireService {
     this.database = this.firebase.database();
   }
 
-  getFirebaseConfig() {
+  getFirebaseConfig(country) {
     var getting = this.$q.defer();
+    let databaseUrl = (country == 'CN' ? 'https://asp.volumio.org' : 'https://myvolumio.firebaseio.com');
     let config = {
       apiKey: "AIzaSyDzEZmwJZS4KZtG9pEXOxlm1XcZikP0KbA",
       authDomain: "myvolumio.firebaseapp.com",
-      databaseURL: "https://myvolumio.firebaseio.com",
+      databaseURL: databaseUrl,
       projectId: "myvolumio",
       storageBucket: "myvolumio.appspot.com",
       messagingSenderId: "560540102538"
