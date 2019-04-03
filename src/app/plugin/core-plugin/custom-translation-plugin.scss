@@ -1,3 +1,19 @@
-#translationText{
+#translationText {
   overflow: hidden;
 }
+
+#percentage {
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: normal;
+  position: relative;
+  min-height: 1px;
+  float: right;
+  padding-right: 20px;
+  padding-top: 5px;
+}
+
+#btn-commit {
+  float: right;
+}
+

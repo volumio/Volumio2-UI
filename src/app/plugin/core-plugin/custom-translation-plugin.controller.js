@@ -1,6 +1,7 @@
 class CustomTranslationController{
-  constructor($scope, $rootScope, socketService, mockService, $log, $translate) {
+  constructor($scope, $rootScope, socketService, mockService, $log, $translate, modalService) {
     'ngInject';
+    this.modalService = modalService;
     this.socketService = socketService;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -9,10 +10,12 @@ class CustomTranslationController{
     this.allLanguages;
     this.init();
     this.value = {
-        value: "it",
-        label: "italiano"
+        value: 0,
+        label: 'Unknown'
     };
     this.translationLanguage = '';
+    this.percentageTranslated = 0;
+    this.showPercentage = false;
   }
 
   init(){
@@ -32,7 +35,7 @@ class CustomTranslationController{
     self.socketService.on('pushPercentage', function (data)
     {
       self.percentageTranslated = data;
-      console.log("Percentuale tradotta =", self.percentageTranslated);
+      self.showPercentage = true;
     });
   }
 
@@ -40,18 +43,21 @@ class CustomTranslationController{
     this.socketService.emit('getAllLanguages');
   }
 
-  test(){
-    let self = this;
-
-    console.log("funzione test è stata lanciata");
-
-  }
-
   onChange(language){
     let self = this;
     self.translationLanguage = language.code;
-    console.log("language changed in :", language.nativeName);
-    console.log("language code :", self.translationLanguage);
+  }
+
+  contribute(){
+    let self = this;
+    if(self.percentageTranslated !== '100%'){
+      self.modalService.openDefaultErrorModal('TRANSLATION.MODAL_ERROR');
+    } else {
+      //openDefaultConfirm(titleLangKey, descLangKey, callback = null, cancelCallback = null)
+      //callback = ok
+      //cancelCallback = annulla
+      self.modalService.openDefaultConfirm('Contribuisci','La traduzione è completa al 100% vuoi contribuire caricando la tua traduzione su github ?');
+    }
   }
 
   showTranslation(){
@@ -64,7 +70,7 @@ class CustomTranslationController{
       };
       self.socketService.emit('showTranslations', data);
     } else {
-      console.log("Error: Language not selected");
+      console.log('Error: Language not selected');
     }
   }
 }

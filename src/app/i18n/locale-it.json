@@ -371,5 +371,11 @@
     "AUTO_SYNC":"Sincronizzazione automatica delle preferenze",
     "MYVOLUMIO_6_DEVICES":"Usa MyVolumio su 6 dispositivi",
     "REMOTE_CONNECTION_6_DEVICES":"Connessione verso 6 dispositivi"
+  },
+  "TRANSLATION": {
+    "CUSTOM_TRANSLATION" : "Traduzione personalizzata",
+    "PERCENTAGE" : "Percentuale tradotta",
+    "MODAL_ERROR" : "Error. Per inviare le traduzioni è necessario che siano completate al 100%",
+    "CONTRIBUTE" : "Contribuisci"
   }
 }
