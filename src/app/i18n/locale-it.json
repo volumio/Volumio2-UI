@@ -376,6 +376,7 @@
     "CUSTOM_TRANSLATION" : "Traduzione personalizzata",
     "PERCENTAGE" : "Percentuale tradotta",
     "MODAL_ERROR" : "Error. Per inviare le traduzioni è necessario che siano completate al 100%",
-    "CONTRIBUTE" : "Contribuisci"
+    "CONTRIBUTE" : "Contribuisci",
+    "SHOW" : "Mostra Traduzioni"
   }
 }

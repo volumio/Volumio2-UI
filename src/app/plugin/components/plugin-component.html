@@ -36,11 +36,11 @@
               <div ng-repeat="item in section.content track by $index" ng-if="!item.hidden" plugin-visible="item.visibleIf" section="section"
                 class="form-group">
 
-                <label for="{{item.id}}" class="control-label">
+                <label for="{{item.id}}" class="control-label" ng-style = "item.style">
                   {{item.label}}
                 </label>
 
-                <div ng-switch="item.element" class="control-item">
+                <div ng-switch="item.element" class="control-item" ng-style = "item.style">
                   <div class="">
                     <input ng-switch-when="input" id="{{item.id}}" type="{{item.type}}" plugin-attributes="item.attributes" ng-model="item.value"
                       class="form-control">

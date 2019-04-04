@@ -377,6 +377,7 @@
     "CUSTOM_TRANSLATION" : "Custom Translation",
     "PERCENTAGE" : "Translated Percentage",
     "MODAL_ERROR" : "Error. To send translations it is necessary to complete them 100%",
-    "CONTRIBUTE" : "Contribute"
+    "CONTRIBUTE" : "Contribute",
+    "SHOW" : "Show Translations"
   }
 }
