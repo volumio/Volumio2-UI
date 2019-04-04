@@ -31,6 +31,9 @@
             ng-click="customTranslation.showTranslation()">
             <span translate="TRANSLATION.SHOW"></span>
           </button>
+          <div id="loader" ng-if="customTranslation.loading">
+            <i class="fa fa-spinner fa-pulse"></i>
+          </div>
           <button
             type="button"
             id = "btn-commit"

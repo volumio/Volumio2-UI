@@ -16,6 +16,7 @@ class CustomTranslationController{
     this.translationLanguage = '';
     this.percentageTranslated = 0;
     this.showPercentage = false;
+    this.loading = false;
   }
 
   init(){
@@ -36,6 +37,7 @@ class CustomTranslationController{
     {
       self.percentageTranslated = data;
       self.showPercentage = true;
+      self.loading = false;
     });
   }
 
@@ -62,6 +64,7 @@ class CustomTranslationController{
 
   showTranslation(){
     let self = this;
+    self.loading = true;
     if(self.translationLanguage !== '' && self.translationLanguage !== undefined){
       var data = {
         translation_language : {
