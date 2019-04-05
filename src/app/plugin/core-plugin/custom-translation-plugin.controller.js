@@ -14,7 +14,7 @@ class CustomTranslationController{
         label: 'Unknown'
     };
     this.translationLanguage = '';
-    this.percentageTranslated = 0;
+    this.percentageTranslated = '0%';
     this.showPercentage = false;
     this.loading = false;
   }
@@ -55,10 +55,7 @@ class CustomTranslationController{
     if(self.percentageTranslated !== '100%'){
       self.modalService.openDefaultErrorModal('TRANSLATION.MODAL_ERROR');
     } else {
-      //openDefaultConfirm(titleLangKey, descLangKey, callback = null, cancelCallback = null)
-      //callback = ok
-      //cancelCallback = annulla
-      self.modalService.openDefaultConfirm('Contribuisci','La traduzione è completa al 100% vuoi contribuire caricando la tua traduzione su github ?');
+      self.modalService.openDefaultConfirm('TRANSLATION.CONTRIBUTE','TRANSLATION.GIT');
     }
   }
 

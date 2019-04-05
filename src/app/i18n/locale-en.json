@@ -378,6 +378,8 @@
     "PERCENTAGE" : "Translated Percentage",
     "MODAL_ERROR" : "Error. To send translations it is necessary to complete them 100%",
     "CONTRIBUTE" : "Contribute",
-    "SHOW" : "Show Translations"
+    "SHOW" : "Show Translations",
+    "LOADING": "Loading Translations",
+    "GIT" : "The translation is 100% complete do you want to contribute by uploading your translation to github?"
   }
 }

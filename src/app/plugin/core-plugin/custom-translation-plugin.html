@@ -19,9 +19,6 @@
             </ui-select>
           </div>
         </div>
-        <div id="percentage" ng-if="customTranslation.showPercentage">
-          <span>{{'TRANSLATION.PERCENTAGE' | translate}} : {{customTranslation.percentageTranslated}}</span>
-        </div>
       </div>
        <div class="form-group" ng-if="customTranslation.showPlugin">
         <div class="control-buttons">
@@ -33,16 +30,21 @@
           </button>
           <div id="loader" ng-if="customTranslation.loading">
             <i class="fa fa-spinner fa-pulse"></i>
+            &nbsp
+            <span translate="TRANSLATION.LOADING"></span>
           </div>
-          <button
-            type="button"
-            id = "btn-commit"
-            class="btn btn-info"
-            ng-click="customTranslation.contribute()"
-            ng-if="customTranslation.showPercentage">
-            <span translate="TRANSLATION.CONTRIBUTE"></span>
-          </button>
         </div>
+      </div>
+      <div class="form-group" ng-if="customTranslation.showPercentage">
+          <label class="control-label" >{{'TRANSLATION.PERCENTAGE' | translate}} : {{customTranslation.percentageTranslated}}</label>
+          <div class="control-buttons">
+              <button
+              type="button"
+              class="btn btn-info"
+              ng-click="customTranslation.contribute()">
+              <span translate="TRANSLATION.CONTRIBUTE"></span>
+            </button>
+          </div>
       </div>
     </form>
   </div>
