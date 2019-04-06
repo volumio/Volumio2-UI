@@ -5,7 +5,7 @@ class ProductsService {
     this.socketService = socketService;
     this.$q = $q;
 
-    this.version = "002001"; //TODO GET VERSION
+    this.version = "002002"; //TODO GET VERSION
 
     this.MONTHLY_PLAN = 'monthly';
     this.YEARLY_PLAN = 'yearly';

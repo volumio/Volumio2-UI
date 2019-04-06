@@ -9,8 +9,8 @@
         <h1>
           {{myVolumioPlanCardController.getShownPrice()}}
         </h1>
-        <span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free'" style="font-size: small;">{{'MYVOLUMIO.'+myVolumioPlanCardController.showMode.planDuration + '_PER'| uppercase | translate | lowercase}}</span>
-        <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
+        <span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free'" style="font-size: small;">{{'MYVOLUMIO.'+myVolumioPlanCardController.showMode.planDuration + '_PER'| uppercase | translate | lowercase}}</span><br>
+        <span ng-if="myVolumioPlanCardController.product.trialDays && myVolumioPlanCardController.showMode.planDuration === 'monthly'">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
       </div>
       <table class="table">
         <tr ng-repeat="feature in myVolumioPlanCardController.product.features track by $index" ng-class-odd="'active'">
@@ -44,7 +44,7 @@
               <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
             </button>
             <br />
-            <span ng-if="myVolumioPlanCardController.product.trialDays">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
+            <span ng-if="myVolumioPlanCardController.product.trialDays && myVolumioPlanCardController.showMode.planDuration === 'monthly'">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
           </div>
           <!-- SHOW CURRENT STATUS -->
           <button type="button" class="btn btn-labeled btn-success" ng-if="myVolumioPlanCardController.user.plan === myVolumioPlanCardController.product.plan && myVolumioPlanCardController.user.planDuration === myVolumioPlanCardController.showMode.planDuration">
