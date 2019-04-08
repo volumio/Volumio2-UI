@@ -39,9 +39,7 @@ class MyVolumioPlanCardController {
     this.changeSubscriptionCallback = this.$scope.changeSubscriptionCallback;
     this.showMode = this.$scope.showMode;
     this.productsService = productsService;
-
     this.user = null;
-
     this.init();
   }
 
@@ -81,6 +79,32 @@ class MyVolumioPlanCardController {
     return planDuration;
   }
 
+  isTrialAvailable(){
+    var planDuration = this.productsService.MONTHLY_PLAN;
+    if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
+      planDuration = this.showMode.planDuration;
+    }
+    if (this.user.isTrialAvailable !== false && this.product.prices[planDuration].trial !== undefined && this.product.prices[planDuration].trial.trialEnabled && this.product.prices[planDuration].trial.trialDays !== undefined && this.product.prices[planDuration].trial.trialDaysAuth !== undefined && this.product.prices[planDuration].trial.trialAuth !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getTrialDays(){
+    var planDuration = this.productsService.MONTHLY_PLAN;
+    if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
+      planDuration = this.showMode.planDuration;
+    }
+    if (this.user.isTrialAvailable !== false && this.product.prices[planDuration].trial !== undefined && this.product.prices[planDuration].trial.trialEnabled && this.product.prices[planDuration].trial.trialDays !== undefined && this.product.prices[planDuration].trial.trialDaysAuth !== undefined && this.product.prices[planDuration].trial.trialAuth !== undefined) {
+      return this.product.prices[planDuration].trial.trialDays;
+    } else {
+      return '';
+    }
+  }
+
+
+
   //auth section
   logIn() {
     this.$state.go('myvolumio.login');
@@ -104,7 +128,8 @@ class MyVolumioPlanCardController {
 
   subscribe(plan) {
     var planDuration = this.getCurrentPlanDuration();
-    this.$state.go('myvolumio.subscribe', { 'plan': plan, 'planDuration': planDuration });
+    var trial = this.isTrialAvailable();
+    this.$state.go('myvolumio.subscribe', { 'plan': plan, 'planDuration': planDuration, 'trial': trial });
   }
 
   goToChangePlan(plan) {
