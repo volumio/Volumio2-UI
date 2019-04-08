@@ -360,7 +360,8 @@
     "SAVE_20": "Save 20% with a Yearly Plan!",
     "WHAT_IS_MYVOLUMIO":"What is MyVolumio?",
     "RECOVER_PASSWORD_SENT_MESSAGE":"We just sent instructions on how to reset your password to your mail, check it out",
-    "GO_TO_LOGIN":"Done? Go to login"
+    "GO_TO_LOGIN":"Done? Go to login",
+    "TRY_FOR_FREE":"Try for free"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
