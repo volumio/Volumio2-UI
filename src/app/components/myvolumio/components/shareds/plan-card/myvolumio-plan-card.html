@@ -10,7 +10,7 @@
           {{myVolumioPlanCardController.getShownPrice()}}
         </h1>
         <span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free'" style="font-size: small;">{{'MYVOLUMIO.'+myVolumioPlanCardController.showMode.planDuration + '_PER'| uppercase | translate | lowercase}}</span><br>
-        <span ng-if="myVolumioPlanCardController.product.trialDays && myVolumioPlanCardController.showMode.planDuration === 'monthly'">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
+        <h4 class="trial-text" ng-if="myVolumioPlanCardController.isTrialAvailable()">{{myVolumioPlanCardController.getTrialDays()}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</h4>
       </div>
       <table class="table">
         <tr ng-repeat="feature in myVolumioPlanCardController.product.features track by $index" ng-class-odd="'active'">
@@ -41,10 +41,9 @@
           <div ng-if="myVolumioPlanCardController.user.plan === undefined || myVolumioPlanCardController.user.plan === null || myVolumioPlanCardController.user.plan === 'free'" >
             <button ng-click="myVolumioPlanCardController.subscribe(myVolumioPlanCardController.product.plan)" class="btn btn-success btn-labeled">
               <span class="btn-label"><i class="glyphicon glyphicon-triangle-top"></i></span>
-              <span translate="MYVOLUMIO.CHANGE_PLAN"></span>
+              <span ng-if="!myVolumioPlanCardController.isTrialAvailable()" translate="MYVOLUMIO.CHANGE_PLAN"></span>
+              <span ng-if="myVolumioPlanCardController.isTrialAvailable()" translate="MYVOLUMIO.TRY_FOR_FREE"></span>
             </button>
-            <br />
-            <span ng-if="myVolumioPlanCardController.product.trialDays && myVolumioPlanCardController.showMode.planDuration === 'monthly'">{{myVolumioPlanCardController.product.trialDays}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</span>
           </div>
           <!-- SHOW CURRENT STATUS -->
           <button type="button" class="btn btn-labeled btn-success" ng-if="myVolumioPlanCardController.user.plan === myVolumioPlanCardController.product.plan && myVolumioPlanCardController.user.planDuration === myVolumioPlanCardController.showMode.planDuration">
@@ -60,7 +59,7 @@
       <!-- PADDLE ACTUAL SUBSCRIBE/UNSUB/CHANGE BUTTONS -->
       <div ng-if="myVolumioPlanCardController.activateSubscribe">
         <paddle-pay-button paddle-product='myVolumioPlanCardController.product' callback='myVolumioPlanCardController.subscriptionCallback(subscribing)' user-id="myVolumioPlanCardController.user.uid" button-label="{{'MYVOLUMIO.SUBSCRIBE' | translate}}" button-class="btn-block"
-          user-email="myVolumioPlanCardController.user.email" plan-duration="myVolumioPlanCardController.getCurrentPlanDuration()"></paddle-pay-button>
+          user-email="myVolumioPlanCardController.user.email" plan-duration="myVolumioPlanCardController.getCurrentPlanDuration()" is-trial="myVolumioPlanCardController.isTrialAvailable()"></paddle-pay-button>
       </div>
       <div ng-if="myVolumioPlanCardController.activateCancellation">
         <button ng-click="myVolumioPlanCardController.doDowngrade()" type="button" class="btn btn-labeled btn-default">
