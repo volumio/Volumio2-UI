@@ -44,6 +44,9 @@
               ng-click="customTranslation.contribute()">
               <span translate="TRANSLATION.CONTRIBUTE"></span>
             </button>
+            <div id="loader" ng-if="customTranslation.loadingContribute">
+              <i class="fa fa-spinner fa-pulse"></i>
+            </div>
           </div>
       </div>
     </form>

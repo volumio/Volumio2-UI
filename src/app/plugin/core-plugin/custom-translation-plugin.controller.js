@@ -17,6 +17,7 @@ class CustomTranslationController{
     this.percentageTranslated = '0%';
     this.showPercentage = false;
     this.loading = false;
+    this.loadingContribute = false;
   }
 
   init(){
@@ -39,6 +40,10 @@ class CustomTranslationController{
       self.showPercentage = true;
       self.loading = false;
     });
+
+    self.socketService.on('contributeResponse', function(){
+      self.loadingContribute = false;
+    });
   }
 
   initService() {
@@ -55,7 +60,10 @@ class CustomTranslationController{
     if(self.percentageTranslated !== '100%'){
       self.modalService.openDefaultErrorModal('TRANSLATION.MODAL_ERROR');
     } else {
-      self.modalService.openDefaultConfirm('TRANSLATION.CONTRIBUTE','TRANSLATION.GIT');
+      self.modalService.openDefaultConfirm('TRANSLATION.CONTRIBUTE','TRANSLATION.GIT', () =>{
+        self.loadingContribute = true;
+        self.socketService.emit('contribute');
+      });
     }
   }
 
