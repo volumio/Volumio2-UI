@@ -72,7 +72,8 @@
     "SUBSCRIBE_ME": "Subscribe me",
     "SHARE": "Share",
     "EJECT": "Eject",
-    "FUNCTIONALIES_CONTROL": "Functionalities control"
+    "FUNCTIONALIES_CONTROL": "Functionalities control",
+    "GRID" : "Grid"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -373,6 +374,7 @@
     "NATIVE_TIDAL_QOBUZ_INTEGRATION": "Native TIDAL and Qobuz Integration",
     "AUTO_SYNC": "Automatic Sync of Personal items",
     "MYVOLUMIO_6_DEVICES": "Use MyVolumio on up to 6 devices",
-    "REMOTE_CONNECTION_6_DEVICES": "Remote connection to up to 6 devices"
+    "REMOTE_CONNECTION_6_DEVICES": "Remote connection to up to 6 devices",
+    "CD_PLAYBACK_RIPPING":"CD Playback and Ripping"
   }
 }
