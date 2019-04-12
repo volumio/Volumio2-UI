@@ -27,8 +27,7 @@
         placeholder="{{wizard.wizardDetails.done.donationAmount.customAmount}}"
         ng-model="wizard.wizardDetails.done.donationAmount.selectedCustomAmount"
         ng-change="wizard.setDonationAmount(wizard.wizardDetails.done.donationAmount.selectedCustomAmount)">
-
-    <form id="donate-button" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+    <form id="donate-button" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" >
         <input type="hidden" name="cmd" value="_donations">
         <input type="hidden" name="business" value="info@volumio.org">
         <input type="hidden" name="lc" value="EU">
@@ -38,14 +37,12 @@
         <input type="hidden" name="no_shipping" value="2">
         <input type="hidden" name="currency_code" value="EUR">
         <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
-        <button class="btn btn-info" type="submit" translate="WIZARD.DONATE"></button>
+        <br/>
+        <button class="btn btn-info donate-button fa fa-paypal" type="submit" translate="WIZARD.DONATE">
+          <span class="fa fa-paypal" translate="WIZARD.DONATE"></span>
+        </button>
     </form>
     <br>
-    <div class="crypto-donate">
-    <a href="" ng-click="wizard.donate('btc')"><span translate="WIZARD.DONATE"></span> Bitcoin</a> |
-    <a href="" ng-click="wizard.donate('ltc')"><span translate="WIZARD.DONATE"></span> Litecoin</a> |
-    <a href="" ng-click="wizard.donate('xrp')"><span translate="WIZARD.DONATE"></span> Ripple</a>
-    </div>
 </div>
 
 </div>
