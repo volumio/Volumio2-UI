@@ -152,6 +152,30 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+  /* --------- VOLUMIO 3 UI ----------- */
+
+  .state('volumio.home', {
+    url: 'home',
+    views: {
+      'content@volumio': {
+        templateUrl: themeManagerProvider.getHtmlPath('home'),
+        controller: 'HomeController',
+        controllerAs: 'homeManager'
+      }
+    }
+  })
+
+  .state('volumio.search', {
+    url: 'search',
+    views: {
+      'content@volumio': {
+        templateUrl: themeManagerProvider.getHtmlPath('search'),
+        controller: 'SearchController',
+        controllerAs: 'searchManager'
+      }
+    }
+  })
+
   /* --------- MYVOLUMIO ----------- */
 
   .state('myvolumio', {

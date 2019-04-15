@@ -1,8 +1,19 @@
 class LayoutController {
-  constructor($state, $log) {
+  constructor($state, $log, matchmediaService) {
     'ngInject';
     this.$state = $state;
     this.$log = $log;
+    this.matchmediaService = matchmediaService;
+
+    this.wrapperColumnClass = '';
+    
+    this.initMainMenu();
+  }
+
+  initMainMenu(){
+    this.wrapperColumnClass = this.matchmediaService.isPhone ?
+      '' :
+      'col-md-20' ;
   }
 
   swipeLeft() {

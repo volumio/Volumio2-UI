@@ -57,6 +57,8 @@ import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.di
 import TrackInfoBarButtonsDirective from './components/track-info-bar/track-info-bar-buttons.directive';
 import EqualizerDirective from './components/equalizer/equalizer.directive';
 import ModalController from './components/modals/modal.controller';
+//Volumio 3 UI Components
+import MainMenuDirective from './components/main-menu/main-menu.directive';
 // Track buttons
 import FavouriteTrackBtnDirective from './components/favourite-track-btn/favourite-track-btn.directive';
 import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
@@ -100,6 +102,11 @@ import PluginController from './plugin/plugin.controller';
 import PluginManagerController from './plugin-manager/plugin-manager.controller';
 
 import WizardController from './wizard/wizard.controller';
+
+// Volumio 3 UI Controllers
+
+import HomeController from './home/home.controller';
+import SearchController from './search/search.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -256,6 +263,9 @@ angular.module('volumio', [
   .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
   .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))
 
+  // Volumio 3 UI Directives
+  .directive('mainMenu', (themeManager) => new MainMenuDirective(themeManager))
+
   //MyVolumio Directives
   .directive('stripePayButton', () => new StripePayButtonDirective())
   .directive('paddlePayButton', () => new PaddlePayButtonDirective())
@@ -316,6 +326,11 @@ angular.module('volumio', [
   .controller('UiSettingsPluginController', UiSettingsPluginController)
   .controller('MyMusicPluginEnablerController', MyMusicPluginEnablerController)
 
+  //Volumio 3 UI
+
+  .controller('HomeController', HomeController)
+  .controller('SearchController', SearchController)
+  
   //MyVolumio
   .controller('MyVolumioLoginController', MyVolumioLoginController)
   .controller('MyVolumioSignupController', MyVolumioSignupController)
