@@ -85,12 +85,6 @@ class WizardController {
         this.$log.debug('setOutputDevices', emitPayload);
         this.socketService.emit('setOutputDevices', emitPayload);
         break;
-        case 'devicecode':
-          if (this.deviceNameform.$valid) {
-            this.$log.debug('setDeviceName', this.wizardDetails.deviceName);
-            this.socketService.emit('setDeviceName', this.wizardDetails.deviceName);
-          }
-          break;
     }
 
     this.currentStep = step;
