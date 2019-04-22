@@ -218,6 +218,11 @@ class WizardController {
     }
   }
 
+  setDeviceCode() {
+    var emitPayload = {code: this.wizardDetails.deviceCode.code};
+    this.socketService.emit('setDeviceActivationCode', emitPayload);
+  }
+
   registerListner() {
     this.socketService.on('pushWizardSteps', (data) => {
       this.$log.debug('pushWizardSteps', data);
@@ -252,6 +257,12 @@ class WizardController {
       if (data.donation) {
         this.setDonationAmount(data.donationAmount.donationAmount);
       }
+    });
+
+    this.socketService.on('pushDeviceActivationCodeResult', (data) => {
+      this.$log.debug('pushDeviceActivationCodeResult', data);
+      this.wizardDetails.deviceCode.activated = data.activated;
+      this.wizardDetails.deviceCode.error = data.error;
     });
 
     this.socketService.on('closeWizard', () => {
