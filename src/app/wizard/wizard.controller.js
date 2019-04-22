@@ -85,6 +85,12 @@ class WizardController {
         this.$log.debug('setOutputDevices', emitPayload);
         this.socketService.emit('setOutputDevices', emitPayload);
         break;
+        case 'devicecode':
+          if (this.deviceNameform.$valid) {
+            this.$log.debug('setDeviceName', this.wizardDetails.deviceName);
+            this.socketService.emit('setDeviceName', this.wizardDetails.deviceName);
+          }
+          break;
     }
 
     this.currentStep = step;
@@ -218,6 +224,11 @@ class WizardController {
     }
   }
 
+  setDeviceCode() {
+    var emitPayload = {code: this.wizardDetails.deviceCode.code};
+    this.socketService.emit('setDeviceActivationCode', emitPayload);
+  }
+
   registerListner() {
     this.socketService.on('pushWizardSteps', (data) => {
       this.$log.debug('pushWizardSteps', data);
@@ -252,6 +263,12 @@ class WizardController {
       if (data.donation) {
         this.setDonationAmount(data.donationAmount.donationAmount);
       }
+    });
+
+    this.socketService.on('pushDeviceActivationCodeResult', (data) => {
+      this.$log.debug('pushDeviceActivationCodeResult', data);
+      this.wizardDetails.deviceCode.activated = data.activated;
+      this.wizardDetails.deviceCode.error = data.error;
     });
 
     this.socketService.on('closeWizard', () => {
