@@ -1,0 +1,28 @@
+<div class="wizard-panel col-sm-10 col-sm-offset-7">
+  <h3 translate="WIZARD.DEVICE_CODE_TITLE" style="margin-top:40px;"></h3>
+  <h5
+  ng-if="wizard.wizardDetails.deviceCode.activated !== true"
+  translate="WIZARD.DEVICE_CODE_MESSAGE"></h5>
+  <form name="wizard.deviceCodeform">
+    <input
+        type="text"
+        name="deviceCode"
+        class="form-control"
+        ng-if="wizard.wizardDetails.deviceCode.activated !== true"
+        ng-model="wizard.wizardDetails.deviceCode.code">
+  </form>
+  <button
+    class="btn btn-info donate-button"
+    ng-if="wizard.wizardDetails.deviceCode.activated !== true"
+    type="submit"
+    translate="WIZARD.DEVICE_CODE_VALIDATE"
+    style="margin-top:20px;"
+    ng-click="wizard.setDeviceCode()"
+    ng-disabled="!wizard.wizardDetails.deviceCode.code">
+    <span class="fa fa-paypal" translate="WIZARD.DEVICE_CODE_VALIDATE"></span>
+  </button>
+  <h5 ng-if="wizard.wizardDetails.deviceCode.activated !== true && wizard.wizardDetails.deviceCode.error.length" >
+    {{'WIZARD.ERROR_ACTIVATING_DEVICE' | translate}} : {{wizard.wizardDetails.deviceCode.error}}
+  </h5>
+  <h4 ng-if="wizard.wizardDetails.deviceCode.activated === true" translate="WIZARD.DEVICE_ACTIVATED"></h4>
+</div>
