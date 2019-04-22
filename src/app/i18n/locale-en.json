@@ -210,7 +210,13 @@
     "STEP": "Step",
     "VOLUMIOAPPS": "Apps",
     "GET_APPS": "For your convenience, you can also use our handy apps",
-    "WIFI_CONNECTION":"Select the wireless network you wish to connect"
+    "WIFI_CONNECTION":"Select the wireless network you wish to connect",
+    "DEVICECODE":"Device Code",
+    "DEVICE_CODE_TITLE":"Device Activation Code",
+    "DEVICE_CODE_MESSAGE":"If you have received a Device Activation code with your device, enter it to take advantage of the exclusive features reserved for you",
+    "DEVICE_CODE_VALIDATE":"Validate Device Code",
+    "ERROR_ACTIVATING_DEVICE":"Could not activate your device",
+    "DEVICE_ACTIVATED":"Your device has been successfully activated. You can now enjoy your exclusive features"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
