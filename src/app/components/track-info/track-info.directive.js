@@ -23,8 +23,6 @@ class TrackInfoController {
     this.playerService = playerService;
 
     this.isInFooter = this.$scope.isInFooter || false;
-
-    console.log(this.isInFooter);
   }
 
 
