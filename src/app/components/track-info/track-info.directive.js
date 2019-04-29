@@ -7,17 +7,27 @@ class TrackInfoDirective {
       scope: false,
       controller: TrackInfoController,
       controllerAs: 'trackInfo',
-      bindToController: true
+      bindToController: true,
+      scope: {
+        isInFooter: "@"
+      }
     };
     return directive;
   }
 }
 
 class TrackInfoController {
-  constructor(playerService) {
+  constructor($scope, playerService) {
     'ngInject';
+    this.$scope = $scope;
     this.playerService = playerService;
+
+    this.isInFooter = this.$scope.isInFooter || false;
+
+    console.log(this.isInFooter);
   }
+
+
 }
 
 export default TrackInfoDirective;
