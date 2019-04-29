@@ -76,6 +76,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
 
   .state('volumio.browse', {
     url: 'browse',
+    params: { source: null },
     views: {
       'content@volumio': {
         templateUrl: themeManagerProvider.getHtmlPath('browse'),

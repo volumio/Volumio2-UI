@@ -1,9 +1,12 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
       modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-      uiSettingsService) {
+      uiSettingsService, $state) {
     'ngInject';
     this.$log = $log;
+    this.$state = $state;
+    this.$state.params = this.$state.params || [];
+    console.log($state.params);
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
@@ -79,6 +82,7 @@ class BrowseController {
       this.playQueueService.playPlaylist({title: item.name});
     }
   }
+
   clickListItemByIndex(listIndex, itemIndex) {
     let item = this.browseService.lists[listIndex].items[itemIndex];
     this.clickListItem(item);
@@ -378,6 +382,15 @@ class BrowseController {
     this.$scope.$on('$destroy', () => {
       this.$document[0].removeEventListener('keydown', bindedBackListener, false);
     });
+    this.initToLibrary();
+  }
+
+  initToLibrary(){
+    var source = this.$state.params.source;
+    console.log(source);
+    if( source ){
+      this.fetchLibrary(source);
+    }
   }
 
   backListener() {
