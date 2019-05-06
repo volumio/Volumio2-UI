@@ -44,6 +44,9 @@ class SideMenuController {
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
     });
+    this.$rootScope.$on('toggleSideMenu',(event, data) => {
+      this.toggleMenu();
+    });
   }
 
   toggleAnalogInput() {
