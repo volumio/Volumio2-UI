@@ -1,12 +1,11 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
       modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-      uiSettingsService, $state) {
+      uiSettingsService, $state, themeManager) {
     'ngInject';
     this.$log = $log;
     this.$state = $state;
     this.$state.params = this.$state.params || [];
-    console.log($state.params);
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
@@ -20,6 +19,7 @@ class BrowseController {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.uiSettingsService = uiSettingsService;
+    this.themeManager = themeManager;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();
@@ -419,6 +419,10 @@ class BrowseController {
         this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
       }
     }
+  }
+
+  isVolumio3Theme(){
+    return this.themeManager.theme === 'volumio3';
   }
 }
 

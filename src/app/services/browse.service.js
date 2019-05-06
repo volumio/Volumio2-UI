@@ -5,7 +5,6 @@ class BrowseService {
     this.socketService = socketService;
     this.$interval = $interval;
     this.$window = $window;
-    this.isBrowsing = false;
     this.$rootScope = $rootScope;
     this.$log = $log;
     this.$timeout = $timeout;
