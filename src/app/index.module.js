@@ -59,6 +59,7 @@ import EqualizerDirective from './components/equalizer/equalizer.directive';
 import ModalController from './components/modals/modal.controller';
 //Volumio 3 UI Components
 import MainMenuDirective from './components/main-menu/main-menu.directive';
+import OnCloudActionsDirective from './components/on-cloud-actions/on-cloud-actions.directive';
 // Track buttons
 import FavouriteTrackBtnDirective from './components/favourite-track-btn/favourite-track-btn.directive';
 import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
@@ -265,6 +266,7 @@ angular.module('volumio', [
 
   // Volumio 3 UI Directives
   .directive('mainMenu', (themeManager) => new MainMenuDirective(themeManager))
+  .directive('onCloudActions', (themeManager) => new OnCloudActionsDirective(themeManager))
 
   //MyVolumio Directives
   .directive('stripePayButton', () => new StripePayButtonDirective())

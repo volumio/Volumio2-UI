@@ -18,3 +18,4 @@ load-variant.scss
 /nbproject/
 .DS_Store
 src/app/volumio.constant.js
+package-lock.json

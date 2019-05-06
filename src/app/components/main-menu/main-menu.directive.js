@@ -16,9 +16,11 @@ class MainMenuDirective {
 }
 
 class MainMenuController {
-  constructor($state, $scope, $rootScope, $location, socketService, browseService) {
+  constructor($rootScope, $state, $scope, $location, socketService, browseService, themeManager) {
     'ngInject';
     this.$state = $state;
+    this.$rootScope = $rootScope;
+    this.themeManager = themeManager;
 
     //all this boiler-plate is WIP and should works on dedicated service (coupled from side-menu)
     this.$scope = $scope;
@@ -39,6 +41,10 @@ class MainMenuController {
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
     });
+
+    //normal init
+    this.variantAssetsUrl = 'app/themes/' + this.themeManager.theme  + '/assets/variants/' + this.themeManager.variant;
+    this.variant = this.themeManager.variant;
   }
 
   init() {
@@ -74,44 +80,7 @@ class MainMenuController {
   initMenuListSource(){
     this.$scope.$watch( () => this.browseService.sources , (sourcesData) => {
       this.sources = sourcesData;
-      this.checkAddDefaultItems();
     }, true);
-  }
-
-  checkAddDefaultItems(){
-    if(this.sources == undefined){
-      return;
-    }
-    var homeSource = {
-      "name": "Home",
-      "uri": "volumio.home",
-      "isRoute": true,
-      "icon": 'fa fa-home'
-    };
-    var searchSource = {
-      "name": "Search",
-      "uri": "volumio.search",
-      "isRoute": true,
-      "icon": 'fa fa-search'
-    };
-
-    var foundHome = false;
-    var foundSearch = false;
-    for(var i in this.sources){
-      var source = this.sources[i];
-      if(source.name === homeSource.name){
-        foundHome = true;
-      }
-      if(source.name === searchSource.name){
-        foundSearch = true;
-      }
-    }
-    if(!foundSearch){
-      this.sources.unshift(searchSource);
-    }
-    if(!foundHome){
-      this.sources.unshift(homeSource);
-    }
   }
 
   isAuthActive(){
