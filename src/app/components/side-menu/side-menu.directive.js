@@ -20,6 +20,7 @@ class SideMenuController {
   constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log,
       $http, $window, uiSettingsService, authService) {
     'ngInject';
+    this.$rootScope = $rootScope;
     this.$state = $state;
     this.$window = $window;
     this.socketService = socketService;
