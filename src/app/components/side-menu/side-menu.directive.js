@@ -4,7 +4,10 @@ class SideMenuDirective {
     let directive = {
       restrict: 'E',
       templateUrl: 'app/components/side-menu/side-menu.html',
-      scope: false,
+      scope: {
+        isInMainMenu: '@',
+        isInTabBar: '@'
+      },
       controller: SideMenuController,
       controllerAs: 'sideMenu',
       bindToController: true
@@ -30,6 +33,9 @@ class SideMenuController {
     // this.menuItems = mockService.get('getMenuItems');
     this.authService = authService;
     this.MYVOLUMIO_KEY = 'my-volumio';
+
+    this.isInMainMenu = this.$scope.sideMenu.isInMainMenu;
+    this.isInTabBar = this.$scope.sideMenu.isInTabBar;
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -143,6 +149,10 @@ class SideMenuController {
       }
     }
     return false;
+  }
+
+  isMyVolumioVisible(){
+    return !this.isInMainMenu && !this.isInTabBar;
   }
   
 }
