@@ -38,19 +38,6 @@ class playerSeekBarController {
     return this.playerService.seekPercent;
   }
 
-  getTooltipValue(data) {
-    //let duration = this.playerService.state.duration;
-    let elapsedTime = this.playerService.elapsedTime;
-    let momentDuration = moment.duration(elapsedTime),
-      hours = momentDuration.hours(),
-      minutes = momentDuration.minutes(),
-      seconds = momentDuration.seconds();
-    minutes += hours*60;
-    let momentString = minutes + ':' +
-                             ((seconds < 10) ? ('0' + seconds) : seconds);
-    return momentString;
-  }
-
   setSeek(progress){
     this.$timeout.cancel(this.timeoutHandler);
     this.timeoutHandler = this.$timeout(() => {
@@ -61,8 +48,27 @@ class playerSeekBarController {
     }, 200, false);
   }
 
-  log(ut){
-    console.log('log',ut);
+  getElapsed() {
+    let elapsedTime = this.playerService.elapsedTime;
+    return this.momentToString(elapsedTime);
+  }
+
+  getDuration(){
+    if(!this.playerService.state || !this.playerService.state.duration){
+      return null;
+    }
+    return this.momentToString(this.playerService.state.duration * 1000);
+  }
+
+  momentToString(time){
+    let momentDuration = moment.duration(time),
+      hours = momentDuration.hours(),
+      minutes = momentDuration.minutes(),
+      seconds = momentDuration.seconds();
+    minutes += hours*60;
+    let momentString = minutes + ':' +
+                            ((seconds < 10) ? ('0' + seconds) : seconds);
+    return momentString;
   }
 
 }
