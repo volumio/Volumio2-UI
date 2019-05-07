@@ -63,7 +63,7 @@ import OnCloudActionsDirective from './components/on-cloud-actions/on-cloud-acti
 // Track buttons
 import FavouriteTrackBtnDirective from './components/favourite-track-btn/favourite-track-btn.directive';
 import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
-import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
+import TrackActionsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
 
 // Light Switch
 import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-btn.directive';
@@ -261,7 +261,7 @@ angular.module('volumio', [
 
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
-  .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
+  .directive('trackActionsBtn', (themeManager) => new TrackActionsBtnDirective(themeManager))
   .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))
 
   // Volumio 3 UI Directives
