@@ -181,9 +181,10 @@
     "SECURE_NETWORK":"Veilige netwerk",
     "SECURITY":"Beveiliging",
     "MANUAL_WIFI_CONNECTION":"Handmatige WiFi verbinding",
-    "NETWORK_NAME":"Netwerk naam"
+    "NETWORK_NAME":"Netwerk naam",
+    "WIRELESS_NETWORK_CONNECTION":"Draadloze netwerk verbinding"
   },
-  "WIZARD":{
+  "WIZARD": {
     "LANGUAGE":"Taal",
     "NAME":"Naam",
     "OUTPUT":"Uitvoer",
@@ -207,9 +208,10 @@
     "ADD_YOUR_MUSIC":"Om uw muziek toe te voegen, sluit u eenvoudig een USB-stick aan of klikt u op de onderstaande knop om uw netwerkschijf toe te voegen",
     "STEP":"Volgende",
     "VOLUMIOAPPS":"Apps",
-    "GET_APPS":"Voor uw gebruiksgemak, kunt u ook onze handige apps gebruiken"
+    "GET_APPS":"Voor uw gebruiksgemak, kunt u ook onze handige apps gebruiken",
+    "WIFI_CONNECTION":"Selecteer het draadloze netwerk waarmee u wilt verbinden"
   },
-  "SLEEP":{
+  "SLEEP": {
     "POWER_OFF":"Uitzetten",
     "STOP_MUSIC":"Muziek stoppen",
     "PRESET_TIMES":"Vooraf ingestelde tijden",
