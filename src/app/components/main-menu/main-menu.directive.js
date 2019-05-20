@@ -56,7 +56,7 @@ class MainMenuController {
   goTo(source){
     if(source.isRoute === true){
       this.$state.go(source.uri);
-    }else if(this.$state.$current.name == 'volumio.browse'){
+    }else if(this.$state.$current.name === 'volumio.browse'){
       this.browseService.fetchLibrary(source);
     }else{
       this.$state.go('volumio.browse',{source: source});
