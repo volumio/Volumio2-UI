@@ -74,8 +74,13 @@ class TrackManagerController {
     }, (newVal) => {
       if (this.matchmediaService.isPhone) {
         let albumArtUrl = `url('${this.playerService.getAlbumart(newVal)}')`;
+        let albumartSize = 'cover';
+        if (this.playerService.state.trackType === 'spotify') {
+          albumartSize = 'contain';
+        }
         this.backgroundAlbumArtStyle = {
-          'background-image': albumArtUrl
+          'background-image': albumArtUrl,
+          'background-size': albumartSize
         };
       } else {
         this.backgroundAlbumArtStyle = {};
