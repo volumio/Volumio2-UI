@@ -137,6 +137,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Random",
     "REPEAT": "Repeat",
+    "REPEAT_ALL": "Repeat All",
+    "REPEAT_SINGLE": "Repeat Single",
+    "REPEAT_OFF": "Repeat Off",
     "SAVE_QUEUE_AS_PLAYLIST": "Save queue as playlist",
     "CONSUME_PLAYLIST": "Consume playlist",
     "CLEAR_QUEUE": "Clear queue"
