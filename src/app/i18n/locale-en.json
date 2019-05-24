@@ -97,7 +97,9 @@
     "CLEAR_AND_PLAY": "Clear and play",
     "SAFE_REMOVE": "Safe Remove Media",
     "UPDATE_FOLDER": "Update Folder",
-    "DELETE_FOLDER": "Delete Folder"
+    "DELETE_FOLDER": "Delete Folder",
+    "SKIP_BACKWARDS": "Skip Backwards",
+    "SKIP_FORWARD": "Skip Forward"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",
@@ -137,6 +139,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Random",
     "REPEAT": "Repeat",
+    "REPEAT_ALL": "Repeat All",
+    "REPEAT_SINGLE": "Repeat Single",
+    "REPEAT_OFF": "Repeat Off",
     "SAVE_QUEUE_AS_PLAYLIST": "Save queue as playlist",
     "CONSUME_PLAYLIST": "Consume playlist",
     "CLEAR_QUEUE": "Clear queue"

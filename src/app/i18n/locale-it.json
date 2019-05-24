@@ -97,7 +97,9 @@
     "CLEAR_AND_PLAY": "Pulisci e riproduci",
     "SAFE_REMOVE": "Rimozione sicura",
     "UPDATE_FOLDER": "Aggiorna cartella",
-    "DELETE_FOLDER":"Cancella la cartella"
+    "DELETE_FOLDER":"Cancella la cartella",
+    "SKIP_BACKWARDS": "Salta Indietro",
+    "SKIP_FORWARD": "Salta Avanti"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
@@ -137,6 +139,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Riproduzione Cauale",
     "REPEAT": "Ripeti",
+    "REPEAT_ALL": "Ripeti Tutti",
+    "REPEAT_SINGLE": "Ripeti Traccia",
+    "REPEAT_OFF": "Non Ripetere",
     "SAVE_QUEUE_AS_PLAYLIST": "Salva la coda come Playlist",
     "CONSUME_PLAYLIST": "Rimuovi dopo riproduzione",
     "CLEAR_QUEUE": "Svuota la coda"
