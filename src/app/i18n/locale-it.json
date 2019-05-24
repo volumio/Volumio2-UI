@@ -137,6 +137,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Riproduzione Cauale",
     "REPEAT": "Ripeti",
+    "REPEAT_ALL": "Ripeti Tutti",
+    "REPEAT_SINGLE": "Ripeti Traccia",
+    "REPEAT_OFF": "Non Ripetere",
     "SAVE_QUEUE_AS_PLAYLIST": "Salva la coda come Playlist",
     "CONSUME_PLAYLIST": "Rimuovi dopo riproduzione",
     "CLEAR_QUEUE": "Svuota la coda"

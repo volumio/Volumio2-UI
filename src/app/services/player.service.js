@@ -87,9 +87,9 @@ class PlayerService {
     }
   }
 
-  repeatAlbum() {
+  repeatAlbum(repeat,repeatSingle) {
     if (this.state.trackType !== 'webradio') {
-      this.socketService.emit('setRepeat', {value: !this.state.repeat});
+      this.socketService.emit('setRepeat', {value: repeat, repeatSingle: repeatSingle});
     }
   }
 
