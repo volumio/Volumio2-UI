@@ -97,7 +97,9 @@
     "CLEAR_AND_PLAY": "Clear and play",
     "SAFE_REMOVE": "Safe Remove Media",
     "UPDATE_FOLDER": "Update Folder",
-    "DELETE_FOLDER": "Delete Folder"
+    "DELETE_FOLDER": "Delete Folder",
+    "SKIP_BACKWARDS": "Skip Backwards",
+    "SKIP_FORWARD": "Skip Forward"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",

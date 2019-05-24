@@ -80,6 +80,14 @@ class PlayerService {
     }
   }
 
+  skipBackwards() {
+    this.socketService.emit('skipBackwards');
+  }
+
+  skipForward() {
+    this.socketService.emit('skipForward');
+  }
+
   shuffle() {
     if (this.state.trackType !== 'webradio') {
       this.$log.debug(!this.state.random);
