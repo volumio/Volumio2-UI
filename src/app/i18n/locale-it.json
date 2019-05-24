@@ -97,7 +97,9 @@
     "CLEAR_AND_PLAY": "Pulisci e riproduci",
     "SAFE_REMOVE": "Rimozione sicura",
     "UPDATE_FOLDER": "Aggiorna cartella",
-    "DELETE_FOLDER":"Cancella la cartella"
+    "DELETE_FOLDER":"Cancella la cartella",
+    "SKIP_BACKWARDS": "Salta Indietro",
+    "SKIP_FORWARD": "Salta Avanti"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
