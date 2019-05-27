@@ -78,7 +78,9 @@ class AuthService {
     this.isUserBeingWatched = true;
     this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
       this.user = user;
-      this.syncronizeWithBackend();
+      setTimeout(()=>{
+        this.syncronizeWithBackend();
+      }, 2000);
     });
   }
 
@@ -110,35 +112,31 @@ class AuthService {
     if (!this.socketService.isSocketAvalaible()) {
       return;
     }
-    this.socketPromise.then(() => {
-      if (this.isJustFeLogged) { //JUST LOGGED
-        this.isJustFeLogged = false;
-        this.sendUserTokenToBackend().then(() => {});
-        return;
-      }
-      this.getMyVolumioStatus().then((status) => { //NEED SYNC
-        var loggedIn = status.loggedIn;
-        var uid = status.uid;
-        if (loggedIn === true) { //BE LOGGED
-          if (this.user === null) { //FE NOT LOGGED
+    if (this.isJustFeLogged) { //JUST LOGGED
+      this.isJustFeLogged = false;
+      this.sendUserTokenToBackend().then(() => {});
+      return;
+    }
+    this.getMyVolumioStatus().then((status) => { //NEED SYNC
+      var loggedIn = status.loggedIn;
+      var uid = status.uid;
+      if (loggedIn === true) { //BE LOGGED
+        if (this.user === null) { //FE NOT LOGGED
+          this.requestUserToBackend().then(() => {});
+        } else if (this.user.uid !== uid) { //FE LOGGED MISMATCH
+          this.logOutFrontend().then(() => {
             this.requestUserToBackend().then(() => {});
-          } else if (this.user.uid !== uid) { //FE LOGGED MISMATCH
-            this.logOutFrontend().then(() => {
-              this.requestUserToBackend().then(() => {});
-            });
-          } else { //BE & FE SYNCED
-            //DO NOTHING
-          }
-        } else { //BE NOT LOGGED
-          if (this.user !== null) { //FE LOGGED
-            this.sendUserTokenToBackend().then(() => {});
-          } else { //FE & BE NOT LOGGED
-            //DO NOTHING
-          }
+          });
+        } else { //BE & FE SYNCED
+          //DO NOTHING
         }
-      });
-    }).catch(error => {
-      this.modalService.openDefaultErrorModal(error);
+      } else { //BE NOT LOGGED
+        if (this.user !== null) { //FE LOGGED
+          this.sendUserTokenToBackend().then(() => {});
+        } else { //FE & BE NOT LOGGED
+          //DO NOTHING
+        }
+      }
     });
   }
 
