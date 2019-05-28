@@ -19,7 +19,7 @@ class MyVolumioPlansController {
     this.product1 = null;
     this.product2 = null;
 
-    this.showYearly = false;
+    this.showYearly = true;
     this.showMode = {
       planDuration: this.getSelectedPlanDuration()
     };
