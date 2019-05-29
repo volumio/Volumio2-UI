@@ -168,11 +168,14 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
 
   .state('volumio.search', {
     url: 'search',
+    params: {
+      isSearch: true
+    },
     views: {
       'content@volumio': {
-        templateUrl: themeManagerProvider.getHtmlPath('search'),
-        controller: 'SearchController',
-        controllerAs: 'searchManager'
+        templateUrl: themeManagerProvider.getHtmlPath('browse'),
+        controller: 'BrowseController',
+        controllerAs: 'browse'
       }
     }
   })

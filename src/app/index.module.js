@@ -108,7 +108,6 @@ import WizardController from './wizard/wizard.controller';
 // Volumio 3 UI Controllers
 
 import HomeController from './home/home.controller';
-import SearchController from './search/search.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -333,7 +332,7 @@ angular.module('volumio', [
   //Volumio 3 UI
 
   .controller('HomeController', HomeController)
-  .controller('SearchController', SearchController)
+
   
   //MyVolumio
   .controller('MyVolumioLoginController', MyVolumioLoginController)
