@@ -221,7 +221,11 @@
     "DEVICE_CODE_MESSAGE":"If you have received a Device Activation code with your device, enter it to take advantage of the exclusive features reserved for you",
     "DEVICE_CODE_VALIDATE":"Validate Device Code",
     "ERROR_ACTIVATING_DEVICE":"Could not activate your device",
-    "DEVICE_ACTIVATED":"Your device has been successfully activated. You can now enjoy your exclusive features"
+    "DEVICE_ACTIVATED": "Your device has been successfully activated. You can now enjoy your exclusive features",
+    "ADVANCEDSETTINGS": "Experience",
+    "EXPERIENCE_SETTINGS_TITLE":"Let's tailor your user experience",
+    "EXPERIENCE_SETTINGS_TEXT" :"Do you prefer an easy to use system with only a simplified set of options or do you want full control over all advanced functions?",
+    "EXPERIENCE_SETTINGS_TEXT_2" :"This setting can be changed later in system settings"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",

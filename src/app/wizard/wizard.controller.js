@@ -1,6 +1,6 @@
 class WizardController {
   constructor($log, $scope, mockService, $state, socketService, $translate, uiSettingsService,
-      $window, matchmediaService, themeManager, modalService) {
+      $window, matchmediaService, themeManager, modalService, $filter) {
     'ngInject';
     this.$log = $log;
     this.mockService = mockService;
@@ -12,6 +12,7 @@ class WizardController {
     this.uiSettingsService = uiSettingsService;
     this.matchmediaService = matchmediaService;
     this.modalService = modalService;
+    this.filteredTranslate = $filter('translate');
     this.init();
   }
 
@@ -85,6 +86,10 @@ class WizardController {
         this.$log.debug('setOutputDevices', emitPayload);
         this.socketService.emit('setOutputDevices', emitPayload);
         break;
+        case 'advancedsettings':
+          this.$log.debug('setExperienceAdvancedSettings', this.wizardDetails.experienceAdvancedSettings.status.id);
+          this.socketService.emit('setExperienceAdvancedSettings', this.wizardDetails.experienceAdvancedSettings.status.id);
+        break;
     }
 
     this.currentStep = step;
@@ -98,6 +103,9 @@ class WizardController {
         break;
       case 'output':
         this.socketService.emit('getOutputDevices');
+        break;
+      case 'advancedsettings':
+        this.socketService.emit('getExperienceAdvancedSettings');
         break;
       case 'done':
         this.socketService.emit('getDonePage');
@@ -263,6 +271,11 @@ class WizardController {
       this.$log.debug('pushDeviceActivationCodeResult', data);
       this.wizardDetails.deviceCode.activated = data.activated;
       this.wizardDetails.deviceCode.error = data.error;
+    });
+
+    this.socketService.on('pushExperienceAdvancedSettings', (data) => {
+      this.$log.debug('pushExperienceAdvancedSettings', data);
+      this.wizardDetails.experienceAdvancedSettings = data;
     });
 
     this.socketService.on('closeWizard', () => {
