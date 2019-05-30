@@ -215,7 +215,17 @@
     "STEP":"Passo",
     "VOLUMIOAPPS":"App",
     "GET_APPS":"Per rendere tutto ancora più facile, puoi anche usare una delle nostre comode App",
-    "WIFI_CONNECTION":"Seleziona la rete senza fili a cui vuoi connetterti"
+    "WIFI_CONNECTION":"Seleziona la rete senza fili a cui vuoi connetterti",
+    "DEVICECODE":"Codice",
+    "DEVICE_CODE_TITLE":"Codice di attivazione dispositivo",
+    "DEVICE_CODE_MESSAGE":"Se avete ricevuto un Codice di Attivazione Dispositivo, inseritelo per godere delle funzionalità esclusive a voi riservate",
+    "DEVICE_CODE_VALIDATE":"Verifica Codice Dispositivo",
+    "ERROR_ACTIVATING_DEVICE":"Attivazione dispositivo fallita",
+    "DEVICE_ACTIVATED": "Il Vostro dispositivo è stato attivato con successo. Puoi ora godere delle funzionalità esclusive",
+    "ADVANCEDSETTINGS": "Esperienza",
+    "EXPERIENCE_SETTINGS_TITLE":"Configuriamo la tua esperienza",
+    "EXPERIENCE_SETTINGS_TEXT" :"Preferisci un sistema semplice da usare con una gamma semplificata di opzioni o preferisci il controllo completo sulle funzionalità avanzate?",
+    "EXPERIENCE_SETTINGS_TEXT_2" :"Questa impostazione può essere cambiata in seguito tramite le impostazioni di sistema"
   },
   "SLEEP": {
     "POWER_OFF": "Spegni",
