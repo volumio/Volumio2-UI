@@ -84,7 +84,7 @@ class MyVolumioPlanCardController {
     if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
       planDuration = this.showMode.planDuration;
     }
-    if (this.user.isTrialAvailable !== false && this.product.prices[planDuration].trial !== undefined && this.product.prices[planDuration].trial.trialEnabled && this.product.prices[planDuration].trial.trialDays !== undefined && this.product.prices[planDuration].trial.trialDaysAuth !== undefined && this.product.prices[planDuration].trial.trialAuth !== undefined) {
+    if (this.user.isTrialAvailable !== false && !this.user.planData && this.product.prices[planDuration].trial !== undefined && this.product.prices[planDuration].trial.trialEnabled && this.product.prices[planDuration].trial.trialDays !== undefined && this.product.prices[planDuration].trial.trialDaysAuth !== undefined && this.product.prices[planDuration].trial.trialAuth !== undefined) {
       return true;
     } else {
       return false;

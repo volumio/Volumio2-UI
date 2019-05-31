@@ -39,6 +39,9 @@ class MyVolumioPlansController {
   authInit() {
     this.$scope.$watch(() => this.authService.user, (user) => {
       this.user = user;
+      if (this.user && this.user.planData && this.user.planDuration && this.user.planDuration === 'monthly') {
+        this.showYearly = false;
+      }
     });
   }
 
