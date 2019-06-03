@@ -399,6 +399,8 @@ class BrowseController {
       this.search();
     }else if( source ){
       this.fetchLibrary(source);
+    }else{
+      this.backHome()
     }
   }
 
