@@ -39,7 +39,7 @@
     "SONGS":"歌曲",
     "PLAYTIME":"播放時間",
     "TIME":"時間",
-    "RESCAN":"重新掃瞄",
+    "RESCAN":"重新掃描",
     "SYSTEM_VERSION":"系統版本",
     "RELEASED":"發佈",
     "CLOSE":"關閉",
@@ -48,7 +48,7 @@
     "NEW":"建立",
     "FAVOURITES":"收藏",
     "NAME":"姓名",
-    "URL":"地址",
+    "URL":"網址",
     "BACK":"返回",
     "OPTIONS":"選項",
     "CHOOSE_PLAYLIST":"選擇播放列表",
@@ -56,13 +56,13 @@
     "HOME": "Home",
     "VOLUME_MUTE":"靜音",
     "VOLUME_MUTED":"已靜音",
-    "VOLUME_UP":"音量大",
-    "VOLUME_DOWN":"音量細",
+    "VOLUME_UP":"音量增加",
+    "VOLUME_DOWN":"音量減小",
     "HIDDEN": "隱藏",
-    "LIST": "列出",
+    "LIST": "列表",
     "PLAY_QUEUE": "開始從貯列播放",
     "ENTER_PASSWORD": "請輪入密碼",
-    "INVALID_PASSWORD": "密碼不正確",
+    "INVALID_PASSWORD": "密碼錯誤",
     "RIP":"抓取音軌",
     "SKIP": "略過",
     "NEXT": "下一步",
@@ -92,15 +92,15 @@
     "NEXT_TRACK":"下一軌",
     "PREVIOUS_TRACK":"上一軌",
     "PAUSE":"暫停",
-    "CLEAR_AND_PLAY": "清除與播放",
+    "CLEAR_AND_PLAY": "清除並播放",
     "SAFE_REMOVE": "安全移除媒體",
     "UPDATE_FOLDER": "更新資料夾"
   },
 "MY_MUSIC": {
     "UPDATE":"更新",
-    "UPDATE_DOC":"更新音樂資料庫（包只括任何更改， 新增或刪除檔案）",
-    "RESCAN":"重新掃瞄",
-    "RESCAN_DOC":"重製音樂資料庫（重新掃瞄所有檔案）"
+    "UPDATE_DOC":"更新音樂資料庫（包括任何更改， 新增或刪除檔案）",
+    "RESCAN":"重新掃描",
+    "RESCAN_DOC":"重製音樂資料庫（重新掃描所有檔案）"
   },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "返回外掛列表",
@@ -139,7 +139,7 @@
     "CLEAR_QUEUE": "清除播放貯列"
   },
   "NETWORKFS":{
-    "NO_DRIVES_FOUND":"未發現網路磁碟",
+    "NO_DRIVES_FOUND":"找不到網路磁碟",
     "ALIAS":"別名",
     "ALIAS_DOC":"選擇一個別名顯示在NAS的掛載點中",
     "NAS_IP_ADDRESS":"NAS IP 地址",
@@ -147,7 +147,7 @@
     "NAS_PATH":"路徑",
     "NAS_PATH_DOC":"網路共享名稱或子檔案夾路徑",
     "SHARE_TYPE":"文件共享類型",
-    "USERNAME":"用戶名",
+    "USERNAME":"使用者名稱",
     "PASSWORD":"密碼",
     "OPTIONS":"選項",
     "SHOW_OPTIONS":"顯示進階選項",
@@ -158,12 +158,12 @@
     "PATH":"路徑",
     "MOUNTED":"已掛載",
     "SIZE":"大小",
-    "SCANNING_FOR_NETWORK_DRIVES": "掃瞄網路磁碟",
+    "SCANNING_FOR_NETWORK_DRIVES": "掃描網路磁碟",
     "DELETE_DRIVE":"刪除網路磁碟",
     "EDIT_DRIVE":"編輯磁碟",
-    "DELETE_DRIVE_CONFIRM":"您確定要刪除嗎",
+    "DELETE_DRIVE_CONFIRM":"您確定要刪除嗎?",
     "PLACEHOLDER_NAME":"名稱",
-    "PLACEHOLDER_IP_ADDRESS":"NAS Ip地址或名稱",
+    "PLACEHOLDER_IP_ADDRESS":"NAS IP地址或名稱",
     "PLACEHOLDER_PATH_TO_SHARE":"路徑/到/共享"
   },
   "NETWORK":{
@@ -184,30 +184,30 @@
     "MUSIC": "音樂",
     "FOLLOW": "關注",
     "DONE": "完成",
-    "WELCOME": "歡迎, 就讓我們開始吧",
+    "WELCOME": "歡迎, 就讓我們開始吧！",
     "SELECT_YOUR_LANGUAGE": "請選擇您的語言",
-    "DEVICE_NAME": "為您的設備設定唯一的名稱",
-    "DEVICE_ADDRESS": "可以從這地址找到這設備:",
+    "DEVICE_NAME": "為您的裝置設定取一個名字",
+    "DEVICE_ADDRESS": "可以從這地址找到您的裝置:",
     "SELECT_YOUR_AUDIO_OUTPUT": "選擇您的音訊輸出",
     "SELECT_YOUR_I2S_DAC": "選擇您的 I2S DAC",
     "I_HAVE_DAC": "我已經擁有 I2S DAC",
     "CUSTOM_AMOUNT": "自訂音量",
     "DONE_MESSAGE": "已完成您的系統設定",
     "MAIL_LIST_SUBSCRIPTION": "訂閱郵件清單",
-    "SOCIAL_SHARE": "社區網路分享",
+    "SOCIAL_SHARE": "社群網路分享",
     "DONATE": "贊助",
     "SUBSCRIBED_SUCCESFULLY": "已成功訂閱",
-    "ADD_YOUR_MUSIC":"新增音樂, 只需插入 USB 外置儲存或者按下面按鈕新增網路磁碟",
+    "ADD_YOUR_MUSIC":"新增音樂, 只需插入USB外部儲存裝置，或是按下面按鈕新增網路硬碟",
     "STEP":"步",
-    "VOLUMIOAPPS":"擴充應用",
-    "GET_APPS":"您也可以使用我們小巧的擴充應用"
+    "VOLUMIOAPPS":"外掛程式",
+    "GET_APPS":"您也可以使用我們小巧的外掛程式"
   },
   "SLEEP": {
     "POWER_OFF": "關機",
     "STOP_MUSIC": "停止播放"
   },
   "ALARM": {
-  "CRATE_PLAYLIST_FIRST": "設定鬧鐘前,請先製造最少一個播放貯列"
+  "CRATE_PLAYLIST_FIRST": "設定鬧鐘前,請先建立最少一個播放貯列"
   },
 "MULTIDEVICE": {
     "EDIT_GROUPS": "編輯群組",
