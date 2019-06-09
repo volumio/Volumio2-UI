@@ -161,7 +161,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
       'content@volumio': {
         templateUrl: themeManagerProvider.getHtmlPath('home'),
         controller: 'HomeController',
-        controllerAs: 'homeManager'
+        controllerAs: 'home'
       }
     }
   })
@@ -176,6 +176,17 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         templateUrl: themeManagerProvider.getHtmlPath('browse'),
         controller: 'BrowseController',
         controllerAs: 'browse'
+      }
+    }
+  })
+
+  .state('volumio.settings', {
+    url: 'settings',
+    views: {
+      'content@volumio': {
+        templateUrl: themeManagerProvider.getHtmlPath('settings'),
+        controller: 'SettingsController',
+        controllerAs: 'settings'
       }
     }
   })

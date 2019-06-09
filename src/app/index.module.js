@@ -106,8 +106,8 @@ import PluginManagerController from './plugin-manager/plugin-manager.controller'
 import WizardController from './wizard/wizard.controller';
 
 // Volumio 3 UI Controllers
-
 import HomeController from './home/home.controller';
+import SettingsController from './settings/settings.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -331,6 +331,7 @@ angular.module('volumio', [
   //Volumio 3 UI
 
   .controller('HomeController', HomeController)
+  .controller('SettingsController', SettingsController)
 
   
   //MyVolumio
