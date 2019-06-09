@@ -400,7 +400,7 @@ class BrowseController {
     }else if( source ){
       this.fetchLibrary(source);
     }else{
-      this.backHome()
+      this.backHome();
     }
   }
 

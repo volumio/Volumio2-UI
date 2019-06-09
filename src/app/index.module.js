@@ -170,7 +170,6 @@ angular.module('volumio', [
   'ngDraggable',
   'ui.select',
   'frapontillo.bootstrap-switch',
-  'ui.bootstrap',
   'ui.router',
   'matchmedia-ng',
   'hmTouchEvents',
