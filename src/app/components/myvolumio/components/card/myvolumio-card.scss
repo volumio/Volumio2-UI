@@ -1,5 +1,12 @@
 .myvolumio-card-container {
   overflow: hidden;
+  border: 1px solid $theme-primary-color;
+  padding: 8px;
+
+  .btn{
+    overflow: hidden;
+  }
+
   .avatar-box {
     padding-right: 0px !important;
   }
@@ -21,7 +28,7 @@
   }
   .profile-usertitle-username {
     text-transform: uppercase;
-    color: #5b9bd1;
+    color: $theme-light-color;
     font-size: 10px;
     font-weight: 600;
     margin-bottom: 4px;
