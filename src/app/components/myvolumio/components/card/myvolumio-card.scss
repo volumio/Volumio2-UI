@@ -40,17 +40,16 @@
         text-align: left;
       }
       .profile-usertitle-name {
-        color: #5cb85c;
-        font-size: 12px;
-        font-weight: 600;
-        margin-bottom: 7px;
+        color:$theme-primary-color;
+        overflow: hidden;
+
       }
+
       .profile-usertitle-username {
         text-transform: uppercase;
         color: $theme-light-color;
-        font-size: 10px;
-        font-weight: 600;
-        margin-bottom: 4px;
+        font-size: smaller;
+        font-weight: 800;
       }
       
       .nopadding {

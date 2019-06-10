@@ -18,10 +18,20 @@
     /* it makes the clue thing, takes smaller dimension to fill div */
     background-size: cover;
   }
-  
+
   .avatar-letter img{
     width: 100%;
     height: auto;
   }
 
 }
+
+  .myvolumio-card-container{
+    .avatar-letter{
+      text-align: center;
+      img{
+        max-height: 75px;
+        max-width: 75px;
+      }
+    }
+  }

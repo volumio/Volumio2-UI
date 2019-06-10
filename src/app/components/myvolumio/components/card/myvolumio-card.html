@@ -2,45 +2,42 @@
 
   <div class="myvolumio-card-logged" ng-if="myVolumioUserCardController.user != null">
     <div class="row">
-      <div class="col-xs-6 avatar-box">
+
+      <div class="col-xs-4 avatar-box">
         <div class="profile-userpic">
           <my-volumio-avatar-image>
           </my-volumio-avatar-image>
         </div>
       </div>
-      <div class="col-xs-16 usedata-box">
+
+      <div class="col-xs-20 usedata-box">
         <div class="profile-usertitle">
-          <div class="profile-usertitle-name">
-            <div ng-if="myVolumioUserCardController.isUserFilledWithMandatory()">
+          <p class="profile-usertitle-name">
+            <span ng-if="myVolumioUserCardController.isUserFilledWithMandatory()">
               {{myVolumioUserCardController.user.firstName}} {{myVolumioUserCardController.user.lastName}}
-            </div>
+            </span>
             <span ng-if="!myVolumioUserCardController.isUserFilledWithMandatory()" translate="MYVOLUMIO.LOGGED_BY_SOCIAL"></span>
-          </div>
-          <div class="profile-usertitle-username">
+          </p>
+          <p class="profile-usertitle-username">
             {{myVolumioUserCardController.user.username}}
-          </div>
+          </p>
         </div>
       </div>
+
     </div>
     <div class="profile-userbuttons">
       <div class="row">
-        <div class="col-xs-12 small-padding-right">
-          <button type="button" class="btn btn-block btn-success btn-sm" ng-click="myVolumioUserCardController.goToProfile()">
-            <span class="glyphicon glyphicon-user"></span>
+        <div class="col-xs-24">
+          <button type="button" class="btn btn-block btn-default btn-sm" ng-click="myVolumioUserCardController.goToProfile()">
+            <span class="fa fa-user"></span>
             <span translate="MYVOLUMIO.PROFILE"></span>
-          </button>
-        </div>
-        <div class="col-xs-12  small-padding-left">
-          <button type="button" class="btn btn-block btn-danger btn-sm" ng-click="myVolumioUserCardController.logOut()">
-            <span class="glyphicon glyphicon-log-out"></span>
-            <span translate="MYVOLUMIO.LOGOUT"></span>
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <div ng-if="myVolumioUserCardController.user == null" class="myvolumio-card-not-logged">
+  <div class="myvolumio-card-not-logged" ng-if="myVolumioUserCardController.user == null">
     <div class="row">
       <div class="col-xs-24" style="padding-bottom: 16px;">
 
