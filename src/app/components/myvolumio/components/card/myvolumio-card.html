@@ -1,5 +1,6 @@
 <div class="myvolumio-card-container">
-  <div id="myvolumio-card-logged" ng-if="myVolumioUserCardController.user != null">
+
+  <div class="myvolumio-card-logged" ng-if="myVolumioUserCardController.user != null">
     <div class="row">
       <div class="col-xs-6 avatar-box">
         <div class="profile-userpic">
@@ -38,25 +39,31 @@
       </div>
     </div>
   </div>
-  <div ng-if="myVolumioUserCardController.user == null" id="myvolumio-card-not-logged">
+
+  <div ng-if="myVolumioUserCardController.user == null" class="myvolumio-card-not-logged">
     <div class="row">
       <div class="col-xs-24" style="padding-bottom: 16px;">
-        <h4 class="myvolumio-card-title" translate="MYVOLUMIO.MY_VOLUMIO"></h4>
-      </div>
-      <div class="profile-userbuttons">
-        <div class="col-xs-12 small-padding-right">
-          <button type="button" class="btn btn-block btn-success btn-sm" ng-click="myVolumioUserCardController.logIn()">
-            <span class="glyphicon glyphicon-log-in"></span>
-            <span translate="MYVOLUMIO.LOGIN"></span>
-          </button>
-        </div>
-        <div class="col-xs-12 small-padding-left">
-          <button type="button" class="btn btn-block btn-info btn-sm" ng-click="myVolumioUserCardController.signUp()">
-            <span class="glyphicon glyphicon-user"></span>
-            <span translate="MYVOLUMIO.SIGNUP"></span>
-          </button>
-        </div>
+
+          <div class="panel">
+            <div class="panel-heading">
+              <p translate="MYVOLUMIO.MY_VOLUMIO"></p>
+            </div>
+            <div class="panel-body">
+              <div class="profile-userbuttons">
+                <button type="button" class="btn btn-block btn-success" ng-click="myVolumioUserCardController.logIn()">
+                  <span class="glyphicon glyphicon-log-in"></span>
+                  <span translate="MYVOLUMIO.LOGIN"></span>
+                </button>
+                <button type="button" class="btn btn-block btn-info" ng-click="myVolumioUserCardController.signUp()">
+                  <span class="glyphicon glyphicon-user"></span>
+                  <span translate="MYVOLUMIO.SIGNUP"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
       </div>
     </div>
   </div>
+
 </div>
