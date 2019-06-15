@@ -36,23 +36,24 @@ class MyVolumioCardController {
 
   //auth section
   logIn() {
-    this.actionCallback();
+    this.callActionCallback();
     this.$state.go('myvolumio.login');
   }
 
   signUp() {
-    this.actionCallback();
+    debugger;
+    this.callActionCallback();
     this.$state.go('myvolumio.signup');
   }
 
   goToProfile() {
-    this.actionCallback();
+    this.callActionCallback();
     this.$state.go('myvolumio.profile');
   }
 
   logOut() {
     this.authService.logOut().then(() => {
-      this.actionCallback();
+      this.callActionCallback();
       this.$state.go('myvolumio.access');
     }).catch(error => {
       this.modalService.openDefaultErrorModal(error);
@@ -61,6 +62,12 @@ class MyVolumioCardController {
 
   isUserFilledWithMandatory() {
     return this.authService.isUserFilledWithMandatory();
+  }
+  
+  callActionCallback(){
+    if(this.actionCallback !== undefined && typeof this.actionCallback === 'function'){
+      this.actionCallback();
+    }
   }
 
 }

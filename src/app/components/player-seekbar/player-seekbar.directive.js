@@ -41,7 +41,7 @@ class playerSeekBarController {
   setSeek(progress){
     this.$timeout.cancel(this.timeoutHandler);
     this.timeoutHandler = this.$timeout(() => {
-      if (this.playerService.state !== undefined && this.playerService.state.disableUi === true) {
+      if ( this.playerService.state !== undefined && this.playerService.state !== null && this.playerService.state.disableUi === true ) {
         this.playerService.stopSeek();
         this.playerService.seek = progress;
       }
