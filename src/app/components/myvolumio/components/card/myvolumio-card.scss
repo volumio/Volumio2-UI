@@ -1,73 +1,50 @@
 .myvolumio-card-container {
-  overflow: hidden;
-  padding: 8px;
-  margin-bottom: 0px;
 
-  .btn{
-    overflow: hidden;
-  }
-
-  .profile-userbuttons {
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .profile-userbuttons .btn {
-    text-transform: uppercase;
-    font-size: 11px !important;
-    font-weight: 600;
-    padding: 6px 4px !important;
-    margin-right: 5px;
-  }
-
-  .profile-userbuttons .btn:last-child {
-    margin-right: 0px;
-  }
+  font-color: $theme-text-light-color;
 
   .myvolumio-card-logged{
 
-      .avatar-box { 
-        padding-right: 0px !important;
-      }
-      .profile-userpic img {
-        float: none;
-        margin: 0 auto;
+    .card-heading{
+
+      padding-right: 0;
+      padding-left: 0;
+      position: relative;
+      height: 60px;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 60px;
+        height: 60px;
+
         -webkit-border-radius: 50% !important;
         -moz-border-radius: 50% !important;
         border-radius: 50% !important;
+
+        border: 4px solid $theme-primary-color;
       }
-      .profile-usertitle {
-        text-align: left;
-      }
-      .profile-usertitle-name {
-        color:$theme-primary-color;
+
+    }
+
+    .card-body{
+
+      text-align: left;
+      padding-top: 16px;
+
+      .user-name {
+        font-size: 16px;
+        color: $theme-light-color;
         overflow: hidden;
-
       }
 
-      .profile-usertitle-username {
-        text-transform: uppercase;
+      .user-username {
         color: $theme-light-color;
         font-size: smaller;
-        font-weight: 800;
-      }
-      
-      .nopadding {
-        padding: 0;
-        margin: 0;
       }
 
-      .avatar-box.nopadding {
-        padding-left: 8px;
-      }
-      .usedata-box.nopadding {
-        padding-left: 8px;
-      }
-
-      .profile-userbuttons .btn {
-        text-align: center !important;
-        text-transform: uppercase;
-      }
+    }
 
   }
 
@@ -76,12 +53,29 @@
       margin-top: 0px !important;
       margin-bottom: 0px !important;
     }
+
+
+    .btn{
+      overflow: hidden;
+    }
+
+    .profile-userbuttons {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .profile-userbuttons .btn {
+      text-transform: uppercase;
+      font-size: 11px !important;
+      font-weight: 600;
+      padding: 6px 4px !important;
+      margin-right: 5px;
+    }
+
+    .profile-userbuttons .btn:last-child {
+      margin-right: 0px;
+    }
+
   }
 
-}
-
-#content{
-  .myvolumio-card-not-logged .panel.access-panel{
-    margin-bottom: 8px;
-  }
 }

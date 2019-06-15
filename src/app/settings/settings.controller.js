@@ -1,5 +1,5 @@
 class SettingsController {
-  constructor($scope, $rootScope, socketService, $state, modalService, playerService, themeManager, $log, $window, uiSettingsService, authService) {
+  constructor($scope, $rootScope, socketService, $state, modalService, playerService, themeManager, $log, $window, uiSettingsService, authService, matchmediaService) {
     'ngInject';
 
     this.$rootScope = $rootScope;
@@ -14,6 +14,7 @@ class SettingsController {
     this.$scope = $scope;
     this.uiSettingsService = uiSettingsService;
     this.authService = authService;
+    this.matchmedia = matchmediaService;
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -127,7 +128,7 @@ class SettingsController {
   isMyVolumioVisible(){
     return true;
   }
-  
+
 }
 
 export default SettingsController;

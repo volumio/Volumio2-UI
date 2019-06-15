@@ -1,40 +1,30 @@
 <div class="myvolumio-card-container">
 
   <div class="myvolumio-card-logged" ng-if="myVolumioUserCardController.user != null">
-    <div class="row">
 
-      <div class="col-xs-4 avatar-box">
-        <div class="profile-userpic">
-          <my-volumio-avatar-image>
-          </my-volumio-avatar-image>
-        </div>
+      <div class="card-heading">
+        <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="myVolumioUserCardController.goToProfile()">
+          <span class="fa fa-list"></span>
+        </button>
+        <my-volumio-avatar-image>
+        </my-volumio-avatar-image>
+        <div style="clear: both;"></div>
       </div>
 
-      <div class="col-xs-20 usedata-box">
-        <div class="profile-usertitle">
-          <p class="profile-usertitle-name">
+      <div class="card-body">
+
+          <div class="user-name">
             <span ng-if="myVolumioUserCardController.isUserFilledWithMandatory()">
               {{myVolumioUserCardController.user.firstName}} {{myVolumioUserCardController.user.lastName}}
             </span>
             <span ng-if="!myVolumioUserCardController.isUserFilledWithMandatory()" translate="MYVOLUMIO.LOGGED_BY_SOCIAL"></span>
-          </p>
-          <p class="profile-usertitle-username">
+          </div>
+          <div class="user-username">
             {{myVolumioUserCardController.user.username}}
-          </p>
-        </div>
+          </div>
+
       </div>
 
-    </div>
-    <div class="profile-userbuttons">
-      <div class="row">
-        <div class="col-xs-24">
-          <button type="button" class="btn btn-block btn-default btn-sm" ng-click="myVolumioUserCardController.goToProfile()">
-            <span class="fa fa-user"></span>
-            <span translate="MYVOLUMIO.PROFILE"></span>
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="myvolumio-card-not-logged" ng-if="myVolumioUserCardController.user == null">
@@ -58,7 +48,7 @@
               </div>
             </div>
           </div>
-          
+
       </div>
     </div>
   </div>
