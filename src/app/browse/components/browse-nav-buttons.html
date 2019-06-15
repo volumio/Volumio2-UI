@@ -1,28 +1,16 @@
 <button
     class="btn-link"
     ng-click="browse.backHome()"
-    ng-if='!browse.isVolumio3Theme()'
     title="{{'COMMON.HOME' | translate}}">
-    <i class="fa fa-home"></i>
-</button>
-<button
-    class="btn-link backButton"
-    ng-click="browse.backHome()"
-    title="{{'COMMON.BACK' | translate}}">
-  <i class="fa fa-arrow-circle-left"></i>
-</button>
-<button
-    class="btn-link backButton"
-    ng-click="browse.backHome()"
-    title="{{'COMMON.NEXT' | translate}}">
-  <i class="fa fa-arrow-circle-right"></i>
+    <i class="fa fa-home" ng-if='!browse.isVolumio3Theme()'></i>
+  <i class="fa fa-level-up" ng-if='browse.isVolumio3Theme()'></i>
 </button>
 <button
     class="btn-link backButton"
     ng-if="browse.browseService.isBrowsing && browse.browseService.breadcrumbs.uri"
     ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri}, true)"
     title="{{'COMMON.BACK' | translate}}">
-  <i class="fa fa-level-up"></i>
+  <i class="fa fa-fa-arrow-circle-left"></i>
 </button>
 <button
     class="btn-link"
