@@ -15,17 +15,68 @@ class MyVolumioCardDirective {
 }
 
 class MyVolumioCardController {
-  constructor($rootScope, $scope, $state, authService, modalService) {
+  constructor($rootScope, $scope, $state, authService, modalService, socketService) {
     'ngInject';
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
     this.modalService = modalService;
+    this.socketService = socketService;
+
     this.actionCallback = this.$scope.actionCallback;
 
     this.user = null;
 
+    this.$rootScope.$on('socket:init', () => {
+      this.init();
+    });
+    this.$rootScope.$on('socket:reconnect', () => {
+      this.initService();
+    });
+
+    this.init();
+  }
+
+  init() {
+    this.registerListner();
+    this.initService();
     this.authInit();
+  }
+
+  registerListner() {
+    this.socketService.on('pushMenuItems', (data) => {
+      this.menuItems = data;
+      this.checkEnableMyVolumio();
+    });
+
+    this.$scope.$on('$destroy', () => {
+      this.socketService.off('pushMenuItems');
+    });
+  }
+
+  initService() {
+    this.socketService.emit('getMenuItems');
+  }
+
+  checkEnableMyVolumio(){
+    if(this.isAuthActive()){
+      this.authService.enableAuth();
+    }
+  }
+
+  isAuthActive(){
+    return this.isPluginActiveById('my-volumio');
+  }
+
+  isPluginActiveById(pluginId){
+    for(var i in this.menuItems){
+      var plugin = this.menuItems[i];
+      if(plugin.hasOwnProperty('id') && plugin.id === pluginId){
+        return true;
+      }
+    }
+    return false;
   }
 
   authInit() {
@@ -63,7 +114,7 @@ class MyVolumioCardController {
   isUserFilledWithMandatory() {
     return this.authService.isUserFilledWithMandatory();
   }
-  
+
   callActionCallback(){
     if(this.actionCallback !== undefined && typeof this.actionCallback === 'function'){
       this.actionCallback();

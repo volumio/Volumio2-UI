@@ -16,7 +16,6 @@ class SettingsController {
     this.authService = authService;
     this.matchmedia = matchmediaService;
 
-    this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
     });

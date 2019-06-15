@@ -24,6 +24,7 @@ class MyVolumioPlanCardDirective {
 class MyVolumioPlanCardController {
   constructor($rootScope, $scope, $state, authService, modalService, productsService) {
     'ngInject';
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
