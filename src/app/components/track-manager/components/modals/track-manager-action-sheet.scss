@@ -1,4 +1,8 @@
 .trackManagerActionSheet {
+
+  position: relative;
+  z-index: 900;
+
   button {
     margin-bottom: 16px;
     &:last-of-type {
