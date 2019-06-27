@@ -3,53 +3,17 @@
   font-color: $theme-text-light-color;
 
   .myvolumio-card-logged{
+    font-size: 16px;
 
-    .card-heading{
-
-      padding-right: 0;
-      padding-left: 0;
-      position: relative;
-      height: 60px;
-
-
-      .avatar-image-box{
-        height: 60px;
-      }
-
-      img, div.avatar-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        width: 60px;
-        height: 60px;
-        padding-top: initial !important;
-
-        -webkit-border-radius: 50% !important;
-        -moz-border-radius: 50% !important;
-        border-radius: 50% !important;
-
-        border: 4px solid $theme-primary-color;
-      }
-
+    .user-name {
+      color: $theme-light-color;
+      overflow: hidden;
     }
 
-    .card-body{
-
-      text-align: left;
-      padding-top: 16px;
-
-      .user-name {
-        font-size: 16px;
-        color: $theme-light-color;
-        overflow: hidden;
-      }
-
-      .user-username {
-        color: $theme-light-color;
-        font-size: smaller;
-      }
-
+    .user-username{
+      font-size: smaller;
+      color: $theme-light-color;
+      overflow: hidden;
     }
 
   }
