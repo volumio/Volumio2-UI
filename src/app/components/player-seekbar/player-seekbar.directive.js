@@ -21,15 +21,21 @@ class playerSeekBarController {
 
     this.timeoutHandler = null;
 
+    this.inited = false;
+
     this.seekPercent = this.playerService.seekPercent;
     this.init();
   }
 
   init(){
-
+    this.inited = true;
   }
 
   set seekPercent(val){
+    if(!this.inited){
+      //avoid setting seek value from view model before init complete
+      return;
+    }
     this.playerService.seekPercent = val;
     this.setSeek(this.playerService.seekPercent);
   }
