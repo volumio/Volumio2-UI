@@ -40,13 +40,17 @@ class BrowseController {
     this.browseService.backHome();
   }
 
-  play(item) {
+  play(item, list, itemIndex) {
     if (this.browseService.currentFetchRequest && this.browseService.currentFetchRequest.uri === 'playlists') {
       this.playQueueService.playPlaylist(item);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else {
-      this.playQueueService.addPlay(item);
+      if (this.uiSettingsService.uiSettings.playMethod === 'single') {
+        this.playQueueService.addPlay(item);
+      } else {
+        this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+      }
     }
   }
 
@@ -66,11 +70,11 @@ class BrowseController {
     }
   }
 
-  clickListItem(item) {
+  clickListItem(item, list, itemIndex) {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
       this.fetchLibrary(item);
     } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
-      this.play(item);
+      this.play(item, list, itemIndex);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
@@ -79,9 +83,11 @@ class BrowseController {
       this.playQueueService.playPlaylist({title: item.name});
     }
   }
+
   clickListItemByIndex(listIndex, itemIndex) {
     let item = this.browseService.lists[listIndex].items[itemIndex];
-    this.clickListItem(item);
+    let list = this.browseService.lists[listIndex].items;
+    this.clickListItem(item, list, itemIndex);
   }
 
   hamburgerMenuClick(button, listIndex, itemIndex) {
