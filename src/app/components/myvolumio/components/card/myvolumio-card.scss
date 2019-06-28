@@ -1,6 +1,6 @@
 .myvolumio-card-container {
 
-  font-color: $theme-text-light-color;
+  font-color: $theme-light-color;
 
   .myvolumio-card-logged{
     font-size: 16px;
@@ -8,12 +8,14 @@
     .user-name {
       color: $theme-light-color;
       overflow: hidden;
+      text-align: left;
     }
 
     .user-username{
       font-size: smaller;
       color: $theme-light-color;
       overflow: hidden;
+      text-align: left;
     }
 
   }
