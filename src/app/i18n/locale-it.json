@@ -72,7 +72,8 @@
     "SUBSCRIBE_ME": "Iscrivimi",
     "SHARE": "Condividi",
     "EJECT": "Espelli",
-    "FUNCTIONALIES_CONTROL":"Functionalities control"
+    "FUNCTIONALIES_CONTROL":"Functionalities control",
+    "GRID": "Griglia"
   },
   "BROWSER": {
     "PLAY": "Riproduci",
@@ -96,7 +97,9 @@
     "CLEAR_AND_PLAY": "Pulisci e riproduci",
     "SAFE_REMOVE": "Rimozione sicura",
     "UPDATE_FOLDER": "Aggiorna cartella",
-    "DELETE_FOLDER":"Cancella la cartella"
+    "DELETE_FOLDER":"Cancella la cartella",
+    "SKIP_BACKWARDS": "Salta Indietro",
+    "SKIP_FORWARD": "Salta Avanti"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
@@ -136,6 +139,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Riproduzione Cauale",
     "REPEAT": "Ripeti",
+    "REPEAT_ALL": "Ripeti Tutti",
+    "REPEAT_SINGLE": "Ripeti Traccia",
+    "REPEAT_OFF": "Non Ripetere",
     "SAVE_QUEUE_AS_PLAYLIST": "Salva la coda come Playlist",
     "CONSUME_PLAYLIST": "Rimuovi dopo riproduzione",
     "CLEAR_QUEUE": "Svuota la coda"
@@ -203,13 +209,23 @@
     "DONE_MESSAGE": "Fatto, il tuo sistema è pronto",
     "MAIL_LIST_SUBSCRIPTION": "Iscrizione alla mailing list",
     "SOCIAL_SHARE": "Condividi",
-    "DONATE": "Dona",
+    "DONATE": "Dona con paypal",
     "SUBSCRIBED_SUCCESFULLY": "Iscritto con successo",
     "ADD_YOUR_MUSIC":"Per aggiungere la tua musica, basta connettere un disco rigido USB oppure clicca sul bottone in basso per aggiungere un Disco di Rete",
     "STEP":"Passo",
     "VOLUMIOAPPS":"App",
     "GET_APPS":"Per rendere tutto ancora più facile, puoi anche usare una delle nostre comode App",
-    "WIFI_CONNECTION":"Seleziona la rete senza fili a cui vuoi connetterti"
+    "WIFI_CONNECTION":"Seleziona la rete senza fili a cui vuoi connetterti",
+    "DEVICECODE":"Codice",
+    "DEVICE_CODE_TITLE":"Codice di attivazione dispositivo",
+    "DEVICE_CODE_MESSAGE":"Se avete ricevuto un Codice di Attivazione Dispositivo, inseritelo per godere delle funzionalità esclusive a voi riservate",
+    "DEVICE_CODE_VALIDATE":"Verifica Codice Dispositivo",
+    "ERROR_ACTIVATING_DEVICE":"Attivazione dispositivo fallita",
+    "DEVICE_ACTIVATED": "Il Vostro dispositivo è stato attivato con successo. Puoi ora godere delle funzionalità esclusive",
+    "ADVANCEDSETTINGS": "Esperienza",
+    "EXPERIENCE_SETTINGS_TITLE":"Configuriamo la tua esperienza",
+    "EXPERIENCE_SETTINGS_TEXT" :"Preferisci un sistema semplice da usare con una gamma semplificata di opzioni o preferisci il controllo completo sulle funzionalità avanzate?",
+    "EXPERIENCE_SETTINGS_TEXT_2" :"Questa impostazione può essere cambiata in seguito tramite le impostazioni di sistema"
   },
   "SLEEP": {
     "POWER_OFF": "Spegni",
@@ -359,7 +375,9 @@
     "YEARLY": "Annuale",
     "YEARLY_PER": "Per anno",
     "SAVE_20": "Risparmia il 20% con il piano annuale!",
-    "WHAT_IS_MYVOLUMIO":"Cos'è MyVolumio?"
+    "WHAT_IS_MYVOLUMIO":"Cos'è MyVolumio?",
+    "TRY_FOR_FREE":"Prova gratis",
+    "LIFETIME":"A vita"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
@@ -370,6 +388,8 @@
     "NATIVE_TIDAL_QOBUZ_INTEGRATION":"Integrazione nativa di TIDAL e Qobuz",
     "AUTO_SYNC":"Sincronizzazione automatica delle preferenze",
     "MYVOLUMIO_6_DEVICES":"Usa MyVolumio su 6 dispositivi",
-    "REMOTE_CONNECTION_6_DEVICES":"Connessione verso 6 dispositivi"
+    "REMOTE_CONNECTION_6_DEVICES":"Connessione verso 6 dispositivi",
+    "CD_PLAYBACK_RIPPING":"Riproduzione e salvataggio CD",
+    "ALEXA_INTEGRATION":"Integrazione Alexa"
   }
 }

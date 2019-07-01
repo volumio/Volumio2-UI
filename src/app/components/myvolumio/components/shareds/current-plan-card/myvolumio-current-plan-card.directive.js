@@ -79,9 +79,18 @@ class MyVolumioCurrentPlanCardController {
 
   isFreePlan(){
     var isFreePlan = this.user.plan === undefined ||
-    this.user.plan === null || 
+    this.user.plan === null ||
     this.user.plan === 'free';
     return isFreePlan;
+  }
+
+  isLifeTimePlan(){
+    var planDuration = this.user.planDuration;
+    if (this.user.planDuration === 'lifetime') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getPlanDuration(){
