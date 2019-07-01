@@ -8,9 +8,10 @@
         </my-volumio-avatar-image>
       </div>
       <div class="col-xs-16" style="padding-left: 0px;">
-        <button type="button" class="btn btn-primary btn-sm" ng-click="myVolumioUserCardController.goToProfile()">
+        <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="myVolumioUserCardController.goToProfile()">
           <span class="fa fa-bars"></span>
         </button>
+        <div style="clear: both;"></div>
         <div class="user-name">
             <span ng-if="myVolumioUserCardController.isUserFilledWithMandatory()">
               {{myVolumioUserCardController.user.firstName}}
