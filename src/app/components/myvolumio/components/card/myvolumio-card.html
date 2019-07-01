@@ -2,31 +2,30 @@
 
   <div class="myvolumio-card-logged" ng-if="myVolumioUserCardController.user != null">
 
-    <div class="row">
+    <div class="row" style="display: flex;flex-wrap: wrap;">
+
       <div class="col-xs-8">
         <my-volumio-avatar-image>
         </my-volumio-avatar-image>
       </div>
-      <div class="col-xs-16" style="padding-left: 0px;">
+
+      <div class="col-xs-16" style="padding-left: 0px; position: relative;">
+
         <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="myVolumioUserCardController.goToProfile()">
           <span class="fa fa-bars"></span>
         </button>
         <div style="clear: both;"></div>
-        <div class="user-name">
+
+        <div class="user-name" style="position: absolute; bottom: 0; left: 0;">
             <span ng-if="myVolumioUserCardController.isUserFilledWithMandatory()">
               {{myVolumioUserCardController.user.firstName}}
             </span>
           <span ng-if="!myVolumioUserCardController.isUserFilledWithMandatory()" translate="MYVOLUMIO.LOGGED_BY_SOCIAL"></span>
         </div>
-        <!--
-        <div class="user-username">
-            <span ng-if="myVolumioUserCardController.isUserFilledWithMandatory()">
-              {{myVolumioUserCardController.user.username}}
-            </span>
-        </div>
-        -->
+
         <div style="clear: both;"></div>
       </div>
+
     </div>
 
   </div>
