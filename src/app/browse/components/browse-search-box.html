@@ -1,4 +1,4 @@
-<form action="." id="searchForm" ng-class="{ 'hidden-xs': browse.isDedicatedSearchView !== true }" ng-submit="browse.searchSubmit($event)">
+<form action="." id="searchForm" ng-class="{ 'hidden-xs': browse.isDedicatedSearchView !== true, 'pull-right': true }" ng-submit="browse.searchSubmit($event)">
   <input
       type="search"
       ng-model="browse.searchField"
