@@ -125,6 +125,10 @@ class PlayerService {
     return null;
   }
 
+  get duration(){
+    return this.state.duration;
+  }
+
   // VOLUME --------------------------------------------------------------------
     // METHODS -----------------------------------------------------------------
   volumeUp() {

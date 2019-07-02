@@ -29,6 +29,9 @@
     "SHOW_SETTINGS": "Show Settings",
     "SETTINGS": "Settings",
     "TAB_BROWSE": "Browse",
+    "TAB_HOME": "Home",
+    "TAB_SEARCH": "Search",
+    "TAB_SETTINGS": "Settings",
     "TAB_PLAYBACK": "Playback",
     "TAB_QUEUE": "Queue",
     "ARTIST": "Artist",
@@ -73,6 +76,7 @@
     "SHARE": "Share",
     "EJECT": "Eject",
     "FUNCTIONALIES_CONTROL": "Functionalities control",
+    "EDIT": "Edit",
     "GRID" : "Grid"
   },
   "BROWSER": {

@@ -26,7 +26,8 @@ class PluginComponentController {
     uiSettingsService,
     $log,
     $state,
-    $window
+    $window,
+    themeManager
   ) {
     'ngInject';
     this.socketService = socketService;
@@ -38,6 +39,7 @@ class PluginComponentController {
     this.$state = $state;
     this.uiSettingsService = uiSettingsService;
     this.$window = $window;
+    this.themeManager = themeManager;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});

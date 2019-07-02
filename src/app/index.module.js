@@ -57,10 +57,14 @@ import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.di
 import TrackInfoBarButtonsDirective from './components/track-info-bar/track-info-bar-buttons.directive';
 import EqualizerDirective from './components/equalizer/equalizer.directive';
 import ModalController from './components/modals/modal.controller';
+//Volumio 3 UI Directives
+import MainMenuDirective from './components/main-menu/main-menu.directive';
+import OnCloudActionsDirective from './components/on-cloud-actions/on-cloud-actions.directive';
+import PlayerSeekbarDirective from './components/player-seekbar/player-seekbar.directive';
 // Track buttons
 import FavouriteTrackBtnDirective from './components/favourite-track-btn/favourite-track-btn.directive';
 import AddTrackToPlaylistBtnDirective from './components/add-track-to-playlist-btn/add-track-to-playlist-btn.directive';
-import TrackAciotnsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
+import TrackActionsBtnDirective from './components/track-actions-btn/track-actions-btn.directive';
 
 // Light Switch
 import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-btn.directive';
@@ -100,6 +104,10 @@ import PluginController from './plugin/plugin.controller';
 import PluginManagerController from './plugin-manager/plugin-manager.controller';
 
 import WizardController from './wizard/wizard.controller';
+
+// Volumio 3 UI Controllers
+import HomeController from './home/home.controller';
+import SettingsController from './settings/settings.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
@@ -162,7 +170,6 @@ angular.module('volumio', [
   'ngDraggable',
   'ui.select',
   'frapontillo.bootstrap-switch',
-  'ui.bootstrap',
   'ui.router',
   'matchmedia-ng',
   'hmTouchEvents',
@@ -253,8 +260,13 @@ angular.module('volumio', [
 
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
-  .directive('trackActionsBtn', (themeManager) => new TrackAciotnsBtnDirective(themeManager))
+  .directive('trackActionsBtn', (themeManager) => new TrackActionsBtnDirective(themeManager))
   .directive('lightSwitchBtn', (themeManager) => new LightSwitchBtnDirective(themeManager))
+
+  // Volumio 3 UI Directives
+  .directive('mainMenu', (themeManager) => new MainMenuDirective(themeManager))
+  .directive('onCloudActions', (themeManager) => new OnCloudActionsDirective(themeManager))
+  .directive('playerSeekbar', (themeManager) => new PlayerSeekbarDirective(themeManager))
 
   //MyVolumio Directives
   .directive('stripePayButton', () => new StripePayButtonDirective())
@@ -316,6 +328,12 @@ angular.module('volumio', [
   .controller('UiSettingsPluginController', UiSettingsPluginController)
   .controller('MyMusicPluginEnablerController', MyMusicPluginEnablerController)
 
+  //Volumio 3 UI
+
+  .controller('HomeController', HomeController)
+  .controller('SettingsController', SettingsController)
+
+  
   //MyVolumio
   .controller('MyVolumioLoginController', MyVolumioLoginController)
   .controller('MyVolumioSignupController', MyVolumioSignupController)

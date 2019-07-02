@@ -1,0 +1,27 @@
+.on-cloud-actions-container{
+  .languageContainer {
+    width: 100px;
+    float: right;
+    margin: 16px;
+
+    .ui-select-choices {
+      width: 100px;
+      min-width: auto;
+    }
+
+  }
+
+  .logout-container {
+    float: right;
+    margin: 16px;
+
+    button {
+      font-size: 16px;
+    }
+
+  }
+
+  button {
+    font-size: 24px;
+  }
+}

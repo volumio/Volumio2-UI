@@ -65,6 +65,14 @@ class MyVolumioProfileController {
     });
   }
 
+  logOut() {
+    this.authService.logOut().then(() => {
+      this.$state.go('myvolumio.access');
+    }).catch(error => {
+      this.modalService.openDefaultErrorModal(error);
+    });
+  }
+
 }
 
 export default MyVolumioProfileController;

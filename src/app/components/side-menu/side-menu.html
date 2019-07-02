@@ -1,7 +1,28 @@
 <div id="sideMenuScrim" ng-if="sideMenu.visible" ng-click="sideMenu.toggleMenu()"></div>
+
+<li class='side-menu-item' ng-if='sideMenu.isInMainMenu'>
+  <a href ng-click="sideMenu.toggleMenu()" >
+      <i class="fa fa-cog"></i>
+      <span translate='COMMON.SETTINGS'></span>
+  </a>
+</li>
+
+<button
+    ng-if='sideMenu.isInTabBar'
+    ng-click='sideMenu.toggleMenu()'
+    class="btn btn-default tab-bar-btn settingsBtn"
+    ng-mouseenter="hover = 'settings'"
+    ng-mouseleave="hover = ''"
+    ng-class="{selected: state.current.name === 'volumio.settings'}"
+    title="{{'COMMON.TAB_SETTINGS' | translate}}">
+  <span class="fa fa-cog" ></span>
+  <span class="label" translate="COMMON.TAB_SETTINGS"></span>
+</button>
+
 <div id="sideMenu">
   <button
       id="openMenuBtn"
+      ng-if='!sideMenu.isInMainMenu && !sideMenu.isInTabBar'
       ng-click="sideMenu.toggleMenu()"
       class="btn btn-link"
       title="{{'COMMON.SHOW_SETTINGS' | translate}}">
@@ -16,7 +37,7 @@
       <i class="fa fa-times"></i>
     </button>
 
-    <div ng-if="sideMenu.isAuthActive()" id="myvolumio-card-container">
+    <div ng-if="sideMenu.isAuthActive() && sideMenu.isMyVolumioVisible()" id="myvolumio-card-container">
       <my-volumio-user-card action-callback="sideMenu.toggleMenu()">
         </my-volumio-card>
     </div>

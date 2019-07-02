@@ -13,7 +13,8 @@ class VolumeManagerDirective {
         return themeManager.getHtmlPath(templateName, templatePath);
       },
       scope: {
-        type: '@'
+        type: '@',
+        isOnFooter: '@'
       },
       controller: VolumeManagerController,
       controllerAs: 'volumeManager',
@@ -42,6 +43,8 @@ class VolumeManagerController {
     this.themeManager = themeManager;
     this.$scope = $scope;
     this.volume = playerService.volume;
+
+    this.isOnFooter = this.$scope.isOnFooter || false;
 
     this.startVolumeStatusListeners();
     this.knobOptions = {

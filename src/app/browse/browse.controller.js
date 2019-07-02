@@ -1,9 +1,11 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
       modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-      uiSettingsService) {
+      uiSettingsService, $state, themeManager, $stateParams) {
     'ngInject';
     this.$log = $log;
+    this.$state = $state;
+    this.$state.params = this.$state.params || [];
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
@@ -17,6 +19,10 @@ class BrowseController {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.uiSettingsService = uiSettingsService;
+    this.themeManager = themeManager;
+    this.$stateParams = $stateParams;
+
+    this.searchField = '';
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();
@@ -164,7 +170,7 @@ class BrowseController {
   }
 
   search() {
-    if (this.searchField.length >= 3) {
+    if (this.searchField.length >= 3 || this.isDedicatedSearchView) {
       this.browseService.isSearching = true;
       if (this.searchTimeoutHandler) {
         this.$timeout.cancel(this.searchTimeoutHandler);
@@ -379,11 +385,28 @@ class BrowseController {
   }
 
   initController() {
+    this.initDedicatedSearch();
     let bindedBackListener = this.backListener.bind(this);
     this.$document[0].addEventListener('keydown', bindedBackListener, false);
     this.$scope.$on('$destroy', () => {
       this.$document[0].removeEventListener('keydown', bindedBackListener, false);
     });
+    this.initToLibrary();
+  }
+
+  initDedicatedSearch(){
+    this.isDedicatedSearchView = this.$stateParams.isSearch === true;
+  }
+
+  initToLibrary(){
+    var source = this.$state.params.source;
+    if( this.isDedicatedSearchView ){
+      this.search();
+    }else if( source ){
+      this.fetchLibrary(source);
+    }else{
+      this.backHome();
+    }
   }
 
   backListener() {
@@ -412,6 +435,10 @@ class BrowseController {
         this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
       }
     }
+  }
+
+  isVolumio3Theme(){
+    return this.themeManager.theme === 'volumio3';
   }
 }
 

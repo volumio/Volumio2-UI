@@ -19,6 +19,8 @@
       title="{{'TRACK_INFO_BAR.REPEAT_SINGLE' | translate}}">
     <i class="fa fa-repeat"></i>
   </button>
+  <favourite-track-btn></favourite-track-btn>
+  <add-track-to-playlist-btn></add-track-to-playlist-btn>
   <button ng-if="modal.playerService.state.repeat && modal.playerService.state.repeatSingle"
       class="btn btn-link playerControls"
       ng-class="{'active': modal.playerService.state.repeat}"
