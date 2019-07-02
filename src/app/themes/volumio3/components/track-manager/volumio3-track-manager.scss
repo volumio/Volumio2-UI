@@ -1,0 +1,34 @@
+#trackManagerWrapper {
+  // border: solid 10px red;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  // border: solid 10px red;
+  @include breakpoint(xs) {
+    left: -$grid-gutter-width;
+    right: -$grid-gutter-width;
+  }
+}
+#trackManager {
+  margin-top: 110px;
+  // border: solid 10px red;
+  @include breakpoint(xs) {
+    position: absolute;
+    height: 380px;
+    margin-top: -190px;
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    // border: solid 1px yellow;
+  }
+  #trackDetails {
+    margin-bottom: 16px;
+  }
+}

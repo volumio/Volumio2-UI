@@ -1,0 +1,79 @@
+<div id="playerButtons">
+
+  <button
+    class='btn btn-link hidden-xs hidden-sm'
+    ng-click='playerButtons.playerService.repeatAlbum()'
+    ng-class="{'active': playerButtons.playerService.state.repeat, 'player-action-repeat': true }"
+  >
+      <i class="fa fa-repeat"></i>
+  </button>
+
+  <button
+      id='prev-button'
+      ng-click="playerButtons.playerService.prev()"
+      class="btn btn-link hidden-xs hidden-sm"
+      title="{{'BROWSER.PREVIOUS_TRACK' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
+    <i class="fa fa-step-backward"></i>
+  </button>
+
+  <div class="playPauseBtnWrapper">
+    <div class="playPauseBtnGreyWrapper">
+      <button
+          ng-if="playerButtons.playerService.state.status !== 'play' && !playerButtons.playerService.state.volatile"
+          ng-click="playerButtons.playerService.play()"
+          class="btn btn-link playPause play"
+          title="{{'BROWSER.PLAY' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-2x fa-play"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status !== 'play' && playerButtons.playerService.state.volatile"
+          ng-click="playerButtons.playerService.volatilePlay()"
+          class="btn btn-link playPause play"
+          title="{{'BROWSER.PLAY' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-2x fa-play"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status === 'play' && playerButtons.playerService.state.trackType !== 'webradio'"
+          ng-click="playerButtons.playerService.pause()"
+          class="btn btn-link playPause"
+          ng-class="{active: playerButtons.playerService.state.status === 'play'}"
+          title="{{'BROWSER.PAUSE' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-2x fa-pause"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status === 'play' && playerButtons.playerService.state.trackType === 'webradio'"
+          ng-click="playerButtons.playerService.stop()"
+          class="btn btn-link playPause"
+          ng-class="{active: playerButtons.playerService.state.status === 'stop'}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-2x fa-stop"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <button
+      id='next-button'
+      ng-click="playerButtons.playerService.next()"
+      class="btn btn-link"
+      title="{{'BROWSER.NEXT_TRACK' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
+    <i class="fa fa-step-forward"></i>
+  </button>
+
+  <button
+    class='btn btn-link hidden-xs hidden-sm'
+    ng-click='playerButtons.playerService.shuffle()'
+    ng-class="{'active': playerButtons.playerService.state.random, 'player-action-shuffle': true}"
+  >
+      <i class="fa fa-random"></i>
+  </button>
+
+</div>

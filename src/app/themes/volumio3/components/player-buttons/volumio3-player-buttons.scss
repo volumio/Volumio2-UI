@@ -1,0 +1,68 @@
+#playerButtons {
+  position: relative;
+  text-align: center;
+
+  padding-top: 10px;
+
+  @include breakpoint(md) {
+
+  }
+  @include breakpoint(lg) {
+    padding-top: 20px;
+  }
+
+  .btn{
+    color: #c1c1c1;
+  }
+
+  #prev-button{
+
+  }
+
+  #next-button{
+
+  }
+
+  .player-action-shuffle{
+
+  }
+
+  .player-action-repeat{
+
+  }
+
+  .playPauseBtnWrapper {
+    display: inline;
+
+
+    @include breakpoint(md) {
+
+    }
+    @include breakpoint(lg) {
+
+    }
+
+    .playPauseBtnGreyWrapper {
+      display: inline;
+
+
+      @include breakpoint(md) {
+
+      }
+
+      @include breakpoint(lg) {
+
+      }
+
+      .playPause {
+
+        &.play i{
+          padding-left: 4px;
+        }
+
+
+      }
+
+    }
+  }
+}

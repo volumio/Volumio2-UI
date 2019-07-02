@@ -1,0 +1,13 @@
+<div id="playbackPanelWrapper">
+  <div id="leftPanel">
+    <track-manager type="knob"></track-manager>
+  </div>
+  <div ng-if="!playback.matchmediaService.isPhone" id="centerPanel">
+    <track-info></track-info>
+  </div>
+  <div ng-if="!playback.matchmediaService.isPhone" id="rightPanel">
+    <volume-manager type="knob"></volume-manager>
+  </div>
+</div>
+
+<multi-room-dock></multi-room-dock>

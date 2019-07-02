@@ -1,0 +1,42 @@
+<div ng-if="footer.isSocketReady" id="footer-content">
+
+  <div id="player-bar">
+    <div class="row">
+
+      <div class="track-info-container col-xs-16 col-md-8">
+          <track-info is-in-footer="true"></track-info>
+          <!--
+          <player-status></player-status>
+          -->
+      </div>
+
+      <div class="controls-container col-xs-8 col-md-8 padding-0">
+        <!-- CONTROLS -->
+        <player-buttons></player-buttons>
+        <player-seekbar class='hidden-xs hidden-sm'></player-seekbar>
+      </div>
+
+      <div class="volume-container hidden-xs hidden-sm col-md-offset-1 col-md-4 row">
+          <!-- VOLUME -->
+          <volume-manager is-on-footer="true"></volume-manager>
+      </div>
+      <div class="play-mode-container col-md-3 hidden-xs hidden-sm">
+          <a ui-sref='volumio.play-queue' class='btn btn-link'>
+            <i class='fa fa-list'></i>
+          </a>
+          <a href='' class='btn btn-link'>
+            <i class='fa fa-volume-off'></i>
+          </a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-include
+    id="tab-bar"
+    class="hidden-md hidden-lg hidden-xl"
+    src="'app/themes/volumio3/partials/volumio3-tab-bar.html'"
+  >
+  </ng-include>
+
+</div>

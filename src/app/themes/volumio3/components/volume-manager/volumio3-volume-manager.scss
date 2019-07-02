@@ -1,0 +1,79 @@
+volume-manager{
+
+  .volumeManager {
+    position: relative;
+    margin-top: 110px;
+
+    .volumeSliderWrapper {
+      pointer-events: none;
+
+      position: absolute;
+      bottom: 30px;
+      right: -10px;
+
+      width: 60px;
+      background-color: $theme-transparent-buttons-background;
+      text-align: center;
+      z-index: 2;
+      .volumeSlider {
+        pointer-events: auto;
+        margin: 14px 0px;
+        transform: rotate(0deg);
+      }
+      button {
+        pointer-events: auto;
+      }
+      .bigText {
+        color: $theme-primary-color;
+        font-size: 28px;
+        padding-top: 10px;
+      }
+    }
+
+  }
+
+  .volumeManager.on-footer{
+    margin-top: 0;
+    right: 16px;
+  }
+
+  .volumeSliderScrim {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+  }
+
+  .volume-slider{
+    
+    .volume-text{
+      font-size: smaller;
+      text-align: center;
+    }
+
+    .volumeSlider{
+      margin-left: 30px;
+      padding-top: 3px;
+    }
+
+    .button-mute{
+      width: 6px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 0;
+    }
+
+    .slider-selection{
+      background-image: $theme-slider-bar-full-gradient;
+    }
+
+    .slider-track-high{
+      background-image: $theme-slider-bar-empty-gradient;
+    }
+
+  }
+
+
+}

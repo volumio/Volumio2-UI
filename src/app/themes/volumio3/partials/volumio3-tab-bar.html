@@ -1,0 +1,48 @@
+<div class="tabBar">
+
+  <button
+      ui-sref="volumio.home"
+      ng-mouseenter="hover = 'home'"
+      ng-mouseleave="hover = ''"
+      class="btn btn-default tab-bar-btn homeBtn"
+      ng-class="{selected: state.current.name === 'volumio.home'}"
+      title="{{'COMMON.TAB_HOME' | translate}}">
+    <span class="fa fa-home" ></span>
+    <span class="label" translate="COMMON.TAB_HOME"></span>
+  </button>
+
+  <button
+      ui-sref="volumio.browse"
+      ng-mouseenter="hover = 'browse'"
+      ng-mouseleave="hover = ''"
+      class="btn btn-default tab-bar-btn browseBtn"
+      ng-class="{selected: state.current.name === 'volumio.browse'}"
+      title="{{'COMMON.TAB_BROWSE' | translate}}">
+    <span class="fa fa-music" ></span>
+    <i ng-if="footer.playerService.state.updatedb" class="fa fa-refresh fa-spin"></i>
+    <span class="label" translate="COMMON.TAB_BROWSE"></span>
+  </button>
+
+  <button
+      ui-sref="volumio.search"
+      class="btn btn-default tab-bar-btn searchBtn"
+      ng-mouseenter="hover = 'search'"
+      ng-mouseleave="hover = ''"
+      ng-class="{selected: state.current.name === 'volumio.search'}"
+      title="{{'COMMON.TAB_SEARCH' | translate}}">
+    <span class="fa fa-search" ></span>
+    <span class="label" translate="COMMON.TAB_SEARCH"></span>
+  </button>
+
+  <button
+      ui-sref="volumio.settings"
+      class="btn btn-default tab-bar-btn"
+      ng-mouseenter="hover = 'settings'"
+      ng-mouseleave="hover = ''"
+      ng-class="{selected: state.current.name === 'volumio.settings'}"
+      title="{{'COMMON.SETTINGS' | translate}}">
+    <span class="fa fa-cog" ></span>
+    <span class="label" translate="COMMON.SETTINGS"></span>
+  </button>
+
+</div>

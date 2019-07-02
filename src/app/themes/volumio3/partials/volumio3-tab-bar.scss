@@ -1,0 +1,17 @@
+.tabBar {
+  border-top: 1px solid $theme-primary-color;
+  height: $theme-tabbar-height-smartphone;
+  background: $theme-accent-color;
+
+  button.tab-bar-btn {
+    @include make-xs-column(6, 0);
+    font-size: 18px;
+    border-radius: 0px !important;
+    border: none !important;
+    height: $theme-tabbar-height-smartphone;
+
+    span.label{
+      @extend .hidden-xs;
+    }
+  }
+}

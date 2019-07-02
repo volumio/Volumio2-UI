@@ -1,0 +1,56 @@
+#pluginWrapper {
+  @include make-xs-column(24);
+  .pluginDescription{
+    margin-top: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 30px;
+  }
+
+  .sectionDescription{ 
+    margin-bottom: 28px;
+  }
+
+  .control-label {
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: normal;
+    @include make-sm-column(7);
+  }
+  .control-item {
+    @include make-sm-column(7);
+  }
+ .control-doc {
+    @include make-xs-column(1);
+    a {
+      font-size: 20px;
+      display: inline-block;
+      padding-top: 3px;
+    }
+  }
+  .control-description {
+    @include make-sm-column(8);
+    @include make-xs-column(21);
+    padding-top: 6px;
+  }
+  .control-buttons {
+    @include make-sm-column-offset(7);
+    @include make-sm-column(17);
+  }
+}
+.title {
+  button {
+    display: block;
+    margin-top: 10px;
+  }
+  h2 {
+    background-color: $theme-dark-transparent-background;
+    padding: 6px 10px;
+    display: inline-block;
+    font-size: 35px;
+    font-weight: 300;
+    margin-bottom: 0px;
+    text-transform: capitalize;
+  }
+}

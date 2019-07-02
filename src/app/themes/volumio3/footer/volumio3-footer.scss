@@ -1,0 +1,105 @@
+#footer-content {
+  @include make-row();
+
+  #player-bar {
+    @include make-xs-column(24);
+
+    border-top: 1px solid $theme-primary-color;
+    height: $theme-player-height-smartphone;
+
+    @include breakpoint(md) {
+      height: $theme-player-height-tablet;
+    }
+    @include breakpoint(lg) {
+      height: $theme-player-height-desktop;
+    }
+
+    > .row{
+      height: 100%;
+    }
+
+    .track-info-container{
+      text-align: left;
+      position: relative;
+      height: 100%;
+    }
+
+    .controls-container{
+      text-align: center;
+      height: 100%;
+
+      border-right: 1px solid $theme-dark-color;
+      border-left: 1px solid $theme-dark-color;
+
+      position: relative;
+
+      player-buttons{
+        display: block;
+      }
+
+      player-seekbar{
+        display: block;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+      }
+    }
+
+    .volume-container{
+      margin-top: 28px;
+
+      slider{
+
+      }
+
+      .slider-track{
+        height: 10px;
+        background: transparent !important;
+        border-radius: 0px !important;
+        border: 0px !important;
+      }
+
+      .slider-selection{
+        background-image: $theme-slider-bar-full-gradient;
+        border-radius: 0px !important;
+        border: 0px !important;
+      }
+
+      .slider-track-high{
+        background-color: $theme-dark-grey;
+        background-image: none;
+        border-radius: 0px !important;
+      }
+
+      .slider-handle{
+        background-color: $theme-primary-color !important;
+        background-image: none !important;
+        border: none !important;
+        height: 16px !important;
+        width: 8px !important;
+        margin-left: -3px !important;
+        margin-top: -6px !important;
+      }
+
+      .slider-handle.round{
+        border-radius: initial !important;
+      }
+
+    }
+
+    .play-mode-container{
+      margin-top: 28px;
+      text-align: center;
+    }
+
+  }
+
+  #tab-bar {
+    @include make-xs-column(24);
+  }
+
+}
+
+.padding-0{
+  padding: 0;
+}

@@ -1,0 +1,73 @@
+<div id="trackManagerWrapper" ng-style="trackManager.backgroundAlbumArtStyle">
+  <div id="trackManager">
+    <div ng-if="trackManager.matchmediaService.isPhone" id="trackDetails">
+      <div id="trackInfo-album" ng-if="trackManager.playerService.state.album">
+        {{trackManager.playerService.state.album}}
+      </div>
+      <br>
+      <div id="trackInfo-title" ng-if="trackManager.playerService.state.title">
+        {{trackManager.playerService.state.title}}
+      </div>
+      <br>
+      <div id="trackInfo-artist" ng-if="trackManager.playerService.state.artist">
+        {{trackManager.playerService.state.artist}}
+      </div>
+    </div>
+
+    <div class="knobWrapper">
+      <div class="knobInfosWrapper">
+        <div class="headerText">
+          <div>
+            <span>
+              {{trackManager.playerService.state.samplerate}}
+            </span>
+            <span ng-if="trackManager.playerService.state.bitdepth">
+              | {{trackManager.playerService.state.bitdepth}}
+            </span>
+          </div>
+        </div>
+        <div class="bigText">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio' && trackManager.playerService.state.service !== 'analogin'">
+            {{trackManager.playerService.elapsedTimeString}}
+          </span>
+          <div
+              ng-if="trackManager.playerService.state.trackType === 'webradio'"
+              class="webRadioLabel">
+            {{trackManager.playerService.state.trackType}}
+          </div>
+        </div>
+        <div class="smallText">
+          {{trackManager.playerService.songLength}}
+        </div>
+        <div class="footerText">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+            <img
+                ng-if="trackManager.playerService.state.fileFormat"
+                ng-src="{{'/app/themes/volumio3/assets/format-icons/' +
+                  trackManager.playerService.state.fileFormat.url + '.svg'}}"
+                alt="{{trackManager.playerService.state.fileFormat.name}}" />
+            <span ng-if="!trackManager.playerService.state.fileFormat">
+              {{trackManager.playerService.state.trackType}}
+            </span>
+          </span>
+        </div>
+      </div>
+      <div
+          ng-if="trackManager.playerService.state.trackType === 'webradio' || trackManager.playerService.state.disableUi"
+          class="fakePulsingKnob"></div>
+      <knob
+        ng-show="trackManager.playerService.state.trackType !== 'webradio'
+            && trackManager.playerService.state.disableUi === false"
+        value="trackManager.playerService.seekPercent"
+        on-change="trackManager.onChange(value)"
+        options="trackManager.knobOptions"
+        type="track">
+      </knob>
+    </div>
+    <div
+        id="trackButtonBar"
+        class="btn-group"
+        ng-include src="'app/themes/volumio3/components/track-manager/elements/volumio3-track-manager-button-bar.html'">
+    </div>
+  </div>
+</div>
