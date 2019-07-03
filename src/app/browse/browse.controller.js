@@ -4,8 +4,6 @@ class BrowseController {
       uiSettingsService, $state, themeManager, $stateParams) {
     'ngInject';
     this.$log = $log;
-    this.$state = $state;
-    this.$state.params = this.$state.params || [];
     this.browseService = browseService;
     this.playQueueService = playQueueService;
     this.playlistService = playlistService;
@@ -21,8 +19,7 @@ class BrowseController {
     this.uiSettingsService = uiSettingsService;
     this.themeManager = themeManager;
     this.$stateParams = $stateParams;
-
-    this.searchField = '';
+    this.isDedicatedSearchView = false;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();
@@ -170,7 +167,7 @@ class BrowseController {
   }
 
   search() {
-    if (this.searchField.length >= 3 || this.isDedicatedSearchView) {
+    if (this.searchField && this.searchField.length >= 3) {
       this.browseService.isSearching = true;
       if (this.searchTimeoutHandler) {
         this.$timeout.cancel(this.searchTimeoutHandler);
@@ -385,28 +382,39 @@ class BrowseController {
   }
 
   initController() {
-    this.initDedicatedSearch();
     let bindedBackListener = this.backListener.bind(this);
     this.$document[0].addEventListener('keydown', bindedBackListener, false);
     this.$scope.$on('$destroy', () => {
       this.$document[0].removeEventListener('keydown', bindedBackListener, false);
     });
-    this.initToLibrary();
+
+    this.$scope.$watch( () => this.$stateParams.isDedicatedSearch , (isDedicatedSearch) => {
+      if (isDedicatedSearch) {
+        this.setDedicatedSearch()
+      } else {
+        this.unsetDedicatedSearch()
+      }
+    }, true);
+
   }
 
-  initDedicatedSearch(){
-    this.isDedicatedSearchView = this.$stateParams.isSearch === true;
+  setDedicatedSearch(){
+    this.isDedicatedSearchView = true;
+    this.browseService.isSearching = true;
+    this.browseService.lists = [];
   }
 
-  initToLibrary(){
-    var source = this.$state.params.source;
-    if( this.isDedicatedSearchView ){
-      this.search();
-    }else if( source ){
-      this.fetchLibrary(source);
-    }else{
-      this.backHome();
+  unsetDedicatedSearch(){
+    if (this.browseService.isSearching) {
+      this.isDedicatedSearchView = false;
+      this.browseService.isSearching = false;
+      if (!this.browseService.isBrowsing) {
+        this.browseService.lists = undefined
+      } else if (this.browseService.lastBrowseLists) {
+        this.browseService.lists = this.browseService.lastBrowseLists;
+      }
     }
+
   }
 
   backListener() {

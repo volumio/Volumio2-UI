@@ -169,7 +169,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
   .state('volumio.search', {
     url: 'search',
     params: {
-      isSearch: true
+      isDedicatedSearch: true
     },
     views: {
       'content@volumio': {

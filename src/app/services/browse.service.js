@@ -23,6 +23,7 @@ class BrowseService {
     this.currentFetchRequest = {};
     this.historyUri = [];
     this.scrollPositions = new Map();
+    this.lastBrowseLists = [];
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -199,6 +200,7 @@ class BrowseService {
       if (data.navigation) {
         this.$log.debug('pushBrowseLibrary', data);
         this.lists = data.navigation.lists;
+        this.lastBrowseLists = data.navigation.lists;
         this.info = data.navigation.info;
 
         this.breadcrumbs = data.navigation.prev;

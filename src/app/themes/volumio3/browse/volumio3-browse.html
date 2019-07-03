@@ -2,7 +2,7 @@
 
   <div class="panel panel-default">
 
-      <div class="browse-header-container">
+      <div ng-if="!browse.isDedicatedSearchView" class="browse-header-container">
 
         <div id="browsePanelHeading" class="panel-heading browse-header">
 
@@ -11,7 +11,6 @@
           </div>
 
           <div class="searchBox"
-               ng-if="!browse.isDedicatedSearchView"
                ng-include src="'app/browse/components/browse-search-box.html'">
           </div>
 
