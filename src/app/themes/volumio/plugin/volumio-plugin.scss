@@ -37,6 +37,7 @@
   .control-buttons {
     @include make-sm-column-offset(7);
     @include make-sm-column(17);
+    padding-top: 32px;
   }
 }
 .title {
