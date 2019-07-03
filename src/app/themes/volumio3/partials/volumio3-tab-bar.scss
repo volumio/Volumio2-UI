@@ -4,7 +4,7 @@
   background: $theme-accent-color;
 
   button.tab-bar-btn {
-    @include make-xs-column(6, 0);
+    @include make-xs-column(8, 0);
     font-size: 18px;
     border-radius: 0px !important;
     border: none !important;
