@@ -1,8 +1,5 @@
 .tabBar {
-  padding-right: 50px;
-  position: relative;
-
-  >button {
+  button {
     @include make-xs-column(8, 0);
     font-size: 18px;
     border-radius: 0px !important;
@@ -28,9 +25,6 @@
     &.queueBtn {
       // background-color: $theme-dark-transparent-background;
     }
-    &.zoneBtn {
-      // background-color: $theme-dark-transparent-background;
-    }
     @include breakpoint(xs) {
       font-size: 26px;
     }
@@ -38,11 +32,5 @@
       margin-left: 10px;
       @extend .hidden-xs;
     }
-  }
-
-  .zoneBtn {
-    position: absolute;
-    top: 5px;
-    right: 2px;
   }
 }
