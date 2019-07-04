@@ -23,7 +23,6 @@
       <div class="play-mode-container col-md-2 hidden-xs hidden-sm">
         <div id="queueOutputButtonsContainer">
           <button
-              onClick="console.log(this.playerService.status)"
               ui-sref="volumio.play-queue"
               class="btn btn-link"
               ng-mouseenter="hover = 'queue'"
@@ -33,9 +32,13 @@
               <i class="material-icons">playlist_play</i>
           </button>
           <button
-              class="btn btn-link">
-              <i class="material-icons">speaker_group</i>
+              id="openMenuBtn"
+              ng-click="audioOutputs.toggleMenu()"
+              class="btn btn-link"
+              title="{{'COMMON.SHOW_SETTINGS' | translate}}">
+            <i class="material-icons">speaker_group</i>
           </button>
+          <audio-outputs class="zoneBtn"></audio-outputs>
         <div>
       </div>
       </div>

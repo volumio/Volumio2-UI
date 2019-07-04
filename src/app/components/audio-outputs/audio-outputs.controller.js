@@ -1,17 +1,12 @@
 class AudioOutputsController {
-  constructor($log, audioOutputsService) {
+  constructor($log, audioOutputsService, socketService) {
     "ngInject";
     this.audioOutputsService = audioOutputsService;
+    this.socketService = socketService;
     this.$log = $log;
 
     this.menuVisible = false;
     this.outputs = [];
-  }
-
-  /* Manage the UI state here */
-  itemClick(item) {
-    // this.$log.debug('Clicked on', item);
-    // Implement method here
   }
 
   toggleMenu() {
@@ -43,6 +38,10 @@ class AudioOutputsController {
   onDeviceVolumeChange(id, level) {
     const volume = parseInt(level);
     this.audioOutputsService.onDeviceVolumeChange(id, volume);
+  }
+
+  onDeviceClick(device) {
+    this.socketService.host = device.host;
   }
 }
 

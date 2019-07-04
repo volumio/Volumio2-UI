@@ -1,10 +1,14 @@
 class AudioOutputsService {
-  constructor(socketService, $log) {
+  constructor($rootScope, socketService, $log, multiRoomService) {
     'ngInject';
     this.socketService = socketService;
+    this.multiRoomService = multiRoomService;
+    this.$rootScope = $rootScope;
     this.$log = $log;
 
+    this.pushedOutputs = [];
     this.outputs = [];
+    this.multiRoomDevices = [];
 
     this.registerListener();
     this.initService();
@@ -13,9 +17,15 @@ class AudioOutputsService {
   registerListener() {
     this.socketService.on('pushAudioOutputs', (data) => {
       this.$log.debug('pushAudioOutputs', data);
-      this.outputs = data.availableOutputs
-        .filter(output => output.type !== 'browser');
+      // TODO MERGE WITH MULTIROOM DATA
+      //this.onDeviceListChange(data);
     });
+
+    this.$rootScope.$watch( () => this.multiRoomService.devices , (multiRoomDevices) => {
+      if (multiRoomDevices) {
+        this.onMultiRoomListChange(multiRoomDevices);
+      }
+    }, true);
   }
 
   initService() {
@@ -32,6 +42,18 @@ class AudioOutputsService {
 
   onDeviceVolumeChange(id, volume, mute = false) {
     this.socketService.emit('setAudioOutputVolume', { id, mute, volume });
+  }
+
+  onDeviceListChange(data) {
+    this.pushedOutputs = data.availableOutputs;
+    this.outputs = data.availableOutputs
+        .filter(output => output.type !== 'browser');
+  }
+
+  onMultiRoomListChange(data) {
+    if (!this.pushedOutputs.length && data.length) {
+        this.outputs = data;
+    }
   }
 }
 

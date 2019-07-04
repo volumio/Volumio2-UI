@@ -2,13 +2,15 @@ $sideMenuWidth: 230px;
 
 #sideMenu{
   position: relative;
-  @include make-sm-column(6);
+  @include make-sm-column(5);
   @include make-xs-column(4, 0);
   text-align: right;
   z-index: 40;
   @include breakpoint(xs) {
     text-align: center;
   }
+  overflow-y: auto;
+  overflow: hidden;
   #openMenuBtn {
     color: $theme-link-color;
     &:hover {
@@ -25,6 +27,14 @@ $sideMenuWidth: 230px;
     padding: 10px 10px 0px 10px;
     background-color: $theme-sidebar-background-color;
     overflow-y: scroll;
+    max-height: calc(100vh - #{$theme-player-height-smartphone};
+
+    @include breakpoint(md) {
+      max-height: calc(100vh - #{$theme-player-height-tablet};
+    }
+    @include breakpoint(lg) {
+      max-height: calc(100vh - #{$theme-player-height-desktop};
+    }
     button {
       text-transform: uppercase;
       text-align: left;

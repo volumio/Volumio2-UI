@@ -248,7 +248,9 @@
     "ROOMS_AND_GROUPS": "Rooms and groups",
     "MULTI_ROOM_CONFIGURATION": "Multi room configuration",
     "GROUP": "Group",
-    "NOW_PLAYING": "Now playing"
+    "NOW_PLAYING": "Now playing",
+    "PLAYBACK_ZONES":"Playback zones",
+    "ZONES":"Zones"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "ANALOG INPUT",

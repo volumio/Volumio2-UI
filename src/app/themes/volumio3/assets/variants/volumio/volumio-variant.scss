@@ -33,7 +33,7 @@ $theme-footer-link-selected-background-color: $theme-accent-color;
 $theme-footer-link-hover-color: white;
 $theme-link-playback-color: $theme-primary-color;
 
-$theme-sidebar-background-color: rgba(30, 30, 30, 0.95);
+$theme-sidebar-background-color: rgba( $theme-darker-color, .9 );
 
 $body-bg: transparent;
 $brand-primary: #222;
