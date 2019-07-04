@@ -390,9 +390,9 @@ class BrowseController {
 
     this.$scope.$watch( () => this.$stateParams.isDedicatedSearch , (isDedicatedSearch) => {
       if (isDedicatedSearch) {
-        this.setDedicatedSearch()
+        this.setDedicatedSearch();
       } else {
-        this.unsetDedicatedSearch()
+        this.unsetDedicatedSearch();
       }
     }, true);
 
@@ -409,7 +409,7 @@ class BrowseController {
       this.isDedicatedSearchView = false;
       this.browseService.isSearching = false;
       if (!this.browseService.isBrowsing) {
-        this.browseService.lists = undefined
+        this.browseService.lists = undefined;
       } else if (this.browseService.lastBrowseLists) {
         this.browseService.lists = this.browseService.lastBrowseLists;
       }
