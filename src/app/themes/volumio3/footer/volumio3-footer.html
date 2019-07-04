@@ -21,12 +21,22 @@
           <volume-manager is-on-footer="true"></volume-manager>
       </div>
       <div class="play-mode-container col-md-2 hidden-xs hidden-sm">
-          <a ui-sref='volumio.play-queue' class='btn btn-link'>
-            <i class='fa fa-list'></i>
-          </a>
-          <a href='' class='btn btn-link'>
-            <i class='fa fa-volume-off'></i>
-          </a>
+        <div id="queueOutputButtonsContainer">
+          <button
+              onClick="console.log(this.playerService.status)"
+              ui-sref="volumio.play-queue"
+              class="btn btn-link"
+              ng-mouseenter="hover = 'queue'"
+              ng-mouseleave="hover = ''"
+              ng-class="{selected: this.$state.current.name === 'volumio.play-queue'}"
+              title="{{'COMMON.TAB_QUEUE' | translate}}">
+              <i class="material-icons">playlist_play</i>
+          </button>
+          <button
+              class="btn btn-link">
+              <i class="material-icons">speaker_group</i>
+          </button>
+        <div>
       </div>
       </div>
     </div>

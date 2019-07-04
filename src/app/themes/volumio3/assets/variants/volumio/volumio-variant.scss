@@ -88,6 +88,16 @@ $fonts-path: "/app/themes/volumio3/assets/variants/volumio/fonts";
   text-rendering: optimizeLegibility;
 }
 
+@font-face {
+  font-family: 'Material Icons';
+  src: url('#{$fonts-path}/MaterialIcons-Regular.eot');
+  src: url('#{$fonts-path}/MaterialIcons-Regular.woff2') format('woff2'),
+       url('#{$fonts-path}/MaterialIcons-Regular.woff') format('woff'),
+       url('#{$fonts-path}/MaterialIcons-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
 $font-family-sans-serif: "Lato";
 
 // CSS EXPOSED FOR JS READ

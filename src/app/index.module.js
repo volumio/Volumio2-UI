@@ -56,7 +56,7 @@ import BrowseHamburgerMenuDirective from './browse/components/browse-hamburger-m
 import TrackInfoBarDirective from './components/track-info-bar/track-info-bar.directive';
 import TrackInfoBarButtonsDirective from './components/track-info-bar/track-info-bar-buttons.directive';
 import EqualizerDirective from './components/equalizer/equalizer.directive';
-import ModalController from './components/modals/modal.controller';
+import ModalController  from './components/modals/modal.controller';
 //Volumio 3 UI Directives
 import MainMenuDirective from './components/main-menu/main-menu.directive';
 import OnCloudActionsDirective from './components/on-cloud-actions/on-cloud-actions.directive';
@@ -333,7 +333,7 @@ angular.module('volumio', [
   .controller('HomeController', HomeController)
   .controller('SettingsController', SettingsController)
 
-  
+
   //MyVolumio
   .controller('MyVolumioLoginController', MyVolumioLoginController)
   .controller('MyVolumioSignupController', MyVolumioSignupController)
