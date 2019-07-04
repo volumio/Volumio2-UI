@@ -1,13 +1,25 @@
 <div id="playerButtons">
-
-  <button
-    class='btn btn-link hidden-xs hidden-sm'
-    ng-click='playerButtons.playerService.repeatAlbum()'
-    ng-class="{'active': playerButtons.playerService.state.repeat, 'player-action-repeat': true }"
-  >
-      <i class="fa fa-repeat"></i>
+  <button ng-if="!playerButtons.playerService.state.repeat"
+      class="btn btn-link playerControls"
+      ng-class="{'active': playerButtons.playerService.state.repeat}"
+      ng-click="playerButtons.playerService.repeatAlbum(true, false)"
+      title="{{'TRACK_INFO_BAR.REPEAT_ALL' | translate}}">
+    <i class="fa fa-repeat"></i>
   </button>
-
+  <button ng-if="playerButtons.playerService.state.repeat && !playerButtons.playerService.state.repeatSingle"
+      class="btn btn-link playerControls"
+      ng-class="{'active': playerButtons.playerService.state.repeat}"
+      ng-click="playerButtons.playerService.repeatAlbum(true, true)"
+      title="{{'TRACK_INFO_BAR.REPEAT_SINGLE' | translate}}">
+    <i class="fa fa-repeat"></i>
+  </button>
+  <button ng-if="playerButtons.playerService.state.repeat && playerButtons.playerService.state.repeatSingle"
+      class="btn btn-link playerControls"
+      ng-class="{'active': playerButtons.playerService.state.repeat}"
+      ng-click="playerButtons.playerService.repeatAlbum(false, false)"
+      title="{{'TRACK_INFO_BAR.REPEAT_OFF' | translate}}">
+    <i class="fa fa-repeat">1</i>
+  </button>
   <button
       id='prev-button'
       ng-click="playerButtons.playerService.prev()"
