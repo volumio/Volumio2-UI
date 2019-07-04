@@ -15,6 +15,7 @@ import ToastMessageService from './services/toast-message.service';
 import UpdaterService from './services/updater.service';
 import ModalService from './services/modal.service';
 import ModalListenerService from './services/modal-listener.service';
+import AudioOutputsService from './services/audio-outputs.service';
 import MatchmediaService from './services/matchmedia.service';
 import LoggerService from './services/logger.service';
 import MockService from './mock/mock.service';
@@ -45,6 +46,7 @@ import TrackManagerDirective from './components/track-manager/track-manager.dire
 import TrackInfoDirective from './components/track-info/track-info.directive';
 import PlayerStatusDirective from './components/player-status/player-status.directive';
 import SideMenuDirective from './components/side-menu/side-menu.directive';
+import AudioOutputsDirective from './components/audio-outputs/audio-outputs.directive';
 import KnobDirective from './components/knob/knob.directive';
 import MultiRoomDockDirective from './components/multi-room-dock/multi-room-dock.directive';
 import AirplayScrimDirective from './components/airplay-scrim/airplay-scrim.directive';
@@ -210,6 +212,7 @@ angular.module('volumio', [
   .service('modalService', ModalService)
   .service('modalService', ModalService)
   .service('modalListenerService', ModalListenerService)
+  .service('audioOutputsService', AudioOutputsService)
   .service('matchmediaService', MatchmediaService)
   .service('mockService', MockService)
   .service('ripperService', RipperService)
@@ -242,6 +245,7 @@ angular.module('volumio', [
   .directive('trackInfo', (themeManager) => new TrackInfoDirective(themeManager))
   .directive('playerStatus', () => new PlayerStatusDirective())
   .directive('sideMenu', () => new SideMenuDirective())
+  .directive('audioOutputs', () => new AudioOutputsDirective())
   .directive('knob', () => new KnobDirective())
   .directive('multiRoomDock', (themeManager) => new MultiRoomDockDirective(themeManager))
   .directive('airplayScrim', () => new AirplayScrimDirective())
