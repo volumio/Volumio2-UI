@@ -45,12 +45,6 @@
         </div>
 
         <div class="track-info-rates">
-          <span>
-            {{trackInfo.playerService.state.samplerate}}
-          </span>
-          <span ng-if="trackInfo.playerService.state.bitdepth">
-            | {{trackInfo.playerService.state.bitdepth}}
-          </span>
           <span class="track-info-type" ng-if="trackInfo.playerService.state.trackType !== 'webradio'">
             <img
                 ng-if="trackInfo.playerService.state.fileFormat"
@@ -60,6 +54,12 @@
             <span ng-if="!trackInfo.playerService.state.fileFormat">
               {{trackInfo.playerService.state.trackType}}
             </span>
+          </span>
+          <span>
+            {{trackInfo.playerService.state.samplerate}}
+          </span>
+          <span ng-if="trackInfo.playerService.state.bitdepth">
+            {{trackInfo.playerService.state.bitdepth}}
           </span>
         </div>
 

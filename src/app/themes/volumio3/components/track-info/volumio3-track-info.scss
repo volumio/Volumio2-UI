@@ -43,13 +43,13 @@
   }
 
   #trackInfo-title {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     color: $theme-text-light-color;
     white-space: nowrap;
     @include breakpoint(lg) {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 
@@ -58,11 +58,11 @@
     white-space: nowrap;
 
     #trackInfo-album, #trackInfo-artist {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 300;
 
       @include breakpoint(md){
-        font-size: 14px;
+        font-size: 18px;
       }
     }
 
@@ -79,10 +79,10 @@
   .track-info-rates{
     font-size: 11px;
     white-space: nowrap;
+    margin-top: 10px;
 
     .track-info-type{
-      margin-top: 5px;
-      margin-left: 5px;
+      margin-top: 15px;
       font-size: 14px;
 
       img{
