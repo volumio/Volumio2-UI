@@ -34,8 +34,9 @@
           <button
               id="openMenuBtn"
               ng-click="audioOutputs.toggleMenu()"
+              ng-disabled="!isMultiOutputsAvailable()"
               class="btn btn-link"
-              title="{{'COMMON.SHOW_SETTINGS' | translate}}">
+              title="{{'MULTIDEVICE.AUDIO_OUTPUTS_AND_ZONES' | translate}}">
             <i class="material-icons">speaker_group</i>
           </button>
           <audio-outputs class="zoneBtn"></audio-outputs>

@@ -13,6 +13,14 @@ class AudioOutputsController {
     this.menuVisible = !this.menuVisible;
   }
 
+  isMultiOutputsAvailable() {
+    if (this.audioOutputsService.outputs && this.audioOutputsService.outputs.length > 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   toggleAudioOutput(id, enabled) {
     if (enabled === true) {
       this.audioOutputsService.disableAudioOutput(id);

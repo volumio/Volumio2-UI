@@ -250,7 +250,8 @@
     "GROUP": "Group",
     "NOW_PLAYING": "Now playing",
     "PLAYBACK_ZONES":"Playback zones",
-    "ZONES":"Zones"
+    "ZONES":"Zones",
+    "AUDIO_OUTPUTS_AND_ZONES":"Audio Outputs and Zones"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "ANALOG INPUT",
