@@ -34,23 +34,22 @@
     <div class="row">
       <div class="col-xs-24" style="padding-bottom: 16px;">
 
-          <div class="panel">
-            <div class="panel-heading">
-              <p translate="MYVOLUMIO.MY_VOLUMIO"></p>
-            </div>
-            <div class="panel-body">
-              <div class="profile-userbuttons">
-                <button type="button" class="btn btn-block btn-success" ng-click="myVolumioUserCardController.logIn()">
-                  <span class="glyphicon glyphicon-log-in"></span>
-                  <span translate="MYVOLUMIO.LOGIN"></span>
-                </button>
-                <button type="button" class="btn btn-block btn-info" ng-click="myVolumioUserCardController.signUp()">
-                  <span class="glyphicon glyphicon-user"></span>
-                  <span translate="MYVOLUMIO.SIGNUP"></span>
-                </button>
-              </div>
-            </div>
-          </div>
+        <p class="title" translate="MYVOLUMIO.MY_VOLUMIO"></p>
+        <div class="profile-userbuttons">
+          <a class="btn btn-sm btn-primary" ng-click="myVolumioUserCardController.logIn()">
+            <small>
+              <i class="glyphicon glyphicon-log-in"></i>
+              <span translate="MYVOLUMIO.LOGIN"></span>
+            </small>
+          </a>
+          &nbsp;
+          <a class="btn btn-sm btn-primary" ng-click="myVolumioUserCardController.signUp()">
+            <small>
+              <i class="glyphicon glyphicon-user"></i>
+              <span translate="MYVOLUMIO.SIGNUP"></span>
+            </small>
+          </a>
+        </div>
 
       </div>
     </div>
