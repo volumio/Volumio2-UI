@@ -51,13 +51,14 @@
 
         #searchForm{
           width: 96% !important;
-          margin: 2% !important;
+          margin: 0 2% !important;
+          margin-top: 32px;
         }
 
         .form-control-feedback {
           position: absolute;
-          top: 24px;
-          right: 26px;
+          top: 0;
+          right: 2.5%;
           color: $theme-text-color;
           font-size: 18px;
         }
