@@ -26,7 +26,7 @@
           <span class="list-item-type">{{audioOutputs.showArtistAndTitle(item.state.artist,item.state.track,item.type)}}</span>
         </button>
         <input ng-show="{{item.volumeAvailable}}" type="range" name="volume-slider" id="volume-slider" min="0"
-            max="100" ng-model="item.state.volume" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(item.id, item.state.volume)" />
+            max="100" ng-model="item.state.volume" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(item)" />
       </div>
     </div>
 
