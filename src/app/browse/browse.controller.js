@@ -396,6 +396,10 @@ class BrowseController {
       }
     }, true);
 
+    if(this.isDedicatedSearchView){
+      this.$timeout( function () { document.querySelector('#search-input-form').focus(); } );
+    }
+
   }
 
   setDedicatedSearch(){
