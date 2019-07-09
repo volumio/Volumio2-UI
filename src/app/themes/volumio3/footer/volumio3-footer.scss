@@ -6,6 +6,7 @@
 
     border-top: 1px solid $theme-primary-color;
     height: $theme-player-height-smartphone;
+    bottom: $theme-tabbar-height-smartphone;
 
     @include breakpoint(md) {
       height: $theme-player-height-tablet;
@@ -97,6 +98,8 @@
 
   #tab-bar {
     @include make-xs-column(24);
+    padding-left: 0;
+    padding-right: 0;
   }
 
 }
