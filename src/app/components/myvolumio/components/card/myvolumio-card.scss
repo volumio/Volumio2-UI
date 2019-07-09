@@ -22,31 +22,28 @@
   }
 
   .myvolumio-card-not-logged{
-    .panel{
-      margin-top: 0px !important;
-      margin-bottom: 0px !important;
-    }
 
-
-    .btn{
-      overflow: hidden;
+    .title{
+      font-size: 20px;
+      font-weight: 300;
     }
 
     .profile-userbuttons {
-      text-align: center;
-      margin-top: 10px;
-    }
 
-    .profile-userbuttons .btn {
-      text-transform: uppercase;
-      font-size: 11px !important;
-      font-weight: 600;
-      padding: 6px 4px !important;
-      margin-right: 5px;
-    }
+      .btn-sm{
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
 
-    .profile-userbuttons .btn:last-child {
-      margin-right: 0px;
+      a{
+        color: $theme-primary-color;
+        cursor: pointer;
+
+        span{
+
+        }
+      }
     }
 
   }

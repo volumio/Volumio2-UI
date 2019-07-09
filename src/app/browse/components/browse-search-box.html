@@ -5,7 +5,10 @@
       ng-change="browse.search()"
       class="form-control"
       placeholder="{{'COMMON.SEARCH' | translate}} ..."
-      title="{{'COMMON.SEARCH' | translate}}">
+      title="{{'COMMON.SEARCH' | translate}}"
+      id="search-input-form"
+      autofocus
+  >
   <span class="form-control-feedback" aria-hidden="true">
     <i ng-if="!browse.searchField.length" class="fa fa-search"></i>
     <i ng-if="browse.searchField.length"
