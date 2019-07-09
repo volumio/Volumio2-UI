@@ -78,11 +78,11 @@
       overflow-x: scroll;
 
       @include breakpoint(xs) {
-        margin-top: 0;
+
       }
 
       @include breakpoint(sm) {
-        margin-top: 0;
+
       }
     }
 
