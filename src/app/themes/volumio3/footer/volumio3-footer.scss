@@ -10,9 +10,11 @@
 
     @include breakpoint(md) {
       height: $theme-player-height-tablet;
+      bottom: 0;
     }
     @include breakpoint(lg) {
       height: $theme-player-height-desktop;
+      bottom: 0;
     }
 
     > .row{

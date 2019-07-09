@@ -13,7 +13,7 @@
       top: 0px;
       z-index: 800;
 
-      height:67px;
+      height: 67px;
 
       background-color: $theme-darker-color;
 
@@ -35,7 +35,7 @@
       background: $theme-darker-color;
       position: fixed;
       width: 83.6%;
-      top: 65px;
+      top: 0;
       z-index: 800;
 
       height:77px;
@@ -69,13 +69,21 @@
 
     .dedicated-search-container-flow-space{
       position: relative;
-      height:77px;
+      height:0px;
     }
 
     .body-content{
       margin-top: 73px;
       position: relative;
       overflow-x: scroll;
+
+      @include breakpoint(xs) {
+        margin-top: 0;
+      }
+
+      @include breakpoint(sm) {
+        margin-top: 0;
+      }
     }
 
     #browsePanelHeading{
