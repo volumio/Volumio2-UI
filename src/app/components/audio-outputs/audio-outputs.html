@@ -12,19 +12,27 @@
     <div class="list-title" translate="MULTIDEVICE.PLAYBACK_ZONES"></div>
     <div class="group-container" ng-if="audioOutputs.audioOutputsService.outputs.length">
       <div ng-repeat="item in audioOutputs.audioOutputsService.outputs track by $index" class="list-item-div">
-        <button ng-if="item.isSelf" class="btn-link btn-block list-item-button" disabled>
+        <div class="row output-item">
+          <div class="col-xs-18" id="device-wrapper">
+        <button ng-if="item.isSelf" class="btn-link btn-block list-item-button self" disabled>
           <img class="list-item-albumart" ng-src="{{item.state.albumart}}" />
           <span class="list-item-name">{{item.name}}</span>
           <span class="list-item-type">{{audioOutputs.showArtistAndTitle(item.state.artist,item.state.track,item.type)}}</span>
         </button>
         <button ng-if="!item.isSelf" ng-click="audioOutputs.onDeviceClick(item)" class="btn-link btn-block list-item-button">
-          <span ng-if="!item.isSelf" class="list-item-icon-right">
-            <i class="{{item.enabled === true ? 'fa fa-minus-circle' : 'fa fa-plus-circle'}}" ng-click="audioOutputs.toggleAudioOutput(item.id, item.enabled);$event.stopPropagation()" />
-          </span>
           <img class="list-item-albumart" ng-src="{{item.state.albumart}}" />
           <span class="list-item-name">{{item.name}}</span>
           <span class="list-item-type">{{audioOutputs.showArtistAndTitle(item.state.artist,item.state.track,item.type)}}</span>
         </button>
+        </div>
+        <div class="col-xs-6" id="device-group-wrapper">
+        <span ng-if="!item.isSelf" class="device-group-icon">
+          <i
+          class="{{item.enabled === true ? 'fa fa-minus-circle output-enabled' : 'fa fa-plus-circle'}}"
+          ng-click="audioOutputs.toggleAudioOutput(item.id, item.enabled)"/>
+        </span>
+        </div>
+        </div>
         <input ng-show="{{item.volumeAvailable}}" type="range" name="volume-slider" id="volume-slider" min="0"
             max="100" ng-model="item.state.volume" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(item)" />
       </div>

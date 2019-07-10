@@ -31,18 +31,13 @@
   z-index: 1;
 }
 
-#myvolumio-card-container {
-  border-bottom-color: rgb(51, 51, 51);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-bottom-style: double;
-  //border-bottom-width:1px;
-  padding-bottom: 8px;
-  margin-top: 32px;
-}
-
 .group-container {
   margin-top: 10px;
+}
+
+.row.output-item {
+    margin-left: -16px;
+    margin-right: 0px;
 }
 
 .group-name {
@@ -61,16 +56,18 @@
   border-bottom: none !important;
 }
 
-.list-item-icon {
-  position: absolute;
-  top: 30px;
-  left: 20px;
+.btn-link.btn-block.list-item-button.self {
+  color: $theme-primary-color;
 }
 
-.list-item-icon-right {
-  position: absolute;
+.output-enabled {
+  color: $theme-primary-color;
+}
+
+.device-group-icon {
+  position: relative;
   top: 30px;
-  right: 10px;
+  font-size: 20px;
 }
 
 .list-item-albumart {
@@ -95,7 +92,7 @@
   color: rgba(255, 255, 255, 0.5);
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 260px;
+  width: 100%;
   white-space: nowrap;
 }
 
@@ -115,7 +112,7 @@
   //bottom: 20px;
   left: 20px;
   width: 80% !important;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .list-item-volume-bar::-webkit-slider-thumb {
