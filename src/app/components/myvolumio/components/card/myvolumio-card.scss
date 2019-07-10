@@ -1,7 +1,5 @@
 .myvolumio-card-container {
 
-  font-color: $theme-light-color;
-
   .myvolumio-card-logged{
     font-size: 16px;
 
@@ -48,4 +46,11 @@
 
   }
 
+}
+
+.panel.panel-default.myvolumio-card-container {
+  @include breakpoint(xs) {
+    margin-top: 0px;
+    background-color: $theme-sidebar-background-color;
+  }
 }
