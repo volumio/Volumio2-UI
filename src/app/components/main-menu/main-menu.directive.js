@@ -57,9 +57,17 @@ class MainMenuController {
     if(source.isRoute === true){
       this.$state.go(source.uri);
     }else if(this.$state.$current.name === 'volumio.browse'){
+      this.browseService.historyUri = [];
       this.browseService.fetchLibrary(source);
     }else{
-      this.$state.go('volumio.browse',{source: source});
+      if (this.browseService.historyUri[0] && this.browseService.historyUri[0].uri === source.uri ) {
+        this.$state.go('volumio.browse');
+      } else {
+        this.browseService.historyUri = [];
+        this.$state.go('volumio.browse');
+        this.browseService.fetchLibrary(source);
+      }
+
     }
   }
 
