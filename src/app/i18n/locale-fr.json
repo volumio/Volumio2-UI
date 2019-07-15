@@ -29,6 +29,9 @@
     "SHOW_SETTINGS": "Montrer les réglages",
     "SETTINGS": "Réglages",
     "TAB_BROWSE": "Parcourir",
+    "TAB_HOME": "Home",
+    "TAB_SEARCH": "Recherche",
+    "TAB_SETTINGS": "Réglages",
     "TAB_PLAYBACK": "Jouer",
     "TAB_QUEUE": "Queue",
     "ARTIST": "Artiste",
@@ -73,6 +76,7 @@
     "SHARE": "Partager",
     "EJECT": "Ejecter",
     "FUNCTIONALIES_CONTROL": "Contrôle des fonctionnalités" ,
+    "EDIT":"Editer",
     "GRID": "Grille"
   },
   "BROWSER": {
@@ -243,7 +247,10 @@
     "ROOMS_AND_GROUPS": "Pièces et groupes",
     "MULTI_ROOM_CONFIGURATION": "Configuration du Multi room",
     "GROUP": "Groupe",
-    "NOW_PLAYING": "En cours de lecture"
+    "NOW_PLAYING": "En cours de lecture",
+     "PLAYBACK_ZONES":"Zones de lecture",
+     "ZONES":"Zones",
+     "AUDIO_OUTPUTS_AND_ZONES":"Sorties audio et zones"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "Entrée Analogique",
