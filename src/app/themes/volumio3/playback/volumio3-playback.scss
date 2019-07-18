@@ -10,7 +10,9 @@
     // position: relative;
     text-align: center;
     @include make-sm-column(8);
-    @include breakpoint(xs) {
+
+    height: calc(100vh - #{$theme-tabbar-height-smartphone} - #{$theme-player-height-smartphone});
+    @include breakpoint(md) {
       height: calc(100vh - 100px);
     }
   }
