@@ -1,4 +1,4 @@
-<div id="playbackPanelWrapper">
+<div id="playbackPanelWrapper" class="row hidden-xs hidden-sm">
   <div id="leftPanel">
     <track-manager type="knob"></track-manager>
   </div>
@@ -8,6 +8,44 @@
   <div ng-if="!playback.matchmediaService.isPhone" id="rightPanel">
     <volume-manager type="knob"></volume-manager>
   </div>
+</div>
+
+<div id="playbackPanelWrapper" class="row mobile hidden-md">
+
+  <div class="col-xs-16 col-xs-offset-4 col-sm-24 col-sm-offset-0">
+    <div ng-if="playback.playerService.state.albumart" class="cover-art-container">
+      <img
+        ng-if="playback.playerService.state.albumart"
+        ng-src="{{playback.playerService.albumart}}"
+        alt="{{playback.playerService.state.album}}"/>
+      <i
+        ng-if="playback.playerService.state.icon"
+        ng-class="playback.playerService.state.icon">
+      </i>
+    </div>
+  </div>
+
+  <div class="col-xs-24 text-center track-info-container">
+    <track-info is-in-footer="true"></track-info>
+  </div>
+
+  <div class="col-xs-24 track-button-container">
+    <div
+      id="trackButtonBar"
+      class="btn-group"
+      ng-include src="'app/themes/volumio3/components/track-manager/elements/volumio3-track-manager-button-bar.html'">
+    </div>
+  </div>
+
+  <div class="col-xs-16 col-xs-offset-4 col-sm-16 col-sm-offset-4 player-seekbar-container">
+    <player-seekbar></player-seekbar>
+  </div>
+
+  <div class="col-xs-24 player-buttons-container">
+    <player-buttons ></player-buttons>
+  </div>
+
+
 </div>
 
 <multi-room-dock></multi-room-dock>

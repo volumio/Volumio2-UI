@@ -22,7 +22,11 @@
   @include breakpoint(xs) {
     position: absolute;
     height: 380px;
-    margin-top: -190px;
+
+    @include breakpoint(md){
+      margin-top: -190px;
+    }
+
     top: 50%;
     bottom: 0;
     left: 0;
