@@ -9,6 +9,19 @@
     border: none !important;
     height: $theme-tabbar-height-smartphone;
 
+    i{
+      color: #ffffff;
+    }
+
+    &.selected, &:hover{
+      background: transparent;
+
+      i{
+        color: $theme-primary-color;
+      }
+
+    }
+
     span.label{
       @extend .hidden-xs;
     }

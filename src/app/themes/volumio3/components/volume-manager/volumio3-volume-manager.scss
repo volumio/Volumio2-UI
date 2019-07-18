@@ -32,9 +32,27 @@ volume-manager{
 
   }
 
+  /* vertical slider mobile volumio 3 theme */
   .volumeManager.on-footer{
     margin-top: 0;
     right: 16px;
+
+    #openVolumeVerticalSlider{
+
+      position: relative;
+      top: calc( (46px - #{$theme-tabbar-height-smartphone}) / -2  );
+
+      i{
+        font-size: 2em;
+      }
+
+      @include breakpoint(md){
+        i{
+          font-size: inherit;
+        }
+      }
+
+    }
   }
 
   .volumeSliderScrim {

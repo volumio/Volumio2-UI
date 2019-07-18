@@ -7,14 +7,17 @@
     border-top: 1px solid $theme-primary-color;
     height: $theme-player-height-smartphone;
     bottom: $theme-tabbar-height-smartphone;
+    background-color: rgba( $theme-darker-color, .9 );
 
     @include breakpoint(md) {
       height: $theme-player-height-tablet;
       bottom: 0;
+      background: transparent;
     }
     @include breakpoint(lg) {
       height: $theme-player-height-desktop;
       bottom: 0;
+      background: transparent;
     }
 
     > .row{
@@ -22,18 +25,27 @@
     }
 
     .track-info-container{
-      text-align: left;
+      text-align: center;
+      padding-top: 4px;
       position: relative;
       height: 100%;
+
+      @include breakpoint(md){
+        text-align: left;
+        padding-top: 0px;
+      }
     }
 
     .controls-container{
       text-align: center;
-      height: 70px;
-      bottom: -20px;
+      height: $theme-player-height-smartphone;
+      bottom: 0px;
 
-      border-right: 1px solid $theme-dark-color;
-      border-left: 1px solid $theme-dark-color;
+      @include breakpoint(md){
+        bottom: -20px;
+        border-right: 1px solid $theme-dark-color;
+        border-left: 1px solid $theme-dark-color;
+      }
 
       position: relative;
 
@@ -49,7 +61,7 @@
       }
     }
 
-    .volume-container{
+    .volume-container .volume-slider{
       margin-top: 28px;
 
       slider{
@@ -99,7 +111,6 @@
   }
 
   #tab-bar {
-    @include make-xs-column(24);
     padding-left: 0;
     padding-right: 0;
   }

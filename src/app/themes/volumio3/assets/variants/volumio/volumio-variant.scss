@@ -52,7 +52,8 @@ $theme-slider-bar-full-gradient: linear-gradient(to right, #{$theme-dark-color} 
 $theme-slider-bar-empty-gradient: $theme-dark-grey;
 
 // VOLUMIO 3 UI on 19-07-18
-$theme-tab-bar-gradient: linear-gradient(89deg, #{$theme-dark-color} 0%, #{$theme-primary-color} 100%);
+$theme-primary-color-darker: #4BA476;
+$theme-tab-bar-gradient: linear-gradient(89deg, #{$theme-dark-color} 0%, #{$theme-primary-color-darker} 100%);
 
 
 // FONTS

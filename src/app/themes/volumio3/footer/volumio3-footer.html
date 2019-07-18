@@ -3,23 +3,24 @@
   <div id="player-bar">
     <div class="row">
 
-      <div class="track-info-container col-xs-16 col-md-8">
+      <div class="track-info-container col-xs-16 col-md-8 col-xs-push-4 col-md-push-0">
           <track-info is-in-footer="true"></track-info>
           <!--
           <player-status></player-status>
           -->
       </div>
 
-      <div class="controls-container col-xs-8 col-md-8 padding-0">
+      <div class="controls-container col-xs-4 col-md-8 col-xs-pull-16 col-md-pull-0 padding-0">
         <!-- CONTROLS -->
         <player-buttons></player-buttons>
         <player-seekbar class='hidden-xs hidden-sm'></player-seekbar>
       </div>
 
-      <div class="volume-container hidden-xs hidden-sm  col-md-6 row">
+      <div class="volume-container col-xs-4 col-md-6 row">
           <!-- VOLUME -->
           <volume-manager is-on-footer="true"></volume-manager>
       </div>
+
       <div class="play-mode-container col-md-2 hidden-xs hidden-sm">
         <div id="queueOutputButtonsContainer">
           <button
@@ -48,7 +49,7 @@
 
   <ng-include
     id="tab-bar"
-    class="hidden-md hidden-lg hidden-xl"
+    class="col-xs-24 hidden-md hidden-lg hidden-xl"
     src="'app/themes/volumio3/partials/volumio3-tab-bar.html'"
   >
   </ng-include>
