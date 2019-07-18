@@ -1,7 +1,6 @@
 .tabBar {
-  border-top: 1px solid $theme-primary-color;
   height: $theme-tabbar-height-smartphone;
-  background: $theme-accent-color;
+  background: $theme-tab-bar-gradient;
 
   button.tab-bar-btn {
     @include make-xs-column(8, 0);

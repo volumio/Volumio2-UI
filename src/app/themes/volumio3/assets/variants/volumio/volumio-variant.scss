@@ -47,9 +47,12 @@ $knob-content-background-color: rgba(0, 0, 0, 0.7);
 $theme-player-height-desktop: 90px;
 $theme-player-height-tablet: 90px;
 $theme-player-height-smartphone: 70px;
-$theme-tabbar-height-smartphone: 50px;
+$theme-tabbar-height-smartphone: 70px;
 $theme-slider-bar-full-gradient: linear-gradient(to right, #{$theme-dark-color} 0%, #{$theme-primary-color} 100%);
 $theme-slider-bar-empty-gradient: $theme-dark-grey;
+
+// VOLUMIO 3 UI on 19-07-18
+$theme-tab-bar-gradient: linear-gradient(89deg, #{$theme-dark-color} 0%, #{$theme-primary-color} 100%);
 
 
 // FONTS
