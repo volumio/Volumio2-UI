@@ -40,8 +40,12 @@
     &.play i{
       padding-left: 4px;
     }
-    @include breakpoint(xs) {
-      // background: $theme-dark-transparent-background;
+
+    left: 15px;
+
+    @include breakpoint(md) {
+      left: 0;
+      right: 0;
     }
   }
 
