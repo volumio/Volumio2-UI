@@ -29,6 +29,26 @@
       height: 100%;
     }
 
+    .lined-seekbar{
+      .time-label{
+        display: none;
+      }
+
+      .seekbar-container{
+        padding-top: 0px;
+
+        .slider.slider-horizontal{
+          height: 8px;
+
+          .slider-track{
+            height: 5px;
+          }
+
+        }
+      }
+
+    }
+
     .track-info-container{
       text-align: left;
       padding-top: 0px;
