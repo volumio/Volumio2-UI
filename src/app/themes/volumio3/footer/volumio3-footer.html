@@ -2,7 +2,7 @@
 
   <div id="player-bar" ng-class="{'playback-bar': footer.showPlayerFooter}">
 
-    <div class="row" ng-if="!footer.showPlayerFooter">
+    <div ng-class="{'row': true, 'hidden-xs hidden-sm': footer.showPlayerFooter}">
 
       <div class="lined-seekbar col-xs-24 hidden-md hidden-lg hidden-xl">
         <player-seekbar></player-seekbar>
@@ -54,7 +54,7 @@
     </div>
 
     <ng-include
-      ng-if="!footer.showPlayerFooter"
+      ng-class="{'hidden-xs hidden-sm': footer.showPlayerFooter}"
       id="tab-bar"
       class="col-xs-24 hidden-md hidden-lg hidden-xl"
       src="'app/themes/volumio3/partials/volumio3-tab-bar.html'"
@@ -62,7 +62,7 @@
     </ng-include>
 
     <ng-include
-      ng-if="footer.showPlayerFooter"
+      ng-class="{'hidden-md hidden-lg hidden-xl': footer.showPlayerFooter}"
       id="playback-tab-bar"
       class="col-xs-24 hidden-md hidden-lg hidden-xl"
       src="'app/themes/volumio3/partials/volumio3-playback-tab-bar.html'"
