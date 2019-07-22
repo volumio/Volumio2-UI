@@ -25,14 +25,18 @@
     }
 
     .track-info-container{
-      text-align: center;
-      padding-top: 4px;
+      text-align: left;
+      padding-top: 0px;
       position: relative;
       height: 100%;
 
-      @include breakpoint(md){
-        text-align: left;
-        padding-top: 0px;
+      @include breakpoint(xs){
+        text-align: center;
+        padding-top: 4px;
+      }
+      @include breakpoint(sm){
+        text-align: center;
+        padding-top: 4px;
       }
     }
 
@@ -42,6 +46,16 @@
       bottom: 0px;
 
       @include breakpoint(md){
+        bottom: -20px;
+        border-right: 1px solid $theme-dark-color;
+        border-left: 1px solid $theme-dark-color;
+      }
+      @include breakpoint(lg){
+        bottom: -20px;
+        border-right: 1px solid $theme-dark-color;
+        border-left: 1px solid $theme-dark-color;
+      }
+      @include breakpoint(xl){
         bottom: -20px;
         border-right: 1px solid $theme-dark-color;
         border-left: 1px solid $theme-dark-color;

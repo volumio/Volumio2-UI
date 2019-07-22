@@ -35,6 +35,9 @@ $sideMenuWidth: 230px;
     @include breakpoint(lg) {
       max-height: calc(100vh - #{$theme-player-height-desktop};
     }
+    @include breakpoint(xl) {
+      max-height: calc(100vh - #{$theme-player-height-desktop};
+    }
     button {
       text-transform: uppercase;
       text-align: left;

@@ -8,10 +8,14 @@
 
   #leftPanel, #rightPanel {
     text-align: center;
+    height: calc(100vh - 100px);
     @include make-sm-column(8);
 
-    @include breakpoint(md) {
-      height: calc(100vh - 100px);
+    @include breakpoint(xs) {
+      height: auto;
+    }
+    @include breakpoint(sm) {
+      height: auto;
     }
   }
 

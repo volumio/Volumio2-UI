@@ -64,6 +64,12 @@
       @include breakpoint(md){
         font-size: 18px;
       }
+      @include breakpoint(lg){
+        font-size: 18px;
+      }
+      @include breakpoint(xl){
+        font-size: 18px;
+      }
     }
 
     #trackInfo-album{
