@@ -9,6 +9,11 @@
     bottom: $theme-tabbar-height-smartphone;
     background-color: rgba( $theme-darker-color, .9 );
 
+    &.playback-bar{
+      height: $theme-playback-bar-height-smartphone;
+      bottom: 0;
+    }
+
     @include breakpoint(md) {
       height: $theme-player-height-tablet;
       bottom: 0;

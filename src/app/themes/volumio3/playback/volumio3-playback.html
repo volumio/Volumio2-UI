@@ -12,6 +12,14 @@
 
 <div id="playbackPanelWrapper" class="row mobile hidden-md hidden-lg hidden-xl">
 
+  <div class="col-xs-24 text-center">
+    <a ng-click="playback.goBack()">
+      <i class="material-icons">
+        arrow_drop_down
+      </i>
+    </a>
+  </div>
+
   <div class="col-xs-16 col-xs-offset-4 col-sm-24 col-sm-offset-0">
     <div ng-if="playback.playerService.state.albumart" class="cover-art-container">
       <img

@@ -6,6 +6,10 @@
     height: 100%;
     padding-bottom: calc( #{$theme-player-height-smartphone} + #{$theme-tabbar-height-smartphone} );
 
+    &.with-playback-bar{
+      padding-bottom: calc( #{$theme-playback-bar-height-smartphone} );
+    }
+
     @include breakpoint(md){
       padding-bottom: calc( #{$theme-player-height-tablet} );
     }
