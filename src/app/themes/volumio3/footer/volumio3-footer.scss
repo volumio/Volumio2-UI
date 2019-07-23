@@ -12,6 +12,13 @@
     &.playback-bar{
       height: $theme-playback-bar-height-smartphone;
       bottom: 0;
+
+      @include breakpoint(md) {
+        height: $theme-player-height-tablet;
+      }
+      @include breakpoint(lg) {
+        height: $theme-player-height-desktop;
+      }
     }
 
     @include breakpoint(md) {
