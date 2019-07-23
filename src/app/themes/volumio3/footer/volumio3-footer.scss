@@ -152,6 +152,8 @@
     .play-mode-container{
       margin-top: 28px;
       text-align: center;
+      padding-right: 0;
+      padding-left: 0;
     }
 
   }
@@ -167,6 +169,10 @@
   padding: 0;
 }
 
-div#queueOutputButtonsContainer button.btn.btn-link {
-  padding-left: 4px;
+div#queueOutputButtonsContainer{
+  padding-top: 4px;
+
+  button.btn.btn-link {
+    padding: 0;
+  }
 }
