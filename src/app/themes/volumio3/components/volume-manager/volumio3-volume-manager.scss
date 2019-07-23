@@ -104,3 +104,24 @@ volume-manager{
 
 
 }
+
+/* ---- TAB BAR MOBILE VOLUMIO 3 ADJUSTEMENTS ------ */
+
+.tabBar{
+
+  .volumeManager.on-footer {
+      float: none !important;
+
+      #openVolumeVerticalSlider {
+        position: initial !important;
+        top: 0;
+      }
+
+      .volumeSliderWrapper{
+        bottom: 50px;
+        right: 27px;
+      }
+  }
+}
+
+/* ---- ~ ------ */
