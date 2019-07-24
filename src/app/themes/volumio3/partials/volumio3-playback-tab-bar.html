@@ -1,13 +1,13 @@
 <div class="tabBar">
 
   <button
-      ui-sref="volumio.browse"
-      ng-mouseenter="hover = 'browse'"
+      ui-sref="volumio.play-queue"
+      ng-mouseenter="hover = 'queue'"
       ng-mouseleave="hover = ''"
-      class="btn btn-default tab-bar-btn browseBtn"
+      class="btn btn-default tab-bar-btn queueBtn"
       ng-class="{selected: state.current.name === 'volumio.queue'}"
       title="{{'COMMON.TAB_QUEUE' | translate}}">
-    <i class="material-icons md-24">list</i>
+    <i class="material-icons md-24">playlist_play</i>
     <span class="label" translate="COMMON.TAB_QUEUE"></span>
   </button>
 
