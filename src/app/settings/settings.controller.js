@@ -15,6 +15,7 @@ class SettingsController {
     this.uiSettingsService = uiSettingsService;
     this.authService = authService;
     this.matchmedia = matchmediaService;
+    this.menuItemsSettings = [];
 
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -45,6 +46,7 @@ class SettingsController {
     this.socketService.on('pushMenuItems', (data) => {
       this.$log.debug('pushMenuItems', data);
       this.menuItems = data;
+      this.menuItemsSettings = data.filter(this.isMenuSetting);
       this.checkEnableMyVolumio();
     });
 
@@ -69,6 +71,14 @@ class SettingsController {
       endpoint: 'audio_interface/bluetooth',
       method: 'BTpress'
     });
+  }
+
+  isMenuSetting(data) {
+    if (data.id !== 'link' && data.id !== 'plugin-manager') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   itemClick(item) {

@@ -51,6 +51,15 @@
               <span translate="COMMON.SETTINGS"></span>
             </a>
           </li>
+          <li ng-repeat='item in mainMenu.menuItemsMainMenuLinks track by item.name'>
+            <a href ng-click="mainMenu.menuItemsMainMenuLinksClick(item)" >
+              <!--
+              <i ng-if='source.icon && !source.albumart' class="{{source.icon}}"></i>
+              <img ng-if='source.albumart' src='{{source.albumart}}' style='width: 32px; height: 32px;' />
+              -->
+              {{item.name}}
+            </a>
+          </li>
           <!--
           <li>
             <a ui-sref="volumio.help">
