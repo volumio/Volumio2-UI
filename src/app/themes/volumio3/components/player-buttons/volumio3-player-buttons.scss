@@ -9,9 +9,6 @@
   @include breakpoint(lg){
     height: $footerHeight;
   }
-  @include breakpoint(xl){
-    height: $footerHeight;
-  }
 
   .playPauseBtnWrapper {
     position: relative;
@@ -31,9 +28,6 @@
       top: -35px;
     }
     @include breakpoint(lg){
-      top: -35px;
-    }
-    @include breakpoint(xl){
       top: -35px;
     }
 
@@ -60,10 +54,6 @@
       right: 0;
     }
     @include breakpoint(lg) {
-      left: 0;
-      right: 0;
-    }
-    @include breakpoint(xl) {
       left: 0;
       right: 0;
     }

@@ -22,13 +22,6 @@
     background-repeat: no-repeat;
     background-position: center center;
   }
-  @include breakpoint(xl) {
-    left: -$grid-gutter-width;
-    right: -$grid-gutter-width;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
 }
 #trackManager {
   margin-top: 110px;
@@ -41,9 +34,6 @@
       margin-top: -190px;
     }
     @include breakpoint(lg){
-      margin-top: -190px;
-    }
-    @include breakpoint(xl){
       margin-top: -190px;
     }
 

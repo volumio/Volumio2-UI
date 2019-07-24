@@ -18,10 +18,6 @@
       padding-bottom: calc( #{$theme-player-height-desktop} );
     }
 
-    @include breakpoint(xl){
-      padding-bottom: calc( #{$theme-player-height-desktop} );
-    }
-
     #main-menu-container{
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);

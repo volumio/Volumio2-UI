@@ -55,11 +55,6 @@ volume-manager{
           font-size: inherit;
         }
       }
-      @include breakpoint(xl){
-        i{
-          font-size: inherit;
-        }
-      }
 
     }
   }

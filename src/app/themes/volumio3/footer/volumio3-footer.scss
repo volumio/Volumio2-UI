@@ -87,11 +87,6 @@
         border-right: 1px solid $theme-dark-color;
         border-left: 1px solid $theme-dark-color;
       }
-      @include breakpoint(xl){
-        bottom: -20px;
-        border-right: 1px solid $theme-dark-color;
-        border-left: 1px solid $theme-dark-color;
-      }
 
       position: relative;
 
