@@ -30,7 +30,7 @@
         <div id="queueOutputButtonsContainer">
           <button
             ui-sref="volumio.play-queue"
-            class="btn btn-link"
+            class="btn btn-link play-queue-button"
             ng-mouseenter="hover = 'queue'"
             ng-mouseleave="hover = ''"
             ng-class="{selected: this.$state.current.name === 'volumio.play-queue'}"
@@ -41,7 +41,7 @@
             id="openMenuBtn"
             ng-click="audioOutputs.toggleMenu()"
             ng-disabled="!audioOutputs.isMultiOutputsAvailable()"
-            class="btn btn-link"
+            class="btn btn-link audio-outputs-button"
             title="{{'MULTIDEVICE.AUDIO_OUTPUTS_AND_ZONES' | translate}}">
             <i class="material-icons">speaker_group</i>
           </button>
