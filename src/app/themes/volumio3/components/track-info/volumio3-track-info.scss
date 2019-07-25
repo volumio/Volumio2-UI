@@ -43,7 +43,7 @@
   }
 
   #trackInfo-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     color: $theme-text-light-color;
@@ -58,10 +58,13 @@
     white-space: nowrap;
 
     #trackInfo-album, #trackInfo-artist {
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 300;
 
       @include breakpoint(md){
+        font-size: 18px;
+      }
+      @include breakpoint(lg){
         font-size: 18px;
       }
     }

@@ -52,7 +52,7 @@ $input-border: $theme-primary-color;
 $input-border-focus: $theme-primary-color;
 
 //Modals
-$modal-content-bg: #000;
+$modal-content-bg: $theme-dark-transparent-background;
 $modal-content-border-color: $theme-dark-transparent-background;
 $modal-header-border-color: $theme-primary-color;
 $modal-footer-border-color: $theme-primary-color;
@@ -93,7 +93,7 @@ $twitter-color: #4099FF;
 //Main Menu
 $main-menu-padding-left: 16px;
 $main-menu-padding-right: 12px;
-$main-menu-logo-width: 154px;	
+$main-menu-logo-width: 154px;
 
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
@@ -331,7 +331,7 @@ table {
 
 //modals
 .modal-content {
-  background: #535d67;
+  background: transparent;
   .modal-header, .modal-footer {
     background-color: $theme-dark-transparent-background;
   }
@@ -753,3 +753,9 @@ p.lead {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+// material icons sizing
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }

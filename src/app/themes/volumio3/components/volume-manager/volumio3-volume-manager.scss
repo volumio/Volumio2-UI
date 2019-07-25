@@ -32,9 +32,31 @@ volume-manager{
 
   }
 
+  /* vertical slider mobile volumio 3 theme */
   .volumeManager.on-footer{
     margin-top: 0;
-    right: 16px;
+
+    #openVolumeVerticalSlider{
+
+      position: relative;
+      top: calc( (46px - #{$theme-tabbar-height-smartphone}) / -2  );
+
+      i{
+        font-size: 2em;
+      }
+
+      @include breakpoint(md){
+        i{
+          font-size: inherit;
+        }
+      }
+      @include breakpoint(lg){
+        i{
+          font-size: inherit;
+        }
+      }
+
+    }
   }
 
   .volumeSliderScrim {
@@ -77,3 +99,24 @@ volume-manager{
 
 
 }
+
+/* ---- TAB BAR MOBILE VOLUMIO 3 ADJUSTEMENTS ------ */
+
+.tabBar{
+
+  .volumeManager.on-footer {
+      float: none !important;
+
+      #openVolumeVerticalSlider {
+        position: initial !important;
+        top: 0;
+      }
+
+      .volumeSliderWrapper{
+        bottom: 50px;
+        right: calc(50% - 30px);
+      }
+  }
+}
+
+/* ---- ~ ------ */

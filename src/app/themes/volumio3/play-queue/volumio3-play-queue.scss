@@ -1,8 +1,22 @@
 $trackInfoBarButtonsHeight: 35px;
 #playQueue {
   .trackInfoBarButtons {
+    position: fixed;
+    z-index: 5;
+
+    width: 100%;
+    @include breakpoint('md'){
+      width: 83.33333%
+    }
+    @include breakpoint('lg'){
+      width: 83.33333%
+    }
+
+    background: $theme-dark-color;
+
     height: $trackInfoBarButtonsHeight;
     text-align: right;
+
     @include breakpoint('xs') {
       text-align: center;
       button {
@@ -18,12 +32,15 @@ $trackInfoBarButtonsHeight: 35px;
     user-select: none;
     cursor: pointer;
     position: relative;
-    overflow: auto;
+    //overflow: auto;
     // height: 100%;
-    height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$trackInfoBarButtonsHeight});
+    //height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$trackInfoBarButtonsHeight});
+    height: auto;
+    padding-top: $trackInfoBarButtonsHeight;
 
     ul {
       padding: 0;
+      margin-bottom: 0;
     }
     li {
       margin: 0px;

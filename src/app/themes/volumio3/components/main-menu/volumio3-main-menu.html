@@ -51,38 +51,22 @@
               <span translate="COMMON.SETTINGS"></span>
             </a>
           </li>
-          <li>
-            <a ui-sref="volumio.help">
-              <!--<i class="fa fa-question"></i>-->
-              Help </a>
-            </li>
+          <li ng-repeat='item in mainMenu.menuItemsMainMenuLinks track by item.name'>
+            <a href ng-click="mainMenu.menuItemsMainMenuLinksClick(item)" >
+              <!--
+              <i ng-if='source.icon && !source.albumart' class="{{source.icon}}"></i>
+              <img ng-if='source.albumart' src='{{source.albumart}}' style='width: 32px; height: 32px;' />
+              -->
+              {{item.name}}
+            </a>
+          </li>
           <!--
           <li>
-            <a ui-sref="volumio.favorites">
-            <i class="fa fa-user"></i>
-            Preferiti </a>
-          </li>
-          <li>
-            <a ui-sref="volumio.browse">
-            <i class="fa fa-check"></i>
-            Libreria </a>
-          </li>
-          <li>
-              <a ui-sref="volumio.artists">
-              <i class="fa fa-check"></i>
-              Artisti </a>
-          </li>
-          <li>
-              <a ui-sref="volumio.albums">
-              <i class="fa fa-times"></i>
-              Album </a>
-          </li>
-          <li>
-              <a ui-sref="volumio.genres">
-              <i class="fa fa-check"></i>
-              Generi </a>
-          </li>
-          -->
+            <a ui-sref="volumio.help">
+              <i class="fa fa-question"></i>
+              Help </a>
+            </li>
+            -->
       </ul>
 
     </div>

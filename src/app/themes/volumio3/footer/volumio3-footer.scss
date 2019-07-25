@@ -7,33 +7,86 @@
     border-top: 1px solid $theme-primary-color;
     height: $theme-player-height-smartphone;
     bottom: $theme-tabbar-height-smartphone;
+    background-color: rgba( $theme-darker-color, .9 );
+
+    &.playback-bar{
+      height: $theme-playback-bar-height-smartphone;
+      bottom: 0;
+
+      @include breakpoint(md) {
+        height: $theme-player-height-tablet;
+      }
+      @include breakpoint(lg) {
+        height: $theme-player-height-desktop;
+      }
+    }
 
     @include breakpoint(md) {
       height: $theme-player-height-tablet;
       bottom: 0;
+      background: transparent;
     }
     @include breakpoint(lg) {
       height: $theme-player-height-desktop;
       bottom: 0;
+      background: transparent;
     }
 
     > .row{
       height: 100%;
     }
 
+    .lined-seekbar{
+      .time-label{
+        display: none;
+      }
+
+      .seekbar-container{
+        padding-top: 0px;
+
+        .slider.slider-horizontal{
+          height: 8px;
+
+          .slider-track{
+            height: 5px;
+          }
+
+        }
+      }
+
+    }
+
     .track-info-container{
       text-align: left;
+      padding-top: 0px;
       position: relative;
       height: 100%;
+
+      @include breakpoint(xs){
+        text-align: center;
+        padding-top: 4px;
+      }
+      @include breakpoint(sm){
+        text-align: center;
+        padding-top: 4px;
+      }
     }
 
     .controls-container{
       text-align: center;
-      height: 70px;
-      bottom: -20px;
+      height: $theme-player-height-smartphone;
+      bottom: 0px;
 
-      border-right: 1px solid $theme-dark-color;
-      border-left: 1px solid $theme-dark-color;
+      @include breakpoint(md){
+        bottom: -20px;
+        border-right: 1px solid $theme-dark-color;
+        border-left: 1px solid $theme-dark-color;
+      }
+      @include breakpoint(lg){
+        bottom: -20px;
+        border-right: 1px solid $theme-dark-color;
+        border-left: 1px solid $theme-dark-color;
+      }
 
       position: relative;
 
@@ -49,7 +102,7 @@
       }
     }
 
-    .volume-container{
+    .volume-container .volume-slider{
       margin-top: 28px;
 
       slider{
@@ -94,12 +147,13 @@
     .play-mode-container{
       margin-top: 28px;
       text-align: center;
+      padding-right: 0;
+      padding-left: 0;
     }
 
   }
 
   #tab-bar {
-    @include make-xs-column(24);
     padding-left: 0;
     padding-right: 0;
   }
@@ -110,6 +164,14 @@
   padding: 0;
 }
 
-div#queueOutputButtonsContainer button.btn.btn-link {
-  padding-left: 4px;
+div#queueOutputButtonsContainer{
+  padding-top: 4px;
+
+  button.btn.btn-link {
+    padding: 0;
+  }
+}
+
+button.btn.btn-link.audio-outputs-button {
+    float: right;
 }

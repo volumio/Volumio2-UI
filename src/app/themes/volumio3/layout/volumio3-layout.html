@@ -9,7 +9,7 @@
       <header id="header" ui-view="header"></header>
       -->
 
-      <div class="row main-container">
+      <div class="row main-container" ng-class="{'with-playback-bar': layout.isWithPlaybackBar}">
 
           <main-menu id="main-menu-container"
             class="hidden-sm col-md-4"

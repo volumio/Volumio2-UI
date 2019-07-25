@@ -1,0 +1,31 @@
+<div class="tabBar">
+
+  <button
+      ui-sref="volumio.play-queue"
+      ng-mouseenter="hover = 'queue'"
+      ng-mouseleave="hover = ''"
+      class="btn btn-default tab-bar-btn queueBtn"
+      ng-class="{selected: state.current.name === 'volumio.queue'}"
+      title="{{'COMMON.TAB_QUEUE' | translate}}">
+    <i class="material-icons md-24">playlist_play</i>
+    <span class="label" translate="COMMON.TAB_QUEUE"></span>
+  </button>
+
+  <button
+      ng-click="audioOutputs.toggleMenu()"
+      class="btn btn-default tab-bar-btn searchBtn"
+      ng-mouseenter="hover = 'search'"
+      ng-mouseleave="hover = ''"
+      ng-class="{selected: state.current.name === 'volumio.outputs'}"
+      ng-disabled="!audioOutputs.isMultiOutputsAvailable()"
+      title="{{'COMMON.TAB_OUTPUTS' | translate}}">
+    <i class="material-icons md-24">speaker</i>
+    <span class="label" translate="COMMON.TAB_OUTPUTS"></span>
+  </button>
+
+  <button
+      class="btn btn-default tab-bar-btn">
+    <volume-manager is-on-footer="true"></volume-manager>
+  </button>
+
+</div>

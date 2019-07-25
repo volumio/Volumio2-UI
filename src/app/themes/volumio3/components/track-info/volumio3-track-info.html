@@ -1,7 +1,7 @@
 <!-- FOR PLAYER BAR -->
 <div id="trackInfo-compact" ng-if='trackInfo.isInFooter'>
 
-    <div ng-if="trackInfo.playerService.state.albumart" class="trackInfo-album-art-wrapper" >
+    <div ng-if="trackInfo.playerService.state.albumart" class="trackInfo-album-art-wrapper hidden-xs hidden-sm" >
         <img
             class='album-art'
             ng-if="trackInfo.playerService.state.albumart"
@@ -36,7 +36,7 @@
         </span>
     </div>
 
-    <div class='track-info-actions-n-rates'>
+    <div class='track-info-actions-n-rates hidden-xs hidden-sm'>
 
         <div class='track-user-actions pull-right'>
           <track-actions-btn

@@ -36,7 +36,7 @@
 </div>
 
 <!-- VERTICAL SLIDER -->
-<div ng-if="volumeManager.matchmediaService.isPhone || volumeManager.isOnFooter"  ng-class="{'volumeManager pull-right': true, 'on-footer hidden': volumeManager.isOnFooter}">
+<div ng-if="volumeManager.matchmediaService.isPhone || volumeManager.isOnFooter"  ng-class="{'volumeManager pull-right': true, 'on-footer hidden-md hidden-lg hidden-xl': volumeManager.isOnFooter}">
 
   <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
     <div class="bigText">{{volumeManager.playerService.volume}}</div>
@@ -70,7 +70,7 @@
       ng-click="volumeManager.toggleVolumeSlider()"
       ng-disabled="volumeManager.playerService.state.disableVolumeControl"
       class="btn btn-link">
-    <i class="fa fa-volume-up"></i>
+    <i class="material-icons">volume_down</i>
   </button>
 </div>
 

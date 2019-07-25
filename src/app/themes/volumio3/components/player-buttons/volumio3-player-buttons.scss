@@ -1,7 +1,15 @@
 #playerButtons {
 
-  height: $footerHeight;
   text-align: center;
+  height: $theme-player-height-smartphone;
+
+  @include breakpoint(md){
+    height: $footerHeight;
+  }
+  @include breakpoint(lg){
+    height: $footerHeight;
+  }
+
   .playPauseBtnWrapper {
     position: relative;
     display: inline-block;
@@ -14,10 +22,15 @@
     border-radius: 100px;
     height: 55px;
     width: 55px;
-    top: -35px;
-    @include breakpoint(xs) {
-      top: -50px;
+    top: calc( -1 * (#{$theme-player-height-smartphone} - 55px) / 2 );
+
+    @include breakpoint(md){
+      top: -35px;
     }
+    @include breakpoint(lg){
+      top: -35px;
+    }
+
   }
   .playPause {
     position: absolute;
@@ -33,8 +46,16 @@
     &.play i{
       padding-left: 4px;
     }
-    @include breakpoint(xs) {
-      // background: $theme-dark-transparent-background;
+
+    left: 15px;
+
+    @include breakpoint(md) {
+      left: 0;
+      right: 0;
+    }
+    @include breakpoint(lg) {
+      left: 0;
+      right: 0;
     }
   }
 
