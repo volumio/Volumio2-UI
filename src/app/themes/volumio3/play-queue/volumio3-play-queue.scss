@@ -3,11 +3,20 @@ $trackInfoBarButtonsHeight: 35px;
   .trackInfoBarButtons {
     position: fixed;
     z-index: 5;
+
     width: 100%;
+    @include breakpoint('md'){
+      width: 83.33333%
+    }
+    @include breakpoint('lg'){
+      width: 83.33333%
+    }
+
     background: $theme-dark-color;
 
     height: $trackInfoBarButtonsHeight;
     text-align: right;
+
     @include breakpoint('xs') {
       text-align: center;
       button {
