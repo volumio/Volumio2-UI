@@ -41,6 +41,7 @@
       scrollbar-width: none;
 
       img {
+        padding-top: 16px;
         // TODO FIND A BETTER METHOD
         max-height: calc(100vh - 390px);
       }
