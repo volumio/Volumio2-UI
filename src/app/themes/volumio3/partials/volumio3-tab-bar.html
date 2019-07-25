@@ -7,7 +7,7 @@
       class="btn btn-default tab-bar-btn browseBtn"
       ng-class="{selected: state.current.name === 'volumio.browse'}"
       title="{{'COMMON.TAB_BROWSE' | translate}}">
-    <i class="material-icons md-24">music_note</i>
+    <i ng-if="!footer.playerService.state.updatedb" class="material-icons md-24">music_note</i>
     <i ng-if="footer.playerService.state.updatedb" class="fa fa-refresh fa-spin"></i>
     <span class="label" translate="COMMON.TAB_BROWSE"></span>
   </button>

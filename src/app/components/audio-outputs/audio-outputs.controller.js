@@ -10,7 +10,6 @@ class AudioOutputsController {
   }
 
   toggleMenu() {
-    console.log(this.menuVisible);
     this.menuVisible = !this.menuVisible;
   }
 

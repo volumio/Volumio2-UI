@@ -8,7 +8,6 @@ class PlaybackController {
 
     $rootScope.$on('$stateChangeStart', (event, toState, toStateParams, fromState, fromParams) => {
       this.previousState = fromState.name;
-      console.log('fromState', fromState);
       //$rootScope.previousStateParams = fromParams;
     });
   }
