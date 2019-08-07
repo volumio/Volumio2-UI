@@ -1,5 +1,6 @@
 {
    "name":"Volumio",
+   "display": "standalone",
    "icons":[
       {
          "src":"app\/themes\/volumio\/assets\/variants\/volumio\/touch-icons\/android-chrome-36x36.png",
