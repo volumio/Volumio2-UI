@@ -1,5 +1,5 @@
 class PluginManagerController {
-  constructor($scope, socketService, mockService, $log, Upload, $state, modalService, $timeout, $translate) {
+  constructor($scope, socketService, mockService, $log, Upload, $state, modalService, $timeout, $translate, themeManager) {
     'ngInject';
     this.socketService = socketService;
     this.$scope = $scope;
@@ -9,6 +9,7 @@ class PluginManagerController {
     this.modalService = modalService;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.themeManager = themeManager;
 
     this.activeTab = 0;
     // this.installedPlugins = mockService.get('installedPlugins');
@@ -145,6 +146,10 @@ class PluginManagerController {
   initService() {
     this.socketService.emit('getInstalledPlugins');
     this.socketService.emit('getAvailablePlugins');
+  }
+
+  goBack(){
+    window.history.back();
   }
 }
 
