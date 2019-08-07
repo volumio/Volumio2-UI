@@ -301,7 +301,7 @@
     width: 35px;
     font-size: 20px;
     .dropdown-menu {
-      z-index: 100;
+      z-index: 1000;
       left: auto;
       right: 10px;
       &.right {
