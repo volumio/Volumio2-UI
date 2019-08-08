@@ -12,59 +12,81 @@
   height: calc(100vh - #{$headerHeight} - #{$footerHeight});
   overflow-y: auto;
   overflow-x: hidden;
-  h1 {
-    text-align: center;
-    margin-bottom: 25px;
+
+  &.volumio3{
+    height: auto;
   }
-  h3 {
-    font-size: 20px;
-  }
-  #wizard-container {
-    border: solid 1px $theme-primary-color;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 30px 25px 65px 25px;
-    min-height: 450px;
-    #custom-amount {
-      display: inline-block;
-      width: 55px;
-    }
-    .btn-facebook {
-      background-color: $fb-color;
-      border-color: $fb-color;
-    }
-    .btn-twitter {
-      background-color: $twitter-color;
-      border-color: $twitter-color;
-    }
-    .fb-share-button {
-      display: inline-block;
-      margin-right: 10px;
-    }
-  }
-  #wizard-navigator {
-    text-align: center;
+
+  .row {
+
+      margin: 8px;
+
     h1 {
-      margin-top: 0;
-      font-size: 22px;
+      text-align: center;
+      margin-bottom: 25px;
     }
-    button {
-      margin-right: 10px;
-      cursor: pointer;
-      &:hover {
-        color: $link-color;
+
+    h3 {
+      font-size: 20px;
+    }
+
+    #wizard-container {
+      border: solid 1px $theme-primary-color;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px 25px 65px 25px;
+      min-height: 450px;
+
+      #custom-amount {
+        display: inline-block;
+        width: 55px;
       }
-      &.selected {
-        background-color: #333 !important;
-        border-bottom: solid 1px $theme-primary-color;
-        border-radius: 0;
-        transition: all .3s;
+
+      .btn-facebook {
+        background-color: $fb-color;
+        border-color: $fb-color;
+      }
+
+      .btn-twitter {
+        background-color: $twitter-color;
+        border-color: $twitter-color;
+      }
+
+      .fb-share-button {
+        display: inline-block;
+        margin-right: 10px;
       }
     }
-  }
-  #button-bar{
-    position: absolute;
-    bottom: 10px;
-    right: 25px;
+
+    #wizard-navigator {
+      text-align: center;
+
+      h1 {
+        margin-top: 0;
+        font-size: 22px;
+      }
+
+      button {
+        margin-right: 10px;
+        cursor: pointer;
+
+        &:hover {
+          color: $link-color;
+        }
+
+        &.selected {
+          background-color: #333 !important;
+          border-bottom: solid 1px $theme-primary-color;
+          border-radius: 0;
+          transition: all .3s;
+        }
+      }
+    }
+
+    #button-bar {
+      position: absolute;
+      bottom: 10px;
+      right: 25px;
+    }
   }
 }
 

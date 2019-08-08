@@ -13,6 +13,7 @@ class WizardController {
     this.matchmediaService = matchmediaService;
     this.modalService = modalService;
     this.filteredTranslate = $filter('translate');
+    this.themeManager = themeManager;
     this.init();
   }
 
@@ -294,6 +295,10 @@ class WizardController {
     this.socketService.emit('getWizardSteps');
     this.socketService.emit('getAvailableLanguages');
 
+  }
+
+  isVolumio3Theme(){
+    return this.themeManager.theme === 'volumio3';
   }
 }
 
