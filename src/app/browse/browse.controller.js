@@ -395,17 +395,15 @@ class BrowseController {
         this.unsetDedicatedSearch();
       }
     }, true);
-
-    if(this.isDedicatedSearchView){
-      this.$timeout( function () { document.querySelector('#search-input-form').focus(); } );
-    }
-
   }
 
   setDedicatedSearch(){
     this.isDedicatedSearchView = true;
     this.browseService.isSearching = true;
     this.browseService.lists = [];
+    this.$timeout( function () {
+      document.querySelector('#search-input-form').focus();
+    },100 );
   }
 
   unsetDedicatedSearch(){
