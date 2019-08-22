@@ -1,0 +1,63 @@
+
+<div class="panel panel-default myvolumio-card-container visible-xs visible-sm"  ng-if="settings.isAuthActive() && settings.isMyVolumioVisible()">
+
+    <div class="panel-body">
+        <my-volumio-user-card>
+        </my-volumio-user-card>
+    </div>
+
+</div>
+
+<div class="setting-container panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <i class="fa fa-cog"></i>
+      <span translate="COMMON.SETTINGS"></span>
+    </h2>
+  </div>
+
+  <div class="panel-body">
+    <div class='row'>
+      <div class="col-xs-24">
+
+        <ul class="nav nav-pills nav-stacked settings-nav">
+
+          <li>
+              <a
+                ng-repeat="item in settings.menuItems track by $index"
+                ng-click="settings.itemClick(item)"
+                ng-if="item.id !== 'my-volumio'"
+              >
+                {{item.name}}
+              </a>
+          </li>
+
+        </ul>
+
+          <div class="hardwareToggleCheckbox"
+              ng-if="::settings.uiSettingsService.uiSettings.settings.checkboxes.analogInput">
+            <input type="checkbox"
+                ng-model="settings.analogIn"
+                ng-click="settings.toggleAnalogInput()">
+              <span translate="settings.ANALOG_INPUT"></span>
+          </div>
+
+          <div class="hardwareToggleCheckbox"
+              ng-if="::settings.uiSettingsService.uiSettings.settings.checkboxes.bluetooth">
+            <input type="checkbox"
+                ng-model="settings.bluetooth"
+                ng-click="settings.toggleBluetooth()">
+              <span translate="settings.BLUETOOTH"></span>
+          </div>
+
+          <div class="side-logo img-responsive" ng-if="::settings.uiSettingsService.uiSettings.settings.showLogo">
+            <img
+              ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo-sidebar.png"
+              alt="{{header.themeManager.theme}}"/>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

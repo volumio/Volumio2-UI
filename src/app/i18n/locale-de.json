@@ -71,7 +71,8 @@
     "EMAIL": "Email",
     "SUBSCRIBE_ME": "Newsletter erhalten",
     "SHARE": "Teilen",
-    "EJECT": "Auswerfen"
+    "EJECT": "Auswerfen",
+    "FUNCTIONALIES_CONTROL":"Funktionssteuerung"
   },
   "BROWSER": {
     "PLAY": "Wiedergeben",
@@ -94,7 +95,8 @@
     "PAUSE":"Pause",
     "CLEAR_AND_PLAY":"Warteschlange hiermit ersetzen",
     "SAFE_REMOVE": "Medium sicher auswerfen",
-    "UPDATE_FOLDER": "Ordner aktualisieren"
+    "UPDATE_FOLDER": "Ordner aktualisieren",
+    "DELETE_FOLDER":"Ordner löschen"
   },
 "MY_MUSIC": {
     "UPDATE":"Aktualisieren",
@@ -194,7 +196,7 @@
     "DEVICE_NAME": "Wähle einen eindeutigen Namen für dein Gerät",
     "DEVICE_ADDRESS": "Dieses Gerät ist über folgende Addresse erreichbar:",
     "SELECT_YOUR_AUDIO_OUTPUT": "Wähle deinen Audioausgang",
-    "SELECT_YOUR_I2S_DAC": "Wähle deinen i2s DAC",
+    "SELECT_YOUR_I2S_DAC": "Wähle deinen I2S DAC",
     "I_HAVE_DAC": "Ich habe einen I2S DAC",
     "CUSTOM_AMOUNT": "Eigener Wert",
     "DONE_MESSAGE": "Fertig, dein System ist bereit",
@@ -227,7 +229,7 @@
     "NOW_PLAYING": "Wird wiedergegeben"
   },
   "SIDEMENU": {
-    "ANALOG_INPUT": "Analoger Input",
+    "ANALOG_INPUT": "Analoger Eingang",
     "BLUETOOTH": "Bluetooth"
    }
 }

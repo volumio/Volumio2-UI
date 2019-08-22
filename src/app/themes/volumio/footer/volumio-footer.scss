@@ -5,7 +5,10 @@ footer {
   bottom: 0;
   width: 100%;
   height: $footerHeight;
+  .footerContent {
+  height: $footerHeight;
   background-color: $theme-footer-color;
+  }
 }
 
 .tabBar {

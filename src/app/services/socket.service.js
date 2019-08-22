@@ -54,8 +54,13 @@ class SocketService {
       'pushSleep',
       'pushMultiroom',
       'pushWirelessNetworks',
-      'pushInfoNetwork'
+      'pushInfoNetwork',
+      'pushToastMessage'
     ];
+  }
+
+  isSocketAvalaible() {
+    return this._host !== null;
   }
 
   changeHost(host) {

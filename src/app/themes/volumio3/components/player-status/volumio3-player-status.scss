@@ -1,0 +1,11 @@
+#playerStatusWrapper {
+  @include make-row();
+  border: solid 0px blue;
+  margin-bottom:10px;
+  #playerStatus {
+    @include make-sm-column(12);
+    background-color: #999;
+    padding: 10px;
+    border: solid 0px red;
+  }
+}

@@ -1,0 +1,74 @@
+<div id="main-menu">
+
+    <div class="logo">
+      <img
+          ng-src="{{mainMenu.variantAssetsUrl}}/graphics/{{mainMenu.variant}}-logo.png"
+          alt="{{mainMenu.themeManager.variant}}-logo"
+          ui-sref="redirect"/>
+    </div>
+
+    <div ng-if="mainMenu.isAuthActive()" class="myvolumio-card-container">
+        <my-volumio-user-card>
+        </my-volumio-user-card>
+    </div>
+
+    <div class='main-menu-list-container'>
+      <ul class="main-menu-list">
+        <!--
+          <li class="active">
+            <a ui-sref="volumio.home" >
+              <i class="fa fa-home"></i>
+              <span translate='COMMON.HOME'></span>
+            </a>
+          </li>
+          <li>
+            <a ui-sref="volumio.browse">
+              <i class="fa fa-list"></i>
+              <span translate='COMMON.TAB_BROWSE'></span>
+            </a>
+          </li>
+          <li>
+            <a ui-sref="volumio.search">
+              <i class="fa fa-search"></i>
+              <span translate='COMMON.SEARCH'></span>
+            </a>
+          </li>
+
+          <div class="spacer"></div>-->
+          <li ng-class="{active: source.active}" ng-repeat='source in mainMenu.sources track by source.uri'>
+            <a href ng-click="mainMenu.goTo(source)" >
+              <!--
+              <i ng-if='source.icon && !source.albumart' class="{{source.icon}}"></i>
+              <img ng-if='source.albumart' src='{{source.albumart}}' style='width: 32px; height: 32px;' />
+              -->
+              {{source.name}}
+            </a>
+          </li>
+          <div class="spacer"></div>
+          <li>
+            <a ui-sref="volumio.settings">
+              <!--<i class="fa fa-cog"></i>-->
+              <span translate="COMMON.SETTINGS"></span>
+            </a>
+          </li>
+          <li ng-repeat='item in mainMenu.menuItemsMainMenuLinks track by item.name'>
+            <a href ng-click="mainMenu.menuItemsMainMenuLinksClick(item)" >
+              <!--
+              <i ng-if='source.icon && !source.albumart' class="{{source.icon}}"></i>
+              <img ng-if='source.albumart' src='{{source.albumart}}' style='width: 32px; height: 32px;' />
+              -->
+              {{item.name}}
+            </a>
+          </li>
+          <!--
+          <li>
+            <a ui-sref="volumio.help">
+              <i class="fa fa-question"></i>
+              Help </a>
+            </li>
+            -->
+      </ul>
+
+    </div>
+
+</div>

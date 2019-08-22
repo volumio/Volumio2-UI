@@ -1,0 +1,120 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+      <a href="https://volumio.org/myvolumio" target="_blank" class="btn btn-outline pull-right" id="myvolumio-info">
+          <i class="fa fa-question"></i> <span class="hidden-xs" translate="MYVOLUMIO.WHAT_IS_MYVOLUMIO" class="ng-scope"></span></a>
+    </div>
+  </div>
+  <div id="authSignupPlugin" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.SIGNUP"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-show="myVolumioSignupController.user == null">
+
+        <h4 style="text-align: right; margin-right: 16px;">
+          <a ng-click="myVolumioSignupController.goToLogin()" class="btn btn-outline pull-right">
+            <i class="fa fa-user"></i>
+            <span translate="MYVOLUMIO.LOGIN"></span>
+          </a>
+        </h4>
+
+        <div class="omb_login">
+          <h3 class="omb_authTitle" translate="MYVOLUMIO.SIGNUP"></h3>
+
+          <div ng-if="myVolumioSignupController.isSocialEnabled()">
+            <div class="row omb_row-sm-offset-3 omb_socialButtons">
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="myVolumioSignupController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                  <i class="fa fa-facebook"></i>
+                  <span class="hidden-xs">Facebook</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="myVolumioSignupController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
+                  <i class="fa fa-google-plus"></i>
+                  <span class="hidden-xs">Google+</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="myVolumioSignupController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
+                  <i class="fa fa-github"></i>
+                  <span class="hidden-xs">GitHub</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="row omb_row-sm-offset-3 omb_loginOr">
+              <div class="col-xs-24 col-sm-12">
+                <hr class="omb_hrOr">
+                <span class="omb_spanOr" translate="MYVOLUMIO.OR"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+              <form role="form" ng-submit="myVolumioSignupController.submitForm()">
+                <div class="row">
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <input type="text" ng-model="myVolumioSignupController.firstName" id="first_name" class="form-control input-lg" placeholder="{{'MYVOLUMIO.FIRST_NAME' | translate}}" tabindex="1" required pattern=".{2,}">
+                    </div>
+                  </div>
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <input type="text" ng-model="myVolumioSignupController.lastName" id="last_name" class="form-control input-lg" placeholder="{{'MYVOLUMIO.LAST_NAME' | translate}}" tabindex="2" required pattern=".{2,}">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="email" ng-model="myVolumioSignupController.email" id="email" class="form-control input-lg" placeholder="{{'MYVOLUMIO.EMAIL_ADDRESS' | translate}}" required tabindex="4">
+                </div>
+                <div class="row">
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <input type="password" ng-model="myVolumioSignupController.password" id="password" class="form-control input-lg" placeholder="{{'MYVOLUMIO.PASSWORD' | translate}}" tabindex="5" required pattern=".{8,}">
+                    </div>
+                  </div>
+                  <div class="col-xs-24 col-sm-6 col-md-12">
+                    <div class="form-group">
+                      <input type="password" ng-model="myVolumioSignupController.passwordConfirm" id="password_confirmation" class="form-control input-lg" placeholder="{{'MYVOLUMIO.CONFIRM_PASSWORD' | translate}}" tabindex="6" required pattern=".{8,}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-22 col-sm-22 col-md-22">
+                    <span class="button-checkbox">
+                      <a tabindex="7" ng-click="myVolumioSignupController.clickAgreementButton()">
+                        <i class="state-icon {{myVolumioSignupController.termsButtonIcon}}"></i>
+                      </a>
+                      <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1" ng-model="myVolumioSignupController.form.termsCheckbox" ng-true-value="true" ng-false-value="false">
+                    </span>
+                    <span translate="MYVOLUMIO.TOS_AGREE"> </span><strong class="label label-primary" <a ng-click="myVolumioSignupController.clickShowTerms()"> MyVolumio <span translate="MYVOLUMIO.TOS"></span></a></strong>
+                  </div>
+                </div>
+
+
+                <hr class="colorgraph">
+                <div class="row">
+                  <div class="col-xs-24 col-md-24"><input type="submit" value="{{'MYVOLUMIO.SIGNUP' | translate}}" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="" ng-if="myVolumioSignupController.user != null">
+          <my-volumio-already-logged>
+          </my-volumio-already-logged>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

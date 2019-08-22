@@ -1,0 +1,56 @@
+.myvolumio-card-container {
+
+  .myvolumio-card-logged{
+    font-size: 16px;
+
+    .user-name {
+      padding-top: 8px;
+      color: $theme-light-color;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .user-username{
+      font-size: smaller;
+      color: $theme-light-color;
+      overflow: hidden;
+      text-align: left;
+    }
+
+  }
+
+  .myvolumio-card-not-logged{
+
+    .title{
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    .profile-userbuttons {
+
+      .btn-sm{
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      a{
+        color: $theme-primary-color;
+        cursor: pointer;
+
+        span{
+
+        }
+      }
+    }
+
+  }
+
+}
+
+.panel.panel-default.myvolumio-card-container {
+  @include breakpoint(xs) {
+    margin-top: 0px;
+    background-color: $theme-sidebar-background-color;
+  }
+}

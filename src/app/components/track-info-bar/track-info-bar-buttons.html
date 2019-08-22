@@ -7,11 +7,28 @@
    <i class="fa fa-random"></i>
   </button>
   <button
+     ng-if="!trackInfoBarButtons.playerService.state.repeat"
      ng-class="{'active': trackInfoBarButtons.playerService.state.repeat}"
-     ng-click="trackInfoBarButtons.playerService.repeatAlbum()"
+     ng-click="trackInfoBarButtons.playerService.repeatAlbum(true, false)"
      class="btn btn-link"
      title="{{'TRACK_INFO_BAR.REPEAT' | translate}}">
    <i class="fa fa-repeat"></i>
+  </button>
+  <button
+     ng-if="trackInfoBarButtons.playerService.state.repeat && !trackInfoBarButtons.playerService.state.repeatSingle"
+     ng-class="{'active': trackInfoBarButtons.playerService.state.repeat}"
+     ng-click="trackInfoBarButtons.playerService.repeatAlbum(true, true)"
+     class="btn btn-link"
+     title="{{'TRACK_INFO_BAR.REPEAT' | translate}}">
+   <i class="fa fa-repeat"></i>
+  </button>
+  <button
+     ng-if="trackInfoBarButtons.playerService.state.repeat && trackInfoBarButtons.playerService.state.repeatSingle"
+     ng-class="{'active': trackInfoBarButtons.playerService.state.repeat}"
+     ng-click="trackInfoBarButtons.playerService.repeatAlbum(false, false)"
+     class="btn btn-link"
+     title="{{'TRACK_INFO_BAR.REPEAT' | translate}}">
+   <i class="fa fa-repeat">1</i>
   </button>
   <button
      ng-click="trackInfoBarButtons.addToPlaylist()"

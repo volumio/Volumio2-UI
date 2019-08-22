@@ -13,7 +13,8 @@ class VolumeManagerDirective {
         return themeManager.getHtmlPath(templateName, templatePath);
       },
       scope: {
-        type: '@'
+        type: '@',
+        isOnFooter: '@'
       },
       controller: VolumeManagerController,
       controllerAs: 'volumeManager',
@@ -43,6 +44,8 @@ class VolumeManagerController {
     this.$scope = $scope;
     this.volume = playerService.volume;
 
+    this.isOnFooter = this.$scope.isOnFooter || false;
+
     this.startVolumeStatusListeners();
     this.knobOptions = {
       min: 0,
@@ -59,7 +62,9 @@ class VolumeManagerController {
       thickness: 0.2
     };
     if (this.type === 'knob') {
-      this.knobOptions.thickness = uiSettingsService.uiSettings.knobDesktopThickness || 0.2;
+      if (uiSettingsService.uiSettings !== undefined && uiSettingsService.uiSettings.knobDesktopThickness !== undefined) {
+        this.knobDesktopThickness = uiSettingsService.uiSettings.knobDesktopThickness;
+      }
     }
 
     // This is old debouncing mechanism

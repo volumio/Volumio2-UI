@@ -1,0 +1,6 @@
+<button ng-click="paddlePayButtonController.handlePayment()" class="btn btn-lg btn-success" ng-class="paddlePayButtonController.buttonClass">
+  <i ng-class="[paddlePayButtonController.btnIconClass]"></i>
+  <span ng-if="paddlePayButtonController.isTrial" translate="MYVOLUMIO.TRY_FOR_FREE"></span>
+  <span ng-if="!paddlePayButtonController.isTrial">{{paddlePayButtonController.buttonLabel}}</span>
+
+</button>

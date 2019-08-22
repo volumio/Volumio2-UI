@@ -66,6 +66,7 @@ gulp.task('angularConfig', function () {
   var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
   var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
   var env = gutil.env.env ? gutil.env.env : 'dev';
+  var debug = gutil.env.debug ? gutil.env.debug : false;
   var themeColor, constants;
   constants = {
     theme: themeSelected,
@@ -73,6 +74,7 @@ gulp.task('angularConfig', function () {
   };
 
   constants.env = env;
+  constants.debug = debug;
 
   var obj = {
     name: 'volumio.constant',

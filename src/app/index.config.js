@@ -1,6 +1,5 @@
-/* global angular */
-function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
-  $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, CgMailChimpServiceProvider, cfpLoadingBarProvider) {
+function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
+        $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider, authServiceProvider, CgMailChimpServiceProvider, cfpLoadingBarProvider, debug) {
   'ngInject';
 
   cfpLoadingBarProvider.includeSpinner = false;
@@ -10,7 +9,7 @@ function config (theme, variant, $logProvider, toastrConfig, themeManagerProvide
   themeManagerProvider.theme = theme;
   themeManagerProvider.variant = variant;
 
-  $logProvider.debugEnabled(env !== 'production');
+  $logProvider.debugEnabled(debug !== false);
 
   $locationProvider.html5Mode(true);
   $httpProvider.useApplyAsync(true);

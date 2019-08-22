@@ -1,11 +1,13 @@
-<form action="." id="searchForm" class="pull-right" ng-submit="browse.searchSubmit($event)">
+<form action="." id="searchForm" ng-class="{ 'hidden-xs': browse.isDedicatedSearchView !== true && this.browse.isVolumio3Theme(), 'pull-right': true }" ng-submit="browse.searchSubmit($event)">
   <input
       type="search"
       ng-model="browse.searchField"
       ng-change="browse.search()"
       class="form-control"
       placeholder="{{'COMMON.SEARCH' | translate}} ..."
-      title="{{'COMMON.SEARCH' | translate}}">
+      title="{{'COMMON.SEARCH' | translate}}"
+      id="search-input-form"
+  >
   <span class="form-control-feedback" aria-hidden="true">
     <i ng-if="!browse.searchField.length" class="fa fa-search"></i>
     <i ng-if="browse.searchField.length"

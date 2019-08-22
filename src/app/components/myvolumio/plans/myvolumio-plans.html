@@ -1,0 +1,42 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div id="authPlansPlugin" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.PLANS"></span></h3>
+    </div>
+
+    <div class="panel-body">
+      <my-volumio-back-button label="{{'MYVOLUMIO.PROFILE' | translate}}" route-destination="myvolumio.profile">
+      </my-volumio-back-button>
+      <div class="container plans-table">
+
+        <div class="row">
+          <div class="col-xs-24 text-center">
+            <input bs-switch ng-model="myVolumioPlansController.showYearly" type="checkbox" switch-animate="true" switch-on-text="{{myVolumioPlansController.switchLabelYearly}}" switch-off-text="{{myVolumioPlansController.switchLabelMonthly}}" switch-inverse="true">
+            <br />
+            <span translate="MYVOLUMIO.SAVE_20" style="line-height: 32px; font-size: 12px;"></span>
+          </div>
+        </div>
+        <div class="row" style="margin-top:20px;">
+          <div class="col-xs-24 col-md-8">
+            <my-volumio-plan-card product="myVolumioPlansController.product0" show-mode="myVolumioPlansController.showMode">
+            </my-volumio-plan-card>
+          </div>
+          <div class="col-xs-24 col-md-8" ng-if="myVolumioPlansController.product1">
+            <my-volumio-plan-card product="myVolumioPlansController.product1" show-mode="myVolumioPlansController.showMode">
+            </my-volumio-plan-card>
+          </div>
+          <div class="col-xs-24 col-md-8" ng-if="myVolumioPlansController.product2">
+            <my-volumio-plan-card product="myVolumioPlansController.product2" show-mode="myVolumioPlansController.showMode">
+            </my-volumio-plan-card>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

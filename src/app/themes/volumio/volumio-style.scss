@@ -238,6 +238,10 @@ body {
   }
 }
 
+.btn-outline {
+  border: 2px solid white;
+}
+
 //Common components
 
 //Buttons
@@ -738,4 +742,16 @@ img.section-image {
 .panel-body a {
     color: $theme-text-color;
     font-weight: bold;
+}
+
+p.lead {
+    text-align: center;
+}
+
+.navButtons.pull-left.ng-scope i {
+    font-size: 33px;
+}
+
+.navButtons.pull-left.ng-scope i.fa.fa-home {
+  font-size: 40px;
 }

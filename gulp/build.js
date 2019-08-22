@@ -148,7 +148,7 @@ gulp.task('static-pages', ['credits'], function () {
 });
 
 gulp.task('clean', function (done) {
-  $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
+  $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/'), path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/' + variantSelected + '/dist')], done);
 });
 
 gulp.task('credits', function (cb) {

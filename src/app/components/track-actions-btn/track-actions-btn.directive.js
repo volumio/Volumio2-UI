@@ -1,4 +1,4 @@
-export default class TrackAciotnsBtnDirective {
+export default class TrackActionsBtnDirective {
   constructor(themeManager) {
     'ngInject';
     let directive = {

@@ -1,0 +1,48 @@
+<div class="box" id="change-subscription">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.UPDATE_SUBSCRIPTION"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-if="myVolumioChangeSubscriptionController.user && myVolumioChangeSubscriptionController.product">
+
+        <my-volumio-back-button label="{{'MYVOLUMIO.BACK_TO_PLANS' | translate}}" route-destination="myvolumio.plans">
+        </my-volumio-back-button>
+
+        <h3 translate="MYVOLUMIO.UPDATE_SUBSCRIPTION_TITLE" style="margin-bottom: 16px;"></h3>
+
+        <h4 class="badged-block">
+          <span translate="MYVOLUMIO.CURRENT_PLAN"></span>:
+          <span class="badge">{{myVolumioChangeSubscriptionController.getCurrentPlanName() | uppercase }}</span>
+        </h4>
+
+        <h4>
+          <span translate="MYVOLUMIO.YOUR_NEW_PLAN"></span>:
+        </h4>
+
+        <my-volumio-plan-card product="myVolumioChangeSubscriptionController.product" show-mode="myVolumioChangeSubscriptionController.showMode" change-subscription="true" change-subscription-callback="myVolumioChangeSubscriptionController.changePlan()">
+        </my-volumio-plan-card>
+      </div>
+
+      <div id="" ng-if="!myVolumioChangeSubscriptionController.user">
+        <h4 translate="MYVOLUMIO.YOURE_NOT_LOGGED"></h4>
+        <a ng-click="myVolumioChangeSubscriptionController.logIn()" class="btn btn-lg btn-success" translate="MYVOLUMIO.LOGIN"></a>
+      </div>
+
+      <div id="" ng-if="!myVolumioChangeSubscriptionController.product">
+        <h4 translate="MYVOLUMIO.NO_PRODUCT_SELECTED"></h4>
+        <a ng-click="myVolumioChangeSubscriptionController.goToPlans()" class="btn btn-lg btn-success" translate="MYVOLUMIO.RETRY"></a>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
