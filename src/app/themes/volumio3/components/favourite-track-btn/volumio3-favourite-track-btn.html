@@ -1,0 +1,11 @@
+<button
+    ng-class="{'active': favouriteTrackBtn.playerService.favourite.favourite}"
+    ng-click="favouriteTrackBtn.toggleFavouriteTrack()"
+    ng-mouseover="favouriteTrackBtn.hoverHeart = true"
+    ng-mouseleave="favouriteTrackBtn.hoverHeart = false"
+    class="btn btn-link"
+    title="{{'BROWSER.ADD_TO_FAVOURITES' | translate}}"
+    ng-disabled="favouriteTrackBtn.playerService.state.disableUi">
+  <i ng-hide="favouriteTrackBtn.playerService.favourite.favourite || favouriteTrackBtn.hoverHeart" class="fa fa-heart-o"></i>
+  <i ng-show="favouriteTrackBtn.playerService.favourite.favourite || favouriteTrackBtn.hoverHeart" class="fa fa-heart"></i>
+</button>

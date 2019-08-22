@@ -1,0 +1,57 @@
+#multiRoomDockWrapper {
+  @include make-sm-column(24);
+  margin-top:20px;
+  .device {
+    @include make-sm-column(8);
+    >div {
+      height:100px;
+      overflow: hidden;
+      cursor: pointer;
+      text-transform: uppercase;
+      border: solid 1px $theme-accent-color;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .deviceName {
+      margin-top: -10px;
+      font-size: 20px;
+    }
+    .artist {
+      color: $theme-darker-text-color;
+      font-size: 15px;
+    }
+    .track {
+      font-size: 14px;
+    }
+    .isSelf {
+      border-color: $theme-primary-color;
+      background-color: $theme-dark-transparent-background;
+    }
+    .child {
+      cursor: default;
+      .deviceName, .track {
+        color: darken($text-color, 50%);
+      }
+      .artist {
+        color: darken($brand-primary, 10%);
+      }
+    }
+
+    .deviceIcon {
+      width: 35%;
+      text-align: center;
+      padding: 9px;
+      @extend .pull-left;
+      img {
+        max-width: 80px;
+        width: 100%;
+        @extend .img-responsive;
+      }
+    }
+    .deviceDetails {
+      width: 65%;
+      padding: 13px 9px 13px 0px;
+      @extend .pull-left;
+    }
+  }
+}

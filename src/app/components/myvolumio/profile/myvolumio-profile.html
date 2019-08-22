@@ -10,7 +10,12 @@
 
     <div id="authLoginPlugin" class="panel panel-default">
       <div class="panel-heading">
+        <button type="button" class="btn pull-right btn-danger btn-sm" ng-click="myVolumioProfileController.logOut()">
+          <span class="glyphicon glyphicon-log-out"></span>
+          <span class="hidden-sm" translate="MYVOLUMIO.LOGOUT"></span>
+        </button>
         <h3 class="panel-title"><i class="fa fa-user"></i> <span translate="MYVOLUMIO.PROFILE"></span></h3>
+        <div style="clear: both";></div>
       </div>
 
       <div class="panel-body">
@@ -25,13 +30,13 @@
 
               <div class="row">
                 <div class="col-sm-24 col-md-12 user-data">
-                  <h3 class="user-title">{{myVolumioProfileController.user.firstName}} {{myVolumioProfileController.user.lastName}}
-                    <span class="pull-right">
-                      <button ng-click="myVolumioProfileController.goToEdit()" class="btn btn-info">
-                        <i class="fa fa-cog"></i>
-                      </button>
-                    </span>
-                    <div class="clearfix"></div>
+                  <h3 class="user-title">
+                    <button ng-click="myVolumioProfileController.goToEdit()" class="btn btn-default pull-right">
+                      <i class="fa fa-cog"></i>
+                      <span class="hidden-sm" translate="COMMON.EDIT"></span>
+                    </button>
+                    {{myVolumioProfileController.user.firstName}} {{myVolumioProfileController.user.lastName}}
+                    <div style="clear: both"></div>
                   </h3>
                   <h4 class='active user-username'> {{myVolumioProfileController.user.username}} </h4>
                   <p class="user-details">

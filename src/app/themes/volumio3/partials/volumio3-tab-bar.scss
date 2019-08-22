@@ -1,0 +1,30 @@
+.tabBar {
+  height: $theme-tabbar-height-smartphone;
+  //background: $theme-tab-bar-gradient;
+  background-color: $theme-darker-color;
+
+  button.tab-bar-btn {
+    @include make-xs-column(8, 0);
+    font-size: 18px;
+    border-radius: 0px !important;
+    border: none !important;
+    height: $theme-tabbar-height-smartphone;
+
+    i{
+      color: #ffffff;
+    }
+
+    &.selected, &:hover{
+      background: transparent;
+
+      i{
+        color: $theme-primary-color;
+      }
+
+    }
+
+    span.label{
+      @extend .hidden-xs;
+    }
+  }
+}

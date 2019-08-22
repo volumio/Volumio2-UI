@@ -1,7 +1,12 @@
 <div class="box">
   <div class="boxHeader">
     <div class="title">
-      <h2 translate="PLUGINS.PLUGINS"></h2>
+      <h2>
+        <a ng-click="pluginManager.goBack()" class="btn btn-primary" ng-if="pluginManager.themeManager.theme === 'volumio3'">
+          <i class="fa fa-arrow-left" style="font-size: 24px"></i>
+        </a>
+        <span translate="PLUGINS.PLUGINS"></span>
+      </h2>
     </div>
   </div>
   <div

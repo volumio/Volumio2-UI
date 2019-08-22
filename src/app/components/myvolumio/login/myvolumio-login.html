@@ -15,15 +15,13 @@
 
       <div id="" ng-if="myVolumioLoginController.user == null">
 
-        <h4 style="text-align: right; margin-right: 16px;">
+        <div class="omb_login">
           <a ng-click="myVolumioLoginController.goToSignUp()" class="btn btn-outline pull-right">
             <i class="fa fa-user"></i>
             <span translate="MYVOLUMIO.SIGNUP"></span>
           </a>
-        </h4>
-
-        <div class="omb_login">
           <h3 class="omb_authTitle" translate="MYVOLUMIO.LOGIN"></h3>
+          <div style="clear: both"></div>
 
           <div ng-if="myVolumioLoginController.isSocialEnabled()">
             <div class="row omb_row-sm-offset-3 omb_socialButtons">

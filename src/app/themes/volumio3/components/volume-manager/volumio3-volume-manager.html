@@ -1,0 +1,99 @@
+<div class="volumeSliderScrim" ng-if="volumeManager.showVerticalSlider" ng-click="volumeManager.toggleVolumeSlider()"></div>
+
+<!-- KNOB -->
+<div ng-if="!volumeManager.matchmediaService.isPhone && !volumeManager.isOnFooter" class="volumeManager">
+  <div class="knobWrapper">
+    <div class="knobInfosWrapper">
+      <div class="headerText green">
+        <span ng-if="volumeManager.playerService.state.mute" translate="COMMON.VOLUME_MUTED"></span>
+      </div>
+      <div class="bigText">{{volumeManager.playerService.volume}}</div>
+      <div class="smallText">/100</div>
+    </div>
+    <knob
+      value="volumeManager.playerService.volume"
+      options="volumeManager.knobOptions"
+      type="volume">
+    </knob>
+  </div>
+
+  <div id="volumeButtonBar" class="btn-group">
+    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link" title="{{'COMMON.VOLUME_DOWN' | translate}}" ng-disabled="volumeManager.playerService.state.disableVolumeControl">
+      <i class="fa fa-volume-down"></i>
+    </button>
+    <button
+        ng-click="volumeManager.toggleMute()"
+        class="btn btn-link"
+        ng-class="{selected: volumeManager.playerService.state.mute}"
+        ng-disabled="volumeManager.playerService.state.disableVolumeControl"
+        title="{{'COMMON.VOLUME_MUTE' | translate}}">
+        <i class="fa fa-volume-off"></i>
+    </button>
+    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}" ng-disabled="volumeManager.playerService.state.disableVolumeControl">
+      <i class="fa fa-volume-up"></i>
+    </button>
+  </div>
+</div>
+
+<!-- VERTICAL SLIDER -->
+<div ng-if="volumeManager.matchmediaService.isPhone || volumeManager.isOnFooter"  ng-class="{'volumeManager pull-right': true, 'on-footer hidden-md hidden-lg hidden-xl': volumeManager.isOnFooter}">
+
+  <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
+    <div class="bigText">{{volumeManager.playerService.volume}}</div>
+    <div class="smallText">/100</div>
+
+    <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}" ng-disabled="volumeManager.playerService.state.disableVolumeControl">
+      <i class="fa fa-volume-up"></i>
+    </button>
+
+    <slider
+        class="volumeSlider"
+        id="volumeVerticalSlider"
+        ng-class="{disabled: volumeManager.playerService.state.mute}"
+        ng-model="volumeManager.playerService.volume"
+        min="0"
+        step="5"
+        max="100"
+        slider-tooltip="hide"
+        reversed="true"
+        ng-disabled="volumeManager.playerService.state.disableVolumeControl"
+        orientation="vertical">
+    </slider>
+
+    <button ng-click="volumeManager.playerService.volumeDown()" class="btn btn-link" title="{{'COMMON.VOLUME_DOWN' | translate}}" ng-disabled="volumeManager.playerService.state.disableVolumeControl">
+      <i class="fa fa-volume-down"></i>
+    </button>
+  </div>
+
+  <button
+      id="openVolumeVerticalSlider"
+      ng-click="volumeManager.toggleVolumeSlider()"
+      ng-disabled="volumeManager.playerService.state.disableVolumeControl"
+      class="btn btn-link">
+    <i class="material-icons">volume_down</i>
+  </button>
+</div>
+
+<!-- HORIZONTAL SLIDER -->
+<div ng-if="volumeManager.isOnFooter" class="volume-slider hidden-xs hidden-sm">
+
+    <button ng-click="volumeManager.toggleMute()" class="btn btn-link button-mute pull-left" ng-class="{selected: volumeManager.playerService.state.mute}" ng-disabled="volumeManager.playerService.state.disableVolumeControl">
+        <i class="fa fa-volume-off"></i>
+    </button>
+
+    <slider
+      class="volumeSlider"
+      ng-class="{disabled: volumeManager.playerService.state.mute}"
+      ng-model="volumeManager.playerService.volume"
+      min="0"
+      step="5"
+      max="100"
+      slider-tooltip="hide"
+      ng-disabled="volumeManager.playerService.state.disableVolumeControl">
+    </slider>
+
+    <div class='volume-text'>
+      {{volumeManager.playerService.volume}}/100
+    </div>
+
+</div>

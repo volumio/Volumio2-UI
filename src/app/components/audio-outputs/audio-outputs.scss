@@ -1,0 +1,149 @@
+#sideMenuScrim {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+.hardwareToggleCheckbox {
+  margin: 15px 0px 0px 8px;
+  text-align: left;
+  input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+  }
+  &:last-child {
+    margin-bottom: 15px;
+  }
+}
+.side-logo {
+  text-align: center;
+  margin: 15px 0px;
+  img {
+    width: 80%;
+  }
+}
+
+#sideMenu {
+  position: relative;
+  z-index: 50;
+}
+
+.group-container {
+  margin-top: 10px;
+}
+
+.row.output-item {
+    margin-left: -16px;
+    margin-right: 0px;
+}
+
+.group-name {
+  font-size: 20px;
+  text-align: left;
+  border-bottom: 1px solid;
+  padding: 5px 0px;
+  text-transform: uppercase;
+}
+
+.list-item-button {
+  position: relative;
+  height: 70px;
+  outline: 0;
+  padding: 10px !important;
+  border-bottom: none !important;
+}
+
+.btn-link.btn-block.list-item-button.self {
+  color: $theme-primary-color;
+}
+
+.output-enabled {
+  color: $theme-primary-color;
+}
+
+.device-group-icon {
+  position: relative;
+  top: 30px;
+  font-size: 20px;
+}
+
+.list-item-albumart {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.list-item-name {
+  position: absolute;
+  top: 20px;
+  left: 60px;
+}
+
+.list-item-type {
+  position: absolute;
+  top: 47px;
+  left: 60px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.list-title {
+  font-size: 24px;
+  font-weight: 300;
+  padding: 10px 0px;
+  text-align: left;
+}
+
+.list-item-volume-bar {
+  -webkit-appearance: none;
+  outline: none;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  //bottom: 20px;
+  left: 20px;
+  width: 80% !important;
+  margin-top: 10px;
+}
+
+.list-item-volume-bar::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background-color: white;
+
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.list-item-volume-bar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background-color: white;
+
+  cursor: pointer;
+}
+
+.list-item-div {
+  padding-bottom: 20px;
+  border-bottom: solid 1px #333;
+}
+
+/*this is used for changing the color on the left side of the volume slider in the sidebar
+  !works only on Firefox
+*/
+.list-item-volume-bar::-moz-range-progress {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 3px;
+}

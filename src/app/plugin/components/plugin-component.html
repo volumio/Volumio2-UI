@@ -1,100 +1,109 @@
-<div class="row" ng-if="pluginComponent.showPlugin">
-  <div id="pluginWrapper">
-    <div class="box">
-      <div class="boxHeader">
-        <div class="title">
-          <h2>{{pluginComponent.pluginObj.page.label}}</h2>
-          <button type="button" class="btn btn-link btn-xs" ng-if="pluginComponent.$stateParams.isPluginSettings" onclick="window.history.back()">
-            <i class="fa fa-chevron-left" aria-hidden="true"></i> <span translate="COMMON.BACK"></span>
-          </button>
-        </div>
-      </div>
-
-      <h4 class="pluginDescription" ng-if="pluginComponent.pluginObj.page.description">
-        {{pluginComponent.pluginObj.page.description}}
-      </h4>
-
-      <div class="panel panel-default" ng-if="!section.hidden" ng-repeat="section in pluginComponent.pluginObj.sections track by $index">
-
-        <div ng-if="section.coreSection" ng-include="'app/plugin/core-plugin/' + section.coreSection + '-plugin.html'">
+<div class="container-fluid">
+  <div class="row" ng-if="pluginComponent.showPlugin">
+    <div class="col-xs-24" id="pluginWrapper">
+      <div class="box">
+        <div class="boxHeader">
+          <div class="title">
+            <h2>
+              <a ui-sref="volumio.settings" class="btn btn-primary" ng-if="pluginComponent.themeManager.theme === 'volumio3'">
+                <i class="fa fa-arrow-left" style="font-size: 24px"></i>
+              </a>
+              {{pluginComponent.pluginObj.page.label}}
+            </h2>
+            <button type="button" class="btn btn-link btn-xs" ng-if="pluginComponent.$stateParams.isPluginSettings" onclick="window.history.back()">
+              <i class="fa fa-chevron-left" aria-hidden="true"></i> <span translate="COMMON.BACK"></span>
+            </button>
+          </div>
         </div>
 
-        <div ng-if="!section.coreSection" class="panel-heading">
-          <h3 class="panel-title">
-            <i ng-if="section.icon" class="fa {{section.icon}}"></i>
-            <img ng-if="!section.icon && section.image" src={{::pluginComponent.pluginObj.host+'/albumart?sectionimage='+section.image}} class="section-image"/> {{this.socketService.host}}{{section.label}}
-          </h3>
-        </div>
+        <h4 class="pluginDescription" ng-if="pluginComponent.pluginObj.page.description">
+          {{pluginComponent.pluginObj.page.description}}
+        </h4>
 
-        <div ng-if="!section.coreSection" class="panel-body">
-          <h4 class="sectionDescription" ng-if="section.description">
-            {{section.description}}
-          </h4>
+        <div class="panel panel-default" ng-if="!section.hidden" ng-repeat="section in pluginComponent.pluginObj.sections track by $index">
 
-          <div ng-if="section.content">
-            <form class="form-horizontal">
-              <div ng-repeat="item in section.content track by $index" ng-if="!item.hidden" plugin-visible="item.visibleIf" section="section"
-                class="form-group">
+          <div ng-if="section.coreSection" ng-include="'app/plugin/core-plugin/' + section.coreSection + '-plugin.html'">
+          </div>
 
-                <label for="{{item.id}}" class="control-label">
-                  {{item.label}}
-                </label>
+          <div ng-if="!section.coreSection" class="panel-heading">
+            <h3 class="panel-title">
+              <i ng-if="section.icon" class="fa {{section.icon}}"></i>
+              <img ng-if="!section.icon && section.image" src={{::pluginComponent.pluginObj.host+'/albumart?sectionimage='+section.image}} class="section-image"/> {{this.socketService.host}}{{section.label}}
+            </h3>
+          </div>
 
-                <div ng-switch="item.element" class="control-item">
-                  <div class="">
-                    <input ng-switch-when="input" id="{{item.id}}" type="{{item.type}}" plugin-attributes="item.attributes" ng-model="item.value"
-                      class="form-control">
+          <div ng-if="!section.coreSection" class="panel-body">
+            <h4 class="sectionDescription" ng-if="section.description">
+              {{section.description}}
+            </h4>
 
-                    <input ng-switch-when="switch" id="{{item.id}}" bs-switch ng-model="item.value" type="checkbox" switch-size="medium" switch-animate="false"
-                      switch-on-text="On" switch-off-text="Off" ng-true-value="true" ng-false-value="false">
+            <div ng-if="section.content">
+              <form>
+                <div ng-repeat="item in section.content track by $index" ng-if="!item.hidden" plugin-visible="item.visibleIf" section="section"
+                     class="form-group">
 
-                    <div ng-switch-when="select">
-                      <ui-select id="{{item.id}}" ng-model="item.value" search-enabled="false" ng-readonly="true" append-to-body="true" theme="bootstrap">
-                        <ui-select-match class="ui-select-match" placeholder="Enter an address...">
-                          {{$select.selected.label}}
-                        </ui-select-match>
-                        <ui-select-choices class="ui-select-choices" repeat="option in item.options track by $index">
-                          <div ng-bind-html="option.label"></div>
-                        </ui-select-choices>
-                      </ui-select>
-                    </div>
+                  <label for="{{item.id}}" class="control-label">
+                    {{item.label}}
+                  </label>
 
-                    <div ng-switch-when="equalizer">
-                      <equalizer id="{{item.id}}" config="item.config">
-                      </equalizer>
-                    </div>
+                  <div ng-switch="item.element" class="control-item">
+                    <div class="">
+                      <input ng-switch-when="input" id="{{item.id}}" type="{{item.type}}" plugin-attributes="item.attributes" ng-model="item.value"
+                             class="form-control">
 
-                    <button ng-switch-when="button" id="{{item.id}}" type="button" class="btn btn-info" name="{{item.id}}" plugin-attributes="item.attributes"
-                      ng-click="pluginComponent.saveButton(item)">
-                      {{item.label}}
-                    </button>
+                      <input ng-switch-when="switch" id="{{item.id}}" bs-switch ng-model="item.value" type="checkbox" switch-size="medium" switch-animate="false"
+                             switch-on-text="On" switch-off-text="Off" ng-true-value="true" ng-false-value="false">
 
-                    <div ng-switch-default>
+                      <div ng-switch-when="select">
+                        <ui-select id="{{item.id}}" ng-model="item.value" search-enabled="false" ng-readonly="true" append-to-body="true" theme="bootstrap">
+                          <ui-select-match class="ui-select-match" placeholder="Enter an address...">
+                            {{$select.selected.label}}
+                          </ui-select-match>
+                          <ui-select-choices class="ui-select-choices" repeat="option in item.options track by $index">
+                            <div ng-bind-html="option.label"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                      </div>
+
+                      <div ng-switch-when="equalizer">
+                        <equalizer id="{{item.id}}" config="item.config">
+                        </equalizer>
+                      </div>
+
+                      <button ng-switch-when="button" id="{{item.id}}" type="button" class="btn btn-info" name="{{item.id}}" plugin-attributes="item.attributes"
+                              ng-click="pluginComponent.saveButton(item)">
+                        {{item.label}}
+                      </button>
+
+                      <div ng-switch-default>
+                      </div>
                     </div>
                   </div>
+
+                  <!--<div class="clearfix visible-sm"></div>-->
+
+                  <div ng-if="pluginComponent.uiSettingsService.uiSettings.plugins.showDoc && item.doc" class="control-doc">
+                    <a href ng-click="pluginComponent.openDoc(item)">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
+                  </div>
+
+                  <div ng-if="pluginComponent.uiSettingsService.uiSettings.plugins.showDescription && item.description" class="control-description">
+                    {{item.description}}
+                  </div>
+
+                  <div style="clear: both"></div>
                 </div>
 
-                <!--<div class="clearfix visible-sm"></div>-->
-
-                <div ng-if="pluginComponent.uiSettingsService.uiSettings.plugins.showDoc && item.doc" class="control-doc">
-                  <a href ng-click="pluginComponent.openDoc(item)">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  </a>
+                <div ng-if="section.saveButton && !section.saveButton.hidden" class="form-group">
+                  <div class="control-buttons">
+                    <button type="button" class="btn btn-info" ng-click="pluginComponent.saveSection(section)">
+                      {{section.saveButton.label}}
+                    </button>
+                  </div>
                 </div>
-
-                <div ng-if="pluginComponent.uiSettingsService.uiSettings.plugins.showDescription && item.description" class="control-description">
-                  {{item.description}}
-                </div>
-              </div>
-
-              <div ng-if="section.saveButton && !section.saveButton.hidden" class="form-group">
-                <div class="control-buttons">
-                  <button type="button" class="btn btn-info" ng-click="pluginComponent.saveSection(section)">
-                    {{section.saveButton.label}}
-                  </button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>

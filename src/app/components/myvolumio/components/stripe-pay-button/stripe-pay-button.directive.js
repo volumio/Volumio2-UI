@@ -70,7 +70,7 @@ class StripePayButtonController {
     this.stripeService.getPublicKey().then((key) => {
       this.handler = this.stripeCheckoutService.configure({
         key: key,
-        image: 'app/themes/volumio/assets/variants/volumio/graphics/volumio-icon.png',
+        image: 'app/themes/volumio3/assets/variants/volumio/graphics/volumio-icon.png',
         locale: 'auto',
         token: this.getPayFunction(),
         bitcoin: true,

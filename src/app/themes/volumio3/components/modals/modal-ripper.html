@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
+</div>
+<div class="modal-body">
+  <div ng-if="::modal.dataObj.content">
+    <span ng-bind-html="modal.dataObj.content"></span>
+  </div>
+  <div ng-if="::modal.dataObj.artist || modal.dataObj.album">
+    <h4>CD Informations</h4>
+    <form novalidate name="modal.form" class="form-horizontal">
+      <div class="form-group" ng-if="::modal.dataObj.artist">
+        <label for="artist" class="col-xs-2 control-label">{{'COMMON.ARTIST' | translate}}</label>
+        <div class="col-xs-22">
+          <input ng-model="modal.dataObj.artist" type="text" class="form-control col-xs-18" id="artist" placeholder="Artist">
+        </div>
+      </div>
+      <div class="form-group" ng-if="::modal.dataObj.album">
+        <label for="album" class="col-xs-2 control-label">{{'COMMON.ALBUM' | translate}}</label>
+        <div class="col-xs-22">
+          <input ng-model="modal.dataObj.album" type="text" class="form-control" id="album" placeholder="Album">
+        </div>
+      </div>
+
+      <div ng-if="::modal.dataObj.tracks">
+        <h4>{{'COMMON.SONGS' | translate}}</h4>
+        <div ng-repeat="track in modal.dataObj.tracks track by track.number"  class="form-group">
+          <label class="col-xs-2 control-label">{{$index+1}}</label>
+          <div class="col-xs-22">
+            <input ng-model="modal.dataObj.tracks[$index].title" type="text" class="form-control" placeholder="track">
+          </div>
+        </div>
+      </div>
+    </form>
+    <div
+        ng-if="modal.dataObj.availableDrives && modal.dataObj.availableDrives.length">
+        <div class="row">
+          <div class="col-md-12 col-xs-22">
+            <h4>{{::modal.dataObj.ripLocationMessage}}</h3>
+          </div>
+            <div class="col-md-12 col-xs-22">
+    <ui-select
+        id="drive"
+        ng-model="modal.availableDrives"
+        search-enabled="false"
+        append-to-body="false"
+        theme="bootstrap"
+        on-select="modal.dataObj.destinationDrive=$select.selected">
+      <ui-select-match
+          class="ui-select-match"
+          placeholder={{modal.dataObj.availableDrives[0].name}}>
+        {{$select.selected.name}}
+      </ui-select-match>
+      <ui-select-choices
+          class="ui-select-choices"
+          repeat="item in modal.dataObj.availableDrives track by $index">
+        <div id="{{item.name}}" ng-bind-html="item.name"></div>
+      </ui-select-choices>
+    </ui-select>
+    </div>
+    </div>
+  </div>
+  <div
+      ng-if="modal.dataObj.availableDrives && !modal.dataObj.availableDrives.length">
+      <div class="row">
+        <div class="col-md-22 col-xs-22">
+          <h4>{{::modal.dataObj.ripLocationMessage}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" ng-click="modal.cancel()">{{'COMMON.CANCEL' | translate}}</button>
+  <button class="btn btn-default" ng-if="modal.dataObj.rippingAvailable" ng-click="modal.startToRipCd()">{{'COMMON.RIP' | translate}}</button>
+</div>

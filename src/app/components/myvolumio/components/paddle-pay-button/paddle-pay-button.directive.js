@@ -13,7 +13,8 @@ class PaddlePayButtonDirective {
         buttonLabel: '@',
         buttonClass: '@',
         userEmail: '=',
-        planDuration: '='
+        planDuration: '=',
+        isTrial: '='
       }
     };
     return directive;
@@ -46,6 +47,7 @@ class PaddlePayButtonController {
     this.buttonClass = this.$scope.buttonClass;
     this.userEmail = this.$scope.userEmail || '';
     this.planDuration = this.$scope.planDuration;
+    this.isTrial = this.$scope.isTrial;
 
     this.init();
   }
@@ -78,9 +80,34 @@ class PaddlePayButtonController {
     }
     return this.product.prices[this.planDuration].paddleId;
   }
+  
+  getTrialParameters(){
+    if(this.product.prices === undefined || this.planDuration === undefined){
+      return undefined;
+    }
+    var trialParameters = {"trialDays":"", "trialDaysAuth":"", "trialAuth":""};
+    if (this.product.prices[this.planDuration].trial.trialEnabled && this.product.prices[this.planDuration].trial.trialDays && this.product.prices[this.planDuration].trial.trialDaysAuth && this.product.prices[this.planDuration].trial.trialAuth) {
+      trialParameters.trialDays = this.product.prices[this.planDuration].trial.trialDays;
+      trialParameters.trialDaysAuth = this.product.prices[this.planDuration].trial.trialDaysAuth;
+      trialParameters.trialAuth = this.product.prices[this.planDuration].trial.trialAuth;
+    }
+    return trialParameters;
+  }
 
   handlePayment() {
     var paddleId = this.getPaddleProductId();
+    var trialDays = '';
+    var trialDaysAuth = '';
+    var trialPrice = '';
+    var trialAuth = '';
+    if (this.isTrial) {
+      var trialParameters = this.getTrialParameters();
+      trialDays = trialParameters.trialDays;
+      trialDaysAuth = trialParameters.trialDaysAuth;
+      trialAuth = trialParameters.trialAuth;
+      trialPrice = 0;
+    }
+
     if(paddleId === undefined || !Number.isInteger(paddleId) ){
       alert("Error, no transaction occurred, no paddleId found.");
       return;
@@ -90,6 +117,10 @@ class PaddlePayButtonController {
       product: paddleId,
       email: this.userEmail,
       passthrough: { "email": this.userEmail, "uid": this.userId },
+      trialDays: trialDays,
+      trialDaysAuth: trialDaysAuth,
+      price: trialPrice,
+      auth:trialAuth,
       successCallback: (data) => {
         this.successCallback(data);
       },

@@ -1,0 +1,13 @@
+#playerLoggerWrapper {
+  @include make-row();
+  #playerLogger{
+    border: solid 0px red;
+    background-color: #999;
+    padding: 10px;
+    margin:10px 0px;
+    #log {
+      max-height: 300px;
+      overflow: scroll;
+    }
+  }
+}

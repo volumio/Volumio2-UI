@@ -1,0 +1,82 @@
+#playbackPanelWrapper {
+
+  margin-top: 10px;
+  margin: auto;
+  @include breakpoint(xs) {
+    margin: 0px;
+  }
+
+  #leftPanel, #rightPanel {
+    text-align: center;
+    height: calc(100vh - 100px);
+    @include make-sm-column(8);
+
+    @include breakpoint(xs) {
+      height: auto;
+    }
+    @include breakpoint(sm) {
+      height: auto;
+    }
+  }
+
+  #centerPanel {
+    @include make-sm-column(8);
+  }
+
+  &.mobile {
+    height: 100%;
+
+    -webkit-border-top-left-radius: 30px;
+    -webkit-border-top-right-radius: 30px;
+    -moz-border-radius-topleft: 30px;
+    -moz-border-radius-topright: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    background: $theme-dark-transparent-background;
+
+    .cover-art-container {
+
+      text-align: center;
+      scrollbar-width: none;
+
+      img {
+        padding-top: 16px;
+        // TODO FIND A BETTER METHOD
+        max-height: calc(100vh - 390px);
+      }
+    }
+
+    .track-info-container{
+      margin-top: 16px;
+    }
+
+    .track-button-container{
+      text-align: center;
+      #trackButtonBar{
+        display: inline-block;
+        background: transparent !important;
+      }
+    }
+
+    .player-buttons-container{
+      margin-top: 24px;
+
+      #playerButtons .playPause{
+        left: 0 !important;
+        top: -50px;
+      }
+    }
+  }
+
+}
+
+i#closePlaybackPanelWrapper {
+    font-size: 48px;
+}
+
+div#goBackPanelWrapper {
+    top: -10px;
+    max-height: 30px;
+    z-index: 4;
+}

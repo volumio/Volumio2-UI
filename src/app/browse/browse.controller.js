@@ -1,7 +1,7 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
       modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-      uiSettingsService) {
+      uiSettingsService, $state, themeManager, $stateParams) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -17,6 +17,9 @@ class BrowseController {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.uiSettingsService = uiSettingsService;
+    this.themeManager = themeManager;
+    this.$stateParams = $stateParams;
+    this.isDedicatedSearchView = false;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();
@@ -40,13 +43,17 @@ class BrowseController {
     this.browseService.backHome();
   }
 
-  play(item) {
+  play(item, list, itemIndex) {
     if (this.browseService.currentFetchRequest && this.browseService.currentFetchRequest.uri === 'playlists') {
       this.playQueueService.playPlaylist(item);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else {
-      this.playQueueService.addPlay(item);
+      if (this.uiSettingsService.uiSettings.playMethod === 'single') {
+        this.playQueueService.addPlay(item);
+      } else {
+        this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+      }
     }
   }
 
@@ -66,11 +73,11 @@ class BrowseController {
     }
   }
 
-  clickListItem(item) {
+  clickListItem(item, list, itemIndex) {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
       this.fetchLibrary(item);
     } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
-      this.play(item);
+      this.play(item, list, itemIndex);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
@@ -79,9 +86,11 @@ class BrowseController {
       this.playQueueService.playPlaylist({title: item.name});
     }
   }
+
   clickListItemByIndex(listIndex, itemIndex) {
     let item = this.browseService.lists[listIndex].items[itemIndex];
-    this.clickListItem(item);
+    let list = this.browseService.lists[listIndex].items;
+    this.clickListItem(item, list, itemIndex);
   }
 
   hamburgerMenuClick(button, listIndex, itemIndex) {
@@ -158,7 +167,7 @@ class BrowseController {
   }
 
   search() {
-    if (this.searchField.length >= 3) {
+    if (this.searchField && this.searchField.length >= 3) {
       this.browseService.isSearching = true;
       if (this.searchTimeoutHandler) {
         this.$timeout.cancel(this.searchTimeoutHandler);
@@ -378,6 +387,36 @@ class BrowseController {
     this.$scope.$on('$destroy', () => {
       this.$document[0].removeEventListener('keydown', bindedBackListener, false);
     });
+
+    this.$scope.$watch( () => this.$stateParams.isDedicatedSearch , (isDedicatedSearch) => {
+      if (isDedicatedSearch) {
+        this.setDedicatedSearch();
+      } else {
+        this.unsetDedicatedSearch();
+      }
+    }, true);
+  }
+
+  setDedicatedSearch(){
+    this.isDedicatedSearchView = true;
+    this.browseService.isSearching = true;
+    this.browseService.lists = [];
+    this.$timeout( function () {
+      document.querySelector('#search-input-form').focus();
+    },100 );
+  }
+
+  unsetDedicatedSearch(){
+    if (this.browseService.isSearching) {
+      this.isDedicatedSearchView = false;
+      this.browseService.isSearching = false;
+      if (!this.browseService.isBrowsing) {
+        this.browseService.lists = undefined;
+      } else if (this.browseService.lastBrowseLists) {
+        this.browseService.lists = this.browseService.lastBrowseLists;
+      }
+    }
+
   }
 
   backListener() {
@@ -406,6 +445,10 @@ class BrowseController {
         this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
       }
     }
+  }
+
+  isVolumio3Theme(){
+    return this.themeManager.theme === 'volumio3';
   }
 }
 

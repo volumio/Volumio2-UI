@@ -6,6 +6,14 @@
     <input type="text" class="form-control pull-left" ng-model="modal.customPlaylist">
     <button
         type="button"
+        ng-if="!modal.customPlaylist.length"
+        ng-click="modal.addToCustomPlaylist()"
+        class="btn btn-info pull-right disabled">
+      {{'COMMON.NEW' | translate}}
+    </button>
+    <button
+        type="button"
+        ng-if="modal.customPlaylist.length"
         ng-click="modal.addToCustomPlaylist()"
         class="btn btn-info pull-right">
       {{'COMMON.NEW' | translate}}
