@@ -22,13 +22,14 @@ class MyVolumioPlanCardDirective {
 }
 
 class MyVolumioPlanCardController {
-  constructor($rootScope, $scope, $state, authService, modalService, productsService) {
+  constructor($rootScope, $scope, $state, authService, modalService, productsService, $filter) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
     this.modalService = modalService;
+    this.filteredTranslate = $filter('translate');
 
     this.product = this.$scope.product;
     this.isDefaultBehaviour = true;
@@ -65,11 +66,11 @@ class MyVolumioPlanCardController {
   }
 
   getShownPrice(){
-    if(this.product === undefined){
-      return '';
+    if(this.product === undefined || this.product === null || this.product.plan === 'free'){
+      return this.filteredTranslate('MYVOLUMIO.FREE').toUpperCase();
     }
     var planDuration = this.getCurrentPlanDuration();
-    return this.product.prices[planDuration].textualPrice;
+    return this.product.prices[planDuration].localizedPrice;
   }
 
   getCurrentPlanDuration(){

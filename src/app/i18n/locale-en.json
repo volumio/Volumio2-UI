@@ -387,7 +387,8 @@
     "RECOVER_PASSWORD_SENT_MESSAGE":"We just sent instructions on how to reset your password to your mail, check it out",
     "GO_TO_LOGIN":"Done? Go to login",
     "TRY_FOR_FREE":"Try for free",
-    "LIFETIME":"Lifetime"
+    "LIFETIME":"Lifetime",
+    "FREE": "Free"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
