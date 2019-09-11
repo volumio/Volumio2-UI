@@ -1,7 +1,7 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
       modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-      uiSettingsService, $state, themeManager, $stateParams) {
+      toastMessageService, uiSettingsService, $state, themeManager, $stateParams) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -20,6 +20,7 @@ class BrowseController {
     this.themeManager = themeManager;
     this.$stateParams = $stateParams;
     this.isDedicatedSearchView = false;
+	this.toastMessageService = toastMessageService;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();
@@ -77,7 +78,8 @@ class BrowseController {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
       this.fetchLibrary(item);
     } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
-      this.play(item, list, itemIndex);
+	  this.toastMessageService.showMessage('success', item.title+' added to queue', 'Queue');
+      this.playQueueService.add(item, list, itemIndex);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
@@ -299,7 +301,7 @@ class BrowseController {
         this.table += `<div class="listWrapper">`;
         list.items.forEach((item, itemIndex) => {
           //Print items
-          this.table += `<div class="itemWrapper"><div class="itemTab">`;
+          this.table += `<div class="itemWrapper" onclick="style.backgroundColor = '#42f4f1'"><div class="itemTab">`;
           if (item.icon || item.albumart) {
           this.table += `<div class="image" id="${item.active ? 'source-active': ''}"
               onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
