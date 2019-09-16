@@ -73,7 +73,9 @@
     "SHARE": "Condividi",
     "EJECT": "Espelli",
     "FUNCTIONALIES_CONTROL":"Controllo delle funzionalità",
-    "UPDATE_ALBUMART":"Aggiorna Copertina"
+    "UPDATE_ALBUMART":"Aggiorna Copertina",
+    "YEAR":"Year",
+    "GENRE":"Genre"
   },
   "BROWSER": {
     "PLAY": "Riproduci",

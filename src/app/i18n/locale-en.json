@@ -73,7 +73,9 @@
     "SHARE": "Share",
     "EJECT": "Eject",
     "FUNCTIONALIES_CONTROL": "Functionalities control",
-    "UPDATE_ALBUMART":"Update Albumart"
+    "UPDATE_ALBUMART":"Update Albumart",
+    "YEAR":"Year",
+    "GENRE":"Genre"
   },
   "BROWSER": {
     "PLAY": "Play",

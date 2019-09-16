@@ -21,10 +21,10 @@ class ModalRipperController {
     this.$uibModalInstance.dismiss("cancel");
   }
 
-  uploadAlbumart() {
+  uploadCDAlbumart() {
     this.Upload.upload({
-      url: `${this.playerService.getAlbumart(this.dataObj.albumart)}`,
-      data: {filename: this.albumart}
+      url: `${this.socketService.host}/albumart-upload`,
+      data: {filename: this.albumart, artist: this.dataObj.artist, album: this.dataObj.album}
     }).then(
       resp => {
         this.uploadPercentage = false;
