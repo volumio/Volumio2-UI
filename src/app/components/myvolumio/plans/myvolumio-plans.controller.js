@@ -19,7 +19,7 @@ class MyVolumioPlansController {
     this.product1 = null;
     this.product2 = null;
 
-    this.showYearly = false;
+    this.showYearly = true;
     this.showMode = {
       planDuration: this.getSelectedPlanDuration()
     };
@@ -39,6 +39,9 @@ class MyVolumioPlansController {
   authInit() {
     this.$scope.$watch(() => this.authService.user, (user) => {
       this.user = user;
+      if (this.user && this.user.planData && this.user.planDuration && this.user.planDuration === 'monthly') {
+        this.showYearly = false;
+      }
     });
   }
 

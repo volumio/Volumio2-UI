@@ -1,0 +1,43 @@
+#header {
+  @include make-row();
+  position: fixed;
+  z-index: 3;
+  @include breakpoint(xs) {
+    z-index: 2;
+  }
+  top: 0;
+  width: 100%;
+  height: $headerHeight;
+  .headerContent {
+    height: $headerHeight;
+    background-color: $theme-header-color;
+  }
+  .languageContainer {
+    width: 100px;
+    float: right;
+    margin: 16px;
+    .ui-select-choices {
+      width: 100px;
+      min-width: auto;
+    }
+  }
+  .logout-container {
+    float: right;
+    margin: 16px;
+    button {
+      font-size: 16px;
+    }
+  }
+  button {
+    font-size: 24px;
+  }
+
+  #logo {
+    @include make-sm-column(6);
+    @extend .hidden-xs;
+    img {
+      cursor: pointer;
+      width: 170px;
+    }
+  }
+}

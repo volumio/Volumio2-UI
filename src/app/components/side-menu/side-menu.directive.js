@@ -4,7 +4,10 @@ class SideMenuDirective {
     let directive = {
       restrict: 'E',
       templateUrl: 'app/components/side-menu/side-menu.html',
-      scope: false,
+      scope: {
+        isInMainMenu: '@',
+        isInTabBar: '@'
+      },
       controller: SideMenuController,
       controllerAs: 'sideMenu',
       bindToController: true
@@ -17,6 +20,7 @@ class SideMenuController {
   constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log,
       $http, $window, uiSettingsService, authService) {
     'ngInject';
+    this.$rootScope = $rootScope;
     this.$state = $state;
     this.$window = $window;
     this.socketService = socketService;
@@ -31,12 +35,18 @@ class SideMenuController {
     this.authService = authService;
     this.MYVOLUMIO_KEY = 'my-volumio';
 
+    this.isInMainMenu = this.$scope.sideMenu.isInMainMenu;
+    this.isInTabBar = this.$scope.sideMenu.isInTabBar;
+
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
     });
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
+    });
+    this.$rootScope.$on('toggleSideMenu',(event, data) => {
+      this.toggleMenu();
     });
   }
 
@@ -143,6 +153,10 @@ class SideMenuController {
       }
     }
     return false;
+  }
+
+  isMyVolumioVisible(){
+    return !this.isInMainMenu && !this.isInTabBar;
   }
   
 }

@@ -1,0 +1,50 @@
+#trackManagerWrapper {
+  // border: solid 10px red;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background: none !important;
+
+  @include breakpoint(md) {
+    left: -$grid-gutter-width;
+    right: -$grid-gutter-width;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  @include breakpoint(lg) {
+    left: -$grid-gutter-width;
+    right: -$grid-gutter-width;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+#trackManager {
+  margin-top: 110px;
+  // border: solid 10px red;
+  @include breakpoint(xs) {
+    position: absolute;
+    height: 380px;
+
+    @include breakpoint(md){
+      margin-top: -190px;
+    }
+    @include breakpoint(lg){
+      margin-top: -190px;
+    }
+
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    // border: solid 1px yellow;
+  }
+  #trackDetails {
+    margin-bottom: 16px;
+  }
+}

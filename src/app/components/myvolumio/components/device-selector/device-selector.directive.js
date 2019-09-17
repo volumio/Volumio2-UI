@@ -179,7 +179,7 @@ class MyVolumioDeviceSelectorController {
 
   saveLastDevice(device) {
     return this.authService.getUser().then(user => {
-      return this.databaseService.write('users/' + user.uid + '/lastHwuuid', device.hwuuid);
+      return this.databaseService.write('users/' + user.uid + '/lastHost', device.host);
     }).catch(err => { return err; });
   }
 

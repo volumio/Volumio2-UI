@@ -29,8 +29,13 @@
     "SHOW_SETTINGS": "Show Settings",
     "SETTINGS": "Settings",
     "TAB_BROWSE": "Browse",
+    "TAB_HOME": "Home",
+    "TAB_SEARCH": "Search",
+    "TAB_SETTINGS": "Settings",
     "TAB_PLAYBACK": "Playback",
     "TAB_QUEUE": "Queue",
+    "TAB_OUTPUTS": "Outputs",
+    "TAB_VOLUME": "Volume",
     "ARTIST": "Artist",
     "ARTISTS": "Artists",
     "ALBUM": "Album",
@@ -46,7 +51,7 @@
     "MY_MUSIC": "My Music",
     "SEARCH": "Search",
     "NEW": "New",
-    "FAVOURITES": "Favourites",
+    "FAVOURITES": "Favorites",
     "NAME": "Name",
     "URL": "Url",
     "BACK": "Back",
@@ -75,20 +80,22 @@
     "FUNCTIONALIES_CONTROL": "Functionalities control",
     "UPDATE_ALBUMART":"Update Albumart",
     "YEAR":"Year",
-    "GENRE":"Genre"
+    "GENRE":"Genre",
+    "EDIT": "Edit",
+    "GRID" : "Grid"
   },
   "BROWSER": {
     "PLAY": "Play",
     "ADD_TO_QUEUE": "Add to queue",
     "ADD_TO_PLAYLIST": "Add to Playlist",
     "REMOVE_FROM_PLAYLIST": "Remove from Playlist",
-    "ADD_TO_FAVOURITES": "Add to Favourites",
-    "REMOVE_FROM_FAVOURITES": "Remove from Favourites",
+    "ADD_TO_FAVOURITES": "Add to Favorites",
+    "REMOVE_FROM_FAVOURITES": "Remove from Favorites",
     "ADD_WEBRADIO": "Add Webradio",
     "EDIT_WEBRADIO": "Edit Webradio",
     "DELETE_WEBRADIO": "Delete Webradio",
-    "ADD_TO_RADIO_FAVOURITES": "Add to Radio Favourites",
-    "REMOVE_FROM_RADIO_FAVOURITES": "Remove from Radio Favourites",
+    "ADD_TO_RADIO_FAVOURITES": "Add to Radio Favorites",
+    "REMOVE_FROM_RADIO_FAVOURITES": "Remove from Radio Favorites",
     "ADD_WEBRADIO_TITLE": "Add Web Radio",
     "URL_DOC": "The URL can be either a stream URL or a M3U or PLS remote file",
     "DELETE_PLAYLIST": "Delete Playlist",
@@ -99,7 +106,9 @@
     "CLEAR_AND_PLAY": "Clear and play",
     "SAFE_REMOVE": "Safe Remove Media",
     "UPDATE_FOLDER": "Update Folder",
-    "DELETE_FOLDER": "Delete Folder"
+    "DELETE_FOLDER": "Delete Folder",
+    "SKIP_BACKWARDS": "Skip Backwards",
+    "SKIP_FORWARD": "Skip Forward"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",
@@ -139,6 +148,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Random",
     "REPEAT": "Repeat",
+    "REPEAT_ALL": "Repeat All",
+    "REPEAT_SINGLE": "Repeat Single",
+    "REPEAT_OFF": "Repeat Off",
     "SAVE_QUEUE_AS_PLAYLIST": "Save queue as playlist",
     "CONSUME_PLAYLIST": "Consume playlist",
     "CLEAR_QUEUE": "Clear queue"
@@ -206,13 +218,23 @@
     "DONE_MESSAGE": "Done, your syste is ready",
     "MAIL_LIST_SUBSCRIPTION": "Mail list subscription",
     "SOCIAL_SHARE": "Social share",
-    "DONATE": "Donate",
+    "DONATE": "Donate with paypal",
     "SUBSCRIBED_SUCCESFULLY": "Subscribed successfully",
     "ADD_YOUR_MUSIC": "To add your music, simply connect a USB Drive or click the button below to add your Network Drive",
     "STEP": "Step",
     "VOLUMIOAPPS": "Apps",
     "GET_APPS": "For your convenience, you can also use our handy apps",
-    "WIFI_CONNECTION":"Select the wireless network you wish to connect"
+    "WIFI_CONNECTION":"Select the wireless network you wish to connect",
+    "DEVICECODE":"Device Code",
+    "DEVICE_CODE_TITLE":"Device Activation Code",
+    "DEVICE_CODE_MESSAGE":"If you have received a Device Activation code with your device, enter it to take advantage of the exclusive features reserved for you",
+    "DEVICE_CODE_VALIDATE":"Validate Device Code",
+    "ERROR_ACTIVATING_DEVICE":"Could not activate your device",
+    "DEVICE_ACTIVATED": "Your device has been successfully activated. You can now enjoy your exclusive features",
+    "ADVANCEDSETTINGS": "Experience",
+    "EXPERIENCE_SETTINGS_TITLE":"Let's tailor your user experience",
+    "EXPERIENCE_SETTINGS_TEXT" :"Do you prefer an easy to use system with only a simplified set of options or do you want full control over all advanced functions?",
+    "EXPERIENCE_SETTINGS_TEXT_2" :"This setting can be changed later in system settings"
   },
   "SLEEP": {
     "POWER_OFF": "Power off",
@@ -231,7 +253,10 @@
     "ROOMS_AND_GROUPS": "Rooms and groups",
     "MULTI_ROOM_CONFIGURATION": "Multi room configuration",
     "GROUP": "Group",
-    "NOW_PLAYING": "Now playing"
+    "NOW_PLAYING": "Now playing",
+    "PLAYBACK_ZONES":"Playback zones",
+    "ZONES":"Zones",
+    "AUDIO_OUTPUTS_AND_ZONES":"Audio Outputs and Zones"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "ANALOG INPUT",
@@ -363,7 +388,10 @@
     "SAVE_20": "Save 20% with a Yearly Plan!",
     "WHAT_IS_MYVOLUMIO":"What is MyVolumio?",
     "RECOVER_PASSWORD_SENT_MESSAGE":"We just sent instructions on how to reset your password to your mail, check it out",
-    "GO_TO_LOGIN":"Done? Go to login"
+    "GO_TO_LOGIN":"Done? Go to login",
+    "TRY_FOR_FREE":"Try for free",
+    "LIFETIME":"Lifetime",
+    "FREE": "Free"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
@@ -374,6 +402,8 @@
     "NATIVE_TIDAL_QOBUZ_INTEGRATION": "Native TIDAL and Qobuz Integration",
     "AUTO_SYNC": "Automatic Sync of Personal items",
     "MYVOLUMIO_6_DEVICES": "Use MyVolumio on up to 6 devices",
-    "REMOTE_CONNECTION_6_DEVICES": "Remote connection to up to 6 devices"
+    "REMOTE_CONNECTION_6_DEVICES": "Remote connection to up to 6 devices",
+    "CD_PLAYBACK_RIPPING":"CD Playback and Ripping",
+    "ALEXA_INTEGRATION":"Alexa integration"
   }
 }

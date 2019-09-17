@@ -29,8 +29,13 @@
     "SHOW_SETTINGS": "Montrer les réglages",
     "SETTINGS": "Réglages",
     "TAB_BROWSE": "Parcourir",
+    "TAB_HOME": "Home",
+    "TAB_SEARCH": "Recherche",
+    "TAB_SETTINGS": "Réglages",
     "TAB_PLAYBACK": "Jouer",
     "TAB_QUEUE": "Queue",
+    "TAB_OUTPUTS": "Sorties",
+    "TAB_VOLUME": "Volume",
     "ARTIST": "Artiste",
     "ARTISTS": "Artistes",
     "ALBUM": "Album",
@@ -72,7 +77,9 @@
     "SUBSCRIBE_ME": "M'inscrire",
     "SHARE": "Partager",
     "EJECT": "Ejecter",
-    "FUNCTIONALIES_CONTROL": "Contrôle des fonctionnalités" 
+    "FUNCTIONALIES_CONTROL": "Contrôle des fonctionnalités" ,
+    "EDIT":"Editer",
+    "GRID": "Grille"
   },
   "BROWSER": {
     "PLAY": "Lecture",
@@ -96,7 +103,9 @@
     "CLEAR_AND_PLAY": "Remplacer et jouer",
     "SAFE_REMOVE": "Ejection des médias",
     "UPDATE_FOLDER": "Mise à jour du dossier",
-    "DELETE_FOLDER": "Effacer le dossier"
+    "DELETE_FOLDER": "Effacer le dossier",
+    "SKIP_BACKWARDS": "Avancer",
+    "SKIP_FORWARD": "Retour"
   },
 "MY_MUSIC": { 
     "UPDATE": "Mettre à jour", 
@@ -136,6 +145,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "Aléatoire",
     "REPEAT": "Répeter",
+     "REPEAT_ALL": "Tout répéter",
+    "REPEAT_SINGLE": "Répeter une fois",
+    "REPEAT_OFF": "Répétition déactivée",
     "SAVE_QUEUE_AS_PLAYLIST": "Sauver la queue comme Playlist",
     "CONSUME_PLAYLIST": "Ecouter et effacer",
     "CLEAR_QUEUE": "Effacer la queue"
@@ -202,12 +214,23 @@
      "DONE_MESSAGE": "Fait, votre système Volumio est prèt.",
      "MAIL_LIST_SUBSCRIPTION": "Adresse courriel de suscription",
      "SOCIAL_SHARE": "Partage social",
-     "DONATE": "Donner",
+     "DONATE": "Donner avec Paypal",
      "SUBSCRIBED_SUCCESFULLY": "Inscription réussie!",
      "ADD_YOUR_MUSIC":"Pour ajouter votre musique, connectez un disque USB et cliquez sur le bouton ci-dessous pour ajouter",
      "STEP":"Etape",
      "VOLUMIOAPPS":"Applications",
-     "GET_APPS":"Pour votre confort, vous pouvez utiliser des applications pratiques"
+     "GET_APPS":"Pour votre confort, vous pouvez utiliser des applications pratiques",
+     "WIFI_CONNECTION":"Selectionnez le réseau WIFI sur lequel vous voulez vous connecter",
+    "DEVICECODE":"Code du périphérique",
+    "DEVICE_CODE_TITLE":"Code d'activation du périphérique",
+    "DEVICE_CODE_MESSAGE":"Si vous avec un code d'activationn avec votre périphérique, renseigné le afin d'obtenir des avantages qui vous sont réserrvés",
+    "DEVICE_CODE_VALIDATE":"Valider le code",
+    "ERROR_ACTIVATING_DEVICE":"Impssible d'activer ce code",
+    "DEVICE_ACTIVATED":"Votre périphérique a été activé avec succès! Profitez des avantages qui vous sont reservés!",
+    "ADVANCEDSETTINGS": "Experience",
+    "EXPERIENCE_SETTINGS_TITLE":"Partagez votre experience d'utilisateur",
+    "EXPERIENCE_SETTINGS_TEXT" :"Préferez vous un système avec seulement des réglages simplifiés, ou voulez vous un contrôle total avec dess réglages avancés?",
+    "EXPERIENCE_SETTINGS_TEXT_2" :"Ce réglage pourra être changé plus tard dans les réglages système"
    },
   "SLEEP": {
     "POWER_OFF": "Eteindre dans",
@@ -226,7 +249,10 @@
     "ROOMS_AND_GROUPS": "Pièces et groupes",
     "MULTI_ROOM_CONFIGURATION": "Configuration du Multi room",
     "GROUP": "Groupe",
-    "NOW_PLAYING": "En cours de lecture"
+    "NOW_PLAYING": "En cours de lecture",
+     "PLAYBACK_ZONES":"Zones de lecture",
+     "ZONES":"Zones",
+     "AUDIO_OUTPUTS_AND_ZONES":"Sorties audio et zones"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "Entrée Analogique",
@@ -356,7 +382,11 @@
     "YEARLY": "Annuel",
     "YEARLY_PER": "Par an",
     "SAVE_20": "Economisez 20% avec l'abonnement annuel!",
-    "WHAT_IS_MYVOLUMIO":"Qu'est-ce que MyVolumio?"
+    "WHAT_IS_MYVOLUMIO":"Qu'est-ce que MyVolumio?",
+    "RECOVER_PASSWORD_SENT_MESSAGE":"Un courriel vient de vous être envoyé. Merci de vérifier!",
+    "GO_TO_LOGIN":"Ok? Aller au Login ",
+    "TRY_FOR_FREE":"Essai gratuit",
+    "LIFETIME":"A vie"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Recevez notre Fil d'actualités MyVolumio",
@@ -367,6 +397,8 @@
     "NATIVE_TIDAL_QOBUZ_INTEGRATION": "Integration native de TIDAL et Qobuz",
     "AUTO_SYNC": "Synchronisation automatique des playlist et autres réglages Personnels",
     "MYVOLUMIO_6_DEVICES": "MyVolumio sur 6 appareils maximum",
-    "REMOTE_CONNECTION_6_DEVICES": "Connexion à distance pour 6 appareils"
+    "REMOTE_CONNECTION_6_DEVICES": "Connexion à distance pour 6 appareils",
+     "CD_PLAYBACK_RIPPING":"Lecture et extraction de CD",
+    "ALEXA_INTEGRATION":"Integration d'Amazon Alexa"
 } 
 }

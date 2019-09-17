@@ -1,0 +1,24 @@
+<div class="wizard-panel col-sm-10 col-sm-offset-7">
+
+  <h4 translate="WIZARD.EXPERIENCE_SETTINGS_TITLE" style="margin-top:40px;"></h4>
+  <br>
+  <h5  translate="WIZARD.EXPERIENCE_SETTINGS_TEXT"></h5>
+  <h6  translate="WIZARD.EXPERIENCE_SETTINGS_TEXT_2"></h6>
+  <ui-select
+      id="select-advanced-settings"
+      ng-model="wizard.wizardDetails.experienceAdvancedSettings.status"
+      search-enabled="false"
+      ng-readonly="true"
+      append-to-body="true"
+      theme="bootstrap">
+    <ui-select-match
+        class="ui-select-match">
+      {{$select.selected.label}}
+    </ui-select-match>
+    <ui-select-choices
+        class="ui-select-choices"
+        repeat="setting in wizard.wizardDetails.experienceAdvancedSettings.options track by $index">
+      <div ng-bind-html="setting.label"></div>
+    </ui-select-choices>
+  </ui-select>
+</div>

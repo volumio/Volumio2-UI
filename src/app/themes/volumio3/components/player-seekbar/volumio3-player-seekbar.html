@@ -1,0 +1,20 @@
+<div class='row player-seekbar' ng-if='playerSeekBar.getDuration() != null'>
+
+  <div class="col-md-24">
+    <div class='time-label pull-left'>
+      {{playerSeekBar.getElapsed()}}
+    </div>
+
+    <div class='time-label pull-right'>
+      {{playerSeekBar.getDuration()}}
+    </div>
+
+    <div class="clear: both"></div>
+  </div>
+
+  <div class="col-md-24 seekbar-container">
+    <slider ng-model="playerSeekBar.seekPercent" min="0" step="1" max="1001" reversed formatter="playerSeekBar.getElapsed()">
+    </slider>
+  </div>
+
+</div>

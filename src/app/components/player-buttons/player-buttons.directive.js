@@ -4,7 +4,9 @@ class PlayerButtonsDirective {
     let directive = {
       restrict: 'E',
       templateUrl: themeManager.getHtmlPath('player-buttons', 'components/player-buttons'),
-      scope: false,
+      scope: {
+        isInFooter: "@"
+      },
       controller: PlayerButtonsController,
       controllerAs: 'playerButtons',
       bindToController: true
@@ -14,9 +16,12 @@ class PlayerButtonsDirective {
 }
 
 class PlayerButtonsController {
-  constructor(playerService) {
+  constructor($scope, playerService) {
     'ngInject';
+    this.$scope = $scope;
     this.playerService = playerService;
+
+    this.isInFooter = this.$scope.isInFooter || false;
   }
 }
 

@@ -1,0 +1,124 @@
+$trackInfoBarButtonsHeight: 35px;
+#playQueue {
+  .trackInfoBarButtons {
+    position: fixed;
+    z-index: 5;
+
+    width: 100%;
+    @include breakpoint('md'){
+      width: 83.33333%
+    }
+    @include breakpoint('lg'){
+      width: 83.33333%
+    }
+
+    background: $theme-dark-color;
+
+    height: $trackInfoBarButtonsHeight;
+    text-align: right;
+
+    @include breakpoint('xs') {
+      text-align: center;
+      button {
+        padding: 0px 18px;
+        font-size: 24px;
+      }
+    }
+  }
+
+  #playQueueList {
+    // @include make-xs-column(24);
+    background-color: $theme-dark-transparent-background;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    //overflow: auto;
+    // height: 100%;
+    //height: calc(100vh - #{$headerHeight} - #{$footerHeight} - #{$trackInfoBarButtonsHeight});
+    height: auto;
+    padding-top: $trackInfoBarButtonsHeight;
+
+    ul {
+      padding: 0;
+      margin-bottom: 0;
+    }
+    li {
+      margin: 0px;
+      list-style: none;
+      padding: 8px 0px;
+      border-top: solid 1px #CCC;
+      &:hover {
+        background-color: rgba(30, 30, 30, 0.8);
+      }
+      &:hover span.rollover, &.isPlaying span.rollover {
+        background: rgba(0, 0, 0, .3);
+        -webkit-transition: .3s;
+        &:before {
+          content: '\f04b';
+        }
+      }
+      &.sorting span.rollover{
+        transform: rotate(90deg);
+        &:before {
+          content: '\f0ec' !important;
+        }
+      }
+      &.isPlaying span.rollover {
+        color: $theme-primary-color;
+      }
+    }
+
+    span.rollover {
+      font-family: FontAwesome;
+      font-size: 20px;
+      padding-top: 10px;
+      padding-left: 15px;
+      left: 10px;
+      transition: .3s;
+      background: rgba(0, 0, 0, 0);
+      cursor: pointer;
+      height: 45px;
+      width: 45px;
+      position: absolute;
+    }
+
+
+    .image {
+      display: table-cell;
+      position: relative;
+      img {
+        width: 45px;
+        height: 45px;
+        margin:0 10px 0 10px;
+      }
+    }
+
+    .titleArtist {
+      display: table-cell;
+      vertical-align: top;
+      width: 100%;
+    }
+
+    .commandButtons {
+      display: table-cell;
+      vertical-align: middle;
+      margin-right: 5px;
+      font-size: 22px;
+    }
+
+    .title {
+      margin-top: -5px;
+      font-size: 16px;
+    }
+    .artist-album {
+      font-size: 13px;
+      color: $theme-primary-color;
+    }
+    .deleteBtn {
+      text-align: right;
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+}

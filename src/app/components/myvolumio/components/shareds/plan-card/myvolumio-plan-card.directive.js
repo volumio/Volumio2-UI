@@ -22,12 +22,14 @@ class MyVolumioPlanCardDirective {
 }
 
 class MyVolumioPlanCardController {
-  constructor($rootScope, $scope, $state, authService, modalService, productsService) {
+  constructor($rootScope, $scope, $state, authService, modalService, productsService, $filter) {
     'ngInject';
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$state = $state;
     this.authService = authService;
     this.modalService = modalService;
+    this.filteredTranslate = $filter('translate');
 
     this.product = this.$scope.product;
     this.isDefaultBehaviour = true;
@@ -39,9 +41,7 @@ class MyVolumioPlanCardController {
     this.changeSubscriptionCallback = this.$scope.changeSubscriptionCallback;
     this.showMode = this.$scope.showMode;
     this.productsService = productsService;
-
     this.user = null;
-
     this.init();
   }
 
@@ -66,11 +66,11 @@ class MyVolumioPlanCardController {
   }
 
   getShownPrice(){
-    if(this.product === undefined){
-      return '';
+    if(this.product === undefined || this.product === null || this.product.plan === 'free'){
+      return this.filteredTranslate('MYVOLUMIO.FREE').toUpperCase();
     }
     var planDuration = this.getCurrentPlanDuration();
-    return this.product.prices[planDuration].textualPrice;
+    return this.product.prices[planDuration].localizedPrice;
   }
 
   getCurrentPlanDuration(){
@@ -80,6 +80,32 @@ class MyVolumioPlanCardController {
     }
     return planDuration;
   }
+
+  isTrialAvailable(){
+    var planDuration = this.productsService.MONTHLY_PLAN;
+    if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
+      planDuration = this.showMode.planDuration;
+    }
+    if (this.user.isTrialAvailable !== false && !this.user.planData && this.product.prices[planDuration].trial !== undefined && this.product.prices[planDuration].trial.trialEnabled && this.product.prices[planDuration].trial.trialDays !== undefined && this.product.prices[planDuration].trial.trialDaysAuth !== undefined && this.product.prices[planDuration].trial.trialAuth !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getTrialDays(){
+    var planDuration = this.productsService.MONTHLY_PLAN;
+    if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
+      planDuration = this.showMode.planDuration;
+    }
+    if (this.user.isTrialAvailable !== false && this.product.prices[planDuration].trial !== undefined && this.product.prices[planDuration].trial.trialEnabled && this.product.prices[planDuration].trial.trialDays !== undefined && this.product.prices[planDuration].trial.trialDaysAuth !== undefined && this.product.prices[planDuration].trial.trialAuth !== undefined) {
+      return this.product.prices[planDuration].trial.trialDays;
+    } else {
+      return '';
+    }
+  }
+
+
 
   //auth section
   logIn() {
@@ -104,7 +130,8 @@ class MyVolumioPlanCardController {
 
   subscribe(plan) {
     var planDuration = this.getCurrentPlanDuration();
-    this.$state.go('myvolumio.subscribe', { 'plan': plan, 'planDuration': planDuration });
+    var trial = this.isTrialAvailable();
+    this.$state.go('myvolumio.subscribe', { 'plan': plan, 'planDuration': planDuration, 'trial': trial });
   }
 
   goToChangePlan(plan) {

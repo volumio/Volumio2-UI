@@ -76,6 +76,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
 
   .state('volumio.browse', {
     url: 'browse',
+    params: { source: null },
     views: {
       'content@volumio': {
         templateUrl: themeManagerProvider.getHtmlPath('browse'),
@@ -148,6 +149,44 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         templateUrl: 'app/plugin-manager/plugin-manager.html',
         controller: 'PluginManagerController',
         controllerAs: 'pluginManager'
+      }
+    }
+  })
+
+  /* --------- VOLUMIO 3 UI ----------- */
+
+  .state('volumio.home', {
+    url: 'home',
+    views: {
+      'content@volumio': {
+        templateUrl: themeManagerProvider.getHtmlPath('home'),
+        controller: 'HomeController',
+        controllerAs: 'home'
+      }
+    }
+  })
+
+  .state('volumio.search', {
+    url: 'search',
+    params: {
+      isDedicatedSearch: true
+    },
+    views: {
+      'content@volumio': {
+        templateUrl: themeManagerProvider.getHtmlPath('browse'),
+        controller: 'BrowseController',
+        controllerAs: 'browse'
+      }
+    }
+  })
+
+  .state('volumio.settings', {
+    url: 'settings',
+    views: {
+      'content@volumio': {
+        templateUrl: themeManagerProvider.getHtmlPath('settings'),
+        controller: 'SettingsController',
+        controllerAs: 'settings'
       }
     }
   })

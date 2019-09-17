@@ -5,7 +5,6 @@ class BrowseService {
     this.socketService = socketService;
     this.$interval = $interval;
     this.$window = $window;
-    this.isBrowsing = false;
     this.$rootScope = $rootScope;
     this.$log = $log;
     this.$timeout = $timeout;
@@ -24,6 +23,7 @@ class BrowseService {
     this.currentFetchRequest = {};
     this.historyUri = [];
     this.scrollPositions = new Map();
+    this.lastBrowseLists = [];
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -200,6 +200,7 @@ class BrowseService {
       if (data.navigation) {
         this.$log.debug('pushBrowseLibrary', data);
         this.lists = data.navigation.lists;
+        this.lastBrowseLists = data.navigation.lists;
         this.info = data.navigation.info;
 
         this.breadcrumbs = data.navigation.prev;

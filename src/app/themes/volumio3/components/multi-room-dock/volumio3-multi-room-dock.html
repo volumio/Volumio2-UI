@@ -1,0 +1,32 @@
+<div class="row" ng-if="multiRoomDock.multiRoomService.devices.length > 1 && !multiRoomDock.multiRoomService.isVolumio3Theme()">
+  <div id="multiRoomDockWrapper">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-sitemap"></i> Multiroom devices</h3>
+    </div>
+
+    <div class="panel-body">
+      <div ng-repeat="device in multiRoomDock.multiRoomService.devices track by $index"
+          class="device"
+          ng-click="multiRoomDock.changeDevice(device)"
+	      ng-if="multiRoomDock.showDevice(device)">
+        <div ng-class="{'child': device.isChild, 'isSelf': device.isSelf}">
+          <div class="deviceIcon">
+            <img ng-src="{{device.state.albumart}}"/>
+          </div>
+          <div class="deviceDetails">
+            <div class="deviceName">
+              {{device.name}}
+            </div>
+            <div class="artist">
+              {{device.state.artist}}
+            </div>
+            <div class="track">
+              {{device.state.track}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

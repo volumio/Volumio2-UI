@@ -1,0 +1,74 @@
+<div ng-if="footer.isSocketReady" id="footer-content">
+
+  <div id="player-bar" ng-class="{'playback-bar': footer.showPlayerFooter}">
+
+    <div ng-class="{'row': true, 'hidden-xs hidden-sm': footer.showPlayerFooter}">
+
+      <div class="lined-seekbar col-xs-24 hidden-md hidden-lg hidden-xl">
+        <player-seekbar></player-seekbar>
+      </div>
+
+      <div class="track-info-container col-xs-16 col-md-8 col-xs-push-4 col-md-push-0">
+        <track-info is-in-footer="true"></track-info>
+        <!--
+        <player-status></player-status>
+        -->
+      </div>
+
+      <div class="controls-container col-xs-4 col-md-8 col-xs-pull-16 col-md-pull-0 padding-0">
+        <!-- CONTROLS -->
+        <player-buttons is-in-footer="true"></player-buttons>
+        <player-seekbar class='hidden-xs hidden-sm'></player-seekbar>
+      </div>
+
+      <div class="volume-container col-xs-4 col-md-6 row">
+        <!-- VOLUME -->
+        <volume-manager is-on-footer="true"></volume-manager>
+      </div>
+
+      <div class="play-mode-container col-md-2 hidden-xs hidden-sm">
+        <div id="queueOutputButtonsContainer">
+          <button
+            ui-sref="volumio.play-queue"
+            class="btn btn-link play-queue-button"
+            ng-mouseenter="hover = 'queue'"
+            ng-mouseleave="hover = ''"
+            ng-class="{selected: this.$state.current.name === 'volumio.play-queue'}"
+            title="{{'COMMON.TAB_QUEUE' | translate}}">
+            <i class="material-icons">playlist_play</i>
+          </button>
+          <button
+            id="openMenuBtn"
+            ng-click="audioOutputs.toggleMenu()"
+            ng-disabled="!audioOutputs.isMultiOutputsAvailable()"
+            class="btn btn-link audio-outputs-button"
+            title="{{'MULTIDEVICE.AUDIO_OUTPUTS_AND_ZONES' | translate}}">
+            <i class="material-icons">speaker_group</i>
+          </button>
+          <div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <ng-include
+      ng-class="{'hidden-xs hidden-sm': footer.showPlayerFooter}"
+      id="tab-bar"
+      class="col-xs-24 hidden-md hidden-lg hidden-xl"
+      src="'app/themes/volumio3/partials/volumio3-tab-bar.html'"
+    >
+    </ng-include>
+
+    <ng-include
+      ng-class="{'hidden-md hidden-lg hidden-xl': footer.showPlayerFooter}"
+      id="playback-tab-bar"
+      class="col-xs-24 hidden-md hidden-lg hidden-xl"
+      src="'app/themes/volumio3/partials/volumio3-playback-tab-bar.html'"
+    >
+    </ng-include>
+
+  </div>
+</div>
+
+<audio-outputs class="zoneBtn"></audio-outputs>

@@ -5,12 +5,29 @@
       title="{{'TRACK_INFO_BAR.RANDOM' | translate}}">
     <i class="fa fa-random"></i>
   </button>
-  <button class="btn btn-link playerControls"
+  <button ng-if="!modal.playerService.state.repeat"
+      class="btn btn-link playerControls"
       ng-class="{'active': modal.playerService.state.repeat}"
-      ng-click="modal.playerService.repeatAlbum()"
-      title="{{'TRACK_INFO_BAR.REPEAT' | translate}}">
+      ng-click="modal.playerService.repeatAlbum(true, false)"
+      title="{{'TRACK_INFO_BAR.REPEAT_ALL' | translate}}">
     <i class="fa fa-repeat"></i>
   </button>
+  <button ng-if="modal.playerService.state.repeat && !modal.playerService.state.repeatSingle"
+      class="btn btn-link playerControls"
+      ng-class="{'active': modal.playerService.state.repeat}"
+      ng-click="modal.playerService.repeatAlbum(true, true)"
+      title="{{'TRACK_INFO_BAR.REPEAT_SINGLE' | translate}}">
+    <i class="fa fa-repeat"></i>
+  </button>
+  <button ng-if="modal.playerService.state.repeat && modal.playerService.state.repeatSingle"
+      class="btn btn-link playerControls"
+      ng-class="{'active': modal.playerService.state.repeat}"
+      ng-click="modal.playerService.repeatAlbum(false, false)"
+      title="{{'TRACK_INFO_BAR.REPEAT_OFF' | translate}}">
+    <i class="fa fa-repeat">1</i>
+  </button>
+  <favourite-track-btn></favourite-track-btn>
+  <add-track-to-playlist-btn></add-track-to-playlist-btn>
   <button class="btn btn-info btn-block"
       ng-if="modal.playerService.state.artist"
       ng-click="modal.goTo('artist')">

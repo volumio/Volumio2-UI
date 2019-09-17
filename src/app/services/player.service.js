@@ -80,6 +80,14 @@ class PlayerService {
     }
   }
 
+  skipBackwards() {
+    this.socketService.emit('skipBackwards');
+  }
+
+  skipForward() {
+    this.socketService.emit('skipForward');
+  }
+
   shuffle() {
     if (this.state.trackType !== 'webradio') {
       this.$log.debug(!this.state.random);
@@ -87,9 +95,9 @@ class PlayerService {
     }
   }
 
-  repeatAlbum() {
+  repeatAlbum(repeat,repeatSingle) {
     if (this.state.trackType !== 'webradio') {
-      this.socketService.emit('setRepeat', {value: !this.state.repeat});
+      this.socketService.emit('setRepeat', {value: repeat, repeatSingle: repeatSingle});
     }
   }
 
@@ -115,6 +123,10 @@ class PlayerService {
 
   get seek() {
     return null;
+  }
+
+  get duration(){
+    return this.state.duration;
   }
 
   // VOLUME --------------------------------------------------------------------

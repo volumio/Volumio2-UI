@@ -13,10 +13,13 @@
         <span class="small" translate="TRACK_MANAGER.FROM"></span>
         <a style="cursor: pointer" ng-click="trackInfoBar.goTo('album')">{{trackInfoBar.playerService.state.album}}</a>
       </span>
+
     </div>
   </div>
+
   <track-info-bar-buttons
       class="rightInfo"
       ng-if="trackInfoBar.$state.current.name === 'volumio.play-queue'">
   </track-info-bar-buttons>
+
 </div>

@@ -1,0 +1,99 @@
+<!-- FOR PLAYER BAR -->
+<div id="trackInfo-compact" ng-if='trackInfo.isInFooter'>
+
+    <div ng-if="trackInfo.playerService.state.albumart" class="trackInfo-album-art-wrapper hidden-xs hidden-sm" >
+        <img
+            class='album-art'
+            ng-if="trackInfo.playerService.state.albumart"
+            ng-src="{{trackInfo.playerService.albumart}}"
+            alt="{{trackInfo.playerService.state.album}}"
+            ui-sref="volumio.playback"/>
+        <i
+            ng-if="trackInfo.playerService.state.icon"
+            ng-class="trackInfo.playerService.state.icon">
+        </i>
+    </div>
+
+    <div id="trackInfo-title"
+         class="text-with-dots"
+        ng-if="trackInfo.playerService.state.title"
+        title="{{'COMMON.SONG' | translate}}"
+        ui-sref="volumio.playback"
+        >
+        {{trackInfo.playerService.state.title}}
+    </div>
+
+    <div id="trackInfo-artist-album" ui-sref="volumio.playback" class="text-with-dots">
+        <span id="trackInfo-artist"
+            ng-if="trackInfo.playerService.state.artist"
+            title="{{'COMMON.ARTIST' | translate}}"
+        >
+          {{trackInfo.playerService.state.artist}}</span>
+
+        <!--<span class='trackInfo-divider'>&nbsp</span>-->
+
+        <span id="trackInfo-album" ng-if="trackInfo.playerService.state.album" title="{{'COMMON.ALBUM' | translate}}">- {{trackInfo.playerService.state.album}}
+        </span>
+    </div>
+
+    <div class='track-info-actions-n-rates hidden-xs hidden-sm'>
+
+        <div class='track-user-actions pull-right'>
+          <track-actions-btn
+            style='float: none !important; display: inline;'
+          ></track-actions-btn>
+        </div>
+
+        <div class="track-info-rates">
+          <span class="track-info-type" ng-if="trackInfo.playerService.state.trackType !== 'webradio'">
+            <img
+                ng-if="trackInfo.playerService.state.fileFormat"
+                ng-src="{{'/app/themes/volumio3/assets/format-icons/' +
+                trackInfo.playerService.state.fileFormat.url + '.svg'}}"
+                alt="{{trackInfo.playerService.state.fileFormat.name}}" />
+            <span ng-if="!trackInfo.playerService.state.fileFormat">
+              {{trackInfo.playerService.state.trackType}}
+            </span>
+          </span>
+          <span>
+            {{trackInfo.playerService.state.samplerate}}
+          </span>
+          <span ng-if="trackInfo.playerService.state.bitdepth">
+            {{trackInfo.playerService.state.bitdepth}}
+          </span>
+        </div>
+
+    </div>
+
+    <div class='clear'></div>
+
+</div>
+
+<!-- FOR MAIN CONTENT PLAYER -->
+<div id="trackInfo" ng-if='!trackInfo.isInFooter'>
+    <div id="trackDetails">
+      <div id="trackInfo-album" ng-if="trackInfo.playerService.state.album" title="{{'COMMON.ALBUM' | translate}}">
+        {{trackInfo.playerService.state.album}}
+      </div>
+      <br/>
+      <div id="trackInfo-title" ng-if="trackInfo.playerService.state.title" title="{{'COMMON.SONG' | translate}}">
+        {{trackInfo.playerService.state.title}}
+      </div>
+      <br/>
+      <div id="trackInfo-artist" ng-if="trackInfo.playerService.state.artist" title="{{'COMMON.ARTIST' | translate}}">
+        {{trackInfo.playerService.state.artist}}
+      </div>
+    </div>
+    <div ng-if="trackInfo.playerService.state.albumart">
+      <img
+          ng-if="trackInfo.playerService.state.albumart"
+          ng-src="{{trackInfo.playerService.albumart}}"
+          alt="{{trackInfo.playerService.state.album}}"/>
+      <i
+          ng-if="trackInfo.playerService.state.icon"
+          ng-class="trackInfo.playerService.state.icon">
+      </i>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>

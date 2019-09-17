@@ -11,7 +11,12 @@ src/app/themes/
 !src/app/themes/volumio/*
 src/app/themes/volumio/assets/variants/
 !src/app/themes/volumio/assets/variants/volumio/*
+!src/app/themes/volumio3/*
+!src/app/themes/volumio3/**/*
+src/app/themes/volumio3/assets/variants/
+!src/app/themes/volumio3/assets/variants/volumio/*
 load-variant.scss
 /nbproject/
 .DS_Store
 src/app/volumio.constant.js
+package-lock.json

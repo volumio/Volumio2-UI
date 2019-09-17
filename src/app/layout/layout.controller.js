@@ -1,8 +1,30 @@
 class LayoutController {
-  constructor($state, $log) {
+  constructor($state, $scope, themeManager, $log, matchmediaService) {
     'ngInject';
     this.$state = $state;
+    this.$scope = $scope;
+    this.themeManager = themeManager;
     this.$log = $log;
+    this.matchmediaService = matchmediaService;
+
+    this.wrapperColumnClass = '';
+    
+    this.initMainMenu();
+
+    this.updateTabbar();
+    $scope.$on('$locationChangeStart', (event, next, current) => {
+      this.updateTabbar();
+    });
+  }
+
+  updateTabbar(){
+    this.isWithPlaybackBar = this.$state.$current.name === 'volumio.playback' && this.themeManager.theme === 'volumio3';
+  }
+
+  initMainMenu(){
+    this.wrapperColumnClass = this.matchmediaService.isPhone ?
+      '' :
+      'col-md-20' ;
   }
 
   swipeLeft() {
