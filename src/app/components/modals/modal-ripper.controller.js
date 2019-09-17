@@ -25,22 +25,11 @@ class ModalRipperController {
     this.Upload.upload({
       url: `${this.socketService.host}/albumart-upload`,
       data: {filename: this.albumart, artist: this.dataObj.artist, album: this.dataObj.album}
-    }).then(
-      resp => {
-        this.uploadPercentage = false;
-      },
-      resp => {
-        this.uploadPercentage = false;
-        this.$log.debug("Error status: " + resp.status);
-      },
-      evt => {
-        this.uploadPercentage = parseInt((100.0 * evt.loaded) / evt.total);
-
-        if (this.uploadPercentage === 100) {
-          this.uploadPercentage = false;
-        }
-      }
-    );
+    }).then((resp)=> {
+                if (resp.status === 200 && resp.data && resp.data.path) {
+                  this.dataObj.albumart = resp.data.path;
+                }
+            });
   }
 }
 
