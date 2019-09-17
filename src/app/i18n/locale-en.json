@@ -78,6 +78,9 @@
     "SHARE": "Share",
     "EJECT": "Eject",
     "FUNCTIONALIES_CONTROL": "Functionalities control",
+    "UPDATE_ALBUMART":"Update Albumart",
+    "YEAR":"Year",
+    "GENRE":"Genre",
     "EDIT": "Edit",
     "GRID" : "Grid"
   },

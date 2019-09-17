@@ -72,7 +72,10 @@
     "SUBSCRIBE_ME": "Iscrivimi",
     "SHARE": "Condividi",
     "EJECT": "Espelli",
-    "FUNCTIONALIES_CONTROL":"Functionalities control",
+    "FUNCTIONALIES_CONTROL":"Controllo delle funzionalità",
+    "UPDATE_ALBUMART":"Aggiorna Copertina",
+    "YEAR":"Year",
+    "GENRE":"Genere",
     "GRID": "Griglia"
   },
   "BROWSER": {
