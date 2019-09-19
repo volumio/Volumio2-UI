@@ -7,7 +7,9 @@ class ToastMessageService {
     this.toastrDefaultConfig = {
       timeOut: 5000,
       extendedTimeOut: 1000,
-      progressBar: true
+      progressBar: true,
+      maxOpened: 1,
+      autoDismiss: true
     };
 
     $rootScope.$on('socket:init', () => {
