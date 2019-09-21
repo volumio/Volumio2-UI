@@ -158,7 +158,7 @@
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"Sieťový disk nebol nájdený",
     "ALIAS":"Názov",
-    "ALIAS_DOC":"Zvolte názov, ktorý bude zobrazený v zozname pripojených sieťových zariadení (NAS)",
+    "ALIAS_DOC":"Zvoľte názov, ktorý bude zobrazený v zozname pripojených sieťových zariadení (NAS)",
     "NAS_IP_ADDRESS":"IP Addresa NAS",
     "NAS_IP_ADDRESS_DOC":"IP adresa sieťového disku",
     "NAS_PATH":"Cesta",
