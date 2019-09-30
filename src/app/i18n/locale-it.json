@@ -381,7 +381,8 @@
     "WHAT_IS_MYVOLUMIO":"Cos'è MyVolumio?",
     "TRY_FOR_FREE":"Prova gratis",
     "LIFETIME":"A vita",
-    "FREE":"Gratuito"
+    "FREE":"Gratuito",
+    "KEEP_ME_UPDATED_VIA_MAIL":"Tienimi aggiornato sulle ultime novità di Volumio via mail"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
