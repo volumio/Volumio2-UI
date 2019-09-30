@@ -404,6 +404,8 @@
     "MYVOLUMIO_6_DEVICES": "Use MyVolumio on up to 6 devices",
     "REMOTE_CONNECTION_6_DEVICES": "Remote connection to up to 6 devices",
     "CD_PLAYBACK_RIPPING":"CD Playback and Ripping",
-    "ALEXA_INTEGRATION":"Alexa integration"
+    "ALEXA_INTEGRATION":"Alexa integration",
+    "HIRESAUDIO_INTEGRATION":"Hiresaudio.com Integration",
+    "INPUT_PLAYBACK":"Digital and Analog Inputs Playback"
   }
 }
