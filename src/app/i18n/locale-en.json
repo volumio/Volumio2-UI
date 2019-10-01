@@ -391,7 +391,8 @@
     "GO_TO_LOGIN":"Done? Go to login",
     "TRY_FOR_FREE":"Try for free",
     "LIFETIME":"Lifetime",
-    "FREE": "Free"
+    "FREE": "Free",
+    "KEEP_ME_UPDATED_VIA_MAIL":"Keep me updated with the latest Volumio news via email"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

@@ -15,8 +15,15 @@ class MyVolumioSignupController {
     };
     this.termsButtonIcon = this.agreeButtonSettings.off;
 
+    this.marketingConsentButtonSettings = {
+      on: 'glyphicon glyphicon-check',
+      off: 'glyphicon glyphicon-unchecked'
+    };
+    this.marketingConsentButtonIcon = this.marketingConsentButtonSettings.off;
+
     this.form = {
-      termsCheckbox: false
+      termsCheckbox: false,
+      marketingConsent: false
     };
 
     this.init();
@@ -75,6 +82,15 @@ class MyVolumioSignupController {
     this.termsButtonIcon = this.agreeButtonSettings[(this.form.termsCheckbox) ? "on" : "off"];
   }
 
+  clickMarketingConsentButton() {
+    this.form.marketingConsent = !this.form.marketingConsent;
+    this.updateMarketingConsentDisplay();
+  }
+
+  updateMarketingConsentDisplay() {
+    this.marketingConsentButtonIcon = this.marketingConsentButtonSettings[(this.form.marketingConsent) ? "on" : "off"];
+  }
+
   openTermsModal() {
     let
       templateUrl = 'app/components/myvolumio/modals/myvolumio-terms-modal/myvolumio-terms-modal.html',
@@ -99,10 +115,12 @@ class MyVolumioSignupController {
       lastName: this.lastName,
       password: this.password,
       email: this.email,
+      marketingConsent: this.form.marketingConsent,
       avatarId: 0,
       social: {},
       country: ''
     };
+
     this.authService.signup(user).then((newUser) => {
       this.$state.go('myvolumio.profile');
     }, (error) => {

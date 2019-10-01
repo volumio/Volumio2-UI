@@ -97,6 +97,17 @@
                     <span translate="MYVOLUMIO.TOS_AGREE"> </span><strong class="label label-primary" <a ng-click="myVolumioSignupController.clickShowTerms()"> MyVolumio <span translate="MYVOLUMIO.TOS"></span></a></strong>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-xs-22 col-sm-22 col-md-22">
+                    <span class="button-checkbox">
+                      <a tabindex="7" ng-click="myVolumioSignupController.clickMarketingConsentButton()">
+                        <i class="state-icon {{myVolumioSignupController.marketingConsentButtonIcon}}"></i>
+                      </a>
+                      <input type="checkbox" name="marketingConsent" id="marketingConsent" class="hidden" value="1" ng-model="myVolumioSignupController.form.marketingConsent" ng-true-value="true" ng-false-value="false">
+                    </span>
+                    <span translate="MYVOLUMIO.KEEP_ME_UPDATED_VIA_MAIL"> </span>
+                  </div>
+                </div>
 
 
                 <hr class="colorgraph">
