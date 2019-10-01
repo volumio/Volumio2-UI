@@ -68,20 +68,36 @@
 
     .track-info-container{
       margin-top: 16px;
+
+      @media all and (max-height: 500px){
+        margin-top: 4px;
+      }
+
     }
 
     .track-button-container{
       text-align: center;
+
+
       #trackButtonBar{
         display: inline-block;
         background: transparent !important;
       }
 
-      button i{
-        font-size: 20px;
+      button{
 
-        @media all and (max-height: 600px){
-          font-size: 16px;
+        @media all and (max-height: 500px){
+          padding: 0 8px;
+          height: auto;
+          width: auto;
+        }
+
+        i {
+          font-size: 20px;
+
+          @media all and (max-height: 600px) {
+            font-size: 16px;
+          }
         }
       }
 
@@ -96,9 +112,34 @@
         position: relative;
         right: -3px;
 
+        // hotfix for iphone 4 res
+        @media all and (max-height: 500px){
+
+          height: 50px;
+
+          & > button{
+            padding: 0 8px !important;
+            height: 30px;
+
+            i{
+              font-size: 14px;
+            }
+          }
+        }
+
         .playPause {
           left: 0 !important;
           top: -50px;
+
+          @media all and (max-height: 500px) {
+            height: 44px;
+            width: 44px;
+
+            &.play i{
+              padding-left: 2px;
+            }
+          }
+
         }
       }
     }
@@ -106,6 +147,10 @@
 
   .player-seekbar-container{
     margin-bottom: 8px;
+
+    @media all and (max-height: 500px) {
+      margin-bottom: 4px;
+    }
   }
 
 }
