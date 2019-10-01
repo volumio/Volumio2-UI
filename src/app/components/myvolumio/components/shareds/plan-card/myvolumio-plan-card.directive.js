@@ -65,7 +65,7 @@ class MyVolumioPlanCardController {
   }
 
   getShownPrice(){
-    if(this.product === undefined){
+    if ( !this.product ) {
       return '';
     }
     var planDuration = this.getCurrentPlanDuration();
@@ -81,6 +81,9 @@ class MyVolumioPlanCardController {
   }
 
   isTrialAvailable(){
+    if ( !this.product ) {
+      return false;
+    }
     var planDuration = this.productsService.MONTHLY_PLAN;
     if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
       planDuration = this.showMode.planDuration;
@@ -93,6 +96,9 @@ class MyVolumioPlanCardController {
   }
 
   getTrialDays(){
+    if ( !this.product ) {
+      return '';
+    }
     var planDuration = this.productsService.MONTHLY_PLAN;
     if(this.showMode !== undefined && this.showMode.planDuration !== undefined){
       planDuration = this.showMode.planDuration;
