@@ -51,6 +51,10 @@
     @include breakpoint(lg) {
       font-size: 20px;
     }
+
+    @media all and (max-height: 600px)  {
+      font-size: 16px;
+    }
   }
 
   #trackInfo-artist-album{
@@ -154,6 +158,7 @@
     @include breakpoint(lg) {
       font-size: 28px;
     }
+
   }
   #trackInfo-artist {
     font-size: 20px;

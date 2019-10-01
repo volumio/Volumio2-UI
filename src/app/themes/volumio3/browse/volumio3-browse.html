@@ -27,7 +27,7 @@
 
     <div class="dedicated-search-container-flow-space" ng-if="browse.isDedicatedSearchView"></div>
 
-    <div class="body-content">
+    <div class="body-content" ng-class="{ 'with-search-header': browse.isDedicatedSearchView }">
       <div id="browseTablesWrapper">
         <div
           ng-if="!browse.browseService.isBrowsing && !browse.browseService.isSearching"

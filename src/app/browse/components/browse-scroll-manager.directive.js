@@ -50,7 +50,9 @@ class BrowseScrollManagerDirective {
       this.browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
       // this.browseTablesWrapper.scrollTop = 0;
       // $log.debug(this.browseTablesWrapper);
-      this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
+      if ( !this.browseTablesWrapper ) {
+        this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
+      }
       setbrowseTablesWrapperHeight();
       this.setScrollTop();
     }, 100);
@@ -76,7 +78,9 @@ class BrowseScrollManagerDirective {
     });
 
     scope.$on('$destroy', () => {
-      this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
+      if ( this.browseTablesWrapper ) {
+        this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
+      }
       this.contentWrapper.style.overflowY = 'auto';
     });
 

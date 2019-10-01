@@ -1,7 +1,23 @@
 #browse {
 
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+
   .panel {
-    position: relative;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: $theme-dark-transparent-background;
@@ -17,8 +33,8 @@
 
       background-color: $theme-darker-color;
 
-      .browse-header{
-
+      #browsePanelHeading{
+        background-color: $theme-darker-color;
       }
 
       @include breakpoint(xs) {
@@ -73,9 +89,24 @@
     }
 
     .body-content{
-      margin-top: 73px;
       position: relative;
-      overflow-x: scroll;
+
+      overflow-y: hidden;
+      overflow-y: scroll;
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+
+      height: calc( 100% - 82px );
+      top: 82px;
+
+      &.with-search-header{
+        top: 77px;
+        height: calc( 100% - 77px );
+      }
 
       @include breakpoint(xs) {
 
@@ -84,11 +115,24 @@
       @include breakpoint(sm) {
 
       }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      &::-webkit-scrollbar-track {
+        background: $theme-accent-color;
+        border-radius: 0px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: $theme-light-color;
+        border-radius: 0px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: $theme-primary-color;
+      }
+
     }
 
-    #browsePanelHeading{
-      background-color: $theme-darker-color;
-    }
   }
 
 }
@@ -129,7 +173,7 @@
       color: $theme-primary-color;
     }
   }
-  #browseFilterBar {
+  #browseFilterBar{
     color: #FFF;
     margin-top: 5px;
     text-align: right;
@@ -137,8 +181,10 @@
 }
 
 #browseTablesWrapper {
+  min-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  overflow: visible;
 }
 
 .rowTitle {
@@ -204,6 +250,8 @@
 }
 
 .browseTable {
+  min-height: 100%;
+
   .itemWrapper {
     cursor: pointer;
   }

@@ -2,6 +2,7 @@
 
   margin-top: 10px;
   margin: auto;
+
   @include breakpoint(xs) {
     margin: 0px;
   }
@@ -25,6 +26,7 @@
 
   &.mobile {
     height: 100%;
+    overflow: hidden;
 
     -webkit-border-top-left-radius: 30px;
     -webkit-border-top-right-radius: 30px;
@@ -35,37 +37,119 @@
 
     background: $theme-dark-transparent-background;
 
-    .cover-art-container {
+    #albumartContainer {
+      position: relative;
+      margin: 8px;
 
-      text-align: center;
-      scrollbar-width: none;
+      .cover-art-container {
 
-      img {
-        padding-top: 16px;
-        // TODO FIND A BETTER METHOD
-        max-height: calc(100vh - 390px);
+        text-align: center;
+        scrollbar-width: none;
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+
+        img {
+          display: block;
+          padding: 0;
+          margin: auto;
+          // height: 100%;
+          max-height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
       }
     }
 
     .track-info-container{
       margin-top: 16px;
+
+      @media all and (max-height: 500px){
+        margin-top: 4px;
+      }
+
     }
 
     .track-button-container{
       text-align: center;
+
+
       #trackButtonBar{
         display: inline-block;
         background: transparent !important;
       }
+
+      button{
+
+        @media all and (max-height: 500px){
+          padding: 0 8px;
+          height: auto;
+          width: auto;
+        }
+
+        i {
+          font-size: 20px;
+
+          @media all and (max-height: 600px) {
+            font-size: 16px;
+          }
+        }
+      }
+
     }
 
     .player-buttons-container{
-      margin-top: 24px;
+      margin-top: 12px;
 
-      #playerButtons .playPause{
-        left: 0 !important;
-        top: -50px;
+      #playerButtons {
+        height: 70px;
+
+        position: relative;
+        right: -3px;
+
+        // hotfix for iphone 4 res
+        @media all and (max-height: 500px){
+
+          height: 50px;
+
+          & > button{
+            padding: 0 8px !important;
+            height: 30px;
+
+            i{
+              font-size: 14px;
+            }
+          }
+        }
+
+        .playPause {
+          left: 0 !important;
+          top: -50px;
+
+          @media all and (max-height: 500px) {
+            height: 44px;
+            width: 44px;
+
+            &.play i{
+              padding-left: 2px;
+            }
+          }
+
+        }
       }
+    }
+  }
+
+  .player-seekbar-container{
+    margin-bottom: 8px;
+
+    @media all and (max-height: 500px) {
+      margin-bottom: 4px;
     }
   }
 

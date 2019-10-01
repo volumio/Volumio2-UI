@@ -10,9 +10,9 @@
   </div>
 </div>
 
-<div id="playbackPanelWrapper" class="row mobile hidden-md hidden-lg hidden-xl">
+<div id="playbackPanelWrapper" class="row mobile hidden-md hidden-lg hidden-xl" style="display: flex; flex-direction: column;">
 
-  <div id="goBackPanelWrapper" class="col-xs-24 text-center">
+  <div id="goBackPanelWrapper" class="col-xs-24 text-center" style="flex-shrink: 0;">
     <a ng-click="playback.goBack()">
       <i id="closePlaybackPanelWrapper" class="material-icons">
         arrow_drop_down
@@ -20,7 +20,7 @@
     </a>
   </div>
 
-  <div id="albumartContainer" class="col-sm-24 col-sm-offset-0">
+  <div id="albumartContainer" class="col-sm-24 col-sm-offset-0" style="flex-grow: 1;">
     <div ng-if="playback.playerService.state.albumart" class="cover-art-container">
       <img
         ng-if="playback.playerService.state.albumart"
@@ -33,26 +33,29 @@
     </div>
   </div>
 
-  <div class="col-xs-24 text-center track-info-container">
-    <track-info is-in-footer="true"></track-info>
-  </div>
+  <div class="col-xs-24" style="flex-shrink: 0;">
+    <div class="row">
+      <div class="col-xs-24 text-center track-info-container">
+        <track-info is-in-footer="true"></track-info>
+      </div>
 
-  <div class="col-xs-24 track-button-container">
-    <div
-      id="trackButtonBar"
-      class="btn-group"
-      ng-include src="'app/themes/volumio3/components/track-manager/elements/volumio3-track-manager-button-bar.html'">
+      <div class="col-xs-24 track-button-container">
+        <div
+          id="trackButtonBar"
+          class="btn-group"
+          ng-include src="'app/themes/volumio3/components/track-manager/elements/volumio3-track-manager-button-bar.html'">
+        </div>
+      </div>
+
+      <div class="col-xs-16 col-xs-offset-4 col-sm-16 col-sm-offset-4 player-seekbar-container">
+        <player-seekbar></player-seekbar>
+      </div>
+
+      <div class="col-xs-24 player-buttons-container">
+        <player-buttons ></player-buttons>
+      </div>
     </div>
   </div>
-
-  <div class="col-xs-16 col-xs-offset-4 col-sm-16 col-sm-offset-4 player-seekbar-container">
-    <player-seekbar></player-seekbar>
-  </div>
-
-  <div class="col-xs-24 player-buttons-container">
-    <player-buttons ></player-buttons>
-  </div>
-
 
 </div>
 
