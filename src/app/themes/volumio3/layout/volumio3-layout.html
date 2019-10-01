@@ -9,7 +9,10 @@
       <header id="header" ui-view="header"></header>
       -->
 
-      <div class="row main-container" ng-class="{'with-playback-bar': layout.isWithPlaybackBar}">
+      <div
+        class="row main-container"
+        ng-class="[ state.current.url, layout.isWithPlaybackBar ? 'with-playback-bar' : '' ]"
+      >
 
           <main-menu id="main-menu-container"
             class="hidden-sm col-md-4"
