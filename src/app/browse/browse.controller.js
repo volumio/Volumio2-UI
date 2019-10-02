@@ -173,14 +173,21 @@ class BrowseController {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
-        let emitPayload = {
-          type: this.browseService.filterBy,
-          value: this.searchField,
-          plugin_name: this.browseService.currentFetchRequest.plugin_name,
-          plugin_type: this.browseService.currentFetchRequest.plugin_type,
-          uri: this.browseService.currentFetchRequest.uri,
-          service: this.browseService.currentFetchRequest.service
-        };
+        if (this.isDedicatedSearchView) {
+          var emitPayload = {
+            type: this.browseService.filterBy,
+            value: this.searchField
+          };
+        } else {
+          var emitPayload = {
+            type: this.browseService.filterBy,
+            value: this.searchField,
+            plugin_name: this.browseService.currentFetchRequest.plugin_name,
+            plugin_type: this.browseService.currentFetchRequest.plugin_type,
+            uri: this.browseService.currentFetchRequest.uri,
+            service: this.browseService.currentFetchRequest.service
+          };
+        }
         this.$log.debug('search', emitPayload);
         this.socketService.emit('search', emitPayload);
       }, 600, false);
