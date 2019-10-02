@@ -173,13 +173,14 @@ class BrowseController {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
+        let emitPayload = {};
         if (this.isDedicatedSearchView) {
-          var emitPayload = {
+          emitPayload = {
             type: this.browseService.filterBy,
             value: this.searchField
           };
         } else {
-          var emitPayload = {
+          emitPayload = {
             type: this.browseService.filterBy,
             value: this.searchField,
             plugin_name: this.browseService.currentFetchRequest.plugin_name,
