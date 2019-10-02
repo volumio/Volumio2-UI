@@ -72,7 +72,10 @@
     "SUBSCRIBE_ME": "Iscrivimi",
     "SHARE": "Condividi",
     "EJECT": "Espelli",
-    "FUNCTIONALIES_CONTROL":"Functionalities control",
+    "FUNCTIONALIES_CONTROL":"Controllo delle funzionalità",
+    "UPDATE_ALBUMART":"Aggiorna Copertina",
+    "YEAR":"Year",
+    "GENRE":"Genere",
     "GRID": "Griglia"
   },
   "BROWSER": {
@@ -377,7 +380,9 @@
     "SAVE_20": "Risparmia il 20% con il piano annuale!",
     "WHAT_IS_MYVOLUMIO":"Cos'è MyVolumio?",
     "TRY_FOR_FREE":"Prova gratis",
-    "LIFETIME":"A vita"
+    "LIFETIME":"A vita",
+    "FREE":"Gratuito",
+    "KEEP_ME_UPDATED_VIA_MAIL":"Tienimi aggiornato sulle ultime novità di Volumio via mail"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
@@ -390,6 +395,8 @@
     "MYVOLUMIO_6_DEVICES":"Usa MyVolumio su 6 dispositivi",
     "REMOTE_CONNECTION_6_DEVICES":"Connessione verso 6 dispositivi",
     "CD_PLAYBACK_RIPPING":"Riproduzione e salvataggio CD",
-    "ALEXA_INTEGRATION":"Integrazione Alexa"
+    "ALEXA_INTEGRATION":"Integrazione Alexa",
+    "HIRESAUDIO_INTEGRATION":"Integrazione Hiresaudio.com",
+    "INPUT_PLAYBACK":"Riproduzione da input digitali e analogici"
   }
 }

@@ -98,7 +98,6 @@ class PaddleService {
       if (response && response.data && response.data.success) {
         cancelling.resolve(true);
       } else {
-        debugger;
         cancelling.reject(response.data.error.message);
       }
     }).catch((error) => {

@@ -65,7 +65,7 @@ gulp.task('scripts:watch', ['scripts'], function (callback) {
 gulp.task('angularConfig', function () {
   var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
   var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
-  var env = gutil.env.env ? gutil.env.env : 'dev';
+  var env = gutil.env.env ? gutil.env.env : 'development';
   var debug = gutil.env.debug ? gutil.env.debug : false;
   var themeColor, constants;
   constants = {

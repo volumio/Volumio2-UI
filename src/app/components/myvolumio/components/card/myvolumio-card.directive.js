@@ -92,7 +92,6 @@ class MyVolumioCardController {
   }
 
   signUp() {
-    debugger;
     this.callActionCallback();
     this.$state.go('myvolumio.signup');
   }

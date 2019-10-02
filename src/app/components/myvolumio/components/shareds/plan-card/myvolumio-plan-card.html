@@ -14,10 +14,10 @@
       </div>
       <table class="table">
         <tr ng-repeat="feature in myVolumioPlanCardController.product.features track by $index" ng-class-odd="'active'">
-          <td ng-if="feature === 'EMPTY'">
+          <td ng-if="feature === 'EMPTY'" class="myvolumio-feature">
             &nbsp;
           </td>
-          <td ng-if="feature  !== 'EMPTY'">
+          <td ng-if="feature  !== 'EMPTY'" class="myvolumio-feature">
             {{feature | translate}}
           </td>
         </tr>

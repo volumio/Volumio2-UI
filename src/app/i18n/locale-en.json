@@ -51,7 +51,7 @@
     "MY_MUSIC": "My Music",
     "SEARCH": "Search",
     "NEW": "New",
-    "FAVOURITES": "Favourites",
+    "FAVOURITES": "Favorites",
     "NAME": "Name",
     "URL": "Url",
     "BACK": "Back",
@@ -78,6 +78,9 @@
     "SHARE": "Share",
     "EJECT": "Eject",
     "FUNCTIONALIES_CONTROL": "Functionalities control",
+    "UPDATE_ALBUMART":"Update Albumart",
+    "YEAR":"Year",
+    "GENRE":"Genre",
     "EDIT": "Edit",
     "GRID" : "Grid"
   },
@@ -86,13 +89,13 @@
     "ADD_TO_QUEUE": "Add to queue",
     "ADD_TO_PLAYLIST": "Add to Playlist",
     "REMOVE_FROM_PLAYLIST": "Remove from Playlist",
-    "ADD_TO_FAVOURITES": "Add to Favourites",
-    "REMOVE_FROM_FAVOURITES": "Remove from Favourites",
+    "ADD_TO_FAVOURITES": "Add to Favorites",
+    "REMOVE_FROM_FAVOURITES": "Remove from Favorites",
     "ADD_WEBRADIO": "Add Webradio",
     "EDIT_WEBRADIO": "Edit Webradio",
     "DELETE_WEBRADIO": "Delete Webradio",
-    "ADD_TO_RADIO_FAVOURITES": "Add to Radio Favourites",
-    "REMOVE_FROM_RADIO_FAVOURITES": "Remove from Radio Favourites",
+    "ADD_TO_RADIO_FAVOURITES": "Add to Radio Favorites",
+    "REMOVE_FROM_RADIO_FAVOURITES": "Remove from Radio Favorites",
     "ADD_WEBRADIO_TITLE": "Add Web Radio",
     "URL_DOC": "The URL can be either a stream URL or a M3U or PLS remote file",
     "DELETE_PLAYLIST": "Delete Playlist",
@@ -387,7 +390,9 @@
     "RECOVER_PASSWORD_SENT_MESSAGE":"We just sent instructions on how to reset your password to your mail, check it out",
     "GO_TO_LOGIN":"Done? Go to login",
     "TRY_FOR_FREE":"Try for free",
-    "LIFETIME":"Lifetime"
+    "LIFETIME":"Lifetime",
+    "FREE": "Free",
+    "KEEP_ME_UPDATED_VIA_MAIL":"Keep me updated with the latest Volumio news via email"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
@@ -400,6 +405,8 @@
     "MYVOLUMIO_6_DEVICES": "Use MyVolumio on up to 6 devices",
     "REMOTE_CONNECTION_6_DEVICES": "Remote connection to up to 6 devices",
     "CD_PLAYBACK_RIPPING":"CD Playback and Ripping",
-    "ALEXA_INTEGRATION":"Alexa integration"
+    "ALEXA_INTEGRATION":"Alexa integration",
+    "HIRESAUDIO_INTEGRATION":"Hiresaudio.com Integration",
+    "INPUT_PLAYBACK":"Digital and Analog Inputs Playback"
   }
 }
