@@ -68,17 +68,32 @@
         background-color: $theme-darker-color;
 
         #searchForm{
+          position: relative;
+          z-index: 800;
           width: 96% !important;
           margin: 0 2% !important;
           padding-top: 20px;
-        }
 
-        .form-control-feedback {
-          position: absolute;
-          top: 19px;
-          right: 2.5%;
-          color: $theme-text-color;
-          font-size: 18px;
+          input#search-input-form{
+            position: relative;
+            z-index: 900;
+          }
+
+          span.form-control-feedback {
+            position: absolute;
+            top: 19px;
+            right: 2.5%;
+            color: $theme-text-color;
+            font-size: 18px;
+            z-index: 1000;
+            cursor: pointer;
+
+            i{
+              position: relative;
+              z-index: 1000;
+              cursor: pointer;
+            }
+          }
         }
       }
     }
@@ -223,30 +238,30 @@
 }
 
 .album-title {
-    font-weight: bold;
-    color: $theme-text-color;
+  font-weight: bold;
+  color: $theme-text-color;
 }
 
 .album-time {
-    font-size: 14px;
-    font-style: italic;
-    color: $theme-text-color;
+  font-size: 14px;
+  font-style: italic;
+  color: $theme-text-color;
 }
 
 .imageInfo {
-    float: left;
-    text-align: center;
-    width: 90px;
-    height: 90px;
-    margin-right: 10px;
+  float: left;
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  margin-right: 10px;
 }
 
 .infoButton {
-    float: right;
-    /* padding-top: 8px; */
-    /* width: 35px; */
-    font-size: 60px;
-    vertical-align: middle;
+  float: right;
+  /* padding-top: 8px; */
+  /* width: 35px; */
+  font-size: 60px;
+  vertical-align: middle;
 }
 
 .browseTable {
@@ -367,11 +382,11 @@
   .listWrapper {
     &.grid {
       .itemWrapper {
-          position: relative;
-          @include make-xs-column(12, 0);
-          @include make-sm-column(6, 0);
-          @include make-md-column(4, 0);
-          @include make-lg-column(4, 0);
+        position: relative;
+        @include make-xs-column(12, 0);
+        @include make-sm-column(6, 0);
+        @include make-md-column(4, 0);
+        @include make-lg-column(4, 0);
       }
 
       .itemTab {
