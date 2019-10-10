@@ -14,10 +14,11 @@ export default class PlayerSeekbarDirective {
 }
 
 class playerSeekBarController {
-  constructor(playerService, $timeout) {
+  constructor(playerService, $timeout, matchmediaService) {
     'ngInject';
     this.playerService = playerService;
     this.$timeout = $timeout;
+    this.matchmedia = matchmediaService;
 
     this.timeoutHandler = null;
 
