@@ -35,6 +35,34 @@
 
       #browsePanelHeading{
         background-color: $theme-darker-color;
+
+        .search-container{
+          button.search-icon {
+
+            background: none;
+            border: 0;
+            outline: none;
+
+            &:focus{
+              outline: none;
+            }
+
+            position: absolute;
+            top: 12px;
+            right: 2.5%;
+            color: $theme-text-color;
+            font-size: 18px;
+            z-index: 1000;
+            cursor: pointer;
+
+            i{
+              position: relative;
+              z-index: 1000;
+              cursor: pointer;
+            }
+          }
+        }
+
       }
 
       @include breakpoint(xs) {
@@ -47,7 +75,6 @@
     }
 
     .dedicated-search-container{
-
       background: $theme-darker-color;
       position: fixed;
       width: 83.6%;
@@ -67,21 +94,37 @@
       .dedicated-search{
         background-color: $theme-darker-color;
 
-        #searchForm{
+        div.search-container{
           position: relative;
           z-index: 800;
           width: 96% !important;
           margin: 0 2% !important;
           padding-top: 20px;
 
-          input#search-input-form{
-            position: relative;
-            z-index: 900;
+          #searchForm{
+            input#search-input-form{
+              display: block;
+              position: absolute;
+              width: 100%;
+              top: 20px;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 800;
+            }
           }
 
-          span.form-control-feedback {
+          button.search-icon {
+            background: none;
+            border: 0;
+            outline: none;
+
+            &:focus{
+              outline: none;
+            }
+
             position: absolute;
-            top: 19px;
+            top: 23px;
             right: 2.5%;
             color: $theme-text-color;
             font-size: 18px;
@@ -94,6 +137,7 @@
               cursor: pointer;
             }
           }
+
         }
       }
     }
@@ -151,47 +195,12 @@
   }
 
 }
+
 .navButtons {
   display: inline;
   button {
     padding: 4px 10px;
     font-size: 24px;
-  }
-}
-
-.searchBox {
-
-  display: block;
-  float: right;
-  width: 140px;
-  margin-top: 6px;
-
-  #searchForm {
-    display: block;
-    width: auto;
-  }
-
-  input {
-    color: $theme-text-color;
-  }
-  .form-control-feedback {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: $theme-text-color;
-    font-size: 18px;
-  }
-  .clear-search {
-    cursor: pointer;
-    pointer-events: auto;
-    &:hover {
-      color: $theme-primary-color;
-    }
-  }
-  #browseFilterBar{
-    color: #FFF;
-    margin-top: 5px;
-    text-align: right;
   }
 }
 
