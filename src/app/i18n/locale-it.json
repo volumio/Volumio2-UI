@@ -397,6 +397,7 @@
     "CD_PLAYBACK_RIPPING":"Riproduzione e salvataggio CD",
     "ALEXA_INTEGRATION":"Integrazione Alexa",
     "HIRESAUDIO_INTEGRATION":"Integrazione Hiresaudio.com",
-    "INPUT_PLAYBACK":"Riproduzione da input digitali e analogici"
+    "INPUT_PLAYBACK":"Riproduzione da input digitali e analogici",
+    "BLUETOOTH_INPUT":"Riproduzione da Dispositivi Bluetooth"
   }
 }
