@@ -75,6 +75,26 @@
 
     }
 
+    .track-info-rates {
+      font-size: 11px;
+      white-space: nowrap;
+      margin-top: 2px;
+
+      .track-info-type {
+        margin-top: 15px;
+        font-size: 14px;
+
+        img {
+          height: 16px;
+          max-width: 24px;
+        }
+
+        span {
+          font-size: 11px;
+        }
+      }
+    }
+
     .track-button-container{
       text-align: center;
 

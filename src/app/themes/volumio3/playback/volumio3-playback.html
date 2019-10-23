@@ -39,6 +39,25 @@
         <track-info is-in-footer="true"></track-info>
       </div>
 
+      <div class="col-xs-24 track-info-rates text-center">
+          <span class="track-info-type" ng-if="playback.playerService.state.trackType !== 'webradio'">
+            <img
+              ng-if="playback.playerService.state.fileFormat"
+              ng-src="{{'/app/themes/volumio3/assets/format-icons/' +
+                playback.playerService.state.fileFormat.url + '.svg'}}"
+              alt="{{playback.playerService.state.fileFormat.name}}" />
+            <span ng-if="!playback.playerService.state.fileFormat">
+              {{playback.playerService.state.playback}}
+            </span>
+          </span>
+        <span>
+            {{playback.playerService.state.samplerate}}
+          </span>
+        <span ng-if="playback.playerService.state.bitdepth">
+            {{playback.playerService.state.bitdepth}}
+          </span>
+      </div>
+
       <div class="col-xs-24 track-button-container">
         <div
           id="trackButtonBar"
