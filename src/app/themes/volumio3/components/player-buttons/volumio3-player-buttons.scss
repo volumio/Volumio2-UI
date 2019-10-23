@@ -83,6 +83,16 @@
         padding-top: 10px;
       }
     }
+
+    &:hover{
+      color: inherit;
+    }
+    &:active{
+      color: inherit;
+    }
+    &.active{
+      color: $theme-link-hover-color;
+    }
   }
 
   .repeat-button{
@@ -90,6 +100,16 @@
       @media all and (max-height: 500px) {
         padding-top: 10px;
       }
+    }
+
+    &:hover{
+      color: inherit;
+    }
+    &:active{
+      color: inherit;
+    }
+    &.active{
+      color: $theme-link-hover-color;
     }
   }
 }
