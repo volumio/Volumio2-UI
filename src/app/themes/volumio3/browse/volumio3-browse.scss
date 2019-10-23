@@ -37,6 +37,9 @@
         background-color: $theme-darker-color;
 
         .search-container{
+          position: relative;
+          top: 9px;
+
           button.search-icon {
 
             background: none;
@@ -48,8 +51,8 @@
             }
 
             position: absolute;
-            top: 12px;
-            right: 2.5%;
+            top: 3px;
+            right: 0px;
             color: $theme-text-color;
             font-size: 18px;
             z-index: 1000;
@@ -125,7 +128,7 @@
 
             position: absolute;
             top: 23px;
-            right: 2.5%;
+            right: 3px;
             color: $theme-text-color;
             font-size: 18px;
             z-index: 1000;
