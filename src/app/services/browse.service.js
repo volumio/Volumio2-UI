@@ -5,7 +5,6 @@ class BrowseService {
     this.socketService = socketService;
     this.$interval = $interval;
     this.$window = $window;
-    this.isBrowsing = false;
     this.$rootScope = $rootScope;
     this.$log = $log;
     this.$timeout = $timeout;
@@ -24,6 +23,7 @@ class BrowseService {
     this.currentFetchRequest = {};
     this.historyUri = [];
     this.scrollPositions = new Map();
+    this.lastBrowseLists = [];
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -52,10 +52,21 @@ class BrowseService {
     this.$log.debug('fetchLibrary', obj);
     this.currentFetchRequest = item;
     this.socketService.emit('browseLibrary', obj);
-    this.isBrowsing = true;
+    if (!item.static) {
+      this.isBrowsing = true;
+    }
     if (!back) {
       this.scrollPositions.delete(item.uri);
     }
+  }
+
+  sendEject(data) {
+    this.socketService.emit('callMethod', data);
+    this.backHome();
+  }
+
+  sendRip(data) {
+    this.socketService.emit('callMethod', data);
   }
 
   backHome() {
@@ -185,14 +196,29 @@ class BrowseService {
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
       // data = this.mockService.get('getBrowseLibrary');
+      //console.log(data)
       if (data.navigation) {
         this.$log.debug('pushBrowseLibrary', data);
         this.lists = data.navigation.lists;
+        this.lastBrowseLists = data.navigation.lists;
+        this.info = data.navigation.info;
 
         this.breadcrumbs = data.navigation.prev;
+        this.eject = data.navigation.eject;
+        this.rip = data.navigation.rip;
 
         this.$rootScope.$broadcast('browseService:fetchEnd');
       }
+    });
+    this.socketService.on('pushActiveDumbInput', (data) => {
+      for (var i in this.lists[0].items) {
+        if (this.lists[0].items[i].title === data) {
+          this.lists[0].items[i].active = true;
+        } else {
+          this.lists[0].items[i].active = false;
+        }
+      }
+      this.$rootScope.$broadcast('browseService:fetchEnd');
     });
   }
 
@@ -210,7 +236,6 @@ class BrowseService {
   initService() {
     this.socketService.emit('getBrowseFilters');
     this.socketService.emit('getBrowseSources');
-    this._isBrowsing = false;
     this._listBy = 'track';
     //TODO or from sessionStorage
     // this._showGridView = false;

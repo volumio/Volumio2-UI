@@ -45,6 +45,9 @@ class RipperService {
     this.socketService.on('cdRipStart', (data) => {
       this.$log.debug('cdRipStart', data);
       this.modalDataObj = data;
+      if (this.modalDataObj && this.modalDataObj.availableDrives && this.modalDataObj.availableDrives.length) {
+        this.modalDataObj.destinationDrive = this.modalDataObj.availableDrives[0];
+      }
       this.cdRipStart(this.modalDataObj);
     });
   }

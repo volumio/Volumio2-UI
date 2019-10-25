@@ -1,0 +1,492 @@
+#browse {
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+
+  .panel {
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: $theme-dark-transparent-background;
+    z-index: 0;
+
+    .browse-header-container{
+      position: fixed;
+      width: 83.6%;
+      top: 0px;
+      z-index: 800;
+
+      height: 67px;
+
+      background-color: $theme-darker-color;
+
+      #browsePanelHeading{
+        background-color: $theme-darker-color;
+
+        .search-container{
+          position: relative;
+          top: 9px;
+
+          button.search-icon {
+
+            background: none;
+            border: 0;
+            outline: none;
+
+            &:focus{
+              outline: none;
+            }
+
+            position: absolute;
+            top: 3px;
+            right: 0px;
+            color: $theme-text-color;
+            font-size: 18px;
+            z-index: 1000;
+            cursor: pointer;
+
+            i{
+              position: relative;
+              z-index: 1000;
+              cursor: pointer;
+            }
+          }
+        }
+
+      }
+
+      @include breakpoint(xs) {
+        width: 100%;
+      }
+
+      @include breakpoint(sm) {
+        width: 100%;
+      }
+    }
+
+    .dedicated-search-container{
+      background: $theme-darker-color;
+      position: fixed;
+      width: 83.6%;
+      top: 0;
+      z-index: 800;
+
+      height:77px;
+
+      @include breakpoint(xs) {
+        width: 100%;
+      }
+
+      @include breakpoint(sm) {
+        width: 100%;
+      }
+
+      .dedicated-search{
+        background-color: $theme-darker-color;
+
+        div.search-container{
+          position: relative;
+          z-index: 800;
+          width: 96% !important;
+          margin: 0 2% !important;
+          padding-top: 20px;
+
+          #searchForm{
+            input#search-input-form{
+              display: block;
+              position: absolute;
+              width: 100%;
+              top: 20px;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 800;
+            }
+          }
+
+          button.search-icon {
+            background: none;
+            border: 0;
+            outline: none;
+
+            &:focus{
+              outline: none;
+            }
+
+            position: absolute;
+            top: 23px;
+            right: 3px;
+            color: $theme-text-color;
+            font-size: 18px;
+            z-index: 1000;
+            cursor: pointer;
+
+            i{
+              position: relative;
+              z-index: 1000;
+              cursor: pointer;
+            }
+          }
+
+        }
+      }
+    }
+
+    .dedicated-search-container-flow-space{
+      position: relative;
+      height:0px;
+    }
+
+    .body-content{
+      position: relative;
+
+      overflow-y: hidden;
+      overflow-y: scroll;
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+
+      height: calc( 100% - 82px );
+      top: 82px;
+
+      &.with-search-header{
+        top: 77px;
+        height: calc( 100% - 77px );
+      }
+
+      @include breakpoint(xs) {
+
+      }
+
+      @include breakpoint(sm) {
+
+      }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      &::-webkit-scrollbar-track {
+        background: $theme-accent-color;
+        border-radius: 0px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: $theme-light-color;
+        border-radius: 0px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: $theme-primary-color;
+      }
+
+    }
+
+  }
+
+}
+
+.navButtons {
+  display: inline;
+  button {
+    padding: 4px 10px;
+    font-size: 24px;
+  }
+}
+
+#browseTablesWrapper {
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow: visible;
+}
+
+.rowTitle {
+  clear: both;
+  font-size: 18px;
+  padding: 15px 10px 5px 10px;
+  cursor: auto;
+  color: $theme-primary-color;
+  border-bottom: solid 1px $theme-primary-color;
+  background-color: $theme-dark-transparent-background;
+  i {
+    margin-right: 10px;
+  }
+}
+
+.rowInfo {
+  clear: both;
+  font-size: 18px;
+  padding: 5px 10px 5px 5px;
+  height: 100px!important;
+  overflow: hidden;
+  cursor: auto;
+  color: $theme-primary-color;
+  border-bottom: solid 1px $theme-primary-color;
+  background-color: $theme-dark-transparent-background;
+  i {
+    margin-right: 10px;
+  }
+  img {
+    float: left;
+    text-align: center;
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+  }
+}
+
+.album-title {
+  font-weight: bold;
+  color: $theme-text-color;
+}
+
+.album-time {
+  font-size: 14px;
+  font-style: italic;
+  color: $theme-text-color;
+}
+
+.imageInfo {
+  float: left;
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  margin-right: 10px;
+}
+
+.infoButton {
+  float: right;
+  /* padding-top: 8px; */
+  /* width: 35px; */
+  font-size: 60px;
+  vertical-align: middle;
+}
+
+.browseTable {
+  min-height: 100%;
+
+  .itemWrapper {
+    cursor: pointer;
+  }
+
+  &.sourcesTable {
+    .listWrapper {
+      &.grid {
+        .description {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .itemTab {
+    overflow: visible;
+    height: 56px;
+    border-bottom: solid 1px $theme-table-border-color;
+    padding: 5px 0px 0px 5px;
+    background-color: $theme-transparent-background;
+    &:hover {
+      background-color: $theme-dark-transparent-background;
+    }
+  }
+
+  .image {
+    float: left;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    i {
+      padding-top: 15px;
+      font-size: 18px
+    }
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+    }
+  }
+
+  .description {
+    width: auto;
+    overflow: hidden;
+  }
+
+  .title {
+    font-size: 16px;
+    height: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &.onlyTitle {
+      margin: 10px 0;
+    }
+    &.tagImage {
+      max-width: 85%;
+      display: inline-block;
+    }
+  }
+
+  img.tag-image {
+    height: 20px;
+    max-width: 10%;
+    vertical-align: top;
+    margin-right: 4px;
+  }
+
+  .artist-album {
+    font-size: 13px;
+    color: $theme-primary-color;
+    height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    clear: both;
+    &.onlyTitle {
+      display: none;
+    }
+  }
+
+  .info-title {
+    font-weight: bolder;
+    position: relative;
+    top: 50%;
+    height: 90%;
+    overflow: hidden;
+  }
+
+  .commandButtons {
+    float: right;
+    padding-top: 8px;
+    width: 35px;
+    font-size: 20px;
+    .dropdown-menu {
+      z-index: 1000;
+      left: auto;
+      right: 10px;
+      &.right {
+        left: 0;
+        right: auto;
+      }
+      &.top {
+        top: auto;
+        bottom: 25px;
+      }
+    }
+  }
+
+  //Grid view override
+  .listWrapper {
+    &.grid {
+      .itemWrapper {
+        position: relative;
+        @include make-xs-column(12, 0);
+        @include make-sm-column(6, 0);
+        @include make-md-column(4, 0);
+        @include make-lg-column(4, 0);
+      }
+
+      .itemTab {
+        position: relative;
+        height: auto;
+        padding: 10px;
+        border: solid 1px $theme-table-border-color;
+        margin: 10px;
+      }
+
+      .image {
+        border: solid 1px #444;
+        position: relative;
+        float: none;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+        &:before{
+          content: "";
+          display: block;
+          padding-top: 100%;
+        }
+        i {
+          display: block;
+          position: absolute;
+          padding: 0px;
+          width: 60px;
+          height: 50px;
+          margin: 0px auto;
+          font-size: 50px;
+          top: calc(50% - 25px);
+          left: calc(50% - 30px);
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
+      }
+
+      .title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        &.onlyTitle {
+          white-space: normal;
+          margin: 0;
+          height: 42px;
+        }
+        &.tagImage {
+          max-width: 85%;
+          margin-right: 15%;
+          display: block;
+        }
+      }
+
+      img.tag-image {
+        height: 20px;
+        vertical-align: top;
+        float: right;
+        display: block;
+        margin-right: 0px;
+      }
+
+      .description {
+        float: none;
+      }
+
+      .commandButtons {
+        float: none;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        i {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  //End grid overrides
+}
+
+.title-tag.ng-binding {
+  height: 42px;
+}
+
+.title.ng-binding {
+  height: 42px;
+}

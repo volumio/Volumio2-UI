@@ -70,7 +70,9 @@
     "DONE": "Fertig",
     "EMAIL": "Email",
     "SUBSCRIBE_ME": "Newsletter erhalten",
-    "SHARE": "Teilen"
+    "SHARE": "Teilen",
+    "EJECT": "Auswerfen",
+    "FUNCTIONALIES_CONTROL":"Funktionssteuerung"
   },
   "BROWSER": {
     "PLAY": "Wiedergeben",
@@ -92,7 +94,9 @@
     "PREVIOUS_TRACK":"Vorheriger Titel",
     "PAUSE":"Pause",
     "CLEAR_AND_PLAY":"Warteschlange hiermit ersetzen",
-    "SAFE_REMOVE": "Medium sicher auswerfen"
+    "SAFE_REMOVE": "Medium sicher auswerfen",
+    "UPDATE_FOLDER": "Ordner aktualisieren",
+    "DELETE_FOLDER":"Ordner löschen"
   },
 "MY_MUSIC": {
     "UPDATE":"Aktualisieren",
@@ -117,7 +121,7 @@
     "UPLOAD_PLUGINS":"Aktualisiere Plugin"
   },
   "UPDATER": {
-    "DOWNLOAD_SPEED": "Download-Geschwindigkeit:",
+    "DOWNLOAD_SPEED": "Download-Geschwindigkeit",
     "TIME_REMAINING": "Restzeit",
     "UPDATE_NOW": "Jetzt aktualisieren"
   },
@@ -179,7 +183,7 @@
     "MANUAL_WIFI_CONNECTION":"Manuelle WLAN-Verbindung",
     "NETWORK_NAME": "Netzwerkname"
   },
-    "WIZARD": {
+  "WIZARD": {
     "LANGUAGE": "Sprache",
     "NAME": "Name",
     "OUTPUT": "Ausgang",
@@ -192,7 +196,7 @@
     "DEVICE_NAME": "Wähle einen eindeutigen Namen für dein Gerät",
     "DEVICE_ADDRESS": "Dieses Gerät ist über folgende Addresse erreichbar:",
     "SELECT_YOUR_AUDIO_OUTPUT": "Wähle deinen Audioausgang",
-    "SELECT_YOUR_I2S_DAC": "Wähle deinen i2s DAC",
+    "SELECT_YOUR_I2S_DAC": "Wähle deinen I2S DAC",
     "I_HAVE_DAC": "Ich habe einen I2S DAC",
     "CUSTOM_AMOUNT": "Eigener Wert",
     "DONE_MESSAGE": "Fertig, dein System ist bereit",
@@ -207,7 +211,12 @@
   },
   "SLEEP": {
     "POWER_OFF": "Ausschalten",
-    "STOP_MUSIC": "Musik anhalten"
+    "STOP_MUSIC": "Musik anhalten",
+    "PRESET_TIMES": "Voreinstellungen",
+    "CHOOSE_PRESET": "Voreinstellung wählen",
+    "HR": "Std",
+    "MIN": "Min",
+    "OFF": "Aus"
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Um die Weckfunktion nutzen zu können, muss mindestens eine Wiedergabeliste angelegt sein."
@@ -220,7 +229,7 @@
     "NOW_PLAYING": "Wird wiedergegeben"
   },
   "SIDEMENU": {
-    "ANALOG_INPUT": "Analoger Input",
+    "ANALOG_INPUT": "Analoger Eingang",
     "BLUETOOTH": "Bluetooth"
    }
 }

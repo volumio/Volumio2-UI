@@ -42,6 +42,7 @@
 
 #browseTablesWrapper {
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .rowTitle {
@@ -55,6 +56,55 @@
   i {
     margin-right: 10px;
   }
+}
+
+.rowInfo {
+  clear: both;
+  font-size: 18px;
+  padding: 5px 10px 5px 5px;
+  height: 100px!important;
+  overflow: hidden;
+  cursor: auto;
+  color: $theme-primary-color;
+  border-bottom: solid 1px $theme-primary-color;
+  background-color: $theme-dark-transparent-background;
+  i {
+    margin-right: 10px;
+  }
+  img {
+    float: left;
+    text-align: center;
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+  }
+}
+
+.album-title {
+    font-weight: bold;
+    color: $theme-text-color;
+}
+
+.album-time {
+    font-size: 14px;
+    font-style: italic;
+    color: $theme-text-color;
+}
+
+.imageInfo {
+    float: left;
+    text-align: center;
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+}
+
+.infoButton {
+    float: right;
+    /* padding-top: 8px; */
+    /* width: 35px; */
+    font-size: 60px;
+    vertical-align: middle;
 }
 
 .browseTable {
@@ -96,6 +146,7 @@
     img {
       width: 45px;
       height: 45px;
+      object-fit: cover;
     }
   }
 
@@ -114,6 +165,17 @@
     &.onlyTitle {
       margin: 10px 0;
     }
+    &.tagImage {
+      max-width: 85%;
+      display: inline-block;
+    }
+  }
+
+  img.tag-image {
+    height: 20px;
+    max-width: 10%;
+    vertical-align: top;
+    margin-right: 4px;
   }
 
   .artist-album {
@@ -123,9 +185,18 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    clear: both;
     &.onlyTitle {
       display: none;
     }
+  }
+
+  .info-title {
+    font-weight: bolder;
+    position: relative;
+    top: 50%;
+    height: 90%;
+    overflow: hidden;
   }
 
   .commandButtons {
@@ -207,12 +278,19 @@
           margin: 0;
           height: 42px;
         }
+        &.tagImage {
+          max-width: 85%;
+          margin-right: 15%;
+          display: block;
+        }
       }
 
-      .artist-album {
-        &.onlyTitle {
-          // display: block;
-        }
+      img.tag-image {
+        height: 20px;
+        vertical-align: top;
+        float: right;
+        display: block;
+        margin-right: 0px;
       }
 
       .description {
@@ -231,4 +309,12 @@
     }
   }
   //End grid overrides
+}
+
+.title-tag.ng-binding {
+  height: 42px;
+}
+
+.title.ng-binding {
+  height: 42px;
 }

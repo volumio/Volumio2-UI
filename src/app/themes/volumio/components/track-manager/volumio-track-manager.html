@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="bigText">
-          <span ng-if="trackManager.playerService.state.trackType !== 'webradio' && trackManager.playerService.state.service !== 'analogin'">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio' && trackManager.playerService.state.service !== 'analogin' && trackManager.playerService.state.trackType !== 'inputs'">
             {{trackManager.playerService.elapsedTimeString}}
           </span>
           <div
@@ -40,7 +40,7 @@
           {{trackManager.playerService.songLength}}
         </div>
         <div class="footerText">
-          <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
+          <span ng-if="trackManager.playerService.state.trackType !== 'webradio' && trackManager.playerService.state.trackType !== 'inputs'">
             <img
                 ng-if="trackManager.playerService.state.fileFormat"
                 ng-src="{{'/app/themes/volumio/assets/format-icons/' +

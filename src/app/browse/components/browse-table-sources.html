@@ -5,7 +5,7 @@
         ng-click="browse.fetchLibrary(source)"
         class="itemWrapper">
       <div class="itemTab">
-        <div class="image">
+        <div class="image" ng-attr-id="{{source.active ? 'source-active': ''}}">
           <img ng-if="source.albumart" src={{::source.albumart}} alt={{::source.name}}/>
           <i ng-if="source.icon && !source.albumart" class={{::source.icon}}></i>
         </div>

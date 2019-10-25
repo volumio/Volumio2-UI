@@ -1,17 +1,37 @@
-<div ng-if="!header.matchmediaService.isPhone">
-  <div id="logo">
-    <img
-        ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo.png"
-        alt="{{header.themeManager.theme}}"
-        ui-sref="volumio.playback"/>
+<div ng-if="header.isSocketReady" class="headerContent">
+  <div ng-if="!header.matchmediaService.isPhone">
+    <div id="logo">
+      <img
+          ng-src="{{variantAssetsUrl}}/graphics/{{variant}}-logo.png"
+          alt="{{header.themeManager.theme}}"
+          ui-sref="redirect"/>
+    </div>
+
+    <div>
+      <player-buttons></player-buttons>
+      <side-menu></side-menu>
+    </div>
   </div>
 
-  <player-buttons></player-buttons>
-
-  <side-menu></side-menu>
+  <ng-include src="'app/themes/volumio/partials/volumio-tab-bar.html'" ng-if="header.matchmediaService.isPhone">
+  </ng-include>
 </div>
 
-<ng-include
-    src="'app/themes/volumio/partials/volumio-tab-bar.html'"
-    ng-if="header.matchmediaService.isPhone">
-</ng-include>
+<div ng-if="!header.isSocketReady">
+  <div class="logout-container" ng-if="header.authService.user !== null">
+    <button class="btn btn-danger btn-small btn-labeled" ng-click="header.logout()">
+      <span class="glyphicon glyphicon-log-out"></span>
+      {{'MYVOLUMIO.LOGOUT' | translate}}
+    </button>
+  </div>
+  <div class="languageContainer">
+    <ui-select ng-model="header.language" ng-change="header.changeLanguage()" search-enabled="false" ng-readonly="true" append-to-body="false" theme="bootstrap">
+      <ui-select-match class="ui-select-match" placeholder="">
+        {{$select.selected.label}}
+      </ui-select-match>
+      <ui-select-choices class="ui-select-choices" repeat="language in header.languages track by $index">
+        <div ng-bind-html="language.label"></div>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+// PLAYER BAR
+#trackInfo-compact {
+  padding: 0px;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+  @include breakpoint('md') {
+    padding: 4px;
+  }
+
+  .trackInfo-album-art-wrapper{
+
+    img.album-art {
+      float: left;
+      background: $theme-background-color;
+      padding: 0px;
+      margin-right: 8px;
+      width: $theme-player-height-smartphone;
+      height: $theme-player-height-smartphone;
+      cursor: pointer;
+
+      @include breakpoint('md') {
+        margin-right: 12px;
+        width: calc(#{$theme-player-height-tablet} - 8px);
+        height: calc(#{$theme-player-height-tablet} - 8px);
+      }
+
+      @include breakpoint('lg') {
+        height: 100%;
+        width: $theme-player-height-desktop;
+        height: $theme-player-height-desktop;
+      }
+    }
+
+  }
+
+  .text-with-dots {
+    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+
+  #trackInfo-title {
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    color: $theme-text-light-color;
+    white-space: nowrap;
+    @include breakpoint(lg) {
+      font-size: 20px;
+    }
+
+    @media all and (max-height: 600px)  {
+      font-size: 16px;
+    }
+  }
+
+  #trackInfo-artist-album{
+    cursor: pointer;
+    white-space: nowrap;
+
+    #trackInfo-album, #trackInfo-artist {
+      font-size: 14px;
+      font-weight: 300;
+
+      @include breakpoint(md){
+        font-size: 18px;
+      }
+      @include breakpoint(lg){
+        font-size: 18px;
+      }
+    }
+
+    #trackInfo-album{
+      color: $theme-text-light-color;
+    }
+
+    #trackInfo-artist{
+      color: $theme-primary-color;
+    }
+
+  }
+
+  .track-info-rates{
+    font-size: 11px;
+    white-space: nowrap;
+    margin-top: 10px;
+
+    .track-info-type{
+      margin-top: 15px;
+      font-size: 14px;
+
+      img{
+        height: 16px;
+        max-width: 24px;
+      }
+
+      span{
+        font-size: 11px;
+      }
+    }
+  }
+
+  .track-user-actions{
+    position: relative;
+
+    transform: translate(0, -8px);
+
+    button{
+      padding-left: 8px;
+      padding-right: 0px;
+    }
+  }
+
+  .clear{
+    clear: both;
+  }
+
+}
+
+// MAIN CONTENT PLAYER
+#trackInfo {
+  @include make-xs-column(24);
+  // border: solid 1px #999;
+  text-align: center;
+  margin-top: 40px;
+  scrollbar-width: none;
+
+  img {
+    width:100%;
+    margin: 10px auto;
+    max-width: 400px;
+    max-height: 400px;
+    border: 10px solid rgba(0,0,0,0.5);
+  };
+
+
+  #trackDetails {
+    > div {
+      padding: 2px 8px 0 8px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  #trackInfo-album {
+    font-size: 18px;
+    font-weight: 300;
+    display: inline-block;
+    color: $theme-primary-color;
+  }
+
+  #trackInfo-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: inline-block;
+    @include breakpoint(lg) {
+      font-size: 28px;
+    }
+
+  }
+  #trackInfo-artist {
+    font-size: 20px;
+    color: $theme-primary-color;
+    display: inline-block;
+  }
+
+}
+
+#trackInfo::-webkit-scrollbar, #trackInfo-compact::-webkit-scrollbar{
+  display: none;
+}

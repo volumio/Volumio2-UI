@@ -23,8 +23,11 @@ class PluginComponentController {
     socketService,
     modalService,
     mockService,
+    uiSettingsService,
     $log,
-    $state
+    $state,
+    $window,
+    themeManager
   ) {
     'ngInject';
     this.socketService = socketService;
@@ -34,6 +37,9 @@ class PluginComponentController {
     this.$scope = $scope;
     this.$log = $log;
     this.$state = $state;
+    this.uiSettingsService = uiSettingsService;
+    this.$window = $window;
+    this.themeManager = themeManager;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -91,7 +97,7 @@ class PluginComponentController {
         'app/components/modals/modal-confirm.html',
         item.onClick.askForConfirm
       );
-      modalPromise.then(
+      modalPromise.result.then(
         yes => {
           if (item.onClick.type === 'emit') {
             this.$log.debug('emit', item.onClick.message, item.onClick.data);
@@ -106,6 +112,10 @@ class PluginComponentController {
       if (item.onClick.type === 'emit') {
         this.$log.debug('emit', item.onClick.message, item.onClick.data);
         this.socketService.emit(item.onClick.message, item.onClick.data);
+      } else if (item.onClick.type === 'openUrl'){
+        this.$window.open(item.onClick.url);
+      } else if (item.onClick.type === 'goto'){
+        this.$state.go('volumio.static-page', {pageName: item.onClick.pageName});
       } else {
         this.socketService.emit('callMethod', item.onClick);
       }
@@ -123,7 +133,6 @@ class PluginComponentController {
   }
 
   init() {
-    this.pluginName = this.pluginName.replace('-', '/');
     this.showPlugin = false;
     this.registerListner();
     this.initService();
@@ -131,7 +140,6 @@ class PluginComponentController {
   }
 
   changePlugin() {
-    this.pluginName = this.pluginName.replace('-', '/');
     this.showPlugin = false;
     this.initService();
   }
@@ -147,6 +155,7 @@ class PluginComponentController {
       // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
+      this.pluginObj.host = this.socketService.host;
       if (
         !this.pluginObj.page.passwordProtection ||
         !this.pluginObj.page.passwordProtection.enabled

@@ -1,0 +1,49 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div id="myvolumio-cancel-subscription" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.CANCEL_SUBSCRIPTION"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-if="myVolumioCancelSubscriptionController.user && myVolumioCancelSubscriptionController.plan">
+
+        <my-volumio-back-button label="{{'MYVOLUMIO.PLANS' | translate}}" route-destination="myvolumio.plans">
+        </my-volumio-back-button>
+
+        <h3 translate="MYVOLUMIO.CANCEL_SUBSCRIPTION_TITLE" style="margin-bottom: 16px"></h3>
+
+        <h4 class="badged-block">
+          <span translate="MYVOLUMIO.CURRENT_PLAN"></span>:
+          <span class="badge"> {{myVolumioCancelSubscriptionController.getCurrentPlanName() | uppercase }}</span>
+        </h4>
+
+        <h4>
+          <span translate="MYVOLUMIO.YOUR_NEW_PLAN"></span>:
+        </h4>
+
+        <my-volumio-plan-card product="myVolumioCancelSubscriptionController.product" cancellation="true" cancellation-callback="myVolumioCancelSubscriptionController.downgradeToFree()">
+        </my-volumio-plan-card>
+
+      </div>
+
+      <div id="" ng-if="!myVolumioCancelSubscriptionController.user">
+        <h4 translate="MYVOLUMIO.YOURE_NOT_LOGGED"></h4>
+        <a ng-click="myVolumioCancelSubscriptionController.logIn()" class="btn btn-lg btn-success">Log In</a>
+      </div>
+
+      <div id="" ng-if="!myVolumioCancelSubscriptionController.plan">
+        <h4 translate="MYVOLUMIO.NOT_SUBSCRIBED"></h4>
+        <a ng-click="myVolumioCancelSubscriptionController.goToPlans()" class="btn btn-lg btn-success">Retry</a>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

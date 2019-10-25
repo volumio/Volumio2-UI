@@ -1,0 +1,79 @@
+$sideMenuWidth: 230px;
+
+#sideMenu{
+  position: relative;
+  @include make-sm-column(5);
+  @include make-xs-column(4, 0);
+  text-align: right;
+  z-index: 40;
+  @include breakpoint(xs) {
+    text-align: center;
+  }
+  overflow-y: auto;
+  overflow: hidden;
+  #openMenuBtn {
+    color: $theme-link-color;
+    &:hover {
+      color: $theme-link-hover-color;
+    }
+  }
+
+  #menuList {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $sideMenuWidth;
+    padding: 10px 10px 0px 10px;
+    background-color: $theme-sidebar-background-color;
+    overflow-y: scroll;
+    max-height: calc(100vh - #{$theme-player-height-smartphone};
+
+    @include breakpoint(md) {
+      max-height: calc(100vh - #{$theme-player-height-tablet};
+    }
+    @include breakpoint(lg) {
+      max-height: calc(100vh - #{$theme-player-height-desktop};
+    }
+    button {
+      text-transform: uppercase;
+      text-align: left;
+      font-size: 18px;
+      // color: #FFF;
+      padding: 10px 0px 10px 5px;
+      border-bottom: solid 1px #333;
+      &:hover {
+        // color: $theme-primary-color;
+        border-bottom: solid 1px #333;
+      }
+    }
+    &.ng-enter, &.ng-leave {
+      transition: all .3s ease-out;
+    }
+    &.ng-enter {
+      opacity: 0;
+      right: -$sideMenuWidth;
+    }
+    &.ng-enter.ng-enter-active {
+      opacity: 1;
+      right: 0px;
+    }
+    &.ng-leave.ng-leave-active {
+      opacity: 0;
+      right: -200px;
+    }
+    #closeMenuBtn {
+      position: fixed;
+      width: auto;
+      border-bottom: none;
+      background-color: none;
+      top: 10px;
+      right: 20px;
+      @include breakpoint(xs) {
+        top: auto;
+        bottom: 0px;
+        right: 16px;
+      };
+    }
+  }
+}

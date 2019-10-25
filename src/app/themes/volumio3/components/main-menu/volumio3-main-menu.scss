@@ -1,0 +1,79 @@
+#main-menu{
+
+  /*background-image: linear-gradient($theme-dark-color, $theme-primary-color);*/
+  background-color: $theme-sidebar-background-color;
+  padding-top: 20px;
+  padding-left: $main-menu-padding-left;
+  padding-right: $main-menu-padding-right;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .logo {
+    img {
+      cursor: pointer;
+      width: $main-menu-logo-width;
+      margin: 0 auto;
+    }
+  }
+
+  .myvolumio-card-container{
+    margin-top: 46px;
+  }
+
+  .main-menu-list-container{
+
+    margin-top: 64px;
+    margin-bottom: 64px;
+
+    ul.main-menu-list{
+
+      width: 100%;
+      margin-bottom: 32px;
+      list-style: none;
+      padding: 0;
+
+      li:first-child{
+        padding-top: 0;
+      }
+
+      li{
+
+        padding: 0;
+        padding-top: 4px;
+
+        a {
+          font-size: 20px;
+          font-weight: 300;
+          cursor: pointer;
+        }
+
+      }
+
+      .spacer{
+        height: 0;
+        padding-top: 40px;
+      }
+
+    }
+
+  }
+
+}
+
+#main-menu::-webkit-scrollbar {
+  width: 3px;
+}
+#main-menu::-webkit-scrollbar-track {
+  background: $theme-accent-color;
+  border-radius: 0px;
+}
+#main-menu::-webkit-scrollbar-thumb {
+  background: $theme-light-color;
+  border-radius: 0px;
+}
+#main-menu::-webkit-scrollbar-thumb:hover {
+  background: $theme-primary-color;
+}

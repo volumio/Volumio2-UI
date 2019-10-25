@@ -5,28 +5,6 @@ class UpdaterService {
     this.modalService = modalService;
     this.$timeout = $timeout;
     this.$log = $log;
-    // this.updateReady =
-    //   {
-    //     title: 'Update v2.0',
-    //     description: `- Bug fixing, new dac available<br/> - <a href="http://volumio.org/"
-    //         target="_blank">http://volumio.org/</a>`,
-    //     updateavailable: true,
-    //     alternativeEmit: {
-    //       message: 'method',
-    //       payload: 'payme'
-    //     }
-    //   };
-    // this.status = 'updateProgress';
-    // this.updateProgress = {
-    //   progress: 90,
-    //   status: 'please wait',
-    //   downloadSpeed: '100',
-    //   eta: '40m 30s'
-    // };
-    // this.$timeout(() => {
-    //   this.updateDone();
-    // }, 3000000);
-    // this.openUpdateModal();
 
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -51,16 +29,6 @@ class UpdaterService {
     } else {
       this.socketService.emit('update', {value: val});
     }
-    // this.status = 'updateProgress';
-    // this.updateProgress = {
-    //   progress: 90,
-    //   status: 'please wait',
-    //   downloadSpeed: '100',
-    //   eta: '40m 30s'
-    // };
-    // this.$timeout(() => {
-    //   this.updateDone();
-    // }, 3000000);
   }
 
   updateDone() {
@@ -77,10 +45,21 @@ class UpdaterService {
   }
 
   registerListner() {
+    this.socketService.on('updateWaitMsg', (data) => {
+      this.$log.debug('updateWaitMsg', data);
+      this.modalService.closeAllModals();
+      this.updateReady = data;
+      setTimeout(()=>{
+        this.openUpdateModal();
+      }, 100);
+    });
     this.socketService.on('updateReady', (data) => {
       this.$log.debug('updateReady', data);
+      this.modalService.closeAllModals();
       this.updateReady = data;
-      this.openUpdateModal();
+      setTimeout(()=>{
+        this.openUpdateModal();
+      }, 100);
     });
     this.socketService.on('updateProgress', (data) => {
       this.$log.debug('updateProgress', data);
@@ -91,6 +70,10 @@ class UpdaterService {
       this.$log.debug('updateDone', data);
       this.status = 'updateDone';
       this.updateDone = data;
+    });
+    this.socketService.on('closeAllModals', (data) => {
+      this.$log.debug('closeAllModals', data);
+      this.modalService.closeAllModals();
     });
   }
 

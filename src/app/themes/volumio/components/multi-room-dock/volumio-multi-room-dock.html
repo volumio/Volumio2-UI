@@ -8,7 +8,8 @@
     <div class="panel-body">
       <div ng-repeat="device in multiRoomDock.multiRoomService.devices track by $index"
           class="device"
-          ng-click="multiRoomDock.changeDevice(device)">
+          ng-click="multiRoomDock.changeDevice(device)"
+	      ng-if="multiRoomDock.showDevice(device)">
         <div ng-class="{'child': device.isChild, 'isSelf': device.isSelf}">
           <div class="deviceIcon">
             <img ng-src="{{device.state.albumart}}"/>

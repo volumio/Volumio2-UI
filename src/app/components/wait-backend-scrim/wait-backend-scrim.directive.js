@@ -21,6 +21,11 @@ class WaitBackendScrimController {
     this.$window = $window;
     this.$log = $log;
 
+    if (!this.socketService.isSocketAvalaible()) {
+      this.hideSrcrim();
+      return;
+    }
+
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -42,8 +47,10 @@ class WaitBackendScrimController {
       this.hideSrcrim();
     });
     this.socketService.disconnect((socket) => {
-      this.$document.querySelector('#waitBackendScrim').classList.remove('hideScrim');
-      this.$state.go('volumio.playback');
+      if (this.$document.querySelector('#waitBackendScrim')) {
+        this.$document.querySelector('#waitBackendScrim').classList.remove('hideScrim');
+      }
+      //this.$state.go('volumio.playback');
     });
   }
 

@@ -1,0 +1,31 @@
+.trackInfoBar {
+  background-color: $theme-dark-transparent-background;
+  height: 35px;
+  overflow: hidden;
+  .leftInfo {
+    @include make-sm-column(14);
+    // border: solid 1px red;
+    padding: 8px 0px 9px 26px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    span {
+      &.small {
+        font-weight: 300;
+      }
+      &.green {
+        font-weight: 700;
+        color: $theme-primary-color;
+      }
+    }
+  }
+  .rightInfo {
+    // border: solid 1px red;
+    text-align: right;
+    @include make-sm-column(10);
+    button {
+      font-size: 22px;
+      padding: 1px 10px;
+    }
+  }
+}

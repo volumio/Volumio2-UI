@@ -1,0 +1,49 @@
+<!-- NOTE: MOVE HERE THE BACKGROUND IF POSSIBLE -->
+
+<wait-backend-scrim></wait-backend-scrim>
+<div id="wizardScrim"></div>
+
+<div id="layout-container" class="container-fluid">
+
+      <!--
+      <header id="header" ui-view="header"></header>
+      -->
+
+      <div
+        class="row main-container"
+        ng-class="[ state.current.url, layout.isWithPlaybackBar ? 'with-playback-bar' : '' ]"
+      >
+
+          <main-menu id="main-menu-container"
+            class="hidden-sm col-md-4"
+            ng-if="!layout.matchmediaService.isPhone"
+          ></main-menu>
+    
+          <div id="contentWrapper" 
+            class="col-xs-24 col-md-20"
+            ng-class="[ layout.wrapperColumnClass, state.current.url ]" 
+            hm-swipeleft="layout.swipeLeft()"
+            hm-swiperight="layout.swipeRight()"
+            hm-recognizer-options='[{"directions":"DIRECTION_LEFT|DIRECTION_RIGHT", "threshold": 50}]'
+          >
+
+            <!--
+            <div class='content-top-bar'>
+                <on-cloud-actions></on-cloud-actions>
+            </div>
+            -->
+    
+            <div id="content" 
+                ng-class="state.current.url" 
+                ui-view="content">
+            </div>
+
+          </div>
+
+      </div>
+
+      <footer id="footer-container" 
+        ui-view="footer">
+      </footer>
+
+</div>

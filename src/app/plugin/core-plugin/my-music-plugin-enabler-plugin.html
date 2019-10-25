@@ -1,0 +1,52 @@
+<div id="myMusicPlugins" ng-controller="MyMusicPluginEnablerController as MyMusicPlugins"
+   class="panel panel-default">
+   <div class="panel-heading" ng-if="MyMusicPlugins.plugins.length">
+      <h3 class="panel-title"><i class="fa fa-toggle-on"></i>   <span translate="COMMON.FUNCTIONALIES_CONTROL"></span></h3>
+   </div>
+   <div class="panel-body" ng-if="MyMusicPlugins.plugins.length">
+      <div id="installed-plugin-lists" ng-repeat="plugin in MyMusicPlugins.plugins track by $index">
+         <div class="row">
+            <div class="col-xs-24 col-sm-24 col-md-12" id="list-group">
+               <div class="row" >
+                  <div class="col-xs-12 col-sm-12 col-md-16">
+                     <i ng-if="plugin.icon && !MyMusicPlugins.matchmediaService.isPhone" class="fa {{plugin.icon}} fa-lg"></i>
+                     {{::plugin.prettyName}}
+                  </div>
+                  <div class="col-xs-8 col-sm-8 col-md-8">
+                     <input
+                        bs-switch
+                        ng-model="plugin.enabled"
+                        type="checkbox"
+                        switch-size="medium"
+                        switch-animate="false"
+                        switch-on-text="On"
+                        switch-off-text="Off"
+                        ng-true-value="true"
+                        ng-false-value="false"
+                        ng-change="MyMusicPlugins.enableDisableMyMusicPlugin(plugin)">
+                  </div>
+               </div>
+            </div>
+            <div class="col-xs-24 col-sm-24 col-md-10" id="list-group">
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                  <span
+                     class="pluginDotStatus"
+                     ng-class="{'active': plugin.active, 'inactive': !plugin.active}"></span>
+                  <span ng-if="plugin.active" translate="COMMON.ACTIVE"></span>
+                  <span ng-if="!plugin.active" translate="COMMON.INACTIVE"></span>
+               </div>
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                  <button
+                     ng-if="plugin.enabled && plugin.hasConfiguration"
+                     ng-click="MyMusicPlugins.showMyMusicPluginSettings(plugin)"
+                     type="button"
+                     class="btn btn-info pull-right"
+                     title="{{'COMMON.SETTINGS' | translate}}">
+                  {{'COMMON.SETTINGS' | translate}}
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

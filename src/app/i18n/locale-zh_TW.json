@@ -1,4 +1,3 @@
-
 {
   "UI_SETTINGS": {
     "THEME_SETTINGS": "主題設定",
@@ -6,10 +5,13 @@
     "UPLOAD_BACKGROUND_FILE": "點選新背景圖片或把圖片拖到此處。",
     "UPLOAD_PROGRESS": "上傳進度:",
     "SELECT_BACKGROUND": "選擇背景圖片",
-    "SELECT_BACKGROUND_COLOR": "選擇背景顏色"
+    "SELECT_BACKGROUND_COLOR": "選擇背景顏色",
+    "APPLY_BACKGROUND": "套用背景圖片",
+    "APPLY_BACKGROUND_COLOR": "套用背景顏色",
+    "DELETE_BACKGROUND": "移除背景圖片"
   },
   "COMMON": {
-    "SAVE": "存檔",
+    "SAVE": "保存",
     "OK":"確定",
     "YES":"是",
     "NO":"否",
@@ -25,13 +27,15 @@
     "ACTIVE":"作用中",
     "INACTIVE":"無作用",
     "SHOW_SETTINGS":"顯示設定",
+    "SETTINGS":"設定",
     "TAB_BROWSE":"瀏覽",
     "TAB_PLAYBACK":"播放",
-    "TAB_QUEUE":"佇列",
+    "TAB_QUEUE":"貯列",
     "ARTISTS":"演出者",
     "ARTIST":"演出者",
     "ALBUMS":"專輯",
     "ALBUM":"專輯",
+    "SONG":"歌曲",
     "SONGS":"歌曲",
     "PLAYTIME":"播放時間",
     "TIME":"時間",
@@ -49,11 +53,29 @@
     "OPTIONS":"選項",
     "CHOOSE_PLAYLIST":"選擇播放列表",
     "STOP_MUSIC":"停止音樂",
-    "RIP":"抓取音軌"
+    "HOME": "Home",
+    "VOLUME_MUTE":"靜音",
+    "VOLUME_MUTED":"已靜音",
+    "VOLUME_UP":"音量大",
+    "VOLUME_DOWN":"音量細",
+    "HIDDEN": "隱藏",
+    "LIST": "列出",
+    "PLAY_QUEUE": "開始從貯列播放",
+    "ENTER_PASSWORD": "請輪入密碼",
+    "INVALID_PASSWORD": "密碼不正確",
+    "RIP":"抓取音軌",
+    "SKIP": "略過",
+    "NEXT": "下一步",
+    "PREVIOUS": "上一步",
+    "DONE": "完成",
+    "EMAIL": "電子郵件",
+    "SUBSCRIBE_ME": "訂閱",
+    "SHARE": "分享",
+    "EJECT": "退出"
   },
   "BROWSER": {
     "PLAY": "播放",
-    "ADD_TO_QUEUE":"加入佇列中",
+    "ADD_TO_QUEUE":"加入貯列中",
     "ADD_TO_PLAYLIST":"加到播放列表",
     "REMOVE_FROM_PLAYLIST":"從播放列表中刪除",
     "ADD_TO_FAVOURITES":"加到收藏",
@@ -69,14 +91,17 @@
     "GO_TO_SHARE":"轉到 - 共享",
     "NEXT_TRACK":"下一軌",
     "PREVIOUS_TRACK":"上一軌",
-    "PAUSE":"暫停"
+    "PAUSE":"暫停",
+    "CLEAR_AND_PLAY": "清除與播放",
+    "SAFE_REMOVE": "安全移除媒體",
+    "UPDATE_FOLDER": "更新資料夾"
   },
-"MY_MUSIC": { 
-    "UPDATE":"更新", 
-    "UPDATE_DOC":"更新", 
-    "RESCAN":"重新掃瞄", 
-    "RESCAN_DOC":"重新掃瞄"  
-  }, 
+"MY_MUSIC": {
+    "UPDATE":"更新",
+    "UPDATE_DOC":"更新音樂資料庫（包只括任何更改， 新增或刪除檔案）",
+    "RESCAN":"重新掃瞄",
+    "RESCAN_DOC":"重製音樂資料庫（重新掃瞄所有檔案）"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "返回外掛列表",
     "PLUGINS":"外掛",
@@ -109,9 +134,9 @@
   "TRACK_INFO_BAR": {
     "RANDOM": "隨機",
     "REPEAT": "重複",
-    "SAVE_QUEUE_AS_PLAYLIST": "把佇列保存為播放列表",
-    "CONSUME_PLAYLIST": "打亂播放列表",
-    "CLEAR_QUEUE": "清除播放佇列"
+    "SAVE_QUEUE_AS_PLAYLIST": "把貯列保存為播放列表",
+    "CONSUME_PLAYLIST": "將已播放歌曲從列表中移除",
+    "CLEAR_QUEUE": "清除播放貯列"
   },
   "NETWORKFS":{
     "NO_DRIVES_FOUND":"未發現網路磁碟",
@@ -151,8 +176,48 @@
     "CONNECT":"連接",
     "REFRESH":"重新整理"
   },
+  "WIZARD": {
+    "LANGUAGE": "語言",
+    "NAME": "名稱",
+    "OUTPUT": "輸出",
+    "NETWORK": "網路",
+    "MUSIC": "音樂",
+    "FOLLOW": "關注",
+    "DONE": "完成",
+    "WELCOME": "歡迎, 就讓我們開始吧",
+    "SELECT_YOUR_LANGUAGE": "請選擇您的語言",
+    "DEVICE_NAME": "為您的設備設定唯一的名稱",
+    "DEVICE_ADDRESS": "可以從這地址找到這設備:",
+    "SELECT_YOUR_AUDIO_OUTPUT": "選擇您的音訊輸出",
+    "SELECT_YOUR_I2S_DAC": "選擇您的 I2S DAC",
+    "I_HAVE_DAC": "我已經擁有 I2S DAC",
+    "CUSTOM_AMOUNT": "自訂音量",
+    "DONE_MESSAGE": "已完成您的系統設定",
+    "MAIL_LIST_SUBSCRIPTION": "訂閱郵件清單",
+    "SOCIAL_SHARE": "社區網路分享",
+    "DONATE": "贊助",
+    "SUBSCRIBED_SUCCESFULLY": "已成功訂閱",
+    "ADD_YOUR_MUSIC":"新增音樂, 只需插入 USB 外置儲存或者按下面按鈕新增網路磁碟",
+    "STEP":"步",
+    "VOLUMIOAPPS":"擴充應用",
+    "GET_APPS":"您也可以使用我們小巧的擴充應用"
+  },
   "SLEEP": {
     "POWER_OFF": "關機",
     "STOP_MUSIC": "停止播放"
+  },
+  "ALARM": {
+  "CRATE_PLAYLIST_FIRST": "設定鬧鐘前,請先製造最少一個播放貯列"
+  },
+"MULTIDEVICE": {
+    "EDIT_GROUPS": "編輯群組",
+    "ROOMS_AND_GROUPS": "房間與群組",
+    "MULTI_ROOM_CONFIGURATION": "多房間控制設定",
+    "GROUP": "群組",
+    "NOW_PLAYING": "正在播放"
+  },
+  "SIDEMENU": {
+    "ANALOG_INPUT": "模擬訊號輸入",
+    "BLUETOOTH": "藍牙"
   }
 }

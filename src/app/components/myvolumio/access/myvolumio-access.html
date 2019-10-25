@@ -1,0 +1,76 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+      <a href="https://volumio.org/myvolumio" target="_blank" class="btn btn-outline pull-right" id="myvolumio-info">
+          <i class="fa fa-question"></i> <span class="hidden-xs" translate="MYVOLUMIO.WHAT_IS_MYVOLUMIO" class="ng-scope"></span></a>
+    </div>
+  </div>
+  <div id="authLoginPlugin" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.ACCESS"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="omb_login">
+        <h3 class="omb_authTitle" translate="MYVOLUMIO.ACCESS"></h3>
+
+        <div ng-if="myVolumioAccessController.isSocialEnabled()">
+          <div class="row omb_socialButtons">
+            <div class="col-xs-8 col-sm-6 col-sm-offset-3">
+              <a ng-click="myVolumioAccessController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                <i class="fa fa-facebook"></i>
+                <span class="hidden-xs">Facebook</span>
+              </a>
+            </div>
+            <div class="col-xs-8 col-sm-6">
+              <a ng-click="myVolumioAccessController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
+                <i class="fa fa-google-plus"></i>
+                <span class="hidden-xs">Google+</span>
+              </a>
+            </div>
+            <div class="col-xs-8 col-sm-6">
+              <a ng-click="myVolumioAccessController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
+                <i class="fa fa-github"></i>
+                <span class="hidden-xs">GitHub</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="row omb_loginOr">
+            <div class="col-xs-24 col-sm-12 col-sm-offset-6">
+              <hr class="omb_hrOr">
+              <span class="omb_spanOr" translate="MYVOLUMIO.OR"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-9 col-sm-offset-3" style="margin-bottom: 24px;">
+          <div class="well">
+            <p class="lead" translate="MYVOLUMIO.ALREADY_HAVE_ACCOUNT"></p>
+            <button ng-click="myVolumioAccessController.goToLogin()" class="btn btn-success btn-block">
+                <i class="glyphicon glyphicon-log-in"></i>
+                <span translate="MYVOLUMIO.LOGIN"></span>
+            </button>
+
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-9 ">
+          <p class="lead "><span translate="MYVOLUMIO.REGISTER_NOW"></span></p>
+          <p>
+            <a ng-click="myVolumioAccessController.goToSignUp() " class="btn btn-success btn-block ">
+              <i class="glyphicon glyphicon-user"></i>
+              <span translate="MYVOLUMIO.SIGNUP"></span>
+            </a>
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

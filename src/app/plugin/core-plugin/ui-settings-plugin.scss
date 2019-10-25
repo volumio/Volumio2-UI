@@ -14,7 +14,7 @@
       margin: 10px 0 0 0;
     }
     span.current {
-      color: #54C698;
+      color: $theme-primary-color;
     }
   }
   img {
@@ -23,7 +23,7 @@
     cursor: pointer;
     margin-bottom: 30px;
     &.current {
-      border: solid 2px #54C698;
+      border: solid 2px $theme-primary-color;
     }
   }
 }

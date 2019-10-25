@@ -1,4 +1,8 @@
 .trackManagerActionSheet {
+
+  position: relative;
+  z-index: 900;
+
   button {
     margin-bottom: 16px;
     &:last-of-type {
@@ -10,5 +14,10 @@
     &.playerControls {
       font-size: 26px;
     }
+  }
+
+  favourite-track-btn .btn, add-track-to-playlist-btn .btn{
+    font-size: 26px !important;
+    margin-bottom: 16px;
   }
 }

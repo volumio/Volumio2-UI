@@ -1,0 +1,98 @@
+<div id="playerButtons" ng-class="!playerButtons.isInFooter ? 'mobile-playback' : 'footer-control'">
+  <button ng-if="!playerButtons.playerService.state.repeat"
+      class="btn btn-link playerControls repeat-button"
+      ng-class="{'active': playerButtons.playerService.state.repeat, 'hidden-xs hidden-sm': playerButtons.isInFooter}"
+      ng-click="playerButtons.playerService.repeatAlbum(true, false)"
+      title="{{'TRACK_INFO_BAR.REPEAT_ALL' | translate}}"
+      ng-disabled="trackManager.playerService.state.disableUi">
+    <i class="fa fa-repeat"></i>
+  </button>
+  <button ng-if="playerButtons.playerService.state.repeat && !playerButtons.playerService.state.repeatSingle"
+      class="btn btn-link playerControls repeat-button"
+      ng-class="{'active': playerButtons.playerService.state.repeat, 'hidden-xs hidden-sm': playerButtons.isInFooter}"
+      ng-click="playerButtons.playerService.repeatAlbum(true, true)"
+      title="{{'TRACK_INFO_BAR.REPEAT_SINGLE' | translate}}"
+      ng-disabled="trackManager.playerService.state.disableUi">
+    <i class="fa fa-repeat"></i>
+  </button>
+  <button ng-if="playerButtons.playerService.state.repeat && playerButtons.playerService.state.repeatSingle"
+      class="btn btn-link playerControls repeat-button"
+      ng-class="{'active': playerButtons.playerService.state.repeat, 'hidden-xs hidden-sm': playerButtons.isInFooter}"
+      ng-click="playerButtons.playerService.repeatAlbum(false, false)"
+      title="{{'TRACK_INFO_BAR.REPEAT_OFF' | translate}}"
+      ng-disabled="trackManager.playerService.state.disableUi">
+    <i class="fa fa-repeat">1</i>
+  </button>
+  <button
+      id='prev-button'
+      ng-click="playerButtons.playerService.prev()"
+      class="btn btn-link"
+      ng-class="{'hidden-xs hidden-sm': playerButtons.isInFooter}"
+      title="{{'BROWSER.PREVIOUS_TRACK' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
+    <i class="fa fa-step-backward"></i>
+  </button>
+
+  <div class="playPauseBtnWrapper">
+    <div class="playPauseBtnGreyWrapper">
+      <button
+          ng-if="playerButtons.playerService.state.status !== 'play' && !playerButtons.playerService.state.volatile"
+          ng-click="playerButtons.playerService.play()"
+          class="btn btn-link playPause play"
+          title="{{'BROWSER.PLAY' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-play"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status !== 'play' && playerButtons.playerService.state.volatile"
+          ng-click="playerButtons.playerService.volatilePlay()"
+          class="btn btn-link playPause play"
+          title="{{'BROWSER.PLAY' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-play"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status === 'play' && playerButtons.playerService.state.trackType !== 'webradio'"
+          ng-click="playerButtons.playerService.pause()"
+          class="btn btn-link playPause"
+          ng-class="{active: playerButtons.playerService.state.status === 'play'}"
+          title="{{'BROWSER.PAUSE' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-pause"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status === 'play' && playerButtons.playerService.state.trackType === 'webradio'"
+          ng-click="playerButtons.playerService.stop()"
+          class="btn btn-link playPause"
+          ng-class="{active: playerButtons.playerService.state.status === 'stop'}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-stop"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <button
+      id='next-button'
+      ng-click="playerButtons.playerService.next()"
+      class="btn btn-link"
+      ng-class="{'hidden-xs hidden-sm': playerButtons.isInFooter}"
+      title="{{'BROWSER.NEXT_TRACK' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
+    <i class="fa fa-step-forward"></i>
+  </button>
+
+  <button
+    class='btn btn-link'
+    id="shuffle-button"
+    ng-click='playerButtons.playerService.shuffle()'
+    ng-class="{'active': playerButtons.playerService.state.random, 'player-action-shuffle': true, 'hidden-xs hidden-sm': playerButtons.isInFooter}"
+    title="{{'TRACK_INFO_BAR.RANDOM' | translate}}"
+    ng-disabled="trackManager.playerService.state.disableUi">
+     <i class="fa fa-random"></i>
+  </button>
+
+</div>

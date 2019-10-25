@@ -1,13 +1,66 @@
 class SocketService {
-  constructor($rootScope, $http, $window, $log) {
+  constructor($rootScope, $http, $window, $log, cfpLoadingBar) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.$http = $http;
     this.$window = $window;
     this.$log = $log;
+    this.loadingBar = cfpLoadingBar;
+    this.loadingBarEnabled = true;
 
     this._host = null;
     this.hosts = {};
+
+    // List of events to trigger the loading bar.
+    // Each request event should have at least 1 response event
+    this.loadingBarRequestEvents = [
+      'browseLibrary',
+      'search',
+      'goTo',
+      'GetTrackInfo',
+      'createPlaylist',
+      'listPlaylist',
+      'addToPlaylist',
+      'playPlaylist',
+      'enqueue',
+      'addToFavourites',
+      'playFavourites',
+      'addToRadioFavourites',
+      'removeFromRadioFavourites',
+      'playRadioFavourites',
+      'getSleep',
+      'getAlarms',
+      'saveAlarm',
+      'setMultiroom',
+      'getWirelessNetworks',
+      'getInfoNetwork'
+    ];
+
+    this.loadingBarResponseEvents = [
+      'pushBrowseLibrary',
+      'pushGetTrackInfo',
+      'pushCreatePlaylist',
+      'pushListPlaylist',
+      'pushAddToPlaylist',
+      'pushPlayPlaylist',
+      'pushEnqueue',
+      'urifavourites',
+      'pushPlayFavourites',
+      'pushAddToRadioFavourites',
+      'pushRemoveFromRadioFavourites',
+      'pushPlayRadioFavourites',
+      'pushSleep',
+      'pushAlarm',
+      'pushSleep',
+      'pushMultiroom',
+      'pushWirelessNetworks',
+      'pushInfoNetwork',
+      'pushToastMessage'
+    ];
+  }
+
+  isSocketAvalaible() {
+    return this._host !== null;
   }
 
   changeHost(host) {
@@ -52,6 +105,7 @@ class SocketService {
     return this.$window.socket.on(eventName, (data) => {
       //this.$log.debug(arguments);
       //this.$log.debug(data);
+      this.stopLoadingBar(eventName);
       this.$rootScope.$apply(function() {
         if (callback) {
           //this.$log.debug(data);
@@ -69,6 +123,7 @@ class SocketService {
 
   emit(eventName, data, callback) {
     //this.$log.debug('emit', eventName);
+    this.startLoadingBar(eventName);
     this.$window.socket.emit(eventName, data, (data) => {
       //let arg = arguments;
       this.$rootScope.$apply(function() {
@@ -100,6 +155,18 @@ class SocketService {
       this.$log.debug('Socket disconnect');
       callback(socket);
     });
+  }
+
+  startLoadingBar(eventName) {
+    if (this.loadingBarEnabled && this.loadingBarRequestEvents.includes(eventName)) {
+      this.loadingBar.start();
+    }
+  }
+
+  stopLoadingBar(eventName) {
+    if (this.loadingBarResponseEvents.includes(eventName)) {
+      this.loadingBar.complete();
+    }
   }
 
   set host(host) {

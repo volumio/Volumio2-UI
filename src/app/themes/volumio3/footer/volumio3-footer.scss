@@ -1,0 +1,177 @@
+#footer-content {
+  @include make-row();
+
+  #player-bar {
+    @include make-xs-column(24);
+
+    border-top: 1px solid $theme-primary-color;
+    height: $theme-player-height-smartphone;
+    bottom: $theme-tabbar-height-smartphone;
+    background-color: rgba( $theme-darker-color, .9 );
+
+    &.playback-bar{
+      height: $theme-playback-bar-height-smartphone;
+      bottom: 0;
+
+      @include breakpoint(md) {
+        height: $theme-player-height-tablet;
+      }
+      @include breakpoint(lg) {
+        height: $theme-player-height-desktop;
+      }
+    }
+
+    @include breakpoint(md) {
+      height: $theme-player-height-tablet;
+      bottom: 0;
+      background: transparent;
+    }
+    @include breakpoint(lg) {
+      height: $theme-player-height-desktop;
+      bottom: 0;
+      background: transparent;
+    }
+
+    > .row{
+      height: 100%;
+    }
+
+    .lined-seekbar{
+      .time-label, .time-right, .time-left{
+        display: none;
+      }
+
+      .seekbar-container{
+        padding-top: 0px;
+
+        .slider.slider-horizontal{
+          height: 8px;
+
+          .slider-track{
+            height: 5px;
+          }
+
+        }
+      }
+
+    }
+
+    .track-info-container{
+      text-align: left;
+      padding-top: 0px;
+      position: relative;
+      height: 100%;
+
+      @include breakpoint(xs){
+        text-align: center;
+        padding-top: 4px;
+      }
+      @include breakpoint(sm){
+        text-align: center;
+        padding-top: 4px;
+      }
+    }
+
+    .controls-container{
+      text-align: center;
+      height: $theme-player-height-smartphone;
+      bottom: 0px;
+
+      @include breakpoint(md){
+        bottom: -20px;
+        border-right: 1px solid $theme-dark-color;
+        border-left: 1px solid $theme-dark-color;
+      }
+      @include breakpoint(lg){
+        bottom: -20px;
+        border-right: 1px solid $theme-dark-color;
+        border-left: 1px solid $theme-dark-color;
+      }
+
+      position: relative;
+
+      player-buttons{
+        display: block;
+      }
+
+      player-seekbar{
+        display: block;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+      }
+    }
+
+    .volume-container .volume-slider{
+      margin-top: 28px;
+
+      slider{
+
+      }
+
+      .slider-track{
+        height: 10px;
+        background: transparent !important;
+        border-radius: 0px !important;
+        border: 0px !important;
+      }
+
+      .slider-selection{
+        background-image: $theme-slider-bar-full-gradient;
+        border-radius: 0px !important;
+        border: 0px !important;
+      }
+
+      .slider-track-high{
+        background-color: $theme-dark-grey;
+        background-image: none;
+        border-radius: 0px !important;
+      }
+
+      .slider-handle{
+        background-color: $theme-primary-color !important;
+        background-image: none !important;
+        border: none !important;
+        height: 16px !important;
+        width: 8px !important;
+        margin-left: -3px !important;
+        margin-top: -6px !important;
+      }
+
+      .slider-handle.round{
+        border-radius: initial !important;
+      }
+
+    }
+
+    .play-mode-container{
+      margin-top: 28px;
+      text-align: center;
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+  }
+
+  #tab-bar {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+}
+
+.padding-0{
+  padding: 0;
+}
+
+div#queueOutputButtonsContainer{
+  padding-top: 4px;
+
+  button.btn.btn-link {
+    padding: 0;
+  }
+}
+
+button.btn.btn-link.audio-outputs-button {
+    float: right;
+}

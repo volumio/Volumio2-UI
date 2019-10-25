@@ -74,8 +74,13 @@ class TrackManagerController {
     }, (newVal) => {
       if (this.matchmediaService.isPhone) {
         let albumArtUrl = `url('${this.playerService.getAlbumart(newVal)}')`;
+        let albumartSize = 'cover';
+        if (this.playerService.state.trackType === 'spotify') {
+          albumartSize = 'contain';
+        }
         this.backgroundAlbumArtStyle = {
-          'background-image': albumArtUrl
+          'background-image': albumArtUrl,
+          'background-size': albumartSize
         };
       } else {
         this.backgroundAlbumArtStyle = {};
@@ -83,7 +88,6 @@ class TrackManagerController {
     });
 
     this.$scope.$watch(() => this.matchmediaService.isPhone, (newVal) => {
-      console.info(this.matchmediaService.isPhone);
       if (this.matchmediaService.isPhone) {
         let albumart = this.playerService.state && this.playerService.state.albumart;
         if (albumart) {
@@ -103,6 +107,14 @@ class TrackManagerController {
     if (this.type !== 'knob') {
       return;
     }
+    if (this.uiSettingsService && this.uiSettingsService.uiSettings) {
+      if (this.uiSettingsService.uiSettings.knobThicknessMobile) {
+        this.knobThicknessMobile = this.uiSettingsService.uiSettings.knobThicknessMobile;
+      }
+      if (this.uiSettingsService.uiSettings.knobThicknessDesktop) {
+        this.knobThicknessDesktop = this.uiSettingsService.uiSettings.knobThicknessDesktop;
+      }
+    }
     this.knobOptions = {
       min: 0,
       max: 1001,
@@ -115,16 +127,18 @@ class TrackManagerController {
       angleOffset: 0,
       angleArc: 360,
       thickness: ((isPhone) ?
-          this.uiSettingsService.uiSettings.knobThicknessMobile :
-          this.uiSettingsService.uiSettings.knobThicknessDesktop) || 0.2
+          this.knobThicknessMobile :
+          this.knobThicknessDesktop) || 0.2
     };
 
     this.onChange = (value) => {
       this.$timeout.cancel(this.timeoutHandler);
       this.timeoutHandler = this.$timeout(() => {
         this.$log.debug('track manager', value);
-        this.playerService.stopSeek();
-        this.playerService.seek = value;
+        if (!this.playerService.state.disableUi) {
+          this.playerService.stopSeek();
+          this.playerService.seek = value;
+        }
       }, 200, false);
     };
   }

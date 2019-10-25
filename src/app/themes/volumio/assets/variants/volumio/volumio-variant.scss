@@ -7,6 +7,7 @@ $theme-dark-color: #3C3C3C;
 $theme-darker-color: #090909;
 $theme-header-color: $theme-darker-color;
 $theme-footer-color: $theme-darker-color;
+$theme-source-active-color: $theme-primary-color;
 
 
 $theme-background-color: #555;
@@ -107,4 +108,8 @@ $theme-footer-link-selected-color: white;
 .browseTable .listWrapper.grid .itemTab {
     border: solid 0px #7C7C7C !important;
     margin: 5px !important;
+}
+
+div#source-active {
+    background-color: $theme-source-active-color;
 }

@@ -1,0 +1,190 @@
+<div class="box">
+  <div class="boxHeader">
+    <div class="title">
+      <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
+    </div>
+  </div>
+  <div id="authLoginPlugin" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-user-circle-o"></i> <span translate="MYVOLUMIO.LOGIN"></span></h3>
+    </div>
+
+    <div class="panel-body edit-profile-box">
+
+      <div id="" ng-if="myVolumioEditProfileController.user !== null">
+        <div class="container">
+          <my-volumio-back-button route-destination="myvolumio.profile" label="{{'MYVOLUMIO.PROFILE' | translate}}">
+          </my-volumio-back-button>
+          <h1 translate="MYVOLUMIO.EDIT_PROFILE"> </h1>
+          <hr>
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <div class="text-center" style="margin-bottom: 16px;">
+                <my-volumio-avatar-image image-override="myVolumioEditProfileController.form.photoUrl">
+                </my-volumio-avatar-image>
+                <h6 translate="MYVOLUMIO.EDIT_AVATAR"></h6>
+                <div>
+                  <input type="file" class="form-control" ng-model="myVolumioEditProfileController.userAvatar" my-volumio-file-on-change on-change-callback="myVolumioEditProfileController.avatarChange(file)">
+                </div>
+                <div ng-if="myVolumioEditProfileController.isAvatarChanged === true">
+                  <a class="btn btn-success btn-block" style="margin-top: 16px;" ng-click="myVolumioEditProfileController.saveAvatar();">
+                    <span ng-if="myVolumioEditProfileController.uploadingAvatar === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                    <span translate="MYVOLUMIO.SAVE_AVATAR"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- edit form column -->
+            <div class="col-md-18 personal-info">
+
+              <div class="alert alert-success alert-dismissable" ng-if="!myVolumioEditProfileController.isUserFilledWithMandatory()">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="glyphicon glyphicon-check"></i>
+                <span translate="MYVOLUMIO.COMPLETE_YOUR_PROFILE"></span>
+              </div>
+              <h3 translate="MYVOLUMIO.PERSONAL_INFO"></h3>
+
+              <form class="form-horizontal" role="form" ng-submit="myVolumioEditProfileController.doEdit()">
+                <div class="form-group">
+                  <label class="col-lg-6 control-label"><span translate="MYVOLUMIO.FIRST_NAME"></span>* :</label>
+                  <div class="col-lg-16">
+                    <input class="form-control" type="text" ng-model="myVolumioEditProfileController.form.firstName" required pattern=".{2,}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-6 control-label"><span translate="MYVOLUMIO.LAST_NAME"></span>* :</label>
+                  <div class="col-lg-16">
+                    <input class="form-control" type="text" ng-model="myVolumioEditProfileController.form.lastName" required pattern=".{2,}">
+                  </div>
+                </div>
+                <div ng-if="false">
+                  <div class="form-group">
+                    <label class="col-lg-6 control-label"><span translate="MYVOLUMIO.COUNTRY"></span> :</label>
+                    <div class="col-lg-16 country-select">
+                      <input class="form-control" country-select data-ng-model="myVolumioEditProfileController.form.country" value="{{myVolumioEditProfileController.form.country}}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-lg-6 control-label"><span translate="MYVOLUMIO.BIRTHDAY"></span> :</label>
+                    <div class="col-lg-16 birthday-picker">
+                      <datepicker date-format="dd/MM/yyyy">
+                        <input ng-model="myVolumioEditProfileController.form.birthday" type="text" date-typer="true" />
+                      </datepicker>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-6 control-label"><span translate="MYVOLUMIO.EMAIL_ADDRESS"></span>* :</label>
+                  <div class="col-md-16">
+                    <input class="form-control" type="email" required ng-model="myVolumioEditProfileController.form.email" ng-change="myVolumioEditProfileController.notifyEmailChanged()">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-6 control-label">
+                    <span translate="MYVOLUMIO.PASSWORD"></span>:
+                  </label>
+                  <div class="col-md-16">
+                    <input class="form-control" type="password" ng-model="myVolumioEditProfileController.form.password" placeholder="Leave blank to keep current">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-6 control-label">
+                    <span translate="MYVOLUMIO.CONFIRM_PASSWORD"></span>:
+                  </label>
+                  <div class="col-md-16">
+                    <input class="form-control" type="password" ng-model="myVolumioEditProfileController.passwordCheck">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-24">
+                    <button type="submit" class="btn btn-success">
+                      <span translate="COMMON.SAVE"></span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-24">
+              <hr />
+              <div class="pull-right">
+                <a ng-click='myVolumioEditProfileController.deleteUser()' style="cursor: pointer;">
+                  <i ng-if="myVolumioEditProfileController.deletingUser === false" class="glyphicon glyphicon-remove-sign"></i>
+                  <i ng-if="myVolumioEditProfileController.deletingUser === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
+                  <span translate="MYVOLUMIO.DELETE_ACCOUNT"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="" ng-if="myVolumioEditProfileController.user === null">
+        <h4 translate="MYVOLUMIO.NOT_LOGGED_IN"></h4>
+        <a ng-click="myVolumioEditProfileController.logIn()" class="btn btn-lg btn-success" translate="MYVOLUMIO.LOGIN"></a>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div id="user-info-container" class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fa fa-info-circle"></i> <span translate="MYVOLUMIO.SUBSCRIPTION"></span></h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-24">
+            <h2 translate="MYVOLUMIO.SUBSCRIPTION_SUMMARY"> </h2>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_STATUS"></span>:</td>
+                  <td ng-if="myVolumioEditProfileController.isUserSubscriptionActive()" style="text-transform: uppercase;">{{myVolumioEditProfileController.getUserSubscriptionStatus()}}</td>
+                  <td ng-if="!myVolumioEditProfileController.isUserSubscriptionActive()" style="text-transform: uppercase;"><span translate="MYVOLUMIO.INACTIVE"></span></td>
+                  </td>
+                </tr>
+                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive()">
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_PLAN"></span>:</td>
+                  <td style="text-transform: uppercase;">{{myVolumioEditProfileController.user.plan}}</td>
+                </tr>
+                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.getSignupDate() != null">
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_SIGNED_UP_ON"></span>:</td>
+                  <td>{{myVolumioEditProfileController.getSignupDate() | date : 'longDate'}}</td>
+                </tr>
+                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.nextPayment">
+                  <td><span translate="MYVOLUMIO.SUBSCRIPTION_NEXT_PAYMENT"></span>:</td>
+                  <td>
+                    {{myVolumioEditProfileController.user.planData.nextPayment.amount}} {{myVolumioEditProfileController.user.planData.nextPayment.currency}} <span translate="MYVOLUMIO.SUBSCRIPTION_ON"></span> {{myVolumioEditProfileController.user.planData.nextPayment.date
+                    | date : 'longDate'}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-left">
+              <strong class="label label-primary" <a ng-click="myVolumioEditProfileController.clickShowTerms()"> MyVolumio <span translate="MYVOLUMIO.TOS"></span></a></strong>
+            </div>
+
+            <div class="text-right">
+              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.updateUrl" ng-click="myVolumioEditProfileController.updateSubscriptionMethod()" class="btn btn-success" style="margin-bottom: 8px;"> <i class="fa fa-exchange"></i> <span translate="MYVOLUMIO.CHANGE_PAYMENT_METHOD"></span> </a>
+              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.cancelUrl" ng-click="myVolumioEditProfileController.cancelSubscription()" class="btn btn-danger" style="margin-bottom: 8px;"> <i class="fa fa-times"></i> <span translate="MYVOLUMIO.CANCEL_SUBSCRIPTION"></span> </a>
+              <a ng-if="!myVolumioEditProfileController.isUserSubscriptionActive()" ng-click="myVolumioEditProfileController.subscribe()" class="btn btn-success" style="margin-bottom: 8px;"> <i class="fa fa-play-circle"></i> <span translate="MYVOLUMIO.SUBSCRIBE"></span> </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

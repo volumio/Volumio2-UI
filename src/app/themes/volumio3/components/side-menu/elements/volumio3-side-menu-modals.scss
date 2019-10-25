@@ -1,0 +1,27 @@
+.modal-body{
+
+  &.sleep {
+    h4 {
+      margin-top: 28px;
+      margin-bottom: 5px;
+      color: $theme-primary-color;
+    }
+  }
+  .glyphicon, .uib-separator {
+    color: $theme-primary-color;
+  }
+
+  .row {
+    &.alarm {
+      table {
+        td {
+          padding: 0px;
+        }
+      }
+      border-bottom: solid 1px $theme-primary-color;
+    }
+    &.alarm:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
