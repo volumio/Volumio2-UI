@@ -78,11 +78,11 @@
     "SHARE": "Teilen",
     "EJECT": "Auswerfen",
     "FUNCTIONALIES_CONTROL":"Funktionssteuerung",
-    "UPDATE_ALBUMART":"Update Albumart",
+    "UPDATE_ALBUMART":"Albumbilder aktualisieren",
     "YEAR":"Jahr",
     "GENRE":"Genre",
     "EDIT": "Bearbeiten",
-    "GRID" : "Grid"
+    "GRID" : "Gitter"
   },
   "BROWSER": {
     "PLAY": "Wiedergeben",
@@ -173,7 +173,7 @@
     "ADD_DRIVE":"Neues Laufwerk hinzufügen",
     "NAME":"Name",
     "PATH":"Pfad",
-    "MOUNTED":"Gemounted",
+    "MOUNTED":"Aktiviert",
     "SIZE":"Größe",
     "SCANNING_FOR_NETWORK_DRIVES": "Suche Netzwerklaufwerke",
     "DELETE_DRIVE":"Laufwerk entfernen",
@@ -224,7 +224,7 @@
     "STEP":"Schritt",
     "VOLUMIOAPPS":"Apps",
     "GET_APPS":"Du kannst auch ganz bequem unsere praktischen Apps verwenden",
-    "WIFI_CONNECTION":"Wähle ein drahtloses Netwerk zum Verbinden",
+    "WIFI_CONNECTION":"Möchtest du dich mit einem drahtlosen Netzwerk verbinden?",
     "DEVICECODE":"Gerätecode",
     "DEVICE_CODE_TITLE":"Geräte-Aktivierungscode",
     "DEVICE_CODE_MESSAGE":"Falls du zu deinem Gerät ein Geräte-Aktivierungscode erhalten hast, enter it to take advantage of the exclusive features reserved for you",
