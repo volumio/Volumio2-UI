@@ -256,7 +256,7 @@
     "NOW_PLAYING": "Wird wiedergegeben",
     "PLAYBACK_ZONES":"Wiedergabezonen",
     "ZONES":"Zonen",
-    "AUDIO_OUTPUTS_AND_ZONES":"Audioausgänge and Zonen"
+    "AUDIO_OUTPUTS_AND_ZONES":"Audioausgänge und Zonen"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "Analoger Eingang",
@@ -347,7 +347,7 @@
     "ENABLED": "Aktiviert",
     "DISABLED": "Deaktiviert",
     "UPDATE_SUBSCRIPTION": "Wechsel deinen Plan",
-    "NO_SUBSCRIPTION_SELECTED_DESC": "Error. No subscribtion has been selected! Please select a subscription.",
+    "NO_SUBSCRIPTION_SELECTED_DESC": "Fehler: Es wurde kein Plan ausgewählt! Bitte wähle einen Plan.",
     "RETRY": "Erneut versuchen",
     "SUPERSTAR_FEATURE1": "Eine unglaubliche Superstar Funktion",
     "ERROR_SERVER_TIMEOUT": "Es tut uns Leid. Der Server antwortet nicht. Bitte versuche es erneut.",
