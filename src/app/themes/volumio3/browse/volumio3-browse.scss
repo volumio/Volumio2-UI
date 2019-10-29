@@ -45,7 +45,7 @@
             background: none;
             border: 0;
             outline: none;
-
+            display: none;
             &:focus{
               outline: none;
             }
@@ -121,6 +121,7 @@
             background: none;
             border: 0;
             outline: none;
+            display: none;
 
             &:focus{
               outline: none;
