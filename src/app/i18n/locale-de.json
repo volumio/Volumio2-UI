@@ -227,7 +227,7 @@
     "WIFI_CONNECTION":"Möchtest du dich mit einem drahtlosen Netzwerk verbinden?",
     "DEVICECODE":"Gerätecode",
     "DEVICE_CODE_TITLE":"Geräte-Aktivierungscode",
-    "DEVICE_CODE_MESSAGE":"Falls du zu deinem Gerät ein Geräte-Aktivierungscode erhalten hast, trage ihn ein, um exklusive Funktionen freizuschalten",
+    "   ":"Falls du zu deinem Gerät ein Geräte-Aktivierungscode erhalten hast, trage ihn ein, um exklusive Funktionen freizuschalten",
     "DEVICE_CODE_VALIDATE":"Prüfe deinen Gerätecode",
     "ERROR_ACTIVATING_DEVICE":"Gerät konnte nicht aktiviert werden",
     "DEVICE_ACTIVATED": "Dein Gerät wurde erfolgreich aktiviert. Du kannst nun exklusive Funktionen nutzen",
@@ -406,7 +406,7 @@
     "CD_PLAYBACK_RIPPING":"CD-Wiedergabe und Rippen",
     "ALEXA_INTEGRATION":"Alexa Integration",
     "HIRESAUDIO_INTEGRATION":"Highresaudio.com Integration",
-    "INPUT_PLAYBACK":"Nutzung digitaler and analoger Eingänge",
+    "INPUT_PLAYBACK":"Nutzung digitaler und analoger Eingänge",
     "BLUETOOTH_INPUT":"Bluetooth Audio Empfang"
   }
 }
