@@ -114,6 +114,14 @@ class PluginComponentController {
         this.socketService.emit(item.onClick.message, item.onClick.data);
       } else if (item.onClick.type === 'openUrl'){
         this.$window.open(item.onClick.url);
+      } else if (item.onClick.type === 'oauth'){
+        const redirectUri = new URL(this.socketService.host + '/api/v1/oauth');
+        redirectUri.searchParams.set('plugin', item.onClick.plugin);
+        redirectUri.searchParams.set('plugin_url', this.$window.location);
+        const performerUrl = new URL(item.onClick.performerUrl);
+        performerUrl.searchParams.set('redirect_uri', redirectUri.href);
+        item.onClick.scopes.forEach(function(scope){performerUrl.searchParams.append('scope', scope);});
+        this.$window.location = performerUrl.href;
       } else if (item.onClick.type === 'goto'){
         this.$state.go('volumio.static-page', {pageName: item.onClick.pageName});
       } else {
