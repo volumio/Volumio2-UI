@@ -1,9 +1,9 @@
 {"categories":[
       {"name":"Frameworks","icon":"fa-briefcase","credits":[
-        {"name":"Node.js","logo":"app/themes/volumio3/assets/graphics/nodejs-logo.svg","author":"Ryan Dahl","link":"https://nodejs.org/"},
-        {"name":"AngularJS","logo":"app/themes/volumio3/assets/graphics/angular-logo.png","author":"Google","link":"https://angularjs.org/"},
-        {"name":"Bootstrap","logo":"app/themes/volumio3/assets/graphics/bootstrap-logo.png","author":"Twitter","link":"http://getbootstrap.com"},
-        {"name":"Socket.io","logo":"app/themes/volumio3/assets/graphics/socketio-logo.svg","author":"Guillermo Rauch","link":"http://socket.io/"}
+        {"name":"Node.js","logo":"app/themes/volumio/assets/graphics/nodejs-logo.svg","author":"Ryan Dahl","link":"https://nodejs.org/"},
+        {"name":"AngularJS","logo":"app/themes/volumio/assets/graphics/angular-logo.png","author":"Google","link":"https://angularjs.org/"},
+        {"name":"Bootstrap","logo":"app/themes/volumio/assets/graphics/bootstrap-logo.png","author":"Twitter","link":"http://getbootstrap.com"},
+        {"name":"Socket.io","logo":"app/themes/volumio/assets/graphics/socketio-logo.svg","author":"Guillermo Rauch","link":"http://socket.io/"}
         ]},
       {"name":"Core Packages","icon":"fa-cube","credits":[
       {"name":"MPD - Music Player Daemon","author":"Max Kellermann","link":"https://www.musicpd.org/"},
@@ -21,14 +21,13 @@
         {"name":"Cymatic","author":"Mordechai Braunstein","link":"http://www.facebook.com/cymagic.art"}
     ]},
     {"name":"Services","icon":"fa-code","credits":[
-        {"name":"Shoutcast Web Radio API","logo":"app/themes/volumio3/assets/graphics/shoutcast-logo.png","author":"Shoutcast","link":"http://www.shoutcast.com/"},
-        {"name":"Dirble Web Radio DIrectory API","logo":"app/themes/volumio3/assets/graphics/dirble-logo.png","author":"Dirble","link":"http://dirble.com"}
+        {"name":"Shoutcast Web Radio API","logo":"app/themes/volumio/assets/graphics/shoutcast-logo.png","author":"Shoutcast","link":"http://www.shoutcast.com/"}
         ]},
     {"name":"Translations","icon":"fa-language","credits":[
         {"name":"French translation","author":"Balbuze"},
         {"name":"Dutch translation","author":"Dennis Hagens"},
         {"name":"Japanese translation","author":"ycat3"},
-        {"name":"German translation","author":"ChristianFink"},
+        {"name":"German translation","author":"ChristianFink & Christopher Rieke"},
         {"name":"Polish translation","author":"zbeegniev"},
         {"name":"Danish translation","author":"tomatpasser"},
 		    {"name":"Catalan translation","author":"Josep Saez"},
@@ -44,7 +43,8 @@
         {"name":"Korean translation","author":"Justin Lee  &  club706"},
         {"name":"Czech translation","author":"stranskj"},
         {"name":"Slovensky translation","author":"olej-a"},
-        {"name":"Turkish translation","author":"Ajiba"}
+        {"name":"Turkish translation","author":"Ajiba"},
+        {"name":"Croatian translation","author":"Vlado64"}
         ]},
         {"name":"Graphic Design","icon":"fa-thumbs-o-up","credits":[
             {"name":"Sources Icons","author":"Tommaso Greco"}
