@@ -5,6 +5,8 @@ set -e # exit with nonzero exit code if anything fails
 if [ ! -n "$GH_TOKEN" ] && [ ! -n "$GH_REF" ]; then
     # Assume a test build, pushing to a contoributor's forked repository
     myorigin=$(git config --get remote.origin.url)
+    mydir=$(dirname $(realpath $0))
+    export PATH="${mydir}/node_modules/.bin:${PATH}"
 fi
 
 # VOLUMIO THEME
