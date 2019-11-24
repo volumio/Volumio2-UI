@@ -34,7 +34,7 @@ git commit -m "Deploy to Dist Branch"
 
 # Force push from the current repo's master branch to the dist branch for deployment
 if [ -n "$myorigin" ]; then
-    git add remote origin "$myorigin"
+    git remote add origin "$myorigin"
     git push --force origin master:dist
 else
     git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist > /dev/null 2>&1
@@ -66,7 +66,7 @@ git commit -m "Deploy to Dist3 Branch"
 
 # Force push from the current repo's master branch to the dist branch for deployment
 if [ -n "$myorigin" ]; then
-    git add remote origin "$myorigin"
+    git remote add origin "$myorigin"
     git push --force origin master:dist3
 else
     git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist3 > /dev/null 2>&1
