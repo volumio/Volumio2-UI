@@ -29,6 +29,9 @@ gulp.task('styles', function () {
   fs.writeFileSync('src/app/themes/' + theme + '/assets/variants/load-variant.scss',
     '@import "./' + variant + '/' + variant + '-variant"; $theme:"' + theme + '"; $variant:"' + variant + '";');
 
+  fs.writeFileSync('src/app/themes/' + theme + '/assets/variants/' + variant + '/globals.scss',
+    '$theme:"' + theme + '"; $variant:"' + variant + '";');
+
   var injectFiles = gulp.src([
     path.join(conf.paths.src, '/app/styles/**/*.scss'),
     path.join(conf.paths.src, '/app/themes/'+theme+'/'+theme+'-style.scss'),
