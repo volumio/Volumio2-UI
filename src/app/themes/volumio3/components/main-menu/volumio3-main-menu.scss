@@ -12,6 +12,8 @@
   overflow-x: hidden;
 
   .main-menu-list-container ul.main-menu-list {
+    $main-menu-text-color: false !default;
+    $main-menu-static-button-color: false !default;
     @if $main-menu-text-color {
       color: $main-menu-text-color;
     }
