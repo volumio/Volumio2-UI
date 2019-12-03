@@ -12,6 +12,14 @@
     padding-right: 8px;
   }
 
+  .time-label.pull-left,.time-label.pull-right{
+    padding-right: 8px;
+    $timer-number-color: false !default;
+    @if $timer-number-color {
+      color: $timer-number-color;
+    }
+  }
+
   .seekbar-container{
 
     line-height: 0px;
@@ -60,13 +68,20 @@
 
     .time-left{
       @media all and (max-width: 720px){
-        padding-right: 15px;
+          $timer-number-color-mobile: false !default;
+          padding-right: 15px;
+          @if $timer-number-color-mobile {
+            color: $timer-number-color-mobile;
+          }
       }
     }
 
     .time-right{
       @media all and (max-width: 720px){
         padding-left: 15px;
+        @if $timer-number-color {
+          color: $timer-number-color-mobile;
+        }
       }
     }
 
