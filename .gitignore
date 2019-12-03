@@ -20,3 +20,4 @@ load-variant.scss
 .DS_Store
 src/app/volumio.constant.js
 package-lock.json
+credits.html

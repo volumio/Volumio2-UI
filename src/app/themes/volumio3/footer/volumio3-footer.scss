@@ -7,7 +7,7 @@
     border-top: 1px solid $theme-primary-color;
     height: $theme-player-height-smartphone;
     bottom: $theme-tabbar-height-smartphone;
-    background-color: rgba( $theme-darker-color, .9 );
+    background-color: $theme-sidebar-background-color;
 
     &.playback-bar{
       height: $theme-playback-bar-height-smartphone;

@@ -43,7 +43,6 @@ $knob-background-color: rgba(0, 0, 0, 0.4);
 $knob-content-background-color: rgba(0, 0, 0, 0.7);
 
 // VOLUMIO 3 UI
-
 $theme-player-height-desktop: 90px;
 $theme-player-height-tablet: 90px;
 $theme-player-height-smartphone: 70px;
@@ -51,14 +50,15 @@ $theme-tabbar-height-smartphone: 70px;
 $theme-playback-bar-height-smartphone: 70px;
 $theme-slider-bar-full-gradient: linear-gradient(to right, #{$theme-dark-color} 0%, #{$theme-primary-color} 100%);
 $theme-slider-bar-empty-gradient: $theme-dark-grey;
-
-// VOLUMIO 3 UI on 19-07-18
 $theme-primary-color-darker: #4BA476;
 $theme-tab-bar-gradient: linear-gradient(89deg, #{$theme-dark-color} 0%, #{$theme-primary-color-darker} 100%);
+$tab-bar-mobile-color: $theme-darker-color;
+$tab-bar-mobile-button-color: #ffffff;
+$close-playback-panel-button-color: white;
 
 
 // FONTS
-$fonts-path: "/app/themes/volumio3/assets/variants/volumio/fonts";
+$fonts-path: "/app/themes/" + $theme + "/assets/variants/" + $variant  + "/fonts";
 
 @font-face {
   font-family: 'Lato';

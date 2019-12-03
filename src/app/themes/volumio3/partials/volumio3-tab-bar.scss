@@ -1,7 +1,6 @@
 .tabBar {
   height: $theme-tabbar-height-smartphone;
-  //background: $theme-tab-bar-gradient;
-  background-color: $theme-darker-color;
+  background-color: $tab-bar-mobile-color;
 
   button.tab-bar-btn {
     @include make-xs-column(8, 0);
@@ -11,14 +10,14 @@
     height: $theme-tabbar-height-smartphone;
 
     i{
-      color: #ffffff;
+      color:  $tab-bar-mobile-button-color;
     }
 
     &.selected, &:hover{
       background: transparent;
 
       i{
-        color: $theme-primary-color;
+        color: $tab-bar-mobile-button-color;
       }
 
     }
