@@ -78,8 +78,9 @@
 
     .time-right{
       @media all and (max-width: 720px){
+        $timer-number-color-mobile: false !default;
         padding-left: 15px;
-        @if $timer-number-color {
+        @if $timer-number-color-mobile {
           color: $timer-number-color-mobile;
         }
       }
