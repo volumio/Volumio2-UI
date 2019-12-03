@@ -21,3 +21,4 @@ load-variant.scss
 src/app/volumio.constant.js
 package-lock.json
 credits.html
+load-variant.scss
