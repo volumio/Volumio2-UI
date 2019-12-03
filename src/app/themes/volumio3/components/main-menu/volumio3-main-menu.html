@@ -42,6 +42,8 @@
               <img ng-if='source.albumart' src='{{source.albumart}}' style='width: 32px; height: 32px;' />
               -->
               {{source.name}}
+            <span class="static-source-icon" ng-if="source.static && source.active"><i class="material-icons">radio_button_checked</i></span>
+            <span class="static-source-icon" ng-if="source.static && !source.active"><i class="material-icons">radio_button_unchecked</i></span>
             </a>
           </li>
           <div class="spacer"></div>
