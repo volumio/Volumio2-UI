@@ -74,7 +74,7 @@ class SettingsController {
   }
 
   isMenuSetting(data) {
-    if (data.id !== 'link' && data.id !== 'plugin-manager') {
+    if (data.id !== 'link' && data.id !== 'plugin-manager' && data.id !== 'shutdown') {
       return true;
     } else {
       return false;
@@ -82,7 +82,7 @@ class SettingsController {
   }
 
   itemClick(item) {
-    if (item.id === 'modal') {
+    if (item.id === 'modal' || item.id === 'shutdown') {
       let
         controllerName = item.params.modalName.split('-').map(
           (item) => {

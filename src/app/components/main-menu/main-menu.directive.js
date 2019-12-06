@@ -115,7 +115,7 @@ class MainMenuController {
   }
 
   isMenuLink(data) {
-    if (data.id === 'link' || data.id === 'plugin-manager') {
+    if (data.id === 'link' || data.id === 'plugin-manager' || data.id === 'shutdown') {
       return true;
     } else {
       return false;
