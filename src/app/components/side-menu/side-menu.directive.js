@@ -71,7 +71,7 @@ class SideMenuController {
   itemClick(item) {
     this.toggleMenu();
     this.$log.debug(item);
-    if (item.id === 'modal') {
+    if (item.id === 'modal' || item.id === 'shutdown') {
       let
         controllerName = item.params.modalName.split('-').map(
           (item) => {
@@ -158,7 +158,7 @@ class SideMenuController {
   isMyVolumioVisible(){
     return !this.isInMainMenu && !this.isInTabBar;
   }
-  
+
 }
 
 export default SideMenuDirective;

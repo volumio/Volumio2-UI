@@ -124,7 +124,7 @@ class MainMenuController {
 
   menuItemsMainMenuLinksClick(item) {
     this.$log.debug(item);
-    if (item.id === 'modal') {
+    if (item.id === 'modal' || item.id === 'shutdown') {
       let controllerName = item.params.modalName.split('-').map(
       (item) => {
         return item[0].toUpperCase() + item.slice(1, item.length);
