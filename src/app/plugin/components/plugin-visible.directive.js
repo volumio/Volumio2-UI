@@ -27,7 +27,11 @@ class PluginVisibleController {
       $scope.$watch(() => {
         return fieldToWatch.value;
       }, (val) => {
-        //$log.debug(typeof val, val, typeof this.pluginVisible.value, this.pluginVisible.value);
+        if(typeof val === 'object' && val.hasOwnProperty('value')) {
+          // assume that value is from select type field
+          val = val.value;
+        }
+        // $log.debug(typeof val, val, typeof this.pluginVisible.value, this.pluginVisible.value);
         if (val === this.pluginVisible.value) {
           $element.fadeIn(300);
         } else {
