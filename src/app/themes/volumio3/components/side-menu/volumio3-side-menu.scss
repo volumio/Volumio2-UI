@@ -6,6 +6,8 @@ $sideMenuWidth: 230px;
   @include make-xs-column(4, 0);
   text-align: right;
   z-index: 40;
+  overflow: revert!important;
+  overflow-y: initial!important;
   @include breakpoint(xs) {
     text-align: center;
   }
