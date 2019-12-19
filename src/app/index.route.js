@@ -306,6 +306,26 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+
+  .state('myvolumio.signupNew', {
+    url: '/signup-new',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/signup-new/myvolumio-signup-new.html',
+        controller: 'MyVolumioSignupNewController',
+        controllerAs: 'MyVolumioSignupNewController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return authService.requireNullUserOrRedirect();
+            }
+          ]
+        }
+      }
+    }
+  })
+
   .state('myvolumio.access', {
     url: '/access',
     views: {
