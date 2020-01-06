@@ -69,15 +69,11 @@ class PlayerService {
   }
 
   prev() {
-    if (this.state.trackType !== 'webradio') {
       this.socketService.emit('prev');
-    }
   }
 
   next() {
-    if (this.state.trackType !== 'webradio') {
       this.socketService.emit('next');
-    }
   }
 
   skipBackwards() {
