@@ -41,6 +41,10 @@ class HeaderController {
       "label": "ελληνικά"
     },
     {
+      "value": "hr",
+      "label": "Croatian"
+    },
+    {
       "value": "it",
       "label": "Italiano"
     },
@@ -89,8 +93,16 @@ class HeaderController {
       "label": "Svenska"
     },
     {
+      "value": "tr",
+      "label": "Türkçe"
+    },
+    {
       "value": "ua",
       "label": "Українська"
+    },
+    {
+      "value": "vi",
+      "label": "Tiếng Việt"
     },
     {
       "value": "zh",
