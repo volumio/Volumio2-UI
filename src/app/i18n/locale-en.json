@@ -398,7 +398,8 @@
     "SUPPORT_MYVOLUMIO": "Support Volumio’s development and get premium features for the price of an espresso per month.",
     "COUPON_CODE": "Coupon code",
     "HAVE_COUPON_CODE": "I have a coupon code",
-    "FINISH_SIGNUP": "Finish sign up"
+    "FINISH_SIGNUP": "Finish sign up",
+    "CREATING_ACCOUNT": "Creating account..."
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

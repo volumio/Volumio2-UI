@@ -77,6 +77,9 @@ $primary-alt: #32C675;
     &:focus {
         background-color: darken($primary-alt, 8%);
     }
+    &.disabled {
+        pointer-events: none;
+    }
 }
 
 .my-volumio__sign-in-btn {
@@ -165,6 +168,7 @@ $primary-alt: #32C675;
     }
 
     .plan__fake-radio {
+        flex: 0 0 24px;
         width: 24px;
         height: 24px;
         border-radius: 50%;

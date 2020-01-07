@@ -35,6 +35,7 @@ class MyVolumioSubscribeController {
 
   subscriptionCallback(subscribing) {
     this.openPayingModal();
+    
     subscribing.then((status) => {
       this.closePayingModal();
       if (status === true) {

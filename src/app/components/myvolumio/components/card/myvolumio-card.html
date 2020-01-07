@@ -1,15 +1,23 @@
-<div class="myvolumio-card-container">
+<div class="my-volumio__user-card">
 
-  <div class="myvolumio-card-logged" ng-if="myVolumioUserCardController.user != null">
+  <div class="my-volumio__user-card__user" ng-if="myVolumioUserCardController.user != null" ng-click="myVolumioUserCardController.goToProfile()">
+      <my-volumio-avatar-image class="my-volumio__user-card__user-avatar"></my-volumio-avatar-image>
 
-    <div class="row" style="display: flex;flex-wrap: wrap;">
-
-      <div class="col-xs-6 col-md-8">
-        <my-volumio-avatar-image>
-        </my-volumio-avatar-image>
+      <div class="mr-4">
+        <div class="my-volumio__user-card__user-name">
+          {{ myVolumioUserCardController.user.firstName }} {{ myVolumioUserCardController.user.lastName }}
+        </div>
+        <div class="my-volumio__user-card__user-plan capitalize">
+          {{ myVolumioUserCardController.user.plan || 'Free' }}
+        </div>
       </div>
 
-      <div class="col-xs-18 col-md-16" style="padding-left: 0px; position: relative;">
+      <div class="my-volumio__user-card__action-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 16" width="9" height="16"><path stroke="#FFF" stroke-width="2" d="M1 1l7 7-7 7" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+
+     <!--  <div class="col-xs-18 col-md-16" style="padding-left: 0px; position: relative;">
 
         <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="myVolumioUserCardController.goToProfile()">
           <span class="fa fa-bars"></span>
@@ -24,11 +32,9 @@
         </div>
 
         <div style="clear: both;"></div>
-      </div>
+      </div> -->
 
-    </div>
-
-  </div>
+  </div> <!-- /.my-volumio__user-card__user -->
 
   <div class="myvolumio-card-not-logged" ng-if="myVolumioUserCardController.user == null">
     <div class="row">

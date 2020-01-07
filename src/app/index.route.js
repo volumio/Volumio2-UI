@@ -318,7 +318,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
           user: [
             'authService',
             function(authService) {
-              return authService.requireNullUserOrRedirect();
+              return null; //authService.requireNullUserOrRedirect();
             }
           ]
         }
