@@ -43,7 +43,6 @@ class MyVolumioSignupNewController {
 
   authInit() {
     this.$scope.$watch(() => this.authService.user, (user) => {
-      console.log(user);
       // this.postAuthInit();
     });
   }
@@ -95,8 +94,6 @@ class MyVolumioSignupNewController {
     this.productService.getProducts().then(products => {
       this.productsObj = products;
       this.products = [ products.free, products.virtuoso, products.superstar ];
-      
-      console.log(products);
     });
   }
 

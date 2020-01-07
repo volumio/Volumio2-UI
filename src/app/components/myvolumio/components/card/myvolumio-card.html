@@ -3,40 +3,64 @@
   <div class="my-volumio__user-card__user" ng-if="myVolumioUserCardController.user != null" ng-click="myVolumioUserCardController.goToProfile()">
       <my-volumio-avatar-image class="my-volumio__user-card__user-avatar"></my-volumio-avatar-image>
 
-      <div class="mr-4">
-        <div class="my-volumio__user-card__user-name">
+      <div class="mr-2 flex-grow-1 min-width-trick">
+        <div ng-if="myVolumioUserCardController.isUserFilledWithMandatory()" class="my-volumio__user-card__user-name">
           {{ myVolumioUserCardController.user.firstName }} {{ myVolumioUserCardController.user.lastName }}
         </div>
+        <div class="my-volumio__user-card__user-name" ng-if="!myVolumioUserCardController.isUserFilledWithMandatory()" translate="MYVOLUMIO.LOGGED_BY_SOCIAL"></div>
         <div class="my-volumio__user-card__user-plan capitalize">
-          {{ myVolumioUserCardController.user.plan || 'Free' }}
+          {{ myVolumioUserCardController.user.plan || 'MyVolumio Free' }}
         </div>
       </div>
 
       <div class="my-volumio__user-card__action-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 16" width="9" height="16"><path stroke="#FFF" stroke-width="2" d="M1 1l7 7-7 7" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-
-
-     <!--  <div class="col-xs-18 col-md-16" style="padding-left: 0px; position: relative;">
-
-        <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="myVolumioUserCardController.goToProfile()">
-          <span class="fa fa-bars"></span>
-        </button>
-        <div style="clear: both;"></div>
-
-        <div class="user-name" style="position: absolute; bottom: 0; left: 0;">
-            <span ng-if="myVolumioUserCardController.isUserFilledWithMandatory()">
-              {{myVolumioUserCardController.user.firstName}}
-            </span>
-          <span ng-if="!myVolumioUserCardController.isUserFilledWithMandatory()" translate="MYVOLUMIO.LOGGED_BY_SOCIAL"></span>
-        </div>
-
-        <div style="clear: both;"></div>
-      </div> -->
-
   </div> <!-- /.my-volumio__user-card__user -->
 
-  <div class="myvolumio-card-not-logged" ng-if="myVolumioUserCardController.user == null">
+  <div ng-if="myVolumioUserCardController.user && !myVolumioUserCardController.user.plan" class="my-volumio__user-card__promo">
+    <button ng-click="myVolumioUserCardController.upgradePlan()" class="my-volumio__btn btn__ghost btn__dark mb-2">
+      {{ 'MYVOLUMIO.UPGRADE_MYVOLUMIO' | translate }}
+    </button>
+    <div class="d-flex align-items-center small">
+      <span class="mr-2">♡</span>
+      <span>support us and get premium features</span>
+    </div>
+  </div>
+
+  <div class="my-volumio__user-card__user" ng-if="myVolumioUserCardController.user == null" ng-click="myVolumioUserCardController.signUpNew()">
+    <div class="my-volumio__user-card__user-avatar">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="40" height="40"><defs><path id="a" d="M0 0h40v40H0z"/><path id="c" d="M0 40h40V0H0z"/></defs><g fill="none" fill-rule="evenodd"><mask id="b" fill="#fff"><use xlink:href="#a"/></mask><path d="M20 40C8.954 40 0 31.045 0 20 0 8.954 8.954 0 20 0c11.045 0 20 8.954 20 20 0 11.045-8.955 20-20 20" fill="#54C688" mask="url(#b)"/><path d="M20 36.25c-8.96 0-16.25-7.29-16.25-16.25S11.04 3.75 20 3.75 36.25 11.04 36.25 20 28.96 36.25 20 36.25" fill="#54C688"/><path d="M20 2.5C10.335 2.5 2.5 10.335 2.5 20S10.335 37.5 20 37.5 37.5 29.665 37.5 20 29.665 2.5 20 2.5M20 5c8.271 0 15 6.73 15 15 0 8.271-6.729 15-15 15-8.27 0-15-6.729-15-15 0-8.27 6.73-15 15-15" fill="#000"/><path d="M16.34 25.925a2.502 2.502 0 11-5.004.001 2.502 2.502 0 015.004 0M26.335 23.424a2.502 2.502 0 11-5.003 0 2.502 2.502 0 015.003 0" fill="#000"/><mask id="d" fill="#fff"><use xlink:href="#c"/></mask><path fill="#000" mask="url(#d)" d="M25.084 23.424h1.251V10.912h-1.251zM15.089 25.925h1.251V13.413h-1.251z"/><path fill="#000" mask="url(#d)" d="M15.082 12.925v3.793l11.253-2.815V10.11z"/></g></svg>
+    </div>
+
+    <div class="mr-2 flex-grow-1 min-width-trick">
+      <div class="my-volumio__user-card__user-name">
+        MyVolumio
+      </div>
+      <div class="my-volumio__user-card__user-plan capitalize">
+        Not connected
+      </div>
+    </div>
+
+    <div class="my-volumio__user-card__action-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 16" width="9" height="16"><path stroke="#FFF" stroke-width="2" d="M1 1l7 7-7 7" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div> <!-- /.my-volumio__user-card__user -->
+
+<div
+  ng-if="myVolumioUserCardController.user == null"
+  href="#"
+  ng-click="myVolumioUserCardController.clickTooltip()"
+  ng-mouseleave="myVolumioUserCardController.closeTooltip()"
+  class="my-volumio__user-card__promo my-volumio__tooltip">
+  <div class="mr-2">More info</div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><g fill="none" fill-rule="evenodd"><circle fill="#999" cx="8" cy="5" r="1"/><circle stroke="#979797" stroke-width="2" cx="8" cy="8" r="7"/><path stroke="#979797" stroke-width="2" stroke-linecap="round" d="M8 11V8"/></g></svg>
+  <div ng-if="myVolumioUserCardController.tooltipShowing" class="my-volumio__tooltip-content">
+    Get premium features and support the development of Volumio.
+  </div>
+</div>
+
+  <!-- <div class="my-volumio__promo-card" ng-if="myVolumioUserCardController.user == null">
     <div class="row">
       <div class="col-xs-24" style="padding-bottom: 16px;">
 
@@ -59,6 +83,6 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>

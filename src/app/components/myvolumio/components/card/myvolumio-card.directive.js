@@ -28,6 +28,8 @@ class MyVolumioCardController {
 
     this.user = null;
 
+    this.tooltipShowing = false;
+
     this.$rootScope.$on('socket:init', () => {
       this.init();
     });
@@ -123,6 +125,16 @@ class MyVolumioCardController {
     if(this.actionCallback !== undefined && typeof this.actionCallback === 'function'){
       this.actionCallback();
     }
+  }
+
+  upgradePlan() {
+    this.$state.go('myvolumio.plans');
+  }
+  clickTooltip() {
+    this.tooltipShowing = !this.tooltipShowing;
+  }
+  closeTooltip() {
+    this.tooltipShowing = false;
   }
 
 }

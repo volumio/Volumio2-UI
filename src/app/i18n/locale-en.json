@@ -399,7 +399,8 @@
     "COUPON_CODE": "Coupon code",
     "HAVE_COUPON_CODE": "I have a coupon code",
     "FINISH_SIGNUP": "Finish sign up",
-    "CREATING_ACCOUNT": "Creating account..."
+    "CREATING_ACCOUNT": "Creating account...",
+    "UPGRADE_MYVOLUMIO": "Upgrade MyVolumio"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

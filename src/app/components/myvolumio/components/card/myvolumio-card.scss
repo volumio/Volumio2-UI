@@ -1,35 +1,98 @@
 .my-volumio__user-card {
-  display: flex;
   margin: 48px 0;
   &__user {
     display: flex;
-    justify-content: space-between;
+    min-width: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease-out 0s;
+    &:hover {
+      opacity: .8;
+      .my-volumio__user-card__action-icon {
+        transform: translateX(6px);
+      }
+    }
   }
   &__user-avatar {
+    flex-shrink: 0;
     align-self:center;
     width: 40px;
     height: 40px;
-    margin-top: 2px;
     margin-right: 12px;
   }
   &__user-name {
-    font-size: 20px;
+    font-size: 18px;
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   &__action-icon {
     width: 9px;
     height: 16px;
     margin-top: 6px;
+    margin-right: 4px;
+    transition: transform 0.2s ease-out 0s;
+  }
+  &__promo {
+    margin-top: 20px;
   }
 }
 
 
+.my-volumio__btn {
+  display: block;
+  width: 100%;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  border: 2px solid #979797;
+  &.btn__ghost { background: transparent; }
+  &.btn__dark {}
+}
+
+.flex-grow-1 { flex-grow: 1; }
+.min-width-trick { min-width: 0; }
 .capitalize {
   text-transform: capitalize;
 }
 
-.panel.panel-default.myvolumio-card-container {
-  @include breakpoint(xs) {
+.my-volumio__tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  &-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    transform: translateX(100%);
+    border-radius: 4px;
+    color: black;
+    font-size: 13px;
+    line-height: 16px;
+    background: white;
+    z-index: 98372816;
+    &:after {
+      position: absolute;
+      content: '';
+      top:5px;
+      left: -5px;
+      width: 11px;
+      height: 11px;
+      transform: rotate(45deg);
+      background: white;
+      border-bottom-left-radius: 2px;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  .panel.panel-default.myvolumio-card-container {
     margin-top: 0px;
     background-color: $theme-sidebar-background-color;
+  }
+  .my-volumio__user-card {
+    margin: 8px 0;
   }
 }
