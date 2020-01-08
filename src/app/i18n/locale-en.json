@@ -396,11 +396,22 @@
     "MY_VOLUMIO_SHORTDESC": "MyVolumio is the premium tier of your Volumio experience. Sign up for premium services like native Qobuz and Tidal integration and many more.",
     "CHOOSE_PLAN": "Choose a plan",
     "SUPPORT_MYVOLUMIO": "Support Volumio’s development and get premium features for the price of an espresso per month.",
+    "SUPPORT_MYVOLUMIO_SHORT": "Support us and get premium features",
     "COUPON_CODE": "Coupon code",
     "HAVE_COUPON_CODE": "I have a coupon code",
     "FINISH_SIGNUP": "Finish sign up",
     "CREATING_ACCOUNT": "Creating account...",
-    "UPGRADE_MYVOLUMIO": "Upgrade MyVolumio"
+    "UPGRADE_MYVOLUMIO": "Upgrade MyVolumio",
+    "PREMIUM_STREAMING_TITLE": "Studio quality music at home",
+    "PREMIUM_STREAMING_FULLY_INTEGRATED_QOBUZ": "Qobuz is fully integrated with Volumio",
+    "PREMIUM_STREAMING_FULLY_INTEGRATED_TIDAL": "Tidal is fully integrated with Volumio",
+    "PREMIUM_STREAMING_AVAILABILITY_QOBUZ": "Qobuz is available for MyVolumio Virtuoso and Superstar users.",
+    "PREMIUM_STREAMING_AVAILABILITY_TIDAL": "Tidal is available for MyVolumio Virtuoso and Superstar users.",
+    "MONTH": "month",
+    "UPGRADE_FROM": "Upgrade from",
+    "MORE_INFO": "More info",
+    "MORE_INFO_DESCRIPTION": "Get premium features and support the development of Volumio.",
+    "NOT_CONNECTED": "Not connected"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

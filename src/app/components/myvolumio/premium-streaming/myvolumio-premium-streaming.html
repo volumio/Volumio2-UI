@@ -16,10 +16,10 @@
             <div class="spacer mb-4"></div>
             <div class="row mb-10">
                 <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6 text-center">
-                    <h1 class="mb-6">Studio quality music at home</h1>
+                    <h1 class="mb-6">{{ 'MYVOLUMIO.PREMIUM_STREAMING_TITLE' | translate }}</h1>
                     <img ng-if="MyVolumioPremiumStreamingController.$state.params.serviceName === 'qobuz'" src="{{ 'app/themes/volumio3/assets/graphics/myvolumio-qobuz-80.png' }}" alt="{{ MyVolumioPremiumStreamingController.$state.params.serviceName }} app icon" class="my-volumio__premium-streaming-icon mb-6">
                     <img ng-if="MyVolumioPremiumStreamingController.$state.params.serviceName === 'tidal'" src="{{ 'app/themes/volumio3/assets/graphics/myvolumio-tidal-80.png' }}" alt="{{ MyVolumioPremiumStreamingController.$state.params.serviceName }} app icon" class="my-volumio__premium-streaming-icon mb-6">
-                    <p><span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span> is fully integrated with Volumio</p>
+                    <p>{{ 'MYVOLUMIO.PREMIUM_STREAMING_FULLY_INTEGRATED_' + MyVolumioPremiumStreamingController.$state.params.serviceName.toUpperCase() | translate }}</p>
                 
                 </div> <!-- col- -->
             </div> <!-- row -->
@@ -27,9 +27,9 @@
             <div ng-if="!MyVolumioPremiumStreamingController.authUser || !MyVolumioPremiumStreamingController.authUser.plan" class="row mb-6">
                 <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
                     <div class="my-volumio__info-card my-volumio__info-card--with-cta my-volumio__border-round">
-                        <p class="my-volumio__info-card__description"><span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span> is available for MyVolumio Virtuoso and Superstar users.</p>
+                        <p class="my-volumio__info-card__description">{{ 'MYVOLUMIO.PREMIUM_STREAMING_AVAILABILITY_' + MyVolumioPremiumStreamingController.$state.params.serviceName.toUpperCase() | translate }}</p>
                         <button ng-click="MyVolumioPremiumStreamingController.goToMyVolumio()" class="btn my-volumio__btn-primary my-volumio__border-round" tabindex="7">
-                            Upgrade from € 2.99 / month
+                            {{ 'MYVOLUMIO.UPGRADE_FROM' | translate }} €{{ MyVolumioPremiumStreamingController.cheapestPrice }} / {{ 'MYVOLUMIO.MONTH' | translate }}
                         </button>
 
                     </div>

@@ -21,6 +21,7 @@ class MyVolumioPremiumStreamingController {
       this.signUpInitiated = false;
       this.products = [];
       this.productsObj = {};
+      this.cheapestPrice = 2.99;
   
       this.$scope.model = {};
       this.$scope.model.selectedProduct = null;
@@ -71,7 +72,24 @@ class MyVolumioPremiumStreamingController {
       this.productService.getProducts().then(products => {
         this.productsObj = products;
         this.products = [ products.free, products.virtuoso, products.superstar ];
+        this.findCheapestOption();
       });
+    }
+
+    findCheapestOption() {
+      let priceList = [];
+      this.products.map(p => {
+        if (p.prices) {
+          Object.keys(p.prices).map(pr => {
+            if (p.prices[pr].amount) {
+              if (p.prices[pr].amount > 0) {
+                priceList.push(p.prices[pr].amount);
+              }
+            }
+          });
+        }
+      });
+      this.cheapestPrice = Math.min.apply( Math, priceList);
     }
   
     goToLogin() {

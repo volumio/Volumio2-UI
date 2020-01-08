@@ -24,7 +24,7 @@
     </button>
     <div class="d-flex align-items-center small">
       <span class="mr-2">♡</span>
-      <span>support us and get premium features</span>
+      <span>{{ 'MYVOLUMIO.SUPPORT_MYVOLUMIO_SHORT' | translate }}</span>
     </div>
   </div>
 
@@ -35,10 +35,10 @@
 
     <div class="mr-2 flex-grow-1 min-width-trick">
       <div class="my-volumio__user-card__user-name">
-        MyVolumio
+        {{ 'MYVOLUMIO.MYVOLUMIO' | translate }}
       </div>
       <div class="my-volumio__user-card__user-plan capitalize">
-        Not connected
+        {{ 'MYVOLUMIO.NOT_CONNECTED' | translate }}
       </div>
     </div>
 
@@ -53,10 +53,10 @@
   ng-click="myVolumioUserCardController.clickTooltip()"
   ng-mouseleave="myVolumioUserCardController.closeTooltip()"
   class="my-volumio__user-card__promo my-volumio__tooltip">
-  <div class="mr-2">More info</div>
+  <div class="mr-2">{{ 'MYVOLUMIO.MORE_INFO' | translate }}</div>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><g fill="none" fill-rule="evenodd"><circle fill="#999" cx="8" cy="5" r="1"/><circle stroke="#979797" stroke-width="2" cx="8" cy="8" r="7"/><path stroke="#979797" stroke-width="2" stroke-linecap="round" d="M8 11V8"/></g></svg>
   <div ng-if="myVolumioUserCardController.tooltipShowing" class="my-volumio__tooltip-content">
-    Get premium features and support the development of Volumio.
+    {{ 'MYVOLUMIO.MORE_INFO_DESCRIPTION' | translate }}
   </div>
 </div>
 
