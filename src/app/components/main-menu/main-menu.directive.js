@@ -40,6 +40,7 @@ class MainMenuController {
     this.sources = [];
 
     this.premiumEnabled = false;
+    
     this.user = null;
 
     this.init();
@@ -173,12 +174,8 @@ class MainMenuController {
           this.$state.go(item.state);
         }
       }
-    menuItemsMyVolumioLinksClick() {
-      if (this.user) {
-        this.$state.go('myvolumio.plans');
-      } else {
-        this.$state.go('myvolumio.signupNew');
-      }
+    menuItemsMyVolumioLinksClick(service) {
+      this.$state.go('myvolumio.premiumStreaming', { serviceName: service });
     }
 }
 

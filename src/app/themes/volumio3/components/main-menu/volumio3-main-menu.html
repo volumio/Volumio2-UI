@@ -44,7 +44,7 @@
               {{source.name}}
             </a>
           </li>
-          
+
           <div ng-if="!mainMenu.premiumEnabled" class="spacer"></div>
           <li ng-if="!mainMenu.premiumEnabled">
             <p class="small d-flex align-items-center">
@@ -53,12 +53,12 @@
             </p>
           </li>
           <li ng-if="!mainMenu.premiumEnabled">
-            <a href ng-click="mainMenu.menuItemsMyVolumioLinksClick()">
+            <a href ng-click="mainMenu.menuItemsMyVolumioLinksClick('qobuz')">
               Qobuz
             </a>
           </li>
           <li ng-if="!mainMenu.premiumEnabled">
-            <a href ng-click="mainMenu.menuItemsMyVolumioLinksClick()">
+            <a href ng-click="mainMenu.menuItemsMyVolumioLinksClick('tidal')">
               Tidal
             </a>
           </li>

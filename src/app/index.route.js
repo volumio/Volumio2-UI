@@ -325,6 +325,25 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
       }
     }
   })
+ 
+  .state('myvolumio.premiumStreaming', {
+    url: '/premium-streaming/:serviceName',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/premium-streaming/myvolumio-premium-streaming.html',
+        controller: 'MyVolumioPremiumStreamingController',
+        controllerAs: 'MyVolumioPremiumStreamingController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return null;
+            }
+          ]
+        }
+      }
+    }
+  })
 
   .state('myvolumio.access', {
     url: '/access',

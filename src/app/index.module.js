@@ -148,6 +148,7 @@ import MyMusicPluginEnablerController from './plugin/core-plugin/my-music-plugin
 import MyVolumioLoginController from './components/myvolumio/login/myvolumio-login.controller';
 import MyVolumioSignupController from './components/myvolumio/signup/myvolumio-signup.controller';
 import MyVolumioSignupNewController from './components/myvolumio/signup-new/myvolumio-signup-new.controller';
+import MyVolumioPremiumStreamingController from './components/myvolumio/premium-streaming/myvolumio-premium-streaming.controller';
 import MyVolumioProfileController from './components/myvolumio/profile/myvolumio-profile.controller';
 import MyVolumioPlansController from './components/myvolumio/plans/myvolumio-plans.controller';
 import MyVolumioSubscribeController from './components/myvolumio/subscribe/myvolumio-subscribe.controller';
@@ -343,6 +344,7 @@ angular.module('volumio', [
   .controller('MyVolumioLoginController', MyVolumioLoginController)
   .controller('MyVolumioSignupController', MyVolumioSignupController)
   .controller('MyVolumioSignupNewController', MyVolumioSignupNewController)
+  .controller('MyVolumioPremiumStreamingController', MyVolumioPremiumStreamingController)
   .controller('MyVolumioProfileController', MyVolumioProfileController)
   .controller('MyVolumioPlansController', MyVolumioPlansController)
   .controller('MyVolumioSubscribeController', MyVolumioSubscribeController)
