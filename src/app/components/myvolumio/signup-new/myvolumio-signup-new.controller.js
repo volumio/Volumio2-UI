@@ -16,7 +16,7 @@ class MyVolumioSignupNewController {
       termsCheckbox: false,
       marketingConsent: false
     };
-    this.$scope.step = 2;
+    this.$scope.step = 1;
     this.signUpInitiated = false;
     this.products = [];
     this.productsObj = {};
