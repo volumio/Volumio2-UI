@@ -64,6 +64,9 @@ $primary-alt: #32C675;
     background: $theme-accent-color;
     .my-volumio__fake-checkbox__tick {
         display: block;
+        img {
+            display: block;
+        }
     }
 }
 
@@ -205,8 +208,12 @@ $primary-alt: #32C675;
         border-bottom-color: $theme-text-color;
     }
     .plan__fake-radio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
         .plan__fake-radio__tick {
-            display: inline-block;
+            display: block;
         }
     }
 }

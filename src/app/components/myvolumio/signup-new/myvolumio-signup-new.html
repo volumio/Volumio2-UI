@@ -71,7 +71,7 @@
                       <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden my-volumio__checkbox" value="1" ng-model="MyVolumioSignupNewController.form.termsCheckbox" ng-true-value="true" ng-false-value="false">
                       <label class="my-volumio__fake-checkbox" tabindex="7" for="t_and_c">
                         <div class="my-volumio__fake-checkbox__tick">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 12"><path stroke="#32C675" stroke-width="2" d="M1 7l3.5 3.5 7-9.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          <img src="app/themes/volumio3/assets/graphics/fake-checkbox-tick--small.svg" alt="Tick">
                         </div>
                       </label>
                     </div>
@@ -86,7 +86,7 @@
                       <input type="checkbox" name="marketingConsent" id="marketingConsent" class="hidden my-volumio__checkbox" value="1" ng-model="MyVolumioSignupNewController.form.marketingConsent" ng-true-value="true" ng-false-value="false">
                       <label class="my-volumio__fake-checkbox" tabindex="7" for="marketingConsent">
                         <div class="my-volumio__fake-checkbox__tick">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 12"><path stroke="#32C675" stroke-width="2" d="M1 7l3.5 3.5 7-9.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          <img src="app/themes/volumio3/assets/graphics/fake-checkbox-tick--small.svg" alt="Tick">
                         </div>
                       </label>
                     </div>
@@ -129,10 +129,6 @@
   <div ng-class="MyVolumioSignupNewController.$scope.step === 2 ? 'show' : 'hide'"  id="authSignupPlugin" class="panel panel-default my-volumio__panel">
 
     <div class="my-volumio__panel__header d-flex align-items-center justify-content-between">
-      <!-- <a href="#" ng-click="MyVolumioSignupNewController.stepBackwards()" class="d-inline-flex align-items-center mr-4">
-        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16" width="21" height="16"><g stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round"><path stroke-linejoin="round" d="M8 1L1 8l7 7"/><path d="M1 8h19"/></g></svg>
-        <span>{{ 'COMMON.BACK' | translate }}</span>
-      </a> -->
       <span>&nbsp;</span>
       <button ng-click="MyVolumioSignupNewController.handlePayment()" class="btn my-volumio__btn-primary my-volumio__border-round" tabindex="7">
         {{ 'MYVOLUMIO.FINISH_SIGNUP' | translate }}
@@ -192,7 +188,7 @@
               <div class="plan__title d-flex align-items-center">
                 <div class="d-flex align-items-center">
                   <div class="plan__fake-radio mr-4">
-                    <svg class="plan__fake-radio__tick" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14" width="16" height="14"><path stroke="#FFFFFF" stroke-width="4" d="M2 7l4 5 8-10" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <img class="plan__fake-radio__tick" src="app/themes/volumio3/assets/graphics/fake-checkbox-tick--big.svg" alt="Tick">
                   </div>
                   <span>{{ product.name }}</span>
                 </div>
@@ -228,7 +224,7 @@
             <div class="collapse__panel mb-4">
               <input class="collapse__checkbox" hidden type="checkbox" id="collapsePanel">
               <label for="collapsePanel" class="collapse__panel__header d-flex align-items-center focus__helper" tabindex="7">
-                <svg class="collapse__indicator d-flex mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><g stroke="#32C675" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round"><path d="M8 1v14M1 8h14"/></g></svg>
+                <img class="collapse__indicator d-block mr-2" src="app/themes/volumio3/assets/graphics/collapse-indicator.svg" alt="Collapse">
                 {{ 'MYVOLUMIO.HAVE_COUPON_CODE' | translate }}
               </label>
               <div class="collapse__panel__content">
