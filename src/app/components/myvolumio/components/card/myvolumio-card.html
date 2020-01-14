@@ -50,12 +50,15 @@
 <div
   ng-if="myVolumioUserCardController.user == null"
   href="#"
-  ng-click="myVolumioUserCardController.clickTooltip()"
+  ng-click="myVolumioUserCardController.clickTooltip($event)"
   ng-mouseleave="myVolumioUserCardController.closeTooltip()"
   class="my-volumio__user-card__promo my-volumio__tooltip">
   <div class="mr-2">{{ 'MYVOLUMIO.MORE_INFO' | translate }}</div>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><g fill="none" fill-rule="evenodd"><circle fill="#999" cx="8" cy="5" r="1"/><circle stroke="#979797" stroke-width="2" cx="8" cy="8" r="7"/><path stroke="#979797" stroke-width="2" stroke-linecap="round" d="M8 11V8"/></g></svg>
-  <div ng-if="myVolumioUserCardController.tooltipShowing" class="my-volumio__tooltip-content">
+  <span class="my-volumio__info-tooltip__icon">
+    <img src="app/themes/volumio3/assets/graphics/myvolumio-more-info.svg" alt="Info">
+    <span ng-if="myVolumioUserCardController.tooltipShowing" class="my-volumio__info-tooltip__tip"></span>
+  </span>
+  <div ng-if="myVolumioUserCardController.tooltipShowing" class="my-volumio__tooltip-content left">
     {{ 'MYVOLUMIO.MORE_INFO_DESCRIPTION' | translate }}
   </div>
 </div>

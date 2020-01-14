@@ -1,5 +1,6 @@
 .my-volumio__user-card {
   margin: 48px 0;
+  text-align: left;
   &__user {
     display: flex;
     min-width: 0;
@@ -58,33 +59,51 @@
 
 .my-volumio__tooltip {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   cursor: pointer;
   &-content {
     position: absolute;
     top: 0;
     right: 0;
+    width: 100%;
     padding: 8px;
-    transform: translateX(100%);
+    transform: translate(0, 24px);
     border-radius: 4px;
     color: black;
     font-size: 13px;
     line-height: 16px;
     background: white;
     z-index: 98372816;
-    &:after {
+    text-align: left;
+    /* &:after {
       position: absolute;
       content: '';
-      top:5px;
-      left: -5px;
+      top:-5px;
+      left: calc(50% - 5px);
       width: 11px;
       height: 11px;
       transform: rotate(45deg);
       background: white;
       border-bottom-left-radius: 2px;
-    }
+    } */
   }
+}
+
+.my-volumio__info-tooltip__icon {
+  position: relative;
+}
+
+.my-volumio__info-tooltip__tip {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  transform: translate(3px, 100%) rotate(45deg);
+  background: white;
+  border-bottom-left-radius: 2px;
 }
 
 @media (max-width: $screen-sm-max) {

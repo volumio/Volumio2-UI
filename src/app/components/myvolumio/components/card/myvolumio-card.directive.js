@@ -130,7 +130,7 @@ class MyVolumioCardController {
   upgradePlan() {
     this.$state.go('myvolumio.plans');
   }
-  clickTooltip() {
+  clickTooltip(clickEvent) {
     this.tooltipShowing = !this.tooltipShowing;
   }
   closeTooltip() {
