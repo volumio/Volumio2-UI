@@ -1,56 +1,113 @@
-.myvolumio-card-container {
-
-  .myvolumio-card-logged{
-    font-size: 16px;
-
-    .user-name {
-      padding-top: 8px;
-      color: $theme-light-color;
-      overflow: hidden;
-      text-align: left;
-    }
-
-    .user-username{
-      font-size: smaller;
-      color: $theme-light-color;
-      overflow: hidden;
-      text-align: left;
-    }
-
-  }
-
-  .myvolumio-card-not-logged{
-
-    .title{
-      font-size: 20px;
-      font-weight: 300;
-    }
-
-    .profile-userbuttons {
-
-      .btn-sm{
-        padding: 5px 10px;
-        font-size: 12px;
-        line-height: 1.5;
-      }
-
-      a{
-        color: $theme-primary-color;
-        cursor: pointer;
-
-        span{
-
-        }
+.my-volumio__user-card {
+  margin: 48px 0;
+  text-align: left;
+  &__user {
+    display: flex;
+    min-width: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease-out 0s;
+    &:hover {
+      opacity: .8;
+      .my-volumio__user-card__action-icon {
+        transform: translateX(6px);
       }
     }
-
   }
-
+  &__user-avatar {
+    flex-shrink: 0;
+    align-self:center;
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
+  &__user-name {
+    font-size: 18px;
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__action-icon {
+    transition: transform 0.2s ease-out 0s;
+  }
+  &__promo {
+    margin-top: 20px;
+  }
 }
 
-.panel.panel-default.myvolumio-card-container {
-  @include breakpoint(xs) {
+
+.my-volumio__btn {
+  display: block;
+  width: 100%;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  border: 2px solid #979797;
+  &.btn__ghost { background: transparent; }
+  &.btn__dark {}
+}
+
+.flex-grow-1 { flex-grow: 1; }
+.min-width-trick { min-width: 0; }
+.capitalize {
+  text-transform: capitalize;
+}
+
+.my-volumio__tooltip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 8px;
+    transform: translate(0, 24px);
+    border-radius: 4px;
+    color: black;
+    font-size: 13px;
+    line-height: 16px;
+    background: white;
+    z-index: 98372816;
+    text-align: left;
+    /* &:after {
+      position: absolute;
+      content: '';
+      top:-5px;
+      left: calc(50% - 5px);
+      width: 11px;
+      height: 11px;
+      transform: rotate(45deg);
+      background: white;
+      border-bottom-left-radius: 2px;
+    } */
+  }
+}
+
+.my-volumio__info-tooltip__icon {
+  position: relative;
+}
+
+.my-volumio__info-tooltip__tip {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  transform: translate(3px, 100%) rotate(45deg);
+  background: white;
+  border-bottom-left-radius: 2px;
+}
+
+@media (max-width: $screen-sm-max) {
+  .panel.panel-default.myvolumio-card-container {
     margin-top: 0px;
     background-color: $theme-sidebar-background-color;
+  }
+  .my-volumio__user-card {
+    margin: 8px 0;
   }
 }

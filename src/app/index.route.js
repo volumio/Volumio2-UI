@@ -306,6 +306,45 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+
+  .state('myvolumio.signupNew', {
+    url: '/signup-new',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/signup-new/myvolumio-signup-new.html',
+        controller: 'MyVolumioSignupNewController',
+        controllerAs: 'MyVolumioSignupNewController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return null; //authService.requireNullUserOrRedirect();
+            }
+          ]
+        }
+      }
+    }
+  })
+ 
+  .state('myvolumio.premiumStreaming', {
+    url: '/premium-streaming/:serviceName',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/premium-streaming/myvolumio-premium-streaming.html',
+        controller: 'MyVolumioPremiumStreamingController',
+        controllerAs: 'MyVolumioPremiumStreamingController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return null;
+            }
+          ]
+        }
+      }
+    }
+  })
+
   .state('myvolumio.access', {
     url: '/access',
     views: {

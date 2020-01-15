@@ -46,6 +46,25 @@
             <span class="static-source-icon" ng-if="source.static && !source.active"><i class="material-icons">radio_button_unchecked</i></span>
             </a>
           </li>
+
+          <div ng-if="!mainMenu.premiumEnabled" class="spacer"></div>
+          <li ng-if="!mainMenu.premiumEnabled">
+            <p class="small d-flex align-items-center">
+              <img class="mr-2" src="app/themes/volumio3/assets/graphics/myvolumio-avatar--small.svg" alt="Myvolumio icon">
+              {{ 'MYVOLUMIO.MY_VOLUMIO' | translate }}
+            </p>
+          </li>
+          <li ng-if="!mainMenu.premiumEnabled">
+            <a href ng-click="mainMenu.menuItemsMyVolumioLinksClick('qobuz')">
+              Qobuz
+            </a>
+          </li>
+          <li ng-if="!mainMenu.premiumEnabled">
+            <a href ng-click="mainMenu.menuItemsMyVolumioLinksClick('tidal')">
+              Tidal
+            </a>
+          </li>
+
           <div class="spacer"></div>
           <li>
             <a ui-sref="volumio.settings">

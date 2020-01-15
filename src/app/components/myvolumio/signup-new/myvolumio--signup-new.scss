@@ -1,0 +1,393 @@
+
+$primary-alt: #32C675;
+
+/* ====== COMPONENTS STYLING ====== */
+
+.boxHeader {
+    margin-top: 20px;
+    .title {
+        margin-right: 12px;
+        h2 {margin: 0;}
+    }
+}
+
+.my-volumio__panel__header {
+    padding: 20px;
+    background-color: rgba($theme-darker-color, .8);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.my-volumio__info-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: $theme-accent-color;
+}
+
+.my-volumio__info-card__description {
+    margin: 0 28px 0 0;
+    font-size: 13px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+.my-volumio__fake-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $theme-primary-color;
+    }
+    &__tick {
+        display: none;
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        width: 10px;
+        height: 10px;
+        svg { display: block; }
+    }
+}
+
+.my-volumio__checkbox:checked ~ .my-volumio__fake-checkbox {
+    background: $theme-accent-color;
+    .my-volumio__fake-checkbox__tick {
+        display: block;
+        img {
+            display: block;
+        }
+    }
+}
+
+.my-volumio__text-input {
+    font-size: 16px;
+}
+
+.my-volumio__btn-primary {
+    background-color: $primary-alt;
+    &:hover,
+    &:focus {
+        background-color: darken($primary-alt, 8%);
+    }
+    &.disabled {
+        pointer-events: none;
+    }
+}
+.my-volumio__btn-secondary {
+    background-color: transparent;
+    transition: opacity 0.2s ease-out 0s;
+    border: 2px solid white;
+    &:hover,
+    &:focus {
+        opacity: .9;
+    }
+}
+
+.my-volumio__sign-in-btn {
+    padding: 8px 16px;
+    border: 1px solid $theme-primary-color;
+    border-radius: 4px;
+    background: $theme-accent-color;
+    color: $theme-primary-color !important;
+    transition: opacity 0.2s ease-out 0s;
+    cursor: pointer;
+    &:hover {
+        opacity: .8;
+        /* border-color: $theme-primary-color; */
+    }
+}
+
+.my-volumio__toggle-header {
+    text-align: center;
+    h2, h3, h4 { margin-top :0; margin-bottom: 8px;}
+    .toggle-header__space { margin-bottom: 16px; }
+}
+
+.my-volumio__toggle {
+
+    .toggle__labels {
+        display: inline-flex;
+        border: 1px solid $primary-alt;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .toggle__label-text {
+        margin: 0;
+        padding: 8px 24px;
+        color: $theme-light-color;
+        background-color: $theme-accent-color;
+        font-weight: normal;
+        cursor: pointer;
+    }
+
+    .toggle__label-radio:first-child:checked ~ .toggle__labels .toggle__label-text:first-child,
+    .toggle__label-radio:nth-child(2):checked ~ .toggle__labels .toggle__label-text:nth-child(2) {
+        background-color: $primary-alt;
+        font-weight: bold;
+        color: $theme-text-color;
+    }
+}
+
+.my-volumio__plan-grid {
+    max-width: 944px;
+    margin: auto;
+}
+
+.plan__item {
+    position: relative;
+    flex: 0 0 calc(33% - 16px);
+    width: 100%;
+    margin-bottom: 24px;
+    &:not(:last-child) { margin-right: 24px; }
+}
+
+.plan__card {
+    background: $theme-accent-color;
+    border: 1px solid $theme-light-color;
+    box-shadow: 0 5px 24px 0 rgba(0,0,0,0.39);
+    border-radius: 12px;
+    font-weight: 400;
+    cursor: pointer;
+
+    .plan__title {
+        padding: 10px;
+        border-bottom: 1px solid $theme-light-color;;
+        font-size: 20px;
+        color: $theme-text-color;
+        line-height: 20px;
+        text-transform: uppercase;
+    }
+    .plan__pricing {
+        padding: 10px 24px;
+        border-bottom: 1px solid $theme-light-color;;
+    }
+    .plan__trial { margin-bottom: 8px; }
+    .plan__price {
+        margin-bottom: 4px;
+        font-size: 40px;
+        color: $theme-text-color;
+        line-height: 40px;
+    }
+
+    .plan__fake-radio {
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 1px solid $theme-text-color;
+        text-align: center;
+        .plan__fake-radio__tick {
+            display: none;
+        }
+    }
+
+    .plan__features {
+        padding: 24px;
+    }
+    .plan__feature:not(:last-child) {
+        margin-bottom: 12px;
+    }
+}
+
+.plan__checkbox:checked ~ .plan__card {
+    background-color: $primary-alt;
+    .plan__title,
+    .plan__pricing {
+        border-bottom-color: $theme-text-color;
+    }
+    .plan__fake-radio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        .plan__fake-radio__tick {
+            display: block;
+        }
+    }
+}
+
+.collapse__panel {
+    .collapse__panel__header {
+        padding: 6px 2px;
+        color: $primary-alt;
+        cursor: pointer;
+        .collapse__indicator {transition: transform 0.2s ease-out 0s;}
+    }
+    .collapse__panel__content {
+        display: none;
+        padding: 4px 0 0 0;
+    }
+    .collapse__checkbox:checked ~ .collapse__panel__header {
+        .collapse__indicator { transform: rotate(45deg); }
+    }
+    .collapse__checkbox:checked ~ .collapse__panel__content {
+        display: block;
+    }
+}
+
+.my-volumio__login-or {
+    display: flex;
+    align-items: center;
+    .my-volumio__login-or__text {
+        padding: 2px 8px;
+    }
+    .my-volumio__login-or__line {
+        flex: 1 1 100%;
+        height: 2px;
+        background-color: #979797;
+    }
+}
+
+
+/* ====== HELPERS ====== */
+.my-volumio__form-group {
+    margin-bottom: 24px;
+}
+.my-volumio__border-round {
+    border-radius: 4px;
+}
+
+.d {
+    &-flex {
+        display: flex;
+    }
+    &-inline-flex {
+        display: inline-flex;
+    }
+}
+.align-items-start {
+    align-items: flex-start;
+}
+.align-items-center {
+    align-items: center;
+}
+.justify-content-between {
+    justify-content: space-between;
+}
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.flex-spacer {
+    flex: 1 1 100%;
+}
+
+.flex {
+    &-grow-0 {
+        flex-grow: 0;
+    }
+    &-grow-1 {
+        flex-grow: 1;
+    }
+    &-shrink-0 {
+        flex-shrink: 0;
+    }
+    &-shrink-1 {
+        flex-shrink: 1;
+    }
+}
+
+.mb {
+    &-2 {
+        margin-bottom: 8px;
+    }
+    &-4 {
+        margin-bottom: 16px;
+    }
+    &-6 {
+        margin-bottom: 24px;
+    }
+    &-10 {
+        margin-bottom: 40px;
+    }
+    &-16 {
+        margin-bottom: 64px;
+    }
+}
+
+.mr {
+    &-2 {
+        margin-right: 8px;
+    }
+    &-4 {
+        margin-right: 16px;
+    }
+}
+
+.focus__helper {
+    position: relative;
+    &:after {
+        position: absolute;
+        display: none;
+        content: '';
+        top: -3px;
+        left: -3px;
+        width: calc(100% + 6px);
+        height: calc(100% + 6px);
+        border: 1px dotted rgba($theme-text-color, .6);
+        border-radius: 4px;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    &.round {
+        &:after {
+            border-radius: 13px;
+        }
+    }
+
+    &:focus {
+        outline: none;
+        &:after {
+            display: block;
+        }
+    }
+}
+
+
+@media (min-width: 768px) {
+    .my-volumio__panel {
+        margin-left: 20px;
+        margin-right: 20px;
+        .panel-body:first-child {
+            border-radius: 8px;
+        }
+        .panel-body:not(:first-child) {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+    }
+    .my-volumio__toggle-header {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        .toggle-header__space {margin-bottom: 0}
+    }
+    .my-volumio__row-gutter {
+        & > div[class*='col-'] {
+            &:first-child:not(:last-child) {
+                padding-right: 12px;
+            }
+            &:last-child:not(:first-child) {
+                padding-left: 12px;
+            }
+        }
+    }
+    .my-volumio__plan-grid {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+}
