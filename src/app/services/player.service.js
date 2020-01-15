@@ -85,16 +85,12 @@ class PlayerService {
   }
 
   shuffle() {
-    if (this.state.trackType !== 'webradio') {
       this.$log.debug(!this.state.random);
       this.socketService.emit('setRandom', {value: !this.state.random});
-    }
   }
 
   repeatAlbum(repeat,repeatSingle) {
-    if (this.state.trackType !== 'webradio') {
       this.socketService.emit('setRepeat', {value: repeat, repeatSingle: repeatSingle});
-    }
   }
 
   rebuildSpopLibrary() {
