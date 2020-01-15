@@ -3,16 +3,16 @@ class MyVolumioPremiumStreamingController {
       'ngInject';
       this.$scope = $scope;
       this.$state = $state;
-      
+
       this.authService = authService;
       this.$translate = $translate;
       this.paymentsService = paymentsService;
       this.productService = productsService;
-  
+
       this.user = null;
       this.newUser = null;
       this.authUser = null;
-  
+
       this.form = {
         termsCheckbox: false,
         marketingConsent: false
@@ -22,52 +22,52 @@ class MyVolumioPremiumStreamingController {
       this.products = [];
       this.productsObj = {};
       this.cheapestPrice = 2.99;
-  
+
       this.$scope.model = {};
       this.$scope.model.selectedProduct = null;
-  
+
       this.selectedPlanDuration = 'yearly';
       this.switchLabelMonthly = this.$translate('MYVOLUMIO.MONTHLY');
       this.switchLabelYearly = this.$translate('MYVOLUMIO.YEARLY');
-  
+
       this.init();
     }
-  
+
     selectProduct(product) {
       console.log(product);
     }
-    
+
     init() {
       this.authInit();
       this.initProducts();
       this.$scope.model.selectedProduct = 'virtuoso';
     }
-  
+
     authInit() {
       this.$scope.$watch(() => this.authService.user, (user) => {
         // this.postAuthInit();
         this.authUser = user;
       });
     }
-  
+
     loginWithFacebook() {
       this.loginWithProvider('facebook');
     }
-  
+
     loginWithGoogle() {
       this.loginWithProvider('google');
     }
-  
+
     loginWithGithub() {
       this.loginWithProvider('github');
     }
-  
+
     loginWithProvider(provider) {
       this.authService.loginWithProvider(provider).catch(error => {
         this.modalService.openDefaultErrorModal(error);
       });
     }
-  
+
     initProducts() {
       this.productService.getProducts().then(products => {
         this.productsObj = products;
@@ -91,7 +91,7 @@ class MyVolumioPremiumStreamingController {
       });
       this.cheapestPrice = Math.min.apply( Math, priceList);
     }
-  
+
     goToLogin() {
       this.$state.go('myvolumio.login');
     }
@@ -100,24 +100,24 @@ class MyVolumioPremiumStreamingController {
       if (this.authUser) {
         this.$state.go('myvolumio.plans');
       } else {
-        this.$state.go('myvolumio.signupNew');
+        this.$state.go('myvolumio.signup');
       }
     }
 
     goToSettings() {
       this.$state.go('volumio.plugin', { pluginName: 'miscellanea/my_music' });
     }
-  
-  
+
+
     /* ====== PADDLE PAYMENT HANDLING */
-  
+
     getPaddleProductId(){
       if(this.productsObj[this.$scope.model.selectedProduct].prices === undefined || this.selectedPlanDuration === undefined){
         return undefined;
       }
       return this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].paddleId;
     }
-    
+
     getTrialParameters(){
       if(this.productsObj[this.$scope.model.selectedProduct].prices === undefined || this.selectedPlanDuration === undefined){
         return undefined;
@@ -127,26 +127,26 @@ class MyVolumioPremiumStreamingController {
            this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial.trialDays &&
            this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial.trialDaysAuth &&
            this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial.trialAuth) {
-  
+
         trialParameters.trialDays = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial.trialDays;
         trialParameters.trialDaysAuth = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial.trialDaysAuth;
         trialParameters.trialAuth = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial.trialAuth;
-  
+
       }
       return trialParameters;
     }
-  
+
     isTrial() {
       return !!this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial;
     }
-  
+
     handlePayment() {
-  
+
       if (this.$scope.model.selectedProduct === 'free') {
         this.$state.go('myvolumio.profile');
         return;
       }
-  
+
       var paddleId = this.getPaddleProductId();
       var trialDays = '';
       var trialDaysAuth = '';
@@ -159,7 +159,7 @@ class MyVolumioPremiumStreamingController {
         trialAuth = trialParameters.trialAuth;
         trialPrice = 0;
       }
-  
+
       if(paddleId === undefined || !Number.isInteger(paddleId) ){
         alert("Error, no transaction occurred, no paddleId found.");
         return;
@@ -169,7 +169,7 @@ class MyVolumioPremiumStreamingController {
         return;
       }
       /* jshint ignore:start */
-  
+
       let checkoutProps = {
         product: paddleId,
         email: this.newUser.email,
@@ -185,24 +185,23 @@ class MyVolumioPremiumStreamingController {
           this.closeCallback(data);
         }
       }
-  
+
       if (this.couponCode) {
         checkoutProps.coupon = this.couponCode;
       }
-      
+
       Paddle.Checkout.open(checkoutProps, false);
       /* jshint ignore:end */
     }
-  
+
     successCallback(data) {
       this.$state.go('myvolumio.payment-success');
     }
-  
+
     closeCallback(error) {
       this.modalService.openDefaultErrorModal('MYVOLUMIO.COMPLETE_CHECKOUT');
     }
-  
+
   }
-  
+
   export default MyVolumioPremiumStreamingController;
-  

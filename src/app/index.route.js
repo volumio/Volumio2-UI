@@ -287,8 +287,8 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
-  .state('myvolumio.signup', {
-    url: '/signup',
+  .state('myvolumio.signupOld', {
+    url: '/signup-old',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/signup/myvolumio-signup.html',
@@ -307,8 +307,8 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
   })
 
 
-  .state('myvolumio.signupNew', {
-    url: '/signup-new',
+  .state('myvolumio.signup', {
+    url: '/signup',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/signup-new/myvolumio-signup-new.html',
@@ -325,7 +325,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
       }
     }
   })
- 
+
   .state('myvolumio.premiumStreaming', {
     url: '/premium-streaming/:serviceName',
     views: {

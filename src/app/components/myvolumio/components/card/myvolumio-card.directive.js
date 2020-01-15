@@ -98,11 +98,6 @@ class MyVolumioCardController {
     this.$state.go('myvolumio.signup');
   }
 
-  signUpNew() {
-    this.callActionCallback();
-    this.$state.go('myvolumio.signupNew');
-  }
-
   goToProfile() {
     this.callActionCallback();
     this.$state.go('myvolumio.profile');
