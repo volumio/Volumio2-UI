@@ -179,11 +179,6 @@ class MyVolumioSignupNewController {
     this.$state.go('myvolumio.login');
   }
 
-  isSocialEnabled() {
-    return this.authService.isSocialEnabled();
-  }
-
-
   /* ====== PADDLE PAYMENT HANDLING */
 
   getPaddleProductId(){
