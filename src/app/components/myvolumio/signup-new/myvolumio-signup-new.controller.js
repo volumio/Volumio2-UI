@@ -34,7 +34,7 @@ class MyVolumioSignupNewController {
   selectProduct(product) {
     console.log(product);
   }
-  
+
   init() {
     this.authInit();
     this.initProducts();
@@ -123,7 +123,7 @@ class MyVolumioSignupNewController {
     if (this.validate() !== true) {
       return;
     }
-    
+
     this.signUpInitiated = true;
 
     var user = {
@@ -179,6 +179,10 @@ class MyVolumioSignupNewController {
     this.$state.go('myvolumio.login');
   }
 
+  isSocialEnabled() {
+    return this.authService.isSocialEnabled();
+  }
+
 
   /* ====== PADDLE PAYMENT HANDLING */
 
@@ -188,7 +192,7 @@ class MyVolumioSignupNewController {
     }
     return this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].paddleId;
   }
-  
+
   getTrialParameters(){
     if(this.productsObj[this.$scope.model.selectedProduct].prices === undefined || this.selectedPlanDuration === undefined){
       return undefined;
@@ -260,7 +264,7 @@ class MyVolumioSignupNewController {
     if (this.couponCode) {
       checkoutProps.coupon = this.couponCode;
     }
-    
+
     Paddle.Checkout.open(checkoutProps, false);
     /* jshint ignore:end */
   }

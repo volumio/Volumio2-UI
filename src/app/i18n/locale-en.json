@@ -393,7 +393,8 @@
     "LIFETIME":"Lifetime",
     "FREE": "Free",
     "KEEP_ME_UPDATED_VIA_MAIL":"Keep me updated with the latest Volumio news via email",
-    "MY_VOLUMIO_SHORTDESC": "MyVolumio is the premium tier of your Volumio experience. Sign up for premium services like native Qobuz and Tidal integration and many more.",
+    "MY_VOLUMIO_SHORTDESC": "MyVolumio is the premium tier of your Volumio experience. Sign up for premium services like TIDAL and QOBUZ integration, CD Ripping, Bluetooth input and much more",
+    "MY_VOLUMIO_MORE_INFO": "Discover all features",
     "CHOOSE_PLAN": "Choose a plan",
     "SUPPORT_MYVOLUMIO": "Support Volumio’s development and get premium features for the price of an espresso per month.",
     "SUPPORT_MYVOLUMIO_SHORT": "Support us and get premium features",
@@ -415,7 +416,9 @@
     "PREMIUM_STREAMING_FEATURE_1": "features in Volumio",
     "PREMIUM_STREAMING_FEATURE_2": "Studio quality sound - FLAC 24-Bit up to 192 KHz",
     "PREMIUM_STREAMING_FEATURE_3": "directly from Volumio",
-    "PREMIUM_STREAMING_FEATURE_4": "Sync your favourites and playlists to Volumio"
+    "PREMIUM_STREAMING_FEATURE_4": "Sync your favourites and playlists to Volumio",
+    "LOGIN_WITH": "Login with",
+    "SIGNUP_WITH": "Signup with"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
