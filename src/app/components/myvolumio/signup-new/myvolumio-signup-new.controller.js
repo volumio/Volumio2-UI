@@ -32,7 +32,7 @@ class MyVolumioSignupNewController {
   }
 
   selectProduct(product) {
-    console.log(product);
+    //console.log(product);
   }
 
   init() {
@@ -139,11 +139,9 @@ class MyVolumioSignupNewController {
 
     this.authService.signup(user).then((newUser) => {
       /* this.$state.go('myvolumio.profile'); */
-      console.log(newUser);
       this.newUser = newUser;
       this.stepForwards();
     }, (error) => {
-      console.log(error);
       this.modalService.openDefaultErrorModal(error);
       this.signUpInitiated = false;
     });

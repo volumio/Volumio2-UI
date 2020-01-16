@@ -34,7 +34,7 @@ class MyVolumioPremiumStreamingController {
     }
 
     selectProduct(product) {
-      console.log(product);
+      //console.log(product);
     }
 
     init() {
