@@ -287,8 +287,8 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
-  .state('myvolumio.signup', {
-    url: '/signup',
+  .state('myvolumio.signupOld', {
+    url: '/signup-old',
     views: {
       'content@myvolumio': {
         templateUrl: 'app/components/myvolumio/signup/myvolumio-signup.html',
@@ -299,6 +299,45 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             'authService',
             function(authService) {
               return authService.requireNullUserOrRedirect();
+            }
+          ]
+        }
+      }
+    }
+  })
+
+
+  .state('myvolumio.signup', {
+    url: '/signup',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/signup-new/myvolumio-signup-new.html',
+        controller: 'MyVolumioSignupNewController',
+        controllerAs: 'MyVolumioSignupNewController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return null; //authService.requireNullUserOrRedirect();
+            }
+          ]
+        }
+      }
+    }
+  })
+
+  .state('myvolumio.premiumStreaming', {
+    url: '/premium-streaming/:serviceName',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/premium-streaming/myvolumio-premium-streaming.html',
+        controller: 'MyVolumioPremiumStreamingController',
+        controllerAs: 'MyVolumioPremiumStreamingController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return null;
             }
           ]
         }
