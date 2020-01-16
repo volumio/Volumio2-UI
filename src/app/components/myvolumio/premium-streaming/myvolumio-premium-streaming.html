@@ -20,7 +20,7 @@
                     <img ng-if="MyVolumioPremiumStreamingController.$state.params.serviceName === 'qobuz'" src="{{ 'app/assets-common/myvolumio-qobuz-80.png' }}" alt="{{ MyVolumioPremiumStreamingController.$state.params.serviceName }} app icon" class="my-volumio__premium-streaming-icon mb-6">
                     <img ng-if="MyVolumioPremiumStreamingController.$state.params.serviceName === 'tidal'" src="{{ 'app/assets-common/myvolumio-tidal-80.png' }}" alt="{{ MyVolumioPremiumStreamingController.$state.params.serviceName }} app icon" class="my-volumio__premium-streaming-icon mb-6">
                     <p>{{ 'MYVOLUMIO.PREMIUM_STREAMING_FULLY_INTEGRATED_' + MyVolumioPremiumStreamingController.$state.params.serviceName.toUpperCase() | translate }}</p>
-                
+
                 </div> <!-- col- -->
             </div> <!-- row -->
 
@@ -35,20 +35,20 @@
                     </div>
                 </div>
             </div>
-            
+
             <div ng-if="MyVolumioPremiumStreamingController.authUser && MyVolumioPremiumStreamingController.authUser.plan" class="row mb-6">
                 <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
                     <div class="my-volumio__info-card my-volumio__info-card--with-cta my-volumio__border-round">
-                        <p class="my-volumio__info-card__description">Connect <span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span> to Volumio in your settings.</p>
+                        <p class="my-volumio__info-card__description">{{ 'MYVOLUMIO.CONNECT' | translate }} <span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span> {{ 'MYVOLUMIO.TO_VOLUMIO' | translate }}.</p>
                         <button ng-click="MyVolumioPremiumStreamingController.goToSettings()" class="btn my-volumio__btn-primary my-volumio__border-round" tabindex="7">
-                            Sign in to <span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span>
+                            {{ 'MYVOLUMIO.LOGIN_WITH' | translate }} <span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span>
                         </button>
 
                     </div>
                 </div>
             </div>
 
-            
+
 
             <div class="row mb-16">
                 <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">

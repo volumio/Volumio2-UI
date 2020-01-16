@@ -305,7 +305,9 @@ class AuthService {
   }
 
   isUserVerified() {
-    return this.angularFireService.isLoggedAndVerified();
+    return new Promise((resolve, reject) => {resolve(true);});
+    // Overriding user verified
+    //return this.angularFireService.isLoggedAndVerified();
   }
 
   resendEmailVerification() {

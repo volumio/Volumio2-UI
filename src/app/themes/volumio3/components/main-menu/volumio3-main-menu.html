@@ -46,7 +46,7 @@
             <span class="static-source-icon" ng-if="source.static && !source.active"><i class="material-icons">radio_button_unchecked</i></span>
             </a>
           </li>
-
+          <!-- Temporarily disabled
           <div ng-if="!mainMenu.premiumEnabled" class="spacer"></div>
           <li ng-if="!mainMenu.premiumEnabled">
             <p class="small d-flex align-items-center">
@@ -64,6 +64,12 @@
               Tidal
             </a>
           </li>
+          <li ng-if="!mainMenu.premiumEnabled">
+            <a href ng-click="mainMenu.menuItemsMyVolumioLinksClick('highresaudio')">
+              High Res Audio
+            </a>
+          </li>
+          -->
 
           <div class="spacer"></div>
           <li>

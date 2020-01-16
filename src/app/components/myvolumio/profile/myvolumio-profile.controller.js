@@ -9,7 +9,7 @@ class MyVolumioProfileController {
     this.angularFireService = angularFireService;
 
     this.user = user;
-    this.isUserVerified = false;
+    this.isUserVerified = true;
 
     this.init();
   }

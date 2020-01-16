@@ -418,7 +418,9 @@
     "PREMIUM_STREAMING_FEATURE_3": "directly from Volumio",
     "PREMIUM_STREAMING_FEATURE_4": "Sync your favourites and playlists to Volumio",
     "LOGIN_WITH": "Login with",
-    "SIGNUP_WITH": "Signup with"
+    "SIGNUP_WITH": "Signup with",
+    "CONNECT":"Connect",
+    "TO_VOLUMIO": "to Volumio in your settings"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

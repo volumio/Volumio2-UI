@@ -409,7 +409,9 @@
     "PREMIUM_STREAMING_FEATURE_3": "direttamente in Volumio",
     "PREMIUM_STREAMING_FEATURE_4": "Sincronizza i tuoi preferiti e playlist in Volumio",
     "LOGIN_WITH": "Accedi con",
-    "SIGNUP_WITH": "Iscriviti con"
+    "SIGNUP_WITH": "Iscriviti con",
+    "CONNECT":"Connetti",
+    "TO_VOLUMIO": "a Volumio nelle tue impostazioni"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
