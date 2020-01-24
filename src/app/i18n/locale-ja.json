@@ -171,7 +171,8 @@
      "SECURE_NETWORK":"保護されたネットワーク",
      "SECURITY":"セキュリティ",
      "MANUAL_WIFI_CONNECTION":"手動でWiFiに接続",
-     "NETWORK_NAME":"ネットワーク名"
+     "NETWORK_NAME":"ネットワーク名",
+     "WIRELESS_NETWORK_CONNECTION":"無線ネットワーク接続"
    },
    "SLEEP": {
      "POWER_OFF":"電源オフ",
