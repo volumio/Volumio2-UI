@@ -82,13 +82,13 @@
 
                   <!--<div class="clearfix visible-sm"></div>-->
 
-                  <div ng-if="pluginComponent.uiSettingsService.uiSettings.plugins.showDoc && item.doc" class="control-doc">
+                  <div ng-if="pluginComponent.uiSettingsService.uiSettings.pluginsDoc.showDoc && item.doc" class="control-doc">
                     <a href ng-click="pluginComponent.openDoc(item)">
                       <i class="fa fa-info-circle" aria-hidden="true"></i>
                     </a>
                   </div>
 
-                  <div ng-if="pluginComponent.uiSettingsService.uiSettings.plugins.showDescription && item.description" class="control-description">
+                  <div ng-if="pluginComponent.uiSettingsService.uiSettings.pluginsDoc.showDescription && item.description" class="control-description">
                     {{item.description}}
                   </div>
 
