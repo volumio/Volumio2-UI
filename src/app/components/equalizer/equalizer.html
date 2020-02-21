@@ -1,4 +1,4 @@
-<div class="equalizer" ng-class="equalizer.config.orientation" ng-repeat="bar in equalizer.config.bars track by $index">
+<div class="equalizer" ng-class="{{equalizer.config.class ? equalizer.config.class : 'equalizer.config.orientation'}}" ng-repeat="bar in equalizer.config.bars track by $index">
   <slider
       id="{{::equalizer.id + '-' + $index}}"
       orientation="{{::equalizer.config.orientation}}"
