@@ -7,7 +7,7 @@
         "bluetooth": false
       }
   },
-  "plugins": {
+  "pluginsDoc": {
     "showDoc": true,
     "showDescription": true
   },
