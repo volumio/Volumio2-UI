@@ -779,3 +779,8 @@ p.lead {
   white-space: normal;
   margin-top: 20px;
 }
+
+// TODO REMOVE WHEN MULTIROOM IS ENABLED
+span.device-group-icon {
+    visibility: hidden;
+}
