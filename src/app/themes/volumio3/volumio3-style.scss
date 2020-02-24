@@ -161,15 +161,20 @@ body {
 
 .btn {
   outline: none !important;
-  border-radius: $btn-radius;
   font-size: 16px;
+  border-radius: $theme-element-radius;
   &.selected {
     // background-color: $theme-primary-color !important;
+  }
+  &:hover {
+    background-color: $theme-background-hover-accent;
+    color: white;
+
+
   }
   &:focus {
     color: $link-color;
     &.btn-info {
-      // color: $theme-primary-color;
       border-color: $theme-primary-color;
       background-color: $btn-info-bg;
     }
@@ -179,7 +184,7 @@ body {
     //   background-color: $theme-light-color;
     //   border-color: $btn-default-border;
     // }
-    color: $theme-footer-link-color;
+    color: $theme-primary-color;
     background-color: transparent;
     &.selected {
       color: $theme-footer-link-hover-color;
@@ -187,7 +192,30 @@ body {
     }
     &:hover{
       color: $theme-footer-link-hover-color;
+      background-color: $theme-background-hover-accent;
+    }
+    &.active {
+      color: $theme-footer-link-color;
       background-color: $theme-footer-link-selected-background-color;
+    }
+    @include breakpoint(xs) {
+      &:hover{
+        background-color:  $theme-background-hover-accent;
+      }
+    }
+  }
+  &.btn-primary {
+    color: $theme-primary-color;
+    background-color: transparent;
+    border: 1px $theme-primary-color solid;
+
+    &.selected {
+      color: $theme-footer-link-hover-color;
+      background-color: $theme-footer-link-selected-background-color;
+    }
+    &:hover{
+      color: $theme-footer-link-hover-color;
+      background-color: $theme-background-hover-accent;
     }
     &.active {
       color: $theme-footer-link-color;
@@ -199,6 +227,7 @@ body {
       }
     }
   }
+
 }
 .btn-link {
   border-radius: $btn-border-radius-base;
@@ -207,7 +236,7 @@ body {
     color: $theme-link-hover-color;
   }
   &:hover {
-    color: $theme-link-hover-color;
+    color: $theme-background-hover-accent;
   }
 }
 
@@ -359,10 +388,10 @@ table {
   background-color: $theme-accent-color;
   border-color: $theme-primary-color;
   color: $theme-primary-color;
-  border-radius: 0;
+  border-radius: $theme-element-radius;
 }
 .ui-select-bootstrap .ui-select-choices-row.active > a {
-  background-color: $theme-light-color;
+  background-color: $theme-background-hover-accent;
   color: $theme-text-color;
 }
 .ui-select-bootstrap .ui-select-choices-row > a {
@@ -402,7 +431,7 @@ table {
 //Form override
 .form-control {
   border-radius: $theme-element-radius;
-  background-color: transparent;
+  background-color: $theme-background-hover-dark;
   &:focus {
     box-shadow: 0 0 5px 1px $theme-primary-color;
   }
@@ -562,8 +591,9 @@ div.equalizer.horizontal{
 ul {
   &.dropdown-menu {
     width: 200px;
-    background-color: $theme-accent-color;
+    background-color: $theme-background-hover-dark;
     border: solid 1px $theme-primary-color;
+    border-radius: 15px;
     i {
       width: 24px;
       text-align: center;
@@ -587,7 +617,8 @@ ul {
   text-align: center;
   margin-top: 20px;
   padding: 40px 0px;
-  border: dotted 1px grey;
+  border: dashed 5px grey;
+  border-radius: $theme-element-radius;
   &.dragover {
     border: dotted 1px $theme-primary-color;
   }
