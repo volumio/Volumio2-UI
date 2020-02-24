@@ -174,7 +174,7 @@ body {
   &:focus {
     color: $link-color;
     &.btn-info {
-      border-color: $theme-primary-color;
+      border-color: #54C688;
       background-color: $btn-info-bg;
     }
   }
@@ -210,8 +210,8 @@ body {
     // }
     color: #b01e21;
     background-color: transparent;
-    border: 2px solid #b01e21;
-
+    border: 1px solid #b01e21;
+    box-shadow: 0 0 1px 0px #b01e21 inset, 0 0 1px 0px #b01e21;
     &.selected {
       color: #b01e21;
       background-color: $theme-footer-link-selected-background-color;
@@ -237,6 +237,7 @@ body {
     //   border-color: $btn-default-border;
     // }
     color: $theme-primary-color;
+    box-shadow: 0 0 1px 0px $theme-primary-color inset, 0 0 1px 0px $theme-primary-color;
     &.selected {
       color: $theme-footer-link-hover-color;
       background-color: $theme-footer-link-selected-background-color;
@@ -259,7 +260,7 @@ body {
     color: $theme-primary-color;
     background-color: transparent;
     border: 1px $theme-primary-color solid;
-
+    box-shadow: 0 0 1px 0px $theme-primary-color inset, 0 0 1px 0px $theme-primary-color;
     &.selected {
       color: $theme-footer-link-hover-color;
       background-color: $theme-footer-link-selected-background-color;
@@ -302,6 +303,7 @@ body {
   background-color: darken($theme-accent-color, 5%);
   color: $theme-light-color;
   border-color: $theme-light-color;
+  box-shadow: 0 0 1px 0px $theme-light-color inset, 0 0 1px 0px $theme-light-color;
 }
 
 //Table
@@ -439,6 +441,7 @@ table {
   border-color: $theme-primary-color;
   color: $theme-primary-color;
   border-radius: $theme-element-radius;
+  box-shadow: 0 0 1px 0px $theme-primary-color inset, 0 0 1px 0px $theme-primary-color;
 }
 .ui-select-bootstrap .ui-select-choices-row.active > a {
   background-color: $theme-background-hover-accent;
@@ -458,6 +461,7 @@ table {
 .bootstrap-switch {
   border-color: $theme-primary-color;
   border-radius: $theme-element-radius;
+  box-shadow: 0 0 1px 0px $theme-primary-color inset, 0 0 1px 0px $theme-primary-color;
 }
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
   .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
