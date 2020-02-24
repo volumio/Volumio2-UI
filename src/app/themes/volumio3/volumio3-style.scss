@@ -671,9 +671,9 @@ ul {
   margin-top: 20px;
   padding: 40px 0px;
   border: dashed 5px grey;
-  border-radius: $theme-element-radius;
+  border-radius: $theme-element-radius/2;
   &.dragover {
-    border: dotted 1px $theme-primary-color;
+    border: dashed 5px $theme-primary-color;
   }
 }
 
