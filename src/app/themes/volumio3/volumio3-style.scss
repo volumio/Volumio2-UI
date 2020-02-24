@@ -11,7 +11,6 @@ $link-color: $theme-link-color;
 $link-hover-color: $theme-link-hover-color;
 $link-hover-decoration: none;
 
-
 //Grid
 $grid-columns: 24;
 $grid-gutter-width: 30px;
@@ -19,9 +18,11 @@ $grid-gutter-width: 30px;
 //Buttons
 $btn-default-color: #FFF;
 $btn-default-bg: $theme-light-color;
+$btn-radius: $theme-element-radius;
 
-$btn-info-color: #FFF;
-$btn-info-bg: $theme-primary-color;
+
+$btn-info-color: $theme-primary-color;
+$btn-info-bg: $theme-background-hover-dark;
 $btn-info-border: $theme-primary-color;
 
 //used for cancel buttons
@@ -160,7 +161,7 @@ body {
 
 .btn {
   outline: none !important;
-  border-radius: 0;
+  border-radius: $btn-radius;
   font-size: 16px;
   &.selected {
     // background-color: $theme-primary-color !important;
@@ -228,7 +229,7 @@ table {
   &.table-hover {
     tr {
       &:hover {
-        background-color: rgba(30, 30, 30, 0.8);
+        background-color: $theme-background-hover-dark;
       }
     }
   }
@@ -374,24 +375,24 @@ table {
 //Switch override
 .bootstrap-switch {
   border-color: $theme-primary-color;
-  border-radius: 0;
+  border-radius: $theme-element-radius;
 }
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
   .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
-  background-color: $theme-accent-color;
+  background-color: transparent;
   border-radius: 0;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-  background-color: $theme-primary-color;
-  color: #FFF;
+  background-color: $theme-background-hover-bright;
+  color: $theme-primary-color;
   border-radius: 0;
 }
 .bootstrap-switch .bootstrap-switch-handle-off {
   border-radius: 0;
 }
 .bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
-  background-color: $theme-dark-transparent-background;
-  color: $theme-primary-color;
+  background-color: $theme-background-hover-dark;
+  color: $theme-background-hover-bright;
 }
 .bootstrap-switch-label {
   background-color: red;
@@ -400,7 +401,8 @@ table {
 
 //Form override
 .form-control {
-  border-radius: 0;
+  border-radius: $theme-element-radius;
+  background-color: transparent;
   &:focus {
     box-shadow: 0 0 5px 1px $theme-primary-color;
   }
@@ -723,6 +725,7 @@ p.lead {
 
 .navButtons.pull-left.ng-scope i {
     font-size: 33px;
+    border-radius: $theme-element-radius;
 }
 
 .navButtons.pull-left.ng-scope i.fa.fa-home {
