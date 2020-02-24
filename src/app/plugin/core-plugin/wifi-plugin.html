@@ -102,7 +102,7 @@
               placeholder="password">
               <br>
           <button
-              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'"
+              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open' && wifi.password.length"
               ng-click="(wifi.showHidePassword === 'text') ? wifi.showHidePassword = 'password' : wifi.showHidePassword = 'text'"
               type="button"
               class="btn btn-info showHidePassword">
