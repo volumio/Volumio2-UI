@@ -49,10 +49,18 @@
     left: 0;
     right: 0;
     margin: auto;
-    border: solid 3px $theme-primary-color;
+    border: solid 2px transparent;
+    background-color: $theme-background-hover-bright;
     height: 55px;
     width: 55px;
     border-radius: 100px;
+
+    &:hover{
+      border: 2px solid $theme-primary-color;
+      background-color: rgba($theme-primary-color, 0.3);
+      color: white;
+    }
+
     &.play i{
       padding-left: 4px;
     }

@@ -26,6 +26,9 @@ $theme-footer-link-color: white;
 $theme-footer-link-selected-background-color: $theme-accent-color;
 $theme-footer-link-hover-color: white;
 $theme-link-playback-color: $theme-primary-color;
+$theme-background-hover-dark: rgba(20, 20, 20, 0.6);
+$theme-background-hover-bright: rgba(white, 0.3);
+$theme-background-hover-accent: rgba($theme-primary-color, 0.3);
 $body-bg: transparent;
 $brand-primary: #222;
 $knob-foreground-color: $theme-primary-color;
@@ -55,6 +58,7 @@ $theme-footer-link-selected-background-color: $theme-primary-color;
 $theme-footer-link-hover-color: white;
 $theme-link-playback-color: $theme-light-color;
 $theme-footer-link-selected-color: white;
+$theme-element-radius: 50px;
 
 
 

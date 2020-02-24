@@ -8,8 +8,15 @@
   margin-top: 0;
 
   .nav.nav-pills li a{
-    font-size: larger;
-    cursor: pointer;
-  }
+    text-align: center;
+    border: 2px solid transparent;
+    background-color: $theme-background-hover-dark;
+    border-radius: $theme-element-radius;
+    margin: 5px;
+    &:hover, &:active{
+      background-color: $theme-background-hover-accent;
+      border: 2px solid $theme-primary-color;
+    }
 
+}
 }

@@ -11,7 +11,6 @@ $link-color: $theme-link-color;
 $link-hover-color: $theme-link-hover-color;
 $link-hover-decoration: none;
 
-
 //Grid
 $grid-columns: 24;
 $grid-gutter-width: 30px;
@@ -19,9 +18,11 @@ $grid-gutter-width: 30px;
 //Buttons
 $btn-default-color: #FFF;
 $btn-default-bg: $theme-light-color;
+$btn-radius: $theme-element-radius;
 
-$btn-info-color: #FFF;
-$btn-info-bg: $theme-primary-color;
+
+$btn-info-color: $theme-primary-color;
+$btn-info-bg: $theme-background-hover-dark;
 $btn-info-border: $theme-primary-color;
 
 //used for cancel buttons
@@ -160,15 +161,20 @@ body {
 
 .btn {
   outline: none !important;
-  border-radius: 0;
   font-size: 16px;
+  border-radius: $theme-element-radius;
   &.selected {
     // background-color: $theme-primary-color !important;
+  }
+  &:hover {
+    background-color: $theme-background-hover-accent;
+    color: white;
+
+
   }
   &:focus {
     color: $link-color;
     &.btn-info {
-      // color: $theme-primary-color;
       border-color: $theme-primary-color;
       background-color: $btn-info-bg;
     }
@@ -178,7 +184,7 @@ body {
     //   background-color: $theme-light-color;
     //   border-color: $btn-default-border;
     // }
-    color: $theme-footer-link-color;
+    color: $theme-primary-color;
     background-color: transparent;
     &.selected {
       color: $theme-footer-link-hover-color;
@@ -186,7 +192,30 @@ body {
     }
     &:hover{
       color: $theme-footer-link-hover-color;
+      background-color: $theme-background-hover-accent;
+    }
+    &.active {
+      color: $theme-footer-link-color;
       background-color: $theme-footer-link-selected-background-color;
+    }
+    @include breakpoint(xs) {
+      &:hover{
+        background-color:  $theme-background-hover-accent;
+      }
+    }
+  }
+  &.btn-primary {
+    color: $theme-primary-color;
+    background-color: transparent;
+    border: 1px $theme-primary-color solid;
+
+    &.selected {
+      color: $theme-footer-link-hover-color;
+      background-color: $theme-footer-link-selected-background-color;
+    }
+    &:hover{
+      color: $theme-footer-link-hover-color;
+      background-color: $theme-background-hover-accent;
     }
     &.active {
       color: $theme-footer-link-color;
@@ -198,6 +227,7 @@ body {
       }
     }
   }
+
 }
 .btn-link {
   border-radius: $btn-border-radius-base;
@@ -206,7 +236,7 @@ body {
     color: $theme-link-hover-color;
   }
   &:hover {
-    color: $theme-link-hover-color;
+    color: $theme-background-hover-accent;
   }
 }
 
@@ -228,7 +258,7 @@ table {
   &.table-hover {
     tr {
       &:hover {
-        background-color: rgba(30, 30, 30, 0.8);
+        background-color: $theme-background-hover-dark;
       }
     }
   }
@@ -358,10 +388,10 @@ table {
   background-color: $theme-accent-color;
   border-color: $theme-primary-color;
   color: $theme-primary-color;
-  border-radius: 0;
+  border-radius: $theme-element-radius;
 }
 .ui-select-bootstrap .ui-select-choices-row.active > a {
-  background-color: $theme-light-color;
+  background-color: $theme-background-hover-accent;
   color: $theme-text-color;
 }
 .ui-select-bootstrap .ui-select-choices-row > a {
@@ -374,24 +404,24 @@ table {
 //Switch override
 .bootstrap-switch {
   border-color: $theme-primary-color;
-  border-radius: 0;
+  border-radius: $theme-element-radius;
 }
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
   .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
-  background-color: $theme-accent-color;
+  background-color: transparent;
   border-radius: 0;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
-  background-color: $theme-primary-color;
-  color: #FFF;
+  background-color: $theme-background-hover-bright;
+  color: $theme-primary-color;
   border-radius: 0;
 }
 .bootstrap-switch .bootstrap-switch-handle-off {
   border-radius: 0;
 }
 .bootstrap-switch-handle-on.bootstrap-switch-default, .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
-  background-color: $theme-dark-transparent-background;
-  color: $theme-primary-color;
+  background-color: $theme-background-hover-dark;
+  color: $theme-background-hover-bright;
 }
 .bootstrap-switch-label {
   background-color: red;
@@ -400,7 +430,8 @@ table {
 
 //Form override
 .form-control {
-  border-radius: 0;
+  border-radius: $theme-element-radius;
+  background-color: $theme-background-hover-dark;
   &:focus {
     box-shadow: 0 0 5px 1px $theme-primary-color;
   }
@@ -560,8 +591,9 @@ div.equalizer.horizontal{
 ul {
   &.dropdown-menu {
     width: 200px;
-    background-color: $theme-accent-color;
+    background-color: $theme-background-hover-dark;
     border: solid 1px $theme-primary-color;
+    border-radius: 15px;
     i {
       width: 24px;
       text-align: center;
@@ -585,7 +617,8 @@ ul {
   text-align: center;
   margin-top: 20px;
   padding: 40px 0px;
-  border: dotted 1px grey;
+  border: dashed 5px grey;
+  border-radius: $theme-element-radius;
   &.dragover {
     border: dotted 1px $theme-primary-color;
   }
@@ -723,6 +756,7 @@ p.lead {
 
 .navButtons.pull-left.ng-scope i {
     font-size: 33px;
+    border-radius: $theme-element-radius;
 }
 
 .navButtons.pull-left.ng-scope i.fa.fa-home {
