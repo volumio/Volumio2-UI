@@ -168,8 +168,6 @@ body {
   }
   &:hover {
     color: white;
-
-
   }
   &:focus {
     color: $link-color;
@@ -178,11 +176,8 @@ body {
       background-color: $btn-info-bg;
     }
   }
+  
   &.btn-default {
-    // &:focus {
-    //   background-color: $theme-light-color;
-    //   border-color: $btn-default-border;
-    // }
     color: $theme-primary-color;
     border: $theme-border-thickness solid $theme-primary-color;
     box-shadow: 0 0 1px transparent;
@@ -201,37 +196,33 @@ body {
     }
     @include breakpoint(xs) {
       &:hover{
-        background-color:  $theme-background-hover-accent;
+        background-color: $theme-background-hover-accent;
       }
     }
   }
 
   &.btn-danger {
-    // &:focus {
-    //   background-color: $theme-light-color;
-    //   border-color: $btn-default-border;
-    // }
-    color: #b01e21;
+    color: $theme-danger-color;
     background-color: transparent;
-    border: $theme-border-thickness solid #b01e21;
+    border: $theme-border-thickness solid $theme-danger-color;
     box-shadow: 0 0 1px transparent;
 
     &.selected {
-      color: #b01e21;
-      background-color: $theme-footer-link-selected-background-color;
+      color: $theme-danger-color;
     }
     &:hover{
       color: white;
-      border: $theme-border-thickness solid #b01e21;
-      background-color: rgba(#b01e21, 0.6);
+      border: $theme-border-thickness solid $theme-danger-color;
+      background-color: rgba($theme-danger-color, 0.3);
     }
     &.active {
-      color: $theme-footer-link-color;
-      background-color: $theme-footer-link-selected-background-color;
+      color: white;
+      border: $theme-border-thickness solid $theme-danger-color;
+      background-color: rgba($theme-danger-color, 1);    
     }
     @include breakpoint(xs) {
       &:hover{
-        background-color:  $theme-background-hover-accent;
+        background-color: rgba($theme-danger-color, 0.3);
       }
     }
   }
@@ -244,16 +235,13 @@ body {
     border: $theme-border-thickness solid $theme-primary-color;
     box-shadow: 0 0 1px transparent;
     &.selected {
-      color: $theme-footer-link-hover-color;
-      background-color: $theme-footer-link-selected-background-color;
+      background-color: $theme-background-hover-accent;
     }
     &:hover{
-      color: $theme-footer-link-hover-color;
       background-color: $theme-background-hover-accent;
     }
     &.active {
-      color: $theme-footer-link-color;
-      background-color: $theme-footer-link-selected-background-color;
+      background-color: $theme-background-hover-accent;
     }
     @include breakpoint(xs) {
       &:hover{
