@@ -28,7 +28,7 @@ $btn-info-border: $theme-primary-color;
 //used for cancel buttons
 $btn-warning-color: $theme-primary-color;
 $btn-warning-bg: $theme-transparent-background;
-$btn-warning-border: $theme-primary-color;
+$btn-warning-border: $theme-light-color;
 
 //used for delete buttons
 $btn-danger-color: #FFF;
@@ -184,6 +184,9 @@ body {
     //   border-color: $btn-default-border;
     // }
     color: $theme-primary-color;
+    border: $theme-border-thickness solid $theme-primary-color;
+    box-shadow: 0 0 1px transparent;
+    background: $theme-background-hover-dark;
     &.selected {
       color: $theme-footer-link-hover-color;
       background-color: $theme-footer-link-selected-background-color;
@@ -209,16 +212,17 @@ body {
     //   border-color: $btn-default-border;
     // }
     color: #b01e21;
-    background-color: transparent;
-    border: 1px solid #b01e21;
-    box-shadow: 0 0 1px 0px #b01e21 inset, 0 0 1px 0px #b01e21;
+    //background-color: rgba(20, 20, 20, 0.6);
+    background-color: $theme-background-hover-dark;
+    border: $theme-border-thickness solid #b01e21;
+    box-shadow: 0 0 1px transparent;
     &.selected {
       color: #b01e21;
       background-color: $theme-footer-link-selected-background-color;
     }
     &:hover{
       color: white;
-      border: 2px solid #b01e21;
+      border: $theme-border-thickness solid #b01e21;
       background-color: rgba(#b01e21, 0.6);
     }
     &.active {
@@ -237,7 +241,8 @@ body {
     //   border-color: $btn-default-border;
     // }
     color: $theme-primary-color;
-    box-shadow: 0 0 1px 0px $theme-primary-color inset, 0 0 1px 0px $theme-primary-color;
+    border: $theme-border-thickness solid $theme-primary-color;
+    box-shadow: 0 0 1px transparent;
     &.selected {
       color: $theme-footer-link-hover-color;
       background-color: $theme-footer-link-selected-background-color;
@@ -259,8 +264,8 @@ body {
   &.btn-primary {
     color: $theme-primary-color;
     background-color: transparent;
-    border: 1px $theme-primary-color solid;
-    box-shadow: 0 0 1px 0px $theme-primary-color inset, 0 0 1px 0px $theme-primary-color;
+    border: $theme-border-thickness $theme-primary-color solid;
+    box-shadow: 0 0 1px transparent;
     &.selected {
       color: $theme-footer-link-hover-color;
       background-color: $theme-footer-link-selected-background-color;
@@ -268,6 +273,29 @@ body {
     &:hover{
       color: $theme-footer-link-hover-color;
       background-color: $theme-background-hover-accent;
+    }
+    &.active {
+      color: $theme-footer-link-color;
+      background-color: $theme-footer-link-selected-background-color;
+    }
+    @include breakpoint(xs) {
+      &:hover{
+        background-color:  $theme-footer-link-selected-background-color;
+      }
+    }
+  }
+  &.btn-warning {
+    color: $theme-light-color;
+    background-color: transparent;
+    border: $theme-border-thickness $btn-warning-border solid;
+    box-shadow: 0 0 1px transparent;
+    &.selected {
+      color: $theme-footer-link-hover-color;
+      background-color: $btn-warning-bg;
+    }
+    &:hover{
+      color: $theme-footer-link-hover-color;
+      background-color: $btn-warning-bg;
     }
     &.active {
       color: $theme-footer-link-color;
@@ -293,7 +321,8 @@ body {
 }
 
 .btn-outline {
-  border: 2px solid white;
+  border: $theme-border-thickness solid $theme-primary-color;
+  box-shadow: 0 0 1px transparent;
 }
 
 //Common components
@@ -459,9 +488,9 @@ table {
   background-color: $theme-background-hover-dark;
 }
 .bootstrap-switch {
-  border-color: $theme-primary-color;
+  border: $theme-border-thickness solid $theme-primary-color;
+  box-shadow: 0 0 1px transparent;
   border-radius: $theme-element-radius;
-  box-shadow: 0 0 1px 0px $theme-primary-color inset, 0 0 1px 0px $theme-primary-color;
 }
 .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label,
   .bootstrap-switch.bootstrap-switch-on .bootstrap-switch-label {
@@ -488,6 +517,8 @@ table {
 //Form override
 .form-control {
   border-radius: $theme-element-radius;
+  border: $theme-border-thickness solid $theme-primary-color;
+  box-shadow: 0 0 1px transparent;
   background: $theme-background-hover-dark;
   &:focus {
     box-shadow: 0 0 5px 1px $theme-primary-color;
@@ -649,7 +680,8 @@ ul {
   &.dropdown-menu {
     width: 200px;
     background-color: $theme-background-hover-dark;
-    border: solid 1px $theme-primary-color;
+    border: solid $theme-border-thickness $theme-primary-color;
+    box-shadow: 0 0 1px transparent;
     border-radius: 15px;
     i {
       width: 24px;
