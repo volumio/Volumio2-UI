@@ -264,7 +264,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "Pogreška",
+    "ERROR": "MyVolumio Pogreška",
     "LOGIN": "Prijavi se",
     "LOGOUT": "Odjavi se",
     "SIGNUP": "Registriraj se",
@@ -392,7 +392,7 @@
     "TRY_FOR_FREE": "Isprobaj besplatno",
     "LIFETIME": "Doživotno",
     "FREE": "Free",
-    "KEEP_ME_UPDATED_VIA_MAIL": "Keep me updated with the latest Volumio news via email"		
+    "KEEP_ME_UPDATED_VIA_MAIL": "Keep me updated with the latest Volumio news via email"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Primajte naš MyVolumio News Feed",
@@ -408,6 +408,6 @@
     "ALEXA_INTEGRATION": "Alexa integracija",
     "HIRESAUDIO_INTEGRATION": "Highresaudio.com Integracija",
     "INPUT_PLAYBACK": "Reprodukcija digitalnih i analognih ulaza",
-    "BLUETOOTH_INPUT": "Bluetooth ulaz za reprodukciju zvuka"	
+    "BLUETOOTH_INPUT": "Bluetooth ulaz za reprodukciju zvuka"
   }
 }

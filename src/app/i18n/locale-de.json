@@ -264,7 +264,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "Fehler",
+    "ERROR": "MyVolumio Fehler",
     "LOGIN": "Anmelden",
     "LOGOUT": "Abmelden",
     "SIGNUP": "Registrieren",

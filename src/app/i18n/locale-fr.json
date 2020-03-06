@@ -109,12 +109,12 @@
     "SKIP_BACKWARDS": "Avancer",
     "SKIP_FORWARD": "Retour"
   },
-"MY_MUSIC": { 
-    "UPDATE": "Mettre à jour", 
-    "UPDATE_DOC": "Mettre à jour", 
-    "RESCAN": "Scanner à nouveau", 
-    "RESCAN_DOC": "Scanner à nouveau les sources de musique"  
-  }, 
+"MY_MUSIC": {
+    "UPDATE": "Mettre à jour",
+    "UPDATE_DOC": "Mettre à jour",
+    "RESCAN": "Scanner à nouveau",
+    "RESCAN_DOC": "Scanner à nouveau les sources de musique"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Retour aux plugins",
     "PLUGINS": "Plugins",
@@ -195,7 +195,7 @@
     "SECURE_NETWORK": "Réseau sécurisé",
     "SECURITY": "Sécurité",
     "MANUAL_WIFI_CONNECTION": "Connexion WiFi manuelle",
-    "NETWORK_NAME": "Nom du réseau"   
+    "NETWORK_NAME": "Nom du réseau"
   },
   "WIZARD": {
      "LANGUAGE": "Langue",
@@ -262,7 +262,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "Erreur",
+    "ERROR": "Erreur MyVolumio",
     "LOGIN": "Connexion",
     "LOGOUT": "Déconnexion",
     "SIGNUP": "Signer",
@@ -407,5 +407,5 @@
     "HIRESAUDIO_INTEGRATION":"Integration d'Highresaudio.com",
     "INPUT_PLAYBACK":"Entrée audio Digitale et analogique",
     "BLUETOOTH_INPUT":"Entrée audio Bluetooth"
-} 
+}
 }
