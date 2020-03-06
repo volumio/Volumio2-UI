@@ -82,6 +82,10 @@
   position: absolute;
   top: 20px;
   left: 60px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .list-item-type {
