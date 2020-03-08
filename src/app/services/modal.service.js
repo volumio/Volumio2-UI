@@ -65,18 +65,17 @@ class ModalService {
   }
 
   openDefaultErrorModal(descLangKey = '', callback = null) {
-    if (descLangKey.constructor === Array || descLangKey.constructor === String || descLangKey.constructor === Object) {
+    this.$log.debug('MyVolumio error: ', descLangKey);
+    if (descLangKey.constructor !== String && descLangKey.constructor === Object) {
       descLangKey = this.parseErrorObject(descLangKey);
     }
-
-    this.$log.debug('MyVolumio error: ', descLangKey);
     return this.openDefaultModal(this.$filteredTranslate('MYVOLUMIO.ERROR'), descLangKey, callback);
   }
 
   parseErrorObject(errorObj) {
     if (errorObj.error) {
       return errorObj.error;
-    } else if (errorObj.data.error.message) {
+    } else if (errorObj.data && errorObj.data.error && errorObj.data.error.message) {
       return errorObj.data.error.message;
     } else if (errorObj.message) {
       return errorObj.message;
