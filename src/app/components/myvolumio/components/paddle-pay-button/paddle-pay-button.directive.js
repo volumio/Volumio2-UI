@@ -112,7 +112,6 @@ class PaddlePayButtonController {
     var trialDaysAuth = '';
     var trialPrice = '';
     var trialAuth = '';
-    var couponEntered = '';
     if (this.isTrial) {
       var trialParameters = this.getTrialParameters();
       trialDays = trialParameters.trialDays;
