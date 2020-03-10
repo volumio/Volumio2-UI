@@ -1,5 +1,5 @@
 class MyVolumioSignupNewController {
-  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user) {
+  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user, $log) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -8,6 +8,7 @@ class MyVolumioSignupNewController {
     this.$translate = $translate;
     this.paymentsService = paymentsService;
     this.productService = productsService;
+    this.$log = $log;
 
     this.user = user;
     this.newUser = null;
@@ -242,10 +243,6 @@ class MyVolumioSignupNewController {
       product: paddleId,
       email: this.newUser.email,
       passthrough: { "email": this.newUser.email, "uid": this.newUser.uid },
-      trialDays: trialDays,
-      trialDaysAuth: trialDaysAuth,
-      price: trialPrice,
-      auth:trialAuth,
       successCallback: (data) => {
         this.successCallback(data);
       },
@@ -256,6 +253,11 @@ class MyVolumioSignupNewController {
 
     if (this.couponCode) {
       checkoutProps.coupon = this.couponCode;
+    } else {
+      checkoutProps.trialDays = trialDays;
+      checkoutProps.trialDaysAuth = trialDaysAuth;
+      checkoutProps.price = trialPrice;
+      checkoutProps.auth = trialAuth;
     }
 
     Paddle.Checkout.open(checkoutProps, false);
@@ -268,6 +270,20 @@ class MyVolumioSignupNewController {
 
   closeCallback(error) {
     this.modalService.openDefaultErrorModal('MYVOLUMIO.COMPLETE_CHECKOUT');
+  }
+
+  getTrialOverride() {
+    return this.productService.getTrialOverride();
+  }
+
+  onCouponCodeChange(data){
+    this.$log.debug('myvolumio coupon :', data);
+    this.couponCode = data;
+    if (this.couponCode.length) {
+      this.productService.setTrialOverride(true);
+    } else {
+      this.productService.setTrialOverride(false);
+    }
   }
 
 }

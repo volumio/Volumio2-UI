@@ -232,7 +232,7 @@
               </div>
               <div class="plan__pricing">
                 <div class="plan__trial">
-                  <span ng-if="product.prices[MyVolumioSignupNewController.selectedPlanDuration].trial">
+                  <span ng-if="product.prices[MyVolumioSignupNewController.selectedPlanDuration].trial && !MyVolumioSignupNewController.getTrialOverride()">
                     {{ product.prices[MyVolumioSignupNewController.selectedPlanDuration].trial.trialDays }} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}
                   </span>&nbsp;
                 </div>
@@ -264,11 +264,11 @@
               </label>
               <div class="collapse__panel__content">
                 <div class="form-group my-volumio__form-group">
-                  <input ng-model="MyVolumioSignupNewController.couponCode" type="text" id="coupon" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{ 'MYVOLUMIO.COUPON_CODE' | translate }}" tabindex="4">
+                  <input ng-model="MyVolumioSignupNewController.couponCode" ng-change="MyVolumioSignupNewController.onCouponCodeChange(MyVolumioSignupNewController.couponCode)" type="text" id="coupon" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{ 'MYVOLUMIO.COUPON_CODE' | translate }}" tabindex="4">
                 </div>
               </div>
             </div>
-            
+
             <!-- <input type="submit" value="{{'MYVOLUMIO.SIGNUP' | translate}}" class="btn my-volumio__btn-primary my-volumio__border-round btn-block btn-lg" tabindex="7"> -->
             <button
               ng-click="MyVolumioSignupNewController.handlePayment()"

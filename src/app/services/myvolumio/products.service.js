@@ -10,6 +10,7 @@ class ProductsService {
     this.MONTHLY_PLAN = 'monthly';
     this.YEARLY_PLAN = 'yearly';
     this.LIFETIME_PLAN = 'lifetime';
+    this.overrideTrial = false;
 
     this.products = null;
     this.init();
@@ -87,6 +88,14 @@ class ProductsService {
 
   getProductForUser(user) {
     return this.getProductByCode(user.plan || 'free');
+  }
+
+  setTrialOverride(data) {
+    this.overrideTrial = data;
+  }
+
+  getTrialOverride() {
+    return this.overrideTrial;
   }
 }
 
