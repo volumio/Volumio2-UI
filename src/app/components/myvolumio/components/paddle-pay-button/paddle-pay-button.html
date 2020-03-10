@@ -1,6 +1,18 @@
+<div class="collapse__panel mb-4">
+  <input class="collapse__checkbox" hidden type="checkbox" id="collapsePanel">
+  <label for="collapsePanel" class="collapse__panel__header d-flex align-items-center focus__helper" tabindex="7">
+    <img class="collapse__indicator d-block mr-2" src="app/assets-common/collapse-indicator.svg" alt="Collapse">
+    {{ 'MYVOLUMIO.HAVE_COUPON_CODE' | translate }}
+  </label>
+  <div class="collapse__panel__content">
+    <div class="form-group my-volumio__form-group">
+      <input ng-model="paddlePayButtonController.couponCode" ng-change="paddlePayButtonController.onCouponCodeChange(paddlePayButtonController.couponCode)" type="text" id="coupon" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{ 'MYVOLUMIO.COUPON_CODE' | translate }}" tabindex="4">
+    </div>
+  </div>
+</div>
+
 <button ng-click="paddlePayButtonController.handlePayment()" class="btn btn-lg btn-success" ng-class="paddlePayButtonController.buttonClass">
   <i ng-class="[paddlePayButtonController.btnIconClass]"></i>
-  <span ng-if="paddlePayButtonController.isTrial" translate="MYVOLUMIO.TRY_FOR_FREE"></span>
-  <span ng-if="!paddlePayButtonController.isTrial">{{paddlePayButtonController.buttonLabel}}</span>
-
+  <span ng-if="paddlePayButtonController.isTrial && !paddlePayButtonController.couponCode" translate="MYVOLUMIO.TRY_FOR_FREE"></span>
+  <span ng-if="!paddlePayButtonController.isTrial || paddlePayButtonController.couponCode">{{paddlePayButtonController.buttonLabel}}</span>
 </button>

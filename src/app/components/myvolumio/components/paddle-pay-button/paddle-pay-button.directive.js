@@ -22,7 +22,7 @@ class PaddlePayButtonDirective {
 }
 
 class PaddlePayButtonController {
-  constructor($rootScope, $scope, $window, $timeout, $q, $state, paymentsService, modalService) {
+  constructor($rootScope, $scope, $window, $timeout, $q, $state, paymentsService, modalService, $log, productsService) {
     'ngInject';
     this.$scope = $scope;
     this.$window = $window;
@@ -32,6 +32,8 @@ class PaddlePayButtonController {
     this.paymentsService = paymentsService;
     this.handler = {};
     this.modalService = modalService;
+    this.$log = $log;
+    this.productsService = productsService;
 
     this.btnIconClasses = {
       normal: "glyphicon glyphicon-shopping-cart",
@@ -80,7 +82,7 @@ class PaddlePayButtonController {
     }
     return this.product.prices[this.planDuration].paddleId;
   }
-  
+
   getTrialParameters(){
     if(this.product.prices === undefined || this.planDuration === undefined){
       return undefined;
@@ -92,6 +94,16 @@ class PaddlePayButtonController {
       trialParameters.trialAuth = this.product.prices[this.planDuration].trial.trialAuth;
     }
     return trialParameters;
+  }
+
+  onCouponCodeChange(data){
+    this.$log.debug('myvolumio coupon :', data);
+    this.couponCode = data;
+    if (this.couponCode.length) {
+      this.productsService.setTrialOverride(true);
+    } else {
+      this.productsService.setTrialOverride(false);
+    }
   }
 
   handlePayment() {
@@ -108,26 +120,35 @@ class PaddlePayButtonController {
       trialPrice = 0;
     }
 
+
     if(paddleId === undefined || !Number.isInteger(paddleId) ){
       alert("Error, no transaction occurred, no paddleId found.");
       return;
     }
-    /* jshint ignore:start */
-    Paddle.Checkout.open({
+
+    let checkoutProps = {
       product: paddleId,
       email: this.userEmail,
       passthrough: { "email": this.userEmail, "uid": this.userId },
-      trialDays: trialDays,
-      trialDaysAuth: trialDaysAuth,
-      price: trialPrice,
-      auth:trialAuth,
       successCallback: (data) => {
         this.successCallback(data);
       },
       closeCallback: (data) => {
         this.closeCallback(data);
-      },
-    }, false);
+      }
+    };
+
+    if (this.couponCode) {
+      checkoutProps.coupon = this.couponCode;
+    } else {
+      checkoutProps.trialDays = trialDays;
+      checkoutProps.trialDaysAuth = trialDaysAuth;
+      checkoutProps.price = trialPrice;
+      checkoutProps.auth = trialAuth;
+    }
+
+    /* jshint ignore:start */
+    Paddle.Checkout.open(checkoutProps, false);
     /* jshint ignore:end */
   }
 
