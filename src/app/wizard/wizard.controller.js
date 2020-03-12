@@ -54,6 +54,8 @@ class WizardController {
         this.$log.debug('setLanguage', this.wizardDetails.language);
         this.wizardDetails.language.disallowReload = true;
         this.socketService.emit('setLanguage', this.wizardDetails.language);
+        //Prefetching network scan
+        this.socketService.emit('getWirelessNetworks', '');
         this.$translate.use(this.wizardDetails.language.defaultLanguage.code);
         break;
       case 'name':
