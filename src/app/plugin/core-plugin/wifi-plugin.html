@@ -53,8 +53,8 @@
           </span>
         </td>
         <td>
-          <span ng-if="!$last">{{::wifi.ssid}}</span>
-          <span ng-if="$last" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
+          <span ng-if="!wifi.manual">{{::wifi.ssid}}</span>
+          <span ng-if="wifi.manual" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
         </td>
       </tr>
 
