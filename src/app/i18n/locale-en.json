@@ -420,7 +420,8 @@
     "LOGIN_WITH": "Login with",
     "SIGNUP_WITH": "Signup with",
     "CONNECT":"Connect",
-    "TO_VOLUMIO": "to Volumio in your settings"
+    "TO_VOLUMIO": "to Volumio in your settings",
+    "CODE_DEVICE_ALREADY_ACTIVATED": "Your device code has already been successfully activated and your plan is"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

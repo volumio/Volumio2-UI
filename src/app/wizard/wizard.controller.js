@@ -110,6 +110,9 @@ class WizardController {
       case 'advancedsettings':
         this.socketService.emit('getExperienceAdvancedSettings');
         break;
+      case 'devicecode':
+        this.socketService.emit('getDeviceActivationStatus');
+        break;
       case 'done':
         this.socketService.emit('getDonePage');
         break;
@@ -274,6 +277,14 @@ class WizardController {
       this.$log.debug('pushDeviceActivationCodeResult', data);
       this.wizardDetails.deviceCode.activated = data.activated;
       this.wizardDetails.deviceCode.error = data.error;
+    });
+
+    this.socketService.on('pushDeviceActivationStatus', (data) => {
+      this.$log.debug('pushDeviceActivationStatus', data);
+
+      this.wizardDetails.deviceCode = {};
+      this.wizardDetails.deviceCode.alreadyActivated = data.alreadyActivated;
+      this.wizardDetails.deviceCode.message = this.filteredTranslate(data.message) + ' ' + data.plan;
     });
 
     this.socketService.on('pushExperienceAdvancedSettings', (data) => {
