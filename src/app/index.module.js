@@ -35,6 +35,7 @@ import ProductsService from './services/myvolumio/products.service';
 import RemoteStorageService from './services/myvolumio/remote-storage.service';
 import MyVolumioDevicesService from './services/myvolumio/myvolumio-devices.service';
 import FirebaseApiFunctionsService from './services/myvolumio/firebase-api-functions.service';
+import OnBoardFlowService from './services/myvolumio/onboardflow.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -233,6 +234,7 @@ angular.module('volumio', [
   .service('remoteStorageService', RemoteStorageService)
   .service('myVolumioDevicesService', MyVolumioDevicesService)
   .service('firebaseApiFunctionsService',FirebaseApiFunctionsService)
+  .service('onBoardFlowService',OnBoardFlowService)
 
 
 .provider('themeManager', ThemeManagerProvider)
