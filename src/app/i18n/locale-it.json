@@ -412,7 +412,8 @@
     "SIGNUP_WITH": "Iscriviti con",
     "CONNECT":"Connetti",
     "TO_VOLUMIO": "a Volumio nelle tue impostazioni",
-    "CODE_DEVICE_ALREADY_ACTIVATED": "Il tuo codice è già stato attivato con sucesso e il tuo piano è"
+    "CODE_DEVICE_ALREADY_ACTIVATED": "Il tuo codice è già stato attivato con sucesso e il tuo piano è",
+    "AND_ASSOCIATED_WITH_ACCOUNT":"e associato con l'account"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
