@@ -420,7 +420,8 @@
     "SIGNUP_WITH": "Inscrivez vous avec",
     "CONNECT":"Connecter",
     "TO_VOLUMIO": "à Volumio avec vos paramètres",
-    "CODE_DEVICE_ALREADY_ACTIVATED": "Le code de votre périphérique a déja été activé avec succès et votre plan est"
+    "CODE_DEVICE_ALREADY_ACTIVATED": "Le code de votre périphérique a déja été activé avec succès et votre plan est",
+    "AND_ASSOCIATED_WITH_ACCOUNT":"et associé avec le compte"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Recevez notre Fil d'actualités MyVolumio",
