@@ -233,7 +233,7 @@
     "DEVICE_ACTIVATED":"Votre périphérique a été activé avec succès! Profitez des avantages qui vous sont reservés!",
     "ADVANCEDSETTINGS": "Experience",
     "EXPERIENCE_SETTINGS_TITLE":"Partagez votre experience d'utilisateur",
-    "EXPERIENCE_SETTINGS_TEXT" :"Préferez vous un système avec seulement des réglages simplifiés, ou voulez vous un contrôle total avec dess réglages avancés?",
+    "EXPERIENCE_SETTINGS_TEXT" :"Préferez vous un système avec seulement des réglages simplifiés, ou voulez vous un contrôle total avec des réglages avancés?",
     "EXPERIENCE_SETTINGS_TEXT_2" :"Ce réglage pourra être changé plus tard dans les réglages système"
    },
   "SLEEP": {
@@ -419,7 +419,9 @@
     "LOGIN_WITH": "Login avec",
     "SIGNUP_WITH": "Inscrivez vous avec",
     "CONNECT":"Connecter",
-    "TO_VOLUMIO": "à Volumio avec vos paramètres"
+    "TO_VOLUMIO": "à Volumio avec vos paramètres",
+    "CODE_DEVICE_ALREADY_ACTIVATED": "Le code de votre périphérique a déja été activé avec succès et votre plan est",
+    "AND_ASSOCIATED_WITH_ACCOUNT":"et associé avec le compte"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Recevez notre Fil d'actualités MyVolumio",
