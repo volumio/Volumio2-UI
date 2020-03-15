@@ -285,8 +285,8 @@ class WizardController {
       this.wizardDetails.deviceCode = {};
       this.wizardDetails.deviceCode.alreadyActivated = data.alreadyActivated;
       this.wizardDetails.deviceCode.message = this.filteredTranslate(data.message) + ' ' + data.plan;
-      if (this.wizardDetails.deviceCode.email) {
-        this.wizardDetails.deviceCode.message = this.wizardDetails.deviceCode.message + ' ' + this.filteredTranslate('AND_ASSOCIATED_WITH_ACCOUNT') + ' ' + this.wizardDetails.deviceCode.email;
+      if (data.email) {
+        this.wizardDetails.deviceCode.message = this.wizardDetails.deviceCode.message + ' ' + this.filteredTranslate('MYVOLUMIO.AND_ASSOCIATED_WITH_ACCOUNT') + ' ' + data.email;
       }
     });
 
