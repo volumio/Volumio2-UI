@@ -6,7 +6,7 @@ class OnBoardFlowService {
     this.$log = $log;
     this.$window = $window;
     this.onBoardFlowStarted = false;
-    this.onBoardFlowDebugMode = true;
+    this.onBoardFlowDebugMode = false;
     this.init();
   }
 
@@ -47,7 +47,8 @@ class OnBoardFlowService {
   }
 
   updateUserData(data) {
-    if (data && data.uid) {
+    if (data && data.uid && data.subscriptionId) {
+      this.$log.debug('Updating onboardflow', data);
       if (!this.$window.onboardFlowSettings) {
         this.loadOnBoardFlowDefaults();
       }
@@ -63,28 +64,20 @@ class OnBoardFlowService {
       if (data.lastName) {
         this.$window.onboardFlowSettings.user.last_name = data.lastName;
       }
-      this.updateUserCustomProperties(data);
+      if (data.createdAt) {
+        this.$window.onboardFlowSettings.customProperties.createdAt = data.createdAt;
+      }
+      if (data.devices) {
+        this.$window.onboardFlowSettings.customProperties.devices = data.devices;
+      } else {
+        this.$window.onboardFlowSettings.customProperties.devices = 1;
+      }
       if (!this.onBoardFlowStarted) {
         this.initializeOnBoardFlow();
       }
     }
-
   }
 
-  updateUserCustomProperties(data) {
-    if (!this.$window.onboardFlowSettings || !(data && data.uid)) {
-      return;
-    }
-    if (data.plan) {
-      this.$window.onboardFlowSettings.customProperties.plan = data.plan;
-    }
-    if (data.createdAt) {
-      this.$window.onboardFlowSettings.customProperties.createdAt = data.createdAt;
-    }
-    if (data.devices) {
-      this.$window.onboardFlowSettings.customProperties.devices = data.devices;
-    }
-  }
 }
 
 export default OnBoardFlowService;
