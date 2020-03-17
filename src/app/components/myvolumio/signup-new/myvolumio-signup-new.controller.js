@@ -1,5 +1,5 @@
 class MyVolumioSignupNewController {
-  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user, $log) {
+  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user, $log, socketService, $rootScope) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -9,6 +9,8 @@ class MyVolumioSignupNewController {
     this.paymentsService = paymentsService;
     this.productService = productsService;
     this.$log = $log;
+    this.socketService = socketService;
+    this.$rootScope = $rootScope;
 
     this.user = user;
     this.newUser = null;
@@ -39,6 +41,7 @@ class MyVolumioSignupNewController {
   init() {
     this.authInit();
     this.initProducts();
+    this.initSocket();
     this.$scope.model.selectedProduct = 'virtuoso';
   }
 
@@ -286,6 +289,35 @@ class MyVolumioSignupNewController {
     }
   }
 
+  initSocket() {
+    if (!this.socketService.isSocketAvalaible()) {
+      return;
+    }
+
+    this.registerListener();
+    this.$rootScope.$on('socket:reconnect', () => {
+      this.registerListener();
+    });
+  }
+
+  registerListener() {
+    if (!this.socketService.isSocketAvalaible()) {
+      return;
+    }
+    this.socketService.on('userUpgradedFromDeviceCode', () => {
+      this.executeUserUpgradedFromDeviceCode();
+    });
+
+    this.$rootScope.$on('$destroy', () => {
+      this.socketService.off('userUpgradedFromDeviceCode');
+    });
+  }
+
+  executeUserUpgradedFromDeviceCode(){
+    if (this.$state.current.name === 'myvolumio.signup') {
+      this.$state.go('myvolumio.profile');
+    }
+  }
 }
 
 export default MyVolumioSignupNewController;
