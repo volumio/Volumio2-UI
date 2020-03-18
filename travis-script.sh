@@ -26,11 +26,11 @@ git config --global user.email "info@volumio.org"
 # Push classic UI on 'dist' branch
 cd "${P_DIR}/dist-volumio"
 git init && git add . && git commit -m "Deploy to dist branch"
-# git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist > /dev/null 2>&1
+git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist > /dev/null 2>&1
 
 # Push v3 UI on 'dist3' branch
 cd "${P_DIR}/dist-volumio3"
 git init && git add . && git commit -m "Deploy to dist branch"
-# git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist3 > /dev/null 2>&1
+git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist3 > /dev/null 2>&1
 
 cd "${P_DIR}"
