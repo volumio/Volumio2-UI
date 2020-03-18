@@ -1,9 +1,12 @@
 language: node_js
+
 node_js:
 - '8.17.0'
+
 branches:
   only:
   - master
+
 install:
   - npm install -g bower
   - npm install -g gulp
@@ -12,16 +15,8 @@ install:
   - npm install phantomjs
   - npm install
   - bower install
-script:
-  - npm run build:volumio
-  - mv dist dist-volumio
-  - npm run build:volumio3
-  - mv dist dist-volumio3
 
-  - cp -r dist-volumio firebase-hosting
-
-  # - bash ./update-dist-branch.sh
-  # - bash ./update-dist3-branch.sh
+script: bash ./travis-script.sh
 
 # env:
 #   global:
