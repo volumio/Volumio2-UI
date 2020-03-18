@@ -7,7 +7,8 @@
   },
   "scripts": {
     "test": "gulp test",
-    "gulp": "gulp"
+    "build:volumio": "gulp build --theme=\"volumio\" --env=\"production\"",
+    "build:volumio3": "gulp build --theme=\"volumio3\" --env=\"production\""
   },
   "devDependencies": {
     "babel-core": "~5.5.8",

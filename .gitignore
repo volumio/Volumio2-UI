@@ -2,6 +2,9 @@ src/app/ngConstants.js
 src/app/volumio.constant.js
 src/app/local-config.json
 dist/
+dist-volumio/
+dist-volumio3/
+firebase-hosting/
 node_modules/
 bower_components/
 .sass-cache/
