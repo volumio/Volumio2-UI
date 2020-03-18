@@ -14,9 +14,9 @@ install:
   - bower install
 script:
   - npm run build:volumio
-  - mv dist dist-volumio
+  - mv dist dist-volumio && rm -rf dist
   - npm run build:volumio3
-  - mv dist dist-volumio3
+  - mv dist dist-volumio3 && rm -rf dist
 
   - cp -r dist-volumio firebase-hosting
 
