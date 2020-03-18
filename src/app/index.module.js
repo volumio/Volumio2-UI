@@ -37,6 +37,7 @@ import MyVolumioDevicesService from './services/myvolumio/myvolumio-devices.serv
 import FirebaseApiFunctionsService from './services/myvolumio/firebase-api-functions.service';
 import OnBoardFlowService from './services/myvolumio/onboardflow.service';
 import StatisticsService from './services/myvolumio/statistics.service';
+import GrowSurfService from './services/myvolumio/growsurf.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -237,6 +238,7 @@ angular.module('volumio', [
   .service('firebaseApiFunctionsService',FirebaseApiFunctionsService)
   .service('onBoardFlowService',OnBoardFlowService)
   .service('statisticsService',StatisticsService)
+  .service('growSurfService',GrowSurfService)
 
 
 .provider('themeManager', ThemeManagerProvider)

@@ -1,7 +1,7 @@
 class AuthService {
   constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
     paymentsService, $filter, modalService, socketService, $http, $location, themeManager, cloudService,
-    firebaseApiFunctionsService, onBoardFlowService) {
+    firebaseApiFunctionsService, onBoardFlowService, growSurfService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -20,6 +20,7 @@ class AuthService {
     this.cloudService = cloudService;
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
     this.onBoardFlowService = onBoardFlowService;
+    this.growSurfService = growSurfService;
 
     this.isEnabled = false;
 
