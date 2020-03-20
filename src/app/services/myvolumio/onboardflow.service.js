@@ -1,17 +1,14 @@
 class OnBoardFlowService {
-  constructor($http, $log, $window) {
+  constructor($http, $log, $window, databaseService) {
     'ngInject';
 
     this.$http = $http;
     this.$log = $log;
     this.$window = $window;
+    this.USER_DEVICES_REF = 'user_devices';
     this.onBoardFlowStarted = false;
-    this.onBoardFlowDebugMode = false;
-    this.init();
-  }
-
-  init() {
-
+    this.onBoardFlowDebugMode = true;
+    this.databaseService = databaseService;
   }
 
   initializeOnBoardFlow() {
@@ -46,14 +43,14 @@ class OnBoardFlowService {
     // jshint ignore: end
   }
 
-  updateUserData(data) {
-    if (data && data.uid && data.subscriptionId) {
+  updateOnboardFlowUserData(data) {
+    if (data && data.uid && data.paddleUserId) {
       this.$log.debug('Updating onboardflow', data);
       if (!this.$window.onboardFlowSettings) {
         this.loadOnBoardFlowDefaults();
       }
       this.$window.onboardFlowSettings.user.id = data.uid;
-      this.$window.onboardFlowSettings.user.customerID = data.subscriptionId;
+      this.$window.onboardFlowSettings.user.customerID = data.paddleUserId;
       this.$window.onboardFlowSettings.user.email = data.email;
       if (data.photoUrl && data.photoUrl.length) {
         this.$window.onboardFlowSettings.user.imageUrl = data.photoUrl;
@@ -64,18 +61,17 @@ class OnBoardFlowService {
       if (data.lastName) {
         this.$window.onboardFlowSettings.user.last_name = data.lastName;
       }
-      if (data.createdAt) {
-        this.$window.onboardFlowSettings.customProperties.createdAt = data.createdAt;
-      }
-      if (data.devices) {
-        this.$window.onboardFlowSettings.customProperties.devices = data.devices;
-      } else {
-        this.$window.onboardFlowSettings.customProperties.devices = 1;
-      }
-      if (!this.onBoardFlowStarted) {
-        this.initializeOnBoardFlow();
-      }
+      this.getUserDevices(data.uid).then(devices => {
+        this.$window.onboardFlowSettings.customProperties.devices = devices && devices.length ? devices.length : 0;
+        if (!this.onBoardFlowStarted) {
+          this.initializeOnBoardFlow(this.$window.onboardFlowSettings);
+        }
+      });
     }
+  }
+
+  getUserDevices(uid){
+    return this.databaseService.getArray(`/${this.USER_DEVICES_REF}/${uid}`);
   }
 
 }
