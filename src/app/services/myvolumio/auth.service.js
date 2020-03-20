@@ -141,7 +141,7 @@ class AuthService {
   }
 
   syncronizeWithOnboardFlow(data){
-    this.onBoardFlowService.updateUserData(data);
+    this.onBoardFlowService.updateOnboardFlowUserData(data);
   }
 
   getMyVolumioStatus() {
