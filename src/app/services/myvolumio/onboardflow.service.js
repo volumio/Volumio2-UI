@@ -7,7 +7,7 @@ class OnBoardFlowService {
     this.$window = $window;
     this.USER_DEVICES_REF = 'user_devices';
     this.onBoardFlowStarted = false;
-    this.onBoardFlowDebugMode = true;
+    this.onBoardFlowDebugMode = false;
     this.databaseService = databaseService;
   }
 
