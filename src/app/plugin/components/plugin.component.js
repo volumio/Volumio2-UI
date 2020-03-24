@@ -229,6 +229,8 @@ class PluginComponentController {
       )[0];
       if (visibleIfItem.value === item.visibleIf.value) {
         return true;
+      } else if (typeof visibleIfItem.value === 'object' && visibleIfItem.value.hasOwnProperty('value') && visibleIfItem.value.value === item.visibleIf.value) {
+        return true;
       } else {
         return false;
       }
@@ -236,7 +238,7 @@ class PluginComponentController {
       return true;
     }
   }
-  
+
 }
 
 export default PluginComponent;
