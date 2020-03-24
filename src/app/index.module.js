@@ -75,7 +75,6 @@ import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-
 
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
-import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
 import PluginComponent from './plugin/components/plugin.component';
 
 //MyVolumio Directives
@@ -264,10 +263,7 @@ angular.module('volumio', [
   .directive('trackInfoBar', () => new TrackInfoBarDirective())
   .directive('trackInfoBarButtons', () => new TrackInfoBarButtonsDirective())
   .directive('equalizer', () => new EqualizerDirective())
-
   .directive('pluginAttributes', () => new PluginAttributesDirective())
-  .directive('pluginVisible', () => new PluginVisibleDirective())
-
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackActionsBtnDirective(themeManager))
