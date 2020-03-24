@@ -45,4 +45,10 @@
     <br>
 </div>
 
+<div ng-if="wizard.wizardDetails.done.privacySettings && wizard.wizardDetails.done.privacySettings.showPrivacyOptIn" class="row">
+  <p ng-if="wizard.wizardDetails.done.privacySettings.message" class="done-message">
+    {{wizard.wizardDetails.done.privacySettings.message}}
+  </p>
+</div>
+
 </div>
