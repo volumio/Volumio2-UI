@@ -218,6 +218,25 @@ class PluginComponentController {
       this.socketService.emit('getUiConfig', { page: this.pluginName });
     }
   }
+
+  isItemVisible(item, section) {
+    if (item.hidden) {
+      return false;
+    }
+    if (item.visibleIf) {
+      var visibleIfItem = section.content.filter((configItem) => {
+          return configItem.id === item.visibleIf.field; }
+      )[0];
+      if (visibleIfItem.value === item.visibleIf.value) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+  
 }
 
 export default PluginComponent;
