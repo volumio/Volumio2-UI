@@ -82,6 +82,7 @@ class AuthService {
       this.user = user;
       setTimeout(()=>{
         this.syncronizeWithOnboardFlow(user);
+        this.syncronizeWithGrowSurf(user);
         this.syncronizeWithBackend();
       }, 2000);
     });
@@ -143,6 +144,17 @@ class AuthService {
 
   syncronizeWithOnboardFlow(data){
     this.onBoardFlowService.updateUserData(data);
+  }
+
+  syncronizeWithGrowSurf(userData){
+    if (this.user && this.user.uid && !this.growSurfService.isGrowSurfParticipantRegistered()) {
+      this.getUserToken(this.user.uid).then((token) => {
+        if (token) {
+          this.growSurfService.initializeGrowSurfConnection(token);
+        }
+      }).catch(error => {
+      });
+    }
   }
 
   getMyVolumioStatus() {
