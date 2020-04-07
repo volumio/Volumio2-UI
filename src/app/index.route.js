@@ -588,7 +588,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     views: {
       'content@volumio': {
         template: '',
-        controller: function($state, uiSettingsService, browseService) {
+        controller: function($state, uiSettingsService, browseService, $stateParams, $window) {
           uiSettingsService.initService().then((data) => {
             if (data && data.indexState) {
               if (data.indexStateHome) {
@@ -618,7 +618,11 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   });
 
-  $urlRouterProvider.otherwise('/redirect');
+  $urlRouterProvider.otherwise(function ($injector, $location) {
+    let queryParamsString = $location.url().split('?')[1];
+    let redirectUrl = queryParamsString.length ? '/redirect?' + queryParamsString : '/redirect';
+    return redirectUrl;
+  });
 }
 
 export default routerConfig;
