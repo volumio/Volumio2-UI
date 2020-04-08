@@ -14,10 +14,20 @@ class RedirectService {
   stateGo(state, queryParamsString) {
     var paramsObject = {};
     if (queryParamsString) {
-      var paramsObject = this.getParametersFromQueryString(queryParamsString);
+      paramsObject = this.getParametersFromQueryString(queryParamsString);
     }
     this.$log.debug('Redirecting to state: ' + state + ', params: ' + paramsObject);
     this.$state.go(state, paramsObject);
+  }
+
+  urlGo(url, queryParamsString) {
+    var queryParams = '';
+    if (queryParamsString) {
+      queryParams = '?' + queryParamsString;
+    }
+    this.$log.debug('Redirecting to url: ' + url + ', params: ' + queryParams);
+    var redirectUrl = '/' + url + queryParams;
+    this.$window.location.href = redirectUrl;
   }
 
   getParametersFromQueryString(queryParamsString) {

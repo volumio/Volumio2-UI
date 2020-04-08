@@ -575,11 +575,10 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         controller: function($state, cloudService, redirectService, $location) {
           var queryParamsString = $location.url().split('?')[1];
           if (cloudService.isOnCloud === true) {
-            // TODO VERIFY ALL REDIRECTS: CONSIDER SWITCHING TO CHANGE URL INSTEAD OF STATE GO
-            redirectService.stateGo('myvolumio.access', queryParamsString);
+            redirectService.urlGo('myvolumio/access', queryParamsString);
             return;
           }
-          redirectService.stateGo('volumio.redirect', queryParamsString);
+          redirectService.urlGo('indexstate-redirect', queryParamsString);
         }
       }
     }
@@ -596,12 +595,12 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
             if (data && data.indexState) {
               if (data.indexStateHome) {
                 browseService.backHome();
-                redirectService.stateGo(`volumio.${data.indexState}`, queryParamsString);
+                redirectService.urlGo(`${data.indexState}`, queryParamsString);
               } else {
-                redirectService.stateGo(`volumio.${data.indexState}`, queryParamsString);
+                redirectService.urlGo(`${data.indexState}`, queryParamsString);
               }
             } else {
-              redirectService.stateGo('volumio.playback', queryParamsString);
+              redirectService.urlGo('playback', queryParamsString);
             }
           });
         },
