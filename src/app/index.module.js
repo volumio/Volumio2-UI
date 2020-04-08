@@ -24,6 +24,7 @@ import UiSettingsService from './services/ui-settings.service';
 import DevService from './services/dev.service';
 import DeviceEndpointsService from './services/device-endpoints.service';
 import CloudService from './services/cloud.service';
+import RedirectService from './services/redirect.service';
 //MyVolumio Services
 import AngularFireService from './services/myvolumio/angularfire.service';
 import AuthService from './services/myvolumio/auth.service';
@@ -225,6 +226,7 @@ angular.module('volumio', [
   .service('devService', DevService)
   .service('deviceEndpointsService', DeviceEndpointsService)
   .service('cloudService', CloudService)
+  .service('redirectService', RedirectService)
   //MyVolumio Services
   .service('angularFireService', AngularFireService)
   .service('authService', AuthService)

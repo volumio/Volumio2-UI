@@ -279,9 +279,9 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
 
   .state('myvolumio.logout', {
     url: '/logout',
-    onEnter: function(authService, $state) {
+    onEnter: function(authService, $state, redirectService) {
       authService.logOut().then(() => {
-        $state.go("myvolumio.access");
+        redirectService.stateGo("myvolumio.access");
         return true;
       });
     }
@@ -572,12 +572,14 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     views: {
       layout: {
         template: '',
-        controller: function($state, cloudService) {
+        controller: function($state, cloudService, redirectService, $location) {
+          var queryParamsString = $location.url().split('?')[1];
           if (cloudService.isOnCloud === true) {
-            $state.go('myvolumio.access');
+            // TODO VERIFY ALL REDIRECTS: CONSIDER SWITCHING TO CHANGE URL INSTEAD OF STATE GO
+            redirectService.stateGo('myvolumio.access', queryParamsString);
             return;
           }
-          $state.go('volumio.redirect');
+          redirectService.stateGo('volumio.redirect', queryParamsString);
         }
       }
     }
@@ -588,17 +590,18 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     views: {
       'content@volumio': {
         template: '',
-        controller: function($state, uiSettingsService, browseService, $stateParams, $window) {
+        controller: function($state, uiSettingsService, browseService, $stateParams, $window, redirectService, $location) {
+          var queryParamsString = $location.url().split('?')[1];
           uiSettingsService.initService().then((data) => {
             if (data && data.indexState) {
               if (data.indexStateHome) {
                 browseService.backHome();
-                $state.go(`volumio.${data.indexState}`);
+                redirectService.stateGo(`volumio.${data.indexState}`, queryParamsString);
               } else {
-                $state.go(`volumio.${data.indexState}`);
+                redirectService.stateGo(`volumio.${data.indexState}`, queryParamsString);
               }
             } else {
-              $state.go('volumio.playback');
+              redirectService.stateGo('volumio.playback', queryParamsString);
             }
           });
         },
@@ -620,7 +623,7 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
 
   $urlRouterProvider.otherwise(function ($injector, $location) {
     let queryParamsString = $location.url().split('?')[1];
-    let redirectUrl = queryParamsString.length ? '/redirect?' + queryParamsString : '/redirect';
+    let redirectUrl = queryParamsString && queryParamsString.length ? '/redirect?' + queryParamsString : '/redirect';
     return redirectUrl;
   });
 }
