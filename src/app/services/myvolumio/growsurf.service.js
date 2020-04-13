@@ -43,7 +43,10 @@ class GrowSurfService {
       params: { token: token, referrerId: referrerId}
     }).then(response => {
       this.$log.debug('GrowSurf registering participant success: ' + response);
-      this.growSurfParticipantRegistered = true;
+      if (response && response.data && response.data.success) {
+        this.growSurfParticipantRegistered = true;
+        this.autoLoginGrowSurfParticipant(response.data);
+      }
     }).catch(error => {
       this.$log.debug('GrowSurf registering participant error: ' + JSON.stringify(error.data));
     });
@@ -51,6 +54,17 @@ class GrowSurfService {
 
   isGrowSurfParticipantRegistered() {
     return this.growSurfParticipantRegistered;
+  }
+
+  autoLoginGrowSurfParticipant(data) {
+    if (data.participant && data.participant.authenticationHash) {
+      this.$window.growsurf.init({
+        email: data.participant.email,
+        hash: data.participant.authenticationHash
+      }, ()=>{
+        this.$log.debug('GrowSurf participant logged in');
+      });
+    }
   }
 }
 

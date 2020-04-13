@@ -422,7 +422,8 @@
     "CONNECT":"Connect",
     "TO_VOLUMIO": "to Volumio in your settings",
     "CODE_DEVICE_ALREADY_ACTIVATED": "Your device code has already been successfully activated and your plan is",
-    "AND_ASSOCIATED_WITH_ACCOUNT":"and associated with account"
+    "AND_ASSOCIATED_WITH_ACCOUNT":"and associated with account",
+    "WIN_PRIZES_REFERRING_VOLUMIO":"Win amazing prices referring Volumio to your friends"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
