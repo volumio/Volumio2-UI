@@ -7,16 +7,14 @@ var gulp = require('gulp');
 var conf = require('./conf');
 var gutil = require('gulp-util');
 var compareVersions = require('compare-versions');
-
 var browserSync = require('browser-sync');
-
 var $ = require('gulp-load-plugins')();
 
 // Check node.js version
-var requiredNodeVersion = '6.*';
-if (compareVersions(process.versions.node, requiredNodeVersion)        !== 0 &&
-    compareVersions(process.versions.node, requiredNodeVersion + '.*') !== 0) {
-  console.log('WARNING! Unsupported nodejs version: ' + process.versions.node +' found, required: ' + requiredNodeVersion);
+var requiredNodeVersion = require('../package').engines.node;
+if (compareVersions(process.versions.node, requiredNodeVersion) !== 0 && compareVersions(process.versions.node, requiredNodeVersion + '.*') !== 0) {
+  console.log('\x1b[31m%s\x1b[0m', 'WARNING!',  'Unsupported nodejs version: ' + process.versions.node +' found, required: ' + requiredNodeVersion);
+  console.log('Install NVM and type: nvm install 8.17.0 && nvm use 8.17.0');
 }
 
 function webpack(watch, callback) {

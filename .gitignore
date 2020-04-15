@@ -17,3 +17,5 @@ src/app/volumio.constant.js
 package-lock.json
 credits.html
 load-variant.scss
+src/app/themes/volumio3/assets/static-pages/credits.html
+src/app/themes/volumio/assets/static-pages/credits.html
