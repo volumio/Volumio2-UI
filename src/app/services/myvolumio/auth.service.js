@@ -500,6 +500,10 @@ class AuthService {
     return false;
   }
 
+  getCurrentAuthUser() {
+    return this.user;
+  }
+
 }
 
 export default AuthService;

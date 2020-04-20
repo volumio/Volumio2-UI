@@ -413,7 +413,8 @@
     "CONNECT":"Connetti",
     "TO_VOLUMIO": "a Volumio nelle tue impostazioni",
     "CODE_DEVICE_ALREADY_ACTIVATED": "Il tuo codice è già stato attivato con sucesso e il tuo piano è",
-    "AND_ASSOCIATED_WITH_ACCOUNT":"e associato con l'account"
+    "AND_ASSOCIATED_WITH_ACCOUNT":"e associato con l'account",
+    "SIGNUP_ERROR_CONTACT_SUPPORT" : "La vostra iscrizione non può essere completata. Vi preghiamo di contattare il nostro supporto a support@volumio.org riportando la seguente informazione sull'errore:"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
