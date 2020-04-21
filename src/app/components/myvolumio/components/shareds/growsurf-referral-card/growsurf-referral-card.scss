@@ -1,0 +1,147 @@
+#growsurf-referral-card {
+    font-family: $font-family-sans-serif;
+
+    .milestones {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+
+        .item {
+            width: 90px;
+            height: 90px;
+            margin: 0 15px 15px 0;
+            position: relative;
+
+            &.cashback {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                background-color: $theme-primary-color;
+
+                .amount {
+                    font-size: 30px;
+                    line-height: 32px;
+                }
+                .label {
+                    text-transform: uppercase;
+                    font-size: 12px;
+                }
+            }
+
+            &.milestone {
+                transition: width 0.2s ease-in-out;
+                border-radius: 45px;
+                overflow: hidden;
+
+                .image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-position: center center;
+                    opacity: 0.5;
+                }
+
+                .overlay {
+                    transition: all 0.4s ease-in-out;
+                    border-radius: 45px;
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    top: 0;
+                    right: 100%;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $theme-primary-color;
+                    opacity: 0.2;
+
+                    .reward-name {
+                        font-size: 20px;
+                    }
+                }
+
+                &.achieved {
+                    .image {
+                        opacity: 1;
+                    }
+                }
+
+                &:hover {
+                    width: 180px;
+
+                    .overlay {
+                        right: 0;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    
+    .share-link-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        input {
+            cursor: text;
+            user-select: all;
+            flex-grow: 1;
+            height: 30px;
+            outline: none;
+            margin: 0 15px 0 0;
+            padding: 0 5px;
+            border: none;
+            color: $theme-darker-text-color;
+        }
+
+        .copy-to-clipboard {
+            cursor: pointer;
+            background-color: $theme-primary-color;
+            padding: 5px 10px;
+        }
+    }
+
+    .share-buttons-container {
+        margin: 15px 0 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        .button {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 15px;
+            margin: 0 15px;
+            border-radius: 6px;
+            background-color: red;
+            font-size: 20px;
+
+            i {
+                margin: 0 0.5em 0 0;
+            }
+
+            &.email {
+                background-color: #F0F0F0;
+                color: $theme-background-color;
+            }
+            &.facebook {
+                background-color: #4267B2;
+            }
+            &.twitter {
+                background-color: #38A1F3;
+            }
+        }
+    }
+}
