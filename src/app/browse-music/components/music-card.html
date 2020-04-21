@@ -1,0 +1,27 @@
+<div class="music-card" ng-click="browse.fetchLibrary({ uri: 'artists://' })">
+    <div class="music-card__header">
+        <img class="music-card__img" src="https://images.pexels.com/photos/3568518/pexels-photo-3568518.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
+        <div class="music-card__overlay">
+            <div class="meta__genre">Classic rock</div>
+            <div class="meta__actions">
+                <button class="ghost-btn">
+                    <i class="fa fa-ellipsis-v"></i>
+                </button>
+            </div>
+            <div class="meta__play">
+                <button class="ghost-btn play-btn">
+                    <i class="fa fa-play play-btn__icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="music-card__info">
+        <div
+            class="music-card__label"
+            title="This is the title that can be also very very veeery long">
+                This is the title that can be also very very veeery long
+        </div>
+        <img ng-if="item.extensionIcon" class="music-card__extension" src="{{item.extensionIcon}}">
+    </div>
+    <p class="music-card__meta">June 2014</p>
+</div>

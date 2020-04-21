@@ -364,9 +364,11 @@ class BrowseController {
 
       this.$timeout(() => {
         let browseTable = document.querySelector('.browseTable');
-        browseTable.style.display = 'none';
-        browseTable.innerHTML = this.table;
-        browseTable.style.display = 'block';
+        if (browseTable) {
+          browseTable.style.display = 'none';
+          browseTable.innerHTML = this.table;
+          browseTable.style.display = 'block';
+        }
         this.applyGridStyle();
         this.$rootScope.$broadcast('browseController:listRendered');
       }, 50, false);

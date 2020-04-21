@@ -13,6 +13,52 @@ class MockService {
 
   init() {
     this._mock = {
+      browseMusic: {
+        getMainPageSources: {
+          lists: [
+            {
+              title: 'Pinned',
+              icon: 'fa-pin',
+              showMoreUri: 'pin',
+              service: 'smart_suggestions',
+              items: [
+                {
+                  title: 'Web radios',
+                  uri: 'radio//uri_stuff',
+                  albumart: 'https://h9aodgwnwvttt2hsvzpd3hjngau1-7be29a3e4adf930b235602881f0bfab2.eu2.myvolumio.org/albumart?sourceicon=music_service/webradio/icon.png',
+                  extensionIcon: '',
+                  plugin_type: 'music_service',
+                  plugin_name: 'webradio',
+                  explicit: false,
+                  meta: '',
+                  genre: 'POP',
+                  type: 'pin'
+                }
+              ]
+            },
+            {
+              title: 'Recently played',
+              icon: 'https://img.apksum.com/81/com.qobuz.music/5.6.3/icon.png',
+              showMoreUri: 'recently_played',
+              service: 'smart_suggestions',
+              items: [
+                {
+                  title: 'Division bell',
+                  uri: 'QOBUZ:uri_stuff',
+                  albumart: 'https://lastfm.freetls.fastly.net/i/u/300x300/e7090eb6d05349ae8e0932264910d875.jpg',
+                  extensionIcon: 'https://resources.mynewsdesk.com/image/upload/c_limit,dpr_2.0,f_auto,h_700,q_auto,w_1400/slza5xaljuypmtrtgnbo.jpg',
+                  plugin_type: 'music_service',
+                  plugin_name: 'streaming:qobuz',
+                  explicit: false,
+                  meta: '2014 Jun',
+                  genre: 'POP',
+                  type: 'pin'
+                }
+              ]
+            },
+          ]
+        }
+      },
       wizard: {
         "steps": [
           "Language", "Name", "Output", "Network", "Music", "Done"

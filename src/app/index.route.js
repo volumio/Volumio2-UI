@@ -79,8 +79,8 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     params: { source: null },
     views: {
       'content@volumio': {
-        templateUrl: themeManagerProvider.getHtmlPath('browse'),
-        controller: 'BrowseController',
+        templateUrl: themeManagerProvider.getHtmlPath('browse-music'),
+        controller: 'BrowseMusicController',
         controllerAs: 'browse'
       }
     }
