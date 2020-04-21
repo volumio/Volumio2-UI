@@ -92,7 +92,7 @@ import MyVolumioAvatarImageDirective from './components/myvolumio/components/sha
 import MyVolumioPlanCardDirective from './components/myvolumio/components/shareds/plan-card/myvolumio-plan-card.directive';
 import MyVolumioVerificationCardDirective from './components/myvolumio/components/shareds/verification-card/myvolumio-verification-card.directive';
 import MyVolumioDeviceSelectorDirective from './components/myvolumio/components/device-selector/device-selector.directive';
-import MyVolumioReferralButtonDirective from './components/myvolumio/components/shareds/referral-button/myvolumio-referral-button.directive';
+import GrowsurfReferralCardDirective from './components/myvolumio/components/shareds/growsurf-referral-card/growsurf-referral-card.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -295,7 +295,7 @@ angular.module('volumio', [
   .directive('myVolumioPlanCard', () => new MyVolumioPlanCardDirective())
   .directive('myVolumioVerificationCard', () => new MyVolumioVerificationCardDirective())
   .directive('myVolumioDeviceSelector', () => new MyVolumioDeviceSelectorDirective())
-  .directive('myVolumioReferralButton', () => new MyVolumioReferralButtonDirective())
+  .directive('growsurfReferralCard', () => new GrowsurfReferralCardDirective())
 
 .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)

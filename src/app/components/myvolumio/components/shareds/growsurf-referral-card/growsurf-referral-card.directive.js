@@ -1,11 +1,11 @@
-class MyVolumioReferralButtonDirective {
+class GrowsurfReferralCardDirective {
   constructor() {
     'ngInject';
     let directive = {
       restrict: 'E',
-      templateUrl: 'app/components/myvolumio/components/shareds/referral-button/myvolumio-referral-button.html',
-      controller: ReferralButton,
-      controllerAs: 'myVolumioReferralButtonController',
+      templateUrl: 'app/components/myvolumio/components/shareds/growsurf-referral-card/growsurf-referral-card.html',
+      controller: GrowsurfReferral,
+      controllerAs: 'GrowsurfReferralController',
       scope: {
         imageOverride: '<'
       }
@@ -14,7 +14,7 @@ class MyVolumioReferralButtonDirective {
   }
 }
 
-class ReferralButton {
+class GrowsurfReferral {
   constructor($rootScope, growSurfService, $window, cloudService) {
     'ngInject';
     this.growSurfService = growSurfService;
@@ -38,4 +38,4 @@ class ReferralButton {
   }
 }
 
-export default MyVolumioReferralButtonDirective;
+export default GrowsurfReferralCardDirective;
