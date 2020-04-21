@@ -53,11 +53,6 @@
                     </div>
                   </p>
 
-                  <div>
-                    <growsurf-referral-card>
-                    </growsurf-referral-card>
-                  </div>
-
                   <div ng-if="!myVolumioProfileController.isUserVerified">
                     <my-volumio-verification-card>
                     </my-volumio-verification-card>
@@ -74,6 +69,19 @@
             </div>
           </div>
         </div>
+
+      </div>
+    </div>
+
+    <div id="device-selector-container" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-check-circle-o"></i> <span translate="MYVOLUMIO.MY_ACHIEVEMENTS"></span></h3>
+      </div>
+
+      <div class="panel-body">
+
+        <growsurf-referral-card>
+        </growsurf-referral-card>
 
       </div>
     </div>
