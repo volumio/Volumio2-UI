@@ -1,0 +1,59 @@
+<div class="browse__browse-page">
+
+    <div
+        ng-repeat="album in browse.browseService.lists track by $index"
+        class="main__source">
+        <div class="music-card__wrapper">
+        <div class="page__album">
+            <div class="album__cover">
+                <div class="music-card">
+                    <div class="music-card__header">
+                        <img
+                            class="music-card__img"
+                            src="{{ browse.playerService.getAlbumart(browse.browseService.info.albumart) }}">
+                        <div class="music-card__overlay">
+                            <div class="meta__genre">{{ browse.browseService.info.genre || 'n.a.' }}</div>
+                            <div class="meta__actions">
+                                <button
+                                    ng-click="browse.openMusicCardContenxtList($event, browse.browseService.info, $index)"
+                                    class="ghost-btn">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                            <div class="meta__play">
+                                <button
+                                    ng-click="browse.playMusicCardClick($event, browse.browseService.info)"
+                                    class="ghost-btn play-btn">
+                                    <i class="fa fa-play play-btn__icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                ng-click="browse.addToFavorites($event, browse.browseService.info)"
+                                ng-class="{ favorited: album.favorite }"
+                                class="meta__favorite">
+                                <span class="meta__favorite-heart">
+                                    <i class="fa fa-heart"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="album__body">
+                <h3
+                    class="album__title">{{ browse.browseService.info.album }}</h3>
+                <p class="album__meta">{{ browse.browseService.info.artist }} • {{ browse.browseService.info.year }} • {{ browse.browseService.info.duration }}</p>
+                <img ng-if="album.extensionIcon" class="music-card__extension" src="{{album.extensionIcon}}">
+                <div
+                    ng-repeat="item in album.items track by $index"
+                    class="album__tracks"
+                    ng-include
+                    src="'app/browse-music/components/music-item.html'">
+                </div> <!-- /.album__tracks -->
+            </div>
+        </div>
+        </div>
+
+    </div> <!-- /.main__source -->
+
+</div> <!-- /. browse__browse-page -->

@@ -44,11 +44,17 @@
 
 /* Browse area */
 
+.browse__main-page,
+.browse__browse-page {
+    padding: 24px;
+    background: rgba(0,0,0,.2);
+}
+
 .main__source {
     margin-bottom: 32px;
-    padding: 0 24px;
 }
 .main__row {
+    /* Grid view */
     display: flex;
     flex-wrap: wrap;
 }
@@ -59,10 +65,29 @@
         margin-right: 12px;
     }
 }
+
+.main__list {
+    /* List view */
+}
+
 .panel-title {
+    display: flex;
+    align-items: center;
     font-size: 18px;
     line-height: 20px;
     margin-bottom: 24px;
+}
+
+.title__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+    width: 24px;
+    height: 24px;
+    .title__icon__img {
+        width: 100%;
+    }
 }
 
 #browse .panel .body-content.new-browse {
@@ -75,7 +100,7 @@
 .artist__header {
     position: relative;
     height: auto;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
     /* This fix is necessary to apply blur and gradient mask-image */
     transform: translate3d(0,0,0);
 }
@@ -264,6 +289,37 @@
 
 .layout-switch-input:checked ~ .layout-switch-label {
     color: white;
+}
+
+/* Album view=page */
+
+.page__album {
+    display: flex;
+}
+
+.album__cover {
+    flex: 0 0 172px;
+    margin-right: 60px;
+}
+
+.album__title {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 18px;
+    line-height: 20px;
+    &.clickable {
+        cursor: pointer;
+    }
+}
+
+.album__meta {
+    color: $theme-light-color;
+    font-size: 13px;
+}
+
+.album__body {
+    flex: 1 1 100%;
+    min-width: 0;
 }
 
 /* Shared components */

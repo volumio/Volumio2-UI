@@ -1,0 +1,15 @@
+<div id="modalPlaylist">
+    <div class="modal-header">
+      <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
+    </div>
+    <div
+        ng-bind-html="::modal.dataObj.item.description"
+        class="modal-body darker-bg">
+    </div> <!-- /.modal-body -->
+    <div class="modal-footer">
+      <button class="btn btn-warning" ng-click="modal.cancel()">
+        {{'COMMON.CLOSE' | translate}}
+      </button>
+    </div>
+  </div>
+  

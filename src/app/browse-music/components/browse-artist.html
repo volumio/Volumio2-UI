@@ -6,16 +6,18 @@
                     <div class="header__image">
                         <img
                             class="header__image__img"
-                            src="https://lastfm.freetls.fastly.net/i/u/300x300/e7090eb6d05349ae8e0932264910d875.jpg"
+                            src="{{ browse.mockArtistPage.info.albumart }}"
                             alt="Artist image">
                     </div> <!-- /.header__image -->
                     <div class="header__info">
-                        <div class="artist-description">
-                            <p>The Beatles were an iconic rock group from Liverpool, England. They are frequently cited as the most commercially successful and critically acclaimed band in modern history, with innovative music, a cultural impact that helped define the 1960s and an enormous influence on music that is still felt today. Currently, The Beatles are one of the two musical acts to sell more than 1 billion records, with only Elvis Presley having been able to achieve the same feat.</p>
-                            <p>After conquering Europe, with successful tours to Germany and Sweden, the Beatles led the mid-1960s musical 'British Invasion' into the United States. Although their initial musical style was rooted in 1950s rock and roll and homegrown skiffle, the group explored a great variety of musical styles including Psychedelic Rock, Experimental, Ballads, Western and Indian Classical among others. Their clothes, hairstyles, and statements made them trend-setters, while their growing social awareness saw their influence extend into the social and cultural revolutions of the 1960s.</p>
+                        <div
+                            ng-bind-html="browse.mockArtistPage.info.description"
+                            class="artist-description">
                         </div>
                         <div class="artist-description__read-more">
-                            <button class="artist-description__read-more-btn">
+                            <button
+                                ng-click="browse.showArtistDetails(browse.mockArtistPage.info)"
+                                class="artist-description__read-more-btn">
                                 <img class="artist-description__read-more-btn__icon" src="app/assets-common/collapse-indicator.svg" alt="open collapse icon">
                                 <span>
                                     {{ 'BROWSER.READ_MORE' | translate }}
@@ -23,34 +25,42 @@
                             </button>
                         </div>
                         <div class="header__meta">
-                            <span>Classic rock</span>
-                            <span class="header__meta__spacer"> • </span>
-                            <span>2 local   and  132 streaming releases</span>
+                            <span ng-if="browse.mockArtistPage.info.genre">{{ browse.mockArtistPage.info.genre }}</span>
+                            <span ng-if="browse.mockArtistPage.info.genre &&  (browse.mockArtistPage.info.local_albums || browse.mockArtistPage.info.streaming_albums)" class="header__meta__spacer"> • </span>
+                            <span ng-if="browse.mockArtistPage.info.local_albums">
+                                {{ browse.mockArtistPage.info.local_albums }} local
+                            </span>
+                            <span ng-if="browse.mockArtistPage.info.local_albums && browse.mockArtistPage.info.streaming_albums">and</span>
+                            <span ng-if="browse.mockArtistPage.info.streaming_albums">
+                                {{ browse.mockArtistPage.info.streaming_albums }} streaming releases
+                            </span>
                         </div>
                     </div> <!-- /.header__info -->
                     <div class="header__actions">
                         <button class="header__action-btn mb-4"> <i class="fa fa-info-circle"></i> {{ 'BROWSER.CREDITS' | translate }}</button>
-                        <button class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-heart"></i> {{ 'BROWSER.ADD_TO_FAVOURITES' | translate }}</button>
-                        <button class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button>
+                        <button ng-click="browse.addToFavorites($event, browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-heart"></i> {{ 'BROWSER.ADD_TO_FAVOURITES' | translate }}</button>
+                        <button ng-click="browse.addToPlaylist(browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button>
                         <button class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
                     </div>
                 </div> <!-- header__main -->
                 <div class="header__footer">
                     <div class="header__play">
-                        <button class="header__play-btn">
+                        <button
+                            ng-click="browse.playMusicCardClick($event, browse.browseService.info)"
+                            class="header__play-btn">
                             <i class="fa fa-play"></i>
                         </button>
-                        <h1 class="header__artist">Pink Floyd</h1>
+                        <h1 class="header__artist">{{ browse.mockArtistPage.info.title }}</h1>
                     </div>
                     <div class="layout-switch">
                         <label class="layout-switch-btn" for="layout-list" title="{{ 'COMMON.LIST' | translate }}">
-                            <input class="layout-switch-input" name="layout" id="layout-list" value="list" type="radio">
+                            <input ng-model="browse.listViewSetting" class="layout-switch-input" name="layout" id="layout-list" value="list" type="radio">
                             <span class="layout-switch-label">
                                 <i class="fa fa-list"></i>
                             </span>
                         </label>
                         <label class="layout-switch-btn" for="layout-grid" title="{{ 'COMMON.GRID' | translate }}">
-                            <input class="layout-switch-input" name="layout" id="layout-grid" value="grid" checked type="radio">
+                            <input ng-model="browse.listViewSetting" class="layout-switch-input" name="layout" id="layout-grid" value="grid" type="radio">
                             <span class="layout-switch-label">
                                 <i class="fa fa-th-large"></i>
                             </span>
@@ -65,22 +75,44 @@
         </div>
     </div> <!-- /.artist__header -->
 
-    <div
-        class="main__source">
-        <h3 class="main__source__title panel-title">Section title</h3>
-        <div class="main__row">
+    <div class="browse__browse-page">
+
+        <div
+            ng-repeat="list in browse.mockArtistPage.lists track by $index"
+            class="main__source">
+            <h3 class="main__source__title panel-title">{{ list.title }}</h3>
             <div
-                class="music-card__wrapper"
-                ng-include
-                src="'app/browse-music/components/music-card.html'">
-            </div> <!-- /.music-card__wrapper -->
-            <!-- A little trick to even out the width of the cards -->
-            <div class="music-card__wrapper placeholder-wrapper"></div>
-            <div class="music-card__wrapper placeholder-wrapper"></div>
-            <div class="music-card__wrapper placeholder-wrapper"></div>
-            <div class="music-card__wrapper placeholder-wrapper"></div>
-            <div class="music-card__wrapper placeholder-wrapper"></div>
-            <div class="music-card__wrapper placeholder-wrapper"></div>
-        </div> <!-- /.main__row -->
-    </div> <!-- /.main__source -->
+                ng-if="browse.listViewSetting === 'grid'"
+                class="main__row">
+                <div
+                    ng-repeat="item in list.items"
+                    class="music-card__wrapper"
+                    ng-include
+                    src="'app/browse-music/components/music-card.html'">
+                </div> <!-- /.music-card__wrapper -->
+                <!-- A little trick to even out the width of the cards -->
+                <div class="music-card__wrapper placeholder-wrapper"></div>
+                <div class="music-card__wrapper placeholder-wrapper"></div>
+                <div class="music-card__wrapper placeholder-wrapper"></div>
+                <div class="music-card__wrapper placeholder-wrapper"></div>
+                <div class="music-card__wrapper placeholder-wrapper"></div>
+                <div class="music-card__wrapper placeholder-wrapper"></div>
+            </div> <!-- /.main__row || grid view -->
+
+            <div
+                ng-if="browse.listViewSetting === 'list'"
+                class="main__list">
+                <div
+                    ng-repeat="album in list.items"
+                    class="music-card__wrapper"
+                    ng-include
+                    src="'app/browse-music/components/album-view.html'">
+                </div> <!-- /.album-view__wrapper -->
+
+            </div> <!-- /.main__list || list view -->
+
+        </div> <!-- /.main__source -->
+    
+    </div> <!-- /. browse__browse-page -->
+
 </div>
