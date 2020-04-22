@@ -95,9 +95,10 @@
 }
 
 
-/* Artist page */
+/* Artist & Album page */
 
-.artist__header {
+.artist__header,
+.album__header {
     position: relative;
     height: auto;
     /* margin-bottom: 24px; */
@@ -208,6 +209,11 @@
     }
     &.mb-1 {
         margin-bottom: 4px;
+    }
+    &.favorited {
+        .fa {
+            color: $theme-primary-color;
+        }
     }
 }
 .header__action-btn__faded {

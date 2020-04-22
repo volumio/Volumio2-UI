@@ -24,6 +24,7 @@ class BrowseMusicController {
     this.mockService = mockService;
     this.listViewSetting = 'list';
     this.mockArtistPage = mockService._mock.browseMusic.getArtistPageContent;
+    this.mockAlbumPage = mockService._mock.browseMusic.getAlbumPageContent;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       // this.renderBrowseTable();

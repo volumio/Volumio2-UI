@@ -217,7 +217,7 @@ class MockService {
             genre: 'Pop',
             duration: '99:23',
             year: 'Sep 2019',
-            favorute: true,
+            favorite: true,
             albumart: 'https://lastfm.freetls.fastly.net/i/u/770x0/e97046f5bc772a726c602cc2e01830c0.webp#e97046f5bc772a726c602cc2e01830c0',
             credits: [
               {
