@@ -6,7 +6,7 @@
                     <div class="header__image">
                         <img
                             class="header__image__img"
-                            src="{{ browse.mockAlbumPage.info.albumart }}"
+                            src="{{ browse.browseService.info.albumart || browse.mockAlbumPage.info.albumart }}"
                             alt="Artist image">
                     </div> <!-- /.header__image -->
                     <div class="header__info">
@@ -52,14 +52,16 @@
                             class="header__play-btn">
                             <i class="fa fa-play"></i>
                         </button>
-                        <h1 class="header__artist">{{ browse.browseService.info.album }}</h1>
+                        <h1 class="header__artist">{{ browse.browseService.info.title || browse.browseService.info.album }}</h1>
                     </div>
                 </div> <!-- /.header__play -->
             </div> <!-- header__content__inner -->
         </div> <!-- /.header__content -->
         <div
             class="header__backdrop">
-            <img src="https://lastfm.freetls.fastly.net/i/u/1000x1000/e7090eb6d05349ae8e0932264910d875.jpg" alt="Artist image">
+            <img
+                src="{{ browse.browseService.info.albumart || browse.mockAlbumPage.info.albumart }}"
+                alt="image">
         </div>
     </div> <!-- /.album__header -->
     <div
