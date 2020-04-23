@@ -1,0 +1,44 @@
+<div class="music-card" ng-click="browse.fetchLibrary({ uri: item ? item.uri : 'artists://' })">
+    <div class="music-card__header">
+        <img
+            class="music-card__img"
+            src="{{ item ? browse.playerService.getAlbumart(item.albumart) : 'https://images.pexels.com/photos/3568518/pexels-photo-3568518.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500' }}">
+        <div class="music-card__overlay">
+            <div class="meta__genre">{{ item && item.genre ? item.genre : 'Example genre' }}</div>
+            <div class="meta__actions">
+                <button
+                    ng-click="browse.openMusicCardContenxtList($event, item, $index)"
+                    class="ghost-btn action-btn">
+                    <i class="fa fa-ellipsis-v"></i>
+                </button>
+            </div>
+            <div class="meta__play">
+                <button
+                    ng-if="browse.showPlayButton(item)"
+                    ng-click="browse.playMusicCardClick($event, item)"
+                    class="ghost-btn play-btn">
+                    <i class="fa fa-play play-btn__icon"></i>
+                </button>
+            </div>
+            <div
+                ng-click="browse.addToFavorites($event, item)"
+                ng-if="browse.showPlayButton(item)"
+                ng-class="{ favorited: item.favorite }"
+                class="meta__favorite">
+                <span class="meta__favorite-heart">
+                    <i class="fa fa-heart"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="music-card__info">
+        <div
+            class="music-card__label"
+            ng-class="{ 'mr-2': !!item.extensionIcon }"
+            title="{{ item ? item.title : 'Example' }}">
+                {{ item ? item.title : 'Example' }}
+        </div>
+        <img ng-if="item.extensionIcon" class="music-card__extension" src="{{item.extensionIcon}}">
+    </div>
+    <p class="music-card__meta">{{ item && item.meta ? item.meta : 'Meta field missing'}}</p>
+</div>

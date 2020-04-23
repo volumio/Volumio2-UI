@@ -1,0 +1,53 @@
+<div class="music-item" ng-click="browse.fetchLibrary({ uri: item ? item.uri : 'artists://' })">
+    <div class="item__play">
+        <button
+            ng-if="browse.showPlayButton(item)"
+            ng-click="browse.playMusicCardClick($event, item)"
+            class="ghost-btn play-btn">
+            <i class="fa fa-play play-btn__icon"></i>
+        </button>
+    </div>
+
+    <div class="item__image">
+        <div ng-if="item.tracknumber && !item.albumart" class="item__number">{{ item.tracknumber }}.</div>
+        <div ng-if="item.albumart" class="item__albumart">
+            <img class="item__image__img" src="{{ browse.playerService.getAlbumart(item.albumart) }}">
+        </div>
+    </div>
+
+    <div class="item__info">
+        <div class="item__title truncate-text" title="{{ item ? item.title : 'Example' }}">
+            {{ item ? item.title : 'Example' }}
+        </div>
+        <div class="item__album truncate-text" title="{{ item.album ? item.album : 'Example album' }}">
+            {{ item.album ? item.album : 'Example album' }}
+        </div>
+        <div class="item__artist truncate-text" title="{{ item.artist ? item.artist : 'Example artist' }}">
+            {{ item.artist ? item.artist : 'Example artist' }}
+        </div>
+    </div>
+
+    <div
+        ng-click="browse.addToFavorites($event, item)"
+        ng-if="browse.showPlayButton(item)"
+        ng-class="{ favorited: item.favorite }"
+        class="item__favorite">
+        <span class="item__favorite-heart">
+            <i class="fa fa-heart"></i>
+        </span>
+    </div>
+    
+    <div
+        ng-if="item.duration"
+        class="item__duration">
+            {{ browse.timeFormat(item.duration) }}
+    </div>
+
+    <div class="item__actions">
+        <button
+            ng-click="browse.openMusicCardContenxtList($event, item, $index)"
+            class="ghost-btn action-btn">
+            <i class="fa fa-ellipsis-v"></i>
+        </button>
+    </div>
+</div>

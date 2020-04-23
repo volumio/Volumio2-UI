@@ -1,0 +1,338 @@
+/* Header area */
+
+.browse__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: $theme-header-color;
+    border-bottom: 1px solid $theme-primary-color;
+}
+
+.header__back-btn {
+    display: flex;
+    align-items: center;
+    border: 1px dotted transparent;
+    background: transparent;
+    border-radius: 4px;
+    margin-right: 12px;
+    &:focus {
+        outline: none;
+        border: 1px dotted rgba($theme-primary-color, .5);
+    }
+    &:active {
+        .header__back-btn__icon {
+            animation: back-btn-push 0.15s ease-out;
+        }
+    }
+    .header__back-btn__icon {
+        margin-right: 12px;
+    }
+}
+
+@keyframes back-btn-push {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-6px); }
+    100% { transform: translateX(0); }
+}
+
+.hidden-search-icon {
+    .search-icon {
+        display: none;
+    }
+}
+
+/* Browse area */
+
+.browse__main-page,
+.browse__browse-page {
+    padding: 24px;
+    background: rgba(0,0,0,.2);
+}
+
+.main__source {
+    margin-bottom: 32px;
+}
+.main__row {
+    /* Grid view */
+    display: flex;
+    flex-wrap: wrap;
+}
+.music-card__wrapper {
+    flex: 1 0 calc((100% / 6) - 10px);
+    min-width: 0px;
+    &:not(:nth-child(6n)) {
+        margin-right: 12px;
+    }
+}
+
+.main__list {
+    /* List view */
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 24px;
+}
+
+.title__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+    width: 24px;
+    height: 24px;
+    .title__icon__img {
+        width: 100%;
+    }
+}
+
+#browse .panel .body-content.new-browse {
+    top: 75px;
+}
+
+
+/* Artist & Album page */
+
+.artist__header,
+.album__header {
+    position: relative;
+    height: auto;
+    /* margin-bottom: 24px; */
+    /* This fix is necessary to apply blur and gradient mask-image */
+    transform: translate3d(0,0,0);
+}
+
+.header__content {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, .6);
+}
+
+.header__content__inner {
+    padding: 24px;
+}
+
+.header__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    // height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    img {
+        width: 100%;
+        // height: 100%;
+        filter: blur(48px);
+        -moz-filter: blur(48px);
+        -webkit-filter: blur(48px);
+        -o-filter: blur(48px);
+        transform: translateY(-50%) scale(1.4);
+    }
+}
+
+.header__main {
+    display: flex;
+    margin: 0 32px 12px 0;
+}
+
+.header__image {
+    flex: 0 0 190px;
+    margin-right: 64px;
+    .header__image__img {
+        display: block;
+        width: 100%;
+        box-shadow: 0 4px 20px rgba(0,0,0,.4);
+    }
+}
+
+.header__info {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 32px;
+    .artist-description {
+        flex: 0 0 100%;
+        position: relative;
+        max-width: 600px;
+        max-height: 100px;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 80px), transparent calc(100% - 4px));
+        mask-image: linear-gradient(to bottom, black calc(100% - 80px), transparent calc(100% - 4px));
+    }
+    .artist-description__read-more {
+        flex: 0 0 100%;
+    }
+    .artist-description__read-more-btn {
+        display: flex;
+        align-items: center;
+        background: transparent !important;
+        border: none;
+        color: $theme-primary-color;
+        font-size:13px;
+    }
+    .artist-description__read-more-btn__icon {
+        margin-right: 12px;
+    }
+    .header__meta {
+        flex: 0 0 100%;
+        align-self: flex-end;
+        color: $theme-light-color;
+        font-size: 13px;
+        line-height: 16px;
+    }
+    .header__meta__spacer {
+        display: inline-block;
+        margin: 0 8px;
+    }
+}
+
+.header__actions {
+    flex: 0 0 215px;
+}
+
+.header__action-btn {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    .fa {
+        display: inline-block;
+        width: 16px;
+        text-align: center;
+        margin-right: 8px;
+    }
+    &.mb-1 {
+        margin-bottom: 4px;
+    }
+    &.favorited {
+        .fa {
+            color: $theme-primary-color;
+        }
+    }
+}
+.header__action-btn__faded {
+    color: $theme-light-color;
+    transition: color 0.15s ease-out 0s;
+    &:hover {
+        color: white;
+    }
+}
+
+.header__footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.header__play {
+    display: flex;
+    align-items: center;
+}
+
+.header__artist {
+    margin: 0;
+    font-size: 30px;
+    line-height: 33px;
+}
+
+.header__play-btn {
+    display: flex;
+    width: 52px;
+    height: 52px;
+    margin-right: 12px;
+    padding-left: 11px;
+    border-radius: 52px;
+    border: 2px solid $theme-primary-color;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 0.15s ease-out;
+    font-size: 20px;
+    &:hover,
+    &:focus {
+        border-color: $primary-alt;
+        background-color: rgba(84, 198, 136, 0.5);
+        outline: none;
+    }
+    &:active {
+        transform: scale(1.06);
+        outline: none;
+    }
+}
+
+.layout-switch-label {
+    position: relative;
+    display: inline-block;
+    padding: 2px;
+    cursor: pointer;
+    color: $theme-light-color;
+    transition: color 0.15s ease-out 0s;
+    border: 1px dotted transparent;
+    font-size: 16px;
+}
+
+.layout-switch-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+}
+
+.layout-switch-input:focus ~ .layout-switch-label {
+    border: 1px dotted rgba($theme-primary-color, .5);
+    border-radius: 4px;
+}
+
+.layout-switch-input:checked ~ .layout-switch-label {
+    color: white;
+}
+
+/* Album view=page */
+
+.page__album {
+    display: flex;
+}
+
+.album__cover {
+    flex: 0 0 172px;
+    margin-right: 60px;
+}
+
+.album__title {
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 18px;
+    line-height: 20px;
+    &.clickable {
+        cursor: pointer;
+    }
+}
+
+.album__meta {
+    color: $theme-light-color;
+    font-size: 13px;
+}
+
+.album__body {
+    flex: 1 1 100%;
+    min-width: 0;
+    background-color: rgba(0, 0, 0, .8);
+    padding: 24px;
+}
+
+/* Shared components */
+
+.ghost-btn {
+    background: transparent;
+    border: none;
+}

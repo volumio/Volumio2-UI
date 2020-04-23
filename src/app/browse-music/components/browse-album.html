@@ -1,0 +1,83 @@
+<div class="browse__album-page">
+    <div class="album__header">
+        <div class="header__content">
+            <div class="header__content__inner">
+                <div class="header__main">
+                    <div class="header__image">
+                        <img
+                            class="header__image__img"
+                            src="{{ browse.browseService.info.albumart || browse.mockAlbumPage.info.albumart }}"
+                            alt="Artist image">
+                    </div> <!-- /.header__image -->
+                    <div class="header__info">
+                        <div
+                            ng-bind-html="browse.mockAlbumPage.info.description"
+                            class="artist-description">
+                        </div>
+                        <div class="artist-description__read-more">
+                            <button
+                                ng-click="browse.showArtistDetails(browse.mockAlbumPage.info)"
+                                class="artist-description__read-more-btn">
+                                <img class="artist-description__read-more-btn__icon" src="app/assets-common/collapse-indicator.svg" alt="open collapse icon">
+                                <span>
+                                    {{ 'BROWSER.READ_MORE' | translate }}
+                                </span>
+                            </button>
+                        </div>
+                        <div class="header__meta">
+                            {{ browse.browseService.info.artist }} • {{ browse.browseService.info.year }} • {{ browse.browseService.info.duration }}
+                        </div>
+                    </div> <!-- /.header__info -->
+                    <div class="header__actions">
+                        <button
+                            class="header__action-btn mb-4">
+                            <i class="fa fa-info-circle"></i>
+                            {{ 'BROWSER.CREDITS' | translate }}
+                        </button>
+                        <button
+                            ng-click="browse.addToFavorites($event, browse.mockAlbumPage.info)"
+                            ng-class="{ favorited: browse.mockAlbumPage.info.favorite }"
+                            class="header__action-btn header__action-btn__faded mb-1">
+                            <i class="fa fa-heart"></i>
+                            {{ browse.mockAlbumPage.info.favorite ? 'BROWSER.REMOVE_FROM_FAVOURITES' : 'BROWSER.ADD_TO_FAVOURITES' | translate }}
+                        </button>
+                        <button ng-click="browse.addToPlaylist(browse.mockAlbumPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button>
+                        <button class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
+                    </div>
+                </div> <!-- header__main -->
+                <div class="header__footer">
+                    <div class="header__play">
+                        <button
+                            ng-click="browse.playMusicCardClick($event, browse.browseService.info)"
+                            class="header__play-btn">
+                            <i class="fa fa-play"></i>
+                        </button>
+                        <h1 class="header__artist">{{ browse.browseService.info.title || browse.browseService.info.album }}</h1>
+                    </div>
+                </div> <!-- /.header__play -->
+            </div> <!-- header__content__inner -->
+        </div> <!-- /.header__content -->
+        <div
+            class="header__backdrop">
+            <img
+                src="{{ browse.browseService.info.albumart || browse.mockAlbumPage.info.albumart }}"
+                alt="image">
+        </div>
+    </div> <!-- /.album__header -->
+    <div
+        ng-repeat="album in browse.browseService.lists track by $index"
+        class="main__source">
+        <div class="page__album">
+            <div class="album__body">
+                <div
+                    ng-repeat="item in album.items track by $index"
+                    class="album__tracks"
+                    ng-include
+                    src="'app/browse-music/components/music-item.html'">
+                </div> <!-- /.album__tracks -->
+            </div>
+        </div>
+
+    </div> <!-- /.main__source -->
+
+</div> <!-- /. browse__browse-page -->

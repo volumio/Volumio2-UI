@@ -1,0 +1,50 @@
+<div class="page__album">
+    <div class="album__cover">
+        <div class="music-card">
+            <div class="music-card__header">
+                <img
+                    class="music-card__img"
+                    src="{{ album ? browse.playerService.getAlbumart(album.albumart) : 'https://images.pexels.com/photos/3568518/pexels-photo-3568518.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500' }}">
+                <div class="music-card__overlay">
+                    <div class="meta__genre">{{ album && album.genre ? album.genre : 'Example genre' }}</div>
+                    <div class="meta__actions">
+                        <button
+                            ng-click="browse.openMusicCardContenxtList($event, album, $index)"
+                            class="ghost-btn">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                    <div class="meta__play">
+                        <button
+                            ng-if="browse.showPlayButton(album)"
+                            ng-click="browse.playMusicCardClick($event, album)"
+                            class="ghost-btn play-btn">
+                            <i class="fa fa-play play-btn__icon"></i>
+                        </button>
+                    </div>
+                    <div
+                        ng-click="browse.addToFavorites($event, album)"
+                        ng-class="{ favorited: album.favorite }"
+                        class="meta__favorite">
+                        <span class="meta__favorite-heart">
+                            <i class="fa fa-heart"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="album__body">
+        <h3
+            ng-click="browse.fetchLibrary({ uri: album ? album.uri : 'albums://' })"
+            class="album__title clickable">{{ album.title }}</h3>
+        <p class="album__meta">{{ album.meta }}</p>
+        <img ng-if="album.extensionIcon" class="music-card__extension" src="{{album.extensionIcon}}">
+        <div
+            ng-repeat="item in album.tracks"
+            class="album__tracks"
+            ng-include
+            src="'app/browse-music/components/music-item.html'">
+        </div> <!-- /.album__tracks -->
+    </div>
+</div>

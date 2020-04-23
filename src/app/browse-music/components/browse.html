@@ -1,0 +1,23 @@
+<div class="browse__browse-page">
+    <h3 class="mb-6">{{ browse.browseService.currentFetchRequest.uri }}</h3>
+    <div
+        ng-repeat="list in browse.browseService.lists track by $index"
+        class="main__source">
+        <h3 ng-if="list.title" class="main__source__title panel-title">{{ list.title }}</h3>
+        <div class="main__row">
+            <div
+                ng-repeat="item in list.items"
+                class="music-card__wrapper"
+                ng-include
+                src="'app/browse-music/components/music-card.html'">
+            </div> <!-- /.music-card__wrapper -->
+            <!-- A little trick to even out the width of the cards -->
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+        </div> <!-- /.main__row -->
+    </div> <!-- /.main__source -->
+</div>

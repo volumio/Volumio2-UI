@@ -1,0 +1,123 @@
+<div id="browse" class="boxTable" browse-scroll-manager>
+
+    <div class="panel panel-default">
+  
+        <div class="browse__header">
+          <div>
+            <button
+              ng-if="browse.browseService.isBrowsing"
+              ng-click="browse.clickBack()"
+              class="header__back-btn">
+              <img class="header__back-btn__icon" src="app/assets-common/arrow-left.svg" alt="arrow back">
+              <span>
+                {{ 'COMMON.BACK' | translate }}
+              </span>
+            </button>
+          </div>
+
+          <div class="header__search-bar">
+            <div class="dedicated-search hidden-search-icon"
+                ng-include src="'app/browse/components/browse-search-box.html'">
+            </div>
+          </div>
+  
+        </div> <!-- /.browse-header-container -->
+
+        <div class="dedicated-search-container" ng-if="browse.isDedicatedSearchView">
+          <div class="dedicated-search"
+               ng-include src="'app/browse/components/browse-search-box.html'">
+          </div>
+        </div> <!-- /.dedicated-search-container -->
+
+  
+      <div class="dedicated-search-container-flow-space" ng-if="browse.isDedicatedSearchView"></div>
+  
+      <div class="body-content new-browse" ng-class="{ 'with-search-header': browse.isDedicatedSearchView }">
+
+        <div id="browseTablesWrapper">
+
+         <!--  <div
+              ng-include
+              src="'app/browse-music/components/browse-artist.html'">
+          </div> -->
+
+          <!-- ====== MAIN PAGE ===== -->
+          <div ng-if="!browse.browseService.isBrowsing && !browse.browseService.isSearching">
+            <div
+                ng-include
+                src="'app/browse-music/components/browse-main.html'">
+            </div>
+          </div> <!-- /MAIN PAGE -->
+
+          <!-- ====== BROWSE ===== -->
+          <div ng-if="browse.browseService.isBrowsing && !browse.browseService.isSearching">
+            <!-- ====== LIST PAGE ===== -->
+            <div ng-if="!browse.browseService.info">
+              <div
+                  ng-include
+                  src="'app/browse-music/components/browse.html'">
+              </div>
+            </div>
+            <!-- ====== ARTIST PAGE ===== -->
+            <div ng-if="browse.browseService.info">
+              <div
+                  ng-if="browse.browseService.info.type === 'artist'"
+                  ng-include
+                  src="'app/browse-music/components/browse-artist.html'">
+              </div>
+            </div> <!-- /ARTIST PAGE -->
+            <!-- ====== ALBUM PAGE ===== -->
+            <div ng-if="browse.browseService.info">
+              <div
+                  ng-if="browse.browseService.info.type === 'album'"
+                  ng-include
+                  src="'app/browse-music/components/browse-album.html'">
+              </div>
+            </div> <!-- /ARTIST PAGE -->
+          </div> <!-- /BROWSE -->
+
+
+
+           <!--  <div ng-if="browse.browseService.isBrowsing || browse.browseService.isSearching">
+
+              <div class="music-card" ng-click="browse.fetchLibrary({ uri: 'artists://The%20Beatles' })">
+                <div class="music-card__header">
+                    <img class="music-card__img" src="https://images.pexels.com/photos/3568518/pexels-photo-3568518.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
+                    <div class="music-card__overlay">
+                        <div class="meta__genre">Classic rock</div>
+                        <div class="meta__actions">
+                            <button class="ghost-btn">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                        <div class="meta__play">
+                            <button class="ghost-btn play-btn">
+                                <i class="fa fa-play play-btn__icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="music-card__info">
+                    <div
+                        class="music-card__label"
+                        title="This is the title that can be also very very veeery long">
+                            This is the title that can be also very very veeery long
+                    </div>
+                    <img ng-if="item.extensionIcon" class="music-card__extension" src="{{item.extensionIcon}}">
+                </div>
+                <p class="music-card__meta">June 2014</p>
+              </div>
+
+            </div> -->
+            
+            <!-- <div ng-if="!browse.browseService.isBrowsing || browse.browseService.isSearching">Searching</div> -->
+
+            <!-- browse.browseService.mockService._mock -->
+
+        </div>
+      </div> <!-- /.body-content -->
+  
+    </div> <!-- /.panel -->
+  
+  </div> <!-- /#browse -->
+  
