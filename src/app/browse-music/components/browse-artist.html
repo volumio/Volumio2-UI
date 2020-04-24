@@ -6,17 +6,17 @@
                     <div class="header__image">
                         <img
                             class="header__image__img"
-                            src="{{ browse.mockArtistPage.info.albumart }}"
+                            src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}"
                             alt="Artist image">
                     </div> <!-- /.header__image -->
                     <div class="header__info">
                         <div
-                            ng-bind-html="browse.mockArtistPage.info.description"
+                            ng-bind-html="browse.currentItemMetas.story"
                             class="artist-description">
                         </div>
                         <div class="artist-description__read-more">
                             <button
-                                ng-click="browse.showArtistDetails(browse.mockArtistPage.info)"
+                                ng-click="browse.showCreditsDetails({'title':browse.browseService.info.title,'info':browse.currentItemMetas.story})"
                                 class="artist-description__read-more-btn">
                                 <img class="artist-description__read-more-btn__icon" src="app/assets-common/collapse-indicator.svg" alt="open collapse icon">
                                 <span>
@@ -50,7 +50,7 @@
                             class="header__play-btn">
                             <i class="fa fa-play"></i>
                         </button>
-                        <h1 class="header__artist">{{ browse.mockArtistPage.info.title }}</h1>
+                        <h1 class="header__artist">{{ browse.browseService.info.title }}</h1>
                     </div>
                     <div class="layout-switch">
                         <label class="layout-switch-btn" for="layout-list" title="{{ 'COMMON.LIST' | translate }}">
@@ -71,7 +71,7 @@
         </div> <!-- /.header__content -->
         <div
             class="header__backdrop">
-            <img src="https://lastfm.freetls.fastly.net/i/u/1000x1000/e7090eb6d05349ae8e0932264910d875.jpg" alt="Artist image">
+            <img src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}" alt="Artist image">
         </div>
     </div> <!-- /.artist__header -->
 
@@ -112,7 +112,7 @@
             </div> <!-- /.main__list || list view -->
 
         </div> <!-- /.main__source -->
-    
+
     </div> <!-- /. browse__browse-page -->
 
 </div>
