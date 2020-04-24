@@ -108,7 +108,9 @@
     "UPDATE_FOLDER": "Update Folder",
     "DELETE_FOLDER": "Delete Folder",
     "SKIP_BACKWARDS": "Skip Backwards",
-    "SKIP_FORWARD": "Skip Forward"
+    "SKIP_FORWARD": "Skip Forward",
+    "CREDITS": "Credits",
+    "READ_MORE": "Read more"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",
