@@ -115,6 +115,7 @@ import SettingsController from './settings/settings.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
+import ModalArtistDetailsController from './browse-music/components/modal/modal-artist-details.controller';
 import ModalWebRadioController from './browse/components/modal/modal-web-radio.controller';
 import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
@@ -310,6 +311,7 @@ angular.module('volumio', [
 
   .controller('ModalController', ModalController)
   .controller('ModalPlaylistController', ModalPlaylistController)
+  .controller('ModalArtistDetailsController', ModalArtistDetailsController)
   .controller('ModalWebRadioController', ModalWebRadioController)
   .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalSleepController', ModalSleepController)

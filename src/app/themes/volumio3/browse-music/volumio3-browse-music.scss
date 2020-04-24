@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     background: $theme-header-color;
     border-bottom: 1px solid $theme-primary-color;
 }
@@ -42,11 +42,17 @@
     }
 }
 
+@media (min-width: 768px) {
+    .browse__header {
+        padding: 20px;
+    }
+}
+
 /* Browse area */
 
 .browse__main-page,
 .browse__browse-page {
-    padding: 24px;
+    padding: 16px;
     background: rgba(0,0,0,.2);
 }
 
@@ -59,10 +65,10 @@
     flex-wrap: wrap;
 }
 .music-card__wrapper {
-    flex: 1 0 calc((100% / 6) - 10px);
+    flex: 0 0 calc(50% - 8px);
     min-width: 0px;
-    &:not(:nth-child(6n)) {
-        margin-right: 12px;
+    &:not(:nth-child(even)) {
+        margin-right: 8px;
     }
 }
 
@@ -91,11 +97,40 @@
 }
 
 #browse .panel .body-content.new-browse {
-    top: 75px;
+    top: 55px;
 }
 
+@media (min-width: 768px) {
 
-/* Artist & Album page */
+    .browse__main-page,
+    .browse__browse-page {
+        padding: 24px;
+    }
+
+    .music-card__wrapper {
+        flex: 1 0 calc((100% / 4) - 10px);
+        min-width: 0px;
+        &:not(:nth-child(4n)) {
+            margin-right: 12px;
+        }
+    }
+
+    #browse .panel .body-content.new-browse {
+        top: 75px;
+    }
+}
+
+@media (min-width: 991px) {
+    .music-card__wrapper {
+        flex: 1 0 calc((100% / 6) - 10px);
+        min-width: 0px;
+        &:not(:nth-child(6n)) {
+            margin-right: 12px;
+        }
+    }
+}
+
+/* ===== Artist & Album page ======= */
 
 .artist__header,
 .album__header {
@@ -297,7 +332,11 @@
     color: white;
 }
 
-/* Album view=page */
+@media (min-width: 768px) {
+    
+}
+
+/* ====== Album view=page ====== */
 
 .page__album {
     display: flex;
@@ -335,4 +374,8 @@
 .ghost-btn {
     background: transparent;
     border: none;
+}
+
+@media (min-width: 768px) {
+    
 }
