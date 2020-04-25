@@ -1,17 +1,17 @@
-<div class="music-item" ng-click="browse.fetchLibrary({ uri: item ? item.uri : 'artists://' })">
+<div class="music-item" ng-click="browse.playAlbumItemClick(item, album.items, $index)">
     <div class="item__play">
         <button
             ng-if="browse.showPlayButton(item)"
-            ng-click="browse.playMusicCardClick($event, item)"
+            ng-click="browse.playAlbumItemClick(item, album.items, $index)"
             class="ghost-btn play-btn">
             <i class="fa fa-play play-btn__icon"></i>
         </button>
     </div>
 
     <div class="item__image">
-        <div ng-if="item.tracknumber && !item.albumart" class="item__number">{{ item.tracknumber }}.</div>
+        <div ng-if="item.tracknumber && !item.albumart" class="item__number">{{item.tracknumber }}.</div>
         <div ng-if="item.albumart" class="item__albumart">
-            <img class="item__image__img" src="{{ browse.playerService.getAlbumart(item.albumart) }}">
+            <img class="item__image__img" src="{{browse.playerService.getAlbumart(item.albumart) }}">
         </div>
     </div>
 
@@ -26,7 +26,7 @@
             {{ item.artist ? item.artist : 'Example artist' }}
         </div>
     </div>
-
+    <!--
     <div
         ng-click="browse.addToFavorites($event, item)"
         ng-if="browse.showPlayButton(item)"
@@ -36,7 +36,7 @@
             <i class="fa fa-heart"></i>
         </span>
     </div>
-    
+    -->
     <div
         ng-if="item.duration"
         class="item__duration">

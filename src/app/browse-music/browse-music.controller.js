@@ -236,7 +236,9 @@ class BrowseMusicController {
     this.showCreditsDetails(creditsObject);
   }
 
-
+  playAlbumItemClick(item, list, itemIndex) {
+    return this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+  }
 
   /* changeListViewSetting(view) {
     if (['grid', 'list'].indexOf(view) === -1) {

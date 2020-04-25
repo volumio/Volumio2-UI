@@ -38,6 +38,7 @@
                             <i class="fa fa-info-circle"></i>
                             {{ 'BROWSER.CREDITS' | translate }}
                         </button>
+                        <!--
                         <button
                             ng-click="browse.addToFavorites($event, browse.mockAlbumPage.info)"
                             ng-class="{ favorited: browse.mockAlbumPage.info.favorite }"
@@ -45,6 +46,7 @@
                             <i class="fa fa-heart"></i>
                             {{ browse.mockAlbumPage.info.favorite ? 'BROWSER.REMOVE_FROM_FAVOURITES' : 'BROWSER.ADD_TO_FAVOURITES' | translate }}
                         </button>
+                        -->
                         <button ng-click="browse.addToPlaylist(browse.mockAlbumPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button>
                         <button ng-click="browse.addToQueue(browse.browseService.info)" class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
                     </div>
