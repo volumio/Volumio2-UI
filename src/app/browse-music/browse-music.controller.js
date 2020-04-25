@@ -27,8 +27,6 @@ class BrowseMusicController {
     this.mockAlbumPage = mockService._mock.browseMusic.getAlbumPageContent;
     this.$http = $http;
 
-    this.currentItemMetas = {};
-
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       // this.renderBrowseTable();
     }
@@ -40,7 +38,6 @@ class BrowseMusicController {
   }
 
   initController() {
-    console.log(this.browseService);
     /* I receive it also when I search */
     this.socketService.on('pushBrowseLibrary', (data) => {
       this.fetchAdditionalMetas();
@@ -84,20 +81,10 @@ class BrowseMusicController {
     }
   }
 
-  handleItemClick(item) {
-    console.log(item);
-  }
-
   openMusicCardContenxtList(e) {
     e.stopPropagation();
     console.log('Context menu will open...');
     alert('Context menu will open...');
-  }
-
-  playMusicCardClick(e, item) {
-    e.stopPropagation();
-    console.log('Start playing...', item);
-    alert('Start playing...');
   }
 
   showPlayButton(item) {
@@ -110,23 +97,6 @@ class BrowseMusicController {
         item.type === 'remdisk' || item.type === 'cuefile' ||
         item.type === 'folder-with-favourites' || item.type === 'internal-folder';
     return ret;
-  }
-
-  addToPlaylist(item) {
-    this.playlistService.refreshPlaylists();
-    let
-      templateUrl = 'app/browse/components/modal/modal-playlist.html',
-      controller = 'ModalPlaylistController',
-      params = {
-        title: 'Add to playlist',
-        item: item
-      };
-    this.modalService.openModal(
-      controller,
-      templateUrl,
-      params,
-      'sm'
-    );
   }
 
   showCreditsDetails(details) {
@@ -174,6 +144,8 @@ class BrowseMusicController {
     if (this.browseService.info) {
       if (this.browseService.info.type && this.browseService.info.type === 'artist' && this.browseService.info.title) {
         return this.getArtistMetas(this.browseService.info);
+      } else if (this.browseService.info.type && this.browseService.info.type === 'album' && this.browseService.info.artist && this.browseService.info.album) {
+        return this.getAlbumMetas(this.browseService.info);
       }
     }
 
@@ -185,6 +157,35 @@ class BrowseMusicController {
       'artist': artistInfo.title
     };
     return this.requestMetavolumioApi(requestObject);
+  }
+
+  getAlbumMetas(albumInfo) {
+    let requestObject = {
+      'mode':'storyAlbum',
+      'artist': albumInfo.artist,
+      'album': albumInfo.album
+    };
+    return this.requestMetavolumioApi(requestObject);
+  }
+
+  showAlbumCredits(albumInfo) {
+    if (albumInfo && albumInfo.artist && albumInfo.album) {
+      let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
+      let metaObject = {
+        'endpoint': 'metavolumio',
+        'data': {
+          'mode':'creditsAlbum',
+          'artist': albumInfo.artist,
+          'album': albumInfo.album
+        }
+      };
+      return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+        if (response.data && response.data.success && response.data.data && response.data.data.value) {
+
+        }
+      });
+    }
+
   }
 
   requestMetavolumioApi(data) {
@@ -199,6 +200,34 @@ class BrowseMusicController {
       }
     });
   }
+
+  play(item) {
+    return this.playQueueService.addPlay(item);
+  }
+
+  addToQueue(item) {
+    return this.playQueueService.add(item);
+  }
+
+  addToPlaylist(item) {
+    //TODO this is not necessary
+    this.playlistService.refreshPlaylists();
+    let
+      templateUrl = 'app/browse/components/modal/modal-playlist.html',
+      controller = 'ModalPlaylistController',
+      params = {
+        title: 'Add to playlist',
+        item: item
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
+  }
+
+
+
 
   /* changeListViewSetting(view) {
     if (['grid', 'list'].indexOf(view) === -1) {

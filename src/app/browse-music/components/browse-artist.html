@@ -14,7 +14,9 @@
                             ng-bind-html="browse.currentItemMetas.story"
                             class="artist-description">
                         </div>
-                        <div class="artist-description__read-more">
+                        <div
+                          ng-if="browse.currentItemMetas.story"
+                          class="artist-description__read-more">
                             <button
                                 ng-click="browse.showCreditsDetails({'title':browse.browseService.info.title,'info':browse.currentItemMetas.story})"
                                 class="artist-description__read-more-btn">
@@ -37,16 +39,16 @@
                         </div>
                     </div> <!-- /.header__info -->
                     <div class="header__actions">
-                        <button class="header__action-btn mb-4"> <i class="fa fa-info-circle"></i> {{ 'BROWSER.CREDITS' | translate }}</button>
+                        <!--
                         <button ng-click="browse.addToFavorites($event, browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-heart"></i> {{ 'BROWSER.ADD_TO_FAVOURITES' | translate }}</button>
-                        <button ng-click="browse.addToPlaylist(browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button>
-                        <button class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
+                        <button ng-click="browse.addToPlaylist(browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button> -->
+                        <button ng-click="browse.addToQueue(browse.browseService.info)" class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
                     </div>
                 </div> <!-- header__main -->
                 <div class="header__footer">
                     <div class="header__play">
                         <button
-                            ng-click="browse.playMusicCardClick($event, browse.browseService.info)"
+                            ng-click="browse.play(browse.browseService.info)"
                             class="header__play-btn">
                             <i class="fa fa-play"></i>
                         </button>
