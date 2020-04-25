@@ -18,7 +18,7 @@
                           ng-if="browse.currentItemMetas.story"
                           class="artist-description__read-more">
                             <button
-                                ng-click="browse.showCreditsDetails({'title':browse.browseService.info.album,'info':browse.currentItemMetas.story})"
+                                ng-click="browse.showCreditsDetails({'title':browse.browseService.info.album,'story':browse.currentItemMetas.story})"
                                 class="artist-description__read-more-btn">
                                 <img class="artist-description__read-more-btn__icon" src="app/assets-common/collapse-indicator.svg" alt="open collapse icon">
                                 <span>
@@ -32,7 +32,8 @@
                     </div> <!-- /.header__info -->
                     <div class="header__actions">
                         <button
-                            ng-click="browse.showAlbumCredits(browse.browseService.info)"
+                            ng-click="browse.showAlbumCredits()"
+                            ng-disabled="!browse.currentItemMetas.albumCredits"
                             class="header__action-btn mb-4">
                             <i class="fa fa-info-circle"></i>
                             {{ 'BROWSER.CREDITS' | translate }}

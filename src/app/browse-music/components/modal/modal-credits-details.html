@@ -3,9 +3,30 @@
       <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
     </div>
     <div
-        ng-bind-html="::modal.dataObj.item"
+        ng-bind-html="::modal.dataObj.story"
         class="modal-body darker-bg">
-    </div> <!-- /.modal-body -->
+    </div>
+    <div
+        ng-if="::modal.dataObj.credits"
+        class="modal-body darker-bg">
+        <table class="table">
+          <tr
+          ng-repeat="creditRow in modal.dataObj.credits track by $index"
+          class="album-credits-row">
+            <td class="album-credits-title">
+              {{creditRow.key}}
+            </td>
+            <td class="album-credits-title">
+              <p
+              ng-repeat="creditItem in creditRow.values track by $index"
+              class="album-credits-row">
+              {{creditItem.name}}
+              </p>
+
+            </td>
+          </tr>
+        </table>
+    </div>
     <div class="modal-footer">
       <button class="btn btn-warning" ng-click="modal.cancel()">
         {{'COMMON.CLOSE' | translate}}

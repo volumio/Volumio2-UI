@@ -104,7 +104,8 @@ class BrowseMusicController {
     const controller = 'ModalCreditsDetailsController';
     const params = {
       title: details.title,
-      item: details.info
+      story: details.story,
+      credits: details.credits
     };
     this.modalService.openModal(
       controller,
@@ -143,9 +144,10 @@ class BrowseMusicController {
     this.currentItemMetas = {};
     if (this.browseService.info) {
       if (this.browseService.info.type && this.browseService.info.type === 'artist' && this.browseService.info.title) {
-        return this.getArtistMetas(this.browseService.info);
+        this.getArtistMetas(this.browseService.info);
       } else if (this.browseService.info.type && this.browseService.info.type === 'album' && this.browseService.info.artist && this.browseService.info.album) {
-        return this.getAlbumMetas(this.browseService.info);
+        this.getAlbumMetas(this.browseService.info);
+        this.getAlbumCredits(this.browseService.info);
       }
     }
 
@@ -168,7 +170,8 @@ class BrowseMusicController {
     return this.requestMetavolumioApi(requestObject);
   }
 
-  showAlbumCredits(albumInfo) {
+  getAlbumCredits(albumInfo) {
+    this.currentItemMetas.albumCredits = '';
     if (albumInfo && albumInfo.artist && albumInfo.album) {
       let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
       let metaObject = {
@@ -181,11 +184,10 @@ class BrowseMusicController {
       };
       return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
         if (response.data && response.data.success && response.data.data && response.data.data.value) {
-
+          this.currentItemMetas.albumCredits = response.data.data.value;
         }
       });
     }
-
   }
 
   requestMetavolumioApi(data) {
@@ -226,6 +228,13 @@ class BrowseMusicController {
       'sm');
   }
 
+  showAlbumCredits() {
+    let creditsObject = {
+      'title': this.browseService.info.album,
+      'credits': this.currentItemMetas.albumCredits
+    };
+    this.showCreditsDetails(creditsObject);
+  }
 
 
 
