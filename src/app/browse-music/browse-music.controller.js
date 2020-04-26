@@ -1,7 +1,7 @@
 class BrowseMusicController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
     modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-    uiSettingsService, $state, themeManager, $stateParams, mockService) {
+    uiSettingsService, $state, themeManager, $stateParams, mockService, $http) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -25,6 +25,7 @@ class BrowseMusicController {
     this.listViewSetting = 'list';
     this.mockArtistPage = mockService._mock.browseMusic.getArtistPageContent;
     this.mockAlbumPage = mockService._mock.browseMusic.getAlbumPageContent;
+    this.$http = $http;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       // this.renderBrowseTable();
@@ -37,14 +38,12 @@ class BrowseMusicController {
   }
 
   initController() {
-    console.log(this.browseService);
     /* I receive it also when I search */
     this.socketService.on('pushBrowseLibrary', (data) => {
-      console.log(data);
-      console.log(this.browseService);
+      this.fetchAdditionalMetas();
     });
 
-    
+
     /* let bindedBackListener = this.backListener.bind(this);
     this.$document[0].addEventListener('keydown', bindedBackListener, false);
     this.$scope.$on('$destroy', () => {
@@ -82,20 +81,10 @@ class BrowseMusicController {
     }
   }
 
-  handleItemClick(item) {
-    console.log(item);
-  }
-
   openMusicCardContenxtList(e) {
     e.stopPropagation();
     console.log('Context menu will open...');
     alert('Context menu will open...');
-  }
-  
-  playMusicCardClick(e, item) {
-    e.stopPropagation();
-    console.log('Start playing...', item);
-    alert('Start playing...');
   }
 
   showPlayButton(item) {
@@ -110,29 +99,13 @@ class BrowseMusicController {
     return ret;
   }
 
-  addToPlaylist(item) {
-    this.playlistService.refreshPlaylists();
-    let
-      templateUrl = 'app/browse/components/modal/modal-playlist.html',
-      controller = 'ModalPlaylistController',
-      params = {
-        title: 'Add to playlist',
-        item: item
-      };
-    this.modalService.openModal(
-      controller,
-      templateUrl,
-      params,
-      'sm'
-    );
-  }
-
-  showArtistDetails(info) {
-    const templateUrl = 'app/browse-music/components/modal/modal-artist-details.html';
-    const controller = 'ModalArtistDetailsController';
+  showCreditsDetails(details) {
+    const templateUrl = 'app/browse-music/components/modal/modal-credits-details.html';
+    const controller = 'ModalCreditsDetailsController';
     const params = {
-      title: info.title,
-      item: info
+      title: details.title,
+      story: details.story,
+      credits: details.credits
     };
     this.modalService.openModal(
       controller,
@@ -142,7 +115,7 @@ class BrowseMusicController {
     );
   }
 
-  timeFormat(time) {   
+  timeFormat(time) {
     // Hours, minutes and seconds
     let hrs = ~~(time / 3600);
     let mins = ~~((time % 3600) / 60);
@@ -165,6 +138,106 @@ class BrowseMusicController {
       return;
     }
     item.favorite ? alert('Will remove from favorites') : alert('Will add to favorites');
+  }
+
+  fetchAdditionalMetas() {
+    this.currentItemMetas = {};
+    if (this.browseService.info) {
+      if (this.browseService.info.type && this.browseService.info.type === 'artist' && this.browseService.info.title) {
+        this.getArtistMetas(this.browseService.info);
+      } else if (this.browseService.info.type && this.browseService.info.type === 'album' && this.browseService.info.artist && this.browseService.info.album) {
+        this.getAlbumMetas(this.browseService.info);
+        this.getAlbumCredits(this.browseService.info);
+      }
+    }
+
+  }
+
+  getArtistMetas(artistInfo) {
+    let requestObject = {
+      'mode':'storyArtist',
+      'artist': artistInfo.title
+    };
+    return this.requestMetavolumioApi(requestObject);
+  }
+
+  getAlbumMetas(albumInfo) {
+    let requestObject = {
+      'mode':'storyAlbum',
+      'artist': albumInfo.artist,
+      'album': albumInfo.album
+    };
+    return this.requestMetavolumioApi(requestObject);
+  }
+
+  getAlbumCredits(albumInfo) {
+    this.currentItemMetas.albumCredits = '';
+    if (albumInfo && albumInfo.artist && albumInfo.album) {
+      let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
+      let metaObject = {
+        'endpoint': 'metavolumio',
+        'data': {
+          'mode':'creditsAlbum',
+          'artist': albumInfo.artist,
+          'album': albumInfo.album
+        }
+      };
+      return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+        if (response.data && response.data.success && response.data.data && response.data.data.value) {
+          this.currentItemMetas.albumCredits = response.data.data.value;
+        }
+      });
+    }
+  }
+
+  requestMetavolumioApi(data) {
+    let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
+    let metaObject = {
+      'endpoint': 'metavolumio',
+      'data': data
+    };
+    return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+      if (response.data && response.data.success && response.data.data && response.data.data.value) {
+        this.currentItemMetas.story = response.data.data.value;
+      }
+    });
+  }
+
+  play(item) {
+    return this.playQueueService.addPlay(item);
+  }
+
+  addToQueue(item) {
+    return this.playQueueService.add(item);
+  }
+
+  addToPlaylist(item) {
+    //TODO this is not necessary
+    this.playlistService.refreshPlaylists();
+    let
+      templateUrl = 'app/browse/components/modal/modal-playlist.html',
+      controller = 'ModalPlaylistController',
+      params = {
+        title: 'Add to playlist',
+        item: item
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
+  }
+
+  showAlbumCredits() {
+    let creditsObject = {
+      'title': this.browseService.info.album,
+      'credits': this.currentItemMetas.albumCredits
+    };
+    this.showCreditsDetails(creditsObject);
+  }
+
+  playAlbumItemClick(item, list, itemIndex) {
+    return this.playQueueService.replaceAndPlayList(item, list, itemIndex);
   }
 
   /* changeListViewSetting(view) {

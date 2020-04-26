@@ -6,17 +6,19 @@
                     <div class="header__image">
                         <img
                             class="header__image__img"
-                            src="{{ browse.mockArtistPage.info.albumart }}"
+                            src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}"
                             alt="Artist image">
                     </div> <!-- /.header__image -->
                     <div class="header__info">
                         <div
-                            ng-bind-html="browse.mockArtistPage.info.description"
+                            ng-bind-html="browse.currentItemMetas.story"
                             class="artist-description">
                         </div>
-                        <div class="artist-description__read-more">
+                        <div
+                          ng-if="browse.currentItemMetas.story"
+                          class="artist-description__read-more">
                             <button
-                                ng-click="browse.showArtistDetails(browse.mockArtistPage.info)"
+                                ng-click="browse.showCreditsDetails({'title':browse.browseService.info.title,'story':browse.currentItemMetas.story})"
                                 class="artist-description__read-more-btn">
                                 <img class="artist-description__read-more-btn__icon" src="app/assets-common/collapse-indicator.svg" alt="open collapse icon">
                                 <span>
@@ -24,6 +26,7 @@
                                 </span>
                             </button>
                         </div>
+                        <!--
                         <div class="header__meta">
                             <span ng-if="browse.mockArtistPage.info.genre">{{ browse.mockArtistPage.info.genre }}</span>
                             <span ng-if="browse.mockArtistPage.info.genre &&  (browse.mockArtistPage.info.local_albums || browse.mockArtistPage.info.streaming_albums)" class="header__meta__spacer"> • </span>
@@ -35,22 +38,23 @@
                                 {{ browse.mockArtistPage.info.streaming_albums }} streaming releases
                             </span>
                         </div>
+                        -->
                     </div> <!-- /.header__info -->
                     <div class="header__actions">
-                        <button class="header__action-btn mb-4"> <i class="fa fa-info-circle"></i> {{ 'BROWSER.CREDITS' | translate }}</button>
+                        <!--
                         <button ng-click="browse.addToFavorites($event, browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-heart"></i> {{ 'BROWSER.ADD_TO_FAVOURITES' | translate }}</button>
-                        <button ng-click="browse.addToPlaylist(browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button>
-                        <button class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
+                        <button ng-click="browse.addToPlaylist(browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button> -->
+                        <button ng-click="browse.addToQueue(browse.browseService.info)" class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
                     </div>
                 </div> <!-- header__main -->
                 <div class="header__footer">
                     <div class="header__play">
                         <button
-                            ng-click="browse.playMusicCardClick($event, browse.browseService.info)"
+                            ng-click="browse.play(browse.browseService.info)"
                             class="header__play-btn">
                             <i class="fa fa-play"></i>
                         </button>
-                        <h1 class="header__artist">{{ browse.mockArtistPage.info.title }}</h1>
+                        <h1 class="header__artist">{{ browse.browseService.info.title }}</h1>
                     </div>
                     <div class="layout-switch">
                         <label class="layout-switch-btn" for="layout-list" title="{{ 'COMMON.LIST' | translate }}">
@@ -71,7 +75,7 @@
         </div> <!-- /.header__content -->
         <div
             class="header__backdrop">
-            <img src="https://lastfm.freetls.fastly.net/i/u/1000x1000/e7090eb6d05349ae8e0932264910d875.jpg" alt="Artist image">
+            <img src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}" alt="Artist image">
         </div>
     </div> <!-- /.artist__header -->
 
@@ -112,7 +116,7 @@
             </div> <!-- /.main__list || list view -->
 
         </div> <!-- /.main__source -->
-    
+
     </div> <!-- /. browse__browse-page -->
 
 </div>

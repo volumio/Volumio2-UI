@@ -115,7 +115,6 @@ import SettingsController from './settings/settings.controller';
 
 //Modals
 import ModalPlaylistController from './browse/components/modal/modal-playlist.controller';
-import ModalArtistDetailsController from './browse-music/components/modal/modal-artist-details.controller';
 import ModalWebRadioController from './browse/components/modal/modal-web-radio.controller';
 import ModalPowerOffController from './components/side-menu/elements/modal-power-off.controller';
 import ModalSleepController from './components/side-menu/elements/modal-sleep.controller';
@@ -135,6 +134,7 @@ import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/mo
 import ModalCryptoController from './components/modals/modal-crypto.controller';
 import MyVolumioTermsModalController from './components/myvolumio/modals/myvolumio-terms-modal/myvolumio-terms-modal.controller';
 import MyVolumioPayingModalController from './components/myvolumio/modals/myvolumio-paying-modal/myvolumio-paying-modal.controller';
+import ModalCreditsDetailsController from './browse-music/components/modal/modal-credits-details.controller';
 
 
 //Core plugin controller
@@ -310,7 +310,6 @@ angular.module('volumio', [
 
   .controller('ModalController', ModalController)
   .controller('ModalPlaylistController', ModalPlaylistController)
-  .controller('ModalArtistDetailsController', ModalArtistDetailsController)
   .controller('ModalWebRadioController', ModalWebRadioController)
   .controller('ModalPowerOffController', ModalPowerOffController)
   .controller('ModalSleepController', ModalSleepController)
@@ -337,6 +336,7 @@ angular.module('volumio', [
   .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
   .controller('UiSettingsPluginController', UiSettingsPluginController)
   .controller('MyMusicPluginEnablerController', MyMusicPluginEnablerController)
+  .controller('ModalCreditsDetailsController', ModalCreditsDetailsController)
 
   //Volumio 3 UI
 

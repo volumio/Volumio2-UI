@@ -2,9 +2,9 @@
     <div class="music-card__header">
         <img
             class="music-card__img"
-            src="{{ item ? browse.playerService.getAlbumart(item.albumart) : 'https://images.pexels.com/photos/3568518/pexels-photo-3568518.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500' }}">
+            src="{{browse.playerService.getAlbumart(item.albumart)}}">
         <div class="music-card__overlay">
-            <div class="meta__genre">{{ item && item.genre ? item.genre : 'Example genre' }}</div>
+            <div class="meta__genre">{{ item && item.genre ? item.genre : '' }}</div>
             <div class="meta__actions">
                 <button
                     ng-click="browse.openMusicCardContenxtList($event, item, $index)"
@@ -40,5 +40,5 @@
         </div>
         <img ng-if="item.extensionIcon" class="music-card__extension" src="{{item.extensionIcon}}">
     </div>
-    <p class="music-card__meta">{{ item && item.meta ? item.meta : 'Meta field missing'}}</p>
+    <p class="music-card__meta">{{ item && item.meta ? item.meta : ''}}</p>
 </div>
