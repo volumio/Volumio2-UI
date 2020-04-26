@@ -65,8 +65,9 @@
     flex-wrap: wrap;
 }
 .music-card__wrapper {
-    flex: 0 0 calc(50% - 8px);
+    flex: 0 0 calc(50% - 4px);
     min-width: 0px;
+    margin-bottom: 16px;
     &:not(:nth-child(even)) {
         margin-right: 8px;
     }
@@ -100,7 +101,7 @@
     top: 55px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 990px) {
 
     .browse__main-page,
     .browse__browse-page {
@@ -109,7 +110,6 @@
 
     .music-card__wrapper {
         flex: 1 0 calc((100% / 4) - 10px);
-        min-width: 0px;
         &:not(:nth-child(4n)) {
             margin-right: 12px;
         }
