@@ -26,12 +26,16 @@ class BrowseMusicController {
     this.mockArtistPage = mockService._mock.browseMusic.getArtistPageContent;
     this.mockAlbumPage = mockService._mock.browseMusic.getAlbumPageContent;
     this.$http = $http;
+    this.content = {};
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       // this.renderBrowseTable();
     }
     $scope.$on('browseService:fetchEnd', () => {
       // this.renderBrowseTable();
+      this.content = {};
+      const uniqueKey = Date.now();
+      this.content[uniqueKey] = this.browseService.lists;
     });
 
     this.initController();
@@ -41,8 +45,8 @@ class BrowseMusicController {
     /* I receive it also when I search */
     this.socketService.on('pushBrowseLibrary', (data) => {
       this.fetchAdditionalMetas();
+      console.log(this.browseService);
     });
-
 
     /* let bindedBackListener = this.backListener.bind(this);
     this.$document[0].addEventListener('keydown', bindedBackListener, false);
@@ -79,12 +83,6 @@ class BrowseMusicController {
     } else {
       this.backHome();
     }
-  }
-
-  openMusicCardContenxtList(e) {
-    e.stopPropagation();
-    console.log('Context menu will open...');
-    alert('Context menu will open...');
   }
 
   showPlayButton(item) {
@@ -137,7 +135,7 @@ class BrowseMusicController {
     if (!item) {
       return;
     }
-    item.favorite ? alert('Will remove from favorites') : alert('Will add to favorites');
+    this.playlistService.addToFavourites(item);
   }
 
   fetchAdditionalMetas() {
@@ -203,6 +201,11 @@ class BrowseMusicController {
     });
   }
 
+  playMusicCardClick(e, item) {
+    e.stopPropagation();
+    this.play(item);
+  }
+
   play(item) {
     return this.playQueueService.addPlay(item);
   }
@@ -238,6 +241,49 @@ class BrowseMusicController {
 
   playAlbumItemClick(item, list, itemIndex) {
     return this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+  }
+
+  preventBubbling($event) {
+    $event.stopPropagation();
+    $event.preventDefault();
+    /* $scope.status.isopen = !$scope.status.isopen; */
+  }
+
+  openMusicCardContenxtList(e, item, listIndex, itemIndex) {
+    e.stopPropagation();
+    let hamburgerMenuMarkup = `
+      <div
+          uib-dropdown
+          on-toggle="browse.toggledItem(open, $event)"
+          class="hamburgerMenu">
+        <button id="hamburgerMenuBtn-${listIndex}-${itemIndex}" class="ghost-btn action-btn" uib-dropdown-toggle>
+          <i class="fa fa-ellipsis-v"></i>
+        </button>
+        <ul class="dropdown-menu buttonsGroup align-to-right">
+          <browse-hamburger-menu
+              item="browse.browseService.lists[${listIndex}].items[${itemIndex}]"
+              browse="browse">
+          </browse-hamburger-menu>
+        </ul>
+      </div>
+    `;
+    hamburgerMenuMarkup = this.$compile(hamburgerMenuMarkup)(this.$scope);
+    const hamburgerMenuBtn = document.getElementById(`hamburgerMenuBtn-${listIndex}-${itemIndex}`);
+    if (hamburgerMenuBtn) {
+      hamburgerMenuBtn.replaceWith(hamburgerMenuMarkup[0]);
+    }
+
+    this.$timeout(() => {
+      document.querySelector(`#hamburgerMenuBtn-${listIndex}-${itemIndex}`).click();
+    }, 0);
+  }
+
+  clickMusicCard(item) {
+    if (item.type === 'song') {
+      this.play(item);
+    } else {
+      this.fetchLibrary({ uri: item.uri });
+    }
   }
 
   /* changeListViewSetting(view) {

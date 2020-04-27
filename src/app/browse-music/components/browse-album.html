@@ -72,6 +72,7 @@
     </div> <!-- /.album__header -->
     <div
         ng-repeat="album in browse.browseService.lists track by $index"
+        ng-init="$listIndex = $index"
         class="main__source">
         <div class="page__album">
             <div class="album__body">

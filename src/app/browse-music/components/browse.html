@@ -1,12 +1,14 @@
-<div class="browse__browse-page">
-    <h3 class="mb-6">{{ browse.browseService.currentFetchRequest.uri }}</h3>
+<div
+    ng-repeat="(key, content) in browse.content"
+    class="browse__browse-page">
     <div
-        ng-repeat="list in browse.browseService.lists track by $index"
+        ng-repeat="list in content track by $index"
+        ng-init="$listIndex = $index"
         class="main__source">
         <h3 ng-if="list.title" class="main__source__title panel-title">{{ list.title }}</h3>
         <div class="main__row">
             <div
-                ng-repeat="item in list.items"
+                ng-repeat="item in list.items track by $index"
                 class="music-card__wrapper"
                 ng-include
                 src="'app/browse-music/components/music-card.html'">

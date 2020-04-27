@@ -10,6 +10,15 @@
                             alt="Artist image">
                     </div> <!-- /.header__image -->
                     <div class="header__info">
+                        <div class="header__play">
+                            <button
+                                ng-click="browse.play(browse.browseService.info)"
+                                class="header__play-btn">
+                                <i class="fa fa-play"></i>
+                            </button>
+                            <h1 class="header__artist">{{ browse.browseService.info.title }}</h1>
+                        </div> <!-- /.header__play -->
+
                         <div
                             ng-bind-html="browse.currentItemMetas.story"
                             class="artist-description">
@@ -47,16 +56,9 @@
                         <button ng-click="browse.addToQueue(browse.browseService.info)" class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
                     </div>
                 </div> <!-- header__main -->
+
                 <div class="header__footer">
-                    <div class="header__play">
-                        <button
-                            ng-click="browse.play(browse.browseService.info)"
-                            class="header__play-btn">
-                            <i class="fa fa-play"></i>
-                        </button>
-                        <h1 class="header__artist">{{ browse.browseService.info.title }}</h1>
-                    </div>
-                    <div class="layout-switch">
+                    <!-- <div class="layout-switch">
                         <label class="layout-switch-btn" for="layout-list" title="{{ 'COMMON.LIST' | translate }}">
                             <input ng-model="browse.listViewSetting" class="layout-switch-input" name="layout" id="layout-list" value="list" type="radio">
                             <span class="layout-switch-label">
@@ -69,8 +71,9 @@
                                 <i class="fa fa-th-large"></i>
                             </span>
                         </label>
-                    </div> <!-- /.layout-switch -->
-                </div> <!-- /.header__play -->
+                    </div> --> <!-- /.layout-switch -->
+                </div> <!-- /.header__footer -->
+
             </div> <!-- header__content__inner -->
         </div> <!-- /.header__content -->
         <div
@@ -82,14 +85,15 @@
     <div class="browse__browse-page">
 
         <div
-            ng-repeat="list in browse.mockArtistPage.lists track by $index"
+            ng-repeat="list in browse.browseService.lists track by $index"
+            ng-init="$listIndex = $index"
             class="main__source">
-            <h3 class="main__source__title panel-title">{{ list.title }}</h3>
+            <h3 ng-if="list.title" class="main__source__title panel-title">{{ list.title }}</h3>
             <div
-                ng-if="browse.listViewSetting === 'grid'"
+                ng-if="list.availableListViews && list.availableListViews.indexOf('grid') > -1"
                 class="main__row">
                 <div
-                    ng-repeat="item in list.items"
+                    ng-repeat="item in list.items track by $index"
                     class="music-card__wrapper"
                     ng-include
                     src="'app/browse-music/components/music-card.html'">
@@ -104,16 +108,23 @@
             </div> <!-- /.main__row || grid view -->
 
             <div
-                ng-if="browse.listViewSetting === 'list'"
+                ng-if="list.availableListViews && list.availableListViews.indexOf('list') > -1 && list.availableListViews.indexOf('grid') === -1"
                 class="main__list">
                 <div
+                    ng-repeat="item in list.items track by $index"
+                    class="album__tracks"
+                    ng-include
+                    src="'app/browse-music/components/music-item.html'">
+                </div> <!-- /.album__tracks -->
+
+                <!-- <div
                     ng-repeat="album in list.items"
                     class="music-card__wrapper"
                     ng-include
                     src="'app/browse-music/components/album-view.html'">
-                </div> <!-- /.album-view__wrapper -->
+                </div>  -->
 
-            </div> <!-- /.main__list || list view -->
+            </div>  <!-- /.main__list || list view -->
 
         </div> <!-- /.main__source -->
 
