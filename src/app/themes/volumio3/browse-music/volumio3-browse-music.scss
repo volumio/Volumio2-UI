@@ -51,8 +51,11 @@
 /* Browse area */
 
 .browse__main-page,
-.browse__browse-page {
+.main__row {
     padding: 16px;
+}
+
+#browse-page {
     background: rgba(0,0,0,.2);
 }
 
@@ -83,15 +86,23 @@
 }
 
 .main__list {
-    /* List view */
+    .album__tracks:first-child {
+        padding-top: 12px;
+    }
+    .album__tracks:last-child {
+        padding-bottom: 12px;
+    }
 }
 
 .panel-title {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding: 0 16px;
     font-size: 18px;
     line-height: 20px;
-    margin-bottom: 24px;
 }
 
 .title__icon {

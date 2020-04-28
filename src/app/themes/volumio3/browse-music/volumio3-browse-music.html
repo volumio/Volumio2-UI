@@ -56,11 +56,6 @@
 
         <div id="browseTablesWrapper">
 
-         <!--  <div
-              ng-include
-              src="'app/browse-music/components/browse-artist.html'">
-          </div> -->
-
           <!-- ====== MAIN PAGE ===== -->
           <div ng-if="!browse.browseService.isBrowsing && !browse.browseService.isSearching">
             <div
@@ -71,12 +66,8 @@
 
           <!-- ====== BROWSE ===== -->
           <div ng-if="browse.browseService.isBrowsing && !browse.browseService.isSearching">
-           
-            <!-- ====== LIST PAGE ===== -->
-            <div ng-if="!browse.browseService.info">
-              <div id="browse-page" class="browse__browse-page"></div>
-            </div>
 
+            <!-- Custom view headers -->
             <div ng-if="browse.browseService.info">
               
               <!-- ====== ARTIST PAGE ===== -->
@@ -88,22 +79,18 @@
 
               <!-- ====== ALBUM PAGE ===== -->
               <div
-                  ng-if="browse.browseService.info.type === 'album'"
+                  ng-if="browse.browseService.info.type === 'album' || browse.browseService.info.type === 'song' || browse.browseService.info.type === 'playlist'"
                   ng-include
                   src="'app/browse-music/components/browse-album.html'">
-              </div> <!-- /ALBUM PAGE -->
-             
-              <div
-                  ng-if="browse.browseService.info.type !== 'album' && browse.browseService.info.type !== 'artist'"
-                  ng-include
-                  src="'app/browse-music/components/browse-album.html'">
-              </div>
+              </div> <!-- /ALBUM AND PLAYLIST PAGE -->
 
             </div>
 
           </div> <!-- /BROWSE -->
-
-
+          
+          <!-- Content -->
+          
+          <div id="browse-page"></div>
 
         </div>
       </div> <!-- /.body-content -->

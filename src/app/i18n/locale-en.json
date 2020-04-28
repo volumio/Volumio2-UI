@@ -110,7 +110,8 @@
     "SKIP_BACKWARDS": "Skip Backwards",
     "SKIP_FORWARD": "Skip Forward",
     "CREDITS":"Credits",
-    "READ_MORE": "Read more"
+    "READ_MORE": "Read more",
+    "NO_ITEMS": "No items",
   },
   "MY_MUSIC": {
     "UPDATE": "Update",

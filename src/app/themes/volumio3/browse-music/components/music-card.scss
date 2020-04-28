@@ -9,13 +9,24 @@
     background: rgba(0, 0, 0, .6)
 }
 
-.music-card__img {
+.music-card__img,
+.music-card__img-icon {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     display: block;
+}
+.music-card__img-icon {
+    background: rgba(20,20,20,.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .fa {
+        font-size: 50px;
+    }
 }
 .music-card__overlay {
     position: absolute;

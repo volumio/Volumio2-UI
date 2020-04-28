@@ -33,20 +33,7 @@ class BrowseMusicController {
     }
     $scope.$on('browseService:fetchEnd', () => {
       // this.renderBrowseTable();
-
-      /* 
-      
-      
-      FIX IT -> DOES NOT RENDER LISTS IN CORRECT TIME
-      
-      
-      */
-      if (!this.browseService.info || (this.browseService.info.type !== 'artist' && this.browseService.info.type !== 'album')) {
-        let timeout = setTimeout(() => {
-          this.renderBrowsePage(this.browseService.lists);
-          clearTimeout(timeout);
-        }, 50);
-      }
+     this.renderBrowsePage(this.browseService.lists);
     });
 
     this.initController();
@@ -73,7 +60,6 @@ class BrowseMusicController {
       }
     }, true); */
   }
-
 
 
   fetchLibrary(item, back = false) {
@@ -365,12 +351,7 @@ class BrowseMusicController {
       <h3 class="main__source__title panel-title ${ !list.title ? 'hidden' : '' }">${ list.title || '' }</h3>
       <div class="${showGridView && canShowGridView ? 'main__row' : 'main__list'}">
         ${ items }
-        <div class="music-card__wrapper placeholder-wrapper"></div>
-        <div class="music-card__wrapper placeholder-wrapper"></div>
-        <div class="music-card__wrapper placeholder-wrapper"></div>
-        <div class="music-card__wrapper placeholder-wrapper"></div>
-        <div class="music-card__wrapper placeholder-wrapper"></div>
-        <div class="music-card__wrapper placeholder-wrapper"></div>
+        ${ items.length === 0 ? '<h3 class="text-center panel-title ">No items</h3>' : '' }
       </div> <!-- /.main__row -->
     </div> <!-- /.main__source -->
     `;
@@ -387,6 +368,10 @@ class BrowseMusicController {
                 class="music-card__img ${ !item.albumart ? 'hidden' : '' }"
                 src="${this.playerService.getAlbumart(item.albumart)}"
                 alt="">
+            <div
+              class="music-card__img-icon ${ !item.icon ? 'hidden' : '' }">
+              <i class="${ item.icon }"></i>
+            </div>
             <div
                 class="music-card__overlay">
                 <div class="meta__genre">${ item.genre || '' }</div>
@@ -436,14 +421,24 @@ class BrowseMusicController {
       </div>
     </div>
     `);
-    return html.join('');
+    let joinItems = html.join('');
+    /* Add placeholder items for correct sizing */
+    joinItems += `
+      <div class="music-card__wrapper placeholder-wrapper"></div>
+      <div class="music-card__wrapper placeholder-wrapper"></div>
+      <div class="music-card__wrapper placeholder-wrapper"></div>
+      <div class="music-card__wrapper placeholder-wrapper"></div>
+      <div class="music-card__wrapper placeholder-wrapper"></div>
+      <div class="music-card__wrapper placeholder-wrapper"></div>
+    `;
+    return joinItems;
   }
 
   renderListItems(items, listIndex) {
     let angularThis = `angular.element('#browse-page').scope().browse`;
     const html = items.map((item, itemIndex) => `
       <div class="album__tracks">
-        <div class="music-item" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+        <div class="music-item ${ item.type === 'title' ? 'title' : '' }" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
           <div
             onclick="${angularThis}.preventBubbling(event)"
             class="item__play ${ !this.showPlayButton(item) ? 'hidden' : '' }">
@@ -458,6 +453,10 @@ class BrowseMusicController {
               <div class="item__number ${ item.tracknumber && !item.albumart ? '' : 'hidden' }">${ item.tracknumber }.</div>
               <div class="item__albumart ${ !item.albumart ? 'hidden' : '' }">
                   <img class="item__image__img" src="${this.playerService.getAlbumart(item.albumart)}" alt="">
+              </div>
+              <div
+                class="item__albumart-icon ${ !item.icon ? 'hidden' : '' }">
+                <i class="${ item.icon }"></i>
               </div>
           </div>
 

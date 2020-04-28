@@ -99,21 +99,5 @@
                 alt="image">
         </div>
     </div> <!-- /.album__header -->
-    <div
-        ng-repeat="album in browse.browseService.lists track by $index"
-        ng-init="$listIndex = $index"
-        class="main__source">
-        <div class="page__album">
-            <div class="album__body">
-                <div
-                    ng-repeat="item in album.items track by $index"
-                    class="album__tracks"
-                    ng-include
-                    src="'app/browse-music/components/music-item.html'">
-                </div> <!-- /.album__tracks -->
-            </div>
-        </div>
-
-    </div> <!-- /.main__source -->
 
 </div> <!-- /. browse__browse-page -->
