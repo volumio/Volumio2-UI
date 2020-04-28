@@ -18,14 +18,13 @@
                             </button>
                             <h1 class="header__artist">{{ browse.browseService.info.title }}</h1>
                         </div> <!-- /.header__play -->
-
                         <div
                             ng-bind-html="browse.currentItemMetas.story"
                             class="artist-description">
                         </div>
                         <div
-                          ng-if="browse.currentItemMetas.story"
-                          class="artist-description__read-more">
+                            ng-if="browse.currentItemMetas.story"
+                            class="artist-description__read-more">
                             <button
                                 ng-click="browse.showCreditsDetails({'title':browse.browseService.info.title,'story':browse.currentItemMetas.story})"
                                 class="artist-description__read-more-btn">
@@ -35,9 +34,9 @@
                                 </span>
                             </button>
                         </div>
-                        <!--
+                        
                         <div class="header__meta">
-                            <span ng-if="browse.mockArtistPage.info.genre">{{ browse.mockArtistPage.info.genre }}</span>
+                            <!-- <span ng-if="browse.mockArtistPage.info.genre">{{ browse.mockArtistPage.info.genre }}</span>
                             <span ng-if="browse.mockArtistPage.info.genre &&  (browse.mockArtistPage.info.local_albums || browse.mockArtistPage.info.streaming_albums)" class="header__meta__spacer"> • </span>
                             <span ng-if="browse.mockArtistPage.info.local_albums">
                                 {{ browse.mockArtistPage.info.local_albums }} local
@@ -45,9 +44,9 @@
                             <span ng-if="browse.mockArtistPage.info.local_albums && browse.mockArtistPage.info.streaming_albums">and</span>
                             <span ng-if="browse.mockArtistPage.info.streaming_albums">
                                 {{ browse.mockArtistPage.info.streaming_albums }} streaming releases
-                            </span>
+                            </span> -->
                         </div>
-                        -->
+                       
                     </div> <!-- /.header__info -->
                     <div class="header__actions">
                         <!--
@@ -76,6 +75,24 @@
 
             </div> <!-- header__content__inner -->
         </div> <!-- /.header__content -->
+
+        <div
+            uib-dropdown
+            on-toggle="browse.toggledItem(open, $event)"
+            class="header__mobile-actions hamburgerMenu">
+            <button id="hamburgerMenuBtn-album-artist" class="ghost-btn action-btn" uib-dropdown-toggle>
+            <i class="fa fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu buttonsGroup align-to-right">
+                <li
+                    ng-click="browse.addToQueue(browse.browseService.info)"
+                    title="{{'BROWSER.ADD_TO_QUEUE' | translate}}">
+                <a href><i class="fa fa-list"></i><span translate="BROWSER.ADD_TO_QUEUE"></span></a></a>
+                </li>
+            </ul>
+        </div>
+
+
         <div
             class="header__backdrop">
             <img src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}" alt="Artist image">

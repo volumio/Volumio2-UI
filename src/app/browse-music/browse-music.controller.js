@@ -33,9 +33,20 @@ class BrowseMusicController {
     }
     $scope.$on('browseService:fetchEnd', () => {
       // this.renderBrowseTable();
-      this.content = {};
-      const uniqueKey = Date.now();
-      this.content[uniqueKey] = this.browseService.lists;
+
+      /* 
+      
+      
+      FIX IT -> DOES NOT RENDER LISTS IN CORRECT TIME
+      
+      
+      */
+      if (!this.browseService.info || (this.browseService.info.type !== 'artist' && this.browseService.info.type !== 'album')) {
+        let timeout = setTimeout(() => {
+          this.renderBrowsePage(this.browseService.lists);
+          clearTimeout(timeout);
+        }, 50);
+      }
     });
 
     this.initController();
@@ -97,6 +108,21 @@ class BrowseMusicController {
     return ret;
   }
 
+  showAddToQueueButton(item) {
+    let ret = item.type === 'folder' || item.type === 'song' ||
+        item.type === 'mywebradio' || item.type === 'webradio' ||
+        item.type === 'playlist' || item.type === 'remdisk' ||
+        item.type === 'cuefile' || item.type === 'folder-with-favourites' ||
+        item.type === 'internal-folder';
+    return ret;
+  }
+  showAddToPlaylist(item) {
+    let ret = item.type === 'folder' || item.type === 'song' ||
+    item.type === 'remdisk' || item.type === 'folder-with-favourites' ||
+    item.type === 'internal-folder';
+    return ret;
+  }
+
   showCreditsDetails(details) {
     const templateUrl = 'app/browse-music/components/modal/modal-credits-details.html';
     const controller = 'ModalCreditsDetailsController';
@@ -136,6 +162,12 @@ class BrowseMusicController {
       return;
     }
     this.playlistService.addToFavourites(item);
+  }
+  
+  addToFavoritesByIndex(e, listIndex, itemIndex) {
+    e.stopPropagation();
+    const item = this.browseService.lists[listIndex].items[itemIndex];
+    this.addToFavorites(null, item);
   }
 
   fetchAdditionalMetas() {
@@ -206,6 +238,11 @@ class BrowseMusicController {
     this.play(item);
   }
 
+  playRenderedMusicCardClick(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
+    this.play(item);
+  }
+
   play(item) {
     return this.playQueueService.addPlay(item);
   }
@@ -249,7 +286,27 @@ class BrowseMusicController {
     /* $scope.status.isopen = !$scope.status.isopen; */
   }
 
-  openMusicCardContenxtList(e, item, listIndex, itemIndex) {
+  clickListItem(item, list, itemIndex) {
+    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
+      this.fetchLibrary(item);
+    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
+      this.play(item, list, itemIndex);
+    } else if (item.type === 'cuesong') {
+      this.playQueueService.addPlayCue(item);
+    } else if (item.type === 'cd') {
+      this.playQueueService.replaceAndPlay(item);
+    } else if ( item.type === 'play-playlist') {
+      this.playQueueService.playPlaylist({title: item.name});
+    }
+  }
+
+  clickListItemByIndex(listIndex, itemIndex) {
+    let item = this.browseService.lists[listIndex].items[itemIndex];
+    let list = this.browseService.lists[listIndex].items;
+    this.clickListItem(item, list, itemIndex);
+  }
+
+  openMusicCardContenxtList(e, listIndex, itemIndex) {
     e.stopPropagation();
     let hamburgerMenuMarkup = `
       <div
@@ -284,6 +341,179 @@ class BrowseMusicController {
     } else {
       this.fetchLibrary({ uri: item.uri });
     }
+  }
+
+  renderBrowsePage(lists) {
+    const html = lists.map((list, listIndex) => this.renderList(list, listIndex));
+    const page = document.getElementById('browse-page');
+    page.innerHTML = html.join('');
+  }
+
+  renderList(list, listIndex) {
+    const canShowGridView = this.browseService.canShowGridView(list);
+    const showGridView = this.browseService.showGridView;
+    let items = '';
+    if(showGridView && canShowGridView) {
+      items = this.renderMusicCardItems(list.items, listIndex);
+    } else {
+      items = this.renderListItems(list.items, listIndex);
+    }
+    
+    const html = `
+    <div
+      class="main__source">
+      <h3 class="main__source__title panel-title ${ !list.title ? 'hidden' : '' }">${ list.title || '' }</h3>
+      <div class="${showGridView && canShowGridView ? 'main__row' : 'main__list'}">
+        ${ items }
+        <div class="music-card__wrapper placeholder-wrapper"></div>
+        <div class="music-card__wrapper placeholder-wrapper"></div>
+        <div class="music-card__wrapper placeholder-wrapper"></div>
+        <div class="music-card__wrapper placeholder-wrapper"></div>
+        <div class="music-card__wrapper placeholder-wrapper"></div>
+        <div class="music-card__wrapper placeholder-wrapper"></div>
+      </div> <!-- /.main__row -->
+    </div> <!-- /.main__source -->
+    `;
+    return html;
+  }
+
+  renderMusicCardItems(items, listIndex) {
+    let angularThis = `angular.element('#browse-page').scope().browse`;
+    const html = items.map((item, itemIndex) => `
+    <div class="music-card__wrapper">
+      <div class="music-card" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+        <div class="music-card__header">
+            <img
+                class="music-card__img ${ !item.albumart ? 'hidden' : '' }"
+                src="${this.playerService.getAlbumart(item.albumart)}"
+                alt="">
+            <div
+                class="music-card__overlay">
+                <div class="meta__genre">${ item.genre || '' }</div>
+                <div
+                    onclick="${angularThis}.preventBubbling(event)"
+                    class="meta__actions ${
+                        ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
+                    }">
+                    <button
+                        id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
+                        onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
+                        class="ghost-btn action-btn">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div
+                  class="meta__play ${ !this.showPlayButton(item) ? 'hidden' : '' }"
+                  onclick="${angularThis}.preventBubbling(event)">
+                    <button
+                        onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
+                        class="ghost-btn play-btn">
+                        <i class="fa fa-play play-btn__icon"></i>
+                    </button>
+                </div>
+                <div
+                    onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
+                    class="meta__favorite ${
+                      this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
+                    } ${
+                      item.favorite ? 'favorited' : ''
+                    }">
+                    <span class="meta__favorite-heart">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="music-card__info">
+            <div
+                class="music-card__label ${ item.qualityDescription === 'HI_RES' ? 'mr-2' : '' }"
+                title="${ item.title || '' }">
+                    ${ item.title || '' }
+            </div>
+            ${ item.qualityDescription === 'HI_RES' ? '<img class="music-card__extension" src="app/assets-common/hi-res-logo.jpg" alt="Hi res audio">' : '' }
+        </div>
+        <p class="music-card__meta">${ item.meta || (item.artist || '') }</p>
+      </div>
+    </div>
+    `);
+    return html.join('');
+  }
+
+  renderListItems(items, listIndex) {
+    let angularThis = `angular.element('#browse-page').scope().browse`;
+    const html = items.map((item, itemIndex) => `
+      <div class="album__tracks">
+        <div class="music-item" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+          <div
+            onclick="${angularThis}.preventBubbling(event)"
+            class="item__play ${ !this.showPlayButton(item) ? 'hidden' : '' }">
+              <button
+                  onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
+                  class="ghost-btn play-btn">
+                  <i class="fa fa-play play-btn__icon"></i>
+              </button>
+          </div>
+
+          <div class="item__image">
+              <div class="item__number ${ item.tracknumber && !item.albumart ? '' : 'hidden' }">${ item.tracknumber }.</div>
+              <div class="item__albumart ${ !item.albumart ? 'hidden' : '' }">
+                  <img class="item__image__img" src="${this.playerService.getAlbumart(item.albumart)}" alt="">
+              </div>
+          </div>
+
+          <div class="item__info">
+              <div class="item__title truncate-text" title="${ item.title || '' }">
+                  ${ item.title || '' }
+              </div>
+              <div class="item__album truncate-text ${ !item.album ? 'hidden' : '' }" title="${ item.album || '' }">
+                  ${ item.album || '' }
+              </div>
+              <div class="item__info__separator ${ !item.album || !item.artist ? 'hidden' : '' }">
+                  •
+              </div>
+              <div class="item__artist truncate-text ${ !item.artist ? 'hidden' : '' }" title="${ item.artist || '' }">
+                  ${ item.artist || '' }
+              </div>
+          </div>
+
+          <div
+              onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
+              class="item__favorite ${
+                this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
+              } ${
+                item.favorite ? 'favorited' : ''
+              }">
+              <span class="item__favorite-heart">
+                  <i class="fa fa-heart"></i>
+              </span>
+          </div>
+        
+          <div
+              class="item__duration ${ !item.duration ? 'hidden' : '' }">
+                  ${ this.timeFormat(item.duration) }
+          </div>
+
+          <div
+              onclick="${angularThis}.preventBubbling(event)"
+              class="item__actions ${
+                  ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
+              }">
+              <button
+                  id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
+                  onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
+                  class="ghost-btn action-btn">
+                  <i class="fa fa-ellipsis-v"></i>
+              </button>
+          </div>
+      </div>
+    </div>
+    `);
+    return html.join('');
+  }
+
+  toggleGridView() {
+    this.browseService.toggleGridView();
+    this.renderBrowsePage(this.browseService.lists);
   }
 
   /* changeListViewSetting(view) {

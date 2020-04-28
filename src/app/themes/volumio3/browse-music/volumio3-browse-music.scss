@@ -107,8 +107,8 @@
 }
 
 #browse .panel .body-content.new-browse {
-    top: 55px;
-    height: calc( 100% - 56px);
+    top: 73px;
+    height: calc( 100% - 74px);
 }
 
 @media (min-width: 768px) and (max-width: 990px) {
@@ -119,7 +119,7 @@
     }
 
     .music-card__wrapper {
-        flex: 1 0 calc((100% / 4) - 10px);
+        flex: 0 0 calc((100% / 4) - 10px);
         &:not(:nth-child(4n)) {
             margin-right: 12px;
         }
@@ -142,7 +142,7 @@
 
 @media (min-width: 991px) {
     .music-card__wrapper {
-        flex: 1 0 calc((100% / 6) - 10px);
+        flex: 0 0 calc((100% / 6) - 10px);
         min-width: 0px;
         &:not(:nth-child(6n)) {
             margin-right: 12px;
@@ -158,8 +158,8 @@
         }
     }
     #browse .panel .body-content.new-browse {
-        top: 75px;
-        height: calc( 100% - 75px);
+        top: 74px;
+        height: calc( 100% - 74px);
     }
 }
 
@@ -177,7 +177,7 @@
 .header__content {
     position: relative;
     z-index: 1;
-    background: linear-gradient(0deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.3) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(0,0,0,.3) 100%);
 }
 
 .header__content__inner {
@@ -214,6 +214,7 @@
     align-items: flex-start;
     flex-wrap: wrap;
     .artist-description {
+        order: 3;
         flex: 0 0 100%;
         position: relative;
         max-width: 600px;
@@ -221,9 +222,12 @@
         overflow: hidden;
         -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 80px), transparent calc(100% - 4px));
         mask-image: linear-gradient(to bottom, black calc(100% - 80px), transparent calc(100% - 4px));
+        margin-bottom: 8px;
     }
     .artist-description__read-more {
+        order: 4;
         flex: 0 0 100%;
+        margin-bottom: 16px;
     }
     .artist-description__read-more-btn {
         display: flex;
@@ -237,6 +241,8 @@
         margin-right: 12px;
     }
     .header__meta {
+        order: 2;
+        margin-bottom: 16px;
         flex: 0 0 100%;
         align-self: flex-end;
         color: $theme-light-color;
@@ -251,6 +257,7 @@
 
 .header__actions {
     flex: 0 0 180px;
+    display: none;
 }
 
 .header__action-btn {
@@ -281,6 +288,16 @@
     }
 }
 
+.header__mobile-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    .ghost-btn {
+        font-size: 20px;
+    }
+}
+
 .header__footer {
     display: flex;
     align-items: flex-end;
@@ -288,6 +305,7 @@
 }
 
 .header__play {
+    order: 1;
     flex: 1 1 100%;
     display: flex;
     flex-direction: column;
@@ -304,6 +322,7 @@
 }
 
 .header__play-btn {
+    flex-shrink: 0;
     display: flex;
     width: 52px;
     height: 52px;
@@ -384,7 +403,7 @@
 
     .header__main {
         display: flex;
-        margin: 0 32px 12px 0;
+        margin: 0 0 12px 0;
     }
 
     .header__info {
@@ -405,7 +424,7 @@
         flex: 1 1 auto;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         justify-content: flex-start;
         margin-bottom: 24px;
         text-align: left;
@@ -416,9 +435,21 @@
         order: 0;
     }
 
+    .header__artist {
+        padding-top: 8px;
+    }
+
+    .header__actions {
+        display: block;
+    }
+
+    .header__mobile-actions {
+        display: none;
+    }
+
 }
 
-@media (min-width: 991px) {
+@media (min-width: 1140px) {
     .header__image {
         margin-right: 64px;
     }
