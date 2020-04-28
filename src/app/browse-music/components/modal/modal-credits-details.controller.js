@@ -8,6 +8,9 @@ class ModalCreditsDetailsController {
     cancel() {
       this.$uibModalInstance.dismiss('cancel');
     }
+
+    showCreditLink(uri, title) {
+    }
   }
 
   export default ModalCreditsDetailsController;

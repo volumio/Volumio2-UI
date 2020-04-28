@@ -18,6 +18,14 @@
             </td>
             <td class="album-credits-title">
               <p
+              ng-if="creditItem.uri.indexOf('mbid:/artist/') > -1"
+              ng-click="modal.showCreditLink(creditItem.uri, creditItem.name)"
+              ng-repeat="creditItem in creditRow.values track by $index"
+              class="album-credits-row">
+              {{creditItem.name}}
+              </p>
+              <p
+              ng-if="creditItem.uri.indexOf('mbid:/artist/') === -1"
               ng-repeat="creditItem in creditRow.values track by $index"
               class="album-credits-row">
               {{creditItem.name}}
