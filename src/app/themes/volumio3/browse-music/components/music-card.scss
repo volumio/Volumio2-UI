@@ -183,18 +183,19 @@
     }
 }
 
-
-.music-card {
-    &:hover {
-        cursor: pointer;
-        .music-card__overlay {
-            background-color: rgba(0, 0, 0, .6);
-        }
-        .meta__genre,
-        .action-btn,
-        .meta__play,
-        .meta__favorite {
-            opacity: 1;
+@media (min-width: 768px) {
+    .music-card {
+        &:hover {
+            cursor: pointer;
+            .music-card__overlay {
+                background-color: rgba(0, 0, 0, .6);
+            }
+            .meta__genre,
+            .action-btn,
+            .meta__play,
+            .meta__favorite {
+                opacity: 1;
+            }
         }
     }
 }

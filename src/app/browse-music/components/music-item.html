@@ -1,7 +1,8 @@
-<div class="music-item" ng-click="browse.playAlbumItemClick(item, album.items, $index)">
-    <div class="item__play">
+<div class="music-item" ng-click="browse.fetchLibrary(item)">
+    <div
+        ng-if="browse.showPlayButton(item)"
+        class="item__play">
         <button
-            ng-if="browse.showPlayButton(item)"
             ng-click="browse.playAlbumItemClick(item, album.items, $index)"
             class="ghost-btn play-btn">
             <i class="fa fa-play play-btn__icon"></i>
@@ -17,7 +18,7 @@
 
     <div class="item__info">
         <div class="item__title truncate-text" title="{{ item ? item.title : 'Example' }}">
-            {{ item ? item.title : 'n.a.' }}
+            {{ item.title ? item.title : item.name || '' }}
         </div>
         <div ng-if="item.album" class="item__album truncate-text" title="{{ item.album ? item.album : 'Example album' }}">
             {{ item.album }}
@@ -47,6 +48,7 @@
     </div>
 
     <div
+        ng-if="!item.name"
         ng-click="browse.preventBubbling($event)"
         class="item__actions {{
             (item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu')

@@ -28,25 +28,21 @@ class BrowseMusicController {
     this.$http = $http;
     this.content = {};
 
-    if (this.browseService.isBrowsing || this.browseService.isSearching) {
-      // this.renderBrowseTable();
-    }
     $scope.$on('browseService:fetchEnd', () => {
-      // this.renderBrowseTable();
-     this.renderBrowsePage(this.browseService.lists);
+      this.renderBrowsePage(this.browseService.lists);
     });
 
     this.initController();
   }
 
   initController() {
-    /* I receive it also when I search */
+    
     this.socketService.on('pushBrowseLibrary', (data) => {
       this.fetchAdditionalMetas();
-      console.log(this.browseService);
+      // console.log(this.browseService);
     });
 
-    /* let bindedBackListener = this.backListener.bind(this);
+    let bindedBackListener = this.backListener.bind(this);
     this.$document[0].addEventListener('keydown', bindedBackListener, false);
     this.$scope.$on('$destroy', () => {
       this.$document[0].removeEventListener('keydown', bindedBackListener, false);
@@ -58,7 +54,57 @@ class BrowseMusicController {
       } else {
         this.unsetDedicatedSearch();
       }
-    }, true); */
+    }, true);
+  }
+
+  setDedicatedSearch(){
+    this.isDedicatedSearchView = true;
+    this.browseService.isSearching = true;
+    this.browseService.lists = [];
+    this.$timeout( function () {
+      document.querySelector('#search-input-form').focus();
+    },100 );
+  }
+
+  unsetDedicatedSearch(){
+    if (this.browseService.isSearching) {
+      this.isDedicatedSearchView = false;
+      this.browseService.isSearching = false;
+      if (!this.browseService.isBrowsing) {
+        this.browseService.lists = undefined;
+      } else if (this.browseService.lastBrowseLists) {
+        this.browseService.lists = this.browseService.lastBrowseLists;
+      }
+    }
+
+  }
+
+  backListener() {
+    let prventDefault;
+    if (event.keyCode === 8) {
+      let d = event.srcElement || event.target;
+      if ((d.tagName.toUpperCase() === 'INPUT' &&
+          (
+             d.type.toUpperCase() === 'TEXT' ||
+             d.type.toUpperCase() === 'PASSWORD' ||
+             d.type.toUpperCase() === 'FILE' ||
+             d.type.toUpperCase() === 'SEARCH' ||
+             d.type.toUpperCase() === 'EMAIL' ||
+             d.type.toUpperCase() === 'NUMBER' ||
+             d.type.toUpperCase() === 'DATE')
+          ) ||
+          d.tagName.toUpperCase() === 'TEXTAREA') {
+        prventDefault = d.readOnly || d.disabled;
+      } else {
+        prventDefault = true;
+      }
+    }
+    if (prventDefault) {
+      event.preventDefault();
+      if (this.browseService.breadcrumbs) {
+        this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
+      }
+    }
   }
 
 
@@ -70,6 +116,7 @@ class BrowseMusicController {
   }
 
   backHome() {
+    this.resetBrowsePage();
     this.searchField = '';
     this.browseService.backHome();
   }
@@ -80,6 +127,82 @@ class BrowseMusicController {
     } else {
       this.backHome();
     }
+  }
+
+
+
+
+  addWebRadio(item) {
+    let
+      templateUrl = 'app/browse/components/modal/modal-web-radio.html',
+      controller = 'ModalWebRadioController',
+      params = {
+        title: 'Add web radio',
+        item: item
+      };
+    this.modalService.openModal(
+      controller,
+      templateUrl,
+      params,
+      'sm');
+  }
+
+  editWebRadio(item) {
+    this.addWebRadio(item);
+  }
+
+  safeRemoveDrive(item) {
+    this.socketService.emit('safeRemoveDrive', item);
+  }
+
+  updateFolder(item) {
+    this.socketService.emit('updateDb', item);
+  }
+
+  deleteFolder(curUri, item) {
+    this.socketService.emit('deleteFolder', {'curUri':curUri, 'item':item});
+  }
+
+  search() {
+    if (this.searchField && this.searchField.length >= 3) {
+      this.browseService.isSearching = true;
+      if (this.searchTimeoutHandler) {
+        this.$timeout.cancel(this.searchTimeoutHandler);
+      }
+      this.searchTimeoutHandler = this.$timeout(() => {
+        let emitPayload = {};
+        if (this.isDedicatedSearchView) {
+          emitPayload = {
+            type: this.browseService.filterBy,
+            value: this.searchField
+          };
+        } else {
+          emitPayload = {
+            type: this.browseService.filterBy,
+            value: this.searchField,
+            plugin_name: this.browseService.currentFetchRequest.plugin_name,
+            plugin_type: this.browseService.currentFetchRequest.plugin_type,
+            uri: this.browseService.currentFetchRequest.uri,
+            service: this.browseService.currentFetchRequest.service
+          };
+        }
+        this.$log.debug('search', emitPayload);
+        this.socketService.emit('search', emitPayload);
+      }, 600, false);
+    } else {
+      this.browseService.isSearching = false;
+      this.browseService.lists = [];
+    }
+  }
+
+  searchSubmit($event) {
+    $event.preventDefault(); // Search has been done on input change, so don't submit
+    this.$document[0].activeElement.blur(); // blur the input so that iOS keyboard closes
+  }
+
+  showHamburgerMenu(item) {
+    let ret = item.type === 'radio-favourites' || item.type === 'radio-category';
+    return !ret;
   }
 
   showPlayButton(item) {
@@ -237,6 +360,14 @@ class BrowseMusicController {
     return this.playQueueService.add(item);
   }
 
+  replaceAndPlay(item) {
+    if (item.type === 'cuesong') {
+      this.playQueueService.replaceAndPlayCue(item);
+    } else {
+      this.playQueueService.replaceAndPlay(item);
+    }
+  }
+
   addToPlaylist(item) {
     //TODO this is not necessary
     this.playlistService.refreshPlaylists();
@@ -327,6 +458,11 @@ class BrowseMusicController {
     } else {
       this.fetchLibrary({ uri: item.uri });
     }
+  }
+
+  resetBrowsePage() {
+    const page = document.getElementById('browse-page');
+    page.innerHTML = '';
   }
 
   renderBrowsePage(lists) {

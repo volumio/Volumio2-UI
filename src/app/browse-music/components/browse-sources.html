@@ -1,0 +1,9 @@
+<div class="main__list">
+    <div
+        ng-repeat="item in browse.browseService.sources track by item.uri"
+        class="album__tracks"
+        ng-include
+        hideRadio="true"
+        src="'app/browse-music/components/music-item.html'">
+    </div> <!-- /.music-card__wrapper -->
+</div> <!-- /.main__row -->
