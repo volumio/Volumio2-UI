@@ -120,6 +120,18 @@
 #browse .panel .body-content.new-browse {
     top: 73px;
     height: calc( 100% - 74px);
+    display: flex;
+    overflow: hidden;
+}
+
+#browseTablesWrapper {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll !important;
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 990px) {

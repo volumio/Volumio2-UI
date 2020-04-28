@@ -39,7 +39,7 @@ class BrowseMusicController {
     
     this.socketService.on('pushBrowseLibrary', (data) => {
       this.fetchAdditionalMetas();
-      // console.log(this.browseService);
+      console.log(this.browseService);
     });
 
     let bindedBackListener = this.backListener.bind(this);
@@ -201,7 +201,7 @@ class BrowseMusicController {
   }
 
   showHamburgerMenu(item) {
-    let ret = item.type === 'radio-favourites' || item.type === 'radio-category';
+    let ret = item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category';
     return !ret;
   }
 
@@ -468,7 +468,13 @@ class BrowseMusicController {
   renderBrowsePage(lists) {
     const html = lists.map((list, listIndex) => this.renderList(list, listIndex));
     const page = document.getElementById('browse-page');
+    page.style.display = 'none';
     page.innerHTML = html.join('');
+
+    this.$timeout(() => {
+      this.$rootScope.$broadcast('browseController:listRendered');
+      page.style.display = 'block';
+    }, 0, false);
   }
 
   renderList(list, listIndex) {
@@ -514,7 +520,7 @@ class BrowseMusicController {
                 <div
                     onclick="${angularThis}.preventBubbling(event)"
                     class="meta__actions ${
-                        ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
+                        ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
                     }">
                     <button
                         id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
@@ -631,7 +637,7 @@ class BrowseMusicController {
           <div
               onclick="${angularThis}.preventBubbling(event)"
               class="item__actions ${
-                  ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
+                  ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
               }">
               <button
                   id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
