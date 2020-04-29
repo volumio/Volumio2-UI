@@ -16,7 +16,7 @@ class MainMenuDirective {
 }
 
 class MainMenuController {
-  constructor($rootScope, $state, $scope, $location, $window, socketService, authService, browseService, themeManager, $log, modalService) {
+  constructor($rootScope, $state, $scope, $location, $window, socketService, authService, browseService, themeManager, $log, modalService, playerService) {
     'ngInject';
     this.$state = $state;
     this.$rootScope = $rootScope;
@@ -29,9 +29,9 @@ class MainMenuController {
     this.$log = $log;
     this.$window = $window;
     this.modalService = modalService;
-
     this.socketService = socketService;
     this.authService = authService;
+    this.playerService  = playerService;
     this.menuItems = [];
     this.menuItemsMainMenuLinks = [];
 
@@ -40,7 +40,7 @@ class MainMenuController {
     this.sources = [];
 
     this.premiumEnabled = false;
-    
+
     this.user = null;
 
     this.init();
