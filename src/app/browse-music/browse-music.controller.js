@@ -31,6 +31,9 @@ class BrowseMusicController {
     $scope.$on('browseService:fetchEnd', () => {
       this.renderBrowsePage(this.browseService.lists);
     });
+    $scope.$on('browseService:eject', () => {
+      this.resetBrowsePage();
+    });
 
     this.initController();
   }
@@ -659,6 +662,10 @@ class BrowseMusicController {
   toggleGridView() {
     this.browseService.toggleGridView();
     this.renderBrowsePage(this.browseService.lists);
+  }
+
+  isVolumio3Theme(){
+    return this.themeManager.theme === 'volumio3';
   }
 
   /* changeListViewSetting(view) {

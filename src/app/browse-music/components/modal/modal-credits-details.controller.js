@@ -10,7 +10,7 @@ class ModalCreditsDetailsController {
     }
 
     showCreditLink(uri, title) {
-      angular.element('#browse-page').scope().browse.showCreditLink(uri, title)
+      angular.element('#browse-page').scope().browse.showCreditLink(uri, title);
     }
   }
 
