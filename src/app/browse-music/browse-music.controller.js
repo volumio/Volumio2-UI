@@ -342,6 +342,10 @@ class BrowseMusicController {
     });
   }
 
+  showCreditLink(uri, title) {
+    console.log(uri, title);
+  }
+
   playMusicCardClick(e, item) {
     e.stopPropagation();
     this.play(item);

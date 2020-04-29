@@ -134,6 +134,13 @@
     }
 }
 
+.credit-clickable {
+    cursor: pointer;
+    &:hover {
+        color: $theme-primary-color;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 990px) {
 
     .browse__main-page,

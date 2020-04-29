@@ -21,7 +21,7 @@
               ng-if="creditItem.uri.indexOf('mbid:/artist/') > -1"
               ng-click="modal.showCreditLink(creditItem.uri, creditItem.name)"
               ng-repeat="creditItem in creditRow.values track by $index"
-              class="album-credits-row">
+              class="album-credits-row credit-clickable">
               {{creditItem.name}}
               </p>
               <p
