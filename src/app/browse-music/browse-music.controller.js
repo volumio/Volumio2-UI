@@ -39,10 +39,9 @@ class BrowseMusicController {
   }
 
   initController() {
-    
+
     this.socketService.on('pushBrowseLibrary', (data) => {
       this.fetchAdditionalMetas();
-      console.log(this.browseService);
     });
 
     let bindedBackListener = this.backListener.bind(this);
@@ -275,7 +274,7 @@ class BrowseMusicController {
     }
     this.playlistService.addToFavourites(item);
   }
-  
+
   addToFavoritesByIndex(e, listIndex, itemIndex) {
     e.stopPropagation();
     const item = this.browseService.lists[listIndex].items[itemIndex];
@@ -346,7 +345,23 @@ class BrowseMusicController {
   }
 
   showCreditLink(uri, title) {
-    console.log(uri, title);
+    let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
+    let metaObject = {
+      'endpoint': 'metavolumio',
+      'data': {}
+    };
+    if (uri.indexOf('mbid:/artist/') > -1) {
+      metaObject.data.mbid = uri.replace('mbid:/artist/', '');
+      metaObject.data.mode = 'storyArtist';
+    } else {
+      return;
+    }
+
+    return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+      if (response.data && response.data.success && response.data.data && response.data.data.value) {
+        return this.showCreditsDetails({'title': title, 'story': response.data.data.value});
+      }
+    });
   }
 
   playMusicCardClick(e, item) {
@@ -493,7 +508,7 @@ class BrowseMusicController {
     } else {
       items = this.renderListItems(list.items, listIndex);
     }
-    
+
     const html = `
     <div
       class="main__source">
@@ -635,7 +650,7 @@ class BrowseMusicController {
                   <i class="fa fa-heart"></i>
               </span>
           </div>
-        
+
           <div
               class="item__duration ${ !item.duration ? 'hidden' : '' }">
                   ${ this.timeFormat(item.duration) }
