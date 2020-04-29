@@ -111,7 +111,8 @@
     "SKIP_FORWARD": "Skip Forward",
     "CREDITS":"Credits",
     "READ_MORE": "Read more",
-    "NO_ITEMS": "No items"
+    "NO_ITEMS": "No items",
+    "NOT_FOUND": "Not found"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",
