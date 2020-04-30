@@ -354,9 +354,15 @@ class BrowseMusicController {
     if (uri.indexOf('mbid:/artist/') > -1) {
       metaObject.data.mbid = uri.replace('mbid:/artist/', '');
       metaObject.data.mode = 'storyArtist';
-      
       this.loadingCredit[uri] = true;
-
+    } else if (uri.indexOf('mbid:/label/') > -1) {
+      metaObject.data.mbid = uri.replace('mbid:/label/', '');
+      metaObject.data.mode = 'storyLabel';
+      this.loadingCredit[uri] = true;
+    } else if (uri.indexOf('mbid:/place/') > -1) {
+      metaObject.data.mbid = uri.replace('mbid:/place/', '');
+      metaObject.data.mode = 'storyPlace';
+      this.loadingCredit[uri] = true;
     } else {
       return;
     }

@@ -27,9 +27,15 @@ class ModalCreditsDetailsController {
       if (uri.indexOf('mbid:/artist/') > -1) {
         metaObject.data.mbid = uri.replace('mbid:/artist/', '');
         metaObject.data.mode = 'storyArtist';
-
         this.loadingCredit[uri + $index] = true;
-
+      } else if (uri.indexOf('mbid:/place/') > -1) {
+        metaObject.data.mbid = uri.replace('mbid:/place/', '');
+        metaObject.data.mode = 'storyPlace';
+        this.loadingCredit[uri + $index] = true;
+      } else if (uri.indexOf('mbid:/label/') > -1) {
+        metaObject.data.mbid = uri.replace('mbid:/label/', '');
+        metaObject.data.mode = 'storyLabel';
+        this.loadingCredit[uri + $index] = true;
       } else {
         return;
       }
@@ -59,6 +65,17 @@ class ModalCreditsDetailsController {
         params,
         'md'
       );
+    }
+
+    hasCreditLink(uri) {
+        if ((uri.indexOf('mbid:/artist/') > -1) ||
+           (uri.indexOf('mbid:/label/') > -1) ||
+           (uri.indexOf('mbid:/place/') > -1))
+        {
+          return true;
+        } else {
+          return false;
+        }
     }
   }
 

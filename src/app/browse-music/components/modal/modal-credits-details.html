@@ -19,7 +19,7 @@
             </td>
             <td class="album-credits-title">
               <p
-              ng-if="creditItem.uri.indexOf('mbid:/artist/') > -1"
+              ng-if="modal.hasCreditLink(creditItem.uri)"
               ng-click="modal.showCreditLink(creditItem.uri, creditItem.name, listIndex)"
               ng-repeat="creditItem in creditRow.values track by $index"
               class="album-credits-row credit-clickable"
@@ -32,10 +32,11 @@
               </span>
               <span
                 ng-class="{ 'hidden': !modal.unavailableCredits[creditItem.uri + listIndex] }"
-                class="credit-clickable__caption">{{ 'BROWSER.CREDITS_NOT_FOUND' | translate }}</span>
+                class="credit-clickable__caption">{{ 'BROWSER.CREDITS_NOT_FOUND' | translate }}
+              </span>
               </p>
               <p
-              ng-if="creditItem.uri.indexOf('mbid:/artist/') === -1"
+              ng-if="!modal.hasCreditLink(creditItem.uri)"
               ng-repeat="creditItem in creditRow.values track by $index"
               class="album-credits-row">
               {{creditItem.name}}
