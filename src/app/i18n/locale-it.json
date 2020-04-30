@@ -104,7 +104,8 @@
     "SKIP_BACKWARDS": "Salta Indietro",
     "SKIP_FORWARD": "Salta Avanti",
     "CREDITS":"Crediti",
-    "READ_MORE": "Leggi di più"
+    "READ_MORE": "Leggi di più",
+    "CREDITS_NOT_FOUND": "Crediti non trovati"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
