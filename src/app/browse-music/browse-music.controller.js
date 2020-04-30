@@ -27,6 +27,7 @@ class BrowseMusicController {
     this.mockAlbumPage = mockService._mock.browseMusic.getAlbumPageContent;
     this.$http = $http;
     this.content = {};
+    this.loadingCredit = {};
 
     $scope.$on('browseService:fetchEnd', () => {
       this.renderBrowsePage(this.browseService.lists);
@@ -353,12 +354,16 @@ class BrowseMusicController {
     if (uri.indexOf('mbid:/artist/') > -1) {
       metaObject.data.mbid = uri.replace('mbid:/artist/', '');
       metaObject.data.mode = 'storyArtist';
+      
+      this.loadingCredit[uri] = true;
+
     } else {
       return;
     }
 
     return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
       if (response.data && response.data.success && response.data.data && response.data.data.value) {
+        this.loadingCredit[uri] = false;
         return this.showCreditsDetails({'title': title, 'story': response.data.data.value});
       }
     });

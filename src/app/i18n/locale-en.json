@@ -112,7 +112,8 @@
     "CREDITS":"Credits",
     "READ_MORE": "Read more",
     "NO_ITEMS": "No items",
-    "NOT_FOUND": "Not found"
+    "NOT_FOUND": "Not found",
+    "CREDITS_NOT_FOUND": "Credits not found"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",

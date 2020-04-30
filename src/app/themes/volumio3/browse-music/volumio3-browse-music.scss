@@ -139,6 +139,25 @@
     &:hover {
         color: $theme-primary-color;
     }
+    &.disabled {
+        opacity: .5;
+        pointer-events: none;
+    }
+    .credit-clickable__caption {
+        display: block;
+        color: $theme-light-color;
+        font-size: 14px;
+    }
+    .credit-item-loader {
+        animation: rotateLoader 1.2s linear;
+        animation-iteration-count: infinite;
+        margin-right: 4px;
+    }
+}
+
+@keyframes rotateLoader {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
 }
 
 @media (min-width: 768px) and (max-width: 990px) {

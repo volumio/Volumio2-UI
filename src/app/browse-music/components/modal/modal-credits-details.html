@@ -12,6 +12,7 @@
         <table class="table">
           <tr
           ng-repeat="creditRow in modal.dataObj.credits track by $index"
+          ng-init="listIndex = $index"
           class="album-credits-row">
             <td class="album-credits-title">
               {{creditRow.key}}
@@ -19,10 +20,19 @@
             <td class="album-credits-title">
               <p
               ng-if="creditItem.uri.indexOf('mbid:/artist/') > -1"
-              ng-click="modal.showCreditLink(creditItem.uri, creditItem.name)"
+              ng-click="modal.showCreditLink(creditItem.uri, creditItem.name, listIndex)"
               ng-repeat="creditItem in creditRow.values track by $index"
-              class="album-credits-row credit-clickable">
-              {{creditItem.name}}
+              class="album-credits-row credit-clickable"
+              ng-class="{ 'disabled': modal.loadingCredit[creditItem.uri + listIndex] }">
+              <span>
+                <i
+                  ng-class="{ 'hidden': !modal.loadingCredit[creditItem.uri + listIndex] }"
+                  class="fa fa-refresh credit-item-loader"></i>
+                {{creditItem.name}}
+              </span>
+              <span
+                ng-class="{ 'hidden': !modal.unavailableCredits[creditItem.uri + $index] }"
+                class="credit-clickable__caption">{{ 'BROWSER.CREDITS_NOT_FOUND' | translate }}</span>
               </p>
               <p
               ng-if="creditItem.uri.indexOf('mbid:/artist/') === -1"
