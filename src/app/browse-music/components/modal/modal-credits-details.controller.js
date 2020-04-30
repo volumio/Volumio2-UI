@@ -27,13 +27,13 @@ class ModalCreditsDetailsController {
       if (uri.indexOf('mbid:/artist/') > -1) {
         metaObject.data.mbid = uri.replace('mbid:/artist/', '');
         metaObject.data.mode = 'storyArtist';
-        
+
         this.loadingCredit[uri + $index] = true;
-  
+
       } else {
         return;
       }
-  
+
       return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
         if (response.data && response.data.success && response.data.data && response.data.data.value) {
           this.loadingCredit[uri + $index] = false;

@@ -31,7 +31,7 @@
                 {{creditItem.name}}
               </span>
               <span
-                ng-class="{ 'hidden': !modal.unavailableCredits[creditItem.uri + $index] }"
+                ng-class="{ 'hidden': !modal.unavailableCredits[creditItem.uri + listIndex] }"
                 class="credit-clickable__caption">{{ 'BROWSER.CREDITS_NOT_FOUND' | translate }}</span>
               </p>
               <p
