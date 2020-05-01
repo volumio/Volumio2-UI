@@ -80,6 +80,12 @@
             </button>
             <ul class="dropdown-menu buttonsGroup align-to-right">
                 <li
+                    ng-if="browse.currentItemMetas.albumCredits"
+                    ng-click="browse.showAlbumCredits()"
+                    title="{{'BROWSER.CREDITS' | translate}}">
+                    <a href><i class="fa fa-info-circle"></i><span translate="BROWSER.CREDITS"></span></a>
+                </li>
+                <li
                     ng-click="browse.addToPlaylist(browse.browseService.info)"
                     title="{{'BROWSER.ADD_TO_PLAYLIST' | translate}}">
                     <a href><i class="fa fa-plus"></i><span translate="BROWSER.ADD_TO_PLAYLIST"></span></a>

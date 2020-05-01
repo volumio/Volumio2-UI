@@ -8,6 +8,7 @@
             class="music-card__overlay">
             <div class="meta__genre">{{ item && item.genre ? item.genre : '' }}</div>
             <div
+                ng-if="!item.name"
                 ng-click="browse.preventBubbling($event)"
                 class="meta__actions {{
                     (item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu')
@@ -43,8 +44,8 @@
         <div
             class="music-card__label"
             ng-class="{ 'mr-2': !!item.extensionIcon }"
-            title="{{ item ? item.title : 'Example' }}">
-                {{ item ? item.title : 'Example' }}
+            title="{{  item.title ? item.title : item.name }}">
+                {{  item.title ? item.title : item.name }}
         </div>
         <img ng-if="item.extensionIcon" class="music-card__extension" src="{{item.extensionIcon}}" alt="">
     </div>

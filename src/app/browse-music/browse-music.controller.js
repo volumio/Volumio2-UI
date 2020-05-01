@@ -121,6 +121,10 @@ class BrowseMusicController {
 
   fetchLibrary(item, back = false) {
     this.$log.debug(item);
+    if (item.uri === '/' && back) {
+      this.backHome();
+      return;
+    }
     if (item.uri !== 'cd') {
       this.browseService.fetchLibrary(item, back);
     }
