@@ -30,8 +30,16 @@ class BrowseMusicController {
     this.loadingCredit = {};
 
     $scope.$on('browseService:fetchEnd', () => {
+      /* While browsing this makes sense */
+      console.log(this.browseService);
       this.renderBrowsePage(this.browseService.lists);
     });
+
+    if (this.browseService.isBrowsing || this.browseService.isSearching) {
+      /* However when navigating back from /playback we need to rely on this */
+      this.renderBrowsePage(this.browseService.lists);
+    }
+
     $scope.$on('browseService:eject', () => {
       this.resetBrowsePage();
     });

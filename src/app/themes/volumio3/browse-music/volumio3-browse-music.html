@@ -40,28 +40,28 @@
 
 
           <!-- ====== BROWSE ===== -->
-          <div ng-if="browse.browseService.isBrowsing && !browse.browseService.isSearching">
+          <!-- <div ng-if="browse.browseService.isBrowsing && !browse.browseService.isSearching"> -->
 
-            <!-- Custom view headers -->
-            <div ng-if="browse.browseService.info">
-              
-              <!-- ====== ARTIST PAGE ===== -->
-              <div
-                  ng-if="browse.browseService.info.type === 'artist'"
-                  ng-include
-                  src="'app/browse-music/components/browse-artist.html'">
-              </div> <!-- /ARTIST PAGE -->
+          <!-- Custom view headers -->
+          <div ng-if="browse.browseService.info">
+            
+            <!-- ====== ARTIST PAGE ===== -->
+            <div
+                ng-if="browse.browseService.info.type === 'artist'"
+                ng-include
+                src="'app/browse-music/components/browse-artist.html'">
+            </div> <!-- /ARTIST PAGE -->
 
-              <!-- ====== ALBUM PAGE ===== -->
-              <div
-                  ng-if="browse.browseService.info.type === 'album' || browse.browseService.info.type === 'song' || browse.browseService.info.type === 'playlist'"
-                  ng-include
-                  src="'app/browse-music/components/browse-album.html'">
-              </div> <!-- /ALBUM AND PLAYLIST PAGE -->
+            <!-- ====== ALBUM PAGE ===== -->
+            <div
+                ng-if="browse.browseService.info.type === 'album' || browse.browseService.info.type === 'song' || browse.browseService.info.type === 'playlist'"
+                ng-include
+                src="'app/browse-music/components/browse-album.html'">
+            </div> <!-- /ALBUM AND PLAYLIST PAGE -->
 
-            </div>
+          </div>
 
-          </div> <!-- /BROWSE -->
+          <!-- </div> --> <!-- /BROWSE -->
           
           <!-- Content -->
           
