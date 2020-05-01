@@ -180,14 +180,14 @@
     "EDIT_DRIVE": "Editer un disque",
     "DELETE_DRIVE_CONFIRM": "Voulez vous vraiment effacer ?",
     "PLACEHOLDER_NAME": "Nom",
-    "PLACEHOLDER_IP_ADDRESS": "Address IP du NAS ou Nom",
+    "PLACEHOLDER_IP_ADDRESS": "Adresse IP du NAS ou Nom",
     "PLACEHOLDER_PATH_TO_SHARE": "Chemin du partage"
   },
   "NETWORK":{
     "NETWORK_STATUS": "Etat du réseau",
     "SSID": "SSID",
     "SIGNAL": "Signal",
-    "IP_ADDRESS": "Addresse IP",
+    "IP_ADDRESS": "Adresse IP",
     "SPEED": "Vitesse",
     "ONLINE": "Connecté",
     "CONNECT": "Connexion",
