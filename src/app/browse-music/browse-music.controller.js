@@ -303,7 +303,7 @@ class BrowseMusicController {
     if (this.browseService.info) {
       if (this.browseService.info.type && this.browseService.info.type === 'artist' && this.browseService.info.title) {
         this.getArtistMetas(this.browseService.info);
-      } else if (this.browseService.info.type && this.browseService.info.type === 'album' && this.browseService.info.artist && this.browseService.info.album) {
+      } else if (this.browseService.info.artist && this.browseService.info.album) {
         this.getAlbumMetas(this.browseService.info);
         this.getAlbumCredits(this.browseService.info);
       }
