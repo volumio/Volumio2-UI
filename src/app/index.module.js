@@ -100,6 +100,7 @@ import StaticPageController from './static-pages/static-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
+import BrowseMusicController from './browse-music/browse-music.controller';
 import PlaybackController from './playback/playback.controller';
 import PlayQueueController from './play-queue/play-queue.controller';
 
@@ -133,6 +134,7 @@ import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/mo
 import ModalCryptoController from './components/modals/modal-crypto.controller';
 import MyVolumioTermsModalController from './components/myvolumio/modals/myvolumio-terms-modal/myvolumio-terms-modal.controller';
 import MyVolumioPayingModalController from './components/myvolumio/modals/myvolumio-paying-modal/myvolumio-paying-modal.controller';
+import ModalCreditsDetailsController from './browse-music/components/modal/modal-credits-details.controller';
 
 
 //Core plugin controller
@@ -300,6 +302,7 @@ angular.module('volumio', [
   .component('pluginComponent', new PluginComponent())
 
   .controller('BrowseController', BrowseController)
+  .controller('BrowseMusicController', BrowseMusicController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
 
@@ -333,6 +336,7 @@ angular.module('volumio', [
   .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
   .controller('UiSettingsPluginController', UiSettingsPluginController)
   .controller('MyMusicPluginEnablerController', MyMusicPluginEnablerController)
+  .controller('ModalCreditsDetailsController', ModalCreditsDetailsController)
 
   //Volumio 3 UI
 

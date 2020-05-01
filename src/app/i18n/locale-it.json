@@ -102,7 +102,10 @@
     "UPDATE_FOLDER": "Aggiorna cartella",
     "DELETE_FOLDER":"Cancella la cartella",
     "SKIP_BACKWARDS": "Salta Indietro",
-    "SKIP_FORWARD": "Salta Avanti"
+    "SKIP_FORWARD": "Salta Avanti",
+    "CREDITS":"Crediti",
+    "READ_MORE": "Leggi di più",
+    "CREDITS_NOT_FOUND": "Crediti non trovati"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
