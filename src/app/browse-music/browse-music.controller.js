@@ -31,11 +31,11 @@ class BrowseMusicController {
 
     $scope.$on('browseService:fetchEnd', () => {
       /* While browsing this makes sense */
-      console.log(this.browseService);
+      // console.log(this.browseService);
       this.renderBrowsePage(this.browseService.lists);
     });
 
-    if (this.browseService.isBrowsing || this.browseService.isSearching) {
+    if ((this.browseService.isBrowsing || this.browseService.isSearching) && this.browseService.lists) {
       /* However when navigating back from /playback we need to rely on this */
       this.renderBrowsePage(this.browseService.lists);
     }
@@ -72,6 +72,8 @@ class BrowseMusicController {
     this.isDedicatedSearchView = true;
     this.browseService.isSearching = true;
     this.browseService.lists = [];
+    this.browseService.info = undefined;
+    this.resetBrowsePage();
     this.$timeout( function () {
       document.querySelector('#search-input-form').focus();
     },100 );
@@ -83,8 +85,10 @@ class BrowseMusicController {
       this.browseService.isSearching = false;
       if (!this.browseService.isBrowsing) {
         this.browseService.lists = undefined;
+        this.resetBrowsePage();
       } else if (this.browseService.lastBrowseLists) {
         this.browseService.lists = this.browseService.lastBrowseLists;
+        this.renderBrowsePage(this.browseService.lists);
       }
     }
 
