@@ -444,6 +444,8 @@
     "ALEXA_INTEGRATION":"Alexa integration",
     "HIRESAUDIO_INTEGRATION":"Highresaudio.com Integration",
     "INPUT_PLAYBACK":"Digital and Analog Inputs Playback",
-    "BLUETOOTH_INPUT":"Bluetooth Audio Playback Input"
+    "BLUETOOTH_INPUT":"Bluetooth Audio Playback Input",
+    "ALL_VIRTUOSO_FEATURES":"All Virtuoso Features",
+    "MUSIC_METADATA":"Music metadata discovery"
   }
 }
