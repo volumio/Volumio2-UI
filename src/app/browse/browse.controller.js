@@ -74,17 +74,20 @@ class BrowseController {
   }
 
   clickListItem(item, list, itemIndex) {
-    if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
-      this.fetchLibrary(item);
-    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
-      this.play(item, list, itemIndex);
-    } else if (item.type === 'cuesong') {
-      this.playQueueService.addPlayCue(item);
-    } else if (item.type === 'cd') {
-      this.playQueueService.replaceAndPlay(item);
-    } else if ( item.type === 'play-playlist') {
-      this.playQueueService.playPlaylist({title: item.name});
-    }
+    var self = this;
+    setTimeout(function () {
+      if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
+        self.fetchLibrary(item);
+      } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
+        self.play(item, list, itemIndex);
+      } else if (item.type === 'cuesong') {
+        self.playQueueService.addPlayCue(item);
+      } else if (item.type === 'cd') {
+        self.playQueueService.replaceAndPlay(item);
+      } else if ( item.type === 'play-playlist') {
+        self.playQueueService.playPlaylist({title: item.name});
+      }
+    }, 50);
   }
 
   clickListItemByIndex(listIndex, itemIndex) {
