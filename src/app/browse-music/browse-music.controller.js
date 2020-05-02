@@ -51,6 +51,7 @@ class BrowseMusicController {
 
     this.socketService.on('pushBrowseLibrary', (data) => {
       this.fetchAdditionalMetas();
+      this.fetchTrackTypeImage();
     });
 
     let bindedBackListener = this.backListener.bind(this);
@@ -308,7 +309,6 @@ class BrowseMusicController {
         this.getAlbumCredits(this.browseService.info);
       }
     }
-
   }
 
   getArtistMetas(artistInfo) {
@@ -708,6 +708,17 @@ class BrowseMusicController {
 
   isVolumio3Theme(){
     return this.themeManager.theme === 'volumio3';
+  }
+
+  fetchTrackTypeImage() {
+    if (this.browseService.info && this.browseService.info.trackType) {
+      this.browseService.info.fileFormat = '';
+      this.browseService.info.fileFormat = this.loadFileFormatIcon(this.browseService.info.trackType);
+    }
+  }
+
+  loadFileFormatIcon(trackType){
+    return this.playerService.loadFileFormatIcon(trackType);
   }
 
   /* changeListViewSetting(view) {

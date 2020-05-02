@@ -450,6 +450,10 @@ table {
   .modal-body {
     background-color: $theme-transparent-background;
   }
+  .credits-story {
+    white-space: pre-line;
+    font-size: 16px;
+  }
 }
 
 //progress
