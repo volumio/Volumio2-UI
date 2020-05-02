@@ -270,35 +270,42 @@ class PlayerService {
     }
   }
 
-  loadFileFormatIcon() {
-    if (this.state.trackType) {
-      switch (this.state.trackType) {
+  loadFileFormatIcon(trackType) {
+    var currentFileFormat;
+    var currentTrackType;
+    if (trackType) {
+      currentTrackType = trackType;
+    } else {
+      currentTrackType = this.state.trackType;
+    }
+    if (currentTrackType) {
+      switch (currentTrackType) {
         case 'dff':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'dsd',
             name: 'dff dsd'
           };
           break;
         case 'dsf':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'dsd',
             name: 'dsf dsd'
           };
           break;
         case 'ogg':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'ogg',
             name: 'oga vorbis'
           };
           break;
         case 'oga':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'ogg',
             name: 'ogg vorbis'
           };
           break;
         case 'wv':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'wavpack',
             name: 'wavpack'
           };
@@ -328,9 +335,9 @@ class PlayerService {
         case 'wma':
         case 'qobuz':
         case 'tidal':
-          this.state.fileFormat = {
-            url: this.state.trackType,
-            name: this.state.trackType
+          currentFileFormat = {
+            url: currentTrackType,
+            name: currentTrackType
           };
           break;
         default:
@@ -339,6 +346,12 @@ class PlayerService {
     } else {
       this.state.fileFormat = null;
     }
+    if (!trackType) {
+      this.state.fileFormat = currentFileFormat;
+    } else {
+      return currentFileFormat;
+    }
+
   }
 
   registerListner() {
