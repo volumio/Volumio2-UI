@@ -56,6 +56,10 @@
         <span ng-if="playback.playerService.state.bitdepth">
             {{playback.playerService.state.bitdepth}}
           </span>
+
+          <span ng-if="!playback.playerService.state.bitdepth && !playback.playerService.state.samplerate && playback.playerService.state.bitrate">
+              {{playback.playerService.state.bitrate}}
+            </span>
       </div>
 
       <div class="col-xs-24 track-button-container">
