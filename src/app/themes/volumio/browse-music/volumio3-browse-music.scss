@@ -376,10 +376,10 @@
 
 .header__play-btn {
     flex-shrink: 0;
+    flex-grow: 0;
     display: flex;
     width: 52px;
-    height: 52px;
-    padding-left: 11px;
+    height: 52px; 
     margin-top: 24px;
     border-radius: 52px;
     border: 2px solid $theme-primary-color;
@@ -389,6 +389,13 @@
     transition: all 0.15s ease-out;
     font-size: 20px;
     order: 2;
+    text-align: center;
+    -webkit-appearance: none;
+    .fa {
+        padding-left: 4px;
+        width: 52px;
+        text-align: center;
+    }
     &:hover,
     &:focus {
         border-color: $primary-alt;
