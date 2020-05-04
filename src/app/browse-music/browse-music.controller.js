@@ -455,8 +455,10 @@ class BrowseMusicController {
   clickListItem(item, list, itemIndex) {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
       this.fetchLibrary(item);
-    } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
+    } else if (item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
       this.play(item, list, itemIndex);
+    } else if (item.type === 'song') {
+      this.addAndPlayList(item, list, itemIndex);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
@@ -470,6 +472,14 @@ class BrowseMusicController {
     let item = this.browseService.lists[listIndex].items[itemIndex];
     let list = this.browseService.lists[listIndex].items;
     this.clickListItem(item, list, itemIndex);
+  }
+
+  replaceAndPlayList(item, list, itemIndex) {
+    return this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+  }
+
+  addAndPlayList(item, list, itemIndex) {
+    return this.playQueueService.addAndPlayList(item, list, itemIndex);
   }
 
   openMusicCardContenxtList(e, listIndex, itemIndex) {
