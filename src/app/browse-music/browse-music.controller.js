@@ -139,6 +139,7 @@ class BrowseMusicController {
     this.resetBrowsePage();
     this.searchField = '';
     this.browseService.backHome();
+    this.browseService.info = null;
   }
 
   clickBack() {
