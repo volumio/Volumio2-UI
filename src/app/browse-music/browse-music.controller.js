@@ -28,6 +28,7 @@ class BrowseMusicController {
     this.$http = $http;
     this.content = {};
     this.loadingCredit = {};
+    this.hideInfoHeader = false;
 
     $scope.$on('browseService:fetchEnd', () => {
       /* While browsing this makes sense */
@@ -54,6 +55,16 @@ class BrowseMusicController {
       this.fetchTrackTypeImage();
     });
 
+    if (this.browseService.info) {
+      this.currentItemMetas = {};
+      if (this.browseService.info.type && this.browseService.info.type === 'artist' && this.browseService.info.title) {
+        this.getArtistMetas(this.browseService.info);
+      } else if (this.browseService.info.artist && this.browseService.info.album) {
+        this.getAlbumMetas(this.browseService.info);
+        this.getAlbumCredits(this.browseService.info);
+      }
+    }
+
     let bindedBackListener = this.backListener.bind(this);
     this.$document[0].addEventListener('keydown', bindedBackListener, false);
     this.$scope.$on('$destroy', () => {
@@ -73,7 +84,7 @@ class BrowseMusicController {
     this.isDedicatedSearchView = true;
     this.browseService.isSearching = true;
     this.browseService.lists = [];
-    this.browseService.info = undefined;
+    this.hideInfoHeader = true;
     this.resetBrowsePage();
     this.$timeout( function () {
       document.querySelector('#search-input-form').focus();
@@ -81,6 +92,7 @@ class BrowseMusicController {
   }
 
   unsetDedicatedSearch(){
+    this.hideInfoHeader = false;
     if (this.browseService.isSearching) {
       this.isDedicatedSearchView = false;
       this.browseService.isSearching = false;
