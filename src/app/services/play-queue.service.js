@@ -65,6 +65,15 @@ class PlayQueueService {
     this.socketService.emit('playPlaylist', {name: index.title});
   }
 
+  addAndPlayList(item, list, itemIndex) {
+    this.$log.debug('PlayQueueService addAndPlayList', item, list, itemIndex);
+    this.socketService.emit('addPlayList', {
+      item: item,
+      list: list,
+      index: itemIndex
+    });
+  }
+
   //add to queue for song
   add(item) {
     this.$log.debug('PlayQueueService addToQueue', item);

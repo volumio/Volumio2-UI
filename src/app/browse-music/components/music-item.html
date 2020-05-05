@@ -1,0 +1,64 @@
+<div class="music-item" ng-click="browse.fetchLibrary(item)">
+    <div
+        ng-if="browse.showPlayButton(item)"
+        class="item__play">
+        <button
+            ng-click="browse.playAlbumItemClick(item, album.items, $index)"
+            class="ghost-btn play-btn">
+            <i class="fa fa-play play-btn__icon"></i>
+        </button>
+    </div>
+
+    <div class="item__image">
+        <div ng-if="item.tracknumber && !item.albumart" class="item__number">{{item.tracknumber }}.</div>
+        <div ng-if="item.albumart" class="item__albumart">
+            <img class="item__image__img" src="{{browse.playerService.getAlbumart(item.albumart) }}" alt="">
+        </div>
+    </div>
+
+    <div class="item__info">
+        <div class="item__title truncate-text" title="{{ item ? item.title : 'Example' }}">
+            {{ item.title ? item.title : item.name || '' }}
+        </div>
+        <div ng-if="item.album" class="item__album truncate-text" title="{{ item.album ? item.album : 'Example album' }}">
+            {{ item.album }}
+        </div>
+        <div ng-if="item.album && item.artist" class="item__info__separator">
+            •
+        </div>
+        <div ng-if="item.artist" class="item__artist truncate-text" title="{{ item.artist ? item.artist : 'Example artist' }}">
+            {{ item.artist }}
+        </div>
+    </div>
+    
+    <div
+        ng-click="browse.addToFavorites($event, item)"
+        ng-if="browse.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite "
+        ng-class="{ favorited: item.favorite }"
+        class="item__favorite">
+        <span class="item__favorite-heart">
+            <i class="fa fa-heart"></i>
+        </span>
+    </div>
+   
+    <div
+        ng-if="item.duration"
+        class="item__duration">
+            {{ browse.timeFormat(item.duration) }}
+    </div>
+
+    <div
+        ng-if="!item.name"
+        ng-click="browse.preventBubbling($event)"
+        class="item__actions {{
+            (item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu')
+            ? 'hidden' : ''
+        }}">
+        <button
+            id="hamburgerMenuBtn-{{$listIndex}}-{{$index}}"
+            ng-click="browse.openMusicCardContenxtList($event, item, $listIndex, $index)"
+            class="ghost-btn action-btn">
+            <i class="fa fa-ellipsis-v"></i>
+        </button>
+    </div>
+</div>

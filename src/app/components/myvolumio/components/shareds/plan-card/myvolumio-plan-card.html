@@ -10,7 +10,7 @@
           {{myVolumioPlanCardController.getShownPrice()}}
         </h1>
         <span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free'" style="font-size: small;">{{'MYVOLUMIO.'+myVolumioPlanCardController.showMode.planDuration + '_PER'| uppercase | translate | lowercase}}</span><br>
-        <h4 class="trial-text" ng-if="myVolumioPlanCardController.isTrialAvailable()">{{myVolumioPlanCardController.getTrialDays()}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</h4>
+        <h4 class="trial-text" ng-if="myVolumioPlanCardController.isTrialAvailable() && !myVolumioPlanCardController.getTrialOverride()">{{myVolumioPlanCardController.getTrialDays()}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</h4>
       </div>
       <table class="table">
         <tr ng-repeat="feature in myVolumioPlanCardController.product.features track by $index" ng-class-odd="'active'">

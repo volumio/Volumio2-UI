@@ -215,8 +215,7 @@ class MyVolumioEditProfileController {
   }
 
   cancelSubscription() {
-    var cancelUrl = this.user.planData.cancelUrl;
-    this.paddleService.openCancelSubscriptionByUrl(cancelUrl);
+    this.$state.go('myvolumio.cancel-subscription');
   }
 
   subscribe() {

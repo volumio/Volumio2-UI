@@ -1,5 +1,5 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q) {
+  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q, statisticsService) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -9,6 +9,7 @@ class UiSettingsService {
     this.$http = $http;
     this.$q = $q;
     this.$state = $state;
+    this.statisticsService = statisticsService;
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
@@ -119,6 +120,7 @@ class UiSettingsService {
       this.setLanguage();
       this.setBackground();
       this.setLoadingBar();
+      this.statisticsService.initStats();
     });
 
     this.socketService.on('pushBackgrounds', (data) => {
@@ -143,6 +145,11 @@ class UiSettingsService {
       this.$log.debug('reloadUi');
       window.location.reload(true);
     });
+
+    this.socketService.on('pushPrivacySettings', (data) => {
+      this.$log.debug('pushPrivacySettings');
+      this.statisticsService.pushPrivacySettings(data);
+    });
   }
 
   initService() {
@@ -165,6 +172,7 @@ class UiSettingsService {
 		if (this.socketService.isSocketAvalaible()) {
         	this.socketService.emit('getUiSettings');
         	this.socketService.emit('getWizard');
+          this.socketService.emit('getPrivacySettings');
 		}
       });
     return this.settingsPromise;

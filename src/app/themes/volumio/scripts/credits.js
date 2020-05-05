@@ -6,8 +6,8 @@ var fs=require('fs-extra');
 var theme = process.argv.slice(2)[0];
 var variant = process.argv.slice(2)[1];
 var html = '';
-
 var repos = [];
+var debug = false;
 
 
 
@@ -73,7 +73,7 @@ function readPackages(item) {
 function fetchRepos(dep) {
 	npm.commands.view([dep], true, function (er, data) {
     if (er) {
-    	console.log("ERR: " + er);
+    	log("ERR: " + er);
     } else {
     	var k = Object.keys(data)[0];
     	var pkg = data[k];
@@ -103,7 +103,7 @@ function fetchRepos(dep) {
 	} catch (e) {
 		var k = Object.keys(data)[0];
     	var pkg = data[k];
-		console.log("Error fetching " + dep + " " + k + " : "+ e + " - " + Object.keys(pkg));
+		log("Error fetching " + dep + " " + k + " : "+ e + " - " + Object.keys(pkg));
 	}
 
 	}
@@ -113,7 +113,7 @@ function fetchRepos(dep) {
 
 
 function readAuthors(item) {
-	console.log("authors " + item.statsUrl);
+	log("authors " + item.statsUrl);
 	request({
     	url: item.statsUrl,
     	json: true,
@@ -134,7 +134,7 @@ function readAuthors(item) {
 	    		item.authors = authors;
 		    }  else {
 		    	try {
-		    	console.log("Error reading authors " + body.message );
+		    	log("Error reading authors " + body.message );
 		    } catch (e) {}
 		    }
 		    finished();
@@ -152,7 +152,7 @@ function addPackages(deps) {
 						  .replace("${LINKLIC}",item)
 						  .replace("${LICENSENAME}",repo.license);
 			} catch (e) {
-							console.log("error html for " + item + ": " + e);
+							log("error html for " + item + ": " + e);
 							myHTML += shortItemHTML.replace("${NAME}",item);
 						}
                //'<li><span class="packagename">' + item + '</span>-<span class="packageversion">' + ver + '</span></li>\n';
@@ -166,7 +166,7 @@ function addAuthors(authors) {
 		authorsnum++;
 	}
 	var columnitems = Math.round((authorsnum/6));
-	console.log("Items per Column:"+ columnitems);
+	log("Items per Column:"+ columnitems);
 	var myHTML = '<div class="row">';
 	for (authorN in authors) {
 		var author = authors[authorN];
@@ -201,7 +201,7 @@ function addThirdPartCredits() {
 	var creditsjson=fs.readJsonSync(__dirname+'/credits.json');
 	for (i = 0; i < creditsjson.categories.length; i++) {
 		var category =  creditsjson.categories[i];
-		console.log('Writing Category ' + category.name)
+		log('Writing Category ' + category.name)
     thirdparty += '<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><i class="fa '+category.icon +'"></i> ';
 		thirdparty += category.name
 		thirdparty+= '</h3></div><div class="panel-body">';
@@ -439,7 +439,15 @@ function writeHTML() {
   html += addVolumioSources();
 
 	var creditsPath = "src/app/themes/" + theme + "/assets/static-pages/credits.html";
+	try {
+		fs.writeFileSync(creditsPath, html);
+	} catch(e) {
+		console.error('Error writing credits page: ' + e);
+	}
+}
 
-	fs.writeFile(creditsPath, html);
-	console.log("Wrote html");
+function log(message) {
+	if (debug) {
+		console.log(message)
+	}
 }

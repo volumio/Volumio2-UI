@@ -1,7 +1,7 @@
 class AuthService {
   constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
     paymentsService, $filter, modalService, socketService, $http, $location, themeManager, cloudService,
-    firebaseApiFunctionsService) {
+    firebaseApiFunctionsService, onBoardFlowService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -19,6 +19,7 @@ class AuthService {
     this.$window = $window;
     this.cloudService = cloudService;
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
+    this.onBoardFlowService = onBoardFlowService;
 
     this.isEnabled = false;
 
@@ -79,6 +80,7 @@ class AuthService {
     this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
       this.user = user;
       setTimeout(()=>{
+        this.syncronizeWithOnboardFlow(user);
         this.syncronizeWithBackend();
       }, 2000);
     });
@@ -136,6 +138,10 @@ class AuthService {
         }
       }
     });
+  }
+
+  syncronizeWithOnboardFlow(data){
+    this.onBoardFlowService.updateOnboardFlowUserData(data);
   }
 
   getMyVolumioStatus() {
@@ -475,9 +481,10 @@ class AuthService {
   }
 
   isSocialEnabled() {
-    if (this.isValidDomainForSocialLogin(this.$location.host())) {
-      return true;
-    }
+    // Disabling Social login until proper flow is adapted to check for TOS and Marketing Consent and email is mandatory
+    //if (this.isValidDomainForSocialLogin(this.$location.host())) {
+    //  return true;
+    //}
     return false;
   }
 
@@ -491,6 +498,10 @@ class AuthService {
       return true;
     }
     return false;
+  }
+
+  getCurrentAuthUser() {
+    return this.user;
   }
 
 }

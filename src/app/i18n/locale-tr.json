@@ -264,7 +264,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "Hata",
+    "ERROR": "MyVolumio Hata",
     "LOGIN": "Oturum aç",
     "LOGOUT": "Oturumu kapat",
     "SIGNUP": "Üye Ol",

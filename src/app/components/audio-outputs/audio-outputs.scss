@@ -82,6 +82,10 @@
   position: absolute;
   top: 20px;
   left: 60px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .list-item-type {
@@ -101,6 +105,11 @@
   font-weight: 300;
   padding: 10px 0px;
   text-align: left;
+  display: inline-flex;
+}
+
+.close-output-button {
+    display: inline-block;
 }
 
 .list-item-volume-bar {

@@ -3,13 +3,12 @@
 
 
   <div id="menuList" role="group" ng-if="audioOutputs.menuVisible" style="width:350px; max-width: 100%;">
-    <div style="height:35px">
-      <button id="closeMenuBtnOutputs" ng-click="audioOutputs.toggleMenu()" class="btn btn-link">
+    <div class="list-title pull-left" translate="MULTIDEVICE.PLAYBACK_ZONES"></div>
+    <div class="close-output-button pull-right">
+      <button id="closeMenuBtnOutputs" ng-click="audioOutputs.toggleMenu()" class="btn btn-link pull-right">
         <i class="fa fa-times"></i>
       </button>
-    </div>
-
-    <div class="list-title" translate="MULTIDEVICE.PLAYBACK_ZONES"></div>
+      </div>
     <div class="group-container" ng-if="audioOutputs.audioOutputsService.outputs.length">
       <div ng-repeat="item in audioOutputs.audioOutputsService.outputs track by $index" class="list-item-div">
         <div class="row output-item">

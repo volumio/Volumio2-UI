@@ -29,6 +29,7 @@ $sideMenuWidth: 230px;
     padding: 10px 10px 0px 10px;
     background-color: $theme-sidebar-background-color;
     overflow-y: scroll;
+    z-index: 40;
     max-height: calc(100vh - #{$theme-player-height-smartphone};
 
     @include breakpoint(md) {

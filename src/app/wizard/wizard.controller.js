@@ -54,6 +54,8 @@ class WizardController {
         this.$log.debug('setLanguage', this.wizardDetails.language);
         this.wizardDetails.language.disallowReload = true;
         this.socketService.emit('setLanguage', this.wizardDetails.language);
+        //Prefetching network scan
+        this.socketService.emit('getWirelessNetworks', '');
         this.$translate.use(this.wizardDetails.language.defaultLanguage.code);
         break;
       case 'name':
@@ -107,6 +109,9 @@ class WizardController {
         break;
       case 'advancedsettings':
         this.socketService.emit('getExperienceAdvancedSettings');
+        break;
+      case 'devicecode':
+        this.socketService.emit('getDeviceActivationStatus');
         break;
       case 'done':
         this.socketService.emit('getDonePage');
@@ -272,6 +277,17 @@ class WizardController {
       this.$log.debug('pushDeviceActivationCodeResult', data);
       this.wizardDetails.deviceCode.activated = data.activated;
       this.wizardDetails.deviceCode.error = data.error;
+    });
+
+    this.socketService.on('pushDeviceActivationStatus', (data) => {
+      this.$log.debug('pushDeviceActivationStatus', data);
+
+      this.wizardDetails.deviceCode = {};
+      this.wizardDetails.deviceCode.alreadyActivated = data.alreadyActivated;
+      this.wizardDetails.deviceCode.message = this.filteredTranslate(data.message) + ' ' + data.plan;
+      if (data.email) {
+        this.wizardDetails.deviceCode.message = this.wizardDetails.deviceCode.message + ' ' + this.filteredTranslate('MYVOLUMIO.AND_ASSOCIATED_WITH_ACCOUNT') + ' ' + data.email;
+      }
     });
 
     this.socketService.on('pushExperienceAdvancedSettings', (data) => {

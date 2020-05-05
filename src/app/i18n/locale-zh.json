@@ -236,7 +236,7 @@
     "ADVANCEDSETTINGS": "体验",
     "EXPERIENCE_SETTINGS_TITLE":"让我们订制您的用户体验",
     "EXPERIENCE_SETTINGS_TEXT" :"您更喜欢一个简单易用的系统, 只有一套基本的选项, 还是你想完全控制所有的高级功能?",
-    "EXPERIENCE_SETTINGS_TEXT_2" :"这项设置可以随后在系统设置中更改" 
+    "EXPERIENCE_SETTINGS_TEXT_2" :"这项设置可以随后在系统设置中更改"
   },
   "SLEEP": {
     "POWER_OFF": "关机",
@@ -266,7 +266,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "错误",
+    "ERROR": "MyVolumio 错误",
     "LOGIN": "登录",
     "LOGOUT": "注销",
     "SIGNUP": "注册",

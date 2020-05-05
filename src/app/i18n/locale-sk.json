@@ -264,7 +264,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "Chyba",
+    "ERROR": "MyVolumio Chyba",
     "LOGIN": "Prihlásiť",
     "LOGOUT": "Odhlásiť",
     "SIGNUP": "Registrovať",

@@ -35,6 +35,8 @@ import ProductsService from './services/myvolumio/products.service';
 import RemoteStorageService from './services/myvolumio/remote-storage.service';
 import MyVolumioDevicesService from './services/myvolumio/myvolumio-devices.service';
 import FirebaseApiFunctionsService from './services/myvolumio/firebase-api-functions.service';
+import OnBoardFlowService from './services/myvolumio/onboardflow.service';
+import StatisticsService from './services/myvolumio/statistics.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -73,7 +75,6 @@ import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-
 
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
-import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
 import PluginComponent from './plugin/components/plugin.component';
 
 //MyVolumio Directives
@@ -99,6 +100,7 @@ import StaticPageController from './static-pages/static-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
+import BrowseMusicController from './browse-music/browse-music.controller';
 import PlaybackController from './playback/playback.controller';
 import PlayQueueController from './play-queue/play-queue.controller';
 
@@ -132,6 +134,7 @@ import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/mo
 import ModalCryptoController from './components/modals/modal-crypto.controller';
 import MyVolumioTermsModalController from './components/myvolumio/modals/myvolumio-terms-modal/myvolumio-terms-modal.controller';
 import MyVolumioPayingModalController from './components/myvolumio/modals/myvolumio-paying-modal/myvolumio-paying-modal.controller';
+import ModalCreditsDetailsController from './browse-music/components/modal/modal-credits-details.controller';
 
 
 //Core plugin controller
@@ -233,6 +236,8 @@ angular.module('volumio', [
   .service('remoteStorageService', RemoteStorageService)
   .service('myVolumioDevicesService', MyVolumioDevicesService)
   .service('firebaseApiFunctionsService',FirebaseApiFunctionsService)
+  .service('onBoardFlowService',OnBoardFlowService)
+  .service('statisticsService',StatisticsService)
 
 
 .provider('themeManager', ThemeManagerProvider)
@@ -260,10 +265,7 @@ angular.module('volumio', [
   .directive('trackInfoBar', () => new TrackInfoBarDirective())
   .directive('trackInfoBarButtons', () => new TrackInfoBarButtonsDirective())
   .directive('equalizer', () => new EqualizerDirective())
-
   .directive('pluginAttributes', () => new PluginAttributesDirective())
-  .directive('pluginVisible', () => new PluginVisibleDirective())
-
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackActionsBtnDirective(themeManager))
@@ -300,6 +302,7 @@ angular.module('volumio', [
   .component('pluginComponent', new PluginComponent())
 
   .controller('BrowseController', BrowseController)
+  .controller('BrowseMusicController', BrowseMusicController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
 
@@ -333,6 +336,7 @@ angular.module('volumio', [
   .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
   .controller('UiSettingsPluginController', UiSettingsPluginController)
   .controller('MyMusicPluginEnablerController', MyMusicPluginEnablerController)
+  .controller('ModalCreditsDetailsController', ModalCreditsDetailsController)
 
   //Volumio 3 UI
 

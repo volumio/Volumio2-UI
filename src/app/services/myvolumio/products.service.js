@@ -10,6 +10,7 @@ class ProductsService {
     this.MONTHLY_PLAN = 'monthly';
     this.YEARLY_PLAN = 'yearly';
     this.LIFETIME_PLAN = 'lifetime';
+    this.overrideTrial = false;
 
     this.products = null;
     this.init();
@@ -34,9 +35,9 @@ class ProductsService {
     var loading = this.$q.defer();
     this.databaseService.getInfByKey('products', this.version).then(productsPayload => {
       this.products = productsPayload[Object.keys(productsPayload)[0]];
-      this.products.free.features = ["MYVOLUMIO_PLANS.LATEST_NEWS", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"];
-      this.products.virtuoso.features = ["MYVOLUMIO_PLANS.LATEST_NEWS", "MYVOLUMIO_PLANS.MYVOLUMIO_1_DEVICE", "MYVOLUMIO_PLANS.AUTO_SYNC", "MYVOLUMIO_PLANS.REMOTE_CONNECTION_1_DEVICE", "MYVOLUMIO_PLANS.NATIVE_TIDAL_QOBUZ_INTEGRATION", "MYVOLUMIO_PLANS.CD_PLAYBACK_RIPPING", "MYVOLUMIO_PLANS.ALEXA_INTEGRATION", "MYVOLUMIO_PLANS.BLUETOOTH_INPUT", "EMPTY", "EMPTY"];
-      this.products.superstar.features = ["MYVOLUMIO_PLANS.LATEST_NEWS", "MYVOLUMIO_PLANS.MYVOLUMIO_6_DEVICES", "MYVOLUMIO_PLANS.AUTO_SYNC", "MYVOLUMIO_PLANS.REMOTE_CONNECTION_6_DEVICES", "MYVOLUMIO_PLANS.NATIVE_TIDAL_QOBUZ_INTEGRATION", "MYVOLUMIO_PLANS.CD_PLAYBACK_RIPPING", "MYVOLUMIO_PLANS.ALEXA_INTEGRATION", "MYVOLUMIO_PLANS.BLUETOOTH_INPUT", "MYVOLUMIO_PLANS.HIRESAUDIO_INTEGRATION", "MYVOLUMIO_PLANS.INPUT_PLAYBACK"];
+      this.products.free.features = ["MYVOLUMIO_PLANS.LATEST_NEWS", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"];
+      this.products.virtuoso.features = ["MYVOLUMIO_PLANS.MYVOLUMIO_1_DEVICE", "MYVOLUMIO_PLANS.AUTO_SYNC", "MYVOLUMIO_PLANS.REMOTE_CONNECTION_1_DEVICE", "MYVOLUMIO_PLANS.NATIVE_TIDAL_QOBUZ_INTEGRATION", "MYVOLUMIO_PLANS.CD_PLAYBACK_RIPPING", "MYVOLUMIO_PLANS.ALEXA_INTEGRATION", "MYVOLUMIO_PLANS.BLUETOOTH_INPUT"];
+      this.products.superstar.features = ["MYVOLUMIO_PLANS.ALL_VIRTUOSO_FEATURES", "MYVOLUMIO_PLANS.MYVOLUMIO_6_DEVICES", "MYVOLUMIO_PLANS.HIRESAUDIO_INTEGRATION", "MYVOLUMIO_PLANS.INPUT_PLAYBACK", "MYVOLUMIO_PLANS.MUSIC_METADATA", "EMPTY", "EMPTY"];
       this.localizeProductsPricing().then(()=>{
         loading.resolve(this.products);
       });
@@ -87,6 +88,14 @@ class ProductsService {
 
   getProductForUser(user) {
     return this.getProductByCode(user.plan || 'free');
+  }
+
+  setTrialOverride(data) {
+    this.overrideTrial = data;
+  }
+
+  getTrialOverride() {
+    return this.overrideTrial;
   }
 }
 

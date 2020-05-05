@@ -1,0 +1,53 @@
+<div class="music-card" ng-click="browse.clickMusicCard(item)">
+    <div class="music-card__header">
+        <img
+            class="music-card__img"
+            src="{{browse.playerService.getAlbumart(item.albumart)}}"
+            alt="">
+        <div
+            class="music-card__overlay">
+            <div class="meta__genre">{{ item && item.genre ? item.genre : '' }}</div>
+            <div
+                ng-if="!item.name"
+                ng-click="browse.preventBubbling($event)"
+                class="meta__actions {{
+                    (item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu')
+                    ? 'hidden' : ''
+                }}">
+                <button
+                    id="hamburgerMenuBtn-{{$listIndex}}-{{$index}}"
+                    ng-click="browse.openMusicCardContenxtList($event, item, $listIndex, $index)"
+                    class="ghost-btn action-btn">
+                    <i class="fa fa-ellipsis-v"></i>
+                </button>
+            </div>
+            <div class="meta__play">
+                <button
+                    ng-if="browse.showPlayButton(item)"
+                    ng-click="browse.playMusicCardClick($event, item)"
+                    class="ghost-btn play-btn">
+                    <i class="fa fa-play play-btn__icon"></i>
+                </button>
+            </div>
+            <div
+                ng-click="browse.addToFavorites($event, item)"
+                ng-if="browse.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite "
+                ng-class="{ favorited: item.favorite }"
+                class="meta__favorite">
+                <span class="meta__favorite-heart">
+                    <i class="fa fa-heart"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="music-card__info">
+        <div
+            class="music-card__label"
+            ng-class="{ 'mr-2': !!item.extensionIcon }"
+            title="{{  item.title ? item.title : item.name }}">
+                {{  item.title ? item.title : item.name }}
+        </div>
+        <img ng-if="item.extensionIcon" class="music-card__extension" src="{{item.extensionIcon}}" alt="">
+    </div>
+    <p class="music-card__meta">{{ item && item.meta ? item.meta : ''}}</p>
+</div>
