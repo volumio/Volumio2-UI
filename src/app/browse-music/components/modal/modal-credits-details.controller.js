@@ -8,6 +8,7 @@ class ModalCreditsDetailsController {
       this.modalService = modalService;
       this.loadingCredit = {};
       this.unavailableCredits = {};
+      this.creditRequestOptions = {"timeout":7000};
     }
 
     cancel() {
@@ -40,7 +41,7 @@ class ModalCreditsDetailsController {
         return;
       }
 
-      return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+      return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
         if (response.data && response.data.success && response.data.data && response.data.data.value) {
           this.loadingCredit[uri + $index] = false;
           return this.showCreditsDetails({'title': title, 'story': response.data.data.value});

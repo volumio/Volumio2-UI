@@ -29,6 +29,7 @@ class BrowseMusicController {
     this.content = {};
     this.loadingCredit = {};
     this.hideInfoHeader = false;
+    this.creditRequestOptions = {"timeout":7000};
 
     $scope.$on('browseService:fetchEnd', () => {
       /* While browsing this makes sense */
@@ -353,7 +354,7 @@ class BrowseMusicController {
           'album': albumInfo.album
         }
       };
-      return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+      return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
         if (response.data && response.data.success && response.data.data && response.data.data.value) {
           this.currentItemMetas.albumCredits = response.data.data.value;
         }
@@ -367,7 +368,7 @@ class BrowseMusicController {
       'endpoint': 'metavolumio',
       'data': data
     };
-    return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+    return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
       if (response.data && response.data.success && response.data.data && response.data.data.value) {
         this.currentItemMetas.story = response.data.data.value;
       }
@@ -396,7 +397,7 @@ class BrowseMusicController {
       return;
     }
 
-    return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+    return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
       if (response.data && response.data.success && response.data.data && response.data.data.value) {
         this.loadingCredit[uri] = false;
         return this.showCreditsDetails({'title': title, 'story': response.data.data.value});
