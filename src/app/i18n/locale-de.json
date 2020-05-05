@@ -428,7 +428,7 @@
     "TO_VOLUMIO": "zu Volumio in deinen Einstellungen",
     "CODE_DEVICE_ALREADY_ACTIVATED": "Dein Gerätecode wurde bereits erfolgreich eingelöst und dein Plan ist",
     "AND_ASSOCIATED_WITH_ACCOUNT":"und ist verbunden mit dem Account",
-    "SIGNUP_ERROR_CONTACT_SUPPORT" : "Bei der Registrierung ist etwas schief gelaufen. Bitte wende dich mit folgender Fehlerinformation an support@volumio.org für Unterstützung: "
+    "SIGNUP_ERROR_CONTACT_SUPPORT" : "Bei der Registrierung ist etwas schief gelaufen. Bitte wende dich mit folgender Fehlerinformation an support@volumio.org für Unterstützung:"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Erhalte den MyVolumio Newsfeed",
