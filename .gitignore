@@ -2,6 +2,9 @@ src/app/ngConstants.js
 src/app/volumio.constant.js
 src/app/local-config.json
 dist/
+dist-volumio/
+dist-volumio3/
+firebase-hosting/
 node_modules/
 bower_components/
 .sass-cache/
@@ -14,3 +17,6 @@ src/app/volumio.constant.js
 package-lock.json
 credits.html
 load-variant.scss
+src/app/themes/volumio3/assets/static-pages/credits.html
+src/app/themes/volumio/assets/static-pages/credits.html
+src/app/themes/volumio3/assets/variants/load-variant.scss

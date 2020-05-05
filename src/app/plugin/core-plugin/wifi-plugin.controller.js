@@ -65,18 +65,46 @@ class WifiPluginController {
 
   disconnectFromWiFi() {}
 
+  addManualConnectionEntry(data) {
+    // We need to make sure to add a special field at the end to signal manual connection
+    data.available = data.available.filter(function(value){
+      return !value.manual;
+    });
+    if (!data.available.slice(-1).pop().manual) {
+      data.available.push({
+        security: this.securityTypes[0],
+        signal: -1,
+        ssidHidden: true,
+        manual: true
+      });
+    }
+    return data;
+  }
+
   registerListner() {
     this.socketService.on('pushWirelessNetworks', (data) => {
       this.$log.debug('pushWirelessNetworks', data);
-      this.wirelessNetworks = data;
-      if (!this.wirelessNetworks.available) {
-        this.wirelessNetworks.available = [];
+      if (!this.wirelessNetworks) {
+        this.wirelessNetworks = {'available' : []};
       }
-      this.wirelessNetworks.available.push({
-        security: this.securityTypes[0],
-        signal: -1,
-        ssidHidden: true
+
+      if (!data) {
+        data = {'available' : []};
+      }
+
+      data.available.forEach((network) => {
+        const actualNetwork = this.wirelessNetworks.available.find((n) => {
+          return n.ssid === network.ssid;
+        });
+        if (actualNetwork !== undefined) {
+          actualNetwork.security = network.security;
+          actualNetwork.signal = network.signal;
+        } else {
+          this.wirelessNetworks.available.push(network);
+        }
       });
+      this.wirelessNetworks = this.addManualConnectionEntry(this.wirelessNetworks);
+
       this.wirelessNetworks.available.map((network) => {
         if (!network.security || network.security === '') {
           network.security = this.securityTypes[0];
@@ -93,8 +121,6 @@ class WifiPluginController {
       this.socketService.off('pushWirelessNetworks');
       this.socketService.off('pushWizardWirelessConnResults');
     });
-    this.socketService.on('pushWirelessNetworks', (data) => {
-      });
   }
 
   initService() {

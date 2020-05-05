@@ -1,13 +1,17 @@
 class MyVolumioSignupNewController {
-  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user) {
+  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, $filter, user, $log, socketService, $rootScope) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.modalService = modalService;
     this.authService = authService;
     this.$translate = $translate;
+    this.filteredTranslate = $filter('translate');
     this.paymentsService = paymentsService;
     this.productService = productsService;
+    this.$log = $log;
+    this.socketService = socketService;
+    this.$rootScope = $rootScope;
 
     this.user = user;
     this.newUser = null;
@@ -38,6 +42,7 @@ class MyVolumioSignupNewController {
   init() {
     this.authInit();
     this.initProducts();
+    this.initSocket();
     this.$scope.model.selectedProduct = 'virtuoso';
   }
 
@@ -139,6 +144,7 @@ class MyVolumioSignupNewController {
 
     this.authService.signup(user).then((newUser) => {
       /* this.$state.go('myvolumio.profile'); */
+
       this.newUser = newUser;
       this.stepForwards();
     }, (error) => {
@@ -229,23 +235,27 @@ class MyVolumioSignupNewController {
     }
 
     if(paddleId === undefined || !Number.isInteger(paddleId) ){
-      alert("Error, no transaction occurred, no paddleId found.");
+      this.showSignupErrorModal('no paddleId found');
       return;
     }
     if(!this.newUser){
-      alert("Error, no transaction occurred, no authenticated user found.");
+      this.showSignupErrorModal('no authenticated user found');
       return;
     }
     /* jshint ignore:start */
 
-    let checkoutProps = {
+    if (!this.newUser || !this.newUser.email || !this.newUser.uid) {
+      this.newUser = this.authService.getCurrentAuthUser();
+      if (!this.newUser || !this.newUser.email || !this.newUser.uid) {
+        this.showSignupErrorModal('missing email and uid');
+        return;
+      }
+    }
+
+    var checkoutProps = {
       product: paddleId,
       email: this.newUser.email,
       passthrough: { "email": this.newUser.email, "uid": this.newUser.uid },
-      trialDays: trialDays,
-      trialDaysAuth: trialDaysAuth,
-      price: trialPrice,
-      auth:trialAuth,
       successCallback: (data) => {
         this.successCallback(data);
       },
@@ -256,6 +266,11 @@ class MyVolumioSignupNewController {
 
     if (this.couponCode) {
       checkoutProps.coupon = this.couponCode;
+    } else {
+      checkoutProps.trialDays = trialDays;
+      checkoutProps.trialDaysAuth = trialDaysAuth;
+      checkoutProps.price = trialPrice;
+      checkoutProps.auth = trialAuth;
     }
 
     Paddle.Checkout.open(checkoutProps, false);
@@ -270,6 +285,54 @@ class MyVolumioSignupNewController {
     this.modalService.openDefaultErrorModal('MYVOLUMIO.COMPLETE_CHECKOUT');
   }
 
+  getTrialOverride() {
+    return this.productService.getTrialOverride();
+  }
+
+  onCouponCodeChange(data){
+    this.$log.debug('myvolumio coupon :', data);
+    this.couponCode = data;
+    if (this.couponCode.length) {
+      this.productService.setTrialOverride(true);
+    } else {
+      this.productService.setTrialOverride(false);
+    }
+  }
+
+  initSocket() {
+    if (!this.socketService.isSocketAvalaible()) {
+      return;
+    }
+
+    this.registerListener();
+    this.$rootScope.$on('socket:reconnect', () => {
+      this.registerListener();
+    });
+  }
+
+  registerListener() {
+    if (!this.socketService.isSocketAvalaible()) {
+      return;
+    }
+    this.socketService.on('userUpgradedFromDeviceCode', () => {
+      this.executeUserUpgradedFromDeviceCode();
+    });
+
+    this.$rootScope.$on('$destroy', () => {
+      this.socketService.off('userUpgradedFromDeviceCode');
+    });
+  }
+
+  executeUserUpgradedFromDeviceCode(){
+    if (this.$state.current.name === 'myvolumio.signup') {
+      this.$state.go('myvolumio.profile');
+    }
+  }
+
+  showSignupErrorModal(message){
+    var errorMessage = this.filteredTranslate("MYVOLUMIO.SIGNUP_ERROR_CONTACT_SUPPORT") + " " + message;
+    this.modalService.openDefaultErrorModal(errorMessage);
+  }
 }
 
 export default MyVolumioSignupNewController;

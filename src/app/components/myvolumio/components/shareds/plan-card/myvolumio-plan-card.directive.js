@@ -155,6 +155,10 @@ class MyVolumioPlanCardController {
     this.changeSubscriptionCallback();
   }
 
+  getTrialOverride() {
+    return this.productsService.getTrialOverride();
+  }
+
 }
 
 export default MyVolumioPlanCardDirective;

@@ -517,9 +517,6 @@ li.list-group-item {
   border-radius: 150px;
   pointer-events: none;
   z-index: 9;
-  animation-name: pulse;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
 }
 
 @keyframes pulse {

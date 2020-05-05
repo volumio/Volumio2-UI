@@ -39,7 +39,7 @@
 
             <div ng-if="section.content">
               <form>
-                <div ng-repeat="item in section.content track by $index" ng-if="!item.hidden" plugin-visible="item.visibleIf" section="section"
+                <div ng-repeat="item in section.content track by $index" ng-if="pluginComponent.isItemVisible(item,section)" plugin-visible="item.visibleIf" section="section"
                      class="form-group">
 
                   <label for="{{item.id}}" class="control-label">

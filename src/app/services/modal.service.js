@@ -1,9 +1,10 @@
 class ModalService {
-  constructor($uibModal, socketService, $rootScope, $filter) {
+  constructor($uibModal, socketService, $rootScope, $filter,  $log) {
     'ngInject';
     this.$uibModal = $uibModal;
-	this.$filteredTranslate = $filter('translate');
+	  this.$filteredTranslate = $filter('translate');
     this.socketService = socketService;
+    this.$log = $log;
     this.openedModals = [];
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -64,7 +65,23 @@ class ModalService {
   }
 
   openDefaultErrorModal(descLangKey = '', callback = null) {
-    return this.openDefaultModal("MYVOLUMIO.ERROR", descLangKey, callback);
+    this.$log.debug('MyVolumio error: ', descLangKey);
+    if (descLangKey.constructor !== String && descLangKey.constructor === Object) {
+      descLangKey = this.parseErrorObject(descLangKey);
+    }
+    return this.openDefaultModal(this.$filteredTranslate('MYVOLUMIO.ERROR'), descLangKey, callback);
+  }
+
+  parseErrorObject(errorObj) {
+    if (errorObj.error) {
+      return errorObj.error;
+    } else if (errorObj.data && errorObj.data.error && errorObj.data.error.message) {
+      return errorObj.data.error.message;
+    } else if (errorObj.message) {
+      return errorObj.message;
+    } else {
+      return this.$filteredTranslate('MYVOLUMIO.ERROR');
+    }
   }
 
   init() {

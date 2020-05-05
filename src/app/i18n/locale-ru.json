@@ -234,7 +234,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "Ошибка",
+    "ERROR": "MyVolumio Ошибка",
     "LOGIN": "Войти",
     "LOGOUT": "Выйти",
     "SIGNUP": "Регистрация",

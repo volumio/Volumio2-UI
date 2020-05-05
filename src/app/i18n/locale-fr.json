@@ -78,6 +78,7 @@
     "SHARE": "Partager",
     "EJECT": "Ejecter",
     "FUNCTIONALIES_CONTROL": "Contrôle des fonctionnalités",
+    "UPDATE_ALBUMART":"Mise à jour des Albumart",
     "YEAR":"Année",
     "GENRE":"Genre",
     "EDIT":"Editer",
@@ -107,14 +108,19 @@
     "UPDATE_FOLDER": "Mise à jour du dossier",
     "DELETE_FOLDER": "Effacer le dossier",
     "SKIP_BACKWARDS": "Avancer",
-    "SKIP_FORWARD": "Retour"
+    "SKIP_FORWARD": "Retour",
+     "CREDITS":"Credits",
+    "READ_MORE": "Lire plus",
+    "NO_ITEMS": "Pas d'articles",
+    "NOT_FOUND": "Non trouvé",
+    "CREDITS_NOT_FOUND": "Pas de Crédits"
   },
-"MY_MUSIC": { 
-    "UPDATE": "Mettre à jour", 
-    "UPDATE_DOC": "Mettre à jour", 
-    "RESCAN": "Scanner à nouveau", 
-    "RESCAN_DOC": "Scanner à nouveau les sources de musique"  
-  }, 
+"MY_MUSIC": {
+    "UPDATE": "Mettre à jour",
+    "UPDATE_DOC": "Mettre à jour",
+    "RESCAN": "Scanner à nouveau",
+    "RESCAN_DOC": "Scanner à nouveau les sources de musique"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Retour aux plugins",
     "PLUGINS": "Plugins",
@@ -179,14 +185,14 @@
     "EDIT_DRIVE": "Editer un disque",
     "DELETE_DRIVE_CONFIRM": "Voulez vous vraiment effacer ?",
     "PLACEHOLDER_NAME": "Nom",
-    "PLACEHOLDER_IP_ADDRESS": "Address IP du NAS ou Nom",
+    "PLACEHOLDER_IP_ADDRESS": "Adresse IP du NAS ou Nom",
     "PLACEHOLDER_PATH_TO_SHARE": "Chemin du partage"
   },
   "NETWORK":{
     "NETWORK_STATUS": "Etat du réseau",
     "SSID": "SSID",
     "SIGNAL": "Signal",
-    "IP_ADDRESS": "Addresse IP",
+    "IP_ADDRESS": "Adresse IP",
     "SPEED": "Vitesse",
     "ONLINE": "Connecté",
     "CONNECT": "Connexion",
@@ -195,7 +201,8 @@
     "SECURE_NETWORK": "Réseau sécurisé",
     "SECURITY": "Sécurité",
     "MANUAL_WIFI_CONNECTION": "Connexion WiFi manuelle",
-    "NETWORK_NAME": "Nom du réseau"   
+    "NETWORK_NAME": "Nom du réseau",
+    "WIRELESS_NETWORK_CONNECTION":"Connexion sans fil au réseau"
   },
   "WIZARD": {
      "LANGUAGE": "Langue",
@@ -231,7 +238,7 @@
     "DEVICE_ACTIVATED":"Votre périphérique a été activé avec succès! Profitez des avantages qui vous sont reservés!",
     "ADVANCEDSETTINGS": "Experience",
     "EXPERIENCE_SETTINGS_TITLE":"Partagez votre experience d'utilisateur",
-    "EXPERIENCE_SETTINGS_TEXT" :"Préferez vous un système avec seulement des réglages simplifiés, ou voulez vous un contrôle total avec dess réglages avancés?",
+    "EXPERIENCE_SETTINGS_TEXT" :"Préferez vous un système avec seulement des réglages simplifiés, ou voulez vous un contrôle total avec des réglages avancés?",
     "EXPERIENCE_SETTINGS_TEXT_2" :"Ce réglage pourra être changé plus tard dans les réglages système"
    },
   "SLEEP": {
@@ -262,7 +269,7 @@
   },
   "MYVOLUMIO": {
     "MY_VOLUMIO": "MyVolumio",
-    "ERROR": "Erreur",
+    "ERROR": "Erreur MyVolumio",
     "LOGIN": "Connexion",
     "LOGOUT": "Déconnexion",
     "SIGNUP": "Signer",
@@ -390,7 +397,38 @@
     "TRY_FOR_FREE":"Essai gratuit",
     "LIFETIME":"A vie",
     "FREE":"Gratuit",
-    "KEEP_ME_UPDATED_VIA_MAIL":"Me tenir informé des mises à jour par courriel"
+    "KEEP_ME_UPDATED_VIA_MAIL":"Me tenir informé des mises à jour par courriel",
+    "MY_VOLUMIO_SHORTDESC": "Myvolumio est le haut de gamme de votre expérience Volumio.Inscrivez-vous à des services haut de gamme comme l'intégration native de Qobuz et Tidal et beaucoup plus.",
+    "MY_VOLUMIO_MORE_INFO": "Découvrir toutes les caractèristiques ",
+    "CHOOSE_PLAN": "Choisissez un plan",
+    "SUPPORT_MYVOLUMIO": "Soutenez le développement de Volumio et bénéficiez de fonctionnalités haut de gamme pour le prix d’un espresso par mois.",
+    "SUPPORT_MYVOLUMIO_SHORT": "Soutenez nous et accèdez à toutes les fonctionnalités",
+    "COUPON_CODE": "Code coupon",
+    "HAVE_COUPON_CODE": "J'ai un coupon",
+    "FINISH_SIGNUP": "Terminer l’inscription",
+    "CREATING_ACCOUNT": "Créer un compte...",
+    "UPGRADE_MYVOLUMIO": "Mise à jour de MyVolumio",
+    "PREMIUM_STREAMING_TITLE": "Musique de qualité studion à la maison",
+    "PREMIUM_STREAMING_FULLY_INTEGRATED_QOBUZ": "Qobuz est intégré dans Volumio",
+    "PREMIUM_STREAMING_FULLY_INTEGRATED_TIDAL": "Tidal est intégré dans Volumio",
+    "PREMIUM_STREAMING_AVAILABILITY_QOBUZ": "Qobuz est disponible dans MyVolumio pour les utilisateurs Virtuoso et Superstar.",
+    "PREMIUM_STREAMING_AVAILABILITY_TIDAL": "Tidal est disponible dans MyVolumio pour les utilisateurs Virtuoso et Superstar.",
+    "MONTH": "mois",
+    "UPGRADE_FROM": "Mise à jour depuis",
+    "MORE_INFO": "Plus d'informations",
+    "MORE_INFO_DESCRIPTION": "Bénéficiez de fonctionnalités haut de gamme et soutenez le développement de Volumio.",
+    "NOT_CONNECTED": "Pas connecté",
+    "PREMIUM_STREAMING_FEATURE_1": "Integrés dans Volumio",
+    "PREMIUM_STREAMING_FEATURE_2": "Qualité Studio - FLAC 24-Bit jusqu'a 192 KHz",
+    "PREMIUM_STREAMING_FEATURE_3": "directement dans Volumio",
+    "PREMIUM_STREAMING_FEATURE_4": "Synchronisez vos listes de lectures et favoris à Volumio",
+    "LOGIN_WITH": "Login avec",
+    "SIGNUP_WITH": "Inscrivez vous avec",
+    "CONNECT":"Connecter",
+    "TO_VOLUMIO": "à Volumio avec vos paramètres",
+    "CODE_DEVICE_ALREADY_ACTIVATED": "Le code de votre périphérique a déja été activé avec succès et votre plan est",
+    "AND_ASSOCIATED_WITH_ACCOUNT":"et associé avec le compte",
+    "SIGNUP_ERROR_CONTACT_SUPPORT" : "Quelque chose s'est mal passé.Contactez l'assistance :support@volumio.org en fournissant les informations suivantes: "
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Recevez notre Fil d'actualités MyVolumio",
@@ -406,6 +444,8 @@
     "ALEXA_INTEGRATION":"Integration d'Amazon Alexa",
     "HIRESAUDIO_INTEGRATION":"Integration d'Highresaudio.com",
     "INPUT_PLAYBACK":"Entrée audio Digitale et analogique",
-    "BLUETOOTH_INPUT":"Entrée audio Bluetooth"
-} 
+    "BLUETOOTH_INPUT":"Entrée audio Bluetooth",
+    "ALL_VIRTUOSO_FEATURES":"Toutes les fonctionnalités Virtuoso",
+    "MUSIC_METADATA":"Découverte de métadonnées musicales"
+}
 }

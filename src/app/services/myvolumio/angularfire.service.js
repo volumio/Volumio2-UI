@@ -338,7 +338,7 @@ class AngularFireService {
     };
     this.authUser.sendEmailVerification( /*actionCodeSettings*/ )
       .then(() => {
-        this.modalService.openDefaultModal('MYVOLUMIO.PLEASE_VERIFY_EMAIL_TITLE', 'MYVOLUMIO.USER_VERIFICATION_EMAIL_SENT_DESC');
+        //this.modalService.openDefaultModal('MYVOLUMIO.PLEASE_VERIFY_EMAIL_TITLE', 'MYVOLUMIO.USER_VERIFICATION_EMAIL_SENT_DESC');
       })
       .catch((error) => {
         this.modalService.openDefaultErrorModal(error);
