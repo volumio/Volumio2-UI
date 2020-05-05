@@ -4,7 +4,7 @@
             <div class="music-card__header">
                 <img
                     class="music-card__img"
-                    src="{{ album ? browse.playerService.getAlbumart(album.albumart) : 'https://images.pexels.com/photos/3568518/pexels-photo-3568518.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500' }}">
+                    src="{{ browse.playerService.getAlbumart(album.albumart) }}">
                 <div class="music-card__overlay">
                     <div class="meta__genre">{{ album && album.genre ? album.genre : 'Example genre' }}</div>
                     <div class="meta__actions">

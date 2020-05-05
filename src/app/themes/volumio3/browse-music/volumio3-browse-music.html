@@ -5,7 +5,7 @@
       <div class="browse-header-container browse-music__browse-header-container">
 
         <div  ng-if="!browse.isDedicatedSearchView" id="browsePanelHeading" class="panel-heading browse-header">
-          
+
           <div class="navButtons pull-left"
                ng-include src="'app/browse/components/browse-nav-buttons.html'">
           </div>
@@ -43,7 +43,7 @@
           <!-- <div ng-if="browse.browseService.isBrowsing && !browse.browseService.isSearching"> -->
 
           <!-- Custom view headers -->
-          <div ng-if="browse.browseService.info">
+          <div ng-if="browse.browseService.info && !browse.hideInfoHeader">
             
             <!-- ====== ARTIST PAGE ===== -->
             <div

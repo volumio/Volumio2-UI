@@ -28,6 +28,8 @@ class BrowseMusicController {
     this.$http = $http;
     this.content = {};
     this.loadingCredit = {};
+    this.hideInfoHeader = false;
+    this.creditRequestOptions = {"timeout":7000};
 
     $scope.$on('browseService:fetchEnd', () => {
       /* While browsing this makes sense */
@@ -54,6 +56,16 @@ class BrowseMusicController {
       this.fetchTrackTypeImage();
     });
 
+    if (this.browseService.info) {
+      this.currentItemMetas = {};
+      if (this.browseService.info.type && this.browseService.info.type === 'artist' && this.browseService.info.title) {
+        this.getArtistMetas(this.browseService.info);
+      } else if (this.browseService.info.artist && this.browseService.info.album) {
+        this.getAlbumMetas(this.browseService.info);
+        this.getAlbumCredits(this.browseService.info);
+      }
+    }
+
     let bindedBackListener = this.backListener.bind(this);
     this.$document[0].addEventListener('keydown', bindedBackListener, false);
     this.$scope.$on('$destroy', () => {
@@ -73,7 +85,7 @@ class BrowseMusicController {
     this.isDedicatedSearchView = true;
     this.browseService.isSearching = true;
     this.browseService.lists = [];
-    this.browseService.info = undefined;
+    this.hideInfoHeader = true;
     this.resetBrowsePage();
     this.$timeout( function () {
       document.querySelector('#search-input-form').focus();
@@ -81,6 +93,7 @@ class BrowseMusicController {
   }
 
   unsetDedicatedSearch(){
+    this.hideInfoHeader = false;
     if (this.browseService.isSearching) {
       this.isDedicatedSearchView = false;
       this.browseService.isSearching = false;
@@ -341,7 +354,7 @@ class BrowseMusicController {
           'album': albumInfo.album
         }
       };
-      return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+      return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
         if (response.data && response.data.success && response.data.data && response.data.data.value) {
           this.currentItemMetas.albumCredits = response.data.data.value;
         }
@@ -355,7 +368,7 @@ class BrowseMusicController {
       'endpoint': 'metavolumio',
       'data': data
     };
-    return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+    return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
       if (response.data && response.data.success && response.data.data && response.data.data.value) {
         this.currentItemMetas.story = response.data.data.value;
       }
@@ -384,7 +397,7 @@ class BrowseMusicController {
       return;
     }
 
-    return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
+    return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
       if (response.data && response.data.success && response.data.data && response.data.data.value) {
         this.loadingCredit[uri] = false;
         return this.showCreditsDetails({'title': title, 'story': response.data.data.value});
