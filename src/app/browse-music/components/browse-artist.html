@@ -28,13 +28,12 @@
                             <button
                                 ng-click="browse.showCreditsDetails({'title':browse.browseService.info.title,'story':browse.currentItemMetas.story})"
                                 class="artist-description__read-more-btn">
-                                <img class="artist-description__read-more-btn__icon" src="app/assets-common/collapse-indicator.svg" alt="open collapse icon">
                                 <span>
-                                    {{ 'BROWSER.READ_MORE' | translate }}
+                                    {{ 'BROWSER.READ_MORE' | translate }}...
                                 </span>
                             </button>
                         </div>
-                        
+
                         <div class="header__meta">
                             <!-- <span ng-if="browse.mockArtistPage.info.genre">{{ browse.mockArtistPage.info.genre }}</span>
                             <span ng-if="browse.mockArtistPage.info.genre &&  (browse.mockArtistPage.info.local_albums || browse.mockArtistPage.info.streaming_albums)" class="header__meta__spacer"> • </span>
@@ -46,7 +45,7 @@
                                 {{ browse.mockArtistPage.info.streaming_albums }} streaming releases
                             </span> -->
                         </div>
-                       
+
                     </div> <!-- /.header__info -->
                     <div class="header__actions">
                         <!--
