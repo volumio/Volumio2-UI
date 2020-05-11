@@ -420,7 +420,11 @@ class BrowseMusicController {
   }
 
   addToQueue(item) {
-    return this.playQueueService.add(item);
+    if (this.browseService.currentFetchRequest.uri === 'playlists') {
+      this.playQueueService.enqueue(item);
+    } else {
+      this.playQueueService.add(item);
+    }
   }
 
   replaceAndPlay(item) {
