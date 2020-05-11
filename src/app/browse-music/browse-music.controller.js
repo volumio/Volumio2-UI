@@ -634,7 +634,8 @@ class BrowseMusicController {
                 title="${ item.title || '' }">
                     ${ item.title || '' }
             </div>
-            ${ item.qualityDescription === 'HI_RES' ? '<img class="music-card__extension" src="app/assets-common/hi-res-logo.jpg" alt="Hi res audio">' : '' }
+
+            <img class="music-card__extension ${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
         </div>
         <p class="music-card__meta">${ item.meta || (item.artist || '') }</p>
       </div>
@@ -681,7 +682,7 @@ class BrowseMusicController {
 
           <div class="item__info">
               <div class="item__title truncate-text" title="${ item.title || '' }">
-                  ${ item.title || '' }
+                  ${ item.title || '' } <img class="music-card__extension tagrow${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
               </div>
               <div class="item__album truncate-text ${ !item.album ? 'hidden' : '' }" title="${ item.album || '' }">
                   ${ item.album || '' }

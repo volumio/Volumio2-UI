@@ -30,7 +30,7 @@
             {{ item.artist }}
         </div>
     </div>
-    
+
     <div
         ng-click="browse.addToFavorites($event, item)"
         ng-if="browse.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite "
@@ -40,7 +40,7 @@
             <i class="fa fa-heart"></i>
         </span>
     </div>
-   
+
     <div
         ng-if="item.duration"
         class="item__duration">
