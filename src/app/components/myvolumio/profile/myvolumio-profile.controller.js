@@ -73,6 +73,10 @@ class MyVolumioProfileController {
     });
   }
 
+  goToReferral() {
+    this.$state.go('myvolumio.referral');
+  }
+
 }
 
 export default MyVolumioProfileController;

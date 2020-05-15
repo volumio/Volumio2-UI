@@ -554,6 +554,25 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+  .state('myvolumio.referral', {
+    url: '/profile/referral',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/referral/myvolumio-referral.html',
+        controller: 'MyVolumioReferralController',
+        controllerAs: 'myVolumioReferralController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return authService.requireVerifiedUserOrRedirect();
+            }
+          ]
+        }
+      }
+    }
+  })
+
   /* --------- END MYVOLUMIO ----------- */
 
   .state('volumio.static-page', {

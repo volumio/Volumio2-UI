@@ -164,6 +164,7 @@ import MyVolumioCancelSubscriptionController from './components/myvolumio/cancel
 import MyVolumioChangeSubscriptionController from './components/myvolumio/change-subscription/myvolumio-change-subscription.controller';
 import MyVolumioCloudSelectDeviceController from './components/myvolumio/select-device/myvolumio-cloud-select-device.controller';
 import MyVolumioAccessController from './components/myvolumio/access/myvolumio-access.controller';
+import MyVolumioReferralController from './components/myvolumio/referral/myvolumio-referral.controller';
 
 
 angular.module('volumio', [
@@ -360,4 +361,5 @@ angular.module('volumio', [
   .controller('MyVolumioCancelSubscriptionController', MyVolumioCancelSubscriptionController)
   .controller('MyVolumioChangeSubscriptionController', MyVolumioChangeSubscriptionController)
   .controller('MyVolumioCloudSelectDeviceController', MyVolumioCloudSelectDeviceController)
-  .controller('MyVolumioAccessController', MyVolumioAccessController);
+  .controller('MyVolumioAccessController', MyVolumioAccessController)
+  .controller('MyVolumioReferralController', MyVolumioReferralController);
