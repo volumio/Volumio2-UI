@@ -1,0 +1,106 @@
+<div class="box">
+    <div class="boxHeader d-flex align-items-center justify-content-between">
+      <div class="title">
+        <h2>Referral</h2>
+      </div>
+    </div>
+</div>
+
+<div id="authSignupPlugin" class="panel panel-default my-volumio__panel">
+
+    <div class="my-volumio__panel__header d-flex align-items-center justify-content-between">
+        <button ng-click="myVolumioReferralController.backToProfile()" class="btn d-flex align-items-center my-volumio__btn-secondary" tabindex="7">
+            <img class="mr-2" ng-src="{{'app/assets-common/arrow-left.svg'}}" alt="arrow left">
+            {{ "COMMON.BACK" | translate }}
+        </button>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h1 class="text-center">Refer friends & Get Rewarded!</h1>
+                <p class="text-center">Get rewarded for sharing Volumio with your friends. Invite them by using your unique link below.</p>
+
+                <div class="my-volumio__referral-link-container my-volumio__component">
+                    <input
+                        id="my-volumio-link-field"
+                        class="my-volumio__referral-link"
+                        type="text"
+                        value="https://examples.growsurf.com/blue.html?grsf=v67l9o">
+                    <button
+                        ng-click="myVolumioReferralController.copyLink()"
+                        class="btn my-volumio__btn-primary my-volumio__border-round"
+                        tabindex="7">
+                        Copy link
+                    </button>
+                </div>
+
+                <button class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-envelope"></i>
+                    Email
+                </button>
+                <button class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-facebook"></i>
+                    Facebook
+                </button>
+                <button class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-facebook"></i>
+                    Messenger
+                </button>
+                <button class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-whatsapp"></i>
+                    WhatsApp
+                </button>
+
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3 class="text-center">Your results</h3>
+                <div class="my-volumio__component my-volumio__results">
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-8 my-volumio__result-item">
+                            <h1 class="my-volumio__result-item-score">#34</h1>
+                            <p class="small my-volumio__result-item-caption">your stuff here</p>
+                        </div>
+                        <div class="col-xs-24 col-sm-8 my-volumio__result-item">
+                            <h1 class="my-volumio__result-item-score">#34</h1>
+                            <p class="small my-volumio__result-item-caption">your stuff here</p>
+                        </div>
+                        <div class="col-xs-24 col-sm-8 my-volumio__result-item">
+                            <h1 class="my-volumio__result-item-score">#34</h1>
+                            <p class="small my-volumio__result-item-caption">your stuff here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-24 col-sm-24 col-md-20 col-md-offset-2 col-lg-16 col-lg-offset-4">
+                <div class="row">
+                    <div class="col-xs-24 col-sm-12">Left</div>
+                    <div class="col-xs-24 col-sm-12">Right</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3>How it works</h3>
+                Three coluimn
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3>FAQ</h3>
+                Collapsibles
+            </div>
+        </div>
+
+
+    </div>
+</div>

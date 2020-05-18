@@ -28,6 +28,18 @@
   </button>
   <favourite-track-btn></favourite-track-btn>
   <add-track-to-playlist-btn></add-track-to-playlist-btn>
+  <button
+    class="btn btn-info btn-block"
+    ng-class="{ 'disabled': modal.creditsLoading || modal.creditsError }"
+    ng-click="modal.getAlbumCredits()">
+    <span ng-if="!modal.creditsLoading && !modal.creditsError">
+      <i class="fa fa-info"></i> {{ 'BROWSER.CREDITS' | translate }}
+    </span>
+    <span ng-if="!modal.creditsLoading && modal.creditsError">
+      <i class="fa fa-info"></i> {{ 'BROWSER.NOT_FOUND' | translate }}
+    </span>
+    <div ng-if="modal.creditsLoading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </button>
   <button class="btn btn-info btn-block"
       ng-if="modal.playerService.state.artist"
       ng-click="modal.goTo('artist')">

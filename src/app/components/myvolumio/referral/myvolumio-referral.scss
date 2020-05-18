@@ -1,0 +1,88 @@
+.my-volumio__component {
+    background: $theme-accent-color;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px -2px rgba(0,0,0,.4);
+}
+
+.my-volumio__referral-link-container {
+    display: flex;
+    padding: 12px;
+    margin-bottom: 4px;
+}
+
+.my-volumio__referral-link {
+    flex: 1 1 100%;
+    padding: 10px 16px 10px 10px;
+    border: 1px solid #7A848E;
+    border-right: none;
+    background-color: transparent;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    & ~ .btn {
+        margin-left: -4px;
+    }
+}
+
+.my-volumio__referral-btn {
+    display: inline-flex;
+    align-items: center;
+    &:first-of-type {
+        margin: 4px 4px 4px 0;
+    }
+    &:not(:first-of-type) {
+        margin: 4px;
+    }
+    padding: 6px 12px 6px 8px;
+    border: none;
+    transition: all .2s ease-out 0s;
+
+    .fa {
+        margin-right: 8px;
+    }
+    &:hover {
+        opacity: .9;
+        box-shadow: 0 2px 10px -2px rgba(0,0,0,.5);
+        background-color: darken($theme-accent-color, 2%);
+    }
+}
+
+.my-volumio__results {
+    padding: 16px;
+}
+
+.my-volumio__result-item {
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+}
+
+.my-volumio__result-item-score,
+.my-volumio__result-item-caption {
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .my-volumio__referral-link-container {
+        padding: 16px;
+    }
+    
+    .my-volumio__results {
+        padding: 24px;
+    }
+    .my-volumio__result-item {
+        display: block;
+        text-align: center;
+        &:not(:last-child) {
+            margin-bottom: 0;
+        }
+    }
+    .my-volumio__result-item-score {
+        margin-bottom: 16px;
+    }
+}

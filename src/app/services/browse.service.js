@@ -62,6 +62,7 @@ class BrowseService {
 
   sendEject(data) {
     this.socketService.emit('callMethod', data);
+    this.$rootScope.$broadcast('browseService:eject');
     this.backHome();
   }
 

@@ -108,7 +108,12 @@
     "UPDATE_FOLDER": "Mise à jour du dossier",
     "DELETE_FOLDER": "Effacer le dossier",
     "SKIP_BACKWARDS": "Avancer",
-    "SKIP_FORWARD": "Retour"
+    "SKIP_FORWARD": "Retour",
+     "CREDITS":"Credits",
+    "READ_MORE": "Lire plus",
+    "NO_ITEMS": "Pas d'articles",
+    "NOT_FOUND": "Non trouvé",
+    "CREDITS_NOT_FOUND": "Pas de Crédits"
   },
 "MY_MUSIC": {
     "UPDATE": "Mettre à jour",
@@ -180,14 +185,14 @@
     "EDIT_DRIVE": "Editer un disque",
     "DELETE_DRIVE_CONFIRM": "Voulez vous vraiment effacer ?",
     "PLACEHOLDER_NAME": "Nom",
-    "PLACEHOLDER_IP_ADDRESS": "Address IP du NAS ou Nom",
+    "PLACEHOLDER_IP_ADDRESS": "Adresse IP du NAS ou Nom",
     "PLACEHOLDER_PATH_TO_SHARE": "Chemin du partage"
   },
   "NETWORK":{
     "NETWORK_STATUS": "Etat du réseau",
     "SSID": "SSID",
     "SIGNAL": "Signal",
-    "IP_ADDRESS": "Addresse IP",
+    "IP_ADDRESS": "Adresse IP",
     "SPEED": "Vitesse",
     "ONLINE": "Connecté",
     "CONNECT": "Connexion",
@@ -295,7 +300,7 @@
     "BIRTHDAY": "Date naisance",
     "CONFIRM_PASSWORD": "Confirmer le mot de passe",
     "OR": "ou",
-    "TOS_AGREE": "J'accepte",
+    "TOS_AGREE": "J'accepte ",
     "TOS": "Termes et Conditions",
     "SELECT_PLAN": "Selectionner un plan",
     "CURRENT_PLAN": "Plan actuel",
@@ -393,16 +398,17 @@
     "LIFETIME":"A vie",
     "FREE":"Gratuit",
     "KEEP_ME_UPDATED_VIA_MAIL":"Me tenir informé des mises à jour par courriel",
-    "MY_VOLUMIO_SHORTDESC": "Myvolumio est le haut de gamme de votre expérience Volumio.Inscrivez-vous à des services haut de gamme comme l'intégration native de Qobuz et Tidal et beaucoup plus.",
+    "MY_VOLUMIO_SHORTDESC": "Myvolumio est le haut de gamme de votre expérience Volumio. Inscrivez-vous à des services \"haut de gamme\" comme l'intégration native de Qobuz et Tidal et beaucoup plus.",
     "MY_VOLUMIO_MORE_INFO": "Découvrir toutes les caractèristiques ",
     "CHOOSE_PLAN": "Choisissez un plan",
-    "SUPPORT_MYVOLUMIO": "Soutenez le développement de Volumio et bénéficiez de fonctionnalités haut de gamme pour le prix d’un espresso par mois.",
+    "SUPPORT_MYVOLUMIO": "Soutenez le développement de Volumio et bénéficiez de fonctionnalités \"haut de gamme\" pour le prix d’un espresso par mois.",
+    "SUPPORT_MYVOLUMIO_SHORT": "Soutenez nous et accèdez à toutes les fonctionnalités",
     "COUPON_CODE": "Code coupon",
     "HAVE_COUPON_CODE": "J'ai un coupon",
     "FINISH_SIGNUP": "Terminer l’inscription",
     "CREATING_ACCOUNT": "Créer un compte...",
     "UPGRADE_MYVOLUMIO": "Mise à jour de MyVolumio",
-    "PREMIUM_STREAMING_TITLE": "Misique de qualité studion à la maison",
+    "PREMIUM_STREAMING_TITLE": "Musique de qualité studion à la maison",
     "PREMIUM_STREAMING_FULLY_INTEGRATED_QOBUZ": "Qobuz est intégré dans Volumio",
     "PREMIUM_STREAMING_FULLY_INTEGRATED_TIDAL": "Tidal est intégré dans Volumio",
     "PREMIUM_STREAMING_AVAILABILITY_QOBUZ": "Qobuz est disponible dans MyVolumio pour les utilisateurs Virtuoso et Superstar.",
@@ -421,7 +427,8 @@
     "CONNECT":"Connecter",
     "TO_VOLUMIO": "à Volumio avec vos paramètres",
     "CODE_DEVICE_ALREADY_ACTIVATED": "Le code de votre périphérique a déja été activé avec succès et votre plan est",
-    "AND_ASSOCIATED_WITH_ACCOUNT":"et associé avec le compte"
+    "AND_ASSOCIATED_WITH_ACCOUNT":"et associé avec le compte",
+    "SIGNUP_ERROR_CONTACT_SUPPORT" : "Quelque chose s'est mal passé.Contactez l'assistance :support@volumio.org en fournissant les informations suivantes: "
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Recevez notre Fil d'actualités MyVolumio",
@@ -437,6 +444,8 @@
     "ALEXA_INTEGRATION":"Integration d'Amazon Alexa",
     "HIRESAUDIO_INTEGRATION":"Integration d'Highresaudio.com",
     "INPUT_PLAYBACK":"Entrée audio Digitale et analogique",
-    "BLUETOOTH_INPUT":"Entrée audio Bluetooth"
+    "BLUETOOTH_INPUT":"Entrée audio Bluetooth",
+    "ALL_VIRTUOSO_FEATURES":"Toutes les fonctionnalités Virtuoso",
+    "MUSIC_METADATA":"Découverte de métadonnées musicales"
 }
 }

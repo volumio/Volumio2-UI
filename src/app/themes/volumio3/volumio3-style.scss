@@ -174,7 +174,7 @@ body {
   &:focus {
     color: $link-color;
     &.btn-info {
-      border-color: #54C688;
+      border-color: $theme-primary-color;
       background-color: $btn-info-bg;
     }
   }
@@ -449,6 +449,11 @@ table {
   }
   .modal-body {
     background-color: $theme-transparent-background;
+  }
+  .credits-story {
+    white-space: pre-line;
+    font-size: 16px;
+    text-align: justify;
   }
 }
 

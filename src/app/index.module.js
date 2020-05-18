@@ -77,7 +77,6 @@ import LightSwitchBtnDirective from './components/light-switch-btn/light-switch-
 
 //Directives
 import PluginAttributesDirective from './plugin/components/plugin-attributes.directive';
-import PluginVisibleDirective from './plugin/components/plugin-visible.directive';
 import PluginComponent from './plugin/components/plugin.component';
 
 //MyVolumio Directives
@@ -104,6 +103,7 @@ import StaticPageController from './static-pages/static-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
+import BrowseMusicController from './browse-music/browse-music.controller';
 import PlaybackController from './playback/playback.controller';
 import PlayQueueController from './play-queue/play-queue.controller';
 
@@ -137,6 +137,7 @@ import ModalNetwordDrivesPasswordController from './plugin/core-plugin/modals/mo
 import ModalCryptoController from './components/modals/modal-crypto.controller';
 import MyVolumioTermsModalController from './components/myvolumio/modals/myvolumio-terms-modal/myvolumio-terms-modal.controller';
 import MyVolumioPayingModalController from './components/myvolumio/modals/myvolumio-paying-modal/myvolumio-paying-modal.controller';
+import ModalCreditsDetailsController from './browse-music/components/modal/modal-credits-details.controller';
 
 
 //Core plugin controller
@@ -166,6 +167,7 @@ import MyVolumioCancelSubscriptionController from './components/myvolumio/cancel
 import MyVolumioChangeSubscriptionController from './components/myvolumio/change-subscription/myvolumio-change-subscription.controller';
 import MyVolumioCloudSelectDeviceController from './components/myvolumio/select-device/myvolumio-cloud-select-device.controller';
 import MyVolumioAccessController from './components/myvolumio/access/myvolumio-access.controller';
+import MyVolumioReferralController from './components/myvolumio/referral/myvolumio-referral.controller';
 
 
 angular.module('volumio', [
@@ -269,10 +271,7 @@ angular.module('volumio', [
   .directive('trackInfoBar', () => new TrackInfoBarDirective())
   .directive('trackInfoBarButtons', () => new TrackInfoBarButtonsDirective())
   .directive('equalizer', () => new EqualizerDirective())
-
   .directive('pluginAttributes', () => new PluginAttributesDirective())
-  .directive('pluginVisible', () => new PluginVisibleDirective())
-
   .directive('favouriteTrackBtn', (themeManager) => new FavouriteTrackBtnDirective(themeManager))
   .directive('addTrackToPlaylistBtn', (themeManager) => new AddTrackToPlaylistBtnDirective(themeManager))
   .directive('trackActionsBtn', (themeManager) => new TrackActionsBtnDirective(themeManager))
@@ -310,6 +309,7 @@ angular.module('volumio', [
   .component('pluginComponent', new PluginComponent())
 
   .controller('BrowseController', BrowseController)
+  .controller('BrowseMusicController', BrowseMusicController)
   .controller('PlaybackController', PlaybackController)
   .controller('PlayQueueController', PlayQueueController)
 
@@ -343,6 +343,7 @@ angular.module('volumio', [
   .controller('FirmwareUploadPluginController', FirmwareUploadPluginController)
   .controller('UiSettingsPluginController', UiSettingsPluginController)
   .controller('MyMusicPluginEnablerController', MyMusicPluginEnablerController)
+  .controller('ModalCreditsDetailsController', ModalCreditsDetailsController)
 
   //Volumio 3 UI
 
@@ -366,4 +367,5 @@ angular.module('volumio', [
   .controller('MyVolumioCancelSubscriptionController', MyVolumioCancelSubscriptionController)
   .controller('MyVolumioChangeSubscriptionController', MyVolumioChangeSubscriptionController)
   .controller('MyVolumioCloudSelectDeviceController', MyVolumioCloudSelectDeviceController)
-  .controller('MyVolumioAccessController', MyVolumioAccessController);
+  .controller('MyVolumioAccessController', MyVolumioAccessController)
+  .controller('MyVolumioReferralController', MyVolumioReferralController);

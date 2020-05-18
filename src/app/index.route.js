@@ -79,8 +79,8 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     params: { source: null },
     views: {
       'content@volumio': {
-        templateUrl: themeManagerProvider.getHtmlPath('browse'),
-        controller: 'BrowseController',
+        templateUrl: themeManagerProvider.getHtmlPath('browse-music'),
+        controller: 'BrowseMusicController',
         controllerAs: 'browse'
       }
     }
@@ -173,8 +173,8 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     },
     views: {
       'content@volumio': {
-        templateUrl: themeManagerProvider.getHtmlPath('browse'),
-        controller: 'BrowseController',
+        templateUrl: themeManagerProvider.getHtmlPath('browse-music'),
+        controller: 'BrowseMusicController',
         controllerAs: 'browse'
       }
     }
@@ -542,6 +542,25 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         templateUrl: 'app/components/myvolumio/change-subscription/myvolumio-change-subscription.html',
         controller: 'MyVolumioChangeSubscriptionController',
         controllerAs: 'myVolumioChangeSubscriptionController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return authService.requireVerifiedUserOrRedirect();
+            }
+          ]
+        }
+      }
+    }
+  })
+
+  .state('myvolumio.referral', {
+    url: '/profile/referral',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/referral/myvolumio-referral.html',
+        controller: 'MyVolumioReferralController',
+        controllerAs: 'myVolumioReferralController',
         resolve: {
           user: [
             'authService',

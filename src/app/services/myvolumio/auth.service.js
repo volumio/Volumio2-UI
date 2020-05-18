@@ -143,7 +143,7 @@ class AuthService {
   }
 
   syncronizeWithOnboardFlow(data){
-    this.onBoardFlowService.updateUserData(data);
+    this.onBoardFlowService.updateOnboardFlowUserData(data);
   }
 
   syncronizeWithGrowSurf(userData){
@@ -494,9 +494,10 @@ class AuthService {
   }
 
   isSocialEnabled() {
-    if (this.isValidDomainForSocialLogin(this.$location.host())) {
-      return true;
-    }
+    // Disabling Social login until proper flow is adapted to check for TOS and Marketing Consent and email is mandatory
+    //if (this.isValidDomainForSocialLogin(this.$location.host())) {
+    //  return true;
+    //}
     return false;
   }
 
@@ -510,6 +511,10 @@ class AuthService {
       return true;
     }
     return false;
+  }
+
+  getCurrentAuthUser() {
+    return this.user;
   }
 
 }

@@ -108,7 +108,12 @@
     "UPDATE_FOLDER": "Update Folder",
     "DELETE_FOLDER": "Delete Folder",
     "SKIP_BACKWARDS": "Skip Backwards",
-    "SKIP_FORWARD": "Skip Forward"
+    "SKIP_FORWARD": "Skip Forward",
+    "CREDITS":"Credits",
+    "READ_MORE": "Read more",
+    "NO_ITEMS": "No items",
+    "NOT_FOUND": "Not found",
+    "CREDITS_NOT_FOUND": "Credits not found"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",
@@ -424,7 +429,8 @@
     "CODE_DEVICE_ALREADY_ACTIVATED": "Your device code has already been successfully activated and your plan is",
     "AND_ASSOCIATED_WITH_ACCOUNT":"and associated with account",
     "WIN_PRIZES_REFERRING_VOLUMIO":"Win amazing prices referring Volumio to your friends",
-    "MY_ACHIEVEMENTS": "My achievements"
+    "MY_ACHIEVEMENTS": "My achievements",
+    "SIGNUP_ERROR_CONTACT_SUPPORT" : "Something went wrong during your signup. Please contact our support at support@volumio.org providing the following error information: "
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
@@ -440,6 +446,8 @@
     "ALEXA_INTEGRATION":"Alexa integration",
     "HIRESAUDIO_INTEGRATION":"Highresaudio.com Integration",
     "INPUT_PLAYBACK":"Digital and Analog Inputs Playback",
-    "BLUETOOTH_INPUT":"Bluetooth Audio Playback Input"
+    "BLUETOOTH_INPUT":"Bluetooth Audio Playback Input",
+    "ALL_VIRTUOSO_FEATURES":"All Virtuoso Features",
+    "MUSIC_METADATA":"Music and Artists Credit Discovery"
   }
 }

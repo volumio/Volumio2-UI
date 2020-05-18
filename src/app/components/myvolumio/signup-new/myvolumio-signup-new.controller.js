@@ -1,11 +1,12 @@
 class MyVolumioSignupNewController {
-  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user, $log, socketService, $rootScope) {
+  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, $filter, user, $log, socketService, $rootScope) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
     this.modalService = modalService;
     this.authService = authService;
     this.$translate = $translate;
+    this.filteredTranslate = $filter('translate');
     this.paymentsService = paymentsService;
     this.productService = productsService;
     this.$log = $log;
@@ -143,6 +144,7 @@ class MyVolumioSignupNewController {
 
     this.authService.signup(user).then((newUser) => {
       /* this.$state.go('myvolumio.profile'); */
+
       this.newUser = newUser;
       this.stepForwards();
     }, (error) => {
@@ -233,16 +235,24 @@ class MyVolumioSignupNewController {
     }
 
     if(paddleId === undefined || !Number.isInteger(paddleId) ){
-      alert("Error, no transaction occurred, no paddleId found.");
+      this.showSignupErrorModal('no paddleId found');
       return;
     }
     if(!this.newUser){
-      alert("Error, no transaction occurred, no authenticated user found.");
+      this.showSignupErrorModal('no authenticated user found');
       return;
     }
     /* jshint ignore:start */
 
-    let checkoutProps = {
+    if (!this.newUser || !this.newUser.email || !this.newUser.uid) {
+      this.newUser = this.authService.getCurrentAuthUser();
+      if (!this.newUser || !this.newUser.email || !this.newUser.uid) {
+        this.showSignupErrorModal('missing email and uid');
+        return;
+      }
+    }
+
+    var checkoutProps = {
       product: paddleId,
       email: this.newUser.email,
       passthrough: { "email": this.newUser.email, "uid": this.newUser.uid },
@@ -317,6 +327,11 @@ class MyVolumioSignupNewController {
     if (this.$state.current.name === 'myvolumio.signup') {
       this.$state.go('myvolumio.profile');
     }
+  }
+
+  showSignupErrorModal(message){
+    var errorMessage = this.filteredTranslate("MYVOLUMIO.SIGNUP_ERROR_CONTACT_SUPPORT") + " " + message;
+    this.modalService.openDefaultErrorModal(errorMessage);
   }
 }
 

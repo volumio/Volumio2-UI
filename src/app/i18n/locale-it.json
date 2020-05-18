@@ -102,7 +102,10 @@
     "UPDATE_FOLDER": "Aggiorna cartella",
     "DELETE_FOLDER":"Cancella la cartella",
     "SKIP_BACKWARDS": "Salta Indietro",
-    "SKIP_FORWARD": "Salta Avanti"
+    "SKIP_FORWARD": "Salta Avanti",
+    "CREDITS":"Crediti",
+    "READ_MORE": "Leggi di più",
+    "CREDITS_NOT_FOUND": "Crediti non trovati"
   },
 "MY_MUSIC": {
     "UPDATE":"Aggiorna",
@@ -413,7 +416,8 @@
     "CONNECT":"Connetti",
     "TO_VOLUMIO": "a Volumio nelle tue impostazioni",
     "CODE_DEVICE_ALREADY_ACTIVATED": "Il tuo codice è già stato attivato con sucesso e il tuo piano è",
-    "AND_ASSOCIATED_WITH_ACCOUNT":"e associato con l'account"
+    "AND_ASSOCIATED_WITH_ACCOUNT":"e associato con l'account",
+    "SIGNUP_ERROR_CONTACT_SUPPORT" : "La vostra iscrizione non può essere completata. Vi preghiamo di contattare il nostro supporto a support@volumio.org riportando la seguente informazione sull'errore:"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
@@ -429,6 +433,8 @@
     "ALEXA_INTEGRATION":"Integrazione Alexa",
     "HIRESAUDIO_INTEGRATION":"Integrazione Highresaudio.com",
     "INPUT_PLAYBACK":"Riproduzione da input digitali e analogici",
-    "BLUETOOTH_INPUT":"Riproduzione da Dispositivi Bluetooth"
+    "BLUETOOTH_INPUT":"Riproduzione da Dispositivi Bluetooth",
+    "ALL_VIRTUOSO_FEATURES":"Tutte le funzioni virtuoso",
+    "MUSIC_METADATA":"Consultazione dei crediti di Musica e Artisti"
   }
 }

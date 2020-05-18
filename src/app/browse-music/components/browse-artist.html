@@ -1,0 +1,101 @@
+<div>
+    <div class="artist__header">
+        <div class="header__content">
+            <div class="header__content__inner">
+                <div class="header__main">
+                    <div class="header__image">
+                        <img
+                            class="header__image__img"
+                            src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}"
+                            alt="">
+                    </div> <!-- /.header__image -->
+                    <div class="header__info">
+                        <div class="header__play">
+                            <button
+                                ng-click="browse.play(browse.browseService.info)"
+                                class="header__play-btn">
+                                <i class="fa fa-play"></i>
+                            </button>
+                            <h1 class="header__artist">{{ browse.browseService.info.title }}</h1>
+                        </div> <!-- /.header__play -->
+                        <div
+                            ng-bind-html="browse.currentItemMetas.story"
+                            class="artist-description">
+                        </div>
+                        <div
+                            ng-if="browse.currentItemMetas.story"
+                            class="artist-description__read-more">
+                            <button
+                                ng-click="browse.showCreditsDetails({'title':browse.browseService.info.title,'story':browse.currentItemMetas.story})"
+                                class="artist-description__read-more-btn">
+                                <span>
+                                    {{ 'BROWSER.READ_MORE' | translate }}...
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="header__meta">
+                            <!-- <span ng-if="browse.mockArtistPage.info.genre">{{ browse.mockArtistPage.info.genre }}</span>
+                            <span ng-if="browse.mockArtistPage.info.genre &&  (browse.mockArtistPage.info.local_albums || browse.mockArtistPage.info.streaming_albums)" class="header__meta__spacer"> • </span>
+                            <span ng-if="browse.mockArtistPage.info.local_albums">
+                                {{ browse.mockArtistPage.info.local_albums }} local
+                            </span>
+                            <span ng-if="browse.mockArtistPage.info.local_albums && browse.mockArtistPage.info.streaming_albums">and</span>
+                            <span ng-if="browse.mockArtistPage.info.streaming_albums">
+                                {{ browse.mockArtistPage.info.streaming_albums }} streaming releases
+                            </span> -->
+                        </div>
+
+                    </div> <!-- /.header__info -->
+                    <div class="header__actions">
+                        <!--
+                        <button ng-click="browse.addToFavorites($event, browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-heart"></i> {{ 'BROWSER.ADD_TO_FAVOURITES' | translate }}</button>
+                        <button ng-click="browse.addToPlaylist(browse.mockArtistPage.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button> -->
+                        <button ng-click="browse.addToQueue(browse.browseService.info)" class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
+                    </div>
+                </div> <!-- header__main -->
+
+                <div class="header__footer">
+                    <!-- <div class="layout-switch">
+                        <label class="layout-switch-btn" for="layout-list" title="{{ 'COMMON.LIST' | translate }}">
+                            <input ng-model="browse.listViewSetting" class="layout-switch-input" name="layout" id="layout-list" value="list" type="radio">
+                            <span class="layout-switch-label">
+                                <i class="fa fa-list"></i>
+                            </span>
+                        </label>
+                        <label class="layout-switch-btn" for="layout-grid" title="{{ 'COMMON.GRID' | translate }}">
+                            <input ng-model="browse.listViewSetting" class="layout-switch-input" name="layout" id="layout-grid" value="grid" type="radio">
+                            <span class="layout-switch-label">
+                                <i class="fa fa-th-large"></i>
+                            </span>
+                        </label>
+                    </div> --> <!-- /.layout-switch -->
+                </div> <!-- /.header__footer -->
+
+            </div> <!-- header__content__inner -->
+        </div> <!-- /.header__content -->
+
+        <div
+            uib-dropdown
+            on-toggle="browse.toggledItem(open, $event)"
+            class="header__mobile-actions hamburgerMenu">
+            <button id="hamburgerMenuBtn-album-artist" class="ghost-btn action-btn" uib-dropdown-toggle>
+            <i class="fa fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu buttonsGroup align-to-right">
+                <li
+                    ng-click="browse.addToQueue(browse.browseService.info)"
+                    title="{{'BROWSER.ADD_TO_QUEUE' | translate}}">
+                <a href><i class="fa fa-list"></i><span translate="BROWSER.ADD_TO_QUEUE"></span></a></a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div
+            class="header__backdrop">
+            <img src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}" alt="">
+        </div>
+    </div> <!-- /.artist__header -->
+
+</div>
