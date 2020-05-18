@@ -152,11 +152,13 @@
 
 .plan__card {
     background: $theme-accent-color;
-    border: 1px solid $theme-light-color;
-    box-shadow: 0 5px 24px 0 rgba(0,0,0,0.39);
-    border-radius: 12px;
-    font-weight: 400;
-    cursor: pointer;
+    &:not(.reset) {
+        border: 1px solid $theme-light-color;
+        box-shadow: 0 5px 24px 0 rgba(0,0,0,0.39);
+        border-radius: 12px;
+        font-weight: 400;
+        cursor: pointer;
+    }
 
     .plan__title {
         padding: 10px;

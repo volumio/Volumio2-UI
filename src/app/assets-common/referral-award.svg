@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="37px" height="55px" viewBox="0 0 37 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>referral-award</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="App-/-Referrals---mixed" transform="translate(-843.000000, -1108.000000)">
+            <g id="referral-award" transform="translate(845.000000, 1110.000000)">
+                <path d="M16.5,0 C25.6128336,0 33,7.16331289 33,16 C33,24.8366871 25.6128336,32 16.5,32 C7.38716642,32 0,24.8366871 0,16 C0,7.16331289 7.38716642,0 16.5,0 Z" id="Stroke-1" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <polyline id="Stroke-3" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="7.78235899 30.0236643 5 51 16.4993048 44.0914093 28 51 25.2162505 30"></polyline>
+                <path d="M20.552,22 L20.552,20.52 L18.472,20.52 L18.472,10.416 L16.848,10.416 L13.32,13.416 L13.944,14.272 C13.9866667,14.3306667 14.052,14.3826667 14.14,14.428 C14.228,14.4733333 14.3253333,14.496 14.432,14.496 C14.5013333,14.496 14.572,14.4853333 14.644,14.464 C14.716,14.4426667 14.7866667,14.4026667 14.856,14.344 L14.856,14.344 L16.52,12.952 C16.504,13.24 16.496,13.5146667 16.496,13.776 L16.496,13.776 L16.496,20.52 L14.152,20.52 L14.152,22 L20.552,22 Z" id="1" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

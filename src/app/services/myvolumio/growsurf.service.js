@@ -1,5 +1,5 @@
 class GrowSurfService {
-  constructor($http, $log, $window, firebaseApiFunctionsService) {
+  constructor($http, $log, $window, firebaseApiFunctionsService, cloudService) {
     'ngInject';
 
     this.$http = $http;
@@ -7,12 +7,19 @@ class GrowSurfService {
     this.$window = $window;
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
     this.growSurfParticipantRegistered = false;
+    this.cloudService = cloudService;
     this.campaignInfo = {};
+    this.participant = {};
     this.init();
   }
 
   init() {
+    /*
+      Shouldnt exist on the device, only cloud
+      this.cloudService.isOnCloud
+    */
     this.initializeGrowSurf();
+    console.log(this.cloudService.isOnCloud);
   }
 
   initializeGrowSurf() {
@@ -30,9 +37,11 @@ class GrowSurfService {
   }
 
   initializeGrowSurfConnection(token) {
+    /* Shouldnt exist on the device, only cloud */
     var referrerId = this.$window.growsurf.getReferrerId();
     this.$log.debug('GrowSurf referrerId: ' + referrerId);
 
+    /* On the device call this without the referrerId */
     this.registerGrowSurfParticipant(token, referrerId);
   }
 
@@ -48,6 +57,7 @@ class GrowSurfService {
         this.growSurfParticipantRegistered = true;
         this.autoLoginGrowSurfParticipant(response.data);
         this.getCampaingInfo(token);
+        this.participant = response.data.participant;
       }
     }).catch(error => {
       this.$log.debug('GrowSurf registering participant error: ' + JSON.stringify(error.data));
