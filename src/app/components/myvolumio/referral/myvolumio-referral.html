@@ -37,11 +37,11 @@
                     <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
                 </div>
 
-                <button class="my-volumio__referral-btn my-volumio__component">
+                <button ng-click="myVolumioReferralController.shareClick('email', myVolumioReferralController.growSurfService.participant.shareURL)" class="my-volumio__referral-btn my-volumio__component">
                     <i class="fa fa-envelope"></i>
                     Email
                 </button>
-                <button class="my-volumio__referral-btn my-volumio__component">
+                <button ng-click="myVolumioReferralController.shareClick('facebook', myVolumioReferralController.growSurfService.participant.shareURL)" class="my-volumio__referral-btn my-volumio__component">
                     <i class="fa fa-facebook"></i>
                     Facebook
                 </button>
@@ -49,7 +49,7 @@
                     <i class="fa fa-facebook"></i>
                     Messenger
                 </button>
-                <button class="my-volumio__referral-btn my-volumio__component">
+                <button ng-click="myVolumioReferralController.shareClick('whatsapp', myVolumioReferralController.growSurfService.participant.shareURL)" class="my-volumio__referral-btn my-volumio__component">
                     <i class="fa fa-whatsapp"></i>
                     WhatsApp
                 </button>
@@ -84,7 +84,7 @@
             <div class="col-xs-24 col-sm-24 col-md-20 col-md-offset-2 col-lg-16 col-lg-offset-4">
                 <div class="row">
                     <div class="col-xs-24 col-sm-12">
-                        <div class="plan__card reset my-volumio__component">
+                        <div class="plan__card my-volumio__leaderboard reset my-volumio__component">
                             <div class="plan__title d-flex align-items-center">
                                 <span>Leaderboard <br><br></span>
                             </div>
@@ -98,10 +98,11 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                            <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
+                        </div> <!-- plan__card -->
                     </div>
                     <div class="col-xs-24 col-sm-12">
-                        <div class="plan__card reset my-volumio__component mb-4">
+                        <div class="plan__card my-volumio__leaderboard reset my-volumio__component mb-4">
                             <div class="plan__title d-flex align-items-center">
                                 <span>Rewards <br><br></span>
                             </div>
@@ -120,7 +121,8 @@
                                 </div>
                               </div>
                             </div>
-                        </div>
+                            <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
+                        </div> <!-- plan__card -->
                         <div class="my-volumio__component">
                             <div ng-repeat="reward in myVolumioReferralController.growSurfService.campaignInfo.rewards track by reward.id" ng-if="reward.type === 'LEADERBOARD'" class="participant">
                                 <div class="participant__rank">
@@ -162,11 +164,144 @@
         
         <div class="row">
             <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
-                <h3 class="text-center">FAQ</h3>
+                <h3 class="text-center mb-4">FAQ</h3>
+
                 <div class="my-volumio__collapse my-volumio__component">
-                    <div class="my-volumio__collapse-header">How do I refer someone?</div>
-                    <div class="my-volumio__collapse-body">The answer is easy...</div>
-                </div>
+                    <input class="my-volumio__collapse-toggle" id="how-do-i" type="checkbox" hidden>
+                    <label for="how-do-i" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            How do I refer someone?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>Simply share your unique link to a friend who would like to create a MyVolumio account.</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+                
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="whatisconsidered" type="checkbox" hidden>
+                    <label for="whatisconsidered" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            What is considered a referral?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>A referral is when your friend successfully signs up to MyVolumio via your unique referral link.</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+                
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="howlongismy" type="checkbox" hidden>
+                    <label for="howlongismy" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            How long is my unique link valid for?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>Your unique link does not expire and you can use it at any time, unless Volumio decides to cancel the referral campaign.</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+                
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="howcanicheck" type="checkbox" hidden>
+                    <label for="howcanicheck" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            How can I check the status of my referral and the leaderboard?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>You can see a real-time count of your referral and the leaderboard on the Volumio UI while logged in on your account.</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+                
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="whendoireceive" type="checkbox" hidden>
+                    <label for="whendoireceive" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            When do I receive my rewards?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>Once your friend (s) creates a MyVolumio account and you achieve a milestone, you'll receive your referral in a manner of minutes (check).</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+                
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="doineedpayment" type="checkbox" hidden>
+                    <label for="doineedpayment" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            Do I need to insert payment information to receive my rewards?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>Only users with a MyVolumio FREE account must insert payment payment to claim their rewards.</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+                
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="whyarerewards" type="checkbox" hidden>
+                    <label for="whyarerewards" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            Why are the rewards different for each subscription?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>We separated the rewards according to the subscription type to be fair to all users, and get the rewards according to the value of the subscription.</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+                
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="howmanypeople" type="checkbox" hidden>
+                    <label for="howmanypeople" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            How many people can I refer?
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>The limit does not exist! The more you make, the closer you are to being in the Top 1!</p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
             </div>
         </div>
 
