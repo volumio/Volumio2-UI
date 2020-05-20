@@ -14,16 +14,16 @@ class MyVolumioReferralController {
         this.participant = null;
         this.campaign = null;
 
+        this.copyDone = false;
+
         this.init();
     }
 
     init() {
-        console.log('Howdy...');
-        console.log(this.growSurfService.participant);
-        console.log(this.growSurfService.campaignInfo);
+        /* console.log(this.growSurfService.participant);
+        console.log(this.growSurfService.campaignInfo); */
 
-        /* this.$window.addEventListener('grsfReady', () => {
-        }); */
+        /* this.$window.addEventListener('grsfReady', () => {}); */
     }
 
     backToProfile() {
@@ -41,6 +41,9 @@ class MyVolumioReferralController {
         const linkField = document.getElementById('my-volumio-link-field');
         try {
             linkField.select();
+            linkField.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            this.copyDone = true;
         } catch (err) {
             console.log(err);
             console.log('Couldnt select text');

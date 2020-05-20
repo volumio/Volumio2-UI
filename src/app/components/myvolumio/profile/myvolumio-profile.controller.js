@@ -1,5 +1,5 @@
 class MyVolumioProfileController {
-  constructor($scope, $state, $stateParams, authService, modalService, $q, angularFireService, user) {
+  constructor($scope, $state, $stateParams, authService, modalService, $q, angularFireService, user, growSurfService) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -7,6 +7,7 @@ class MyVolumioProfileController {
     this.modalService = modalService;
     this.$q = $q;
     this.angularFireService = angularFireService;
+    this.growSurfService = growSurfService;
 
     this.user = user;
     this.isUserVerified = true;

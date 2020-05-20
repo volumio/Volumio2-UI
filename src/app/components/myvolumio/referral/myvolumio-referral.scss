@@ -105,6 +105,9 @@
     &:not(:last-child) {
         border-bottom: 1px solid #7a848e;
     }
+    &.active {
+        color: $theme-primary-color;
+    }
 }
 
 .my-volumio__collapse {

@@ -32,7 +32,7 @@
                         ng-click="myVolumioReferralController.copyLink()"
                         class="btn my-volumio__btn-primary my-volumio__border-round"
                         tabindex="7">
-                        Copy link
+                        {{ myVolumioReferralController.copyDone ? 'Copied' : 'Copy link' }}
                     </button>
                     <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
                 </div>
@@ -89,12 +89,15 @@
                                 <span>Leaderboard <br><br></span>
                             </div>
                             <div class="participants">
-                              <div ng-repeat="participant in myVolumioReferralController.growSurfService.campaignInfo.leaderboard track by participant.id" class="participant">
+                              <div
+                                ng-repeat="participant in myVolumioReferralController.growSurfService.campaignInfo.leaderboard track by participant.id"
+                                class="participant"
+                                ng-class="{ active: myVolumioReferralController.user.$id === participant.myVolumioUid }">
                                 <div class="participant__rank">
                                     #{{ participant.rank }}
                                 </div>
                                 <div class="participant__name">
-                                    {{ participant.name }}
+                                    {{ myVolumioReferralController.user.$id === participant.myVolumioUid ? myVolumioReferralController.user.email : participant.name }}
                                 </div>
                               </div>
                             </div>

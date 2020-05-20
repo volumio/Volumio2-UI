@@ -18,30 +18,32 @@ class GrowSurfService {
       Shouldnt exist on the device, only cloud
       this.cloudService.isOnCloud
     */
-    this.initializeGrowSurf();
-    console.log(this.cloudService.isOnCloud);
+   if (this.cloudService.isOnCloud) {
+      this.initializeGrowSurf();
+    }
   }
 
   initializeGrowSurf() {
     this.injectGrowSurfScript();
   }
 
-  injectGrowSurfScript() {
+  injectGrowSurfScript(campaignId = 'ig3gk4') {
     // jshint ignore: start
     var growSurftScript = document.createElement('script');
     growSurftScript.type = "text/javascript";
     growSurftScript.async = true;
-    growSurftScript.innerHTML = '(function(g,r,s,f){g.growsurf={};g.grsfSettings={campaignId:"ig3gk4",version:"2.0.0"};s=r.getElementsByTagName("head")[0];f=r.createElement("script");f.async=1;f.src="https://growsurf.com/growsurf.js"+"?v="+g.grsfSettings.version;f.setAttribute("grsf-campaign", g.grsfSettings.campaignId);!g.grsfInit?s.appendChild(f):"";})(window,document);';
+    growSurftScript.innerHTML = `(function(g,r,s,f){g.growsurf={};g.grsfSettings={campaignId:"${ campaignId }",version:"2.0.0"};s=r.getElementsByTagName("head")[0];f=r.createElement("script");f.async=1;f.src="https://growsurf.com/growsurf.js"+"?v="+g.grsfSettings.version;f.setAttribute("grsf-campaign", g.grsfSettings.campaignId);!g.grsfInit?s.appendChild(f):"";})(window,document);`;
     document.head.appendChild(growSurftScript);
     // jshint ignore: end
   }
 
   initializeGrowSurfConnection(token) {
-    /* Shouldnt exist on the device, only cloud */
-    var referrerId = this.$window.growsurf.getReferrerId();
-    this.$log.debug('GrowSurf referrerId: ' + referrerId);
+    let referrerId = null;
+    if (this.cloudService.isOnCloud) {
+      referrerId = this.$window.growsurf.getReferrerId();
+      this.$log.debug('GrowSurf referrerId: ' + referrerId);
+    }
 
-    /* On the device call this without the referrerId */
     this.registerGrowSurfParticipant(token, referrerId);
   }
 
@@ -69,7 +71,7 @@ class GrowSurfService {
   }
 
   autoLoginGrowSurfParticipant(data) {
-    if (data.participant && data.participant.authenticationHash) {
+    if (data.participant && data.participant.authenticationHash && this.cloudService.isOnCloud) {
       this.$window.growsurf.init({
         email: data.participant.email,
         hash: data.participant.authenticationHash
