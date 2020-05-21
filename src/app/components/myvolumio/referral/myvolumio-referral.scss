@@ -71,6 +71,11 @@
     margin: 0;
 }
 
+.my-volumio__result-item-score {
+    flex: 0 0 60px;
+    text-align: center;
+}
+
 .my-volumio__leaderboard {
     min-height: 400px;
 }

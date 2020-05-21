@@ -79,11 +79,15 @@
       </div>
 
       <div class="panel-body text-center">
-        <h2>Refer your friends to MyVolumio and get awesome rewards!</h2>
-        <p>Share your love for Volumio and we will treat you well.</p>
+        <h2>
+          {{ 'MYVOLUMIO.WIN_PRIZES_REFERRING_VOLUMIO' | translate }}
+        </h2>
+        <p class="mb-6">{{ 'MYVOLUMIO.REFERRING_EXPLANATION' | translate }}</p>
 
-        <button ng-click="myVolumioProfileController.goToReferral()" class="btn btn-primary">Start sharing now</button>
-
+        <button ng-click="myVolumioProfileController.goToReferral()" class="btn btn-primary">
+          {{ myVolumioProfileController.growSurfService.participant.totalReferrals > 0 ? 'MYVOLUMIO.SEE_YOUR_RESULTS' : 'MYVOLUMIO.START_SHARING' | translate }}
+        </button>
+        <div class="mb-6">&nbsp;</div>
         <!-- <growsurf-referral-card>
         </growsurf-referral-card> -->
 

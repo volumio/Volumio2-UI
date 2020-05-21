@@ -53,10 +53,13 @@ class MyVolumioReferralController {
     shareClick(type, link) {
         switch(type) {
             case 'email':
-                window.location.href = `mailto:?subject=Check out this awesome music player!&body=I've been using an awesome music player tool called Volumio. It turns your Raspberry PI into an audiophile music station. Check it out: ${ link }`;
+                window.location.href = `mailto:?subject=Check out this awesome music player!&body=I've been using an awesome music player called Volumio. It turns your Raspberry PI into an audiophile music station. Check it out: ${ link }`;
                 break;
             case 'facebook':
                 window.open(`https://www.facebook.com/sharer/sharer.php?u=${ link }`, '_blank');
+                break;
+            case 'twitter':
+                window.open(`http://twitter.com/share?text=I've been using an awesome music player called Volumio. It turns your Raspberry PI into an audiophile music station. Check it out!&url=${ link }&hashtags=volumio`, '_blank');
                 break;
             case 'whatsapp':
                 window.open(`https://api.whatsapp.com/send?text=Check out this awesome music player I've been using: ${ link }`, '_blank');
