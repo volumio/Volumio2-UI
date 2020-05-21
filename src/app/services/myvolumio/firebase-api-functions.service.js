@@ -9,8 +9,8 @@ class FirebaseApiFunctionsService {
     this.modalService = modalService;
     this.angularFireService = angularFireService;
 
-    this.API_URL_PROD = 'https://us-central1-myvolumio.cloudfunctions.net';
-    this.API_URL_DEV = 'https://us-central1-myvolumio-dev.cloudfunctions.net';
+    this.API_URL_PROD = 'https://functions.volumio.cloud';
+    this.API_URL_DEV = 'https://functions-dev.volumio.cloud';
   }
 
   getApiUrl(){
