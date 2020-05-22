@@ -20,14 +20,18 @@ class GrowSurfService {
 
   initializeGrowSurf() {
     this.getCampaingInfo();
+    if (this.cloudService.isOnCloud) {
+      this.injectGrowSurfScript();
+    }
   }
 
-  injectGrowSurfScript(campaignId) {
+  injectGrowSurfScript() {
     // jshint ignore: start
+    // IMPORTANT, IN CASE OF CAMPAIGN CHANGE, UPDATE THE SCRIPT
     var growSurftScript = document.createElement('script');
     growSurftScript.type = "text/javascript";
     growSurftScript.async = true;
-    growSurftScript.innerHTML = '(function(g,r,s,f){g.growsurf={};g.grsfSettings={campaignId:"' + campaignId + '",version:"2.0.0"};s=r.getElementsByTagName("head")[0];f=r.createElement("script");f.async=1;f.src="https://growsurf.com/growsurf.js"+"?v="+g.grsfSettings.version;f.setAttribute("grsf-campaign", g.grsfSettings.campaignId);!g.grsfInit?s.appendChild(f):"";})(window,document);';
+    growSurftScript.innerHTML = '(function(g,r,s,f){g.growsurf={};g.grsfSettings={campaignId:"ig3gk4",version:"2.0.0"};s=r.getElementsByTagName("head")[0];f=r.createElement("script");f.async=1;f.src="https://growsurf.com/growsurf.js"+"?v="+g.grsfSettings.version;f.setAttribute("grsf-campaign", g.grsfSettings.campaignId);!g.grsfInit?s.appendChild(f):"";})(window,document);';
     document.head.appendChild(growSurftScript);
     // jshint ignore: end
   }
@@ -72,6 +76,8 @@ class GrowSurfService {
       }
     }).catch(error => {
       this.$log.debug('GrowSurf registering participant error: ' + JSON.stringify(error.data));
+    }).then(()=>{
+      this.growSurfParticipantRegistrationInProgress = false;
     });
   }
 
@@ -99,9 +105,6 @@ class GrowSurfService {
       if (response && response.data && response.data.success && response.data.campaign) {
         this.$log.debug('Campaign info: ' + response.data.campaign);
         this.campaignInfo = response.data.campaign;
-        if (this.cloudService.isOnCloud) {
-          this.injectGrowSurfScript(this.campaignInfo.id);
-        }
       }
     }).catch(error => {
       this.$log.debug('Error getting campaign info: ' + JSON.stringify(error.data));
