@@ -9,8 +9,8 @@ class FirebaseApiFunctionsService {
     this.modalService = modalService;
     this.angularFireService = angularFireService;
 
-    this.API_URL_PROD = 'https://us-central1-myvolumio.cloudfunctions.net/api/v1';
-    this.API_URL_DEV = 'https://us-central1-myvolumio-dev.cloudfunctions.net/api/v1';
+    this.API_URL_PROD = 'https://functions.volumio.cloud';
+    this.API_URL_DEV = 'https://functions-dev.volumio.cloud';
   }
 
   getApiUrl(){
@@ -23,7 +23,7 @@ class FirebaseApiFunctionsService {
   }
 
   getSubscriptionCancelUrl(userId, token){
-    var url = this.getApiUrl()+'/getSubscriptionCancelUrl';
+    var url = this.getApiUrl()+'/api/v1/getSubscriptionCancelUrl';
 
     let promise = new Promise((resolve, reject) => {
       this.$http({
@@ -43,7 +43,7 @@ class FirebaseApiFunctionsService {
   }
 
   executeUpdateSubscription(newPlan, planDuration, userId, token){
-    var url = this.getApiUrl()+'/updateSubscription';
+    var url = this.getApiUrl()+'/api/v1/updateSubscription';
     let promise = new Promise((resolve, reject) => {
       this.$http({
         url: url,
@@ -62,7 +62,7 @@ class FirebaseApiFunctionsService {
   }
 
   executeCancelSubscription(userId, token){
-    var url = this.getApiUrl()+'/cancelSubscription';
+    var url = this.getApiUrl()+'/api/v1/cancelSubscription';
 
     let promise = new Promise((resolve, reject) => {
       this.$http({
@@ -82,7 +82,7 @@ class FirebaseApiFunctionsService {
   }
 
   doDisableDeviceApiCall(device, uid){
-    var url = this.getApiUrl()+'/disableMyVolumioDevice';
+    var url = this.getApiUrl()+'/api/v1/disableMyVolumioDevice';
 
     return this.getUserToken().then(token => {
       return this.$http({
@@ -96,7 +96,7 @@ class FirebaseApiFunctionsService {
   }
 
   doEnableDeviceApiCall(device, uid){
-    var url = this.getApiUrl()+'/enableMyVolumioDevice';
+    var url = this.getApiUrl()+'/api/v1/enableMyVolumioDevice';
 
     return this.getUserToken().then(token => {
       return this.$http({
@@ -110,7 +110,7 @@ class FirebaseApiFunctionsService {
   }
 
   deleteDevice(device, uid){
-    var url = this.getApiUrl()+'/deleteMyVolumioDevice';
+    var url = this.getApiUrl()+'/api/v1/deleteMyVolumioDevice';
 
     return this.getUserToken().then(token => {
       return this.$http({
@@ -124,7 +124,7 @@ class FirebaseApiFunctionsService {
   }
 
   getUserToken(uid = null){
-    var url = this.getApiUrl()+'/getCustomToken';
+    var url = this.getApiUrl()+'/api/v1/getCustomToken';
 
     return this.angularFireService.getToken().then(idToken => {
       return this.$http({

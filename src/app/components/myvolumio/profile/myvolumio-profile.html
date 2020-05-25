@@ -73,6 +73,27 @@
       </div>
     </div>
 
+    <div id="device-selector-container" ng-if="myVolumioProfileController.growSurfService.campaignInfo.id" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-heart"></i> <span translate="MYVOLUMIO.MY_ACHIEVEMENTS"></span></h3>
+      </div>
+
+      <div class="panel-body text-center">
+        <h2>
+          {{ 'MYVOLUMIO.WIN_PRIZES_REFERRING_VOLUMIO' | translate }}
+        </h2>
+        <p class="mb-6">{{ 'MYVOLUMIO.REFERRING_EXPLANATION' | translate }}</p>
+
+        <button ng-click="myVolumioProfileController.goToReferral()" class="btn btn-primary">
+          {{ myVolumioProfileController.growSurfService.participant.totalReferrals > 0 ? 'MYVOLUMIO.SEE_YOUR_RESULTS' : 'MYVOLUMIO.START_SHARING' | translate }}
+        </button>
+        <div class="mb-6">&nbsp;</div>
+        <!-- <growsurf-referral-card>
+        </growsurf-referral-card> -->
+
+      </div>
+    </div>
+
     <div id="device-selector-container" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-check-circle-o"></i> <span translate="MYVOLUMIO.SELECT_DEVICE"></span></h3>

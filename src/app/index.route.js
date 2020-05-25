@@ -279,9 +279,9 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
 
   .state('myvolumio.logout', {
     url: '/logout',
-    onEnter: function(authService, $state) {
+    onEnter: function(authService, $state, redirectService) {
       authService.logOut().then(() => {
-        $state.go("myvolumio.access");
+        redirectService.stateGo("myvolumio.access");
         return true;
       });
     }
@@ -554,6 +554,25 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+  .state('myvolumio.referral', {
+    url: '/profile/referral',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/referral/myvolumio-referral.html',
+        controller: 'MyVolumioReferralController',
+        controllerAs: 'myVolumioReferralController',
+        resolve: {
+          user: [
+            'authService',
+            function(authService) {
+              return authService.requireVerifiedUserOrRedirect();
+            }
+          ]
+        }
+      }
+    }
+  })
+
   /* --------- END MYVOLUMIO ----------- */
 
   .state('volumio.static-page', {
@@ -572,12 +591,13 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     views: {
       layout: {
         template: '',
-        controller: function($state, cloudService) {
+        controller: function($state, cloudService, redirectService, $location) {
+          var queryParamsString = $location.url().split('?')[1];
           if (cloudService.isOnCloud === true) {
-            $state.go('myvolumio.access');
+            redirectService.urlGo('myvolumio/access', queryParamsString);
             return;
           }
-          $state.go('volumio.redirect');
+          redirectService.urlGo('indexstate-redirect', queryParamsString);
         }
       }
     }
@@ -588,17 +608,18 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     views: {
       'content@volumio': {
         template: '',
-        controller: function($state, uiSettingsService, browseService) {
+        controller: function($state, uiSettingsService, browseService, $stateParams, $window, redirectService, $location) {
+          var queryParamsString = $location.url().split('?')[1];
           uiSettingsService.initService().then((data) => {
             if (data && data.indexState) {
               if (data.indexStateHome) {
                 browseService.backHome();
-                $state.go(`volumio.${data.indexState}`);
+                redirectService.urlGo(`${data.indexState}`, queryParamsString);
               } else {
-                $state.go(`volumio.${data.indexState}`);
+                redirectService.urlGo(`${data.indexState}`, queryParamsString);
               }
             } else {
-              $state.go('volumio.playback');
+              redirectService.urlGo('playback', queryParamsString);
             }
           });
         },
@@ -618,7 +639,11 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   });
 
-  $urlRouterProvider.otherwise('/redirect');
+  $urlRouterProvider.otherwise(function ($injector, $location) {
+    let queryParamsString = $location.url().split('?')[1];
+    let redirectUrl = queryParamsString && queryParamsString.length ? '/redirect?' + queryParamsString : '/redirect';
+    return redirectUrl;
+  });
 }
 
 export default routerConfig;

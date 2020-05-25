@@ -24,6 +24,7 @@ import UiSettingsService from './services/ui-settings.service';
 import DevService from './services/dev.service';
 import DeviceEndpointsService from './services/device-endpoints.service';
 import CloudService from './services/cloud.service';
+import RedirectService from './services/redirect.service';
 //MyVolumio Services
 import AngularFireService from './services/myvolumio/angularfire.service';
 import AuthService from './services/myvolumio/auth.service';
@@ -37,6 +38,7 @@ import MyVolumioDevicesService from './services/myvolumio/myvolumio-devices.serv
 import FirebaseApiFunctionsService from './services/myvolumio/firebase-api-functions.service';
 import OnBoardFlowService from './services/myvolumio/onboardflow.service';
 import StatisticsService from './services/myvolumio/statistics.service';
+import GrowSurfService from './services/myvolumio/growsurf.service';
 
 //Providers
 import ThemeManagerProvider from './services/theme-manager.provider';
@@ -89,6 +91,7 @@ import MyVolumioAvatarImageDirective from './components/myvolumio/components/sha
 import MyVolumioPlanCardDirective from './components/myvolumio/components/shareds/plan-card/myvolumio-plan-card.directive';
 import MyVolumioVerificationCardDirective from './components/myvolumio/components/shareds/verification-card/myvolumio-verification-card.directive';
 import MyVolumioDeviceSelectorDirective from './components/myvolumio/components/device-selector/device-selector.directive';
+import GrowsurfReferralCardDirective from './components/myvolumio/components/shareds/growsurf-referral-card/growsurf-referral-card.directive';
 
 // Controllers
 import HeaderController from './header/header.controller';
@@ -164,6 +167,7 @@ import MyVolumioCancelSubscriptionController from './components/myvolumio/cancel
 import MyVolumioChangeSubscriptionController from './components/myvolumio/change-subscription/myvolumio-change-subscription.controller';
 import MyVolumioCloudSelectDeviceController from './components/myvolumio/select-device/myvolumio-cloud-select-device.controller';
 import MyVolumioAccessController from './components/myvolumio/access/myvolumio-access.controller';
+import MyVolumioReferralController from './components/myvolumio/referral/myvolumio-referral.controller';
 
 
 angular.module('volumio', [
@@ -225,6 +229,7 @@ angular.module('volumio', [
   .service('devService', DevService)
   .service('deviceEndpointsService', DeviceEndpointsService)
   .service('cloudService', CloudService)
+  .service('redirectService', RedirectService)
   //MyVolumio Services
   .service('angularFireService', AngularFireService)
   .service('authService', AuthService)
@@ -238,6 +243,7 @@ angular.module('volumio', [
   .service('firebaseApiFunctionsService',FirebaseApiFunctionsService)
   .service('onBoardFlowService',OnBoardFlowService)
   .service('statisticsService',StatisticsService)
+  .service('growSurfService',GrowSurfService)
 
 
 .provider('themeManager', ThemeManagerProvider)
@@ -288,6 +294,7 @@ angular.module('volumio', [
   .directive('myVolumioPlanCard', () => new MyVolumioPlanCardDirective())
   .directive('myVolumioVerificationCard', () => new MyVolumioVerificationCardDirective())
   .directive('myVolumioDeviceSelector', () => new MyVolumioDeviceSelectorDirective())
+  .directive('growsurfReferralCard', () => new GrowsurfReferralCardDirective())
 
 .controller('HeaderController', HeaderController)
   .controller('LayoutController', LayoutController)
@@ -360,4 +367,5 @@ angular.module('volumio', [
   .controller('MyVolumioCancelSubscriptionController', MyVolumioCancelSubscriptionController)
   .controller('MyVolumioChangeSubscriptionController', MyVolumioChangeSubscriptionController)
   .controller('MyVolumioCloudSelectDeviceController', MyVolumioCloudSelectDeviceController)
-  .controller('MyVolumioAccessController', MyVolumioAccessController);
+  .controller('MyVolumioAccessController', MyVolumioAccessController)
+  .controller('MyVolumioReferralController', MyVolumioReferralController);

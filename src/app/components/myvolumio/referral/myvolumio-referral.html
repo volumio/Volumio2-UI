@@ -1,0 +1,329 @@
+<div class="box">
+    <div class="boxHeader d-flex align-items-center justify-content-between">
+      <div class="title">
+        <h2>{{ 'MYVOLUMIO.MY_ACHIEVEMENTS' | translate }}</h2>
+      </div>
+    </div>
+</div>
+
+<div id="authSignupPlugin" class="panel panel-default my-volumio__panel">
+
+    <div class="my-volumio__panel__header d-flex align-items-center justify-content-between">
+        <button ng-click="myVolumioReferralController.backToProfile()" class="btn d-flex align-items-center my-volumio__btn-secondary" tabindex="7">
+            <img class="mr-2" ng-src="{{'app/assets-common/arrow-left.svg'}}" alt="arrow left">
+            {{ "COMMON.BACK" | translate }}
+        </button>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h1 class="text-center">{{ 'MYVOLUMIO.REFERRAL_TITLE' | translate }}</h1>
+                <p class="text-center">{{ 'MYVOLUMIO.REFERRAL_SUBTITLE' | translate }}</p>
+
+                <div class="my-volumio__referral-link-container my-volumio__component position-relative">
+                    <input
+                        id="my-volumio-link-field"
+                        class="my-volumio__referral-link"
+                        type="text"
+                        value="{{ myVolumioReferralController.growSurfService.participant.shareURL }}">
+                    <button
+                        ng-click="myVolumioReferralController.copyLink()"
+                        class="btn my-volumio__btn-primary my-volumio__border-round"
+                        tabindex="7">
+                        {{ myVolumioReferralController.copyDone ? 'MYVOLUMIO.COPIED' : 'MYVOLUMIO.COPY' | translate }}
+                    </button>
+                    <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
+                </div>
+
+                <button ng-click="myVolumioReferralController.shareClick('email', myVolumioReferralController.growSurfService.participant.shareURL)" class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-envelope"></i>
+                    Email
+                </button>
+                <button ng-click="myVolumioReferralController.shareClick('facebook', myVolumioReferralController.growSurfService.participant.shareURL)" class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-facebook"></i>
+                    Facebook
+                </button>
+                <button ng-click="myVolumioReferralController.shareClick('twitter', myVolumioReferralController.growSurfService.participant.shareURL)" class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-twitter"></i>
+                    Twitter
+                </button>
+                <button ng-click="myVolumioReferralController.shareClick('whatsapp', myVolumioReferralController.growSurfService.participant.shareURL)" class="my-volumio__referral-btn my-volumio__component">
+                    <i class="fa fa-whatsapp"></i>
+                    WhatsApp
+                </button>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3 class="text-center">{{ 'MYVOLUMIO.MY_ACHIEVEMENTS' | translate }}</h3>
+                <div class="my-volumio__component my-volumio__results">
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-8 my-volumio__result-item">
+                            <h1 class="my-volumio__result-item-score">#{{ myVolumioReferralController.growSurfService.participant.rank }}</h1>
+                            <p class="small my-volumio__result-item-caption">{{ 'MYVOLUMIO.YOUR_RANK' | translate }}</p>
+                        </div>
+                        <div class="col-xs-24 col-sm-8 my-volumio__result-item">
+                            <h1 class="my-volumio__result-item-score">{{ myVolumioReferralController.growSurfService.participant.totalReferralsInMonth }}</h1>
+                            <p class="small my-volumio__result-item-caption">{{ 'MYVOLUMIO.REFERRALS_THIS_MONTH' | translate }}</p>
+                        </div>
+                        <div class="col-xs-24 col-sm-8 my-volumio__result-item">
+                            <h1 class="my-volumio__result-item-score">{{ myVolumioReferralController.growSurfService.participant.totalReferrals }}</h1>
+                            <p class="small my-volumio__result-item-caption">{{ 'MYVOLUMIO.TOTAL_REFERRALS' | translate }}</p>
+                        </div>
+                    </div>
+                    <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="myVolumioReferralController.growSurfService.campaignInfo" class="row mb-10">
+            <div class="col-xs-24 col-sm-24 col-md-20 col-md-offset-2 col-lg-16 col-lg-offset-4">
+                <div class="row">
+                    <div class="col-xs-24 col-sm-12">
+                        <div class="plan__card my-volumio__leaderboard reset my-volumio__component">
+                            <div class="plan__title d-flex align-items-center">
+                                <span>{{ 'MYVOLUMIO.LEADERBOARD' | translate }} <br><br></span>
+                            </div>
+                            <div class="participants">
+                              <div
+                                ng-repeat="participant in myVolumioReferralController.growSurfService.campaignInfo.leaderboard track by participant.id"
+                                class="participant"
+                                ng-class="{ active: myVolumioReferralController.user.$id === participant.myVolumioUid }">
+                                <div class="participant__rank">
+                                    #{{ participant.rank }}
+                                </div>
+                                <div class="participant__name">
+                                    {{ myVolumioReferralController.user.$id === participant.myVolumioUid ? myVolumioReferralController.user.email : participant.name }}
+                                </div>
+                              </div>
+                            </div>
+                            <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
+                        </div> <!-- plan__card -->
+                    </div>
+                    <div class="col-xs-24 col-sm-12">
+                        <div class="plan__card my-volumio__leaderboard reset my-volumio__component mb-4">
+                            <div class="plan__title d-flex align-items-center">
+                                <span>{{ 'MYVOLUMIO.REWARDS' | translate }} <br><br></span>
+                            </div>
+                            <div class="participants">
+                              <div class="participant">
+                                <div class="participant__name">
+                                    {{ 'MYVOLUMIO.NUMBER_OF_REFERRALS' | translate }}
+                                </div>
+                              </div>
+                              <div ng-repeat="reward in myVolumioReferralController.orderRewards(myVolumioReferralController.growSurfService.campaignInfo.rewards) track by reward.id" ng-if="reward.type === 'MILESTONE'" class="participant">
+                                <div class="participant__rank">
+                                    {{ reward.totalReferralsRequired }}
+                                </div>
+                                <div class="participant__name">
+                                    {{ reward.description }}
+                                </div>
+                              </div>
+                            </div>
+                            <div ng-if="!myVolumioReferralController.growSurfService.participant.rank || myVolumioReferralController.growSurfService.participant.rank === 0" class="preload"></div>
+                        </div> <!-- plan__card -->
+                        <div class="my-volumio__component">
+                            <div ng-repeat="reward in myVolumioReferralController.growSurfService.campaignInfo.rewards track by reward.id" ng-if="reward.type === 'LEADERBOARD'" class="participant">
+                                <div class="participant__rank">
+                                    <img ng-src="{{'app/assets-common/referral-award.svg'}}" alt="award">
+                                </div>
+                                <div class="participant__name">
+                                    {{ reward.description }}
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3 class="text-center mb-6">{{ 'MYVOLUMIO.HOW_IT_WORKS' | translate }}</h3>
+                <div class="row">
+                    <div class="col-xs-24 col-sm-8 text-center">
+                        <img class="mb-4" ng-src="{{'app/assets-common/referral-badge-1.svg'}}" alt="badge">
+                        <h4 class="bold">{{ 'MYVOLUMIO.REFERRAL_HOW_TITLE_1' | translate }}</h4>
+                        <p class="small">{{ 'MYVOLUMIO.REFERRAL_HOW_BODY_1' | translate }}</p>
+                    </div>
+                    <div class="col-xs-24 col-sm-8 text-center">
+                        <img class="mb-4" ng-src="{{'app/assets-common/referral-badge-2.svg'}}" alt="badge">
+                        <h4 class="bold">{{ 'MYVOLUMIO.REFERRAL_HOW_TITLE_2' | translate }}</h4>
+                        <p class="small">{{ 'MYVOLUMIO.REFERRAL_HOW_BODY_2' | translate }}</p>
+                    </div>
+                    <div class="col-xs-24 col-sm-8 text-center">
+                        <img class="mb-4" ng-src="{{'app/assets-common/referral-badge-3.svg'}}" alt="badge">
+                        <h4 class="bold">{{ 'MYVOLUMIO.REFERRAL_HOW_TITLE_3' | translate }}</h4>
+                        <p class="small"> {{ 'MYVOLUMIO.REFERRAL_HOW_BODY_3' | translate }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3 class="text-center mb-4">{{ 'MYVOLUMIO.FAQ' | translate }}</h3>
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="how-do-i" type="checkbox" hidden>
+                    <label for="how-do-i" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_1' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_1' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="whatisconsidered" type="checkbox" hidden>
+                    <label for="whatisconsidered" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_2' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_2' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="howlongismy" type="checkbox" hidden>
+                    <label for="howlongismy" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_3' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_3' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="howcanicheck" type="checkbox" hidden>
+                    <label for="howcanicheck" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_4' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_4' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="whendoireceive" type="checkbox" hidden>
+                    <label for="whendoireceive" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_5' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_5' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="doineedpayment" type="checkbox" hidden>
+                    <label for="doineedpayment" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_6' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_6' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="whyarerewards" type="checkbox" hidden>
+                    <label for="whyarerewards" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_7' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_7' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+                <div class="my-volumio__collapse my-volumio__component">
+                    <input class="my-volumio__collapse-toggle" id="howmanypeople" type="checkbox" hidden>
+                    <label for="howmanypeople" class="my-volumio__collapse-header">
+                        <div class="my-volumio__collapse-indicator">
+                            <img ng-src="{{'app/assets-common/collapse-indicator.svg'}}" alt="toggle">
+                        </div>
+                        <span>
+                            {{ 'MYVOLUMIO.REFERRAL_FAQ_TITLE_8' | translate }}
+                        </span>
+                    </label>
+                    <div class="my-volumio__collapse-body">
+                        <div class="my-volumio__collapse-body__inner">
+                            <p>
+                                {{ 'MYVOLUMIO.REFERRAL_FAQ_BODY_8' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- Collapse -->
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,7 +1,7 @@
 class AuthService {
   constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
     paymentsService, $filter, modalService, socketService, $http, $location, themeManager, cloudService,
-    firebaseApiFunctionsService, onBoardFlowService) {
+    firebaseApiFunctionsService, onBoardFlowService, growSurfService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -20,6 +20,7 @@ class AuthService {
     this.cloudService = cloudService;
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
     this.onBoardFlowService = onBoardFlowService;
+    this.growSurfService = growSurfService;
 
     this.isEnabled = false;
 
@@ -81,6 +82,7 @@ class AuthService {
       this.user = user;
       setTimeout(()=>{
         this.syncronizeWithOnboardFlow(user);
+        this.syncronizeWithGrowSurf(user);
         this.syncronizeWithBackend();
       }, 2000);
     });
@@ -142,6 +144,17 @@ class AuthService {
 
   syncronizeWithOnboardFlow(data){
     this.onBoardFlowService.updateOnboardFlowUserData(data);
+  }
+
+  syncronizeWithGrowSurf(userData){
+    if (this.user && this.user.uid && !this.growSurfService.isGrowSurfParticipantRegistered()) {
+      this.getUserToken(this.user.uid).then((token) => {
+        if (token) {
+          this.growSurfService.initializeGrowSurfConnection(token);
+        }
+      }).catch(error => {
+      });
+    }
   }
 
   getMyVolumioStatus() {
