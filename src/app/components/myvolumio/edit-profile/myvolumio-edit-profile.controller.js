@@ -244,7 +244,13 @@ class MyVolumioEditProfileController {
     });
   }
 
-
+  isAccountCancellationAllowed() {
+    if (this.user && this.user.planDuration === 'lifetime') {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
 export default MyVolumioEditProfileController;

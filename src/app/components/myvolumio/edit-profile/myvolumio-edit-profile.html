@@ -112,7 +112,7 @@
             <div class="col-xs-24">
               <hr />
               <div class="pull-right">
-                <a ng-click='myVolumioEditProfileController.deleteUser()' style="cursor: pointer;">
+                <a ng-if='myVolumioEditProfileController.isAccountCancellationAllowed()' ng-click='myVolumioEditProfileController.deleteUser()' style="cursor: pointer;">
                   <i ng-if="myVolumioEditProfileController.deletingUser === false" class="glyphicon glyphicon-remove-sign"></i>
                   <i ng-if="myVolumioEditProfileController.deletingUser === true" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>
                   <span translate="MYVOLUMIO.DELETE_ACCOUNT"></span>
