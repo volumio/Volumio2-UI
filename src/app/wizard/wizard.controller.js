@@ -1,6 +1,6 @@
 class WizardController {
   constructor($log, $scope, mockService, $state, socketService, $translate, uiSettingsService,
-      $window, matchmediaService, themeManager, modalService, $filter) {
+      $window, matchmediaService, themeManager, modalService, $filter, authService) {
     'ngInject';
     this.$log = $log;
     this.mockService = mockService;
@@ -14,6 +14,7 @@ class WizardController {
     this.modalService = modalService;
     this.filteredTranslate = $filter('translate');
     this.themeManager = themeManager;
+    this.authService = authService;
     this.init();
   }
 
@@ -40,8 +41,10 @@ class WizardController {
 
 
     this.$scope.$on('$destroy', () => {
-      this.$window.contentWrapper.style.zIndex = 1;
-      this.$window.wizardScrim.style.display = 'none';
+      try {
+        this.$window.contentWrapper.style.zIndex = 1;
+        this.$window.wizardScrim.style.display = 'none';
+      } catch(e) {}
     });
   }
 
@@ -157,6 +160,18 @@ class WizardController {
 
   getStepPos() {
     return (this.getStepIndex(this.currentStep)+1) + '/' + this.wizardDetails.steps.length;
+  }
+
+  goToAccountSetup() {
+    return this.$state.go('myvolumio.signup');
+  }
+
+  isAccountSetupRequired() {
+    if (this.authService.isEnabled && this.authService.user === null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   done() {
