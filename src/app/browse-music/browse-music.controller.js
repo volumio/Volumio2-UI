@@ -46,6 +46,10 @@ class BrowseMusicController {
       this.backHome();
     });
 
+    $scope.$on('browseService:rip', () => {
+      this.backHome();
+    });
+
     this.initController();
   }
 

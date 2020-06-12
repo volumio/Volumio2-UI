@@ -1,5 +1,5 @@
 class ModalRipperController {
-  constructor($uibModalInstance, dataObj, ripperService, browseService, playerService, Upload, socketService, $log) {
+  constructor($uibModalInstance, dataObj, ripperService, browseService, playerService, Upload, socketService, $log, $rootScope) {
     "ngInject";
     this.$uibModalInstance = $uibModalInstance;
     this.ripperService = ripperService;
@@ -7,6 +7,7 @@ class ModalRipperController {
     this.browseService = browseService;
     this.playerService = playerService;
     this.socketService = socketService;
+    this.$rootScope = $rootScope;
     this.Upload = Upload;
     this.$log = $log;
   }
@@ -15,6 +16,7 @@ class ModalRipperController {
     this.ripperService.startToRipCd();
     this.$uibModalInstance.close();
     this.browseService.backHome();
+    this.$rootScope.$broadcast('browseService:rip');
   }
 
   cancel() {
