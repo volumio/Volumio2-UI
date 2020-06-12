@@ -43,7 +43,7 @@ class BrowseMusicController {
     }
 
     $scope.$on('browseService:eject', () => {
-      this.resetBrowsePage();
+      this.backHome();
     });
 
     this.initController();
