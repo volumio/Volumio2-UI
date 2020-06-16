@@ -56,13 +56,13 @@ class StatisticsService {
     // jshint ignore: start
     var gaScript1 = document.createElement('script');
     gaScript1.async = true;
-    gaScript1.src = 'https://www.google-analytics.com/analytics.js';
+    gaScript1.src = 'https://www.googletagmanager.com/gtag/js?id=G-EMK40SCD1G';
     document.head.appendChild(gaScript1);
     var gaScript2 = document.createElement('script');
-    gaScript2.innerHTML += 'window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;';
-    gaScript2.innerHTML += 'ga("create", "UA-92970181-1", "auto");';
-    gaScript2.innerHTML += 'ga("send", "pageview");';
-    gaScript2.innerHTML += 'ga("set", "anonymizeIp", true);';
+    gaScript2.innerHTML += 'window.dataLayer = window.dataLayer || [];';
+    gaScript2.innerHTML += 'function gtag(){dataLayer.push(arguments);}';
+    gaScript2.innerHTML += 'gtag("js", new Date());';
+    gaScript2.innerHTML += 'gtag("config", "G-EMK40SCD1G", { "anonymize_ip": true });';
     document.head.appendChild(gaScript2);
     // jshint ignore: end
   }
