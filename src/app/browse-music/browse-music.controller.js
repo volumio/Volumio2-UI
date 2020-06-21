@@ -30,11 +30,24 @@ class BrowseMusicController {
     this.loadingCredit = {};
     this.hideInfoHeader = false;
     this.creditRequestOptions = {"timeout":7000};
+    this.SHOW_AZ_SCROLL_LIMIT = 50;
+    this.helpers = {
+      arrayAtoZ: Array 
+            .apply(null, {length: 26}) 
+            .map((x, i) => String.fromCharCode(65 + i)),
+      createDivForCharElement(block, charToAdd) {
+        return block.concat(`<div class='CharacterElement Inactive' id='scrollChar-${charToAdd}'>${charToAdd}</div>`); 
+      },
+    //   sortListByNameAsc(a, b){
+    //     return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+    // }
+  };
 
     $scope.$on('browseService:fetchEnd', () => {
       /* While browsing this makes sense */
       // console.log(this.browseService);
       this.renderBrowsePage(this.browseService.lists);
+      // this.isAZScrollVisible = this.browseService.lists[0].items.length > this.SHOW_AZ_SCROLL_LIMIT;
     });
 
     if ((this.browseService.isBrowsing || this.browseService.isSearching) && this.browseService.lists) {
@@ -51,6 +64,7 @@ class BrowseMusicController {
     });
 
     this.initController();
+    this.addAZScrollBar();
   }
 
   initController() {
@@ -552,6 +566,7 @@ class BrowseMusicController {
     page.style.display = 'none';
     page.innerHTML = html.join('');
 
+    this.updateAzScrollListners();
     this.$timeout(() => {
       this.$rootScope.$broadcast('browseController:listRendered');
       page.style.display = 'block';
@@ -577,7 +592,7 @@ class BrowseMusicController {
         ${ items.length === 0 ? '<h3 class="text-center panel-title ">No items</h3>' : '' }
       </div> <!-- /.main__row -->
     </div> <!-- /.main__source -->
-    `;
+    `;    
     return html;
   }
 
@@ -660,9 +675,18 @@ class BrowseMusicController {
 
   renderListItems(items, listIndex) {
     let angularThis = `angular.element('#browse-page').scope().browse`;
-    const html = items.map((item, itemIndex) => `
+    let currentScrollChar, currentScrollIndex = 0;
+    const html = items.map((item, itemIndex) => {
+      currentScrollChar = this.helpers.arrayAtoZ[currentScrollIndex];
+      let htmlSlice = `
       <div class="album__tracks">
-        <div class="music-item ${ item.type === 'title' ? 'title' : '' }" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+        <div
+          id="${(this.helpers.arrayAtoZ.includes(item.title[0]) && item.title[0].toUpperCase()) === currentScrollChar ? `startsWith-${currentScrollChar}` : '' }"
+          class="
+            music-item
+            ${ item.type === 'title' ? 'title' : '' }
+            "
+          onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
           <div
             onclick="${angularThis}.preventBubbling(event)"
             class="item__play ${ !this.showPlayButton(item) ? 'hidden' : '' }">
@@ -730,7 +754,13 @@ class BrowseMusicController {
           </div>
       </div>
     </div>
-    `);
+    `;
+    if (item.title[0].toUpperCase() === currentScrollChar) {
+      currentScrollIndex++;
+    }
+    return htmlSlice;
+    });
+
     return html.join('');
   }
 
@@ -761,7 +791,32 @@ class BrowseMusicController {
     }
     this.listViewSetting = view;
   } */
+  addAZScrollBar() {
+    let abcChars = this.helpers.arrayAtoZ;
+    const navigationEntries = abcChars.reduce(this.helpers.createDivForCharElement, '');
 
+    angular.element('#azScroll').append(navigationEntries);
+  }
+
+  updateAzScrollListners() {
+    let changeItemStates = (character, isActive) => {
+          const characterElement = $('#azScroll').find(`#scrollChar-${character.toUpperCase()}`);
+          if (isActive) {
+            $(characterElement).click(() => document.getElementById(`startsWith-${character}`).scrollIntoView({behavior: 'smooth'}));
+            characterElement.removeClass('Inactive');
+          } else {
+            characterElement.addClass('Inactive');
+          }
+      };
+    
+      const activeLetters = Array.from($.find('[id^="startsWith-"]')).map(el => el.id.split('-')[1]);
+      const allLetters = this.helpers.arrayAtoZ;
+
+      allLetters.forEach(currentLetter => {
+        const isCurrentLetterActive = activeLetters.includes(currentLetter);
+        changeItemStates(currentLetter, isCurrentLetterActive);
+      });
+  }
 }
 
 export default BrowseMusicController;

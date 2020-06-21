@@ -48,22 +48,27 @@ class BrowseScrollManagerDirective {
 
       //Add listener to browseTablesWrapper on scroll
       this.browseTablesWrapper = angular.element('#browseTablesWrapper')[0];
+      this.azScrollWrapper = angular.element('#azScroll')[0];
       // this.browseTablesWrapper.scrollTop = 0;
       // $log.debug(this.browseTablesWrapper);
       if ( !this.browseTablesWrapper ) {
         this.browseTablesWrapper.addEventListener('scroll', scrollHandler);
       }
-      setbrowseTablesWrapperHeight();
+      setbrowseTablesWrapperAndAzNavHeight();
       this.setScrollTop();
     }, 100);
 
-    let setbrowseTablesWrapperHeight = () => {
+    let setbrowseTablesWrapperAndAzNavHeight = () => {
       browsePanelHeading = angular.element('#browsePanelHeading')[0];
       footer = angular.element('#footer')[0];
-      if (this.browseTablesWrapper && footer && browsePanelHeading) {
+      if (this.browseTablesWrapper && this.azScrollWrapper && footer && browsePanelHeading) {
         this.browseTablesWrapper.style.height =
             footer.getBoundingClientRect().top -
             browsePanelHeading.getBoundingClientRect().bottom + 'px';
+
+        this.azScrollWrapper.style.height =
+        footer.getBoundingClientRect().top - footer.style.height -
+        browsePanelHeading.getBoundingClientRect().bottom + 'px';
       }
     };
 
@@ -86,7 +91,7 @@ class BrowseScrollManagerDirective {
 
     this.matchmediaService.onPortrait((data) => {
       setTimeout(function () {
-        setbrowseTablesWrapperHeight();
+        setbrowseTablesWrapperAndAzNavHeight();
       }, 50);
     });
   }
