@@ -1,35 +1,36 @@
 <div id="browse" class="boxTable" browse-scroll-manager>
 
-    <div class="panel panel-default">
+  <div class="panel panel-default">
 
-      <div class="browse-header-container browse-music__browse-header-container">
+    <div class="browse-header-container browse-music__browse-header-container">
 
-        <div  ng-if="!browse.isDedicatedSearchView" id="browsePanelHeading" class="panel-heading browse-header">
+      <div  ng-if="!browse.isDedicatedSearchView" id="browsePanelHeading" class="panel-heading browse-header">
 
-          <div class="navButtons pull-left"
-               ng-include src="'app/browse/components/browse-nav-buttons.html'">
-          </div>
-
-          <div class="searchBox"
-               ng-include src="'app/browse/components/browse-search-box.html'">
-          </div>
-
-          <div class="clearfix"></div>
+        <div class="navButtons pull-left"
+             ng-include src="'app/browse/components/browse-nav-buttons.html'">
         </div>
 
+        <div class="searchBox"
+             ng-include src="'app/browse/components/browse-search-box.html'">
+        </div>
+
+        <div class="clearfix"></div>
       </div>
 
-        <div class="dedicated-search-container" ng-if="browse.isDedicatedSearchView">
-          <div class="dedicated-search"
-               ng-include src="'app/browse/components/browse-search-box.html'">
-          </div>
-        </div> <!-- /.dedicated-search-container -->
+    </div>
+
+      <div class="dedicated-search-container" ng-if="browse.isDedicatedSearchView">
+        <div class="dedicated-search"
+             ng-include src="'app/browse/components/browse-search-box.html'">
+        </div>
+      </div> <!-- /.dedicated-search-container -->
 
 
-      <div class="dedicated-search-container-flow-space" ng-if="browse.isDedicatedSearchView"></div>
+    <div class="dedicated-search-container-flow-space" ng-if="browse.isDedicatedSearchView"></div>
 
-      <div class="body-content new-browse" ng-class="{ 'with-search-header': browse.isDedicatedSearchView }">
+    <div class="body-content new-browse" ng-class="{ 'with-search-header': browse.isDedicatedSearchView }">
 
+      <div class="main__container">
         <div id="browseTablesWrapper">
 
           <div
@@ -68,8 +69,11 @@
           <div id="browse-page"></div>
 
         </div>
-      </div> <!-- /.body-content -->
+        <div
+          id="azScroll"></div> <!-- AZ ScrollBar -->
+      </div>
+    </div> <!-- /.body-content -->
 
-    </div> <!-- /.panel -->
+  </div> <!-- /.panel -->
 
-  </div> <!-- /#browse -->
+</div> <!-- /#browse -->

@@ -755,7 +755,7 @@ class BrowseMusicController {
       </div>
     </div>
     `;
-    if (item.title[0].toUpperCase() === currentScrollChar) {
+    if (item.title && item.title[0].toUpperCase() === currentScrollChar) {
       currentScrollIndex++;
     }
     return htmlSlice;
