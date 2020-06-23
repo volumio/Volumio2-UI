@@ -1,6 +1,6 @@
 class PaddleService {
   constructor(angularFireService, modalService, databaseService, $q, $http, $log, firebaseApiFunctionsService,
-              devService) {
+              devService, statisticsService) {
     'ngInject';
 
     this.angularFireService = angularFireService;
@@ -18,6 +18,7 @@ class PaddleService {
     this.PADDLE_VENDOR_ID_PROD = 29290;
     this.PADDLE_VENDOR_ID_DEV = 36336;
 
+    this.statisticsService = statisticsService;
     this.isLoaded = false;
     this.isInit = false;
     this.setupPaddle();
@@ -94,6 +95,7 @@ class PaddleService {
   cancelSubscription(userId, token) {
     var cancelling = this.$q.defer();
     var cancelSubscription = this.executeCancelSubscription(userId, token);
+    this.statisticsService.signalSubscriptionCancelled();
     cancelSubscription.then((response) => {
       if (response && response.data && response.data.success) {
         cancelling.resolve(true);

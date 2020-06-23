@@ -22,7 +22,7 @@ class PaddlePayButtonDirective {
 }
 
 class PaddlePayButtonController {
-  constructor($rootScope, $scope, $window, $timeout, $q, $state, paymentsService, modalService, $log, productsService) {
+  constructor($rootScope, $scope, $window, $timeout, $q, $state, paymentsService, modalService, $log, productsService, statisticsService) {
     'ngInject';
     this.$scope = $scope;
     this.$window = $window;
@@ -34,6 +34,7 @@ class PaddlePayButtonController {
     this.modalService = modalService;
     this.$log = $log;
     this.productsService = productsService;
+    this.statisticsService = statisticsService;
 
     this.btnIconClasses = {
       normal: "glyphicon glyphicon-shopping-cart",
@@ -153,7 +154,8 @@ class PaddlePayButtonController {
   }
 
   successCallback(data) {
-    console.log(data);
+    //console.log(data);
+    this.statisticsService.signalSubscriptionCreated(this.product, this.planDuration, this.isTrial);
     this.$state.go('myvolumio.payment-success');
     // TEMPORARY FIX FOR PADDLE CALLBACK
     /*
