@@ -79,6 +79,35 @@ class StatisticsService {
     }
   }
 
+  signalLead() {
+    if (this.gaInit) {
+      this.$log.debug('Signalling lead');
+      this.$window.gtag('event','registration', {'event_category':'lead','event_label':'myvolumio'});
+    }
+
+  }
+
+  signalSubscriptionCreated(product, planDuration, isTrial) {
+    if (this.gaInit) {
+      this.$log.debug('Signalling subscription created');
+      if (product && product.name && planDuration) {
+        let event = 'trial';
+        if (!isTrial) {
+          event = 'resubscription';
+        }
+        let planCombo = product.name.toLowerCase() + '_' + planDuration;
+        this.$window.gtag('event',event,{'event_category':planCombo,'event_label':'myvolumio'});
+      }
+    }
+  }
+
+  signalSubscriptionCancelled() {
+    if (this.gaInit) {
+      this.$log.debug('Signalling subscription cancelled');
+      this.$window.gtag('event','cancellation',{'event_category':'cancellation','event_label':'myvolumio'});
+    }
+  }
+
 }
 
 export default StatisticsService;

@@ -1,5 +1,5 @@
 class MyVolumioSignupNewController {
-  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, $filter, user, $log, socketService, $rootScope) {
+  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, $filter, user, $log, socketService, $rootScope, statisticsService) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -12,6 +12,7 @@ class MyVolumioSignupNewController {
     this.$log = $log;
     this.socketService = socketService;
     this.$rootScope = $rootScope;
+    this.statisticsService = statisticsService;
 
     this.user = user;
     this.newUser = null;
@@ -146,6 +147,7 @@ class MyVolumioSignupNewController {
       /* this.$state.go('myvolumio.profile'); */
 
       this.newUser = newUser;
+      this.statisticsService.signalLead();
       this.stepForwards();
     }, (error) => {
       this.modalService.openDefaultErrorModal(error);
