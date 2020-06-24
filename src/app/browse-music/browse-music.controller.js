@@ -32,11 +32,9 @@ class BrowseMusicController {
     this.creditRequestOptions = {"timeout":7000};
     this.SHOW_AZ_SCROLL_LIMIT = 50;
     this.helpers = {
-      arrayAtoZ: Array 
-            .apply(null, {length: 26}) 
-            .map((x, i) => String.fromCharCode(65 + i)),
+      arrayAtoZ: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
       createDivForCharElement(block, charToAdd) {
-        return block.concat(`<div class='CharacterElement Inactive' id='scrollChar-${charToAdd}'>${charToAdd}</div>`); 
+        return block.concat(`<div class='CharacterElement' id='scrollChar-${charToAdd}'>${charToAdd}</div>`); 
       },
   };
 
@@ -44,13 +42,11 @@ class BrowseMusicController {
       /* While browsing this makes sense */
       // console.log(this.browseService);
       this.renderBrowsePage(this.browseService.lists);
-      this.shouldDisplayAzNav(this.browseService.lists[0].items);
     });
 
     if ((this.browseService.isBrowsing || this.browseService.isSearching) && this.browseService.lists) {
       /* However when navigating back from /playback we need to rely on this */
       this.renderBrowsePage(this.browseService.lists);
-      this.shouldDisplayAzNav(this.browseService.lists[0].items);
     }
 
     $scope.$on('browseService:eject', () => {
@@ -563,8 +559,9 @@ class BrowseMusicController {
     const page = document.getElementById('browse-page');
     page.style.display = 'none';
     page.innerHTML = html.join('');
-    
-    this.updateAzScrollListners();
+    if (this.shouldDisplayAzNav(lists[0].items)) {
+      this.updateAzScrollListners();
+    }
     this.$timeout(() => {
       this.$rootScope.$broadcast('browseController:listRendered');
       page.style.display = 'block';
@@ -800,9 +797,8 @@ class BrowseMusicController {
     this.listViewSetting = view;
   } */
   addAZScrollBar() {
-    let abcChars = this.helpers.arrayAtoZ;
+    const abcChars = this.helpers.arrayAtoZ;
     const navigationEntries = abcChars.reduce(this.helpers.createDivForCharElement, '');
-
     angular.element('#azScroll').append(navigationEntries);
   }
 
@@ -813,11 +809,10 @@ class BrowseMusicController {
   updateAzScrollListners() {
     let changeItemStates = (character, isActive) => {
           const characterElement = $('#azScroll').find(`#scrollChar-${character.toUpperCase()}`);
+          characterElement.addClass('Inactive');
           if (isActive) {
             $(characterElement).click(() => document.getElementById(`startsWith-${character}`).scrollIntoView({behavior: 'smooth'}));
             characterElement.removeClass('Inactive');
-          } else {
-            characterElement.addClass('Inactive');
           }
       };
     
@@ -837,8 +832,10 @@ class BrowseMusicController {
         this.addAZScrollBar();  
       }
       this.updateAzScrollListners();
+      return true;
     } else {
       this.removeAZScrollBar();
+      return false;
     }
   }
 }
