@@ -156,7 +156,8 @@ class BrowseMusicController {
     ====== New navigation stack back functionality ======
   */
   goBack() {
-    this.browseService.goBack()
+    this.resetBrowsePage();
+    this.browseService.goBack();
   }
 
   backHome() {

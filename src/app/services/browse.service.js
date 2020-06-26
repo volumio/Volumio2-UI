@@ -72,7 +72,7 @@ class BrowseService {
   */
   goBack() {
     const depth = this.navigationStack.length;
-    console.log( this.navigationStack[depth - 2])
+
     if (depth > 1) {
         this.lists = this.navigationStack[depth - 2].lists;
         this.lastBrowseLists = this.navigationStack[depth - 2].lists;
@@ -82,9 +82,11 @@ class BrowseService {
         this.eject = this.navigationStack[depth - 2].eject;
         this.rip = this.navigationStack[depth - 2].rip;
 
-        this.$rootScope.$broadcast('browseService:fetchEnd');
+        this.navigationStack.pop();
 
+        this.$rootScope.$broadcast('browseService:fetchEnd');
     } else {
+      this.navigationStack = [];
       this.backHome();
     }
   }
