@@ -276,7 +276,8 @@ class BrowseMusicController {
     const params = {
       title: details.title,
       story: details.story,
-      credits: details.credits
+      credits: details.credits,
+      upgradeCta: details.upgradeCta || false
     };
     this.modalService.openModal(
       controller,
@@ -344,6 +345,55 @@ class BrowseMusicController {
       'album': albumInfo.album
     };
     return this.requestMetavolumioApi(requestObject);
+  }
+
+  /* ====== CREDITS IMPRO ====== */
+
+  getArtistInfo(albumInfo) {
+    if (albumInfo.artist) {
+      /* We have the artist info for sure */
+      let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
+      let metaObject = {
+        'endpoint': 'metavolumio',
+        'data': {
+          'mode':'storyArtist',
+          'artist': albumInfo.artist
+        }
+      };
+      if (this.currentItemMetas.artistStory) {
+        /* We've already cached the result */
+        this.showPremiumFeatureModal();
+        /* this.showCreditsDetails({
+          title: this.browseService.info.artist,
+          story: this.currentItemMetas.artistStory
+        }); */
+      } else {
+        /* First call, let's fetch the data */
+        this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
+          if (response.data && response.data.success && response.data.data && response.data.data.value) {
+            this.currentItemMetas.artistStory = response.data.data.value;
+            this.showCreditsDetails({
+              title: this.browseService.info.artist,
+              story: this.currentItemMetas.artistStory
+            });
+          }
+        });
+      }
+    } else {
+      /* We don't have artist info for any reason */
+      return null;
+    }
+  }
+
+  showPremiumFeatureModal() {
+    this.showCreditsDetails({
+      title: 'Music and Artists Credit Discovery',
+      story: `
+        <h2 class="text-center">This feature is available for Volumio Superstart subscribers.</h2>
+        <p class="text-center">Enhanced metadata for your local music and much more.</p>
+      `,
+      upgradeCta: true
+    });
   }
 
   getAlbumCredits(albumInfo) {

@@ -1,17 +1,23 @@
 class ModalCreditsDetailsController {
-    constructor($uibModalInstance, dataObj, socketService, $http, modalService) {
+    constructor($uibModalInstance, dataObj, socketService, $http, modalService, $state) {
       'ngInject';
       this.$uibModalInstance = $uibModalInstance;
       this.dataObj = dataObj;
       this.socketService = socketService;
       this.$http = $http;
       this.modalService = modalService;
+      this.$state = $state;
       this.loadingCredit = {};
       this.unavailableCredits = {};
       this.creditRequestOptions = {"timeout":7000};
     }
 
     cancel() {
+      this.$uibModalInstance.dismiss('cancel');
+    }
+
+    goToUpgrade() {
+      this.$state.go('myvolumio.plans');
       this.$uibModalInstance.dismiss('cancel');
     }
 

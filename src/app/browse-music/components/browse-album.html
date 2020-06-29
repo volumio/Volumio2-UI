@@ -65,7 +65,14 @@
                             ng-if="browse.currentItemMetas.albumCredits"
                             class="header__action-btn mb-4">
                             <i class="fa fa-info-circle"></i>
-                            {{ 'BROWSER.CREDITS' | translate }}
+                            {{ 'BROWSER.ALBUM_CREDITS' | translate }}
+                        </button>
+                        <button
+                            ng-click="browse.getArtistInfo(browse.browseService.info)"
+                            ng-if="browse.currentItemMetas.albumCredits"
+                            class="header__action-btn header__action-btn__faded mb-1">
+                            <i class="fa fa-music"></i>
+                            {{ 'BROWSER.ARTIST_STORY' | translate }}
                         </button>
                         <!--
                         <button
@@ -93,8 +100,14 @@
                 <li
                     ng-if="browse.currentItemMetas.albumCredits"
                     ng-click="browse.showAlbumCredits()"
-                    title="{{'BROWSER.CREDITS' | translate}}">
-                    <a href><i class="fa fa-info-circle"></i><span translate="BROWSER.CREDITS"></span></a>
+                    title="{{'BROWSER.ALBUM_CREDITS' | translate}}">
+                    <a href><i class="fa fa-info-circle"></i><span translate="BROWSER.ALBUM_CREDITS"></span></a>
+                </li>
+                <li
+                    ng-if="browse.currentItemMetas.albumCredits"
+                    ng-click="browse.getArtistInfo(browse.browseService.info)"
+                    title="{{'BROWSER.ARTIST_STORY' | translate}}">
+                    <a href><i class="fa fa-music"></i><span translate="BROWSER.ARTIST_STORY"></span></a>
                 </li>
                 <li
                     ng-click="browse.addToPlaylist(browse.browseService.info)"

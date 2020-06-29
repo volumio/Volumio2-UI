@@ -36,6 +36,7 @@
     height: 100%;
     background-color: transparent;
     transition: background-color 0.15s ease-out 0s;
+    pointer-events: none;
 }
 
 .music-card__info {
@@ -183,11 +184,12 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (pointer: fine) {
     .music-card {
         &:hover {
             cursor: pointer;
             .music-card__overlay {
+                pointer-events: auto;
                 background-color: rgba(0, 0, 0, .6);
             }
             .meta__genre,
