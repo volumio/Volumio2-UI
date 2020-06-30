@@ -1,7 +1,7 @@
 class BrowseMusicController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
     modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-    uiSettingsService, $state, themeManager, $stateParams, mockService, $http) {
+    uiSettingsService, $state, themeManager, $stateParams, mockService, $http, authService) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -26,6 +26,7 @@ class BrowseMusicController {
     this.mockArtistPage = mockService._mock.browseMusic.getArtistPageContent;
     this.mockAlbumPage = mockService._mock.browseMusic.getAlbumPageContent;
     this.$http = $http;
+    this.authService = authService;
     this.content = {};
     this.loadingCredit = {};
     this.hideInfoHeader = false;
@@ -270,6 +271,16 @@ class BrowseMusicController {
     return ret;
   }
 
+  showMoreStory(details) {
+    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+      this.showPremiumFeatureModal();
+      return;
+    }
+    if (details) {
+      this.showCreditsDetails(details);
+    }
+  }
+
   showCreditsDetails(details) {
     const templateUrl = 'app/browse-music/components/modal/modal-credits-details.html';
     const controller = 'ModalCreditsDetailsController';
@@ -285,6 +296,20 @@ class BrowseMusicController {
       params,
       'md'
     );
+  }
+
+  checkAuthAndSubscription() {
+    let result = {
+      authEnabled: false,
+      plan: null
+    };
+    if (this.authService) {
+      result.authEnabled = this.authService.isEnabled;
+      if (this.authService.user) {
+        result.plan = this.authService.user.plan;
+      }
+    }
+    return result;
   }
 
   timeFormat(time) {
@@ -350,6 +375,12 @@ class BrowseMusicController {
   /* ====== CREDITS IMPRO ====== */
 
   getArtistInfo(albumInfo) {
+
+    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+      this.showPremiumFeatureModal();
+      return;
+    }
+
     if (albumInfo.artist) {
       /* We have the artist info for sure */
       let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
@@ -362,11 +393,10 @@ class BrowseMusicController {
       };
       if (this.currentItemMetas.artistStory) {
         /* We've already cached the result */
-        this.showPremiumFeatureModal();
-        /* this.showCreditsDetails({
+        this.showCreditsDetails({
           title: this.browseService.info.artist,
           story: this.currentItemMetas.artistStory
-        }); */
+        });
       } else {
         /* First call, let's fetch the data */
         this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
@@ -507,6 +537,10 @@ class BrowseMusicController {
   }
 
   showAlbumCredits() {
+    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+      this.showPremiumFeatureModal();
+      return;
+    }
     let creditsObject = {
       'title': this.browseService.info.album,
       'credits': this.currentItemMetas.albumCredits

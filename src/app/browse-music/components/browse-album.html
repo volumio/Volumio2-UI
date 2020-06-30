@@ -29,7 +29,7 @@
                         ng-if="browse.currentItemMetas.story"
                         class="artist-description__read-more">
                             <button
-                                ng-click="browse.showCreditsDetails({'title':browse.browseService.info.album,'story':browse.currentItemMetas.story})"
+                                ng-click="browse.showMoreStory({'title':browse.browseService.info.album,'story':browse.currentItemMetas.story})"
                                 class="artist-description__read-more-btn">
                                 <span>
                                     {{ 'BROWSER.READ_MORE' | translate }}...
@@ -62,14 +62,12 @@
                     <div class="header__actions">
                         <button
                             ng-click="browse.showAlbumCredits()"
-                            ng-if="browse.currentItemMetas.albumCredits"
                             class="header__action-btn mb-4">
                             <i class="fa fa-info-circle"></i>
                             {{ 'BROWSER.ALBUM_CREDITS' | translate }}
                         </button>
                         <button
                             ng-click="browse.getArtistInfo(browse.browseService.info)"
-                            ng-if="browse.currentItemMetas.albumCredits"
                             class="header__action-btn header__action-btn__faded mb-1">
                             <i class="fa fa-music"></i>
                             {{ 'BROWSER.ARTIST_STORY' | translate }}
