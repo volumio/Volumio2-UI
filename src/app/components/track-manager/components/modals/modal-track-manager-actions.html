@@ -33,12 +33,24 @@
     ng-class="{ 'disabled': modal.creditsLoading || modal.creditsError }"
     ng-click="modal.getAlbumCredits()">
     <span ng-if="!modal.creditsLoading && !modal.creditsError">
-      <i class="fa fa-info"></i> {{ 'BROWSER.CREDITS' | translate }}
+      <i class="fa fa-info"></i> {{ 'BROWSER.ALBUM_CREDITS' | translate }}
     </span>
     <span ng-if="!modal.creditsLoading && modal.creditsError">
       <i class="fa fa-info"></i> {{ 'BROWSER.NOT_FOUND' | translate }}
     </span>
     <div ng-if="modal.creditsLoading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </button>
+  <button
+    class="btn btn-info btn-block"
+    ng-class="{ 'disabled': modal.trackStoryLoading || modal.storyError }"
+    ng-click="modal.getTrackStory()">
+    <span ng-if="!modal.trackStoryLoading && !modal.storyError">
+      <i class="fa fa-music"></i> {{ 'BROWSER.TRACK_STORY' | translate }}
+    </span>
+    <span ng-if="!modal.trackStoryLoading && modal.storyError">
+      <i class="fa fa-music"></i> {{ 'BROWSER.NOT_FOUND' | translate }}
+    </span>
+    <div ng-if="modal.trackStoryLoading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </button>
   <button class="btn btn-info btn-block"
       ng-if="modal.playerService.state.artist"

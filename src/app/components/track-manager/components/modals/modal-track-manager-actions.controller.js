@@ -1,6 +1,6 @@
 class ModalTrackManagerActionsController {
   constructor($uibModalInstance, dataObj, playerService, $state, socketService, $log, $timeout, browseService,
-      $translate, uiSettingsService, $http, modalService) {
+      $translate, uiSettingsService, $http, modalService, authService) {
     'ngInject';
 
     this.$log = $log;
@@ -15,9 +15,14 @@ class ModalTrackManagerActionsController {
     this.uiSettingsService = uiSettingsService;
     this.$http = $http;
     this.modalService = modalService;
+    this.authService = authService;
+
     this.creditsLoading = false;
     this.creditsError = false;
+    this.storyError = false;
     this.currentItemMetas = {};
+    this.trackStoryLoading = false;
+    this.creditRequestOptions = {"timeout":7000};
 
   }
 
@@ -68,6 +73,36 @@ class ModalTrackManagerActionsController {
     this.$uibModalInstance.dismiss('cancel');
   }
 
+  getTrackStory() {
+    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+      this.showPremiumFeatureModal();
+      return;
+    }
+    this.trackStoryLoading = true;
+    if (this.playerService.state) {
+      let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
+      let metaObject = {
+        'endpoint': 'metavolumio',
+        'data': {
+          'mode':'storyTrack',
+          'artist': this.playerService.state.artist,
+          'album': this.playerService.state.album,
+          'track': this.playerService.state.title
+        }
+      };
+      return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
+        if (response.data && response.data.success && response.data.data && response.data.data.value) {
+          this.storyError = false;
+          this.currentItemMetas.trackStory = response.data.data.value;
+          this.showTrackStory();
+        } else {
+          this.storyError = true;
+        }
+        this.trackStoryLoading = false;
+      });
+    }
+  }
+
   getAlbumCredits() {
     if (this.currentItemMetas.albumCredits) {
       this.showAlbumCredits();
@@ -106,13 +141,21 @@ class ModalTrackManagerActionsController {
     };
     this.showCreditsDetails(creditsObject);
   }
+  
+  showTrackStory() {
+    let creditsObject = {
+      title: this.playerService.state.album,
+      story: this.currentItemMetas.trackStory
+    };
+    this.showCreditsDetails(creditsObject);
+  }
 
   showCreditsDetails(details) {
     const templateUrl = 'app/browse-music/components/modal/modal-credits-details.html';
     const controller = 'ModalCreditsDetailsController';
     const params = {
       title: details.title,
-      story: null,
+      story: details.story || null,
       credits: details.credits
     };
     this.modalService.openModal(
@@ -121,6 +164,31 @@ class ModalTrackManagerActionsController {
       params,
       'md'
     );
+  }
+
+  showPremiumFeatureModal() {
+    this.showCreditsDetails({
+      title: 'Music and Artists Credit Discovery',
+      story: `
+        <h2 class="text-center">This feature is available for Volumio Superstart subscribers.</h2>
+        <p class="text-center">Enhanced metadata for your local music and much more.</p>
+      `,
+      upgradeCta: true
+    });
+  }
+
+  checkAuthAndSubscription() {
+    let result = {
+      authEnabled: false,
+      plan: null
+    };
+    if (this.authService) {
+      result.authEnabled = this.authService.isEnabled;
+      if (this.authService.user) {
+        result.plan = this.authService.user.plan;
+      }
+    }
+    return result;
   }
 
 }
