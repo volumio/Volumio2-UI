@@ -1,3 +1,5 @@
+import { reject } from "lodash";
+
 class ModalTrackManagerActionsController {
   constructor($uibModalInstance, dataObj, playerService, $state, socketService, $log, $timeout, browseService,
       $translate, uiSettingsService, $http, modalService, authService) {
@@ -20,6 +22,8 @@ class ModalTrackManagerActionsController {
     this.creditsLoading = false;
     this.creditsError = false;
     this.storyError = false;
+    this.artistStoryLoading = false;
+    this.artistError = false;
     this.currentItemMetas = {};
     this.trackStoryLoading = false;
     this.creditRequestOptions = {"timeout":7000};
@@ -73,66 +77,110 @@ class ModalTrackManagerActionsController {
     this.$uibModalInstance.dismiss('cancel');
   }
 
+  requestMetavolumioApi(requestObject) {
+    return new Promise((resolve, reject) => {
+      let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
+      this.$http.post(mataVolumioUrl, requestObject, this.creditRequestOptions)
+        .then((response) => {
+          if (response.data && response.data.success && response.data.data && response.data.data.value) {
+            resolve(response.data.data);
+          } else {
+            reject({ error: true });
+          }
+          this.trackStoryLoading = false;
+        })
+        .catch(err => reject(err));
+    });
+  }
+
+  getArtistStory() {
+    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+      this.showPremiumFeatureModal();
+      return;
+    }
+    this.artistStoryLoading = true;
+    let metaObject = {
+      'endpoint': 'metavolumio',
+      'data': {
+        'mode':'storyArtist',
+        'artist': this.playerService.state.artist,
+      }
+    };
+
+    this.requestMetavolumioApi(metaObject)
+      .then(result => {
+          this.artistError = false;
+          this.currentItemMetas.artistStory = result.value;
+          this.showArtistStory();
+      })
+      .catch(error => {
+        this.artistError = true;
+      })
+      .finally(() => {
+        this.artistStoryLoading = false;
+      });
+  }
+  
   getTrackStory() {
     if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
       this.showPremiumFeatureModal();
       return;
     }
     this.trackStoryLoading = true;
-    if (this.playerService.state) {
-      let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
-      let metaObject = {
-        'endpoint': 'metavolumio',
-        'data': {
-          'mode':'storyTrack',
-          'artist': this.playerService.state.artist,
-          'album': this.playerService.state.album,
-          'track': this.playerService.state.title
-        }
-      };
-      return this.$http.post(mataVolumioUrl, metaObject, this.creditRequestOptions).then((response) => {
-        if (response.data && response.data.success && response.data.data && response.data.data.value) {
-          this.storyError = false;
-          this.currentItemMetas.trackStory = response.data.data.value;
-          this.showTrackStory();
-        } else {
-          this.storyError = true;
-        }
+    let metaObject = {
+      'endpoint': 'metavolumio',
+      'data': {
+        'mode':'storyTrack',
+        'artist': this.playerService.state.artist,
+        'album': this.playerService.state.album,
+        'track': this.playerService.state.title
+      }
+    };
+
+    this.requestMetavolumioApi(metaObject)
+      .then(result => {
+        this.storyError = false;
+        this.currentItemMetas.trackStory = result.value;
+        this.showTrackStory();
+      })
+      .catch(error => {
+        this.storyError = true;
+      })
+      .finally(() => {
         this.trackStoryLoading = false;
       });
-    }
   }
-
+  
+  
   getAlbumCredits() {
-    if (this.currentItemMetas.albumCredits) {
-      this.showAlbumCredits();
+    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+      this.showPremiumFeatureModal();
       return;
     }
-    const albumInfo = this.playerService.state;
-    this.currentItemMetas.albumCredits = '';
-    if (albumInfo && albumInfo.artist && albumInfo.album) {
-      this.creditsLoading = true;
-      let mataVolumioUrl =  this.socketService.host + '/api/v1/pluginEndpoint';
-      let metaObject = {
-        'endpoint': 'metavolumio',
-        'data': {
-          'mode':'creditsAlbum',
-          'artist': albumInfo.artist,
-          'album': albumInfo.album
-        }
-      };
-      return this.$http.post(mataVolumioUrl, metaObject).then((response) => {
-        if (response.data && response.data.success && response.data.data && response.data.data.value) {
-          this.creditsError = false;
-          this.currentItemMetas.albumCredits = response.data.data.value;
-          this.showAlbumCredits();
-        } else {
-          this.creditsError = true;
-        }
+    this.creditsLoading = true;
+    let metaObject = {
+      'endpoint': 'metavolumio',
+      'data': {
+        'mode':'creditsAlbum',
+        'artist': this.playerService.state.artist,
+        'album': this.playerService.state.album
+      }
+    };
+
+    this.requestMetavolumioApi(metaObject)
+      .then(result => {
+        this.creditsError = false;
+        this.currentItemMetas.albumCredits = result.value;
+        this.showAlbumCredits();
+      })
+      .catch(error => {
+        this.creditsError = true;
+      })
+      .finally(() => {
         this.creditsLoading = false;
       });
-    }
   }
+
 
   showAlbumCredits() {
     let creditsObject = {
@@ -149,6 +197,14 @@ class ModalTrackManagerActionsController {
     };
     this.showCreditsDetails(creditsObject);
   }
+  
+  showArtistStory() {
+    let creditsObject = {
+      title: this.playerService.state.artist,
+      story: this.currentItemMetas.artistStory
+    };
+    this.showCreditsDetails(creditsObject);
+  }
 
   showCreditsDetails(details) {
     const templateUrl = 'app/browse-music/components/modal/modal-credits-details.html';
@@ -156,7 +212,8 @@ class ModalTrackManagerActionsController {
     const params = {
       title: details.title,
       story: details.story || null,
-      credits: details.credits
+      credits: details.credits,
+      upgradeCta: details.upgradeCta || false
     };
     this.modalService.openModal(
       controller,

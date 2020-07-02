@@ -406,6 +406,11 @@ class BrowseMusicController {
               title: this.browseService.info.artist,
               story: this.currentItemMetas.artistStory
             });
+          } else {
+            this.showCreditsDetails({
+              title: this.browseService.info.artist,
+              story: `<h3>Artist story not found for ${ this.browseService.info.artist }.</h3>`
+            });
           }
         });
       }
