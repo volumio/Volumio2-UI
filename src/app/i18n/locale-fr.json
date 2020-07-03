@@ -251,7 +251,7 @@
     "OFF": "Stop"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist",
+    "CREATE_PLAYLIST_FIRST": "Avant de pouvoir utiliser l'alarme, vous devez créer au moins une playlist",
     "MONDAY":"Lundi",
     "TUESDAY":"Mardi",
     "WEDNESDAY":"Mercredi",

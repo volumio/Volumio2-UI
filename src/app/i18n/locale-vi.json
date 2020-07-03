@@ -237,7 +237,7 @@
     "OFF": "Tắt"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Để chọn thời gian báo thức, bạn phải tạo trước ít nhất một danh sách nhạc"
+    "CREATE_PLAYLIST_FIRST": "Để chọn thời gian báo thức, bạn phải tạo trước ít nhất một danh sách nhạc"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Chỉnh sửa Nhóm",

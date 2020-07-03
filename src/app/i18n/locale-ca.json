@@ -176,7 +176,7 @@
     "STOP_MUSIC": "Parar la música"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Per utilitzar la alarma primer has de crear una llista de reproducció"
+    "CREATE_PLAYLIST_FIRST": "Per utilitzar la alarma primer has de crear una llista de reproducció"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Editar els grups",

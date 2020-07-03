@@ -212,7 +212,7 @@
     "STOP_MUSIC": "Detener música"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Para utilizar la función de Alarma, debes crear al menos una lista de reproducción."
+    "CREATE_PLAYLIST_FIRST": "Para utilizar la función de Alarma, debes crear al menos una lista de reproducción."
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Editar grupos",

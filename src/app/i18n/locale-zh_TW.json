@@ -207,7 +207,7 @@
     "STOP_MUSIC": "停止播放"
   },
   "ALARM": {
-  "CRATE_PLAYLIST_FIRST": "設定鬧鐘前,請先製造最少一個播放貯列"
+  "CREATE_PLAYLIST_FIRST": "設定鬧鐘前,請先製造最少一個播放貯列"
   },
 "MULTIDEVICE": {
     "EDIT_GROUPS": "編輯群組",

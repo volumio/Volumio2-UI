@@ -171,6 +171,6 @@
     "STOP_MUSIC": "Para Música"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Para utilizar o Despertador é necessário criar pelo menos uma Lista de Reprodução"
+    "CREATE_PLAYLIST_FIRST": "Para utilizar o Despertador é necessário criar pelo menos uma Lista de Reprodução"
   }
 }

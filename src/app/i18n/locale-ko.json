@@ -173,7 +173,7 @@
     "STOP_MUSIC": "재생 정지"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "알람 기능을 사용하려면 플레이 리스트를 만들어야 합니다"
+    "CREATE_PLAYLIST_FIRST": "알람 기능을 사용하려면 플레이 리스트를 만들어야 합니다"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "그룹 수정",

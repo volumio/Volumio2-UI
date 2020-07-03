@@ -246,7 +246,7 @@
     "OFF": "Vypnúť"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Ak chcete použiť budík, musíte najprv vytvoriť aspoň jeden playlist"
+    "CREATE_PLAYLIST_FIRST": "Ak chcete použiť budík, musíte najprv vytvoriť aspoň jeden playlist"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Upraviť skupiny",

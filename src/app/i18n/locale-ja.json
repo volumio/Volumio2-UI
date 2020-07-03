@@ -179,7 +179,7 @@
      "STOP_MUSIC":"再生停止"
    },
    "ALARM": {
-     "CRATE_PLAYLIST_FIRST": "アラームクロックを作成するためには最初にプレイリストを作成してください"
+     "CREATE_PLAYLIST_FIRST": "アラームクロックを作成するためには最初にプレイリストを作成してください"
    },
    "MULTIDEVICE": {
      "EDIT_GROUPS": "グループの編集",
