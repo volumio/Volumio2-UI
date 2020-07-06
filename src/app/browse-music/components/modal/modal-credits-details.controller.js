@@ -17,8 +17,9 @@ class ModalCreditsDetailsController {
     }
 
     goToUpgrade() {
-      this.$state.go('myvolumio.plans');
       this.$uibModalInstance.dismiss('cancel');
+      this.modalService.closeAllModals();
+      this.$state.go('myvolumio.plans');
     }
 
     /* showCreditLink(uri, title) {
