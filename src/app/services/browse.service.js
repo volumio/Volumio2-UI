@@ -61,16 +61,11 @@ class BrowseService {
     if (!back) {
       this.scrollPositions.delete(item.uri);
     }
-    /* console.log(this);
-    console.log(this.historyUri);
-    console.log(this.breadcrumbs);
-    console.log(this._breadcrumbs); */
   }
 
   /*
     ====== Back functionality for the new navigation stack ======
   */
-
 
   goBack() {
     const depth = this.navigationStack.length;
@@ -88,7 +83,8 @@ class BrowseService {
         this.navigationStack.pop();
 
         this.$rootScope.$broadcast('browseService:fetchEnd');
-        
+        this.currentFetchRequest = this.navigationStack[depth - 2];
+
        /*  window.location.hash = this.navigationStack[depth - 2].uri; */
 
     } else {
@@ -256,7 +252,7 @@ class BrowseService {
         */
 
         /*
-        
+
         Wee need to find a better way for hash navigation
 
         window.onhashchange = evt => {
@@ -268,9 +264,9 @@ class BrowseService {
             return;
           }
         };
-        
+
         window.location.hash = this.currentFetchRequest.uri;
-        
+
         */
 
         this.navigationStack.push({
@@ -291,8 +287,7 @@ class BrowseService {
           rip: data.navigation.rip || null,
         });
 
-        console.log('STACK', this.navigationStack);
-
+        this.$log.debug('navigationStack', this.navigationStack);
         /*
           ====== New navigation stack ======
         */
