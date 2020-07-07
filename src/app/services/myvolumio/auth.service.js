@@ -1,7 +1,7 @@
 class AuthService {
   constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
     paymentsService, $filter, modalService, socketService, $http, $location, themeManager, cloudService,
-    firebaseApiFunctionsService, onBoardFlowService, growSurfService) {
+    firebaseApiFunctionsService, growSurfService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -19,7 +19,6 @@ class AuthService {
     this.$window = $window;
     this.cloudService = cloudService;
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
-    this.onBoardFlowService = onBoardFlowService;
     this.growSurfService = growSurfService;
 
     this.isEnabled = false;
@@ -81,7 +80,6 @@ class AuthService {
     this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
       this.user = user;
       setTimeout(()=>{
-        this.syncronizeWithOnboardFlow(user);
         this.syncronizeWithGrowSurf(user);
         this.syncronizeWithBackend();
       }, 2000);
@@ -140,10 +138,6 @@ class AuthService {
         }
       }
     });
-  }
-
-  syncronizeWithOnboardFlow(data){
-    this.onBoardFlowService.updateOnboardFlowUserData(data);
   }
 
   syncronizeWithGrowSurf(userData){

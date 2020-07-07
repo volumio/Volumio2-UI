@@ -56,13 +56,13 @@ class StatisticsService {
     // jshint ignore: start
     var gaScript1 = document.createElement('script');
     gaScript1.async = true;
-    gaScript1.src = 'https://www.googletagmanager.com/gtag/js?id=G-EMK40SCD1G';
+    gaScript1.src = 'https://www.googletagmanager.com/gtag/js?id=UA-46374275-1';
     document.head.appendChild(gaScript1);
     var gaScript2 = document.createElement('script');
     gaScript2.innerHTML += 'window.dataLayer = window.dataLayer || [];';
     gaScript2.innerHTML += 'function gtag(){dataLayer.push(arguments);}';
     gaScript2.innerHTML += 'gtag("js", new Date());';
-    gaScript2.innerHTML += 'gtag("config", "G-EMK40SCD1G", { "anonymize_ip": true });';
+    gaScript2.innerHTML += 'gtag("config", "UA-46374275-1", { "anonymize_ip": true });';
     document.head.appendChild(gaScript2);
     // jshint ignore: end
   }

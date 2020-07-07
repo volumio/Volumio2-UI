@@ -50,5 +50,11 @@
       <button class="btn btn-warning" ng-click="modal.cancel()">
         {{'COMMON.CLOSE' | translate}}
       </button>
+      <button
+        ng-if="::modal.dataObj.upgradeCta"
+        class="btn btn-primary"
+        ng-click="modal.goToUpgrade()">
+        {{'MYVOLUMIO.UPGRADE_SUPERSTAR' | translate}}
+      </button>
     </div>
   </div>

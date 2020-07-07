@@ -110,10 +110,15 @@
     "SKIP_BACKWARDS": "Skip Backwards",
     "SKIP_FORWARD": "Skip Forward",
     "CREDITS":"Credits",
+    "ALBUM_CREDITS":"Album credits",
+    "ALBUM_STORY":"Album story",
+    "TRACK_STORY":"Track story",
+    "ARTIST_STORY":"Artist story",
     "READ_MORE": "Read more",
     "NO_ITEMS": "No items",
     "NOT_FOUND": "Not found",
-    "CREDITS_NOT_FOUND": "Credits not found"
+    "CREDITS_NOT_FOUND": "Credits not found",
+    "ARTIST_STORY_NOT_FOUND_FOR": "Artist story not found for"
   },
   "MY_MUSIC": {
     "UPDATE": "Update",
@@ -408,6 +413,7 @@
     "FINISH_SIGNUP": "Finish sign up",
     "CREATING_ACCOUNT": "Creating account...",
     "UPGRADE_MYVOLUMIO": "Upgrade MyVolumio",
+    "UPGRADE_SUPERSTAR": "Upgrade to Superstar",
     "PREMIUM_STREAMING_TITLE": "Studio quality music at home",
     "PREMIUM_STREAMING_FULLY_INTEGRATED_QOBUZ": "Qobuz is fully integrated with Volumio",
     "PREMIUM_STREAMING_FULLY_INTEGRATED_TIDAL": "Tidal is fully integrated with Volumio",
@@ -468,7 +474,10 @@
     "REFERRAL_FAQ_BODY_7": "We separated the rewards according to the subscription type to be fair to all users, and get the rewards according to the value of the subscription.",
     "REFERRAL_FAQ_TITLE_8": "How many people can I refer?",
     "REFERRAL_FAQ_BODY_8": "The limit does not exist! The more you make, the closer you are to being in the Top 1!",
-    "ACCOUNT":"Account"
+    "ACCOUNT":"Account",
+    "MODAL_DISCOVERY_PREMIUM_TITLE": "Music and Artists Credits Discovery",
+    "MODAL_DISCOVERY_PREMIUM_HEADING": "This feature is available for Volumio Superstart subscribers",
+    "MODAL_DISCOVERY_PREMIUM_TEXT": "Enhanced metadata for your music and much more"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",
