@@ -44,6 +44,19 @@
   <button
     ng-if="modal.authService.isEnabled"
     class="btn btn-info btn-block"
+    ng-class="{ 'disabled': modal.albumStoryLoading || modal.albumStoryError }"
+    ng-click="modal.getAlbumStory()">
+    <span ng-if="!modal.albumStoryLoading && !modal.albumStoryError">
+      <i class="fa fa-bullseye mr-2"></i> {{ 'BROWSER.ALBUM_STORY' | translate }}
+    </span>
+    <span ng-if="!modal.albumStoryLoading && modal.albumStoryError">
+      <i class="fa fa-info"></i> {{ 'BROWSER.NOT_FOUND' | translate }}
+    </span>
+    <div ng-if="modal.albumStoryLoading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </button>
+  <button
+    ng-if="modal.authService.isEnabled"
+    class="btn btn-info btn-block"
     ng-class="{ 'disabled': modal.artistStoryLoading || modal.artistError }"
     ng-click="modal.getArtistStory()">
     <span ng-if="!modal.artistStoryLoading && !modal.artistError">
@@ -54,7 +67,7 @@
     </span>
     <div ng-if="modal.artistStoryLoading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </button>
-  <button
+  <!-- <button
     ng-if="modal.authService.isEnabled"
     class="btn btn-info btn-block"
     ng-class="{ 'disabled': modal.trackStoryLoading || modal.storyError }"
@@ -66,7 +79,7 @@
       <i class="fa fa-music"></i> {{ 'BROWSER.NOT_FOUND' | translate }}
     </span>
     <div ng-if="modal.trackStoryLoading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-  </button>
+  </button> -->
   <div class="d-flex spacer mb-4"></div>
   <button class="btn btn-info btn-block"
       ng-if="modal.playerService.state.artist"

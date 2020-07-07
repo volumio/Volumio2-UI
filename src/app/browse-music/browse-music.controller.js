@@ -1,7 +1,7 @@
 class BrowseMusicController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
     modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-    uiSettingsService, $state, themeManager, $stateParams, mockService, $http, authService) {
+    uiSettingsService, $state, themeManager, $stateParams, mockService, $http, authService, $filter) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -27,6 +27,8 @@ class BrowseMusicController {
     this.mockAlbumPage = mockService._mock.browseMusic.getAlbumPageContent;
     this.$http = $http;
     this.authService = authService;
+    this.filteredTranslate = $filter('translate');
+
     this.content = {};
     this.loadingCredit = {};
     this.hideInfoHeader = false;
@@ -50,6 +52,7 @@ class BrowseMusicController {
     $scope.$on('browseService:rip', () => {
       this.backHome();
     });
+    
 
     this.initController();
   }
@@ -409,7 +412,7 @@ class BrowseMusicController {
           } else {
             this.showCreditsDetails({
               title: this.browseService.info.artist,
-              story: `<h3>Artist story not found for ${ this.browseService.info.artist }.</h3>`
+              story: `<h3>${ this.filteredTranslate('BROWSER.ARTIST_STORY_NOT_FOUND_FOR') } ${ this.browseService.info.artist }.</h3>`
             });
           }
         });
@@ -422,10 +425,10 @@ class BrowseMusicController {
 
   showPremiumFeatureModal() {
     this.showCreditsDetails({
-      title: 'Music and Artists Credit Discovery',
+      title: this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_TITLE'),
       story: `
-        <h2 class="text-center">This feature is available for Volumio Superstart subscribers.</h2>
-        <p class="text-center">Enhanced metadata for your local music and much more.</p>
+        <h2 class="text-center">${ this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_HEADING') }</h2>
+        <p class="text-center">${ this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_TEXT') }</p>
       `,
       upgradeCta: true
     });
