@@ -251,6 +251,10 @@ class BrowseMusicController {
     if (!item) {
       return false;
     }
+    // We avoid that by mistake one clicks on play all NAS or USB, freezing volumio
+    if (item.type === 'folder' && item.uri && item.uri.startsWith('music-library/') && item.uri.split('/').length < 4 ) {
+      return false;
+    }
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'cuesong' ||
