@@ -118,9 +118,6 @@
     "NO_ITEMS": "No items",
     "NOT_FOUND": "Not found",
     "CREDITS_NOT_FOUND": "Credits not found",
-    "MODAL_DISCOVERY_PREMIUM_TITLE": "Music and Artists Credits Discovery",
-    "MODAL_DISCOVERY_PREMIUM_HEADING": "This feature is available for Volumio Superstart subscribers.",
-    "MODAL_DISCOVERY_PREMIUM_TEXT": "Enhanced metadata for your local music and much more.",
     "ARTIST_STORY_NOT_FOUND_FOR": "Artist story not found for"
   },
   "MY_MUSIC": {
@@ -477,7 +474,10 @@
     "REFERRAL_FAQ_BODY_7": "We separated the rewards according to the subscription type to be fair to all users, and get the rewards according to the value of the subscription.",
     "REFERRAL_FAQ_TITLE_8": "How many people can I refer?",
     "REFERRAL_FAQ_BODY_8": "The limit does not exist! The more you make, the closer you are to being in the Top 1!",
-    "ACCOUNT":"Account"
+    "ACCOUNT":"Account",
+    "MODAL_DISCOVERY_PREMIUM_TITLE": "Music and Artists Credits Discovery",
+    "MODAL_DISCOVERY_PREMIUM_HEADING": "This feature is available for Volumio Superstart subscribers",
+    "MODAL_DISCOVERY_PREMIUM_TEXT": "Enhanced metadata for your music and much more"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Receive our MyVolumio News Feed",

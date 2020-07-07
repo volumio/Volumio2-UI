@@ -52,7 +52,7 @@ class BrowseMusicController {
     $scope.$on('browseService:rip', () => {
       this.backHome();
     });
-    
+
 
     this.initController();
   }
@@ -425,10 +425,10 @@ class BrowseMusicController {
 
   showPremiumFeatureModal() {
     this.showCreditsDetails({
-      title: this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_TITLE'),
+      title: this.filteredTranslate('MYVOLUMIO.MODAL_DISCOVERY_PREMIUM_TITLE'),
       story: `
-        <h2 class="text-center">${ this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_HEADING') }</h2>
-        <p class="text-center">${ this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_TEXT') }</p>
+        <h2 class="text-center">${ this.filteredTranslate('MYVOLUMIO.MODAL_DISCOVERY_PREMIUM_HEADING') }</h2>
+        <p class="text-center">${ this.filteredTranslate('MYVOLUMIO.MODAL_DISCOVERY_PREMIUM_TEXT') }</p>
       `,
       upgradeCta: true
     });

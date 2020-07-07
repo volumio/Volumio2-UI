@@ -123,7 +123,7 @@ class ModalTrackManagerActionsController {
         this.artistStoryLoading = false;
       });
   }
-  
+
   getTrackStory() {
     if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
       this.showPremiumFeatureModal();
@@ -153,8 +153,8 @@ class ModalTrackManagerActionsController {
         this.trackStoryLoading = false;
       });
   }
-  
-  
+
+
   getAlbumCredits() {
     if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
       this.showPremiumFeatureModal();
@@ -183,7 +183,7 @@ class ModalTrackManagerActionsController {
         this.creditsLoading = false;
       });
   }
-  
+
   getAlbumStory() {
     if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
       this.showPremiumFeatureModal();
@@ -221,7 +221,7 @@ class ModalTrackManagerActionsController {
     };
     this.showCreditsDetails(creditsObject);
   }
-  
+
   showAlbumStory() {
     let creditsObject = {
       title: this.playerService.state.album,
@@ -229,7 +229,7 @@ class ModalTrackManagerActionsController {
     };
     this.showCreditsDetails(creditsObject);
   }
-  
+
   showTrackStory() {
     let creditsObject = {
       title: this.playerService.state.album,
@@ -237,7 +237,7 @@ class ModalTrackManagerActionsController {
     };
     this.showCreditsDetails(creditsObject);
   }
-  
+
   showArtistStory() {
     let creditsObject = {
       title: this.playerService.state.artist,
@@ -265,10 +265,10 @@ class ModalTrackManagerActionsController {
 
   showPremiumFeatureModal() {
     this.showCreditsDetails({
-      title: this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_TITLE'),
+      title: this.filteredTranslate('MYVOLUMIO.MODAL_DISCOVERY_PREMIUM_TITLE'),
       story: `
-        <h2 class="text-center">${ this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_HEADING') }</h2>
-        <p class="text-center">${ this.filteredTranslate('BROWSER.MODAL_DISCOVERY_PREMIUM_TEXT') }</p>
+        <h2 class="text-center">${ this.filteredTranslate('MYVOLUMIO.MODAL_DISCOVERY_PREMIUM_HEADING') }</h2>
+        <p class="text-center">${ this.filteredTranslate('MYVOLUMIO.MODAL_DISCOVERY_PREMIUM_TEXT') }</p>
       `,
       upgradeCta: true
     });
