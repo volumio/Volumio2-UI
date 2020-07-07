@@ -25,6 +25,8 @@ class BrowseService {
     this.scrollPositions = new Map();
     this.lastBrowseLists = [];
 
+    this.navigationStack = [];
+
     this.init();
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -35,6 +37,7 @@ class BrowseService {
   }
 
   fetchLibrary(item, back) {
+
     if (item.uri === '/') {
       this.backHome();
       return false;
@@ -58,6 +61,43 @@ class BrowseService {
     if (!back) {
       this.scrollPositions.delete(item.uri);
     }
+  }
+
+  /*
+    ====== Back functionality for the new navigation stack ======
+  */
+
+  goBack() {
+    const depth = this.navigationStack.length;
+
+
+    if (depth > 1) {
+        this.lists = this.navigationStack[depth - 2].lists;
+        this.lastBrowseLists = this.navigationStack[depth - 2].lists;
+        this.info = this.navigationStack[depth - 2].info;
+
+        this.breadcrumbs = this.navigationStack[depth - 2].prev;
+        this.eject = this.navigationStack[depth - 2].eject;
+        this.rip = this.navigationStack[depth - 2].rip;
+
+        this.navigationStack.pop();
+
+        this.$rootScope.$broadcast('browseService:fetchEnd');
+        this.currentFetchRequest = this.navigationStack[depth - 2];
+
+       /*  window.location.hash = this.navigationStack[depth - 2].uri; */
+
+    } else {
+      this.navigationStack = [];
+      this.backHome();
+      /* window.location.hash = '';
+      this.removeLocationHash(); */
+    }
+  }
+
+  removeLocationHash(){
+      var noHashURL = window.location.href.replace(/#.*$/, '');
+      window.history.replaceState('', document.title, noHashURL);
   }
 
   sendEject(data) {
@@ -197,7 +237,6 @@ class BrowseService {
     });
     this.socketService.on('pushBrowseLibrary', (data) => {
       // data = this.mockService.get('getBrowseLibrary');
-      //console.log(data)
       if (data.navigation) {
         this.$log.debug('pushBrowseLibrary', data);
         this.lists = data.navigation.lists;
@@ -207,6 +246,51 @@ class BrowseService {
         this.breadcrumbs = data.navigation.prev;
         this.eject = data.navigation.eject;
         this.rip = data.navigation.rip;
+
+        /*
+          ====== New navigation stack ======
+        */
+
+        /*
+
+        Wee need to find a better way for hash navigation
+
+        window.onhashchange = evt => {
+          const decodedURIHash = decodeURIComponent(window.location.hash);
+          const cleaneDecodedURIHash = decodedURIHash.replace(/^#/, '');
+          const navigationStackItem = this.findHashInNavigationStack(cleaneDecodedURIHash);
+          if (navigationStackItem) {
+            this.goBack();
+            return;
+          }
+        };
+
+        window.location.hash = this.currentFetchRequest.uri;
+
+        */
+
+        this.navigationStack.push({
+          album: this.currentFetchRequest.album || null,
+          albumart: this.currentFetchRequest.albumart || null,
+          artist: this.currentFetchRequest.artist || null,
+          service: this.currentFetchRequest.service || null,
+          title: this.currentFetchRequest.title || null,
+          type: this.currentFetchRequest.type || null,
+          uri: this.currentFetchRequest.uri || null,
+          plugin_name: this.currentFetchRequest.plugin_name || null,
+          plugin_type: this.currentFetchRequest.plugin_type || null,
+          icon: this.currentFetchRequest.icon || null,
+          lists: data.navigation.lists || null,
+          info: data.navigation.info || null,
+          breadcrumbs: data.navigation.prev || null,
+          eject: data.navigation.eject || null,
+          rip: data.navigation.rip || null,
+        });
+
+        this.$log.debug('navigationStack', this.navigationStack);
+        /*
+          ====== New navigation stack ======
+        */
 
         this.$rootScope.$broadcast('browseService:fetchEnd');
       }
@@ -221,6 +305,10 @@ class BrowseService {
       }
       this.$rootScope.$broadcast('browseService:fetchEnd');
     });
+  }
+
+  findHashInNavigationStack(uri) {
+    return this.navigationStack.find(item => item.uri === uri);
   }
 
   getSourcesAlbumart(albumart) {

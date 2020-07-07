@@ -156,6 +156,14 @@ class BrowseMusicController {
     }
   }
 
+  /*
+    ====== New navigation stack back functionality ======
+  */
+  goBack() {
+    this.resetBrowsePage();
+    this.browseService.goBack();
+  }
+
   backHome() {
     this.resetBrowsePage();
     this.searchField = '';

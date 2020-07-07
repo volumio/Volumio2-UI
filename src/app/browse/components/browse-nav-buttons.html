@@ -6,11 +6,19 @@
 </button>
 <button
     class="btn-link backButton"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.navigationStack.length > 0"
+    ng-click="browse.goBack()"
+    title="{{'COMMON.BACK' | translate}}">
+  <i class="fa fa-arrow-circle-left"></i>
+</button>
+<!-- Old back facility fetching previous URI from BE -->
+<!-- <button
+    class="btn-link backButton"
     ng-if="browse.browseService.isBrowsing && browse.browseService.breadcrumbs.uri"
     ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri}, true)"
     title="{{'COMMON.BACK' | translate}}">
   <i class="fa fa-arrow-circle-left"></i>
-</button>
+</button> -->
 <button
     class="btn-link"
     ng-click="browse.toggleGridView()"
