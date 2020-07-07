@@ -104,6 +104,10 @@
     "SKIP_BACKWARDS": "Salta Indietro",
     "SKIP_FORWARD": "Salta Avanti",
     "CREDITS":"Crediti",
+    "ALBUM_CREDITS":"Crediti dell'album",
+    "ALBUM_STORY":"Storia dell'album",
+    "TRACK_STORY":"Storia della traccia",
+    "ARTIST_STORY":"Storia dell'artista",
     "READ_MORE": "Leggi di più",
     "CREDITS_NOT_FOUND": "Crediti non trovati"
   },
@@ -475,6 +479,9 @@
     "INPUT_PLAYBACK":"Riproduzione da input digitali e analogici",
     "BLUETOOTH_INPUT":"Riproduzione da Dispositivi Bluetooth",
     "ALL_VIRTUOSO_FEATURES":"Tutte le funzioni virtuoso",
-    "MUSIC_METADATA":"Consultazione dei crediti di Musica e Artisti"
+    "MUSIC_METADATA":"Consultazione dei crediti di Musica e Artisti",
+    "MODAL_DISCOVERY_PREMIUM_TITLE": "Consultazione dei crediti di Musica e Artisti",
+    "MODAL_DISCOVERY_PREMIUM_HEADING": "Questa funzionalità è disponibile per gli utenti MyVolumio Superstar",
+    "MODAL_DISCOVERY_PREMIUM_TEXT": "Metadati avanzati per la tua musica e molto altro"
   }
 }
