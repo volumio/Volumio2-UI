@@ -275,7 +275,7 @@ class BrowseMusicController {
   }
 
   showMoreStory(details) {
-    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
       this.showPremiumFeatureModal();
       return;
     }
@@ -379,7 +379,7 @@ class BrowseMusicController {
 
   getArtistInfo(albumInfo) {
 
-    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
       this.showPremiumFeatureModal();
       return;
     }
@@ -545,7 +545,7 @@ class BrowseMusicController {
   }
 
   showAlbumCredits() {
-    if (!this.checkAuthAndSubscription().authEnabled || this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
       this.showPremiumFeatureModal();
       return;
     }

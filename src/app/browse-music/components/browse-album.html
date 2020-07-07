@@ -61,14 +61,14 @@
 
                     <div class="header__actions">
                         <button
-                            ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.authService.isEnabled && browse.currentItemMetas.albumCredits"
+                            ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.currentItemMetas.albumCredits"
                             ng-click="browse.showAlbumCredits()"
                             class="header__action-btn mb-4">
                             <i class="fa fa-info-circle"></i>
                             {{ 'BROWSER.ALBUM_CREDITS' | translate }}
                         </button>
                         <button
-                            ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.authService.isEnabled"
+                            ng-if="browse.browseService.info.album && browse.browseService.info.artist"
                             ng-click="browse.getArtistInfo(browse.browseService.info)"
                             class="header__action-btn header__action-btn__faded mb-1">
                             <i class="fa fa-music"></i>
@@ -98,13 +98,13 @@
             </button>
             <ul class="dropdown-menu buttonsGroup align-to-right">
                 <li
-                    ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.authService.isEnabled && browse.currentItemMetas.albumCredits"
+                    ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.currentItemMetas.albumCredits"
                     ng-click="browse.showAlbumCredits()"
                     title="{{'BROWSER.ALBUM_CREDITS' | translate}}">
                     <a href><i class="fa fa-info-circle"></i><span translate="BROWSER.ALBUM_CREDITS"></span></a>
                 </li>
                 <li
-                    ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.authService.isEnabled"
+                    ng-if="browse.browseService.info.album && browse.browseService.info.artist"
                     ng-click="browse.getArtistInfo(browse.browseService.info)"
                     title="{{'BROWSER.ARTIST_STORY' | translate}}">
                     <a href><i class="fa fa-music"></i><span translate="BROWSER.ARTIST_STORY"></span></a>
