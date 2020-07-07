@@ -70,8 +70,11 @@ class BrowseService {
   /*
     ====== Back functionality for the new navigation stack ======
   */
+
+
   goBack() {
     const depth = this.navigationStack.length;
+
 
     if (depth > 1) {
         this.lists = this.navigationStack[depth - 2].lists;
@@ -85,10 +88,20 @@ class BrowseService {
         this.navigationStack.pop();
 
         this.$rootScope.$broadcast('browseService:fetchEnd');
+        
+       /*  window.location.hash = this.navigationStack[depth - 2].uri; */
+
     } else {
       this.navigationStack = [];
       this.backHome();
+      /* window.location.hash = '';
+      this.removeLocationHash(); */
     }
+  }
+
+  removeLocationHash(){
+      var noHashURL = window.location.href.replace(/#.*$/, '');
+      window.history.replaceState('', document.title, noHashURL);
   }
 
   sendEject(data) {
@@ -241,6 +254,25 @@ class BrowseService {
         /*
           ====== New navigation stack ======
         */
+
+        /*
+        
+        Wee need to find a better way for hash navigation
+
+        window.onhashchange = evt => {
+          const decodedURIHash = decodeURIComponent(window.location.hash);
+          const cleaneDecodedURIHash = decodedURIHash.replace(/^#/, '');
+          const navigationStackItem = this.findHashInNavigationStack(cleaneDecodedURIHash);
+          if (navigationStackItem) {
+            this.goBack();
+            return;
+          }
+        };
+        
+        window.location.hash = this.currentFetchRequest.uri;
+        
+        */
+
         this.navigationStack.push({
           album: this.currentFetchRequest.album || null,
           albumart: this.currentFetchRequest.albumart || null,
@@ -278,6 +310,10 @@ class BrowseService {
       }
       this.$rootScope.$broadcast('browseService:fetchEnd');
     });
+  }
+
+  findHashInNavigationStack(uri) {
+    return this.navigationStack.find(item => item.uri === uri);
   }
 
   getSourcesAlbumart(albumart) {
