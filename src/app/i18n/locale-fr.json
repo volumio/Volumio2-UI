@@ -109,11 +109,15 @@
     "DELETE_FOLDER": "Effacer le dossier",
     "SKIP_BACKWARDS": "Avancer",
     "SKIP_FORWARD": "Retour",
-     "CREDITS":"Credits",
+    "CREDITS":"Credits",
+    "ALBUM_CREDITS":"Crédits de l'album",
+    "TRACK_STORY":"A propos de ce morceau",
+    "ARTIST_STORY":"Histoire de l'artiste",
     "READ_MORE": "Lire plus",
     "NO_ITEMS": "Pas d'articles",
     "NOT_FOUND": "Non trouvé",
-    "CREDITS_NOT_FOUND": "Pas de Crédits"
+    "CREDITS_NOT_FOUND": "Credits non trouvés",
+    "ARTIST_STORY_NOT_FOUND_FOR": "Histoire de l'artiste non trouvée pour"
   },
 "MY_MUSIC": {
     "UPDATE": "Mettre à jour",
@@ -408,6 +412,7 @@
     "FINISH_SIGNUP": "Terminer l’inscription",
     "CREATING_ACCOUNT": "Créer un compte...",
     "UPGRADE_MYVOLUMIO": "Mise à jour de MyVolumio",
+    "UPGRADE_SUPERSTAR": " Mise à niveau vers Superstar",
     "PREMIUM_STREAMING_TITLE": "Musique de qualité studion à la maison",
     "PREMIUM_STREAMING_FULLY_INTEGRATED_QOBUZ": "Qobuz est intégré dans Volumio",
     "PREMIUM_STREAMING_FULLY_INTEGRATED_TIDAL": "Tidal est intégré dans Volumio",
@@ -468,7 +473,11 @@
     "REFERRAL_FAQ_TITLE_7": "Pourquoi les récompenses sont différentes pour chaque subscription?",
     "REFERRAL_FAQ_BODY_7": "Nous avons séparé les récompenses selon le type d’abonnement pour être juste pour tous les utilisateurs, et obtenir les récompenses en fonction de la valeur de l’abonnement.",
     "REFERRAL_FAQ_TITLE_8": "Combien de personne puis-je référencer ?",
-    "REFERRAL_FAQ_BODY_8": "Il n'y a pas de limite! Plus vous référencez des ami(e)s, plus vous vous approchez du haut du podium!"
+    "REFERRAL_FAQ_BODY_8": "Il n'y a pas de limite! Plus vous référencez des ami(e)s, plus vous vous approchez du haut du podium!",
+    "ACCOUNT":"Compte",
+    "MODAL_DISCOVERY_PREMIUM_TITLE": "Découverte des crédits pour les artistes et la musique",
+    "MODAL_DISCOVERY_PREMIUM_HEADING": "Accessible uniquement avec le plan Superstar.",
+    "MODAL_DISCOVERY_PREMIUM_TEXT": "Des métadatas améliorées pour votre musique locale et plus.",
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Recevez notre Fil d'actualités MyVolumio",
@@ -487,5 +496,5 @@
     "BLUETOOTH_INPUT":"Entrée audio Bluetooth",
     "ALL_VIRTUOSO_FEATURES":"Toutes les fonctionnalités Virtuoso",
     "MUSIC_METADATA":"Découverte de métadonnées musicales"
-}
+  }
 }
