@@ -425,13 +425,18 @@ class AuthService {
   deleteUser(user) {
     if (this.isSubscribedToPlan(user)) {
       var deleting = this.$q.defer();
-      this.paymentsService.cancelSubscription(user.subscriptionId, user.uid).then(() => {
-        this.deleteUserFromFirebase(user).then(() => {
-          deleting.resolve();
-        });
-      }).catch(error => {
-        deleting.reject(error);
+      this.getUserToken().then(token => {
+        this.paymentsService.cancelSubscription(user.uid, token)
+          .then((success) => {
+            this.deleteUserFromFirebase(user).then(() => {
+              deleting.resolve();
+            });
+          })
+          .catch(error => {
+            deleting.reject(error);
+          });
       });
+
       return deleting.promise;
     }
     return this.deleteUserFromFirebase(user);

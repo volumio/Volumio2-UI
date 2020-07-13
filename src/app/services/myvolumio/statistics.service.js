@@ -96,7 +96,7 @@ class StatisticsService {
           event = 'resubscription';
         }
         let planCombo = product.name.toLowerCase() + '_' + planDuration;
-        this.$window.gtag('event',event,{'event_category':planCombo,'event_label':'myvolumio'});
+        this.$window.gtag('event',event,{'event_category':'plan','event_label':planCombo});
       }
     }
   }
@@ -104,7 +104,7 @@ class StatisticsService {
   signalSubscriptionCancelled() {
     if (this.gaInit) {
       this.$log.debug('Signalling subscription cancelled');
-      this.$window.gtag('event','cancellation',{'event_category':'cancellation','event_label':'myvolumio'});
+      this.$window.gtag('event','cancellation',{'event_category':'plan','event_label':'myvolumio'});
     }
   }
 
