@@ -92,10 +92,11 @@ class PaddleService {
     return updating.promise;
   }
 
-  cancelSubscription(userId, token) {
+  cancelSubscription(user, token) {
     var cancelling = this.$q.defer();
+    var userId = user.uid;
+    this.statisticsService.signalSubscriptionCancelled(user);
     var cancelSubscription = this.executeCancelSubscription(userId, token);
-    this.statisticsService.signalSubscriptionCancelled();
     cancelSubscription.then((response) => {
       if (response && response.data && response.data.success) {
         cancelling.resolve(true);

@@ -44,7 +44,7 @@ class MyVolumioCancelSubscriptionController {
     this.modalService.openDefaultConfirm('MYVOLUMIO.CONFIRM_CANCEL_PLAN_TITLE', 'MYVOLUMIO.CONFIRM_CANCEL_PLAN', () => {
       this.openCancellingModal();
       this.authService.getUserToken().then(token => {
-        this.paymentsService.cancelSubscription(this.user.uid, token)
+        this.paymentsService.cancelSubscription(this.user, token)
           .then((success) => {
             this.closeCancellingModal();
             this.$state.go('myvolumio.payment-success');
