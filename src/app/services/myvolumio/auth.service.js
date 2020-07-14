@@ -426,7 +426,7 @@ class AuthService {
     if (this.isSubscribedToPlan(user)) {
       var deleting = this.$q.defer();
       this.getUserToken().then(token => {
-        this.paymentsService.cancelSubscription(user.uid, token)
+        this.paymentsService.cancelSubscription(user, token)
           .then((success) => {
             this.deleteUserFromFirebase(user).then(() => {
               deleting.resolve();

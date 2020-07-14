@@ -101,13 +101,15 @@ class StatisticsService {
     }
   }
 
-  signalSubscriptionCancelled() {
+  signalSubscriptionCancelled(user) {
     if (this.gaInit) {
       this.$log.debug('Signalling subscription cancelled');
-      this.$window.gtag('event','cancellation',{'event_category':'plan','event_label':'myvolumio'});
+      let planName = user && user.plan ? user.plan.toLowerCase() : 'free';
+      let planDuration = user && user.planDuration ?  user.planDuration.toLowerCase() : 'monthly';
+      let planCombo = planName + '_' + planDuration;
+      this.$window.gtag('event','cancellation',{'event_category':'plan','event_label':planCombo});
     }
   }
-
 }
 
 export default StatisticsService;
