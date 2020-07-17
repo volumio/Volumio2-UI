@@ -154,8 +154,7 @@ class PaddlePayButtonController {
   }
 
   successCallback(data) {
-    //console.log(data);
-    this.statisticsService.signalSubscriptionCreated(this.product, this.planDuration, this.isTrial);
+    this.statisticsService.signalSubscriptionCreated(this.product, this.planDuration, this.isTrial, data);
     this.$state.go('myvolumio.payment-success');
     // TEMPORARY FIX FOR PADDLE CALLBACK
     /*

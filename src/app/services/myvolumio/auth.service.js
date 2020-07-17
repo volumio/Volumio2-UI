@@ -1,7 +1,7 @@
 class AuthService {
   constructor($rootScope, $timeout, $window, angularFireService, $q, $state, databaseService, remoteStorageService,
     paymentsService, $filter, modalService, socketService, $http, $location, themeManager, cloudService,
-    firebaseApiFunctionsService, growSurfService) {
+    firebaseApiFunctionsService, growSurfService, statisticsService) {
     'ngInject';
     this.$rootScope = $rootScope;
     this.angularFireService = angularFireService;
@@ -20,6 +20,7 @@ class AuthService {
     this.cloudService = cloudService;
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
     this.growSurfService = growSurfService;
+    this.statisticsService = statisticsService;
 
     this.isEnabled = false;
 
@@ -80,8 +81,9 @@ class AuthService {
     this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
       this.user = user;
       setTimeout(()=>{
-        this.syncronizeWithGrowSurf(user);
+        this.syncronizeWithGrowSurf();
         this.syncronizeWithBackend();
+        this.syncronizeWithStatistics();
       }, 2000);
     });
   }
@@ -140,7 +142,7 @@ class AuthService {
     });
   }
 
-  syncronizeWithGrowSurf(userData){
+  syncronizeWithGrowSurf(){
     if (this.user && this.user.uid && !this.growSurfService.isGrowSurfParticipantRegistered()) {
       this.getUserToken(this.user.uid).then((token) => {
         if (token) {
@@ -148,6 +150,12 @@ class AuthService {
         }
       }).catch(error => {
       });
+    }
+  }
+
+  syncronizeWithStatistics(){
+    if (this.user && this.user.uid) {
+      this.statisticsService.syncUser(this.user);
     }
   }
 

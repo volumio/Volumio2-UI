@@ -1,5 +1,5 @@
 class MyVolumioPremiumStreamingController {
-    constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user) {
+    constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, user, statisticsService) {
       'ngInject';
       this.$scope = $scope;
       this.$state = $state;
@@ -8,6 +8,7 @@ class MyVolumioPremiumStreamingController {
       this.$translate = $translate;
       this.paymentsService = paymentsService;
       this.productService = productsService;
+      this.statisticsService = statisticsService;
 
       this.user = null;
       this.newUser = null;
@@ -195,6 +196,7 @@ class MyVolumioPremiumStreamingController {
     }
 
     successCallback(data) {
+      this.statisticsService.signalSubscriptionCreated(this.product, this.planDuration, this.isTrial, data);
       this.$state.go('myvolumio.payment-success');
     }
 

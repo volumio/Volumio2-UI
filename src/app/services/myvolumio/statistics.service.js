@@ -1,5 +1,5 @@
 class StatisticsService {
-  constructor($http, $log, $window, cloudService, $rootScope, socketService) {
+  constructor($http, $log, $window, cloudService, $rootScope, socketService, databaseService) {
     'ngInject';
 
     this.$http = $http;
@@ -7,9 +7,11 @@ class StatisticsService {
     this.$window = $window;
     this.cloudService = cloudService;
     this.socketService = socketService;
+    this.databaseService = databaseService;
     this.fbInit = false;
     this.gaInit = false;
     this.privacySettings = {};
+    this.user = {};
     this.init();
   }
 
@@ -64,6 +66,10 @@ class StatisticsService {
     gaScript2.innerHTML += 'gtag("js", new Date());';
     gaScript2.innerHTML += 'gtag("config", "UA-46374275-1", { "anonymize_ip": true });';
     document.head.appendChild(gaScript2);
+    setTimeout(()=>{
+      this.saveGACid();
+    },3000)
+
     // jshint ignore: end
   }
 
@@ -87,16 +93,33 @@ class StatisticsService {
 
   }
 
-  signalSubscriptionCreated(product, planDuration, isTrial) {
-    if (this.gaInit) {
-      this.$log.debug('Signalling subscription created');
-      if (product && product.name && planDuration) {
+  signalSubscriptionCreated(product, planDuration, isTrial, paddleData) {
+    if (product && product.name && planDuration) {
+      let productName = product.name.toLowerCase();
+      let planCombo = productName + '_' + planDuration;
+      let transactionId = this.user.uid + Date.now();
+      let currency = 'EUR';
+      if (paddleData && paddleData.checkout && paddleData.checkout.recurring_prices && paddleData.checkout.recurring_prices.customer && paddleData.checkout.recurring_prices.customer.currency) {
+        currency = paddleData.checkout.recurring_prices.customer.currency;
+      }
+      if (paddleData && paddleData.user && paddleData.user.country) {
+        this.saveUserCountry(paddleData.user.country);
+      }
+
+      if (this.gaInit) {
+        this.$log.debug('Signalling subscription created on GA');
         let event = 'trial';
         if (!isTrial) {
           event = 'resubscription';
         }
-        let planCombo = product.name.toLowerCase() + '_' + planDuration;
+        let purchaseObj = {'value':0,'currency':currency,'transaction_id':transactionId,'items':[{'id':planCombo,'name':productName,'price':0,'quantity':1}]};
         this.$window.gtag('event',event,{'event_category':'plan','event_label':planCombo});
+        this.$window.gtag('event','purchase',purchaseObj);
+      }
+      if (this.fbInit) {
+        this.$log.debug('Signalling subscription created on FB');
+        let purchaseFBObj = {'value':0,'currency':currency,'transaction_id':transactionId,'contents':[{'id':planCombo,'name':productName,'price':0,'quantity':1}]};
+        this.$window.fbq('track','Purchase',purchaseFBObj);
       }
     }
   }
@@ -110,6 +133,35 @@ class StatisticsService {
       this.$window.gtag('event','cancellation',{'event_category':'plan','event_label':planCombo});
     }
   }
+
+  getGACid() {
+    try {
+      return this.$window.ga.getAll()[0].get('clientId');
+    } catch(e) {
+      return undefined;
+    }
+  }
+
+  saveGACid() {
+    var gaCid = this.getGACid();
+    if (this.user && this.user.uid && !this.user.gaCid && gaCid) {
+      this.databaseService.write('users/' + this.user.uid + '/gaCid', gaCid);
+    }
+  }
+
+  saveUserCountry(countryCode) {
+    if (countryCode && countryCode.length === 2 && !this.user.country) {
+      this.databaseService.write('users/' + this.user.uid + '/country', countryCode);
+    }
+  }
+
+  syncUser(user) {
+    this.user = user;
+    if (this.user && this.user.uid&& !this.user.gaCid && this.gaInit) {
+      this.saveGACid();
+    }
+  }
+
 }
 
 export default StatisticsService;
