@@ -216,6 +216,10 @@ class MyVolumioSignupNewController {
     return !!this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].trial;
   }
 
+  getProduct() {
+    return this.productsObj[this.$scope.model.selectedProduct];
+  }
+
   handlePayment() {
 
     if (this.$scope.model.selectedProduct === 'free') {
@@ -280,6 +284,7 @@ class MyVolumioSignupNewController {
   }
 
   successCallback(data) {
+    this.statisticsService.signalSubscriptionCreated(this.getProduct(), this.selectedPlanDuration, this.isTrial(), data);
     this.$state.go('myvolumio.payment-success');
   }
 
