@@ -65,10 +65,7 @@ class BrowseScrollManagerDirective {
         this.browseTablesWrapper.style.height =
             footer.getBoundingClientRect().top -
             browsePanelHeading.getBoundingClientRect().bottom + 'px';
-
-        this.azScrollWrapper.style.height =
-        footer.getBoundingClientRect().top - footer.style.height -
-        browsePanelHeading.getBoundingClientRect().bottom + 'px';
+        this.azScrollWrapper.style.height = this.browseTablesWrapper.style.height - footer.clientHeight + 'px';
       }
     };
 

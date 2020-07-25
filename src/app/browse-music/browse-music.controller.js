@@ -568,12 +568,21 @@ class BrowseMusicController {
     }, 0, false);
   }
 
+  getSortedList(items) {
+    return items.sort(function(a, b){
+      if(a.title < b.title) { return -1; }
+      if(a.title > b.title) { return 1; }
+      return 0;
+  })
+
+  }
   renderList(list, listIndex) {
+    const sortedListAlphabetically = this.getSortedList(list.items);
     const canShowGridView = this.browseService.canShowGridView(list);
     const showGridView = this.browseService.showGridView;
     let items = '';
     const shouldRenderMusicCardItems = showGridView && canShowGridView;
-    items = this.renderListItems(list.items, listIndex, shouldRenderMusicCardItems);
+    items = this.renderListItems(sortedListAlphabetically, listIndex, shouldRenderMusicCardItems);
 
     const html = `
     <div

@@ -156,6 +156,14 @@
         .CharacterElement {
             cursor: pointer;
             color: white;
+            height: 0.7em;
+            padding: 0 2px;
+        }
+
+        @media (max-width: 768px) {
+            .CharacterElement {
+                font-size: 0.7em;
+            }
         }
         .Inactive {
             pointer-events: none;
