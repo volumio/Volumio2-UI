@@ -516,7 +516,12 @@ class BrowseMusicController {
 
   playRenderedMusicCardClick(listIndex, itemIndex) {
     let item = this.browseService.lists[listIndex].items[itemIndex];
-    this.play(item);
+    if (item && item.type === 'song') {
+      let list = this.browseService.lists[listIndex].items;
+      this.replaceAndPlayList(item, list, itemIndex);
+    } else {
+      this.replaceAndPlay(item);
+    }
   }
 
   play(item) {
@@ -584,7 +589,7 @@ class BrowseMusicController {
     } else if (item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
       this.play(item, list, itemIndex);
     } else if (item.type === 'song') {
-      this.addAndPlayList(item, list, itemIndex);
+      this.replaceAndPlayList(item, list, itemIndex);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
