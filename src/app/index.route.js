@@ -573,6 +573,17 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+  .state('myvolumio.welcome', {
+    url: '/welcome',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/welcome/myvolumio-welcome.html',
+        controller: 'MyVolumioWelcomeController',
+        controllerAs: 'myVolumioWelcomeController',
+      }
+    }
+  })
+
   /* --------- END MYVOLUMIO ----------- */
 
   .state('volumio.static-page', {

@@ -1,0 +1,22 @@
+.body-landing {
+    max-width: 1097px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .75) !important;
+
+    .justify-content-center {
+        justify-content: center;
+    }
+
+    .caption {
+        opacity: .5;
+        margin-top: 10px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .landing__welcome-section {
+        padding-top: 40px;
+        padding-bottom: 48px;
+    }
+}
