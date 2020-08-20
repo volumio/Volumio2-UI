@@ -1,5 +1,5 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q) {
+  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q, statisticsService) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -9,6 +9,7 @@ class UiSettingsService {
     this.$http = $http;
     this.$q = $q;
     this.$state = $state;
+    this.statisticsService = statisticsService;
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
@@ -51,12 +52,32 @@ class UiSettingsService {
     }
   }
 
-  setLanguage() {
+  setLanguage(lang = null) {
+    this.$log.debug('setLanguage');
+    if (lang) {
+      this.$translate.use(lang);
+      return;
+    }
+    //TODO GET FROM DB
+    if (!this.socketService.isSocketAvalaible()) {
+      this.$translate.use(this.getBrowserDefaultLanguage());
+      return;
+    }
     if (~location.href.indexOf('wizard')) {
       this.browserLanguage = this.getBrowserDefaultLanguage();
     } else {
-      this.$translate.use(this.uiSettings.language);
+      if(this.uiSettings && this.uiSettings.language) {
+        this.$translate.use(this.uiSettings.language);
+      } else {
+        setTimeout(function(){
+          this.setLanguage();
+        }.bind(this), 1000);
+      }
     }
+  }
+
+  setLoadingBar() {
+    this.socketService.loadingBarEnabled = this.uiSettings.loadingBar === false ? false : true;
   }
 
   getBrowserDefaultLanguage() {
@@ -98,6 +119,8 @@ class UiSettingsService {
       this.$log.debug('pushUiSettings', this.uiSettings);
       this.setLanguage();
       this.setBackground();
+      this.setLoadingBar();
+      this.statisticsService.initStats();
     });
 
     this.socketService.on('pushBackgrounds', (data) => {
@@ -116,6 +139,16 @@ class UiSettingsService {
       if (data.openWizard) {
         this.$state.go('volumio.wizard');
       }
+    });
+
+    this.socketService.on('reloadUi', (data) => {
+      this.$log.debug('reloadUi');
+      window.location.reload(true);
+    });
+
+    this.socketService.on('pushPrivacySettings', (data) => {
+      this.$log.debug('pushPrivacySettings');
+      this.statisticsService.pushPrivacySettings(data);
     });
   }
 
@@ -136,8 +169,11 @@ class UiSettingsService {
         return this.uiSettings;
       })
       .finally(() => {
-        this.socketService.emit('getUiSettings');
-        this.socketService.emit('getWizard');
+		if (this.socketService.isSocketAvalaible()) {
+        	this.socketService.emit('getUiSettings');
+        	this.socketService.emit('getWizard');
+          this.socketService.emit('getPrivacySettings');
+		}
       });
     return this.settingsPromise;
 

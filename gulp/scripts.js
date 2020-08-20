@@ -6,10 +6,16 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 var gutil = require('gulp-util');
-
+var compareVersions = require('compare-versions');
 var browserSync = require('browser-sync');
-
 var $ = require('gulp-load-plugins')();
+
+// Check node.js version
+var requiredNodeVersion = require('../package').engines.node;
+if (compareVersions(process.versions.node, requiredNodeVersion) !== 0 && compareVersions(process.versions.node, requiredNodeVersion + '.*') !== 0) {
+  console.log('\x1b[31m%s\x1b[0m', 'WARNING!',  'Unsupported nodejs version: ' + process.versions.node +' found, required: ' + requiredNodeVersion);
+  console.log('Install NVM and type: nvm install 8.17.0 && nvm use 8.17.0');
+}
 
 function webpack(watch, callback) {
   var webpackOptions = {
@@ -58,7 +64,8 @@ gulp.task('scripts:watch', ['scripts'], function (callback) {
 gulp.task('angularConfig', function () {
   var themeSelected = gutil.env.theme ? gutil.env.theme : 'volumio';
   var variantSelected = gutil.env.variant ? gutil.env.variant : 'volumio';
-  var env = gutil.env.env ? gutil.env.env : 'dev';
+  var env = gutil.env.env ? gutil.env.env : 'development';
+  var debug = gutil.env.debug ? gutil.env.debug : false;
   var themeColor, constants;
   constants = {
     theme: themeSelected,
@@ -66,6 +73,7 @@ gulp.task('angularConfig', function () {
   };
 
   constants.env = env;
+  constants.debug = debug;
 
   var obj = {
     name: 'volumio.constant',

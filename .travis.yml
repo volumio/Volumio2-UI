@@ -1,17 +1,29 @@
 language: node_js
+
 node_js:
-- '6.1.0'
+- '8.17.0'
+
 branches:
   only:
   - master
-before_script:
-- npm install -g bower
-- npm install -g gulp
-- npm install phantomjs
-- npm install -g karma
-- npm install
-- bower install
-script: bash ./deploy.sh
+
+install:
+  - npm install -g bower
+  - npm install -g gulp
+  - npm install -g karma
+  - npm install phantomjs
+  - npm install
+  - bower install
+
+script: bash ./travis-script.sh
+
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: YrZFaMDCNDkBDCfe+/Yn7GlCNw0OPcr4bST9pXqMhGWenw1aLDE4sl9JmGdIUtLVLt1rtIXuL1MuFZM+t2AKIS2RiYdqIUWAjZ/4pAYtK/MuRSelTsjbZLCdmxPDKbTFMHMJb21+zKZ9ylMrC1YWo3LKik7TlQWc1T6Mi++c2BqgLQKLEorcYI30P7SvZgO0oaznQsys6XAQlq7eRvLLt1IjehyW4MmxR7wgYWuGgoN1kneiwv5raarB+h/w4yOxw6BA53kIA+S9/sbnR02s6VOULWLkp5sFqqE30WpXGO+9fKNrmyZQ0erEoH61XAGRj4cAaeIkvNzrv3Jt05szWU+CmORBvv3KGvCBqcR3O4W7LJYqHiMDCgCb30GxH5B70lp6wNIErbsum26QxB21DGO/3qo1ESvoRiMN5MwYcmRwjvVPSFIqFORN/jo265fTtecuPV3kM5eGE6Dypdy91HAIhng7a8keFDcY51FA851ADD3QZsxU3jTCn1Ffu2o8FLz2vR2E44pD1kOI7xu56TjTg+MJsWpNfrM1hjGFyRjFdEd2MUkbgME1DHUVt6v1BIpSdM4HW1bynV2cWRpv8+uhs2SON08r25CFkdNGIA5AZczYalLOUmBKy7FLsICSmGpSMQhr6O15RU3GXG2CMnOu9FjrXKZKwLORY3Ph89o=
+  message: "Deployed from Travis CI"
+
 env:
   global:
     - GH_REF: github.com/volumio/Volumio2-UI.git

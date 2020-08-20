@@ -1,0 +1,95 @@
+.player-seekbar{
+
+  .time-label{
+    font-size: 14px;
+  }
+
+  .time-label.pull-left{
+    padding-left: 8px;
+  }
+
+  .time-label.pull-right{
+    padding-right: 8px;
+  }
+
+  .time-label.pull-left,.time-label.pull-right{
+    padding-right: 8px;
+    $timer-number-color: false !default;
+    @if $timer-number-color {
+      color: $timer-number-color;
+    }
+  }
+
+  .seekbar-container{
+
+    line-height: 0px;
+    padding-top: 6px;
+
+    slider{
+
+    }
+
+    .slider-track{
+      height: 10px;
+      background: transparent !important;
+      border-radius: 0px !important;
+      border: 0px !important;
+    }
+
+    .slider-selection{
+      background-image: $theme-slider-bar-full-gradient;
+      border-radius: 0px !important;
+      border: 0px !important;
+    }
+
+    .slider-track-high{
+      background-color: $theme-dark-grey;
+      background-image: none;
+      border-radius: 0px !important;
+    }
+
+    .slider-handle{
+        background-color: $theme-primary-color !important;
+        background-image: none !important;
+        border: none !important;
+        height: 16px !important;
+        width: 8px !important;
+        margin-left: -3px !important;
+        margin-top: -6px !important;
+    }
+
+    .slider-handle.round{
+      border-radius: initial !important;
+    }
+
+    .time-left, .time-right{
+      line-height: initial;
+    }
+
+    .time-left{
+      @media all and (max-width: 720px){
+          $timer-number-color-mobile: false !default;
+          padding-right: 15px;
+          @if $timer-number-color-mobile {
+            color: $timer-number-color-mobile;
+          }
+      }
+    }
+
+    .time-right{
+      @media all and (max-width: 720px){
+        $timer-number-color-mobile: false !default;
+        padding-left: 15px;
+        @if $timer-number-color-mobile {
+          color: $timer-number-color-mobile;
+        }
+      }
+    }
+
+  }
+
+}
+
+.seekbar-times{
+  font-size: smaller;
+}

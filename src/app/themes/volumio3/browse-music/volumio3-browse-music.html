@@ -1,0 +1,75 @@
+<div id="browse" class="boxTable" browse-scroll-manager>
+
+    <div class="panel panel-default">
+
+      <div class="browse-header-container browse-music__browse-header-container">
+
+        <div  ng-if="!browse.isDedicatedSearchView" id="browsePanelHeading" class="panel-heading browse-header">
+
+          <div class="navButtons pull-left"
+               ng-include src="'app/browse/components/browse-nav-buttons.html'">
+          </div>
+
+          <div class="searchBox"
+               ng-include src="'app/browse/components/browse-search-box.html'">
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+
+        <div class="dedicated-search-container" ng-if="browse.isDedicatedSearchView">
+          <div class="dedicated-search"
+               ng-include src="'app/browse/components/browse-search-box.html'">
+          </div>
+        </div> <!-- /.dedicated-search-container -->
+
+
+      <div class="dedicated-search-container-flow-space" ng-if="browse.isDedicatedSearchView"></div>
+
+      <div class="body-content new-browse" ng-class="{ 'with-search-header': browse.isDedicatedSearchView }">
+
+        <div id="browseTablesWrapper">
+
+          <div
+              ng-if="!browse.browseService.isBrowsing && !browse.browseService.isSearching"
+              ng-include
+              src="'app/browse-music/components/browse-sources.html'">
+          </div> <!-- /SOURCES PAGE -->
+
+
+          <!-- ====== BROWSE ===== -->
+          <!-- <div ng-if="browse.browseService.isBrowsing && !browse.browseService.isSearching"> -->
+
+          <!-- Custom view headers -->
+          <div ng-if="browse.browseService.info && !browse.hideInfoHeader">
+
+            <!-- ====== ARTIST PAGE ===== -->
+            <div
+                ng-if="browse.browseService.info.type === 'artist'"
+                ng-include
+                src="'app/browse-music/components/browse-artist.html'">
+            </div> <!-- /ARTIST PAGE -->
+
+            <!-- ====== ALBUM PAGE ===== -->
+            <div
+                ng-if="browse.browseService.info.type === 'album' || browse.browseService.info.type === 'song' || browse.browseService.info.type === 'playlist' || browse.browseService.info.type === 'cd'"
+                ng-include
+                src="'app/browse-music/components/browse-album.html'">
+            </div> <!-- /ALBUM AND PLAYLIST PAGE -->
+
+          </div>
+
+          <!-- </div> --> <!-- /BROWSE -->
+
+          <!-- Content -->
+
+          <div id="browse-page"></div>
+
+        </div>
+      </div> <!-- /.body-content -->
+
+    </div> <!-- /.panel -->
+
+  </div> <!-- /#browse -->

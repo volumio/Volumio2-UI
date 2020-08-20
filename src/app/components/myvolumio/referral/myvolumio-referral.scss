@@ -1,0 +1,198 @@
+.my-volumio__component {
+    position: relative;
+    background: $theme-accent-color;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px -2px rgba(0,0,0,.4);
+}
+
+.my-volumio__referral-link-container {
+    display: flex;
+    padding: 12px;
+    margin-bottom: 4px;
+}
+
+.my-volumio__referral-link {
+    flex: 1 1 100%;
+    padding: 10px 16px 10px 10px;
+    border: 1px solid #7A848E;
+    border-right: none;
+    background-color: transparent;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    & ~ .btn {
+        margin-left: -4px;
+    }
+}
+
+.my-volumio__referral-btn {
+    display: inline-flex;
+    align-items: center;
+    &:first-of-type {
+        margin: 4px 4px 4px 0;
+    }
+    &:not(:first-of-type) {
+        margin: 4px;
+    }
+    padding: 6px 12px 6px 8px;
+    border: none;
+    transition: all .2s ease-out 0s;
+
+    .fa {
+        margin-right: 8px;
+    }
+    &:hover {
+        opacity: .9;
+        box-shadow: 0 2px 10px -2px rgba(0,0,0,.5);
+        background-color: darken($theme-accent-color, 2%);
+    }
+}
+
+.my-volumio__results {
+    position: relative;
+    padding: 16px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.my-volumio__result-item {
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+}
+
+.my-volumio__result-item-score,
+.my-volumio__result-item-caption {
+    margin: 0;
+}
+
+.my-volumio__result-item-score {
+    flex: 0 0 60px;
+    text-align: center;
+}
+
+.my-volumio__leaderboard {
+    min-height: 400px;
+}
+
+.preload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #333 8%, #555 25%, #333 33%);
+    background-size: 200% 50px;
+    animation: loader 1s linear infinite;
+    
+    @keyframes loader {
+        0% {
+            background-position: -280px 0;
+        }
+        
+        100% {
+           background-position: 300px 0;
+        }
+    }
+}
+
+.participant {
+    display: flex;
+    &__rank {
+        flex: 0 0 60px;
+    }
+    padding: 12px;
+    &:not(:last-child) {
+        border-bottom: 1px solid #7a848e;
+    }
+    &.active {
+        color: $theme-primary-color;
+    }
+}
+
+.my-volumio__collapse {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.my-volumio__collapse-header {
+    padding: 12px;
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.my-volumio__collapse-indicator {
+    margin-right: 12px;
+    transition: transform .2s ease-out 0s;
+}
+
+.my-volumio__collapse-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s ease-out 0s;
+}
+
+.my-volumio__collapse-body__inner {
+    padding: 0 24px 24px 24px;
+    opacity: 0;
+    transition: opacity .2s ease-out 0s;
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.my-volumio__collapse-toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+.my-volumio__collapse-toggle {
+    &:checked ~ .my-volumio__collapse-body {
+        max-height: 600px;
+        transition: max-height .4s ease-out 0s;
+        .my-volumio__collapse-body__inner {
+            opacity: 1;
+            transition: opacity .2s ease-out 0s;
+        }
+    }
+    &:checked ~ .my-volumio__collapse-header {
+        .my-volumio__collapse-indicator {
+            transform: rotate(45deg);
+            transition: transform .2s ease-out 0s;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .my-volumio__referral-link-container {
+        padding: 16px;
+    }
+    
+    .my-volumio__results {
+        padding: 24px;
+    }
+    .my-volumio__result-item {
+        display: block;
+        text-align: center;
+        &:not(:last-child) {
+            margin-bottom: 0;
+        }
+    }
+    .my-volumio__result-item-score {
+        margin-bottom: 16px;
+    }
+    .my-volumio__collapse-header {
+        padding: 24px;
+    }
+}

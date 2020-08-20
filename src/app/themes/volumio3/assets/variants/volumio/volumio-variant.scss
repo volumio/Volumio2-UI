@@ -1,0 +1,139 @@
+@import "globals.scss";
+
+// COLORS
+$theme-primary-color: #54C688;
+$theme-accent-color: #333;
+$theme-danger-color: #DF4649;
+$theme-light-color: #7a848e;
+$theme-dark-color: #242424;
+$theme-darker-color: #090909;
+$theme-header-color: $theme-darker-color;
+$theme-footer-color: $theme-darker-color;
+$theme-source-active-color: $theme-primary-color;
+$theme-background-color: #555;
+$theme-transparent-buttons-background: rgba(0, 0, 0, 0.6);
+$theme-transparent-background: rgba(20, 20, 20, 0.6);
+$theme-dark-transparent-background: rgba(0, 0, 0, 0.6);
+$theme-playbtn-gradient: linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.0) 72%, rgba(0, 0, 0, 0.6) 72%,
+  rgba(0, 0, 0, 0.6) 100%);
+$theme-table-border-color: #7C7C7C;
+$theme-text-color: #FFF;
+$theme-dark-text-color: #AAA;
+$theme-darker-text-color: #999;
+$theme-link-color: white;
+$theme-link-hover-color: $theme-primary-color;
+$theme-footer-link-color: white;
+$theme-footer-link-selected-background-color: $theme-accent-color;
+$theme-footer-link-hover-color: white;
+$theme-link-playback-color: $theme-primary-color;
+$theme-background-hover-dark: rgba(20, 20, 20, 0.6);
+$theme-background-hover-bright: rgba(white, 0.3);
+$theme-background-hover-accent: rgba($theme-primary-color, 0.3);
+$body-bg: transparent;
+$brand-primary: #222;
+$knob-foreground-color: $theme-primary-color;
+$knob-background-color: rgba(0, 0, 0, 0.4);
+$knob-content-background-color: rgba(0, 0, 0, 0.7);
+
+// VOLUMIO 3 UI
+$theme-dark-grey: #808080;
+$theme-text-light-color: #C1C1C1;
+$theme-player-height-desktop: 90px;
+$theme-player-height-tablet: 90px;
+$theme-player-height-smartphone: 70px;
+$theme-tabbar-height-smartphone: 70px;
+$theme-playback-bar-height-smartphone: 70px;
+$theme-slider-bar-full-gradient: linear-gradient(to right, #{$theme-dark-color} 0%, #{$theme-primary-color} 100%);
+$theme-slider-bar-empty-gradient: $theme-dark-grey;
+$theme-primary-color-darker: #4BA476;
+$theme-tab-bar-gradient: linear-gradient(89deg, #{$theme-dark-color} 0%, #{$theme-primary-color-darker} 100%);
+$theme-sidebar-background-color: rgba( $theme-darker-color, .9 );
+$tab-bar-mobile-color: $theme-darker-color;
+$tab-bar-mobile-button-color: #ffffff;
+$close-playback-panel-button-color: white;
+$theme-link-color: white;
+$theme-link-hover-color: darken($theme-primary-color, 15%);
+$theme-footer-link-color: white;
+$theme-footer-link-selected-background-color: $theme-primary-color;
+$theme-footer-link-hover-color: white;
+$theme-link-playback-color: $theme-light-color;
+$theme-footer-link-selected-color: white;
+$theme-element-radius: 50px;
+$theme-border-thickness: 2px;
+$primary-alt: #32C675;
+
+
+
+// FONTS
+$fonts-path: "/app/themes/" + $theme + "/assets/variants/" + $variant  + "/fonts";
+$font-family-sans-serif: "Lato";
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Regular.eot');
+  src: url('#{$fonts-path}/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Regular.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Light.eot');
+  src: url('#{$fonts-path}/Lato-Light.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Light.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Bold.eot');
+  src: url('#{$fonts-path}/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Bold.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  src: url('#{$fonts-path}/MaterialIcons-Regular.eot');
+  src: url('#{$fonts-path}/MaterialIcons-Regular.woff2') format('woff2'),
+       url('#{$fonts-path}/MaterialIcons-Regular.woff') format('woff'),
+       url('#{$fonts-path}/MaterialIcons-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+#cssExposer {
+  color: $knob-foreground-color;
+  background-color: $knob-background-color;
+  display: none;
+}
+
+.toast-success {}
+
+.toast-info {}
+
+.toast-error {}
+
+.toast-warning {}
+
+.browseTable .listWrapper.grid .image {
+    border: solid 0px #444 !important;
+}
+
+.browseTable .listWrapper.grid .itemTab {
+    border: solid 0px #7C7C7C !important;
+    margin: 5px !important;
+}
+
+div#source-active {
+    background-color: $theme-source-active-color;
+}

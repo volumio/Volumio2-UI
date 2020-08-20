@@ -11,11 +11,12 @@
           width: auto;
         }
         input[type=text], input[type=password] {
-          width: 140px;
+          max-width: 300px;
           display: inline-block;
-          margin-right: 10px;
+          margin-bottom: 10px;
+          margin-right: -5px;
         }
-        text-align: center;
+        text-align: right;
       }
       &.commandCol {
         max-width: 210px;
@@ -56,5 +57,5 @@
 .fa-rotate-90 {
     -ms-transform:rotate(90deg);
     -webkit-transform:rotate(90deg);
-    transform:rotate(90deg);         
+    transform:rotate(90deg);
 }

@@ -1,34 +1,30 @@
-[![Join the chat at https://gitter.im/volumio/Volumio2-UI](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/volumio/Volumio2-UI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/volumio/Volumio2-UI.svg?branch=master)](https://travis-ci.org/volumio/Volumio2-UI)
+[![dependencies](https://david-dm.org/volumio/Volumio2-UI.svg)](https://david-dm.org/volumio/Volumio2-UI)
 [![devDependency Status](https://david-dm.org/volumio/Volumio2-UI/dev-status.svg)](https://david-dm.org/volumio/Volumio2-UI#info=devDependencies)
-[![bitHound Score](https://www.bithound.io/github/volumio/Volumio2-UI/badges/score.svg)](https://www.bithound.io/github/volumio/Volumio2-UI)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi)
+
+[![Volumio](https://volumio.org/wp-content/uploads/2016/02/Volumio_logo_HD2000.jpg)](https://volumio.org)
 
 
 ## Volumio Web Interface
 
 This UI is meant to be used as a standalone Web User Interface communicating via Volumio2 Backend via Socket.io API, see [Volumio2 WebSocket API reference](https://github.com/volumio/Volumio2/wiki/WebSockets-API-Reference)
 
-Currently the UI is served via Express Static Server, and resides at /volumio/http/www
+Currently the UI is served via Express Static Server, and resides at `/volumio/http/www` (Classic UI) and `/volumio/http/www3` (Contemporary UI)
 
 
 ## Repo information
 
-This repo is used as a git submodule in [Volumio2](https://github.com/volumio/Volumio2).  
-Only the `dist/` directory is needed by Volumio2, so there is a [dist branch](https://github.com/volumio/Volumio2-UI/tree/dist) which contains just that.
-
-To update the dist branch with the latest changes, run:
-
-```shell
-git subtree split --prefix dist -b dist
-git push origin dist:dist
-```
+This repo holds the source code of Volumio UI [Volumio2](https://github.com/volumio/Volumio2), which is compiled and hosted in Volumio system images.
+Only the `dist/` and `dist3/` branches are needed by Volumio2, so there is a [dist branch](https://github.com/volumio/Volumio2-UI/tree/dist) which contains just that.
 
 
 ## Set up development environment
 
-You must have Node.js, Npm and Bower installed
+You must have Node.js, Npm and Bower installed. Node.js suggested version is 8.17.0 (lower versions and higher versions might fail). It's strongly suggested to use [NVM](https://github.com/nvm-sh/nvm) to set up the proper Node.js Environment.
 
-First clone it
+Clone the Repo:
 
 ```shell
 git clone https://github.com/volumio/Volumio2-UI.git
@@ -62,13 +58,25 @@ The file will look like
 Now, feel free to edit and see live changes on a local browser with dynamically generated UI. To do so:
 
 ```shell
-gulp serve --theme="volumio"
+gulp serve --theme="volumio" 
+```
+
+Additional parameters can be env, for selecting the environment which can be production or development
+
+```shell
+gulp serve --theme="volumio" --env="production"
+```
+
+And debug, to show debug console logs on the browser
+
+```shell
+gulp serve --theme="volumio" --env="production" --debug
 ```
 
 Once finished, to deploy on Volumio 2, first build it. if you want production optimization use --env="production"
 
 ```shell
-gulp build --theme="volumio" --env="production"
+npm run gulp build --theme="volumio" --env="production"
 ```
 
 

@@ -6,11 +6,19 @@
 </button>
 <button
     class="btn-link backButton"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.navigationStack.length > 0"
+    ng-click="browse.goBack()"
+    title="{{'COMMON.BACK' | translate}}">
+  <i class="fa fa-arrow-circle-left"></i>
+</button>
+<!-- Old back facility fetching previous URI from BE -->
+<!-- <button
+    class="btn-link backButton"
     ng-if="browse.browseService.isBrowsing && browse.browseService.breadcrumbs.uri"
     ng-click="browse.fetchLibrary({uri: browse.browseService.breadcrumbs.uri}, true)"
     title="{{'COMMON.BACK' | translate}}">
   <i class="fa fa-arrow-circle-left"></i>
-</button>
+</button> -->
 <button
     class="btn-link"
     ng-click="browse.toggleGridView()"
@@ -21,14 +29,14 @@
 </button>
 <button
     class="btn-link"
-    ng-if="browse.browseService.isBrowsing && browse.browseService.eject"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.eject && browse.browseService.eject.enabled"
     ng-click="browse.browseService.sendEject(browse.browseService.eject.data)"
     title="{{'COMMON.EJECT' | translate}}">
   <i class="fa fa-eject"></i>
 </button>
 <button
     class="btn-link"
-    ng-if="browse.browseService.isBrowsing && browse.browseService.rip"
+    ng-if="browse.browseService.isBrowsing && browse.browseService.rip && browse.browseService.rip.enabled"
     ng-click="browse.browseService.sendRip(browse.browseService.rip.data)"
     title="{{'COMMON.RIP' | translate}}">
   <i class="fa fa-download"></i>

@@ -1,0 +1,45 @@
+<div id="browse" class="boxTable" browse-scroll-manager>
+
+  <div class="panel panel-default">
+
+      <div class="browse-header-container">
+
+        <div  ng-if="!browse.isDedicatedSearchView" id="browsePanelHeading" class="panel-heading browse-header">
+
+          <div class="navButtons pull-left"
+               ng-include src="'app/browse/components/browse-nav-buttons.html'">
+          </div>
+
+          <div class="searchBox"
+               ng-include src="'app/browse/components/browse-search-box.html'">
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+
+    <div class="dedicated-search-container" ng-if="browse.isDedicatedSearchView">
+      <div class="dedicated-search"
+           ng-include src="'app/browse/components/browse-search-box.html'">
+      </div>
+    </div>
+
+    <div class="dedicated-search-container-flow-space" ng-if="browse.isDedicatedSearchView"></div>
+
+    <div class="body-content" ng-class="{ 'with-search-header': browse.isDedicatedSearchView }">
+      <div id="browseTablesWrapper">
+        <div
+          ng-if="!browse.browseService.isBrowsing && !browse.browseService.isSearching"
+          ng-include src="'app/browse/components/browse-table-sources.html'">
+        </div>
+        <div
+          ng-if="browse.browseService.isBrowsing || browse.browseService.isSearching"
+          ng-include src="'app/browse/components/browse-table-items.html'">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

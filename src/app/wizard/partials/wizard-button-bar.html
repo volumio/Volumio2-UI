@@ -34,7 +34,14 @@
       type="button"
       class="btn btn-info"
       ng-click="wizard.done()"
-      ng-if="wizard.isLastStep()"
+      ng-if="wizard.isLastStep() && !wizard.isAccountSetupRequired()"
       translate="COMMON.DONE">
+  </button>
+  <button
+      type="button"
+      class="btn btn-info"
+      ng-click="wizard.goToAccountSetup()"
+      ng-if="wizard.isLastStep() && wizard.isAccountSetupRequired()"
+      translate="MYVOLUMIO.ACCOUNT">
   </button>
 </div>

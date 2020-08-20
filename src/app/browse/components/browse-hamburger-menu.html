@@ -34,14 +34,19 @@
     title="{{'BROWSER.SAFE_REMOVE' | translate}}">
   <a href><i class="fa fa-eject"></i>{{'BROWSER.SAFE_REMOVE' | translate}}</a>
 </li>
-<li ng-if="::item.type === 'folder'"
+<li ng-if="::item.type === 'folder' || item.type === 'internal-folder'"
     ng-click="browse.updateFolder(item.uri)"
     title="{{'BROWSER.UPDATE_FOLDER' | translate}}">
   <a href><i class="fa fa-refresh"></i>{{'BROWSER.UPDATE_FOLDER' | translate}}</a>
 </li>
+<li ng-if="::item.type === 'internal-folder'"
+    ng-click="browse.deleteFolder(browse.browseService.currentFetchRequest.uri, item)"
+    title="{{'BROWSER.DELETE' | translate}}">
+  <a href><i class="fa fa-trash"></i>{{'BROWSER.DELETE_FOLDER' | translate}}</a>
+</li>
 
 
-<li ng-if="::(item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites'"
+<li ng-if="::(item.type === 'song' || item.type === 'folder-with-favourites') && browse.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite"
     ng-click="browse.playlistService.addToFavourites(item)"
     title="{{'BROWSER.ADD_TO_FAVOURITES' | translate}}">
   <a href><i class="fa fa-heart"></i><span translate="BROWSER.ADD_TO_FAVOURITES"></a>

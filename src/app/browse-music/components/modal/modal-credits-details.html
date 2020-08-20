@@ -1,0 +1,60 @@
+<div id="modalPlaylist">
+    <div class="modal-header">
+      <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
+    </div>
+    <div
+        ng-bind-html="::modal.dataObj.story"
+        class="modal-body darker-bg credits-story">
+    </div>
+    <div
+        ng-if="::modal.dataObj.credits"
+        class="modal-body darker-bg">
+        <table class="table">
+          <tr
+          ng-repeat="creditRow in modal.dataObj.credits track by $index"
+          ng-init="listIndex = $index"
+          class="album-credits-row">
+            <td class="album-credits-title">
+              {{creditRow.key}}
+            </td>
+            <td class="album-credits-title">
+              <p
+              ng-if="modal.hasCreditLink(creditItem.uri)"
+              ng-click="modal.showCreditLink(creditItem.uri, creditItem.name, listIndex)"
+              ng-repeat="creditItem in creditRow.values track by $index"
+              class="album-credits-row credit-clickable"
+              ng-class="{ 'disabled': modal.loadingCredit[creditItem.uri + listIndex] }">
+              <span>
+                <i
+                  ng-class="{ 'hidden': !modal.loadingCredit[creditItem.uri + listIndex] }"
+                  class="fa fa-refresh credit-item-loader"></i>
+                {{creditItem.name}}
+              </span>
+              <span
+                ng-class="{ 'hidden': !modal.unavailableCredits[creditItem.uri + listIndex] }"
+                class="credit-clickable__caption">{{ 'BROWSER.CREDITS_NOT_FOUND' | translate }}
+              </span>
+              </p>
+              <p
+              ng-if="!modal.hasCreditLink(creditItem.uri)"
+              ng-repeat="creditItem in creditRow.values track by $index"
+              class="album-credits-row">
+              {{creditItem.name}}
+              </p>
+
+            </td>
+          </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-warning" ng-click="modal.cancel()">
+        {{'COMMON.CLOSE' | translate}}
+      </button>
+      <button
+        ng-if="::modal.dataObj.upgradeCta"
+        class="btn btn-primary"
+        ng-click="modal.goToUpgrade()">
+        {{'MYVOLUMIO.UPGRADE_SUPERSTAR' | translate}}
+      </button>
+    </div>
+  </div>

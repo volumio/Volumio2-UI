@@ -7,11 +7,12 @@
     <uib-progressbar
         class="progress-striped active"
         value="modal.dataObj.progress"
+        ng-if="modal.dataObj.progress !== 100"
         type="default">{{modal.dataObj.progress}}%
     </uib-progressbar>
   </div>
   <div ng-if="modal.dataObj.advancedLog">
-    <a href ng-click="modal.toggleAdvancedLog()">
+    <a href ng-click="modal.toggleAdvancedLog()" ng-if="modal.dataObj.progress !== 100">
       <span ng-if="!modal.showAdvancedLog" translate="PLUGINS.SHOW_DETAILS"></span>
       <span ng-if="modal.showAdvancedLog" translate="PLUGINS.HIDE_DETAILS"></span>
     </a>

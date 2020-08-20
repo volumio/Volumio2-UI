@@ -3,9 +3,9 @@
     ng-controller="WifiPluginController as wifiPlugin"
     ng-show="wifiPlugin.wirelessNetworks.available || wifiPlugin.wirelessNetworks.connectedTo"
     class="panel panel-default">
-  <!-- <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-wifi"></i> Wireless network</h3>
-  </div> -->
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-wifi"></i> <span translate="NETWORK.WIRELESS_NETWORK_CONNECTION"></span></h3>
+  </div>
 
   <div class="panel-body">
     <!-- <h4 ng-if="false" class="sectionDescription"></h4> -->
@@ -53,16 +53,8 @@
           </span>
         </td>
         <td>
-          <span ng-if="!$last">{{::wifi.ssid}}</span>
-          <span ng-if="$last" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
-        </td>
-        <td class="commandCol">
-          <button ng-if="::!wifi.insertPassword"
-              type="button"
-              class="btn btn-info">
-            <i class="fa fa-level-down fa-rotate-90"></i>
-            <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
-          </button>
+          <span ng-if="!wifi.manual">{{::wifi.ssid}}</span>
+          <span ng-if="wifi.manual" translate="NETWORK.MANUAL_WIFI_CONNECTION"></span>
         </td>
       </tr>
 
@@ -108,23 +100,22 @@
               ng-model="wifi.password"
               type="{{wifi.showHidePassword || 'password'}}"
               placeholder="password">
-
+              <br>
+          <button
+              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open' && wifi.password.length"
+              ng-click="(wifi.showHidePassword === 'text') ? wifi.showHidePassword = 'password' : wifi.showHidePassword = 'text'"
+              type="button"
+              class="btn btn-info showHidePassword">
+            <i ng-if="!wifi.showHidePassword || wifi.showHidePassword === 'password'" class="fa fa-eye"></i>
+            <i ng-if="wifi.showHidePassword === 'text'" class="fa fa-eye-slash"></i>
+          </button>
           <button
               class="btn btn-info"
               ng-click="wifiPlugin.connectToWifi(wifi, $index)"
               type="button"
               name="btn btn-info">
               <i class="fa fa-level-down fa-rotate-90"></i>
-              <span class="hidden-xs" translate="NETWORK.CONNECT"></span>
-          </button>
-
-          <button
-              ng-if="wifi.security !== 'open' && wifi.security.label !== 'open'"
-              ng-click="(wifi.showHidePassword === 'text') ? wifi.showHidePassword = 'password' : wifi.showHidePassword = 'text'"
-              type="button"
-              class="btn btn-info showHidePassword">
-            <i ng-if="!wifi.showHidePassword || wifi.showHidePassword === 'password'" class="fa fa-eye"></i>
-            <i ng-if="wifi.showHidePassword === 'text'" class="fa fa-eye-slash"></i>
+              <span translate="NETWORK.CONNECT"></span>
           </button>
         </td>
       </tr>

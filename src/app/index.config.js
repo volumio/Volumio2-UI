@@ -1,39 +1,40 @@
-function config (theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
-    $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, CgMailChimpServiceProvider) {
+function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider, $touchProvider, env,
+        $locationProvider, $httpProvider, $translateProvider, localStorageServiceProvider, StripeCheckoutProvider, authServiceProvider, CgMailChimpServiceProvider, cfpLoadingBarProvider, debug) {
   'ngInject';
+
+  cfpLoadingBarProvider.includeSpinner = false;
 
   $touchProvider.enabled = true;
 
   themeManagerProvider.theme = theme;
   themeManagerProvider.variant = variant;
 
-  $logProvider.debugEnabled(env !== 'production');
+  $logProvider.debugEnabled(debug !== false);
 
   $locationProvider.html5Mode(true);
   $httpProvider.useApplyAsync(true);
 
   angular.extend(toastrConfig, {
-    timeOut: 2000
+    maxOpened: true,
+    preventOpenDuplicates: true
   });
 
-
   localStorageServiceProvider.setPrefix('volumio');
-  //Mailchimp
+  // Mailchimp
   CgMailChimpServiceProvider.setConfig({
-      username: 'volumio',
-      dc: 'us11',
-      u: '64b4a843c27713ee9da781aa9',
-      id: '030f96ce5c'
-    });
+    username: 'volumio',
+    dc: 'us11',
+    u: '64b4a843c27713ee9da781aa9',
+    id: '030f96ce5c'
+  });
 
-
-  //i18n Configs
+  // i18n Configs
   $translateProvider
     .useStaticFilesLoader({
       prefix: 'app/i18n/locale-',
       suffix: '.json'
     })
-    //Back end send default language, this improve translation consistency
+    // Back end send default language, this improve translation consistency
     // .determinePreferredLanguage()
     // .preferredLanguage('en')
     .fallbackLanguage('en');

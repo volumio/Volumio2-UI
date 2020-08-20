@@ -1,0 +1,35 @@
+<div class="browse__main-page">
+    <div
+        ng-repeat="list in browse.mockService._mock.browseMusic.getMainPageSources.lists track by $index"
+        class="main__source">
+        <h3 class="main__source__title panel-title">
+            <span class="title__icon">
+                <img
+                    class="title__icon__img"
+                    ng-if="list.icon && !list.icon.startsWith('fa-')"
+                    src="{{ list.icon }}"
+                    alt="{{ list.title }} icon">
+                <i
+                    ng-if="list.icon && list.icon.startsWith('fa-')"
+                    class="{{ 'fa ' + list.icon }} title__icon__icon"></i>
+            </span>
+            <span>{{ list.title }}</span>
+        </h3>
+        <!-- showMoreUri -->
+        <div class="main__row">
+            <div
+                ng-repeat="item in list.items track by $index"
+                class="music-card__wrapper"
+                ng-include
+                src="'app/browse-music/components/music-card.html'">
+            </div> <!-- /.music-card__wrapper -->
+            <!-- A little trick to even out the width of the cards -->
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+            <div class="music-card__wrapper placeholder-wrapper"></div>
+        </div> <!-- /.main__row -->
+    </div> <!-- /.main__source -->
+</div>

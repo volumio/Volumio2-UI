@@ -4,7 +4,10 @@ class SideMenuDirective {
     let directive = {
       restrict: 'E',
       templateUrl: 'app/components/side-menu/side-menu.html',
-      scope: false,
+      scope: {
+        isInMainMenu: '@',
+        isInTabBar: '@'
+      },
       controller: SideMenuController,
       controllerAs: 'sideMenu',
       bindToController: true
@@ -14,9 +17,10 @@ class SideMenuDirective {
 }
 
 class SideMenuController {
-  constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log, 
-      $http, $window, uiSettingsService) {
+  constructor($scope, $rootScope, socketService, mockService, $state, modalService, playerService, themeManager, $log,
+      $http, $window, uiSettingsService, authService) {
     'ngInject';
+    this.$rootScope = $rootScope;
     this.$state = $state;
     this.$window = $window;
     this.socketService = socketService;
@@ -28,6 +32,11 @@ class SideMenuController {
     this.$scope = $scope;
     this.uiSettingsService = uiSettingsService;
     // this.menuItems = mockService.get('getMenuItems');
+    this.authService = authService;
+    this.MYVOLUMIO_KEY = 'my-volumio';
+
+    this.isInMainMenu = this.$scope.sideMenu.isInMainMenu;
+    this.isInTabBar = this.$scope.sideMenu.isInTabBar;
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -35,6 +44,9 @@ class SideMenuController {
     });
     $rootScope.$on('socket:reconnect', () => {
       this.initService();
+    });
+    this.$rootScope.$on('toggleSideMenu',(event, data) => {
+      this.toggleMenu();
     });
   }
 
@@ -59,7 +71,7 @@ class SideMenuController {
   itemClick(item) {
     this.toggleMenu();
     this.$log.debug(item);
-    if (item.id === 'modal') {
+    if (item.id === 'modal' || item.id === 'shutdown') {
       let
         controllerName = item.params.modalName.split('-').map(
           (item) => {
@@ -111,6 +123,7 @@ class SideMenuController {
     this.socketService.on('pushMenuItems', (data) => {
       this.$log.debug('pushMenuItems', data);
       this.menuItems = data;
+      this.checkEnableMyVolumio();
     });
 
     this.$scope.$on('$destroy', () => {
@@ -121,6 +134,31 @@ class SideMenuController {
   initService() {
     this.socketService.emit('getMenuItems');
   }
+
+  checkEnableMyVolumio(){
+    if(this.isAuthActive()){
+      this.authService.enableAuth();
+    }
+  }
+
+  isAuthActive(){
+    return this.isPluginActiveById('my-volumio');
+  }
+
+  isPluginActiveById(pluginId){
+    for(var i in this.menuItems){
+      var plugin = this.menuItems[i];
+      if(plugin.hasOwnProperty('id') && plugin.id === pluginId){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  isMyVolumioVisible(){
+    return !this.isInMainMenu && !this.isInTabBar;
+  }
+
 }
 
 export default SideMenuDirective;

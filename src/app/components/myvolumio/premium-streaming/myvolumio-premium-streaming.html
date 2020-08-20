@@ -1,0 +1,67 @@
+<div class="box">
+    <div class="boxHeader d-flex align-items-center justify-content-between">
+      <div class="title">
+        <!-- <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2> -->
+        <h2>{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</h2>
+      </div>
+      <a ng-if="!MyVolumioPremiumStreamingController.authUser" ng-click="MyVolumioPremiumStreamingController.goToLogin()" class="my-volumio__sign-in-btn flex-shrink-0 mr-4">
+        <i class="fa fa-user mr-2"></i>
+        <span translate="MYVOLUMIO.LOGIN"></span>
+      </a>
+    </div>
+
+    <div class="panel panel-default my-volumio__panel">
+
+        <div class="panel-body">
+            <div class="spacer mb-4"></div>
+            <div class="row mb-10">
+                <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6 text-center">
+                    <h1 class="mb-6">{{ 'MYVOLUMIO.PREMIUM_STREAMING_TITLE' | translate }}</h1>
+                    <img ng-if="MyVolumioPremiumStreamingController.$state.params.serviceName === 'qobuz'" src="{{ 'app/assets-common/myvolumio-qobuz-80.png' }}" alt="{{ MyVolumioPremiumStreamingController.$state.params.serviceName }} app icon" class="my-volumio__premium-streaming-icon mb-6">
+                    <img ng-if="MyVolumioPremiumStreamingController.$state.params.serviceName === 'tidal'" src="{{ 'app/assets-common/myvolumio-tidal-80.png' }}" alt="{{ MyVolumioPremiumStreamingController.$state.params.serviceName }} app icon" class="my-volumio__premium-streaming-icon mb-6">
+                    <p>{{ 'MYVOLUMIO.PREMIUM_STREAMING_FULLY_INTEGRATED_' + MyVolumioPremiumStreamingController.$state.params.serviceName.toUpperCase() | translate }}</p>
+
+                </div> <!-- col- -->
+            </div> <!-- row -->
+
+            <div ng-if="!MyVolumioPremiumStreamingController.authUser || !MyVolumioPremiumStreamingController.authUser.plan" class="row mb-6">
+                <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                    <div class="my-volumio__info-card my-volumio__info-card--with-cta my-volumio__border-round">
+                        <p class="my-volumio__info-card__description">{{ 'MYVOLUMIO.PREMIUM_STREAMING_AVAILABILITY_' + MyVolumioPremiumStreamingController.$state.params.serviceName.toUpperCase() | translate }}</p>
+                        <button ng-click="MyVolumioPremiumStreamingController.goToMyVolumio()" class="btn my-volumio__btn-primary my-volumio__border-round" tabindex="7">
+                            {{ 'MYVOLUMIO.UPGRADE_FROM' | translate }} €{{ MyVolumioPremiumStreamingController.cheapestPrice }} / {{ 'MYVOLUMIO.MONTH' | translate }}
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="MyVolumioPremiumStreamingController.authUser && MyVolumioPremiumStreamingController.authUser.plan" class="row mb-6">
+                <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                    <div class="my-volumio__info-card my-volumio__info-card--with-cta my-volumio__border-round">
+                        <p class="my-volumio__info-card__description">{{ 'MYVOLUMIO.CONNECT' | translate }} <span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span> {{ 'MYVOLUMIO.TO_VOLUMIO' | translate }}.</p>
+                        <button ng-click="MyVolumioPremiumStreamingController.goToSettings()" class="btn my-volumio__btn-primary my-volumio__border-round" tabindex="7">
+                            {{ 'MYVOLUMIO.LOGIN_WITH' | translate }} <span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row mb-16">
+                <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                    <h2 class="mb-6"><span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }}</span> {{ 'MYVOLUMIO.PREMIUM_STREAMING_FEATURE_1' | translate }}</h2>
+                    <ul class="my-volumiio__premium-stream-feature-list">
+                        <li>✔ {{ 'MYVOLUMIO.PREMIUM_STREAMING_FEATURE_2' | translate }}</li class="mb-2">
+                        <li>✔ {{ 'MYVOLUMIO.ACCESS' | translate }} <span class="capitalize">{{ MyVolumioPremiumStreamingController.$state.params.serviceName }} </span> {{ 'MYVOLUMIO.PREMIUM_STREAMING_FEATURE_3' | translate }}</li>
+                        <li>✔ {{ 'MYVOLUMIO.PREMIUM_STREAMING_FEATURE_4' | translate }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div> <!-- /.panel-body -->
+
+    </div> <!-- /.panel -->
+
+</div>

@@ -1,5 +1,5 @@
 class ModalUpdaterController {
-  constructor($uibModalInstance, dataObj, updaterService, socketService, $log, $translate) {
+  constructor($uibModalInstance, dataObj, updaterService, socketService, $log, $translate, modalService) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.updaterService = updaterService;
@@ -7,6 +7,7 @@ class ModalUpdaterController {
     this.dataObj = dataObj;
     this.$log = $log;
     this.$translate = $translate;
+    this.modalService = modalService;
   }
 
   update(val) {
@@ -23,6 +24,7 @@ class ModalUpdaterController {
   }
 
   cancel() {
+    this.modalService.closeAllModals();
     this.$uibModalInstance.dismiss('cancel');
   }
 }

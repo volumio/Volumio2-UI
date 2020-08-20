@@ -63,7 +63,15 @@
     "PLAY_QUEUE": "Přehrát frontu",
     "ENTER_PASSWORD": "Vložit heslo",
     "INVALID_PASSWORD": "Špatné heslo",
-    "RIP": "RIP"
+    "RIP": "RIP",
+    "SKIP": "Přeskočit",
+    "NEXT": "Další",
+    "PREVIOUS": "Předchozí",
+    "DONE": "Hotovo",
+    "EMAIL": "Email",
+    "SUBSCRIBE_ME": "Přihlásit se k odběru",
+    "SHARE": "Sdílet",
+    "EJECT": "Vysunout"
   },
   "BROWSER": {
     "PLAY": "Přehrát",
@@ -84,14 +92,16 @@
     "NEXT_TRACK":"Další skladba",
     "PREVIOUS_TRACK":"Předchozí skladba",
     "PAUSE":"Pauza",
-    "CLEAR_AND_PLAY": "Vyčistit a přehrát"
+    "CLEAR_AND_PLAY": "Vyčistit a přehrát",
+    "SAFE_REMOVE": "Bezpečně odpojit médium",
+    "UPDATE_FOLDER": "Aktualizovat složku"
   },
-"MY_MUSIC": { 
-    "UPDATE":"Aktualizovat", 
-    "UPDATE_DOC":"Aktualizovat knihovnu na nové, změněné nebo smazané soubory", 
-    "RESCAN":"Znovu vyhledat", 
-    "RESCAN_DOC":"Vytvořit knihovnu ze všech souborů"  
-  }, 
+  "MY_MUSIC": {
+    "UPDATE":"Aktualizovat",
+    "UPDATE_DOC":"Aktualizovat knihovnu na nové, změněné nebo smazané soubory",
+    "RESCAN":"Znovu vyhledat",
+    "RESCAN_DOC":"Vytvořit knihovnu ze všech souborů"
+  },
   "PLUGINS": {
     "BACK_TO_PLUGINS": "Zpět do zásuvných modulů",
     "PLUGINS":"Zásuvné moduly",
@@ -167,13 +177,44 @@
     "REFRESH":"Obnovit",
     "OPEN_NETWORK":"Otevřená síť",
     "SECURE_NETWORK":"Zabezpečená síť",
-    "SECURITY": "Zabezpečení",
+    "SECURITY":"Zabezpečení",
     "MANUAL_WIFI_CONNECTION":"Ruční nastavení Wi-Fi",
     "NETWORK_NAME":"Jméno sítě"
   },
+  "WIZARD": {
+    "LANGUAGE": "Jazyk",
+    "NAME": "Jméno",
+    "OUTPUT": "Výstup",
+    "NETWORK": "Síť",
+    "MUSIC": "Hudba",
+    "FOLLOW": "Sledovat",
+    "DONE": "Hotovo",
+    "WELCOME": "Vítejte, jdeme na to",
+    "SELECT_YOUR_LANGUAGE": "Vyberte svůj jazyk",
+    "DEVICE_NAME": "Zadejte unikátní jméno Vašeho zařízení",
+    "DEVICE_ADDRESS": "Toto zařízení bude dostupné na adrese:",
+    "SELECT_YOUR_AUDIO_OUTPUT": "Zvolte audio výstup",
+    "SELECT_YOUR_I2S_DAC": "Vyberte svůj I2S DAC",
+    "I_HAVE_DAC": "Mám I2S DAC",
+    "CUSTOM_AMOUNT": "Vlastní částka",
+    "DONE_MESSAGE": "Hotovo, systém je připraven",
+    "MAIL_LIST_SUBSCRIPTION": "Přihlášení k odběru emailů",
+    "SOCIAL_SHARE": "Sdílení na sociálních sítích",
+    "DONATE": "Obdarovat",
+    "SUBSCRIBED_SUCCESFULLY": "Odběr úspěšný",
+    "ADD_YOUR_MUSIC":"Pro přidání hudby jednoduše připojte USB disk nebo stiskněte tlačítko níže pro přidání síťového disku",
+    "STEP":"Krok",
+    "VOLUMIOAPPS":"Aplikace",
+    "GET_APPS":"Pro větší pohodlí můžete používat i naší šikovnou aplikaci"
+  },
   "SLEEP": {
     "POWER_OFF": "Vypnout",
-    "STOP_MUSIC": "Zastavit přehrávání"
+    "STOP_MUSIC": "Zastavit přehrávání",
+    "PRESET_TIMES": "Přednastavené časy",
+    "CHOOSE_PRESET": "Vyberte ...",
+    "HR": "hod",
+    "MIN": "min",
+    "OFF": "Off"
   },
   "ALARM": {
     "CRATE_PLAYLIST_FIRST": "Pro použití budíku, musíte vytvořit alespoň jeden seznam skladeb."

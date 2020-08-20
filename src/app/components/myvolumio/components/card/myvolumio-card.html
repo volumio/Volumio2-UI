@@ -1,0 +1,91 @@
+<div class="my-volumio__user-card">
+
+  <div class="my-volumio__user-card__user" ng-if="myVolumioUserCardController.user != null" ng-click="myVolumioUserCardController.goToProfile()">
+      <my-volumio-avatar-image class="my-volumio__user-card__user-avatar"></my-volumio-avatar-image>
+
+      <div class="mr-2 flex-grow-1 min-width-trick">
+        <div ng-if="myVolumioUserCardController.isUserFilledWithMandatory()" class="my-volumio__user-card__user-name">
+          {{ myVolumioUserCardController.user.firstName }}
+        </div>
+        <div class="my-volumio__user-card__user-name" ng-if="!myVolumioUserCardController.isUserFilledWithMandatory()" translate="MYVOLUMIO.LOGGED_BY_SOCIAL"></div>
+        <div class="my-volumio__user-card__user-plan capitalize">
+          {{ myVolumioUserCardController.user.plan || 'MyVolumio Free' }}
+        </div>
+      </div>
+
+      <div class="my-volumio__user-card__action-icon">
+        <img src="app/assets-common/user-car-arrow-right.svg" alt="Arrow right">
+      </div>
+  </div> <!-- /.my-volumio__user-card__user -->
+
+  <div ng-if="myVolumioUserCardController.user && !myVolumioUserCardController.user.plan" class="my-volumio__user-card__promo">
+    <button ng-click="myVolumioUserCardController.upgradePlan()" class="my-volumio__btn btn__ghost btn__dark mb-2">
+      {{ 'MYVOLUMIO.UPGRADE_MYVOLUMIO' | translate }}
+    </button>
+    <div class="d-flex align-items-center small">
+      <span class="mr-2">♡</span>
+      <span>{{ 'MYVOLUMIO.SUPPORT_MYVOLUMIO_SHORT' | translate }}</span>
+    </div>
+  </div>
+
+  <div class="my-volumio__user-card__user" ng-if="myVolumioUserCardController.user == null" ng-click="myVolumioUserCardController.signUp()">
+    <div class="my-volumio__user-card__user-avatar">
+      <img src="app/assets-common/myvolumio-avatar.svg" alt="MyVolumio avatar image">
+    </div>
+
+    <div class="mr-2 flex-grow-1 min-width-trick">
+      <div class="my-volumio__user-card__user-name">
+        {{ 'MYVOLUMIO.MY_VOLUMIO' | translate }}
+      </div>
+      <div class="my-volumio__user-card__user-plan capitalize">
+        {{ 'MYVOLUMIO.NOT_CONNECTED' | translate }}
+      </div>
+    </div>
+
+    <div class="my-volumio__user-card__action-icon">
+      <img src="app/assets-common/user-car-arrow-right.svg" alt="Arrow right">
+    </div>
+  </div> <!-- /.my-volumio__user-card__user -->
+
+<div
+  ng-if="myVolumioUserCardController.user == null"
+  href="#"
+  ng-click="myVolumioUserCardController.clickTooltip($event)"
+  ng-mouseleave="myVolumioUserCardController.closeTooltip()"
+  class="my-volumio__user-card__promo my-volumio__tooltip">
+  <div class="mr-2">{{ 'MYVOLUMIO.MORE_INFO' | translate }}</div>
+  <span class="my-volumio__info-tooltip__icon">
+    <img src="app/assets-common/myvolumio-more-info.svg" alt="Info">
+    <span ng-if="myVolumioUserCardController.tooltipShowing" class="my-volumio__info-tooltip__tip"></span>
+  </span>
+  <div ng-if="myVolumioUserCardController.tooltipShowing" class="my-volumio__tooltip-content left">
+    {{ 'MYVOLUMIO.MORE_INFO_DESCRIPTION' | translate }}
+  </div>
+</div>
+
+  <!-- <div class="my-volumio__promo-card" ng-if="myVolumioUserCardController.user == null">
+    <div class="row">
+      <div class="col-xs-24" style="padding-bottom: 16px;">
+
+        <p class="title" translate="MYVOLUMIO.MY_VOLUMIO"></p>
+        <div class="profile-userbuttons">
+          <a class="btn btn-sm btn-primary" ng-click="myVolumioUserCardController.logIn()">
+            <small>
+              <i class="glyphicon glyphicon-log-in"></i>
+              <span translate="MYVOLUMIO.LOGIN"></span>
+            </small>
+          </a>
+          &nbsp;
+          <a class="btn btn-sm btn-primary" ng-click="myVolumioUserCardController.signUpNew()">
+            <small>
+              <i class="glyphicon glyphicon-user"></i>
+              <span translate="MYVOLUMIO.SIGNUP"></span>
+            </small>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div> -->
+
+</div>

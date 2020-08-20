@@ -1,0 +1,28 @@
+<div class='row player-seekbar' ng-if='playerSeekBar.getDuration() != null'>
+
+  <div class="col-md-24" ng-if="!playerSeekBar.matchmedia.isPhone">
+    <div class='time-label pull-left'>
+      {{playerSeekBar.getElapsed()}}
+    </div>
+
+    <div class='time-label pull-right'>
+      {{playerSeekBar.getDuration()}}
+    </div>
+
+    <div class="clear: both"></div>
+  </div>
+
+  <div class="col-md-24 seekbar-container" style="display: flex; flex-direction: row;">
+    <div ng-if="playerSeekBar.matchmedia.isPhone" class="time-left">
+      {{playerSeekBar.getElapsed()}}
+    </div>
+    <div style="flex-grow: 1;">
+      <slider ng-model="playerSeekBar.seekPercent" min="0" step="1" max="1001" reversed formatter="playerSeekBar.getElapsed()">
+      </slider>
+    </div>
+    <div ng-if="playerSeekBar.matchmedia.isPhone" class="time-right">
+      {{playerSeekBar.getDuration()}}
+    </div>
+  </div>
+
+</div>

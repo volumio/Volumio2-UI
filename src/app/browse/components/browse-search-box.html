@@ -1,19 +1,22 @@
-<form id="searchForm" class="pull-right">
-  <input
-      type="text"
+<div class="search-container">
+  <form action="." id="searchForm" ng-class="{ 'hidden-xs': browse.isDedicatedSearchView !== true && this.browse.isVolumio3Theme(), 'pull-right': true }" ng-submit="browse.searchSubmit($event)">
+    <input
+      type="search"
       ng-model="browse.searchField"
       ng-change="browse.search()"
       class="form-control"
       placeholder="{{'COMMON.SEARCH' | translate}} ..."
-      title="{{'COMMON.SEARCH' | translate}}">
-  <span class="form-control-feedback" aria-hidden="true">
+      title="{{'COMMON.SEARCH' | translate}}"
+      id="search-input-form"
+    />
+  </form>
+  <button class="search-icon" ng-class="{ 'hidden-xs': browse.isDedicatedSearchView !== true }">
     <i ng-if="!browse.searchField.length" class="fa fa-search"></i>
     <i ng-if="browse.searchField.length"
-        ng-mousedown="browse.searchField=''"
-        class="fa fa-times-circle clear-search"></i>
-  </span>
-  <div class="clearfix"></div>
-</form>
+       ng-mousedown="browse.searchField=''; browse.search();"
+       class="fa fa-times-circle clear-search"></i>
+  </button>
+</div>
 <div class="clearfix"></div>
 <!-- <div id="browseFilterBar">
   Filter by: <a href

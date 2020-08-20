@@ -42,6 +42,15 @@ class PlayQueueService {
     });
   }
 
+  replaceAndPlayList(item, list, itemIndex) {
+    this.$log.debug('PlayQueueService replaceAndPlayList', item, list, itemIndex);
+    this.socketService.emit('replaceAndPlay', {
+      item: item,
+      list: list,
+      index: itemIndex
+    });
+  }
+
   replaceAndPlayCue(item) {
     this.$log.debug('PlayQueueService replaceAndPlayCue', item);
     this.socketService.emit('replaceAndPlayCue', {
@@ -54,6 +63,15 @@ class PlayQueueService {
   playPlaylist(index) {
     this.$log.debug('PlayQueueService playPlaylist', index);
     this.socketService.emit('playPlaylist', {name: index.title});
+  }
+
+  addAndPlayList(item, list, itemIndex) {
+    this.$log.debug('PlayQueueService addAndPlayList', item, list, itemIndex);
+    this.socketService.emit('addPlayList', {
+      item: item,
+      list: list,
+      index: itemIndex
+    });
   }
 
   //add to queue for song

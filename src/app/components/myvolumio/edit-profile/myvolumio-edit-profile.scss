@@ -1,0 +1,61 @@
+.edit-profile-box{
+
+  .glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+  }
+
+  @-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+  }
+
+  @keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+  }
+
+  .country-select > div{
+    padding: 0px;
+  }
+
+  .country-select > div > a{
+    background: transparent;
+    color: #fff;
+    padding: 4px 16px;
+    height: 100%;
+    border: 0px;
+    color: #54C688;
+  }
+
+  .birthday-picker > date-picker{
+    margin:0px;
+    padding: 0px;
+  }
+
+  .birthday-picker input{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #54C688;
+    background-color: #333;
+    background-image: none;
+    border: 1px solid #54C688;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  }
+
+  ._720kb-datepicker-calendar-header{
+    background-color: #54C688;
+  }
+
+}
+
+.select2-results .select2-highlighted{
+  background: #54C688 !important;
+  background-color: #54C688 !important;
+}

@@ -1,4 +1,8 @@
 .trackManagerActionSheet {
+
+  position: relative;
+  z-index: 900;
+
   button {
     margin-bottom: 16px;
     &:last-of-type {
@@ -11,4 +15,67 @@
       font-size: 26px;
     }
   }
+
+  favourite-track-btn .btn, add-track-to-playlist-btn .btn{
+    font-size: 26px !important;
+    margin-bottom: 16px;
+  }
+
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 52px;
+    height: 12px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    left: 6px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 6px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 24px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 36px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(12px, 0);
+    }
+  }
+  
+
 }

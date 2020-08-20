@@ -26,7 +26,8 @@ class PluginComponentController {
     uiSettingsService,
     $log,
     $state,
-    $window
+    $window,
+    themeManager
   ) {
     'ngInject';
     this.socketService = socketService;
@@ -38,6 +39,7 @@ class PluginComponentController {
     this.$state = $state;
     this.uiSettingsService = uiSettingsService;
     this.$window = $window;
+    this.themeManager = themeManager;
     // this.pluginObj = this.mockService.get('getSettings');
     // this.$log.debug(this.pluginObj);
     //this.pluginObj.sections.unshift({coreSection: 'system-version'});
@@ -112,6 +114,16 @@ class PluginComponentController {
         this.socketService.emit(item.onClick.message, item.onClick.data);
       } else if (item.onClick.type === 'openUrl'){
         this.$window.open(item.onClick.url);
+      } else if (item.onClick.type === 'oauth'){
+        const redirectUri = new URL(this.socketService.host + '/api/v1/oauth');
+        redirectUri.searchParams.set('plugin', item.onClick.plugin);
+        redirectUri.searchParams.set('plugin_url', this.$window.location);
+        const performerUrl = new URL(item.onClick.performerUrl);
+        performerUrl.searchParams.set('redirect_uri', redirectUri.href);
+        item.onClick.scopes.forEach(function(scope){performerUrl.searchParams.append('scope', scope);});
+        this.$window.location = performerUrl.href;
+      } else if (item.onClick.type === 'goto'){
+        this.$state.go('volumio.static-page', {pageName: item.onClick.pageName});
       } else {
         this.socketService.emit('callMethod', item.onClick);
       }
@@ -151,6 +163,7 @@ class PluginComponentController {
       // data.sections.unshift({coreSection: 'firmware-upload'});
       this.$log.debug('pushUiConfig', data);
       this.pluginObj = data;
+      this.pluginObj.host = this.socketService.host;
       if (
         !this.pluginObj.page.passwordProtection ||
         !this.pluginObj.page.passwordProtection.enabled
@@ -205,6 +218,27 @@ class PluginComponentController {
       this.socketService.emit('getUiConfig', { page: this.pluginName });
     }
   }
+
+  isItemVisible(item, section) {
+    if (item.hidden) {
+      return false;
+    }
+    if (item.visibleIf) {
+      var visibleIfItem = section.content.filter((configItem) => {
+          return configItem.id === item.visibleIf.field; }
+      )[0];
+      if (visibleIfItem.value === item.visibleIf.value) {
+        return true;
+      } else if (typeof visibleIfItem.value === 'object' && visibleIfItem.value.hasOwnProperty('value') && visibleIfItem.value.value === item.visibleIf.value) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
 }
 
 export default PluginComponent;

@@ -22,6 +22,8 @@ class PlayerService {
 
     this._volume = 80;
     this._volumeStep = 10;
+    this.mute = undefined;
+    this.disableVolumeControl = false;
 
     this._shuffle = false;
     this._repeatTrack = false;
@@ -46,6 +48,11 @@ class PlayerService {
     this.socketService.emit('play');
   }
 
+  volatilePlay() {
+    this.$log.debug('volatilePlay');
+    this.socketService.emit('volatilePlay');
+  }
+
   pause() {
     this.$log.debug('pause');
     this.stopSeek();
@@ -62,28 +69,28 @@ class PlayerService {
   }
 
   prev() {
-    if (this.state.trackType !== 'webradio') {
       this.socketService.emit('prev');
-    }
   }
 
   next() {
-    if (this.state.trackType !== 'webradio') {
       this.socketService.emit('next');
-    }
+  }
+
+  skipBackwards() {
+    this.socketService.emit('skipBackwards');
+  }
+
+  skipForward() {
+    this.socketService.emit('skipForward');
   }
 
   shuffle() {
-    if (this.state.trackType !== 'webradio') {
       this.$log.debug(!this.state.random);
       this.socketService.emit('setRandom', {value: !this.state.random});
-    }
   }
 
-  repeatAlbum() {
-    if (this.state.trackType !== 'webradio') {
-      this.socketService.emit('setRepeat', {value: !this.state.repeat});
-    }
+  repeatAlbum(repeat,repeatSingle) {
+      this.socketService.emit('setRepeat', {value: repeat, repeatSingle: repeatSingle});
   }
 
   rebuildSpopLibrary() {
@@ -95,7 +102,7 @@ class PlayerService {
   }
 
   set seek(val) {
-    if (this.state) {
+    if (this.state && !this.state.disableUi) {
       this.stopSeek();
       // if (val === 0) {
       //   val = 1;
@@ -108,6 +115,10 @@ class PlayerService {
 
   get seek() {
     return null;
+  }
+
+  get duration(){
+    return this.state.duration;
   }
 
   // VOLUME --------------------------------------------------------------------
@@ -142,13 +153,10 @@ class PlayerService {
       hours = momentDuration.hours(),
       minutes = momentDuration.minutes(),
       seconds = momentDuration.seconds();
-    if (this.hours > 0) {
-      this.elapsedTimeString = hours + ':' + minutes + ':' +
-        ((seconds < 10) ? ('0' + seconds) : seconds);
-    } else {
-      this.elapsedTimeString = minutes + ':' +
-        ((seconds < 10) ? ('0' + seconds) : seconds);
-    }
+    // Track length is shown as mm:ss - do the same for elapsed time
+    minutes += hours*60;
+    this.elapsedTimeString = minutes + ':' +
+                             ((seconds < 10) ? ('0' + seconds) : seconds);
   }
 
   startSeek() {
@@ -190,7 +198,7 @@ class PlayerService {
     } else if (volume > 100) {
       volume = 100;
     }
-    this.$log.log('volume', volume);
+    this.$log.debug('volume', volume);
     this.socketService.emit('volume', volume);
   }
 
@@ -262,35 +270,42 @@ class PlayerService {
     }
   }
 
-  loadFileFormatIcon() {
-    if (this.state.trackType) {
-      switch (this.state.trackType) {
+  loadFileFormatIcon(trackType) {
+    var currentFileFormat;
+    var currentTrackType;
+    if (trackType) {
+      currentTrackType = trackType;
+    } else {
+      currentTrackType = this.state.trackType;
+    }
+    if (currentTrackType) {
+      switch (currentTrackType) {
         case 'dff':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'dsd',
             name: 'dff dsd'
           };
           break;
         case 'dsf':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'dsd',
             name: 'dsf dsd'
           };
           break;
         case 'ogg':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'ogg',
             name: 'oga vorbis'
           };
           break;
         case 'oga':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'ogg',
             name: 'ogg vorbis'
           };
           break;
         case 'wv':
-          this.state.fileFormat = {
+          currentFileFormat = {
             url: 'wavpack',
             name: 'wavpack'
           };
@@ -312,10 +327,17 @@ class PlayerService {
         case 'YouTube':
         case 'rr':
         case 'bt':
+        case 'cd':
+        case 'tidal':
+        case 'qobuz':
+        case 'mg':
+        case 'mb':
         case 'wma':
-          this.state.fileFormat = {
-            url: this.state.trackType,
-            name: this.state.trackType
+        case 'qobuz':
+        case 'tidal':
+          currentFileFormat = {
+            url: currentTrackType,
+            name: currentTrackType
           };
           break;
         default:
@@ -324,14 +346,19 @@ class PlayerService {
     } else {
       this.state.fileFormat = null;
     }
+    if (!trackType) {
+      this.state.fileFormat = currentFileFormat;
+    } else {
+      return currentFileFormat;
+    }
+
   }
 
   registerListner() {
     this.socketService.on('pushState', (data) => {
       this.$log.debug('pushState', data);
       this.state = data;
-
-      this.state.disableUi = this.state.service === 'airplay' || this.state.service === 'analogin';
+      this.state.disableUi = this.state.disableUiControls || this.state.service === 'analogin';
 
       this.elapsedTime = this.state.seek;
       if (this.state.status === 'play') {
@@ -353,6 +380,8 @@ class PlayerService {
         this.elapsedTimeString = undefined;
         this.songLength = undefined;
       }
+      this.mute = data.mute;
+      this.disableVolumeControl = data.disableVolumeControl;
 
       //Forward emit event
       this.$rootScope.$broadcast('socket:pushState', this.state);

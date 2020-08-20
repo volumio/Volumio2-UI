@@ -1,7 +1,7 @@
 class BrowseController {
   constructor($scope, browseService, playQueueService, playlistService, socketService,
       modalService, $timeout, matchmediaService, $compile, $document, $rootScope, $log, playerService,
-      uiSettingsService) {
+      uiSettingsService, $state, themeManager, $stateParams) {
     'ngInject';
     this.$log = $log;
     this.browseService = browseService;
@@ -17,6 +17,9 @@ class BrowseController {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
     this.uiSettingsService = uiSettingsService;
+    this.themeManager = themeManager;
+    this.$stateParams = $stateParams;
+    this.isDedicatedSearchView = false;
 
     if (this.browseService.isBrowsing || this.browseService.isSearching) {
       this.renderBrowseTable();
@@ -40,13 +43,17 @@ class BrowseController {
     this.browseService.backHome();
   }
 
-  play(item) {
+  play(item, list, itemIndex) {
     if (this.browseService.currentFetchRequest && this.browseService.currentFetchRequest.uri === 'playlists') {
       this.playQueueService.playPlaylist(item);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else {
-      this.playQueueService.addPlay(item);
+      if (this.uiSettingsService.uiSettings.playMethod === 'single') {
+        this.playQueueService.addPlay(item);
+      } else {
+        this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+      }
     }
   }
 
@@ -66,11 +73,11 @@ class BrowseController {
     }
   }
 
-  clickListItem(item) {
+  clickListItem(item, list, itemIndex) {
     if (item.type !== 'song' && item.type !== 'webradio' && item.type !== 'mywebradio' && item.type !== 'cuesong' && item.type !== 'album' && item.type !== 'artist' && item.type !== 'cd' && item.type !== 'play-playlist') {
       this.fetchLibrary(item);
     } else if (item.type === 'song' || item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
-      this.play(item);
+      this.play(item, list, itemIndex);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
@@ -79,9 +86,11 @@ class BrowseController {
       this.playQueueService.playPlaylist({title: item.name});
     }
   }
+
   clickListItemByIndex(listIndex, itemIndex) {
     let item = this.browseService.lists[listIndex].items[itemIndex];
-    this.clickListItem(item);
+    let list = this.browseService.lists[listIndex].items;
+    this.clickListItem(item, list, itemIndex);
   }
 
   hamburgerMenuClick(button, listIndex, itemIndex) {
@@ -153,21 +162,33 @@ class BrowseController {
     this.socketService.emit('updateDb', item);
   }
 
+  deleteFolder(curUri, item) {
+    this.socketService.emit('deleteFolder', {'curUri':curUri, 'item':item});
+  }
+
   search() {
-    if (this.searchField.length >= 3) {
+    if (this.searchField && this.searchField.length >= 3) {
       this.browseService.isSearching = true;
       if (this.searchTimeoutHandler) {
         this.$timeout.cancel(this.searchTimeoutHandler);
       }
       this.searchTimeoutHandler = this.$timeout(() => {
-        let emitPayload = {
-          type: this.browseService.filterBy,
-          value: this.searchField,
-          plugin_name: this.browseService.currentFetchRequest.plugin_name,
-          plugin_type: this.browseService.currentFetchRequest.plugin_type,
-          uri: this.browseService.currentFetchRequest.uri,
-          service: this.browseService.currentFetchRequest.service
-        };
+        let emitPayload = {};
+        if (this.isDedicatedSearchView) {
+          emitPayload = {
+            type: this.browseService.filterBy,
+            value: this.searchField
+          };
+        } else {
+          emitPayload = {
+            type: this.browseService.filterBy,
+            value: this.searchField,
+            plugin_name: this.browseService.currentFetchRequest.plugin_name,
+            plugin_type: this.browseService.currentFetchRequest.plugin_type,
+            uri: this.browseService.currentFetchRequest.uri,
+            service: this.browseService.currentFetchRequest.service
+          };
+        }
         this.$log.debug('search', emitPayload);
         this.socketService.emit('search', emitPayload);
       }, 600, false);
@@ -175,6 +196,11 @@ class BrowseController {
       this.browseService.isSearching = false;
       this.browseService.lists = [];
     }
+  }
+
+  searchSubmit($event) {
+    $event.preventDefault(); // Search has been done on input change, so don't submit
+    this.$document[0].activeElement.blur(); // blur the input so that iOS keyboard closes
   }
 
   showHamburgerMenu(item) {
@@ -187,19 +213,21 @@ class BrowseController {
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'cuesong' ||
         item.type === 'remdisk' || item.type === 'cuefile' ||
-        item.type === 'folder-with-favourites';
+        item.type === 'folder-with-favourites' || item.type === 'internal-folder';
     return ret;
   }
   showAddToQueueButton(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
         item.type === 'mywebradio' || item.type === 'webradio' ||
         item.type === 'playlist' || item.type === 'remdisk' ||
-        item.type === 'cuefile' || item.type === 'folder-with-favourites';
+        item.type === 'cuefile' || item.type === 'folder-with-favourites' ||
+        item.type === 'internal-folder';
     return ret;
   }
   showAddToPlaylist(item) {
     let ret = item.type === 'folder' || item.type === 'song' ||
-    item.type === 'remdisk' || item.type === 'folder-with-favourites';
+    item.type === 'remdisk' || item.type === 'folder-with-favourites' ||
+    item.type === 'internal-folder';
     return ret;
   }
 
@@ -310,11 +338,19 @@ class BrowseController {
 
           this.table += `
             <div class="description breakMe"
-                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
-              <div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
-                ${(item.title) ? item.title : ''}
-              </div>
-              <div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">`;
+                if (item.tagImage) {
+                  this.table +=  `<img class="tag-image" src="${this.playerService.getAlbumart(item.tagImage)}" alt=""/>
+                    <div class="title tagImage">
+                      ${(item.title) ? item.title : ''}
+                    </div>`;
+                } else {
+                  this.table += `<div class="title ${(item.artist || item.album) ? '' : 'onlyTitle'}">
+                    ${(item.title) ? item.title : ''}
+                  </div>`;
+                }
+
+              this.table += `<div class="artist-album ${(item.artist || item.album) ? '' : 'onlyTitle'}">
                 ${(item.artist) ? item.artist : ''} ${(item.album) ? '- ' + item.album : ''}
               </div>
             </div>`;
@@ -359,6 +395,36 @@ class BrowseController {
     this.$scope.$on('$destroy', () => {
       this.$document[0].removeEventListener('keydown', bindedBackListener, false);
     });
+
+    this.$scope.$watch( () => this.$stateParams.isDedicatedSearch , (isDedicatedSearch) => {
+      if (isDedicatedSearch) {
+        this.setDedicatedSearch();
+      } else {
+        this.unsetDedicatedSearch();
+      }
+    }, true);
+  }
+
+  setDedicatedSearch(){
+    this.isDedicatedSearchView = true;
+    this.browseService.isSearching = true;
+    this.browseService.lists = [];
+    this.$timeout( function () {
+      document.querySelector('#search-input-form').focus();
+    },100 );
+  }
+
+  unsetDedicatedSearch(){
+    if (this.browseService.isSearching) {
+      this.isDedicatedSearchView = false;
+      this.browseService.isSearching = false;
+      if (!this.browseService.isBrowsing) {
+        this.browseService.lists = undefined;
+      } else if (this.browseService.lastBrowseLists) {
+        this.browseService.lists = this.browseService.lastBrowseLists;
+      }
+    }
+
   }
 
   backListener() {
@@ -387,6 +453,10 @@ class BrowseController {
         this.fetchLibrary({uri: this.browseService.breadcrumbs.uri}, true);
       }
     }
+  }
+
+  isVolumio3Theme(){
+    return this.themeManager.theme === 'volumio3';
   }
 }
 

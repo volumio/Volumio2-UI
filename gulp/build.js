@@ -135,6 +135,39 @@ gulp.task('replace-page-title', ['html'], function () {
   fs.writeFileSync('dist/index.html', index);
 });
 
+//Set static page title to remove FOUC
+gulp.task('meta-cards', ['html'], function () {
+  var fs = require('fs');
+  var metaCardsContent = '';
+  if (variantSelected === 'volumio') {
+    var websiteUrl = 'https://myvolumio.org';
+    if (gutil.env.env === 'development') {
+      websiteUrl = 'https://myvolumio-dev.firebaseapp.com';
+    }
+    var tagline = 'The audiophile music player designed and fine-tuned for high quality music playback';
+    var title = 'Volumio - The Audiophile Music Player';
+    var metaImageUrl = websiteUrl + '/app/assets-common/volumio-meta.jpg';
+    metaCardsContent = '<meta property="og:type" content="website">';
+    metaCardsContent  += '<meta property="og:url" content="'+ websiteUrl +'">';
+    metaCardsContent  += '<meta property="og:title" content="' + title +'">';
+    metaCardsContent  += '<meta property="og:image" content="' + metaImageUrl + '">';
+    metaCardsContent  += '<meta property="og:description" content="' + tagline +'">';
+    metaCardsContent  += '<meta property="og:site_name" content="Volumio">';
+    metaCardsContent  += '<meta property="og:locale" content="en_US">';
+    metaCardsContent  += '<meta property="og:image:width" content="1200">';
+    metaCardsContent  += '<meta property="og:image:height" content="630">';
+    metaCardsContent  += '<meta name="twitter:card" content="summary">';
+    metaCardsContent  += '<meta name="twitter:site" content="@volumio">';
+    metaCardsContent  += '<meta name="twitter:url" content="'+ websiteUrl +'">';
+    metaCardsContent  += '<meta name="twitter:title" content="' + title +'">';
+    metaCardsContent  += '<meta name="twitter:description" content="' + tagline +'">';
+    metaCardsContent  += '<meta name="twitter:image" content="' + metaImageUrl + '">';
+  }
+  var index = fs.readFileSync(`dist/index.html`, 'utf8');
+  index = index.replace('<meta-cards></meta-cards>', metaCardsContent);
+  fs.writeFileSync('dist/index.html', index);
+});
+
 gulp.task('static-pages', ['credits'], function () {
   var fileFilter = $.filter(function (file) {
     return file.stat.isFile();
@@ -148,15 +181,13 @@ gulp.task('static-pages', ['credits'], function () {
 });
 
 gulp.task('clean', function (done) {
-  $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
+  $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/'), path.join(conf.paths.src, '/app/themes/' + themeSelected + '/assets/variants/' + variantSelected + '/dist')], done);
 });
 
 gulp.task('credits', function (cb) {
   exec('node src/app/themes/' + themeSelected + '/scripts/credits.js ' + themeSelected + ' ' + variantSelected, function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
     cb(err);
   });
 })
 
-gulp.task('build-app', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title']);
+gulp.task('build-app', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title', 'meta-cards']);

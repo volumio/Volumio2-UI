@@ -1,0 +1,133 @@
+<div id="artist-page" class="browse__album-page">
+    <div class="album__header">
+        <div class="header__content">
+            <div class="header__content__inner">
+                <div class="header__main">
+                    <div
+                        ng-if="browse.browseService.info.albumart"
+                        class="header__image">
+                        <img
+                            class="header__image__img"
+                            ng-src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}"
+                            alt="">
+                    </div> <!-- /.header__image -->
+                    <div class="header__info">
+                        <div class="header__play">
+                            <button
+                                ng-click="browse.replaceAndPlay(browse.browseService.info)"
+                                class="header__play-btn">
+                                <i class="fa fa-play"></i>
+                            </button>
+                            <h1 class="header__artist">{{ browse.browseService.info.title || browse.browseService.info.album }}</h1>
+                        </div> <!-- /.header__play -->
+
+                        <div
+                            ng-bind-html="browse.currentItemMetas.story"
+                            class="artist-description">
+                        </div>
+                        <div
+                        ng-if="browse.currentItemMetas.story"
+                        class="artist-description__read-more">
+                            <button
+                                ng-click="browse.showMoreStory({'title':browse.browseService.info.album,'story':browse.currentItemMetas.story})"
+                                class="artist-description__read-more-btn">
+                                <span>
+                                    {{ 'BROWSER.READ_MORE' | translate }}...
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="header__meta">
+                            {{ browse.browseService.info.artist }}
+                            <span ng-if="browse.browseService.info.artist && browse.browseService.info.year">•</span>
+                            {{ browse.browseService.info.year }}
+                            <span ng-if="browse.browseService.info.artist && browse.browseService.info.duration">•</span>
+                            {{ browse.browseService.info.duration }}
+                            <span ng-if="browse.browseService.info.duration && browse.browseService.info.genre">•</span>
+                            {{ browse.browseService.info.genre }}
+                            <span ng-if="browse.browseService.info.genre && browse.browseService.info.trackType">•</span>
+                            <img
+                                ng-if="browse.browseService.info.fileFormat"
+                                ng-src="{{'/app/themes/volumio3/assets/format-icons/' +
+                                browse.browseService.info.fileFormat.url + '.svg'}}"
+                                class="filetype-description"
+                                alt="{{tbrowse.browseService.info.fileFormat.name}}" />
+                            <span ng-if="!browse.browseService.info.fileFormat">
+                              {{browse.browseService.info.trackType}}
+                            </span>
+                        </div>
+
+                    </div> <!-- /.header__info -->
+
+                    <div class="header__actions">
+                        <button
+                            ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.currentItemMetas.albumCredits"
+                            ng-click="browse.showAlbumCredits()"
+                            class="header__action-btn mb-4">
+                            <i class="fa fa-info-circle"></i>
+                            {{ 'BROWSER.ALBUM_CREDITS' | translate }}
+                        </button>
+                        <button
+                            ng-if="browse.browseService.info.album && browse.browseService.info.artist"
+                            ng-click="browse.getArtistInfo(browse.browseService.info)"
+                            class="header__action-btn header__action-btn__faded mb-1">
+                            <i class="fa fa-music"></i>
+                            {{ 'BROWSER.ARTIST_STORY' | translate }}
+                        </button>
+                        <!--
+                        <button
+                            ng-click="browse.addToFavorites($event, browse.mockAlbumPage.info)"
+                            ng-class="{ favorited: browse.mockAlbumPage.info.favorite }"
+                            class="header__action-btn header__action-btn__faded mb-1">
+                            <i class="fa fa-heart"></i>
+                            {{ browse.mockAlbumPage.info.favorite ? 'BROWSER.REMOVE_FROM_FAVOURITES' : 'BROWSER.ADD_TO_FAVOURITES' | translate }}
+                        </button>
+                        -->
+                        <button ng-click="browse.addToPlaylist(browse.browseService.info)" class="header__action-btn header__action-btn__faded mb-1"> <i class="fa fa-plus"></i> {{ 'BROWSER.ADD_TO_PLAYLIST' | translate }}</button>
+                        <button ng-click="browse.addToQueue(browse.browseService.info)" class="header__action-btn header__action-btn__faded"> <i class="fa fa-list"></i> {{ 'BROWSER.ADD_TO_QUEUE' | translate }}</button>
+                    </div>
+                </div> <!-- header__main -->
+            </div> <!-- header__content__inner -->
+        </div> <!-- /.header__content -->
+        <div
+            uib-dropdown
+            on-toggle="browse.toggledItem(open, $event)"
+            class="header__mobile-actions hamburgerMenu">
+            <button id="hamburgerMenuBtn-album-artist" class="ghost-btn action-btn" uib-dropdown-toggle>
+            <i class="fa fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu buttonsGroup align-to-right">
+                <li
+                    ng-if="browse.browseService.info.album && browse.browseService.info.artist && browse.currentItemMetas.albumCredits"
+                    ng-click="browse.showAlbumCredits()"
+                    title="{{'BROWSER.ALBUM_CREDITS' | translate}}">
+                    <a href><i class="fa fa-info-circle"></i><span translate="BROWSER.ALBUM_CREDITS"></span></a>
+                </li>
+                <li
+                    ng-if="browse.browseService.info.album && browse.browseService.info.artist"
+                    ng-click="browse.getArtistInfo(browse.browseService.info)"
+                    title="{{'BROWSER.ARTIST_STORY' | translate}}">
+                    <a href><i class="fa fa-music"></i><span translate="BROWSER.ARTIST_STORY"></span></a>
+                </li>
+                <li
+                    ng-click="browse.addToPlaylist(browse.browseService.info)"
+                    title="{{'BROWSER.ADD_TO_PLAYLIST' | translate}}">
+                    <a href><i class="fa fa-plus"></i><span translate="BROWSER.ADD_TO_PLAYLIST"></span></a>
+                </li>
+                <li
+                    ng-click="browse.addToQueue(browse.browseService.info)"
+                    title="{{'BROWSER.ADD_TO_QUEUE' | translate}}">
+                    <a href><i class="fa fa-list"></i><span translate="BROWSER.ADD_TO_QUEUE"></span></a></a>
+                </li>
+            </ul>
+        </div>
+
+        <div
+            class="header__backdrop">
+            <img
+                ng-src="{{browse.playerService.getAlbumart(browse.browseService.info.albumart)}}"
+                alt="">
+        </div>
+    </div> <!-- /.album__header -->
+
+</div> <!-- /. browse__browse-page -->

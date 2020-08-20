@@ -45,6 +45,23 @@
   overflow-x: hidden;
 }
 
+button.search-icon {
+    background: none;
+    border: 0;
+    outline: none;
+    &:focus{
+        outline: none;
+      }
+
+      position: absolute;
+      top: 23px;
+      right: 2.5%;
+      color: $theme-text-color;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+}
+
 .rowTitle {
   clear: both;
   font-size: 18px;
@@ -146,6 +163,7 @@
     img {
       width: 45px;
       height: 45px;
+      object-fit: cover;
     }
   }
 
@@ -164,6 +182,17 @@
     &.onlyTitle {
       margin: 10px 0;
     }
+    &.tagImage {
+      max-width: 85%;
+      display: inline-block;
+    }
+  }
+
+  img.tag-image {
+    height: 20px;
+    max-width: 10%;
+    vertical-align: top;
+    margin-right: 4px;
   }
 
   .artist-album {
@@ -173,6 +202,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    clear: both;
     &.onlyTitle {
       display: none;
     }
@@ -265,12 +295,19 @@
           margin: 0;
           height: 42px;
         }
+        &.tagImage {
+          max-width: 85%;
+          margin-right: 15%;
+          display: block;
+        }
       }
 
-      .artist-album {
-        &.onlyTitle {
-          // display: block;
-        }
+      img.tag-image {
+        height: 20px;
+        vertical-align: top;
+        float: right;
+        display: block;
+        margin-right: 0px;
       }
 
       .description {
@@ -289,4 +326,12 @@
     }
   }
   //End grid overrides
+}
+
+.title-tag.ng-binding {
+  height: 42px;
+}
+
+.title.ng-binding {
+  height: 42px;
 }

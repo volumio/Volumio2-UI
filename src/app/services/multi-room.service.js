@@ -1,9 +1,10 @@
 class MultiRoomService {
-  constructor($rootScope, socketService, mockService, $log) {
+  constructor($rootScope, socketService, mockService, $log, themeManager) {
     'ngInject';
     this.socketService = socketService;
     this.mockService = mockService;
     this.$log = $log;
+    this.themeManager = themeManager;
     // this.multiRoomDevices = mockService.get('multiRoomDevices');
     // this.$log.debug(this.multiRoomDevices);
     // this.devices = this.mapDevices(this.multiRoomDevices);
@@ -91,6 +92,10 @@ class MultiRoomService {
   initService() {
     this.socketService.emit('getMultiRoomDevices');
     this.socketService.emit('getMultiroom');
+  }
+
+  isVolumio3Theme(){
+    return this.themeManager.theme === 'volumio3';
   }
 
 }

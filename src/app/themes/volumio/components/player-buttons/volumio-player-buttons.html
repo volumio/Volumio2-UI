@@ -1,17 +1,35 @@
 <div id="playerButtons">
   <button
+      ng-if="!playerButtons.playerService.state.enableSkip"
       ng-click="playerButtons.playerService.prev()"
       class="btn btn-link"
       title="{{'BROWSER.PREVIOUS_TRACK' | translate}}"
       ng-disabled="playerButtons.playerService.state.disableUi">
     <i class="fa fa-step-backward"></i>
   </button>
+  <button
+      ng-if="playerButtons.playerService.state.enableSkip"
+      ng-click="playerButtons.playerService.skipBackwards()"
+      class="btn btn-link"
+      title="{{'BROWSER.SKIP_BACKWARDS' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
+    <i class="fa fa-backward"> 15</i>
+  </button>
 
   <div class="playPauseBtnWrapper">
     <div class="playPauseBtnGreyWrapper">
       <button
-          ng-if="playerButtons.playerService.state.status !== 'play'"
+          ng-if="playerButtons.playerService.state.status !== 'play' && !playerButtons.playerService.state.volatile"
           ng-click="playerButtons.playerService.play()"
+          class="btn btn-link playPause play"
+          title="{{'BROWSER.PLAY' | translate}}"
+          ng-disabled="playerButtons.playerService.state.disableUi">
+        <i class="fa fa-play"></i>
+      </button>
+
+      <button
+          ng-if="playerButtons.playerService.state.status !== 'play' && playerButtons.playerService.state.volatile"
+          ng-click="playerButtons.playerService.volatilePlay()"
           class="btn btn-link playPause play"
           title="{{'BROWSER.PLAY' | translate}}"
           ng-disabled="playerButtons.playerService.state.disableUi">
@@ -39,10 +57,19 @@
     </div>
   </div>
   <button
+      ng-if="!playerButtons.playerService.state.enableSkip"
       ng-click="playerButtons.playerService.next()"
       class="btn btn-link"
       title="{{'BROWSER.NEXT_TRACK' | translate}}"
       ng-disabled="playerButtons.playerService.state.disableUi">
     <i class="fa fa-step-forward"></i>
+  </button>
+  <button
+      ng-if="playerButtons.playerService.state.enableSkip"
+      ng-click="playerButtons.playerService.skipForward()"
+      class="btn btn-link"
+      title="{{'BROWSER.SKIP_FORWARD' | translate}}"
+      ng-disabled="playerButtons.playerService.state.disableUi">
+    15 <i class="fa fa-forward"></i>
   </button>
 </div>

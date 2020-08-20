@@ -83,9 +83,7 @@ class PlayQueueController {
           this.socketService.emit('moveQueue', emitPayload);
         },
         onStart: (evt) => {
-          console.log(evt.oldIndex);
           let sortingElement = this.$document[0].getElementById(`itemQueue-${evt.oldIndex}`);
-          console.log(sortingElement);
           sortingElement.classList.add('sorting');
         },
         animation: 250,

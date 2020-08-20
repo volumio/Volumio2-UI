@@ -1,0 +1,18 @@
+.my-profile{
+   
+  .user-data{
+    h3.user-title{ 
+      font-size: x-large;
+      padding-bottom: 8px;
+      border-bottom: 1px solid white;
+    }
+    h4.user-username{
+      font-size: large;
+      color: #5cb85c;
+    }
+    p.user-details{
+      margin: 32px auto;
+      font-size: larger;
+    }
+  }
+}

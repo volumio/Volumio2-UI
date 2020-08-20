@@ -7,5 +7,8 @@
     <h4 ng-if="false" class="sectionDescription"></h4>
     <span translate="COMMON.SYSTEM_VERSION"></span>: {{sv.systemVersion.systemversion}}
     <span translate="COMMON.RELEASED"></span>: {{sv.systemVersion.builddate}}
+    <h4 ng-if="false" class="sectionDescription"></h4>
+    <div ng-if="sv.systemVersion.additionalSVInfo">{{sv.systemVersion.additionalSVInfo}}
+    </div>
   </div>
 </div>

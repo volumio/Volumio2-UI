@@ -1,0 +1,17 @@
+#modalPlaylist {
+  button {
+    margin: 0px 0px 0px 5px;
+  }
+  input {
+    width: 70%;
+  }
+  .list-group {
+    margin-top: 15px;
+  }
+  li {
+    cursor: pointer;
+    &:hover {
+      background: $brand-primary;
+    }
+  }
+}

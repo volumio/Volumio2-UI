@@ -1,0 +1,287 @@
+<div class="box">
+  <div class="boxHeader d-flex align-items-center justify-content-between">
+    <div class="title">
+      <!-- <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2> -->
+      <h2>{{ 'MYVOLUMIO.SIGNUP_TO' | translate }}</h2>
+    </div>
+  </div>
+  <div id="authSignupPlugin" class="panel panel-default my-volumio__panel">
+
+    <div ng-class="MyVolumioSignupNewController.$scope.step === 1 ? 'show' : 'hide'" class="panel-body">
+
+      <div ng-show="MyVolumioSignupNewController.user == null">
+
+        <div class="omb_login">
+
+          <!-- <div class="row mb-4">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+              <div class="my-volumio__login-or"><span class="my-volumio__login-or__line"></span><span class="my-volumio__login-or__text">or</span><span class="my-volumio__login-or__line"></span></div>
+            </div>
+          </div> -->
+
+          <div class="d-flex justify-content-end">
+            <a ng-if="step === 1" ng-click="MyVolumioSignupNewController.goToLogin()" class="btn btn-outline pull-right">
+              <i class="fa fa-user mr-2"></i>
+              <span translate="MYVOLUMIO.LOGIN"></span>
+            </a>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+              <div class="my-volumio__info-card my-volumio__border-round">
+                <span class="my-volumio__info-card__description">{{ 'MYVOLUMIO.MY_VOLUMIO_SHORTDESC' | translate }}.
+                  <a href="https://volumio.org/myvolumio" target="_blank">{{ 'MYVOLUMIO.MY_VOLUMIO_MORE_INFO' | translate }}</a>
+                </span>
+                <img alt='MyVolumio Premium Icon' ng-src="{{'app/assets-common/myvolumio-premium-icon.svg'}}"/>
+              </div>
+            </div>
+          </div>
+
+          <div ng-if="MyVolumioSignupNewController.isSocialEnabled()">
+            <div class="row omb_row-sm-offset-3 omb_socialButtons">
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="MyVolumioSignupNewController.loginWithFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                  <i class="fa fa-facebook"> </i>
+                  <span translate="MYVOLUMIO.SIGNUP_WITH" class="hidden-xs hidden-sm hidden-md hidden-lg"></span>
+                  <span class="hidden-xs hidden-sm"> Facebook</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="MyVolumioSignupNewController.loginWithGoogle()" class="btn btn-lg btn-block omb_btn-google">
+                  <i class="fa fa-google"> </i>
+                  <span translate="MYVOLUMIO.SIGNUP_WITH" class="hidden-xs hidden-sm hidden-md hidden-lg"></span>
+                  <span class="hidden-xs hidden-sm"> Google</span>
+                </a>
+              </div>
+              <div class="col-xs-8 col-sm-4">
+                <a ng-click="MyVolumioSignupNewController.loginWithGithub()" class="btn btn-lg btn-block omb_btn-github">
+                  <i class="fa fa-github"> </i>
+                  <span translate="MYVOLUMIO.SIGNUP_WITH" class="hidden-xs hidden-sm hidden-md hidden-lg"></span>
+                  <span class="hidden-xs hidden-sm"> Github</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="row omb_row-sm-offset-3 omb_loginOr">
+              <div class="col-xs-24 col-sm-12">
+                <hr class="omb_hrOr">
+                <span class="omb_spanOr" translate="MYVOLUMIO.OR"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+              <form role="form" ng-submit="MyVolumioSignupNewController.submitForm()">
+                <div class="row my-volumio__row-gutter">
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group my-volumio__form-group">
+                      <input type="text" ng-model="MyVolumioSignupNewController.firstName" id="first_name" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{'MYVOLUMIO.FIRST_NAME' | translate}}" tabindex="1" required pattern=".{2,}">
+                    </div>
+                  </div>
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group my-volumio__form-group">
+                      <input type="text" ng-model="MyVolumioSignupNewController.lastName" id="last_name" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{'MYVOLUMIO.LAST_NAME' | translate}}" tabindex="2" required pattern=".{2,}">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group my-volumio__form-group">
+                  <input type="email" ng-model="MyVolumioSignupNewController.email" id="email" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{'MYVOLUMIO.EMAIL_ADDRESS' | translate}}" required tabindex="4">
+                </div>
+                <div class="row my-volumio__row-gutter">
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group my-volumio__form-group">
+                      <input type="password" ng-model="MyVolumioSignupNewController.password" id="password" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{'MYVOLUMIO.PASSWORD' | translate}}" tabindex="5" required pattern=".{8,}">
+                    </div>
+                  </div>
+                  <div class="col-xs-24 col-sm-12 col-md-12">
+                    <div class="form-group my-volumio__form-group">
+                      <input type="password" ng-model="MyVolumioSignupNewController.passwordConfirm" id="password_confirmation" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{'MYVOLUMIO.CONFIRM_PASSWORD' | translate}}" tabindex="6" required pattern=".{8,}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-xs-22 col-sm-22 col-md-22 d-flex align-items-start">
+                    <div class="button-checkbox" ng-click="MyVolumioSignupNewController.clickAgreementButton()">
+                      <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden my-volumio__checkbox" value="1" ng-model="MyVolumioSignupNewController.form.termsCheckbox" ng-true-value="true" ng-false-value="false">
+                      <label class="my-volumio__fake-checkbox" tabindex="7" for="t_and_c">
+                        <div class="my-volumio__fake-checkbox__tick">
+                          <img src="app/assets-common/fake-checkbox-tick--small.svg" alt="Tick">
+                        </div>
+                      </label>
+                    </div>
+                    <div>
+                      <span translate="MYVOLUMIO.TOS_AGREE"> </span><strong class="label label-primary"> <a href="#" ng-click="MyVolumioSignupNewController.clickShowTerms()"> MyVolumio <span translate="MYVOLUMIO.TOS"></span></a></strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-10">
+                  <div class="col-xs-22 col-sm-22 col-md-22 d-flex align-items-start">
+                    <div class="button-checkbox" ng-click="MyVolumioSignupNewController.clickMarketingConsentButton()">
+                      <input type="checkbox" name="marketingConsent" id="marketingConsent" class="hidden my-volumio__checkbox" value="1" ng-model="MyVolumioSignupNewController.form.marketingConsent" ng-true-value="true" ng-false-value="false">
+                      <label class="my-volumio__fake-checkbox" tabindex="7" for="marketingConsent">
+                        <div class="my-volumio__fake-checkbox__tick">
+                          <img src="app/assets-common/fake-checkbox-tick--small.svg" alt="Tick">
+                        </div>
+                      </label>
+                    </div>
+                    <div>
+                      <span translate="MYVOLUMIO.KEEP_ME_UPDATED_VIA_MAIL"> </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-10">
+                  <div class="col-xs-24 col-md-24">
+                    <!-- <input type="submit" value="{{'MYVOLUMIO.SIGNUP' | translate}}" class="btn my-volumio__btn-primary my-volumio__border-round btn-block btn-lg" tabindex="7"> -->
+                    <button
+                      ng-click="MyVolumioSignupNewController.validate()"
+                      class="btn my-volumio__btn-primary my-volumio__border-round btn-block btn-lg"
+                      ng-class="{ disabled: MyVolumioSignupNewController.signUpInitiated }"
+                      tabindex="7">
+                      <!-- {{'MYVOLUMIO.SIGNUP' | translate}} -->
+                      <!-- {{ MyVolumioSignupNewController.signUpInitiated ? 'CREATING_ACCOUNT' : 'MYVOLUMIO.SIGNUP' | translate }} -->
+                      {{ MyVolumioSignupNewController.signUpInitiated ? 'MYVOLUMIO.CREATING_ACCOUNT' : 'MYVOLUMIO.SIGNUP' | translate }}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="" ng-if="MyVolumioSignupNewController.user != null">
+          <my-volumio-already-logged>
+          </my-volumio-already-logged>
+        </div>
+
+      </div>
+
+    </div>
+  </div> <!-- panel -->
+
+  <div ng-class="MyVolumioSignupNewController.$scope.step === 2 ? 'show' : 'hide'"  id="authSignupPlugin" class="panel panel-default my-volumio__panel">
+
+    <div class="my-volumio__panel__header d-flex align-items-center justify-content-between">
+      <span>&nbsp;</span>
+      <button ng-click="MyVolumioSignupNewController.handlePayment()" class="btn my-volumio__btn-primary my-volumio__border-round" tabindex="7">
+        {{ 'MYVOLUMIO.FINISH_SIGNUP' | translate }}
+      </button>
+    </div>
+
+    <div class="panel-body">
+
+      <div ng-show="MyVolumioSignupNewController.user == null">
+
+        <div class="row">
+          <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+            <div class="my-volumio__toggle-header">
+              <div class="toggle-header__space">
+                <h3>{{ 'MYVOLUMIO.CHOOSE_PLAN' | translate }}</h3>
+                <p>{{ 'MYVOLUMIO.SAVE_20' | translate }}</p>
+              </div>
+              <div class="my-volumio__toggle">
+                <input ng-model="MyVolumioSignupNewController.selectedPlanDuration" class="toggle__label-radio" checked hidden type="radio" name="planPeriod" id="yearly" value="yearly">
+                <input ng-model="MyVolumioSignupNewController.selectedPlanDuration" class="toggle__label-radio" hidden type="radio" name="planPeriod" id="monthly" value="monthly">
+                <div class="toggle__labels">
+                  <label for="yearly" class="toggle__label-text">
+                    {{ 'MYVOLUMIO.YEARLY' | translate }}
+                  </label>
+                  <label for="monthly" class="toggle__label-text">
+                    {{ 'MYVOLUMIO.MONTHLY' | translate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- col- -->
+        </div> <!-- row -->
+
+        <div class="row">
+          <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+            <div class="my-volumio__info-card my-volumio__border-round">
+              <p class="my-volumio__info-card__description">{{ 'MYVOLUMIO.SUPPORT_MYVOLUMIO' | translate }}</p>
+              <img alt='MyVolumio Premium Icon' ng-src="{{'app/assets-common/myvolumio-support.svg'}}"/>
+            </div>
+          </div>
+        </div>
+        <div class="my-volumio__plan-grid">
+
+          <label ng-repeat="product in MyVolumioSignupNewController.products" for="{{ product.plan }}" class="plan__item focus__helper round" tabindex="7">
+            <input
+              hidden
+              class="plan__checkbox"
+              type="radio"
+              name="selectedPlan"
+              value="{{ product.plan }}"
+              ng-model="model.selectedProduct"
+              ng-change="MyVolumioSignupNewController.selectProduct(product.plan)"
+              id="{{ product.plan }}"
+              ng-checked="{{ product.plan === 'virtuoso' }}">
+            <div class="plan__card">
+              <div class="plan__title d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <div class="plan__fake-radio mr-4">
+                    <img class="plan__fake-radio__tick" src="app/assets-common/fake-checkbox-tick--big.svg" alt="Tick">
+                  </div>
+                  <span>{{ product.name }}</span>
+                </div>
+                <div class="flex-spacer mr-2"></div>
+                <img ng-if="product.plan !== 'free'" alt='MyVolumio Premium Icon' ng-src="{{'app/assets-common/myvolumio-' + product.plan + '-white-32.svg'}}"/>
+              </div>
+              <div class="plan__pricing">
+                <div class="plan__trial">
+                  <span ng-if="product.prices[MyVolumioSignupNewController.selectedPlanDuration].trial && !MyVolumioSignupNewController.getTrialOverride()">
+                    {{ product.prices[MyVolumioSignupNewController.selectedPlanDuration].trial.trialDays }} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}
+                  </span>&nbsp;
+                </div>
+                <div class="plan__price">{{ product.prices[MyVolumioSignupNewController.selectedPlanDuration].amount }} €</div>
+                <div class="plan__period" ng-if="product.plan !== 'free'">
+                  {{ 'MYVOLUMIO.'+MyVolumioSignupNewController.selectedPlanDuration + '_PER' | uppercase | translate | lowercase }}
+                </div>
+                <div class="plan__period" ng-if="product.plan === 'free'">
+                  forever
+                </div>
+              </div>
+              <div class="plan__features">
+                <div ng-repeat="feature in product.features track by $index" ng-if="feature !== 'EMPTY'" class="plan__feature">
+                  {{ feature | translate }}
+                </div>
+              </div>
+            </div>
+          </label>
+
+        </div> <!-- my-volumio__plan-grid -->
+
+        <div class="row mb-10">
+          <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+            <div class="collapse__panel mb-4">
+              <input class="collapse__checkbox" hidden type="checkbox" id="collapsePanel">
+              <label for="collapsePanel" class="collapse__panel__header d-flex align-items-center focus__helper" tabindex="7">
+                <img class="collapse__indicator d-block mr-2" src="app/assets-common/collapse-indicator.svg" alt="Collapse">
+                {{ 'MYVOLUMIO.HAVE_COUPON_CODE' | translate }}
+              </label>
+              <div class="collapse__panel__content">
+                <div class="form-group my-volumio__form-group">
+                  <input ng-model="MyVolumioSignupNewController.couponCode" ng-change="MyVolumioSignupNewController.onCouponCodeChange(MyVolumioSignupNewController.couponCode)" type="text" id="coupon" class="form-control input-lg my-volumio__border-round my-volumio__text-input" placeholder="{{ 'MYVOLUMIO.COUPON_CODE' | translate }}" tabindex="4">
+                </div>
+              </div>
+            </div>
+
+            <!-- <input type="submit" value="{{'MYVOLUMIO.SIGNUP' | translate}}" class="btn my-volumio__btn-primary my-volumio__border-round btn-block btn-lg" tabindex="7"> -->
+            <button
+              ng-click="MyVolumioSignupNewController.handlePayment()"
+              class="btn my-volumio__btn-primary my-volumio__border-round btn-block btn-lg"
+              tabindex="7">
+              <!-- {{'MYVOLUMIO.SIGNUP' | translate}} -->
+              {{ 'MYVOLUMIO.FINISH_SIGNUP' | translate }}
+            </button>
+          </div>
+        </div> <!-- /row -->
+
+      </div>
+    </div>
+  </div> <!-- panel -->
+
+</div>

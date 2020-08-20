@@ -17,7 +17,7 @@
                   ng-src="{{networkStatus.$rootScope.assetsUrl + '/wifi-icons/' + network.signal + '.png'}}" alt="signal-{{wifi.signal}}" class="signal-icon"></span> {{::network.ssid}}</li>
             <li><span> <span translate="NETWORK.IP_ADDRESS"></span>:</span> {{::network.ip}}</li>
             <li ng-if="::network.speed"><span> <span translate="NETWORK.SPEED"></span>:</span>  {{::network.speed}}</li>
-            <li><span> <span translate="NETWORK.ONLINE"></span>:</span>
+            <li ng-if="network.online !== undefined"><span> <span translate="NETWORK.ONLINE"></span>:</span>
               <i class="fa fa-check true" ng-if="network.online"></i>
               <i class="fa fa-remove false" ng-if="!network.online"></i>
             </li>
