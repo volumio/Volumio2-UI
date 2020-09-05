@@ -50,14 +50,6 @@
               <span translate="PLUGINS.INSTALL"></span>
             </button>
             <button
-                ng-if="plugin.updateAvailable"
-                ng-click="pluginManager.updatePlugin(plugin)"
-                type="button"
-                class="btn btn-info pull-right marginLeft"
-                title="{{'PLUGINS.UPDATE' | translate}}">
-              <span translate="PLUGINS.UPDATE"></span>
-            </button>
-            <button
                 ng-if="plugin.installed"
                 ng-click="pluginManager.unInstallPlugin(plugin)"
                 type="button"
