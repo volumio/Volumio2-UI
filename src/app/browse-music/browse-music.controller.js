@@ -525,7 +525,11 @@ class BrowseMusicController {
   }
 
   play(item) {
-    return this.playQueueService.addPlay(item);
+    if (this.browseService.currentFetchRequest.uri === 'playlists') {
+      this.playQueueService.replaceAndPlay(item);
+    } else {
+      return this.playQueueService.addPlay(item);
+    }
   }
 
   addToQueue(item) {
