@@ -246,7 +246,7 @@
     "OFF": "Kapalı"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Saat alarmını Kullanmak için, önce en az bir Oynatma Listesi oluşturmalısınız"
+    "CREATE_PLAYLIST_FIRST": "Saat alarmını Kullanmak için, önce en az bir Oynatma Listesi oluşturmalısınız"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Grupları düzenle",

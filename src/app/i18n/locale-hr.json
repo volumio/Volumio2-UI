@@ -246,7 +246,7 @@
     "OFF": "Isključeno"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Za upotrebu budilice prvo morate stvoriti barem jedan popis za reprodukciju"
+    "CREATE_PLAYLIST_FIRST": "Za upotrebu budilice prvo morate stvoriti barem jedan popis za reprodukciju"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Uređivanje grupa",

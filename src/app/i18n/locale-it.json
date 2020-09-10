@@ -247,7 +247,7 @@
     "OFF": "Off"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Per usare la funzione sveglia, è necessario creare almeno una Playlist"
+    "CREATE_PLAYLIST_FIRST": "Per usare la funzione sveglia, è necessario creare almeno una Playlist"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Modifica gruppi",

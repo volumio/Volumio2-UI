@@ -217,7 +217,7 @@
     "OFF": "Off"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Pro použití budíku, musíte vytvořit alespoň jeden seznam skladeb."
+    "CREATE_PLAYLIST_FIRST": "Pro použití budíku, musíte vytvořit alespoň jeden seznam skladeb."
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Změnit skupiny",

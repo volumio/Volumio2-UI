@@ -4,7 +4,7 @@
 <div class="modal-body">
   <div
       ng-if="!modal.playlistService.playlists || modal.playlistService.playlists.length === 0"
-      translate="ALARM.CRATE_PLAYLIST_FIRST">
+      translate="ALARM.CREATE_PLAYLIST_FIRST">
   </div>
 
   <div
@@ -17,6 +17,17 @@
           minute-step="1"
           show-meridian="modal.showMeridian">
       </uib-timepicker>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="btn-group">
+        <label class="btn btn-primary" ng-model="alarm.monday" uib-btn-checkbox>{{'ALARM.MONDAY' | translate}}</label>
+        <label class="btn btn-primary" ng-model="alarm.tuesday" uib-btn-checkbox>{{'ALARM.TUESDAY' | translate}}</label>
+        <label class="btn btn-primary" ng-model="alarm.wednesday" uib-btn-checkbox>{{'ALARM.WEDNESDAY' | translate}}</label>
+        <label class="btn btn-primary" ng-model="alarm.thursday" uib-btn-checkbox>{{'ALARM.THURSDAY' | translate}}</label>
+        <label class="btn btn-primary" ng-model="alarm.friday" uib-btn-checkbox>{{'ALARM.FRIDAY' | translate}}</label>
+        <label class="btn btn-primary" ng-model="alarm.saturday" uib-btn-checkbox>{{'ALARM.SATURDAY' | translate}}</label>
+        <label class="btn btn-primary" ng-model="alarm.sunday" uib-btn-checkbox>{{'ALARM.SUNDAY' | translate}}</label>
+      </div>
     </div>
     <div class="col-xs-12 col-sm-6 pull-down">
       <input

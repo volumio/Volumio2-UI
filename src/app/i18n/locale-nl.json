@@ -221,7 +221,7 @@
     "OFF":"Uit"
   },
   "ALARM":{
-    "CRATE_PLAYLIST_FIRST":"Om de wekker te gebruiken is het noodzakelijk om eerst een afspeellijst te maken"
+    "CREATE_PLAYLIST_FIRST":"Om de wekker te gebruiken is het noodzakelijk om eerst een afspeellijst te maken"
   },
   "MULTIDEVICE":{
     "EDIT_GROUPS":"Bewerk groepen",

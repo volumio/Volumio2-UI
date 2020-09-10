@@ -248,7 +248,7 @@
     "OFF": "关闭"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "为了使用闹铃，您必须首先创建一个播放列表"
+    "CREATE_PLAYLIST_FIRST": "为了使用闹铃，您必须首先创建一个播放列表"
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "编辑群组",

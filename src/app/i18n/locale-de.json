@@ -251,7 +251,7 @@
     "OFF": "Aus"
   },
   "ALARM": {
-    "CRATE_PLAYLIST_FIRST": "Um die Weckfunktion nutzen zu können, muss mindestens eine Wiedergabeliste angelegt sein."
+    "CREATE_PLAYLIST_FIRST": "Um die Weckfunktion nutzen zu können, muss mindestens eine Wiedergabeliste angelegt sein."
   },
   "MULTIDEVICE": {
     "EDIT_GROUPS": "Gruppen bearbeiten",
