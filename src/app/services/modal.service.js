@@ -100,12 +100,6 @@ class ModalService {
       modal.close();
     });
   }
-
-  getAllModals(){
-    return this.openedModals;
-  }
-
-
   initService() {}
 }
 
