@@ -520,7 +520,7 @@ class BrowseMusicController {
       let list = this.browseService.lists[listIndex].items;
       this.playItemsList(item, list, itemIndex);
     } else {
-      this.replaceAndPlay(item);
+      this.playItemsList(item);
     }
   }
 
