@@ -19,6 +19,10 @@ class MyVolumioWelcomeController {
 
     init() {
     }
+
+    goToAuthPage () {
+        this.$state.go('myvolumio.profile');
+    }
 }
 
 export default MyVolumioWelcomeController;
