@@ -132,6 +132,12 @@ class MyVolumioCardController {
     this.tooltipShowing = false;
   }
 
+  /* Remove this */
+
+  goToLanding() {
+    this.$state.go('myvolumio.welcome');
+  }
+
 }
 
 export default MyVolumioCardDirective;

@@ -10,6 +10,7 @@ bower_components/
 .sass-cache/
 .idea/
 .tmp/
+.~
 load-variant.scss
 /nbproject/
 .DS_Store

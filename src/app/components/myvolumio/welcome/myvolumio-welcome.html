@@ -1,0 +1,121 @@
+<div class="box">
+    <div class="boxHeader d-flex align-items-center justify-content-between">
+      <div class="title">
+        <h2>{{ 'MYVOLUMIO.MY_VOLUMIO' | translate }}</h2>
+      </div>
+    </div>
+</div>
+
+<div id="authSignupPlugin" class="panel panel-default my-volumio__panel">
+
+    <div class="panel-body body-landing welcome__panel">
+
+        <div class="row landing__welcome-section">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h1 class="text-center mb-6">{{ 'MYVOLUMIO.WELCOME' | translate }}!</h1>
+                <p class="text-center mb-10">{{ 'MYVOLUMIO.LANDING_REFERRAL_WELCOME_TEXT1' | translate }}</p>
+                <p class="text-center mb-10">{{ 'MYVOLUMIO.LANDING_REFERRAL_WELCOME_TEXT2' | translate }}</p>
+
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <button ng-click="myVolumioWelcomeController.goToAuthPage()" class="btn my-volumio__btn-primary my-volumio__border-round">
+                            {{ 'MYVOLUMIO.CREATE_YOUR_ACCOUNT' | translate }}
+                        </button>
+                        <p class="small caption">{{ 'MYVOLUMIO.ITS_FREE' | translate }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row mb-10">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3 class="text-center mb-6">{{ 'MYVOLUMIO.LANDING_WHAT_IS_MYVOLUMIO' | translate }}</h3>
+                <p class="text-center mb-10">{{ 'MYVOLUMIO.LANDING_SHORT_INTRO' | translate }}</p>
+                <div class="row">
+                    <div class="col-xs-24 col-sm-8 text-center mb-line--small">
+                        <img class="mb-4" ng-src="{{'app/assets-common/landing-badge-1.svg'}}" alt="badge">
+                        <h4 class="bold">{{ 'PLUGINS.INSTALL' | translate }}</h4>
+                        <p class="small caption">{{ 'MYVOLUMIO.LANDING_INSTALL_TEXT' | translate }}</p>
+                        <a class="small" href="https://volumio.org/get-started/" target="_blank" rel="noopener">{{ 'MYVOLUMIO.MORE_INFO' | translate }}</a>
+                    </div>
+                    <div class="col-xs-24 col-sm-8 text-center mb-line--small">
+                        <img class="mb-4" ng-src="{{'app/assets-common/landing-badge-2.svg'}}" alt="badge">
+                        <h4 class="bold">{{ 'NETWORK.CONNECT' | translate }}</h4>
+                        <p class="small caption">{{ 'MYVOLUMIO.LANDING_CONNECT_TEXT' | translate }}</p>
+                    </div>
+                    <div class="col-xs-24 col-sm-8 text-center">
+                        <img class="mb-4" ng-src="{{'app/assets-common/landing-badge-3.svg'}}" alt="badge">
+                        <h4 class="bold">{{ 'MYVOLUMIO.CONTROL' | translate }}</h4>
+                        <p class="small caption"> {{ 'MYVOLUMIO.LANDING_CONTROL_TEXT' | translate }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- /.row -->
+
+        <div class="row mb-10">
+            <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
+                <h3 class="text-center mb-6">{{ 'MYVOLUMIO.LANDING_FEATURES_TITLE' | translate }}</h3>
+                <p class="text-center mb-10">{{ 'MYVOLUMIO.LANDING_FEATURES_TEXT' | translate }}</p>
+            </div>
+        </div> <!-- /.row -->
+
+        <div class="row">
+            <div class="col-xs-24 col-sm-22 col-md-20 col-sm-offset-1 col-md-offset-2">
+                <div class="myvolumio__feature-block">
+                    <div class="feature__content">
+                        <p class="bold">{{ 'MYVOLUMIO.LANDING_FEATURE_INTEGRATIONS_TITLE' | translate }}</p>
+                        <p class="small">{{ 'MYVOLUMIO.LANDING_FEATURE_INTEGRATIONS_TEXT' | translate }}</p>
+                    </div>
+                    <div class="feature__image">
+                        <img ng-src="{{'app/assets-common/myvolumio-landing-feature-integrations.jpg'}}" alt="integrations icons">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-24 col-sm-22 col-md-20 col-sm-offset-1 col-md-offset-2">
+                <div class="myvolumio__feature-block">
+                    <div class="feature__content">
+                        <p class="bold">{{ 'MYVOLUMIO.LANDING_FEATURE_DISCOVERY_TITLE' | translate }}</p>
+                        <p class="small">{{ 'MYVOLUMIO.LANDING_FEATURE_DISCOVERY_TEXT' | translate }}</p>
+                    </div>
+                    <div class="feature__image">
+                        <img ng-src="{{'app/assets-common/myvolumio-landing-feature-discovery.jpg'}}" alt="Volumio music player user interface">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-24 col-sm-22 col-md-20 col-sm-offset-1 col-md-offset-2">
+                <div class="myvolumio__feature-block">
+                    <div class="feature__content">
+                        <p class="bold">{{ 'MYVOLUMIO.LANDING_FEATURE_BACKUP_TITLE' | translate }}</p>
+                        <p class="small">{{ 'MYVOLUMIO.LANDING_FEATURE_BACKUP_TEXT' | translate }}</p>
+                    </div>
+                    <div class="feature__image">
+                        <img ng-src="{{'app/assets-common/myvolumio-landing-feature-backup.jpg'}}" alt="devices: a smartphone, laptop and a tablet with the volumios user interface">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-24 col-sm-22 col-md-20 col-sm-offset-1 col-md-offset-2">
+                <div class="myvolumio__feature-block">
+                    <div class="feature__content">
+                        <p class="bold">{{ 'MYVOLUMIO.LANDING_FEATURE_CD_TITLE' | translate }}</p>
+                        <p class="small">{{ 'MYVOLUMIO.LANDING_FEATURE_CD_TEXT' | translate }}</p>
+                    </div>
+                    <div class="feature__image">
+                        <img ng-src="{{'app/assets-common/myvolumio-landing-feature-cd.jpg'}}" alt="stack of CDs">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
