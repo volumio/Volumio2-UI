@@ -13,6 +13,17 @@ class CloudService{
       return this._isOnCloud;
     }
   }
+
+  get isCloudReferralLink() {
+    let referralUrlPart = '/redirect?grsf=';
+    if (this.$window.location.href.indexOf('myvolumio.org' + referralUrlPart) !== -1 ||
+      this.$window.location.href.indexOf('myvolumio-dev.firebaseapp.com' + referralUrlPart) !== -1 ||
+      this.$window.location.href.indexOf('localhost:3000' + referralUrlPart) !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 export default CloudService;
