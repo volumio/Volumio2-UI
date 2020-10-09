@@ -33,6 +33,13 @@ class BrowseMusicController {
     this.loadingCredit = {};
     this.hideInfoHeader = false;
     this.creditRequestOptions = {"timeout":7000};
+    this.SHOW_AZ_SCROLL_LIMIT = 50;
+    this.helpers = {
+      arrayAtoZ: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+      createDivForCharElement(block, charToAdd) {
+        return block.concat(`<div class='CharacterElement' id='scrollChar-${charToAdd}'>${charToAdd}</div>`); 
+      },
+  };
 
     $scope.$on('browseService:fetchEnd', () => {
       /* While browsing this makes sense */
@@ -166,6 +173,7 @@ class BrowseMusicController {
 
   backHome() {
     this.resetBrowsePage();
+    this.removeAZScrollBar();
     this.searchField = '';
     this.browseService.backHome();
     this.browseService.info = null;
@@ -664,22 +672,30 @@ class BrowseMusicController {
     const page = document.getElementById('browse-page');
     page.style.display = 'none';
     page.innerHTML = html.join('');
-
+    if (this.shouldDisplayAzNav(lists[0].items)) {
+      this.updateAzScrollListners();
+    }
     this.$timeout(() => {
       this.$rootScope.$broadcast('browseController:listRendered');
       page.style.display = 'block';
     }, 0, false);
   }
 
+  getSortedList(items) {
+    return items.sort(function(a, b){
+      if(a.title < b.title) { return -1; }
+      if(a.title > b.title) { return 1; }
+      return 0;
+  })
+
+  }
   renderList(list, listIndex) {
+    const sortedListAlphabetically = this.getSortedList(list.items);
     const canShowGridView = this.browseService.canShowGridView(list);
     const showGridView = this.browseService.showGridView;
     let items = '';
-    if(showGridView && canShowGridView) {
-      items = this.renderMusicCardItems(list.items, listIndex);
-    } else {
-      items = this.renderListItems(list.items, listIndex);
-    }
+    const shouldRenderMusicCardItems = showGridView && canShowGridView;
+    items = this.renderListItems(sortedListAlphabetically, listIndex, shouldRenderMusicCardItems);
 
     const html = `
     <div
@@ -690,15 +706,17 @@ class BrowseMusicController {
         ${ items.length === 0 ? '<h3 class="text-center panel-title ">No items</h3>' : '' }
       </div> <!-- /.main__row -->
     </div> <!-- /.main__source -->
-    `;
+    `;    
     return html;
   }
 
-  renderMusicCardItems(items, listIndex) {
-    let angularThis = `angular.element('#browse-page').scope().browse`;
-    const html = items.map((item, itemIndex) => `
+  getMusicCardItem(item, itemIndex, listIndex, angularThis, currentScrollChar) {
+    return `
     <div class="music-card__wrapper">
-      <div class="music-card" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+      <div
+        id="${(this.helpers.arrayAtoZ.includes(item.title[0]) && item.title[0].toUpperCase()) === currentScrollChar ? `startsWith-${currentScrollChar}` : '' }"
+        class="music-card"
+        onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
         <div class="music-card__header">
             <img
                 class="music-card__img ${ !item.albumart ? 'hidden' : '' }"
@@ -757,8 +775,108 @@ class BrowseMusicController {
         <p class="music-card__meta">${ item.meta || (item.artist || '') }</p>
       </div>
     </div>
-    `);
-    let joinItems = html.join('');
+    `;
+  }
+
+  getListItem(item, itemIndex, listIndex, angularThis, currentScrollChar) {
+    return `
+    <div class="album__tracks">
+      <div
+        id="${(this.helpers.arrayAtoZ.includes(item.title[0]) && item.title[0].toUpperCase()) === currentScrollChar ? `startsWith-${currentScrollChar}` : '' }"
+        class="
+          music-item
+          ${ item.type === 'title' ? 'title' : '' }
+          "
+        onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+        <div
+          onclick="${angularThis}.preventBubbling(event)"
+          class="item__play ${ !this.showPlayButton(item) ? 'hidden' : '' }">
+            <button
+                onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
+                class="ghost-btn play-btn">
+                <i class="fa fa-play play-btn__icon"></i>
+            </button>
+        </div>
+
+        <div class="item__image">
+            <div class="item__number ${ item.tracknumber && !item.albumart ? '' : 'hidden' }">${ item.tracknumber }.</div>
+            <div class="item__albumart ${ !item.albumart ? 'hidden' : '' }">
+                <img class="item__image__img" src="${this.playerService.getAlbumart(item.albumart)}" alt="">
+            </div>
+            <div
+              class="item__albumart-icon ${ !item.icon ? 'hidden' : '' }">
+              <i class="${ item.icon }"></i>
+            </div>
+        </div>
+
+        <div class="item__info">
+            <div class="item__title truncate-text" title="${ item.title || '' }">
+                ${ item.title || '' } <img class="music-card__extension tagrow${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
+            </div>
+            <div class="item__album truncate-text ${ !item.album ? 'hidden' : '' }" title="${ item.album || '' }">
+                ${ item.album || '' }
+            </div>
+            <div class="item__info__separator ${ !item.album || !item.artist ? 'hidden' : '' }">
+                •
+            </div>
+            <div class="item__artist truncate-text ${ !item.artist ? 'hidden' : '' }" title="${ item.artist || '' }">
+                ${ item.artist || '' }
+            </div>
+        </div>
+
+        <div
+            onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
+            class="item__favorite ${
+              this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
+            } ${
+              item.favorite ? 'favorited' : ''
+            }">
+            <span class="item__favorite-heart">
+                <i class="fa fa-heart"></i>
+            </span>
+        </div>
+
+        <div
+            class="item__duration ${ !item.duration ? 'hidden' : '' }">
+                ${ this.timeFormat(item.duration) }
+        </div>
+
+        <div
+            onclick="${angularThis}.preventBubbling(event)"
+            class="item__actions ${
+                ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
+            }">
+            <button
+                id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
+                onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
+                class="ghost-btn action-btn">
+                <i class="fa fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </div>
+  </div>
+  `;
+  }
+
+  renderListItems(items, listIndex, shouldRenderMusicCardItems) {
+    let angularThis = `angular.element('#browse-page').scope().browse`;
+    let currentScrollChar, currentScrollIndex = 0;
+    const html = items.map((item, itemIndex) => {
+      let htmlSlice = '';
+      currentScrollChar = this.helpers.arrayAtoZ[currentScrollIndex];
+      if (shouldRenderMusicCardItems) {
+        htmlSlice = this.getMusicCardItem(item, itemIndex, listIndex, angularThis, currentScrollChar);
+      } else {
+        htmlSlice = this.getListItem(item, itemIndex, listIndex, angularThis, currentScrollChar);
+      }
+    if (item.title && item.title[0].toUpperCase() === currentScrollChar) {
+      currentScrollIndex++;
+    }
+    return htmlSlice;
+    });
+
+    if (shouldRenderMusicCardItems) {
+      let joinItems = html.join('');
     /* Add placeholder items for correct sizing */
     joinItems += `
       <div class="music-card__wrapper placeholder-wrapper"></div>
@@ -769,81 +887,7 @@ class BrowseMusicController {
       <div class="music-card__wrapper placeholder-wrapper"></div>
     `;
     return joinItems;
-  }
-
-  renderListItems(items, listIndex) {
-    let angularThis = `angular.element('#browse-page').scope().browse`;
-    const html = items.map((item, itemIndex) => `
-      <div class="album__tracks">
-        <div class="music-item ${ item.type === 'title' ? 'title' : '' }" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
-          <div
-            onclick="${angularThis}.preventBubbling(event)"
-            class="item__play ${ !this.showPlayButton(item) ? 'hidden' : '' }">
-              <button
-                  onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
-                  class="ghost-btn play-btn">
-                  <i class="fa fa-play play-btn__icon"></i>
-              </button>
-          </div>
-
-          <div class="item__image">
-              <div class="item__number ${ item.tracknumber && !item.albumart ? '' : 'hidden' }">${ item.tracknumber }.</div>
-              <div class="item__albumart ${ !item.albumart ? 'hidden' : '' }">
-                  <img class="item__image__img" src="${this.playerService.getAlbumart(item.albumart)}" alt="">
-              </div>
-              <div
-                class="item__albumart-icon ${ !item.icon ? 'hidden' : '' }">
-                <i class="${ item.icon }"></i>
-              </div>
-          </div>
-
-          <div class="item__info">
-              <div class="item__title truncate-text" title="${ item.title || '' }">
-                  ${ item.title || '' } <img class="music-card__extension tagrow${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
-              </div>
-              <div class="item__album truncate-text ${ !item.album ? 'hidden' : '' }" title="${ item.album || '' }">
-                  ${ item.album || '' }
-              </div>
-              <div class="item__info__separator ${ !item.album || !item.artist ? 'hidden' : '' }">
-                  •
-              </div>
-              <div class="item__artist truncate-text ${ !item.artist ? 'hidden' : '' }" title="${ item.artist || '' }">
-                  ${ item.artist || '' }
-              </div>
-          </div>
-
-          <div
-              onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
-              class="item__favorite ${
-                this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
-              } ${
-                item.favorite ? 'favorited' : ''
-              }">
-              <span class="item__favorite-heart">
-                  <i class="fa fa-heart"></i>
-              </span>
-          </div>
-
-          <div
-              class="item__duration ${ !item.duration ? 'hidden' : '' }">
-                  ${ this.timeFormat(item.duration) }
-          </div>
-
-          <div
-              onclick="${angularThis}.preventBubbling(event)"
-              class="item__actions ${
-                  ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
-              }">
-              <button
-                  id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
-                  onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
-                  class="ghost-btn action-btn">
-                  <i class="fa fa-ellipsis-v"></i>
-              </button>
-          </div>
-      </div>
-    </div>
-    `);
+    }
     return html.join('');
   }
 
@@ -874,7 +918,48 @@ class BrowseMusicController {
     }
     this.listViewSetting = view;
   } */
+  addAZScrollBar() {
+    const abcChars = this.helpers.arrayAtoZ;
+    const navigationEntries = abcChars.reduce(this.helpers.createDivForCharElement, '');
+    angular.element('#azScroll').append(navigationEntries);
+  }
 
+  removeAZScrollBar() {
+    angular.element('#azScroll').empty();
+  }
+
+  updateAzScrollListners() {
+    let changeItemStates = (character, isActive) => {
+          const characterElement = $('#azScroll').find(`#scrollChar-${character.toUpperCase()}`);
+          characterElement.addClass('Inactive');
+          if (isActive) {
+            $(characterElement).click(() => document.getElementById(`startsWith-${character}`).scrollIntoView({behavior: 'smooth'}));
+            characterElement.removeClass('Inactive');
+          }
+      };
+    
+      const activeLetters = Array.from($.find('[id^="startsWith-"]')).map(el => el.id.split('-')[1]);
+      const allLetters = this.helpers.arrayAtoZ;
+
+      allLetters.forEach(currentLetter => {
+        const isCurrentLetterActive = activeLetters.includes(currentLetter);
+        changeItemStates(currentLetter, isCurrentLetterActive);
+      });
+  }
+
+  shouldDisplayAzNav(list) {
+    const alreadyAZScrollOnScreen = $('#azScroll').children().length;
+    if (list.length > this.SHOW_AZ_SCROLL_LIMIT) {
+      if (!alreadyAZScrollOnScreen) {
+        this.addAZScrollBar();  
+      }
+      this.updateAzScrollListners();
+      return true;
+    } else {
+      this.removeAZScrollBar();
+      return false;
+    }
+  }
 }
 
 export default BrowseMusicController;
