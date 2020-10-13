@@ -154,6 +154,10 @@ class WizardController {
     return this.getStepIndex(this.currentStep) === this.wizardDetails.steps.length - 1;
   }
 
+  isPersistentWizard() {
+    return this.uiSettingsService.uiSettings.persistentWizard;
+  }
+
   isFirstStep() {
     return this.getStepIndex(this.currentStep) === 0;
   }

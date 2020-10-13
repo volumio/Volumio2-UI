@@ -6,7 +6,7 @@
       type="button"
       class="btn btn-warning"
       ng-click="wizard.skipWizard()"
-      ng-if="!wizard.isLastStep()"
+      ng-if="!wizard.isLastStep() && !wizard.isPersistentWizard()"
       translate="COMMON.CLOSE">
   </button>
   <button
@@ -34,7 +34,7 @@
       type="button"
       class="btn btn-info"
       ng-click="wizard.done()"
-      ng-if="wizard.isLastStep() && !wizard.isAccountSetupRequired()"
+      ng-if="wizard.isLastStep() && !wizard.isAccountSetupRequired() && !wizard.isPersistentWizard()"
       translate="COMMON.DONE">
   </button>
   <button
