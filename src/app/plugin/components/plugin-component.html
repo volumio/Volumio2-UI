@@ -42,7 +42,7 @@
                 <div ng-repeat="item in section.content track by $index" ng-if="pluginComponent.isItemVisible(item,section)" plugin-visible="item.visibleIf" section="section"
                      class="form-group">
 
-                  <label for="{{item.id}}" class="plugin-label control-label">          
+                  <label for="{{item.id}}" class="plugin-label control-label">
                     {{item.label}}
                   </label>
 
@@ -72,7 +72,7 @@
 
                       <button ng-switch-when="button" id="{{item.id}}" type="button" class="btn btn-info" name="{{item.id}}" plugin-attributes="item.attributes"
                               ng-click="pluginComponent.saveButton(item)">
-                        {{item.label}}
+                        {{item.button_label !== undefined ? item.button_label : item.label}}
                       </button>
 
                       <div ng-switch-default>
