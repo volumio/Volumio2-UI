@@ -251,6 +251,14 @@ class MyVolumioEditProfileController {
       return true;
     }
   }
+
+  isLifetimePlan() {
+    if (this.user && this.user.planDuration === 'lifetime') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 export default MyVolumioEditProfileController;
