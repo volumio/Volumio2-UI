@@ -155,7 +155,7 @@
                 </tr>
                 <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive()">
                   <td><span translate="MYVOLUMIO.SUBSCRIPTION_PLAN"></span>:</td>
-                  <td style="text-transform: uppercase;">{{myVolumioEditProfileController.user.plan}} <span ng-if="myVolumioEditProfileController.isLifetimePlan()" translate="MYVOLUMIO.LIFETIME"></span></td>
+                  <td style="text-transform: uppercase;">{{myVolumioEditProfileController.user.plan}} {{'MYVOLUMIO.'+myVolumioEditProfileController.getPlanDuration() | uppercase | translate}}</td>
                 </tr>
                 <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.getSignupDate() != null">
                   <td><span translate="MYVOLUMIO.SUBSCRIPTION_SIGNED_UP_ON"></span>:</td>
