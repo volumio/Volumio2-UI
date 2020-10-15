@@ -50,7 +50,7 @@ class WizardController {
 
   gotoStep(step) {
     let emitPayload;
-    this.$log.log('go from step', this.currentStep.name.toLowerCase());
+    this.$log.debug('go from step', this.currentStep.name.toLowerCase());
     //From step actions
     switch (this.currentStep.name.toLowerCase()) {
       case 'language':
