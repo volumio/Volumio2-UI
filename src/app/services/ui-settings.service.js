@@ -71,7 +71,7 @@ class UiSettingsService {
       } else {
         setTimeout(function(){
           this.setLanguage();
-        }.bind(this), 1000);
+        }.bind(this), 3000);
       }
     }
   }
