@@ -1,11 +1,12 @@
 class WifiPluginController {
-  constructor($rootScope, $scope, socketService, mockService, $log, $translate, themeManager) {
+  constructor($rootScope, $scope, socketService, mockService, $log, $translate, themeManager, uiSettingsService) {
     'ngInject';
     this.socketService = socketService;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$log = $log;
     this.$translate = $translate;
+    this.uiSettingsService = uiSettingsService;
     //this.wirelessNetworks = mockService.get('wirelessNetworks');
     this.init();
   }
@@ -48,7 +49,8 @@ class WifiPluginController {
       ssid: wifi.ssid,
       security: wifi.security.label || wifi.security,
       password: wifi.password,
-      hidden: wifi.hidden
+      hidden: wifi.hidden,
+      persistentWizard: this.isPersistentWizard()
     };
     this.wirelessNetworks.available[index].insertPassword = undefined;
     this.$log.debug('connect to', wifi, saveWiFi);
@@ -125,6 +127,10 @@ class WifiPluginController {
 
   initService() {
     this.socketService.emit('getWirelessNetworks');
+  }
+
+  isPersistentWizard() {
+    return this.uiSettingsService.uiSettings.persistentWizard;
   }
 }
 
