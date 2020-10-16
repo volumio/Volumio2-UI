@@ -109,8 +109,9 @@
     "DELETE_FOLDER": "Effacer le dossier",
     "SKIP_BACKWARDS": "Avancer",
     "SKIP_FORWARD": "Retour",
-     "CREDITS":"Crédits",
+    "CREDITS":"Crédits",
     "ALBUM_CREDITS":"Crédits de l'album",
+    "ALBUM_STORY":"Histoire de l'album",
     "TRACK_STORY":"À propos de ce morceau",
     "ARTIST_STORY":"Histoire de l'artiste",
     "READ_MORE": "Lire plus",
@@ -119,7 +120,7 @@
     "CREDITS_NOT_FOUND": "Crédits non trouvés",
     "ARTIST_STORY_NOT_FOUND_FOR": "Histoire de l'artiste non trouvée pour"
   },
-"MY_MUSIC": {
+  "MY_MUSIC": {
     "UPDATE": "Mettre à jour",
     "UPDATE_DOC": "Mettre à jour",
     "RESCAN": "Scanner à nouveau",
@@ -276,7 +277,8 @@
     "ERROR": "Erreur MyVolumio",
     "LOGIN": "Connexion",
     "LOGOUT": "Déconnexion",
-    "SIGNUP": "Signer",
+    "SIGNUP": "S'enregistrer",
+    "SIGNUP_TO": "S'enregistrer à MyVolumio",
     "EMAIL_ADDRESS": "Adresse de courriel",
     "PASSWORD": "Mot de passe",
     "PAYMENT_SUCCESS": "Paiement ok",
@@ -328,6 +330,7 @@
     "ERROR_CHANGE_PLAN_NO_PREVIOUS_PLAN_FOUND": "Erreur, vous n'avez actuellement aucun plan",
     "ERROR_CHANGE_PLAN_NO_PLAN_SELECTED": "Merci de choisir un plan",
     "PAYMENT_IN_PROGRESS": "Paiement en cours",
+    "PLEASE_VERIFY_EMAIL_TITLE": "",
     "USER_MISSING_MANDATORY_FIELDS": "Pour finaliser votre souscription, merci de remplir les champs obligatoires.",
     "USER_VERIFICATION_EMAIL_SENT_DESC": "Un courriel de vérification a été envoyé. Clicquez sur le lien qu'il contient pour activer votre compte",
     "CONFIRM_DELETE_ACCOUNT_TITLE": "Effacer l'utilisateur ?",
@@ -365,6 +368,7 @@
     "ACCESS": "Accès",
     "REGISTER_NOW": "Enregistrez-vous gratuitement maintenant !",
     "ALREADY_HAVE_ACCOUNT": "Vous possédez déjà un compte?",
+    "USER_MISSING_MANDATORY_FIELDS": "Merci de remplir tous les champs",
     "ERROR_VALIDATION_TERMS_UNACCEPTED": "Vous devez accepter les termes du service",
     "ERROR_VALIDATION_PASSWORD_MATCH": "Les mots de passe ne correspondent pas",
     "ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL": "Ce compte existe déjà avec un autre fournisseur.",
@@ -481,7 +485,7 @@
     "ITS_FREE": "C'est gratuit et c'est fait en moins d'une minute.",
     "LANDING_WHAT_IS_MYVOLUMIO": "Qu'est ce que Volumio?",
     "LANDING_SHORT_INTRO": "Volumio est un lecteur de musique audiophile qui rassemble toute votre musique - locale ou en ligne (streaming) - à un seul emplacement. C'est facie de commencer!",
-    "CONTROL": "Controle",
+    "CONTROL": "Contrôle",
     "LANDING_INSTALL_TEXT": "Disponible pour PC, Raspberry PI et autre.",
     "LANDING_CONNECT_TEXT": "Après l'installation, connectez à votre réseau et connectez vous à MyVolumio.",
     "LANDING_CONTROL_TEXT": "Accédez et gérez votre musique depuis votre smartphone ou ordinateur",
@@ -494,7 +498,7 @@
     "LANDING_FEATURE_BACKUP_TITLE": "Sauvegarde et synchronisation automatique",
     "LANDING_FEATURE_BACKUP_TEXT": "Vos favoris, listes de lecture, radios internet sont automatiquement synchronisés entre vos différents appareils et sauvegardés en lieu sûr, prêt à étre restaurés dès que vous installé un appareil avec MyVolumio.",
     "LANDING_FEATURE_CD_TITLE": "Lecture de CD et extraction",
-    "LANDING_FEATURE_CD_TEXT": "Redécouvrez votre collection de CD en connectant simplement un lecteur de CD ROM USB à votre appareil Volumio. Jouez ou copiez vos CD sans perte de qualité.
+    "LANDING_FEATURE_CD_TEXT": "Redécouvrez votre collection de CD en connectant simplement un lecteur de CD ROM USB à votre appareil Volumio. Jouez ou copiez vos CD sans perte de qualité."
     },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Recevez notre Fil d'actualités MyVolumio",
