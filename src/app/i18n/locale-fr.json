@@ -492,9 +492,9 @@
     "LANDING_FEATURE_DISCOVERY_TITLE": "Informations sur l'artiste et la musique",
     "LANDING_FEATURE_DISCOVERY_TEXT": "Des informations sur l'artiste, l'album, le studio, les musiciens etc, pour toute votre musique locales et distante via MyVolumio et les services compatibles tels que Tidal, Qobuz, Spotify et plus!.",
     "LANDING_FEATURE_BACKUP_TITLE": "Sauvegarde et synchronisation automatique",
-    "LANDING_FEATURE_BACKUP_TEXT": "All your favorites, Playlists and web radios are automatically synced to all your devices and backed-up to a secure location, ready to be restored whenever you set-up a new MyVolumio device.",
-    "LANDING_FEATURE_CD_TITLE": "CD Playback & Ripping",
-    "LANDING_FEATURE_CD_TEXT": "Rediscover your CD collection by simply attaching any USB CD Rom drive to your Volumio device. Play or copy your CDs in the most accurate way."
+    "LANDING_FEATURE_BACKUP_TEXT": "Vos favoris, listes de lecture, radios internet sont automatiquement synchronisés entre vos différents appareils et sauvegardés en lieu sûr, prêt à étre restaurés dès que vous installé un appareil avec MyVolumio.",
+    "LANDING_FEATURE_CD_TITLE": "Lecture de CD et extraction",
+    "LANDING_FEATURE_CD_TEXT": "Redécouvrez votre collection de CD en connectant simplement un lecteur de CD ROM USB à votre appareil Volumio. Jouez ou copiez vos CD sans perte de qualité.
   
   },
   "MYVOLUMIO_PLANS": {
