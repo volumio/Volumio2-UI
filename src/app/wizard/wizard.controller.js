@@ -155,7 +155,11 @@ class WizardController {
   }
 
   isPersistentWizard() {
-    return this.uiSettingsService.uiSettings.persistentWizard;
+    if (this.uiSettingsService.uiSettings && this.uiSettingsService.uiSettings.persistentWizard === true) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   isFirstStep() {
