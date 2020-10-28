@@ -6,6 +6,13 @@
   }
   &.horizontal {
     margin: 10px 0px 20px 0px;
-    width: 100%;
+    width: 180px;
   }
+}
+
+.equalizer-label{
+  width: 15px;
+  text-align: center;
+  white-space: nowrap;
+  margin-left: -8px;
 }

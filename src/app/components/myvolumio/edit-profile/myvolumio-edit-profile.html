@@ -155,13 +155,13 @@
                 </tr>
                 <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive()">
                   <td><span translate="MYVOLUMIO.SUBSCRIPTION_PLAN"></span>:</td>
-                  <td style="text-transform: uppercase;">{{myVolumioEditProfileController.user.plan}}</td>
+                  <td style="text-transform: uppercase;">{{myVolumioEditProfileController.user.plan}} {{'MYVOLUMIO.'+myVolumioEditProfileController.getPlanDuration() | uppercase | translate}}</td>
                 </tr>
                 <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.getSignupDate() != null">
                   <td><span translate="MYVOLUMIO.SUBSCRIPTION_SIGNED_UP_ON"></span>:</td>
                   <td>{{myVolumioEditProfileController.getSignupDate() | date : 'longDate'}}</td>
                 </tr>
-                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.nextPayment">
+                <tr ng-if="myVolumioEditProfileController.isUserSubscriptionActive() && myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.nextPayment && !myVolumioEditProfileController.isLifetimePlan()">
                   <td><span translate="MYVOLUMIO.SUBSCRIPTION_NEXT_PAYMENT"></span>:</td>
                   <td>
                     {{myVolumioEditProfileController.user.planData.nextPayment.amount}} {{myVolumioEditProfileController.user.planData.nextPayment.currency}} <span translate="MYVOLUMIO.SUBSCRIPTION_ON"></span> {{myVolumioEditProfileController.user.planData.nextPayment.date
@@ -175,8 +175,8 @@
             </div>
 
             <div class="text-right">
-              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.updateUrl" ng-click="myVolumioEditProfileController.updateSubscriptionMethod()" class="btn btn-success" style="margin-bottom: 8px;"> <i class="fa fa-exchange"></i> <span translate="MYVOLUMIO.CHANGE_PAYMENT_METHOD"></span> </a>
-              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.cancelUrl" ng-click="myVolumioEditProfileController.cancelSubscription()" class="btn btn-danger" style="margin-bottom: 8px;"> <i class="fa fa-times"></i> <span translate="MYVOLUMIO.CANCEL_SUBSCRIPTION"></span> </a>
+              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.updateUrl && !myVolumioEditProfileController.isLifetimePlan()" ng-click="myVolumioEditProfileController.updateSubscriptionMethod()" class="btn btn-success" style="margin-bottom: 8px;"> <i class="fa fa-exchange"></i> <span translate="MYVOLUMIO.CHANGE_PAYMENT_METHOD"></span> </a>
+              <a ng-if="myVolumioEditProfileController.user.planData && myVolumioEditProfileController.user.planData.cancelUrl && !myVolumioEditProfileController.isLifetimePlan()" ng-click="myVolumioEditProfileController.cancelSubscription()" class="btn btn-danger" style="margin-bottom: 8px;"> <i class="fa fa-times"></i> <span translate="MYVOLUMIO.CANCEL_SUBSCRIPTION"></span> </a>
               <a ng-if="!myVolumioEditProfileController.isUserSubscriptionActive()" ng-click="myVolumioEditProfileController.subscribe()" class="btn btn-success" style="margin-bottom: 8px;"> <i class="fa fa-play-circle"></i> <span translate="MYVOLUMIO.SUBSCRIBE"></span> </a>
             </div>
           </div>

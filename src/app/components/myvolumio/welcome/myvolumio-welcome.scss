@@ -1,0 +1,65 @@
+.body-landing {
+    max-width: 1097px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .75) !important;
+
+    .justify-content-center {
+        justify-content: center;
+    }
+
+    .caption {
+        opacity: .5;
+        margin-top: 10px;
+    }
+}
+
+.welcome__panel {
+    padding: 32px 48px;
+}
+
+.myvolumio__feature-block {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $theme-accent-color;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    .feature__content {
+        padding: 28px;
+        text-align: center;
+    }
+    .feature__image {
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom right;
+        }
+    }
+}
+
+.mb-line--small {
+    margin-bottom: 2em;
+}
+
+
+@media (min-width: 768px) {
+    .landing__welcome-section {
+        padding-top: 40px;
+        padding-bottom: 48px;
+    }
+    .myvolumio__feature-block {
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        .feature__content {
+            flex: 1 1 60%;
+            padding: 48px;
+            text-align: left;
+        }
+    .feature__image {
+            flex: 0 1 40%;
+        }
+    }
+}

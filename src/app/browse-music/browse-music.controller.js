@@ -518,14 +518,18 @@ class BrowseMusicController {
     let item = this.browseService.lists[listIndex].items[itemIndex];
     if (item && item.type === 'song') {
       let list = this.browseService.lists[listIndex].items;
-      this.replaceAndPlayList(item, list, itemIndex);
+      this.playItemsList(item, list, itemIndex);
     } else {
-      this.replaceAndPlay(item);
+      this.playItemsList(item);
     }
   }
 
   play(item) {
-    return this.playQueueService.addPlay(item);
+    if (this.browseService.currentFetchRequest.uri === 'playlists') {
+      this.playQueueService.replaceAndPlay(item);
+    } else {
+      return this.playQueueService.playItemsList(item);
+    }
   }
 
   addToQueue(item) {
@@ -574,7 +578,7 @@ class BrowseMusicController {
   }
 
   playAlbumItemClick(item, list, itemIndex) {
-    return this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+    return this.playQueueService.playItemsList(item, list, itemIndex);
   }
 
   preventBubbling($event) {
@@ -589,7 +593,7 @@ class BrowseMusicController {
     } else if (item.type === 'webradio' || item.type === 'mywebradio' || item.type === 'album' || item.type === 'artist') {
       this.play(item, list, itemIndex);
     } else if (item.type === 'song') {
-      this.replaceAndPlayList(item, list, itemIndex);
+      this.playItemsList(item, list, itemIndex);
     } else if (item.type === 'cuesong') {
       this.playQueueService.addPlayCue(item);
     } else if (item.type === 'cd') {
@@ -605,8 +609,8 @@ class BrowseMusicController {
     this.clickListItem(item, list, itemIndex);
   }
 
-  replaceAndPlayList(item, list, itemIndex) {
-    return this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+  playItemsList(item, list, itemIndex) {
+    return this.playQueueService.playItemsList(item, list, itemIndex);
   }
 
   addAndPlayList(item, list, itemIndex) {

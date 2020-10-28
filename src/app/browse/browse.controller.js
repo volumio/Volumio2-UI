@@ -52,7 +52,7 @@ class BrowseController {
       if (this.uiSettingsService.uiSettings.playMethod === 'single') {
         this.playQueueService.addPlay(item);
       } else {
-        this.playQueueService.replaceAndPlayList(item, list, itemIndex);
+        this.playQueueService.playItemsList(item, list, itemIndex);
       }
     }
   }

@@ -251,6 +251,22 @@ class MyVolumioEditProfileController {
       return true;
     }
   }
+
+  isLifetimePlan() {
+    if (this.user && this.user.planDuration === 'lifetime') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getPlanDuration(){
+    var planDuration = this.user.planDuration;
+    if(planDuration === undefined || planDuration === null){
+      planDuration = 'monthly';
+    }
+    return planDuration;
+  }
 }
 
 export default MyVolumioEditProfileController;

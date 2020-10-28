@@ -78,10 +78,12 @@ class BrowseScrollManagerDirective {
     });
 
     scope.$on('$destroy', () => {
-      if ( this.browseTablesWrapper ) {
+      if (this.browseTablesWrapper) {
         this.browseTablesWrapper.removeEventListener('scroll', scrollHandler);
       }
-      this.contentWrapper.style.overflowY = 'auto';
+      if (this.contentWrapper) {
+        this.contentWrapper.style.overflowY = 'auto';
+      }
     });
 
     this.matchmediaService.onPortrait((data) => {

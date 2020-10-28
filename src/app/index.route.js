@@ -573,6 +573,17 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+  .state('myvolumio.welcome', {
+    url: '/welcome',
+    views: {
+      'content@myvolumio': {
+        templateUrl: 'app/components/myvolumio/welcome/myvolumio-welcome.html',
+        controller: 'MyVolumioWelcomeController',
+        controllerAs: 'myVolumioWelcomeController',
+      }
+    }
+  })
+
   /* --------- END MYVOLUMIO ----------- */
 
   .state('volumio.static-page', {
@@ -593,6 +604,10 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
         template: '',
         controller: function($state, cloudService, redirectService, $location) {
           var queryParamsString = $location.url().split('?')[1];
+          if (cloudService.isCloudReferralLink === true) {
+            redirectService.urlGo('myvolumio/welcome', queryParamsString);
+            return;
+          }
           if (cloudService.isOnCloud === true) {
             redirectService.urlGo('myvolumio/access', queryParamsString);
             return;

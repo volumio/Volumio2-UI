@@ -42,9 +42,9 @@ class PlayQueueService {
     });
   }
 
-  replaceAndPlayList(item, list, itemIndex) {
-    this.$log.debug('PlayQueueService replaceAndPlayList', item, list, itemIndex);
-    this.socketService.emit('replaceAndPlay', {
+  playItemsList(item, list, itemIndex) {
+    this.$log.debug('PlayQueueService playItemsList', item, list, itemIndex);
+    this.socketService.emit('playItemsList', {
       item: item,
       list: list,
       index: itemIndex

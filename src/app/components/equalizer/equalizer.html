@@ -1,4 +1,5 @@
 <div class="equalizer" ng-class="{{equalizer.config.class ? equalizer.config.class : 'equalizer.config.orientation'}}" ng-repeat="bar in equalizer.config.bars track by $index">
+  <label class="equalizer-label">{{::bar.ticksLabels[0]}}</label>
   <slider
       id="{{::equalizer.id + '-' + $index}}"
       orientation="{{::equalizer.config.orientation}}"
@@ -9,7 +10,6 @@
       range="::bar.range"
       ticks="::bar.ticks"
       ticks-positions="::bar.ticksPositions"
-      ticks-labels="::bar.ticksLabels"
       ticks-snap-bounds="10"
       value="bar.value"
       reversed="{{equalizer.config.orientation === 'vertical'}}"

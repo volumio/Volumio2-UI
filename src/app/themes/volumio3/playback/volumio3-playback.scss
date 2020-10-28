@@ -28,13 +28,15 @@
     height: 100%;
     overflow: hidden;
 
+    // Disabiling top radiuses
+    /*
     -webkit-border-top-left-radius: 30px;
     -webkit-border-top-right-radius: 30px;
     -moz-border-radius-topleft: 30px;
     -moz-border-radius-topright: 30px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-
+    */
     background: $theme-dark-transparent-background;
 
     #albumartContainer {

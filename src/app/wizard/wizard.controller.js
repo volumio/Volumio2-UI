@@ -50,7 +50,7 @@ class WizardController {
 
   gotoStep(step) {
     let emitPayload;
-    this.$log.log('go from step', this.currentStep.name.toLowerCase());
+    this.$log.debug('go from step', this.currentStep.name.toLowerCase());
     //From step actions
     switch (this.currentStep.name.toLowerCase()) {
       case 'language':
@@ -152,6 +152,14 @@ class WizardController {
 
   isLastStep() {
     return this.getStepIndex(this.currentStep) === this.wizardDetails.steps.length - 1;
+  }
+
+  isPersistentWizard() {
+    if (this.uiSettingsService.uiSettings && this.uiSettingsService.uiSettings.persistentWizard === true) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   isFirstStep() {

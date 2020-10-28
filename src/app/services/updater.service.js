@@ -65,9 +65,6 @@ class UpdaterService {
       this.$log.debug('updateProgress', data);
       this.status = 'updateProgress';
       this.updateProgress = data;
-      if (this.modalService.getAllModals().length <= 1) {
-        this.openUpdateModal();
-      }
     });
     this.socketService.on('updateDone', (data) => {
       this.$log.debug('updateDone', data);

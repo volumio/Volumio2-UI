@@ -124,6 +124,8 @@ class PluginComponentController {
         this.$window.location = performerUrl.href;
       } else if (item.onClick.type === 'goto'){
         this.$state.go('volumio.static-page', {pageName: item.onClick.pageName});
+      } else if (item.onClick.type === 'myVolumioUpgrade'){
+        this.$state.go('myvolumio.plans');
       } else {
         this.socketService.emit('callMethod', item.onClick);
       }
