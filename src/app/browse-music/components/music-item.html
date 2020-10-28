@@ -11,9 +11,7 @@
 
     <div class="item__image">
         <div ng-if="item.tracknumber && !item.albumart" class="item__number">{{item.tracknumber }}.</div>
-        <div ng-if="item.albumart" class="item__albumart">
-            <img class="item__image__img" src="{{browse.playerService.getAlbumart(item.albumart) }}" alt="">
-        </div>
+
     </div>
 
     <div class="item__info">

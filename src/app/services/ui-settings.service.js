@@ -1,5 +1,5 @@
 class UiSettingsService {
-  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q, statisticsService) {
+  constructor($rootScope, socketService, $state, mockService, $log, themeManager, $document, $translate, $http, $q, statisticsService, $window) {
     'ngInject';
     this.socketService = socketService;
     this.themeManager = themeManager;
@@ -10,13 +10,18 @@ class UiSettingsService {
     this.$q = $q;
     this.$state = $state;
     this.statisticsService = statisticsService;
+    this.$window = $window;
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
+    this.enableMemorySavingTouchUi = false;
 
     this.defaultUiSettings = {
       backgroundImg: 'default bkg'
     };
+
+    this.detectVolumioTouschreenViaUserAgent();
+
 
     $rootScope.$on('socket:init', () => {
       this.init();
@@ -177,6 +182,17 @@ class UiSettingsService {
       });
     return this.settingsPromise;
 
+  }
+
+  detectVolumioTouschreenViaUserAgent() {
+    // If user agent is volumiokiosk-memorysave we will enable a special mode for low memory devices 
+    if (this.$window.navigator.userAgent.includes('memorysave')) {
+      this.enableMemorySavingTouchUi = true;
+    }
+  }
+
+  isMemorySavingTouchUiEnabled() {
+    return this.enableMemorySavingTouchUi;
   }
 }
 

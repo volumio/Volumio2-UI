@@ -1,5 +1,5 @@
 class BrowseService {
-  constructor($rootScope, $timeout, $log, socketService, mockService, $interval, $window, localStorageService) {
+  constructor($rootScope, $timeout, $log, socketService, mockService, $interval, $window, localStorageService, uiSettingsService) {
     'ngInject';
     this.$log = $log;
     this.socketService = socketService;
@@ -9,6 +9,7 @@ class BrowseService {
     this.$log = $log;
     this.$timeout = $timeout;
     this.mockService = mockService;
+    this.uiSettingsService = uiSettingsService;
 
     this.isPhone = false;
     this.filterBy = 'any';
@@ -182,6 +183,9 @@ class BrowseService {
     if (list.availableListViews.length === 1) {
       return list.availableListViews[0] === 'grid';
     }
+    if (this.uiSettingsService.isMemorySavingTouchUiEnabled()) {
+      return false;
+    }
     if (this.showGridView && ~list.availableListViews.indexOf('grid')) {
       return true;
     } else {
@@ -201,6 +205,9 @@ class BrowseService {
 
   get showGridViewSelector() {
     if (!this.lists || this.lists.length === 0) {
+      return false;
+    }
+    if (this.uiSettingsService.isMemorySavingTouchUiEnabled()) {
       return false;
     }
     for (let i = 0; i < this.lists.length; i++) {
