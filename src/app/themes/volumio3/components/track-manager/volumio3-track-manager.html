@@ -43,7 +43,7 @@
           <span ng-if="trackManager.playerService.state.trackType !== 'webradio'">
             <img
                 ng-if="trackManager.playerService.state.fileFormat"
-                ng-src="{{'/app/themes/volumio3/assets/format-icons/' +
+                ng-src="{{'/app/assets-common/format-icons/' +
                   trackManager.playerService.state.fileFormat.url + '.svg'}}"
                 alt="{{trackManager.playerService.state.fileFormat.name}}" />
             <span ng-if="!trackManager.playerService.state.fileFormat">
