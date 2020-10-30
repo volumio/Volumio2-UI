@@ -321,7 +321,7 @@ class WizardController {
 
     this.socketService.on('closeWizard', () => {
       this.$log.debug('closeWizard');
-      //this.$state.go('volumio.playback');
+      this.$state.go('volumio.playback');
     });
 
     this.$scope.$on('$destroy', () => {
