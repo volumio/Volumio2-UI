@@ -1,9 +1,10 @@
 class ModalController {
-  constructor($uibModalInstance, dataObj, $translate) {
+  constructor($uibModalInstance, dataObj, $translate, modalService) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.dataObj = dataObj;
     this.$translate = $translate;
+    this.modalService = modalService;
 
     this.disableCancelButton = false;
     this.callback = null;
@@ -41,6 +42,7 @@ class ModalController {
 
   cancel() {
     this.$uibModalInstance.dismiss('cancel');
+    this.modalService.emitCloseAllModals();
     if (this.cancelCallback !== undefined && this.cancelCallback !== null) {
       this.cancelCallback();
     }

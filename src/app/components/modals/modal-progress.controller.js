@@ -29,6 +29,7 @@ class ModalProgressCustomController {
   }
 
   cancel() {
+    this.modalService.emitCloseAllModals();
     this.$uibModalInstance.dismiss('cancel');
   }
 }

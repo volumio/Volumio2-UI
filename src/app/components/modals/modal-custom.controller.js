@@ -1,5 +1,5 @@
 class ModalCustomController {
-  constructor($uibModalInstance, dataObj, socketService, $translate, $window, $state) {
+  constructor($uibModalInstance, dataObj, socketService, $translate, $window, $state, modalService) {
     'ngInject';
     this.$uibModalInstance = $uibModalInstance;
     this.dataObj = dataObj;
@@ -7,6 +7,7 @@ class ModalCustomController {
     this.$translate = $translate;
     this.$window = $window;
     this.$state = $state;
+    this.modalService = modalService;
   }
 
   ok() {
@@ -14,6 +15,7 @@ class ModalCustomController {
   }
 
   cancel() {
+    this.modalService.emitCloseAllModals();
     this.$uibModalInstance.dismiss();
   }
 

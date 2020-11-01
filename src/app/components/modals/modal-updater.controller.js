@@ -24,7 +24,7 @@ class ModalUpdaterController {
   }
 
   cancel() {
-    this.modalService.closeAllModals();
+    this.modalService.emitCloseAllModals();
     this.$uibModalInstance.dismiss('cancel');
   }
 }

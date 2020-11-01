@@ -100,6 +100,10 @@ class ModalService {
       modal.close();
     });
   }
+
+  emitCloseAllModals(){
+    this.socketService.emit('closeModals', '');
+  }
   initService() {}
 }
 
