@@ -176,7 +176,7 @@ class WizardController {
   }
 
   isAccountSetupRequired() {
-    if (this.authService.isEnabled && this.authService.user === null) {
+    if (this.authService.isEnabled && this.authService.user === null && !this.isDeviceActivationCodeRequested()) {
       return true;
     } else {
       return false;
@@ -339,6 +339,16 @@ class WizardController {
 
   isVolumio3Theme(){
     return this.themeManager.theme === 'volumio3';
+  }
+
+  isDeviceActivationCodeRequested() {
+    var deviceCodeRequested = false;
+    for (var i in this.wizardDetails.steps) {
+      if (this.wizardDetails.steps[i].name === 'devicecode') {
+        deviceCodeRequested = true;
+      }
+    }
+    return deviceCodeRequested;
   }
 }
 
