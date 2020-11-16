@@ -1,14 +1,17 @@
 {
   "UI_SETTINGS": {
-    "THEME_SETTINGS": "Hintergrundeinstellungen",
-    "UPLOAD_BACKGROUND": "Neuen Hintergrund hochladen",
-    "UPLOAD_BACKGROUND_FILE": "Klicken und Hintergrund auswählen oder Datei hier ablegen",
+    "THEME_SETTINGS": "Hintergrundbild",
+    "UPLOAD_BACKGROUND": "Neues Hintergrundbild hochladen",
+    "UPLOAD_BACKGROUND_FILE_BTN": "Hintergrundbild auswählen",
+    "UPLOAD_BACKGROUND_FILE_DRAG": "Oder Bilddatei in den Bereich ziehen",
     "UPLOAD_PROGRESS": "Fortschritt:",
-    "SELECT_BACKGROUND": "Hintergrund auswählen",
-    "SELECT_BACKGROUND_COLOR": "Hintergrundfarbe auswählen",
-    "APPLY_BACKGROUND": "Hintergrund auswählen",
-    "APPLY_BACKGROUND_COLOR": "Hintergrundfarbe auswählen",
-    "DELETE_BACKGROUND": "Hintergrund löschen"
+    "SELECT_BACKGROUND": "Hintergrundbild auswählen",
+    "SELECT_BACKGROUND_COLOR": "Einheitliche Farbe als Hintergrund auswählen",
+    "APPLY_BACKGROUND": "Hintergrundbild auswählen",
+    "APPLY_BACKGROUND_COLOR": "Farbe festlegen",
+    "DELETE_BACKGROUND": "Hintergrundbild löschen",
+    "TAB_BACKGROUND_IMAGE":"Bild",
+    "TAB_BACKGROUND_SOLIDCOLOR":"Farbe"
   },
   "COMMON": {
     "SAVE": "Speichern",
