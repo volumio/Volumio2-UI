@@ -11,11 +11,10 @@
 
     <div class="item__image">
         <div ng-if="item.tracknumber && !item.albumart" class="item__number">{{item.tracknumber }}.</div>
-
     </div>
 
     <div class="item__info">
-        <div class="item__title truncate-text" title="{{ item ? item.title : 'Example' }}">
+        <div class="item__title truncate-text {{ item.album && item.artist ? 'full' : (item.album && !item.artist) || (item.artist && !item.album) ? 'one' : '' }}" title="{{ item ? item.title : 'Example' }}">
             {{ item.title ? item.title : item.name || '' }}
         </div>
         <div ng-if="item.album" class="item__album truncate-text" title="{{ item.album ? item.album : 'Example album' }}">

@@ -627,7 +627,7 @@ class BrowseMusicController {
         <button id="hamburgerMenuBtn-${listIndex}-${itemIndex}" class="ghost-btn action-btn" uib-dropdown-toggle>
           <i class="fa fa-ellipsis-v"></i>
         </button>
-        <ul class="dropdown-menu buttonsGroup align-to-right">
+        <ul class="dropdown-menu buttonsGroup align-to-right" uib-dropdown-toggle>
           <browse-hamburger-menu
               item="browse.browseService.lists[${listIndex}].items[${itemIndex}]"
               browse="browse">
@@ -775,139 +775,164 @@ class BrowseMusicController {
     let angularThis = `angular.element('#browse-page').scope().browse`;
     const html = '';
     if (this.uiSettingsService.isMemorySavingTouchUiEnabled()) {
-      const html = items.map((item, itemIndex) => `
-        <div class="album__tracks">
-          <div class="music-item ${ item.type === 'title' ? 'title' : '' }" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
-            <div
-              onclick="${angularThis}.preventBubbling(event)"
-              class="item__play ">
-                <button
-                    onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
-                    class="ghost-btn play-btn"
-                    style="visibility:hidden">
-                </button>
-            </div>
-
-            <div class="item__info">
-                <div class="item__title truncate-text" title="${ item.title || '' }">
-                    ${ item.title || '' } <img class="music-card__extension tagrow${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
+      const html = items.map((item, itemIndex) => {
+        let generatedListItem = `
+            <div class="album__tracks">
+              <div class="music-item ${ item.type === 'title' ? 'title' : '' }" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+                <div
+                  onclick="${angularThis}.preventBubbling(event)"
+                  class="item__play ">
+                    <button
+                        onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
+                        class="ghost-btn play-btn"
+                        style="visibility:hidden">
+                    </button>
                 </div>
-                <div class="item__album truncate-text ${ !item.album ? 'hidden' : '' }" title="${ item.album || '' }">
-                    ${ item.album || '' }
-                </div>
-                <div class="item__info__separator ${ !item.album || !item.artist ? 'hidden' : '' }">
-                    •
-                </div>
-                <div class="item__artist truncate-text ${ !item.artist ? 'hidden' : '' }" title="${ item.artist || '' }">
-                    ${ item.artist || '' }
-                </div>
-            </div>
 
-            <div
-                onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
-                class="item__favorite ${
-                  this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
-                } ${
-                  item.favorite ? 'favorited' : ''
-                }">
-                <span class="item__favorite-heart">
-                    <i class="fa fa-heart"></i>
-                </span>
-            </div>
-
-            <div
-                class="item__duration ${ !item.duration ? 'hidden' : '' }">
-                    ${ this.timeFormat(item.duration) }
-            </div>
-
-            <div
-                onclick="${angularThis}.preventBubbling(event)"
-                class="item__actions ${
-                    ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
-                }">
-                <button
-                    id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
-                    onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
-                    class="ghost-btn action-btn">
-                    <i class="fa fa-ellipsis-v"></i>
-                </button>
-            </div>
-        </div>
-      </div>
-      `);
-      return html.join('');
-    } else {
-      const html = items.map((item, itemIndex) => `
-        <div class="album__tracks">
-          <div class="music-item ${ item.type === 'title' ? 'title' : '' }" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
-            <div
-              onclick="${angularThis}.preventBubbling(event)"
-              class="item__play ${ !this.showPlayButton(item) ? 'hidden' : '' }">
-                <button
-                    onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
-                    class="ghost-btn play-btn">
-                    <i class="fa fa-play play-btn__icon"></i>
-                </button>
-            </div>
-
-            <div class="item__image">
-                <div class="item__number ${ item.tracknumber && !item.albumart ? '' : 'hidden' }">${ item.tracknumber }.</div>
-                <div class="item__albumart ${ !item.albumart ? 'hidden' : '' }">
-                    <img class="item__image__img" src="${this.playerService.getAlbumart(item.albumart)}" alt="">
+                <div class="item__info">
+                  <div class="item__title truncate-text ${ (item.album && item.artist) ? 'item__title__third' : (!item.album && !item.artist) ? 'item__title__full' : 'item__title__half' }" title="${ item.title || '' }">
+                      ${ item.title || '' } <img class="music-card__extension tagrow${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
+                  </div>`;
+        if (item.album) {
+          generatedListItem += `
+                      <div class="item__album truncate-text" title="${ item.album }">
+                          ${ item.album || '' }
+                      </div>`;
+        }
+        if (item.album && item.artist) {
+          generatedListItem += `
+                      <div class="item__info__separator">
+                          •
+                      </div>`;
+        }
+        if (item.artist) {
+          generatedListItem += `
+                      <div class="item__artist truncate-text ${ !item.artist ? 'hidden' : '' }" title="${ item.artist || '' }">
+                          ${ item.artist || '' }
+                      </div>
+                  `;
+        }
+        generatedListItem += `
                 </div>
                 <div
-                  class="item__albumart-icon ${ !item.icon ? 'hidden' : '' }">
-                  <i class="${ item.icon }"></i>
+                    onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
+                    class="item__favorite ${
+                      this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
+                    } ${
+                      item.favorite ? 'favorited' : ''
+                    }">
+                    <span class="item__favorite-heart">
+                        <i class="fa fa-heart"></i>
+                    </span>
                 </div>
-            </div>
 
-            <div class="item__info">
-                <div class="item__title truncate-text" title="${ item.title || '' }">
-                    ${ item.title || '' } <img class="music-card__extension tagrow${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
+                <div
+                    class="item__duration ${ !item.duration ? 'hidden' : '' }">
+                        ${ this.timeFormat(item.duration) }
                 </div>
-                <div class="item__album truncate-text ${ !item.album ? 'hidden' : '' }" title="${ item.album || '' }">
-                    ${ item.album || '' }
-                </div>
-                <div class="item__info__separator ${ !item.album || !item.artist ? 'hidden' : '' }">
-                    •
-                </div>
-                <div class="item__artist truncate-text ${ !item.artist ? 'hidden' : '' }" title="${ item.artist || '' }">
-                    ${ item.artist || '' }
-                </div>
-            </div>
 
-            <div
-                onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
-                class="item__favorite ${
-                  this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
-                } ${
-                  item.favorite ? 'favorited' : ''
-                }">
-                <span class="item__favorite-heart">
-                    <i class="fa fa-heart"></i>
-                </span>
+                <div
+                    onclick="${angularThis}.preventBubbling(event)"
+                    class="item__actions ${
+                        ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
+                    }">
+                    <button
+                        id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
+                        onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
+                        class="ghost-btn action-btn">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                </div>
             </div>
+          </div>
+        `;
+      return generatedListItem;
+    });
+      return html.join('');
+    } else {
+      const html = items.map((item, itemIndex) => {
+        let generatedListItem = `
+            <div class="album__tracks">
+              <div class="music-item ${ item.type === 'title' ? 'title' : '' }" onclick="${angularThis}.clickListItemByIndex(${listIndex}, ${itemIndex})">
+                <div
+                  onclick="${angularThis}.preventBubbling(event)"
+                  class="item__play ${ !this.showPlayButton(item) ? 'hidden' : '' }">
+                    <button
+                        onclick="${angularThis}.playRenderedMusicCardClick(${listIndex}, ${itemIndex})"
+                        class="ghost-btn play-btn">
+                        <i class="fa fa-play play-btn__icon"></i>
+                    </button>
+                </div>
 
-            <div
-                class="item__duration ${ !item.duration ? 'hidden' : '' }">
-                    ${ this.timeFormat(item.duration) }
-            </div>
+                <div class="item__image">
+                    <div class="item__number ${ item.tracknumber && !item.albumart ? '' : 'hidden' }">${ item.tracknumber }.</div>
+                    <div class="item__albumart ${ !item.albumart ? 'hidden' : '' }">
+                        <img class="item__image__img" src="${this.playerService.getAlbumart(item.albumart)}" alt="">
+                    </div>
+                    <div
+                      class="item__albumart-icon ${ !item.icon ? 'hidden' : '' }">
+                      <i class="${ item.icon }"></i>
+                    </div>
+                </div>
+                <div class="item__info">
+                  <div class="item__title truncate-text ${ (item.album && item.artist) ? 'item__title__third' : (!item.album && !item.artist) ? 'item__title__full' : 'item__title__half' }" title="${ item.title || '' }">
+                      ${ item.title || '' } <img class="music-card__extension tagrow${ !item.tagImage ? 'hidden' : '' }" src="${ this.playerService.getAlbumart(item.tagImage) }">
+                  </div>`;
+        if (item.album) {
+          generatedListItem += `
+                      <div class="item__album truncate-text" title="${ item.album }">
+                          ${ item.album || '' }
+                      </div>`;
+        }
+        if (item.album && item.artist) {
+          generatedListItem += `
+                      <div class="item__info__separator">
+                          •
+                      </div>`;
+        }
+        if (item.artist) {
+          generatedListItem += `
+                      <div class="item__artist truncate-text ${ !item.artist ? 'hidden' : '' }" title="${ item.artist || '' }">
+                          ${ item.artist || '' }
+                      </div>
+                  `;
+        }
+        generatedListItem += `
+                </div>
+                <div
+                    onclick="${angularThis}.addToFavoritesByIndex(event, ${listIndex}, ${itemIndex})"
+                    class="item__favorite ${
+                      this.showPlayButton(item) && (item.type === 'song' || item.type === 'folder-with-favourites') && this.browseService.currentFetchRequest.uri !== 'favourites' && !item.favourite ? '' : 'hidden'
+                    } ${
+                      item.favorite ? 'favorited' : ''
+                    }">
+                    <span class="item__favorite-heart">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                </div>
 
-            <div
-                onclick="${angularThis}.preventBubbling(event)"
-                class="item__actions ${
-                    ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
-                }">
-                <button
-                    id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
-                    onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
-                    class="ghost-btn action-btn">
-                    <i class="fa fa-ellipsis-v"></i>
-                </button>
+                <div
+                    class="item__duration ${ !item.duration ? 'hidden' : '' }">
+                        ${ this.timeFormat(item.duration) }
+                </div>
+
+                <div
+                    onclick="${angularThis}.preventBubbling(event)"
+                    class="item__actions ${
+                        ( item.type === 'radio-favourites' || item.type === 'radio-category' || item.type === 'spotify-category' || item.type === 'title' || item.type === 'streaming-category' || item.type === 'item-no-menu') ? 'hidden' : ''
+                    }">
+                    <button
+                        id="hamburgerMenuBtn-${listIndex}-${itemIndex}"
+                        onclick="${angularThis}.openMusicCardContenxtList(event, ${listIndex}, ${itemIndex})"
+                        class="ghost-btn action-btn">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-      </div>
-      `);
+          </div>
+        `;
+        return generatedListItem;
+      });
       return html.join('');
     }
   }
