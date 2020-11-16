@@ -36,7 +36,6 @@
     height: 100%;
     background-color: transparent;
     transition: background-color 0.15s ease-out 0s;
-    pointer-events: none;
 }
 
 .music-card__info {
@@ -73,6 +72,7 @@
     width: calc(100% - 24px);
     opacity: 0;
     transition: opacity 0.15s ease-out 0s;
+    pointer-events: none;
 }
 
 .meta__actions {
@@ -81,11 +81,11 @@
     right: 6px;
     width: 24px;
     text-align: center;
+    pointer-events: auto;
     .hidden {
         display: none;
     }
     .action-btn {
-        opacity: 0;
         transition: opacity 0.15s ease-out 0s;
         &:hover,
         &:active,
@@ -123,6 +123,7 @@
     left: 12px;
     opacity: 0;
     transition: opacity 0.15s ease-out 0s;
+    pointer-events: none;
     .play-btn {
         display: flex;
         position: relative;
@@ -161,6 +162,7 @@
     -webkit-text-fill-color: transparent;
     opacity: 0;
     transition: opacity 0.15s ease-out 0s;
+    pointer-events: none;
     &.favorited {
         opacity: 1;
         color: $theme-primary-color;
@@ -189,14 +191,15 @@
         &:hover {
             cursor: pointer;
             .music-card__overlay {
-                pointer-events: auto;
                 background-color: rgba(0, 0, 0, .6);
             }
             .meta__genre,
+            .meta__actions,
             .action-btn,
             .meta__play,
             .meta__favorite {
                 opacity: 1;
+                pointer-events: auto;
             }
         }
     }
