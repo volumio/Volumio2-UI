@@ -1,8 +1,10 @@
 <div class="wizard-panel col-sm-10 col-sm-offset-7">
   <h3 translate="WIZARD.DEVICE_CODE_TITLE" style="margin-top:40px;"></h3>
-  <h5
-  ng-if="wizard.wizardDetails.deviceCode.activated !== true && wizard.wizardDetails.deviceCode.alreadyActivated !== true"
-  translate="WIZARD.DEVICE_CODE_MESSAGE"></h5>
+  <span
+  ng-if="wizard.wizardDetails.deviceCode.activated !== true && wizard.wizardDetails.deviceCode.alreadyActivated !== true">
+    <h5 translate="WIZARD.DEVICE_CODE_MESSAGE"></h5>
+    <h5>{{'WIZARD.DEVICE_CODE_MESSAGE_CLICK' | translate}} {{'WIZARD.DEVICE_CODE_VALIDATE' | translate}}</h5>
+  </span>
   <form name="wizard.deviceCodeform">
     <input
         type="text"
