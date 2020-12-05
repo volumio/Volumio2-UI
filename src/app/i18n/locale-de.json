@@ -113,7 +113,8 @@
         "READ_MORE": "Weiterlesen",
         "NO_ITEMS": "Keine Einträge",
         "NOT_FOUND": "Nicht gefunden",
-        "CREDITS_NOT_FOUND": "Keine Mitwirkenden gefunden"
+        "CREDITS_NOT_FOUND": "Keine Mitwirkenden gefunden",
+        "ALBUM_CREDITS": "Album-Credits"
     },
     "MY_MUSIC": {
         "UPDATE": "Aktualisieren",
