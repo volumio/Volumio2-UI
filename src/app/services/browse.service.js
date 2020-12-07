@@ -121,11 +121,11 @@ class BrowseService {
   }
 
   goTo(emitPayload) {
-    this.backHome();
-    this.isSearching = true;
-    this.isBrowsing = false;
     this.$log.debug('goTo', emitPayload);
+    this.backHome();
     this.$timeout(() => {
+      this.isSearching = true;
+      this.isBrowsing = false;
       this.socketService.emit('goTo', emitPayload);
       // this.socketService.emit('search', emitPayload);
     }, 0);
