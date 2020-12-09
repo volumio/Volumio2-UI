@@ -2,13 +2,16 @@
   "UI_SETTINGS": {
     "THEME_SETTINGS": "Theme Settings",
     "UPLOAD_BACKGROUND": "Upload new background",
-    "UPLOAD_BACKGROUND_FILE": "Click and select new background or drop it here.",
+    "UPLOAD_BACKGROUND_FILE_BTN": "Click and select new background",
+    "UPLOAD_BACKGROUND_FILE_DRAG": "Or drop a new background image here",
     "UPLOAD_PROGRESS": "Upload progress:",
     "SELECT_BACKGROUND": "Select background",
-    "SELECT_BACKGROUND_COLOR": "Select background color",
+    "SELECT_BACKGROUND_COLOR": "Select a solid color as a background",
     "APPLY_BACKGROUND": "Apply background",
     "APPLY_BACKGROUND_COLOR": "Apply background color",
-    "DELETE_BACKGROUND": "Delete background"
+    "DELETE_BACKGROUND": "Delete background",
+    "TAB_BACKGROUND_IMAGE":"Image",
+    "TAB_BACKGROUND_SOLIDCOLOR":"Solid Color"
   },
   "COMMON": {
     "SAVE": "Save",
