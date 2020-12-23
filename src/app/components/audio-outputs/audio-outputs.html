@@ -2,7 +2,178 @@
 <div id="sideMenu">
 
 
-  <div id="menuList" role="group" ng-if="audioOutputs.menuVisible" style="width:350px; max-width: 100%;">
+  <div role="group" ng-if="audioOutputs.menuVisible" class="outputs__menu">
+    <div ng-if="audioOutputs.defaultView" class="outputs__overview">
+
+      <div class="outputs__title align-items-center">
+        <div class="outputs__title__text">
+          Zones & devices
+        </div>
+        <div class="outputs__title__action">
+          <button ng-click="audioOutputs.toggleView()" class="outputs__action">
+            <i class="outputs__action__icon material-icons">speaker_group</i>
+            Group devices
+          </button>
+        </div>
+      </div> <!-- /.outputs__title -->
+
+      <div class="outputs__subtitle small link">
+        This device
+      </div>
+
+      <div class="outputs__device device">
+        <div class="device__thumb">
+          <img src="https://i.scdn.co/image/ab67616d0000b2739c853aae7a8aa1db84a52dd8" alt="cover image">
+        </div>
+        <div class="device__info">
+          <div class="device__title">
+            <div class="device__title__text">Volumio Living Room</div>
+            <div class="device__actions">
+              <div class="device__volume">
+                <button class="outputs__action device__control device__control--volume">
+                  <i class="outputs__action__icon fa fa-volume-up"></i>
+                </button>
+              </div>
+            </div>
+          </div> <!-- /.device__title -->
+          <div class="device__meta">
+            <button class="outputs__action device__control device__control--play">
+              <i class="fa fa-play"></i>
+            </button>
+            <span class="device__meta__song">Ol'55 - Tom Waits</span>
+          </div>
+        </div> <!-- /.device__info -->
+      </div> <!-- /.outputs__device -->
+
+      <div class="outputs__subtitle small link">
+        Active group
+      </div>
+
+      <div class="outputs__device device groupped">
+        <div class="device__thumb">
+          <img src="https://i.scdn.co/image/ab67616d0000b2739c853aae7a8aa1db84a52dd8" alt="cover image">
+        </div>
+        <div class="device__info">
+          <div class="device__meta">
+            <button class="outputs__action device__control device__control--play">
+              <i class="fa fa-play"></i>
+            </button>
+            <span class="device__meta__song">Ol'55 - Tom Waits</span>
+          </div>
+        </div> <!-- /.device__info -->
+
+        <div class="device__group">
+
+          <div class="device__group__item">
+            <div class="device__title">
+              <div class="device__title__text">Volumio Living Room</div>
+              <div class="device__actions">
+                <div class="device__volume">
+                  <button class="outputs__action device__control device__control--volume">
+                    <i class="outputs__action__icon fa fa-volume-up"></i>
+                  </button>
+                </div>
+              </div>
+            </div> <!-- /.device__title -->
+            <div class="device__meta">
+              <button class="outputs__action outputs__action--primary">Remove</button>
+            </div>
+          </div> <!-- /.device__group__item -->
+
+          <div class="device__group__item">
+            <div class="device__title">
+              <div class="device__title__text">Primo Bob’s Room</div>
+              <div class="device__actions">
+                <div class="device__volume">
+                  <button class="outputs__action device__control device__control--volume">
+                    <i class="outputs__action__icon fa fa-volume-up"></i>
+                  </button>
+                </div>
+              </div>
+            </div> <!-- /.device__title -->
+            <div class="device__meta">
+              <button class="outputs__action outputs__action--primary">Remove</button>
+            </div>
+          </div> <!-- /.device__group__item -->
+
+          <div class="device__group__item">
+            <div class="device__title">
+              <div class="device__title__text">This is a device with a very looong long name</div>
+              <div class="device__actions">
+                <div class="device__volume">
+                  <button class="outputs__action device__control device__control--volume">
+                    <i class="outputs__action__icon fa fa-volume-up"></i>
+                  </button>
+                </div>
+              </div>
+            </div> <!-- /.device__title -->
+            <div class="device__meta">
+              <button class="outputs__action outputs__action--primary">Remove</button>
+            </div>
+          </div> <!-- /.device__group__item -->
+
+        </div> <!-- /.device__group -->
+
+      </div> <!-- /.outputs__device groupped -->
+
+      <div class="device__group__action">
+        <button class="outputs__action">
+          <i class="outputs__action__icon material-icons device__group__remove-icon">speaker_group</i>
+          Remove all devices
+        </button>
+      </div> <!-- /.device__group__action -->
+
+    </div> <!-- /.outputs__overview -->
+
+    <div ng-if="audioOutputs.groupView" class="outputs__grouping">
+      <!-- Use this div to enter into grouping mode -->
+      <div class="outputs__title align-items-center">
+        <div class="outputs__title__text">
+          Group devices
+        </div>
+        <div class="outputs__title__action">
+          <button ng-click="audioOutputs.toggleView()" class="outputs__action">
+            Done
+          </button>
+        </div>
+      </div> <!-- /.outputs__title -->
+
+      <div class="outputs__device device">
+        <div class="device__thumb small">
+          <img src="https://i.scdn.co/image/ab67616d0000b2739c853aae7a8aa1db84a52dd8" alt="cover image">
+        </div>
+        <div class="device__info">
+
+          <div class="device__title">
+            <div class="device__title__text">Volumio Living Room</div>
+          </div> <!-- /.device__title -->
+          <div class="device__meta">
+            <span class="device__meta__song">This device</span>
+          </div>
+
+          <div class="device__title">
+            <div class="device__title__text">Primo Bob's Room</div>
+            <div class="device__actions">
+              <button class="outputs__action outputs__action--primary">Remove</button>
+            </div>
+          </div> <!-- /.device__title -->
+
+        </div> <!-- /.device__info -->
+
+      </div> <!-- /.device -->
+
+      <div class="device__group__action">
+        <button class="outputs__action">
+          <i class="outputs__action__icon material-icons device__group__remove-icon">speaker_group</i>
+          Remove all devices
+        </button>
+      </div> <!-- /.device__group__action -->
+
+    </div> <!-- /.outputs__grouping -->
+
+  </div> <!-- /.outputs__menu -->
+
+  <!-- <div id="menuList" role="group" ng-if="audioOutputs.menuVisible" style="width:350px; max-width: 100%;">
     <div class="list-title pull-left" translate="MULTIDEVICE.PLAYBACK_ZONES"></div>
     <div class="close-output-button pull-right">
       <button id="closeMenuBtnOutputs" ng-click="audioOutputs.toggleMenu()" class="btn btn-link pull-right">
@@ -37,5 +208,5 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 </div>
