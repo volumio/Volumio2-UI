@@ -115,10 +115,10 @@
         "NOT_FOUND": "Nicht gefunden",
         "CREDITS_NOT_FOUND": "Keine Mitwirkenden gefunden",
         "ALBUM_CREDITS": "Album-Credits",
-        "ALBUM_STORY": "Album-Story",
-        "TRACK_STORY": "Titel-Story",
-        "ARTIST_STORY": "Interpreten-Story",
-        "ARTIST_STORY_NOT_FOUND_FOR": "Keine Interpreten-Story gefunden zu"
+        "ALBUM_STORY": "Album-Info",
+        "TRACK_STORY": "Titel-Info",
+        "ARTIST_STORY": "Interpreten-Info",
+        "ARTIST_STORY_NOT_FOUND_FOR": "Keine Interpreten-Info gefunden zu"
     },
     "MY_MUSIC": {
         "UPDATE": "Aktualisieren",
@@ -432,7 +432,7 @@
         "TO_VOLUMIO": "zu Volumio in deinen Einstellungen",
         "CODE_DEVICE_ALREADY_ACTIVATED": "Dein Gerätecode wurde bereits erfolgreich eingelöst und dein Plan ist",
         "AND_ASSOCIATED_WITH_ACCOUNT": "und ist verbunden mit dem Account",
-        "SIGNUP_ERROR_CONTACT_SUPPORT": "Bei der Registrierung ist etwas schief gelaufen. Bitte wende dich mit folgender Fehlerinformation an support@volumio.org für Unterstützung:",
+        "SIGNUP_ERROR_CONTACT_SUPPORT": "Bei der Registrierung ist etwas schief gelaufen. Bitte wende dich mit folgender Fehlerinformation an support@volumio.org um Unterstützung zu erhalten:",
         "UPGRADE_SUPERSTAR": "Upgrade zu Superstar",
         "WIN_PRIZES_REFERRING_VOLUMIO": "Hole deine Freunde zu MyVolumio und erhalte tolle Prämien!",
         "MY_ACHIEVEMENTS": "Meine Leistung",
