@@ -12,7 +12,7 @@
     },
     "COMMON": {
         "SAVE": "Guardar",
-        "OK": "Ok",
+        "OK": "OK",
         "YES": "Si",
         "NO": "No",
         "GOT_IT": "Entendido",
@@ -195,7 +195,7 @@
         "OPEN_NETWORK": "Red abierta",
         "SECURE_NETWORK": "Red segura",
         "SECURITY": "Seguridad",
-        "MANUAL_WIFI_CONNECTION": "Conexión WiFi Manual",
+        "MANUAL_WIFI_CONNECTION": "Conexión Wi-Fi Manual",
         "NETWORK_NAME": "Nombre de la red",
         "WIRELESS_NETWORK_CONNECTION": "Conexión de red inalámbrica"
     },
@@ -212,8 +212,8 @@
         "DEVICE_NAME": "Escribe un nombre para tu dispositivo",
         "DEVICE_ADDRESS": "Este dispositivo estará disponible en la dirección:",
         "SELECT_YOUR_AUDIO_OUTPUT": "Selecciona tu salida de audio",
-        "SELECT_YOUR_I2S_DAC": "Selecciona tu DAC I2S",
-        "I_HAVE_DAC": "Tengo un DAC I2S",
+        "SELECT_YOUR_I2S_DAC": "Selecciona tu DAC I²S",
+        "I_HAVE_DAC": "Tengo un DAC I²S",
         "CUSTOM_AMOUNT": "Cantidad personalizada",
         "DONE_MESSAGE": "Listo, tu sistema está preparado",
         "MAIL_LIST_SUBSCRIPTION": "Suscripción a lista de correo",
@@ -433,7 +433,7 @@
         "REMOTE_CONNECTION_6_DEVICES": "Conexión remota a hasta 6 dispositivos",
         "CD_PLAYBACK_RIPPING": "Reproducción y extracción de CD",
         "ALEXA_INTEGRATION": "Integración con Alexa",
-        "HIRESAUDIO_INTEGRATION": "Integración con Highresaudio.com",
+        "HIRESAUDIO_INTEGRATION": "Integración con HIGHRESAUDIO",
         "INPUT_PLAYBACK": "Reproducción de entradas digitales y analógicas",
         "BLUETOOTH_INPUT": "Entrada de reproducción de audio Bluetooth"
     }
