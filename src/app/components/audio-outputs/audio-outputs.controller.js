@@ -18,12 +18,15 @@ class AudioOutputsController {
 
   isMultiOutputsAvailable() {
     // TODO - MULTIROOM FIX AFTER DONE
-    return true
-    if (this.audioOutputsService.outputs && this.audioOutputsService.outputs.length > 1) {
+    // console.log(this.audioOutputsService.outputs);
+    // console.log(this.audioOutputsService.multiRoomDevices);
+
+    return true;
+    /* if (this.audioOutputsService.outputs && this.audioOutputsService.outputs.length > 1) {
       return true;
     } else {
       return false;
-    }
+    } */
   }
 
   toggleAudioOutput(id, enabled) {

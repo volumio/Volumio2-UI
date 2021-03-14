@@ -17,33 +17,75 @@
         </div>
       </div> <!-- /.outputs__title -->
 
-      <div class="outputs__subtitle small link">
-        This device
-      </div>
-
-      <div class="outputs__device device">
-        <div class="device__thumb">
-          <img src="https://i.scdn.co/image/ab67616d0000b2739c853aae7a8aa1db84a52dd8" alt="cover image">
+      <div ng-if="audioOutputs.audioOutputsService.thisOutput">
+        <div class="outputs__subtitle small link">
+          This device
         </div>
-        <div class="device__info">
-          <div class="device__title">
-            <div class="device__title__text">Volumio Living Room</div>
-            <div class="device__actions">
-              <div class="device__volume">
-                <button class="outputs__action device__control device__control--volume">
-                  <i class="outputs__action__icon fa fa-volume-up"></i>
-                </button>
-              </div>
-            </div>
-          </div> <!-- /.device__title -->
-          <div class="device__meta">
-            <button class="outputs__action device__control device__control--play">
-              <i class="fa fa-play"></i>
-            </button>
-            <span class="device__meta__song">Ol'55 - Tom Waits</span>
+  
+        <div class="outputs__device device">
+          <div ng-if="audioOutputs.audioOutputsService.thisOutput.state" class="device__thumb">
+            <img src="{{audioOutputs.audioOutputsService.thisOutput.state.albumart}}" alt="cover image">
           </div>
-        </div> <!-- /.device__info -->
-      </div> <!-- /.outputs__device -->
+          <div class="device__info">
+            <div class="device__title">
+              <div class="device__title__text">{{ audioOutputs.audioOutputsService.thisOutput.name }}</div>
+              <div class="device__actions">
+                <div ng-if="audioOutputs.audioOutputsService.thisOutput.volumeAvailable" class="device__volume">
+                  <button class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{audioOutputs.audioOutputsService.thisOutput.state.volume}}">
+                    <i class="outputs__action__icon fa fa-volume-up"></i>
+                  </button>
+                </div>
+              </div>
+            </div> <!-- /.device__title -->
+            <div class="device__meta">
+              <button ng-if="audioOutputs.audioOutputsService.thisOutput.state.status === 'pause'" ng-click="audioOutputs.audioOutputsService.audioOutputPlay(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-play"></i>
+              </button>
+              <button ng-if="audioOutputs.audioOutputsService.thisOutput.state.status === 'play'" ng-click="audioOutputs.audioOutputsService.audioOutputPause(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-pause"></i>
+              </button>
+              <span class="device__meta__song">{{ audioOutputs.audioOutputsService.thisOutput.state.track }} - {{ audioOutputs.audioOutputsService.thisOutput.state.artist }}</span>
+            </div>
+          </div> <!-- /.device__info -->
+        </div> <!-- /.outputs__device -->
+      </div> <!-- THIS DEVICE -->
+
+      <div>
+        <div class="outputs__subtitle small link">
+          Available devices
+        </div>
+  
+        <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device">
+          <div ng-if="output.state" class="device__thumb">
+            <img src="{{output.state.albumart}}" alt="cover image">
+          </div>
+          <div class="device__info">
+            <div class="device__title">
+              <div class="device__title__text">{{ output.name }}</div>
+              <div class="device__actions">
+                <div ng-if="output.volumeAvailable" class="device__volume">
+                  <button class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{output.state.volume}}">
+                    <i class="outputs__action__icon fa fa-volume-up"></i>
+                  </button>
+                </div>
+              </div>
+            </div> <!-- /.device__title -->
+            <div class="device__meta">
+              <button ng-if="output.state.status === 'pause'" ng-click="audioOutputs.audioOutputsService.audioOutputPlay(output)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-play"></i>
+              </button>
+              <button ng-if="output.state.status === 'play'" ng-click="audioOutputs.audioOutputsService.audioOutputPause(output)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-pause"></i>
+              </button>
+              <span class="device__meta__song">{{ output.state.track }} - {{ output.state.artist }}</span>
+            </div>
+          </div> <!-- /.device__info -->
+        </div> <!-- /.outputs__device -->
+
+      </div> <!-- AVAILABLE DEVICES -->
+
+
+      <!-- Code below is kept only for development reasons, TODO: remove -->
 
       <div class="outputs__subtitle small link">
         Active group
@@ -125,6 +167,8 @@
 
     </div> <!-- /.outputs__overview -->
 
+    <!-- ====== GROUPING ====== -->
+
     <div ng-if="audioOutputs.groupView" class="outputs__grouping">
       <!-- Use this div to enter into grouping mode -->
       <div class="outputs__title align-items-center">
@@ -170,6 +214,28 @@
       </div> <!-- /.device__group__action -->
 
     </div> <!-- /.outputs__grouping -->
+
+    <div>
+      <div class="outputs__subtitle small">
+        Available devices
+      </div>
+      <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device">
+        <div class="device__thumb small">
+          <img src="{{output.state.albumart}}" alt="cover image">
+        </div>
+        <div class="device__info">
+
+          <div class="device__title">
+            <div class="device__title__text">{{ output.name }}</div>
+            <div class="device__actions">
+              <button ng-click="audioOutputs.audioOutputsService.enableAudioOutput(output.id)" class="outputs__action outputs__action--primary">Add</button>
+            </div>
+          </div> <!-- /.device__title -->
+
+        </div> <!-- /.device__info -->
+
+      </div> <!-- /.device -->
+    </div> <!-- GROUPABLE DEVICES -->
 
   </div> <!-- /.outputs__menu -->
 

@@ -9,6 +9,7 @@ class AudioOutputsService {
     this.pushedOutputs = [];
     this.outputs = [];
     this.multiRoomDevices = [];
+    this.thisOutput = null;
 
     this.registerListener();
     this.initService();
@@ -40,6 +41,14 @@ class AudioOutputsService {
     this.socketService.emit('disableAudioOutput', { id });
   }
 
+  audioOutputPlay(output) {
+    this.socketService.emit('audioOutputPlay', output);
+  }
+
+  audioOutputPause(output) {
+    this.socketService.emit('audioOutputPause', output);
+  }
+
   onDeviceVolumeChange(item) {
     let id = item.id;
     let type = item.type;
@@ -69,11 +78,17 @@ class AudioOutputsService {
             }
           }
         }
+    console.log(this.outputs);
+    this.thisOutput = this.outputs.find(d => d.isSelf);
   }
 
   onMultiRoomListChange(data) {
     this.outputs = data;
     this.mergeMultiroomProperties();
+  }
+
+  availableOutputs() {
+    return this.outputs.filter(o => o.available && !o.isSelf);
   }
 }
 
