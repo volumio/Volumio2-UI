@@ -41,6 +41,12 @@ class AudioOutputsService {
     this.socketService.emit('disableAudioOutput', { id });
   }
 
+  removeAllDevices() {
+    const enabledOutputs = this.enabledOutputs();
+    console.log(enabledOutputs)
+    enabledOutputs.map(o => this.disableAudioOutput(o.id));
+  }
+
   audioOutputPlay(output) {
     this.socketService.emit('audioOutputPlay', output);
   }
@@ -88,7 +94,10 @@ class AudioOutputsService {
   }
 
   availableOutputs() {
-    return this.outputs.filter(o => o.available && !o.isSelf);
+    return this.outputs.filter(o => o.available && !o.isSelf && !o.enabled);
+  }
+  enabledOutputs() {
+    return this.outputs.filter(o => o.available && !o.isSelf && o.enabled);
   }
 }
 

@@ -213,6 +213,7 @@
 }
 
 .device {
+  position: relative;
   display: flex;
   align-items: flex-start;
   margin-bottom: 2.4rem;
@@ -359,6 +360,30 @@
       }
     }
   }
+}
+
+.volume-control {
+  &__popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 64px;
+    padding: 4px 8px;
+    background: #333;
+    border-radius: 2px;
+    .list-item-volume-bar {
+      position: relative !important;
+      left: 0;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.volume-control-activator ~ .volume-control__popover {
+  display: none;
+}
+.volume-control-activator:checked ~ .volume-control__popover {
+  display: block;
 }
 
 @media (min-width: 768px) {
