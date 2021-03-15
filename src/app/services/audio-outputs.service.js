@@ -43,7 +43,6 @@ class AudioOutputsService {
 
   removeAllDevices() {
     const enabledOutputs = this.enabledOutputs();
-    console.log(enabledOutputs)
     enabledOutputs.map(o => this.disableAudioOutput(o.id));
   }
 
@@ -84,7 +83,6 @@ class AudioOutputsService {
             }
           }
         }
-    console.log(this.outputs);
     this.thisOutput = this.outputs.find(d => d.isSelf);
   }
 
