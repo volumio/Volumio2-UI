@@ -14,6 +14,7 @@ class UiSettingsService {
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
+    this.enableVolumioKioskMode = false;
     this.enableMemorySavingTouchUi = false;
     this.enableTouchUi = false;
 
@@ -188,6 +189,11 @@ class UiSettingsService {
 
   detectVolumioTouschreenViaUserAgent() {
     // If user agent is volumiokiosk-memorysave we will enable a special mode for low memory devices
+    if (this.$window.navigator.userAgent.includes('volumiokiosk')) {
+      this.enableVolumioKioskMode = true;
+      this.removeHoverEffects();
+    }
+
     if (this.$window.navigator.userAgent.includes('memorysave')) {
       this.enableMemorySavingTouchUi = true;
       this.removeHoverEffects();
@@ -216,6 +222,10 @@ class UiSettingsService {
     let style = document.createElement('style');
     style.textContent = 'div#multiRoomDockWrapper {display: none;}';
     document.head.append(style);
+  }
+
+  isVolumioKioskModeEnabled() {
+    return this.enableVolumioKioskMode;
   }
 
   isMemorySavingTouchUiEnabled() {
