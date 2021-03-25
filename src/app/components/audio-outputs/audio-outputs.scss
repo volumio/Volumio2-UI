@@ -205,6 +205,7 @@
     &__icon.material-icons {
       font-size: 18px;
       margin-right: 6px;
+      cursor: pointer;
     }
     &--primary {
       color: $theme-primary-color;
@@ -340,8 +341,10 @@
       }
     }
     &__action {
+      flex: 1 0 100%;
       display: flex;
       justify-content: center;
+      margin-top: 2.4rem;
       margin-bottom: 3.2rem;
       opacity: .5;
     }
