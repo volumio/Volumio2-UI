@@ -23,12 +23,12 @@
         </div>
   
         <div class="outputs__device device">
-          <div ng-if="audioOutputs.audioOutputsService.thisOutput.state" class="device__thumb">
+          <div ng-if="audioOutputs.audioOutputsService.thisOutput.state" ng-click="audioOutputs.onDeviceClick(audioOutputs.audioOutputsService.thisOutput)" class="device__thumb">
             <img src="{{audioOutputs.audioOutputsService.thisOutput.state.albumart}}" alt="cover image">
           </div>
           <div class="device__info">
             <div class="device__title">
-              <div class="device__title__text">{{ audioOutputs.audioOutputsService.thisOutput.name }}</div>
+              <div ng-click="audioOutputs.onDeviceClick(audioOutputs.audioOutputsService.thisOutput)" class="device__title__text clickable">{{ audioOutputs.audioOutputsService.thisOutput.name }}</div>
               <div class="device__actions">
                 <div ng-if="audioOutputs.audioOutputsService.thisOutput.volumeAvailable" class="device__volume">
                   <label for="{{audioOutputs.audioOutputsService.thisOutput.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{audioOutputs.audioOutputsService.thisOutput.state.volume}}">
@@ -49,7 +49,7 @@
               <button ng-if="audioOutputs.audioOutputsService.thisOutput.state.status === 'play'" ng-click="audioOutputs.audioOutputsService.audioOutputPause(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
                 <i class="fa fa-pause"></i>
               </button>
-              <span class="device__meta__song">{{ audioOutputs.audioOutputsService.thisOutput.state.track }} - {{ audioOutputs.audioOutputsService.thisOutput.state.artist }}</span>
+              <span class="device__meta__song" title="{{ audioOutputs.audioOutputsService.thisOutput.state.track }} - {{ audioOutputs.audioOutputsService.thisOutput.state.artist }}">{{ audioOutputs.audioOutputsService.thisOutput.state.track }} - {{ audioOutputs.audioOutputsService.thisOutput.state.artist }}</span>
             </div>
           </div> <!-- /.device__info -->
         </div> <!-- /.outputs__device -->
@@ -62,7 +62,7 @@
         </div>
 
         <div ng-repeat="group in audioOutputs.audioOutputsService.groupedOutputs" class="outputs__device device groupped">
-          <div class="device__thumb">
+          <div class="device__thumb" ng-click="audioOutputs.onDeviceClick(group.leader)">
             <img src="{{group.leader.state.albumart}}" alt="cover image">
           </div>
           <div class="device__info">
@@ -73,7 +73,7 @@
               <button ng-if="group.leader.state.status === 'play'" ng-click="audioOutputs.audioOutputsService.audioOutputPause(group.leader)" class="outputs__action device__control device__control--play">
                 <i class="fa fa-pause"></i>
               </button>
-              <span class="device__meta__song">{{ group.leader.state.track }} - {{ group.leader.state.artist }}</span>
+              <span class="device__meta__song" title="{{ group.leader.state.track }} - {{ group.leader.state.artist }}">{{ group.leader.state.track }} - {{ group.leader.state.artist }}</span>
             </div>
           </div> <!-- /.device__info -->
 
@@ -81,7 +81,7 @@
 
             <div class="device__group__item">
               <div class="device__title">
-                <div class="device__title__text">{{ group.leader.name }}</div>
+                <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(group.leader)">{{ group.leader.name }}</div>
                 <div class="device__actions">
                   <div ng-if="group.leader.volumeAvailable" class="device__volume">
                     <label for="{{group.leader.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{group.leader.state.volume}}">
@@ -102,7 +102,7 @@
 
             <div ng-repeat="output in group.children" class="device__group__item">
               <div class="device__title">
-                <div class="device__title__text">{{ output.name }}</div>
+                <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(output)">{{ output.name }}</div>
                 <div class="device__actions">
                   <div ng-if="output.volumeAvailable" class="device__volume">
                     <label for="{{output.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{output.state.volume}}">
@@ -141,12 +141,12 @@
         </div>
   
         <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device">
-          <div ng-if="output.state" class="device__thumb">
+          <div ng-if="output.state" class="device__thumb" ng-click="audioOutputs.onDeviceClick(output)">
             <img src="{{output.state.albumart}}" alt="cover image">
           </div>
           <div class="device__info">
             <div class="device__title">
-              <div class="device__title__text">{{ output.name }}</div>
+              <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(output)">{{ output.name }}</div>
               <div class="device__actions">
                 <div ng-if="output.volumeAvailable" class="device__volume">
                   <label for="{{output.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{output.state.volume}}">
@@ -167,7 +167,7 @@
               <button ng-if="output.state.status === 'play'" ng-click="audioOutputs.audioOutputsService.audioOutputPause(output)" class="outputs__action device__control device__control--play">
                 <i class="fa fa-pause"></i>
               </button>
-              <span class="device__meta__song">{{ output.state.track }} - {{ output.state.artist }}</span>
+              <span class="device__meta__song" title="{{ output.state.track }} - {{ output.state.artist }}">{{ output.state.track }} - {{ output.state.artist }}</span>
             </div>
           </div> <!-- /.device__info -->
         </div> <!-- /.outputs__device -->

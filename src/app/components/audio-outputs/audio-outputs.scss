@@ -231,6 +231,7 @@
     margin-right: 1.2rem;
     overflow: hidden;
     box-shadow: 0 0 0 4px rgba(white, .05);
+    cursor: pointer;
   }
   &__info {
     flex-grow: 1;
@@ -249,6 +250,10 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      cursor: pointer;
+      &:hover {
+        color: $theme-primary-color;
+      }
     }
     & ~ & {
       margin-top: 1.2rem;
@@ -293,6 +298,9 @@
   }
   &__meta__song {
     margin-top: 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   &.groupped {

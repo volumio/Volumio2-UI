@@ -65,6 +65,7 @@ class AudioOutputsService {
   }
 
   onDeviceListChange(data) {
+    console.log(data)
     this.pushedOutputs = data.availableOutputs
         .filter(output => output.type !== 'browser');
     this.mergeMultiroomProperties();
@@ -87,6 +88,7 @@ class AudioOutputsService {
           }
         }
     this.thisOutput = this.outputs.find(d => d.isSelf);
+    console.log(this.thisOutput)
   }
 
   onMultiRoomListChange(data) {
@@ -96,7 +98,7 @@ class AudioOutputsService {
   }
 
   availableOutputs() {
-    return this.outputs.filter(o => o.available && !o.isSelf && !o.enabled);
+    return this.outputs.filter(o => o.available && !o.isSelf && !o.enabled && o.plugin === 'audio_interface/multiroom');
   }
   enabledOutputs() {
     return this.outputs.filter(o => o.available && !o.isSelf && o.enabled);
