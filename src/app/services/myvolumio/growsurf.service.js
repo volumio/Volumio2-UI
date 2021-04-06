@@ -15,7 +15,8 @@ class GrowSurfService {
   }
 
   init() {
-      this.initializeGrowSurf();
+      // disabled growsurf
+      //this.initializeGrowSurf();
   }
 
   initializeGrowSurf() {
