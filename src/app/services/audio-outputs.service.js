@@ -87,7 +87,6 @@ class AudioOutputsService {
             }
           }
         }
-    console.log(this.pushedOutputs)
     this.thisOutput = this.outputs.find(d => d.isSelf);
   }
 
