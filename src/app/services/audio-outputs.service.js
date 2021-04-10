@@ -65,7 +65,6 @@ class AudioOutputsService {
   }
 
   onDeviceListChange(data) {
-    console.log(data)
     this.pushedOutputs = data.availableOutputs
         .filter(output => output.type !== 'browser');
     this.mergeMultiroomProperties();
@@ -84,11 +83,12 @@ class AudioOutputsService {
               output.plugin = pushedOutput.plugin;
               output.leader = pushedOutput.leader;
               output.mute = pushedOutput.mute;
+              output.groupable = pushedOutput.hasOwnProperty('leader');
             }
           }
         }
+    console.log(this.pushedOutputs)
     this.thisOutput = this.outputs.find(d => d.isSelf);
-    console.log(this.thisOutput)
   }
 
   onMultiRoomListChange(data) {
@@ -106,7 +106,7 @@ class AudioOutputsService {
   generateGroupedOutputs() {
     /* First, let's extract the unique group leaders */
     const leaderIds = this.outputs.reduce((acc, output) => {
-      if (output.leader) {
+      if (output.leader && output.leader !== output.id && output.enabled) {
         acc.push(output.leader);
       }
       return acc;
@@ -115,7 +115,7 @@ class AudioOutputsService {
     this.groupedOutputs = leaderIds.map((leader) => {
       return {
         leader: this.outputs.find(o => o.id === leader),
-        children: this.outputs.filter(o => o.leader === leader)
+        children: this.outputs.filter(o => o.leader === leader && o.leader !==o.id && o.enabled)
       };
     });
   }

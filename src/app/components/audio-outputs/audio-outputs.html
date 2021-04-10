@@ -226,7 +226,7 @@
         <div ng-if="audioOutputs.audioOutputsService.availableOutputs().length > 0" class="outputs__subtitle small">
           Available devices
         </div>
-        <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device">
+        <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device {{ output.groupable ? '' : 'disabled'}}">
           <div class="device__thumb small">
             <img src="{{output.state.albumart}}" alt="cover image">
           </div>
@@ -234,11 +234,17 @@
   
             <div class="device__title">
               <div class="device__title__text">{{ output.name }}</div>
-              <div class="device__actions">
+              <div ng-if="output.groupable" class="device__actions">
                 <button ng-if="!output.enabled" ng-click="audioOutputs.audioOutputsService.enableAudioOutput(output.id)" class="outputs__action outputs__action--primary">Add</button>
-                <button ng-if="output.enabled" ng-click="audioOutputs.audioOutputsService.disableAudioOutput(output.id)" class="outputs__action outputs__action--primary">Add</button>
+                <button ng-if="output.enabled" ng-click="audioOutputs.audioOutputsService.disableAudioOutput(output.id)" class="outputs__action outputs__action--primary">Remove</button>
+              </div>
+              <div ng-if="!output.groupable" class="device__actions">
+                <i class="fa fa-ban"></i>
               </div>
             </div> <!-- /.device__title -->
+            <div ng-if="!output.groupable" class="device__meta">
+              <span class="device__meta__song">Upgrade to Volumio 3</span>
+            </div>
   
           </div> <!-- /.device__info -->
   

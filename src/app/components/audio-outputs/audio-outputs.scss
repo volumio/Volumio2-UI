@@ -218,6 +218,10 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 2.4rem;
+  &.disabled {
+    opacity: .7;
+    filter: grayscale(1);
+  }
   &__thumb,
   &__thumb img {
     max-width: 64px;
@@ -236,6 +240,7 @@
   &__info {
     flex-grow: 1;
     min-width: 0; /* Text-overflow ellipsis support */
+    max-width: calc(100% - 64px - 1.2rem);
   }
   &__title {
     display: flex;
