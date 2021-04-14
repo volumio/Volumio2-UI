@@ -83,7 +83,7 @@ class AudioOutputsService {
               output.plugin = pushedOutput.plugin;
               output.leader = pushedOutput.leader;
               output.mute = pushedOutput.mute;
-              output.groupable = pushedOutput.hasOwnProperty('leader');
+              output.groupable = pushedOutput.hasOwnProperty('leader') && pushedOutput.plugin === 'audio_interface/multiroom';
             }
           }
         }
@@ -97,7 +97,7 @@ class AudioOutputsService {
   }
 
   availableOutputs() {
-    return this.outputs.filter(o => o.available && !o.isSelf && !o.enabled && o.plugin === 'audio_interface/multiroom');
+    return this.outputs.filter(o => o.available && !o.isSelf && !o.enabled);
   }
   enabledOutputs() {
     return this.outputs.filter(o => o.available && !o.isSelf && o.enabled);
