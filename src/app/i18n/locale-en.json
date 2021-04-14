@@ -82,7 +82,8 @@
     "YEAR":"Year",
     "GENRE":"Genre",
     "EDIT": "Edit",
-    "GRID" : "Grid"
+    "GRID" : "Grid",
+    "REMOVE": "Remove"
   },
   "BROWSER": {
     "PLAY": "Play",
@@ -267,7 +268,13 @@
     "NOW_PLAYING": "Now playing",
     "PLAYBACK_ZONES":"Playback zones",
     "ZONES":"Zones",
-    "AUDIO_OUTPUTS_AND_ZONES":"Audio Outputs and Zones"
+    "ZONES_AND_OUTPUTS":"Zones & Outputs",
+    "GROUP_DEVICES":"Group devices",
+    "THIS_DEVICE": "This device",
+    "ACTIVE_GROUP": "Active group",
+    "REMOVE_ALL_DEVICES": "Remove all devices",
+    "AVAILABLE_DEVICES": "Available devices",
+    "SYNCED_PLAYBACK_NOT_AVAILABLE": "Synchronized playback not available"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "ANALOG INPUT",
