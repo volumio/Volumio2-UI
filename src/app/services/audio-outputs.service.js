@@ -73,20 +73,24 @@ class AudioOutputsService {
 
   mergeMultiroomProperties() {
     //TODO Refactor in BE
-    for (var i in this.pushedOutputs) {
-        var pushedOutput = this.pushedOutputs[i];
-          for (var k in this.outputs) {
-            var output = this.outputs[k];
+    const loopBaseList = this.pushedOutputs.length >= this.outputs.length ? this.pushedOutputs : this.outputs;
+    const loopCheckList = this.pushedOutputs.length <= this.outputs.length ? this.outputs : this.pushedOutputs;
+    for (var i in loopBaseList) {
+        var pushedOutput = loopBaseList[i];
+          for (var k in loopCheckList) {
+            var output = loopCheckList[k];
             if (pushedOutput.id === output.id) {
               output.available = pushedOutput.available;
               output.enabled = pushedOutput.enabled;
               output.plugin = pushedOutput.plugin;
               output.leader = pushedOutput.leader;
               output.mute = pushedOutput.mute;
+              output.isSelf = pushedOutput.isSelf || output.isSelf;
               output.groupable = pushedOutput.hasOwnProperty('leader') && pushedOutput.plugin === 'audio_interface/multiroom';
             }
           }
         }
+    this.outputs = loopCheckList;
     this.thisOutput = this.outputs.find(d => d.isSelf);
   }
 
@@ -97,7 +101,7 @@ class AudioOutputsService {
   }
 
   availableOutputs() {
-    return this.outputs.filter(o => o.available && !o.isSelf && !o.enabled);
+    return this.outputs.filter(o => !o.isSelf && !o.enabled);
   }
   enabledOutputs() {
     return this.outputs.filter(o => o.available && !o.isSelf && o.enabled);

@@ -201,6 +201,7 @@
     background-color: transparent;
     border: none;
     // color: $theme-text-color;
+    margin-bottom: 0;
     &__icon,
     &__icon.material-icons {
       font-size: 18px;
@@ -224,11 +225,13 @@
   }
   &__thumb,
   &__thumb img {
-    max-width: 64px;
+    width: 64px;
+    height: 64px;
   }
   &__thumb.small,
   &__thumb.small img {
-      max-width: 40px;
+      width: 40px;
+      height: 40px;
   }
   &__thumb {
     flex-shrink: 0;
@@ -269,6 +272,11 @@
     .outputs__action {
       font-size: 12px;
     }
+  }
+  &__volume {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
   }
   &__meta {
     display: flex;
@@ -380,17 +388,18 @@
 
 .volume-control {
   &__popover {
-    position: absolute;
+    /* position: absolute;
     top: 0;
     left: 0;
     right: 64px;
     padding: 4px 8px;
     background: #333;
-    border-radius: 2px;
+    border-radius: 2px; */
+    width: 100%;
     .list-item-volume-bar {
       position: relative !important;
       left: 0;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
   }
 }
