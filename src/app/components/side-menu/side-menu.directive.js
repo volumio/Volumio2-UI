@@ -122,7 +122,11 @@ class SideMenuController {
   registerListner() {
     this.socketService.on('pushMenuItems', (data) => {
       this.$log.debug('pushMenuItems', data);
-      this.menuItems = data;
+      if (this.uiSettingsService && this.uiSettingsService.isVolumioKioskModeEnabled()) {
+        this.menuItems = data.filter(this.isNotMenuLink);
+      } else {
+        this.menuItems = data;
+      }
       this.checkEnableMyVolumio();
     });
 
@@ -157,6 +161,14 @@ class SideMenuController {
 
   isMyVolumioVisible(){
     return !this.isInMainMenu && !this.isInTabBar;
+  }
+
+  isNotMenuLink(data) {
+    if (data.id === 'link') {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }
