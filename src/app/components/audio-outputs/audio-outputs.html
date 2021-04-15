@@ -8,7 +8,7 @@
       <div class="outputs__title align-items-center">
         <div class="outputs__title__text" translate="MULTIDEVICE.ZONES_AND_OUTPUTS">
         </div>
-        <div class="outputs__title__action">
+        <div ng-if="audioOutputs.audioOutputsService.thisOutput.groupable" class="outputs__title__action">
           <button ng-click="audioOutputs.toggleView()" class="outputs__action" translate="MULTIDEVICE.GROUP_DEVICES">
             <i class="outputs__action__icon material-icons">speaker_group</i>
           </button>
@@ -49,7 +49,7 @@
               </div>
             </div> <!-- /.volume temporaray place -->
             <div class="device__meta">
-              <button ng-if="audioOutputs.audioOutputsService.thisOutput.state.status === 'pause' && audioOutputs.audioOutputsService.thisOutput.available" ng-click="audioOutputs.audioOutputsService.audioOutputPlay(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
+              <button ng-if="(audioOutputs.audioOutputsService.thisOutput.state.status === 'pause' || audioOutputs.audioOutputsService.thisOutput.state.status === 'stop') && audioOutputs.audioOutputsService.thisOutput.available" ng-click="audioOutputs.audioOutputsService.audioOutputPlay(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
                 <i class="fa fa-play"></i>
               </button>
               <button ng-if="audioOutputs.audioOutputsService.thisOutput.state.status === 'play' && audioOutputs.audioOutputsService.thisOutput.available" ng-click="audioOutputs.audioOutputsService.audioOutputPause(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
