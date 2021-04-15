@@ -76,7 +76,8 @@
     "UPDATE_ALBUMART":"Aggiorna Copertina",
     "YEAR":"Year",
     "GENRE":"Genere",
-    "GRID": "Griglia"
+    "GRID": "Griglia",
+    "REMOVE": "Rimuovi"
   },
   "BROWSER": {
     "PLAY": "Riproduci",
@@ -255,7 +256,16 @@
     "ROOMS_AND_GROUPS": "Stanze e gruppi",
     "MULTI_ROOM_CONFIGURATION": "Configurazione Multi-Room",
     "GROUP": "Gruppo",
-    "NOW_PLAYING": "In riproduzione"
+    "NOW_PLAYING": "In riproduzione",
+    "PLAYBACK_ZONES":"Zone di riproduzione",
+    "ZONES":"Zone",
+    "ZONES_AND_OUTPUTS":"Zone & Uscite",
+    "GROUP_DEVICES":"Raggruppa dispositivi",
+    "THIS_DEVICE": "Questo dispositivo",
+    "ACTIVE_GROUP": "Gruppo attivo",
+    "REMOVE_ALL_DEVICES": "Rimuovi tutti",
+    "AVAILABLE_DEVICES": "Dispositivi disponibili",
+    "SYNCED_PLAYBACK_NOT_AVAILABLE": "Riproduzione sincrona non disponibile"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "INPUT ANALOGICO",

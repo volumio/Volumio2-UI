@@ -2,40 +2,292 @@
 <div id="sideMenu">
 
 
-  <div id="menuList" role="group" ng-if="audioOutputs.menuVisible" style="width:350px; max-width: 100%;">
-    <div class="list-title pull-left" translate="MULTIDEVICE.PLAYBACK_ZONES"></div>
-    <div class="close-output-button pull-right">
-      <button id="closeMenuBtnOutputs" ng-click="audioOutputs.toggleMenu()" class="btn btn-link pull-right">
-        <i class="fa fa-times"></i>
-      </button>
-      </div>
-    <div class="group-container" ng-if="audioOutputs.audioOutputsService.outputs.length">
-      <div ng-repeat="item in audioOutputs.audioOutputsService.outputs track by $index" class="list-item-div">
-        <div class="row output-item">
-          <div class="col-xs-18" id="device-wrapper">
-        <button ng-if="item.isSelf" class="btn-link btn-block list-item-button self" disabled>
-          <img class="list-item-albumart" ng-src="{{item.state.albumart}}" />
-          <span class="list-item-name">{{item.name}}</span>
-          <span class="list-item-type">{{audioOutputs.showArtistAndTitle(item.state.artist,item.state.track,item.type)}}</span>
-        </button>
-        <button ng-if="!item.isSelf" ng-click="audioOutputs.onDeviceClick(item)" class="btn-link btn-block list-item-button">
-          <img class="list-item-albumart" ng-src="{{item.state.albumart}}" />
-          <span class="list-item-name">{{item.name}}</span>
-          <span class="list-item-type">{{audioOutputs.showArtistAndTitle(item.state.artist,item.state.track,item.type)}}</span>
-        </button>
-        </div>
-        <div class="col-xs-6" id="device-group-wrapper">
-        <span ng-if="!item.isSelf" class="device-group-icon">
-          <i
-          class="{{item.enabled === true ? 'fa fa-minus-circle output-enabled' : 'fa fa-plus-circle'}}"
-          ng-click="audioOutputs.toggleAudioOutput(item.id, item.enabled)"/>
-        </span>
-        </div>
-        </div>
-        <input ng-show="{{item.volumeAvailable}}" type="range" name="volume-slider" id="volume-slider" min="0"
-            max="100" ng-model="item.state.volume" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(item)" />
-      </div>
-    </div>
+  <div role="group" ng-if="audioOutputs.menuVisible" class="outputs__menu">
+    <div ng-if="audioOutputs.defaultView" class="outputs__overview">
 
-  </div>
+      <div class="outputs__title align-items-center">
+        <div class="outputs__title__text" translate="MULTIDEVICE.ZONES_AND_OUTPUTS">
+        </div>
+        <div ng-if="audioOutputs.audioOutputsService.thisOutput.groupable" class="outputs__title__action">
+          <button ng-click="audioOutputs.toggleView()" class="outputs__action" translate="MULTIDEVICE.GROUP_DEVICES">
+            <i class="outputs__action__icon material-icons">speaker_group</i>
+          </button>
+        </div>
+      </div> <!-- /.outputs__title -->
+
+      <div ng-if="audioOutputs.audioOutputsService.thisOutput && audioOutputs.audioOutputsService.enabledOutputs().length === 0">
+        <div class="outputs__subtitle small link" translate="MULTIDEVICE.THIS_DEVICE">
+        </div>
+
+        <div class="outputs__device device">
+          <div ng-if="audioOutputs.audioOutputsService.thisOutput.state" ng-click="audioOutputs.onDeviceClick(audioOutputs.audioOutputsService.thisOutput)" class="device__thumb">
+            <img src="{{audioOutputs.audioOutputsService.thisOutput.state.albumart}}" alt="cover image">
+          </div>
+          <div class="device__info">
+            <div class="device__title">
+              <div ng-click="audioOutputs.onDeviceClick(audioOutputs.audioOutputsService.thisOutput)" class="device__title__text clickable">{{ audioOutputs.audioOutputsService.thisOutput.name }}</div>
+              <!-- <div class="device__actions">
+                <div ng-if="audioOutputs.audioOutputsService.thisOutput.volumeAvailable" class="device__volume">
+                  <label for="{{audioOutputs.audioOutputsService.thisOutput.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{audioOutputs.audioOutputsService.thisOutput.state.volume}}">
+                    <i class="outputs__action__icon fa fa-volume-up"></i>
+                  </label>
+                  <input hidden class="volume-control-activator" id="{{audioOutputs.audioOutputsService.thisOutput.id}}-main" type="checkbox">
+                  <div class="volume-control__popover">
+                    <input type="range" name="volume-slider" id="volume-slider" min="0"
+                      max="100" ng-model="audioOutputs.audioOutputsService.thisOutput.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(audioOutputs.audioOutputsService.thisOutput)" />
+                  </div>
+                </div>
+              </div> -->
+            </div> <!-- /.device__title -->
+            <div ng-if="audioOutputs.audioOutputsService.thisOutput.volumeAvailable" class="device__volume">
+              <label for="{{audioOutputs.audioOutputsService.thisOutput.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{audioOutputs.audioOutputsService.thisOutput.state.volume}}">
+                <i class="outputs__action__icon fa fa-volume-up"></i>
+              </label>
+              <div class="volume-control__popover">
+                <input type="range" name="volume-slider" id="volume-slider" min="0"
+                  max="100" ng-model="audioOutputs.audioOutputsService.thisOutput.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(audioOutputs.audioOutputsService.thisOutput)" />
+              </div>
+            </div> <!-- /.volume temporaray place -->
+            <div class="device__meta">
+              <button ng-if="(audioOutputs.audioOutputsService.thisOutput.state.status === 'pause' || audioOutputs.audioOutputsService.thisOutput.state.status === 'stop') && audioOutputs.audioOutputsService.thisOutput.available" ng-click="audioOutputs.audioOutputsService.audioOutputPlay(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-play"></i>
+              </button>
+              <button ng-if="audioOutputs.audioOutputsService.thisOutput.state.status === 'play' && audioOutputs.audioOutputsService.thisOutput.available" ng-click="audioOutputs.audioOutputsService.audioOutputPause(audioOutputs.audioOutputsService.thisOutput)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-pause"></i>
+              </button>
+              <span class="device__meta__song" title="{{ audioOutputs.audioOutputsService.thisOutput.state.track }} - {{ audioOutputs.audioOutputsService.thisOutput.state.artist }}">
+                {{ audioOutputs.audioOutputsService.thisOutput.state.artist }}
+                <span ng-if="audioOutputs.audioOutputsService.thisOutput.state.artist && audioOutputs.audioOutputsService.thisOutput.state.track"> - </span>
+                {{ audioOutputs.audioOutputsService.thisOutput.state.track }}</span>
+            </div>
+          </div> <!-- /.device__info -->
+        </div> <!-- /.outputs__device -->
+      </div> <!-- THIS DEVICE -->
+
+      <!-- GROUP -->
+      <div ng-if="audioOutputs.audioOutputsService.groupedOutputs.length > 0">
+        <div class="outputs__subtitle small link" translate="MULTIDEVICE.ACTIVE_GROUP">
+        </div>
+
+        <div ng-repeat="group in audioOutputs.audioOutputsService.groupedOutputs" class="outputs__device device groupped">
+          <div class="device__thumb" ng-click="audioOutputs.onDeviceClick(group.leader)">
+            <img src="{{group.leader.state.albumart}}" alt="cover image">
+          </div>
+          <div class="device__info">
+            <div class="device__meta">
+              <button ng-if="group.leader.state.status === 'pause' || group.leader.state.status === 'stop'" ng-click="audioOutputs.audioOutputsService.audioOutputPlay(group.leader)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-play"></i>
+              </button>
+              <button ng-if="group.leader.state.status === 'play'" ng-click="audioOutputs.audioOutputsService.audioOutputPause(group.leader)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-pause"></i>
+              </button>
+              <span class="device__meta__song" title="{{ group.leader.state.track }} - {{ group.leader.state.artist }}">
+                {{ group.leader.state.artist }}
+                <span ng-if="group.leader.state.artist && group.leader.state.track"> - </span>
+                 {{ group.leader.state.track }}</span>
+            </div>
+          </div> <!-- /.device__info -->
+
+          <div class="device__group">
+
+            <div class="device__group__item">
+              <div class="device__title">
+                <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(group.leader)">{{ group.leader.name }} {{ group.leader.state.status }}</div>
+                <!-- <div class="device__actions">
+                  <div ng-if="group.leader.volumeAvailable" class="device__volume">
+                    <label for="{{group.leader.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{group.leader.state.volume}}">
+                      <i class="outputs__action__icon fa fa-volume-up"></i>
+                    </label>
+                    <input hidden class="volume-control-activator" id="{{group.leader.id}}-main" type="checkbox">
+                    <div class="volume-control__popover">
+                      <input type="range" name="volume-slider" id="volume-slider" min="0"
+                        max="100" ng-model="group.leader.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(group.leader)" />
+                    </div>
+                  </div>
+                </div> -->
+              </div> <!-- /.device__title -->
+              <div ng-if="group.leader.volumeAvailable" class="device__volume">
+                <label for="{{group.leader.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{group.leader.state.volume}}">
+                  <i class="outputs__action__icon fa fa-volume-up"></i>
+                </label>
+                <div class="volume-control__popover">
+                  <input type="range" name="volume-slider" id="volume-slider" min="0"
+                    max="100" ng-model="group.leader.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(group.leader)" />
+                </div>
+              </div> <!-- /.volume temporaray place -->
+              <div class="device__meta" translate="MULTIDEVICE.THIS_DEVICE">
+              </div>
+            </div> <!-- /.device__group__item -->
+
+            <div ng-repeat="output in group.children" class="device__group__item">
+              <div class="device__title">
+                <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(output)">{{ output.name }}</div>
+                <!-- <div class="device__actions">
+                  <div ng-if="output.volumeAvailable" class="device__volume">
+                    <label for="{{output.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{output.state.volume}}">
+                      <i class="outputs__action__icon fa fa-volume-up"></i>
+                    </label>
+                    <input hidden class="volume-control-activator" id="{{output.id}}-main" type="checkbox">
+                    <div class="volume-control__popover">
+                      <input type="range" name="volume-slider" id="volume-slider" min="0"
+                        max="100" ng-model="output.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(output)" />
+                    </div>
+                  </div>
+                </div> -->
+              </div> <!-- /.device__title -->
+              <div ng-if="output.volumeAvailable" class="device__volume">
+              <label for="{{output.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{output.state.volume}}">
+                <i class="outputs__action__icon fa fa-volume-up"></i>
+              </label>
+              <div class="volume-control__popover">
+                <input type="range" name="volume-slider" id="volume-slider" min="0"
+                  max="100" ng-model="output.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(output)" />
+              </div>
+            </div> <!-- /.volume temporaray place -->
+              <div class="device__meta">
+                <button ng-click="audioOutputs.audioOutputsService.disableAudioOutput(output.id)" class="outputs__action outputs__action--primary">Remove</button>
+              </div>
+            </div> <!-- /.device__group__item -->
+
+          </div> <!-- /.device__group -->
+
+          <div class="device__group__action">
+            <button ng-click="audioOutputs.audioOutputsService.removeAllDevices()" class="outputs__action" translate="MULTIDEVICE.REMOVE_ALL_DEVICES">
+              <i class="outputs__action__icon material-icons device__group__remove-icon">speaker_group</i>
+            </button>
+          </div> <!-- /.device__group__action -->
+        </div> <!-- device groupped -->
+
+        </div> <!-- /.outputs__device groupped -->
+
+      <!-- /GROUP -->
+
+      <div ng-if="audioOutputs.audioOutputsService.availableOutputs().length > 0">
+        <div class="outputs__subtitle small link"  translate="MULTIDEVICE.AVAILABLE_DEVICES">
+        </div>
+
+        <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device">
+          <div ng-if="output.state" class="device__thumb" ng-click="audioOutputs.onDeviceClick(output)">
+            <img src="{{output.state.albumart}}" alt="cover image">
+          </div>
+          <div class="device__info">
+            <div class="device__title">
+              <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(output)">{{ output.name }}</div>
+              <div class="device__actions">
+                <!-- <div ng-if="output.volumeAvailable" class="device__volume">
+                  <label for="{{output.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{output.state.volume}}">
+                    <i class="outputs__action__icon fa fa-volume-up"></i>
+                  </label>
+                  <input hidden class="volume-control-activator" id="{{output.id}}-main" type="checkbox">
+                  <div class="volume-control__popover">
+                    <input type="range" name="volume-slider" id="volume-slider" min="0"
+                      max="100" ng-model="output.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(output)" />
+                  </div>
+                </div> -->
+              </div>
+            </div> <!-- /.device__title -->
+            <div ng-if="output.volumeAvailable" class="device__volume">
+              <label for="{{output.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{output.state.volume}}">
+                <i class="outputs__action__icon fa fa-volume-up"></i>
+              </label>
+              <div class="volume-control__popover">
+                <input type="range" name="volume-slider" id="volume-slider" min="0"
+                  max="100" ng-model="output.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(output)" />
+              </div>
+            </div> <!-- /.volume temporaray place -->
+            <div class="device__meta">
+              <button ng-if="(output.state.status === 'pause' || output.state.status === 'stop') && output.available" ng-click="audioOutputs.audioOutputsService.audioOutputPlay(output)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-play"></i>
+              </button>
+              <button ng-if="output.state.status === 'play' && output.available" ng-click="audioOutputs.audioOutputsService.audioOutputPause(output)" class="outputs__action device__control device__control--play">
+                <i class="fa fa-pause"></i>
+              </button>
+              <span class="device__meta__song" title="{{ output.state.track }} - {{ output.state.artist }}">
+                {{ output.state.artist }}
+                <span ng-if="output.state.artist && output.state.track"> - </span>
+                {{ output.state.track }}</span>
+            </div>
+          </div> <!-- /.device__info -->
+        </div> <!-- /.outputs__device -->
+
+      </div> <!-- AVAILABLE DEVICES -->
+
+    </div> <!-- /.outputs__overview -->
+
+    <!-- ====== GROUPING ====== -->
+
+    <div ng-if="audioOutputs.groupView" class="outputs__grouping">
+      <!-- Use this div to enter into grouping mode -->
+      <div class="outputs__title align-items-center">
+        <div class="outputs__title__text" translate="MULTIDEVICE.GROUP_DEVICES">
+        </div>
+        <div class="outputs__title__action">
+          <button ng-click="audioOutputs.toggleView()" class="outputs__action" translate="COMMON.DONE">
+          </button>
+        </div>
+      </div> <!-- /.outputs__title -->
+
+      <div class="outputs__device device">
+        <div class="device__thumb small">
+          <img src="{{ audioOutputs.audioOutputsService.thisOutput.state.albumart }}" alt="cover image">
+        </div>
+        <div class="device__info">
+
+          <div class="device__title">
+            <div class="device__title__text">{{ audioOutputs.audioOutputsService.thisOutput.name }}</div>
+          </div> <!-- /.device__title -->
+          <div class="device__meta">
+            <span class="device__meta__song" translate="MULTIDEVICE.THIS_DEVICE"></span>
+          </div>
+
+          <div ng-repeat="output in audioOutputs.audioOutputsService.enabledOutputs()" class="device__title">
+            <div class="device__title__text">{{ output.name }}</div>
+            <div class="device__actions">
+              <button ng-click="audioOutputs.audioOutputsService.disableAudioOutput(output.id)" class="outputs__action outputs__action--primary" translate="COMMON.REMOVE"></button>
+            </div>
+          </div> <!-- /.device__title -->
+
+        </div> <!-- /.device__info -->
+
+      </div> <!-- /.device -->
+
+      <div ng-if="audioOutputs.audioOutputsService.enabledOutputs().length > 0" class="device__group__action">
+        <button ng-click="audioOutputs.audioOutputsService.removeAllDevices()" class="outputs__action" translate="MULTIDEVICE.REMOVE_ALL_DEVICES">
+          <i class="outputs__action__icon material-icons device__group__remove-icon">speaker_group</i>
+        </button>
+      </div> <!-- /.device__group__action -->
+
+      <div>
+        <div ng-if="audioOutputs.audioOutputsService.availableOutputs().length > 0" class="outputs__subtitle small" translate="MULTIDEVICE.AVAILABLE_DEVICES">
+        </div>
+        <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device {{ output.groupable ? '' : 'disabled'}}">
+          <div class="device__thumb small">
+            <img src="{{output.state.albumart}}" alt="cover image">
+          </div>
+          <div class="device__info">
+
+            <div class="device__title">
+              <div class="device__title__text">{{ output.name }}</div>
+              <div ng-if="output.groupable" class="device__actions">
+                <button ng-if="!output.enabled" ng-click="audioOutputs.audioOutputsService.enableAudioOutput(output.id)" class="outputs__action outputs__action--primary">Add</button>
+                <button ng-if="output.enabled" ng-click="audioOutputs.audioOutputsService.disableAudioOutput(output.id)" class="outputs__action outputs__action--primary">Remove</button>
+              </div>
+              <div ng-if="!output.groupable" class="device__actions">
+                <i class="fa fa-ban"></i>
+              </div>
+            </div> <!-- /.device__title -->
+            <div ng-if="!output.groupable" class="device__meta">
+              <span class="device__meta__song" translate="MULTIDEVICE.SYNCED_PLAYBACK_NOT_AVAILABLE"></span>
+            </div>
+
+          </div> <!-- /.device__info -->
+
+        </div> <!-- /.device -->
+      </div> <!-- GROUPABLE DEVICES -->
+
+    </div> <!-- /.outputs__grouping -->
+
+
+  </div> <!-- /.outputs__menu -->
+
 </div>
