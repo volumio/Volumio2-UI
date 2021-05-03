@@ -82,7 +82,8 @@
         "YEAR": "Jahr",
         "GENRE": "Genre",
         "EDIT": "Bearbeiten",
-        "GRID": "Gitter"
+        "GRID": "Gitter",
+        "REMOVE": "Entfernen"
     },
     "BROWSER": {
         "PLAY": "Wiedergeben",
@@ -267,7 +268,14 @@
         "NOW_PLAYING": "Wird wiedergegeben",
         "PLAYBACK_ZONES": "Wiedergabezonen",
         "ZONES": "Zonen",
-        "AUDIO_OUTPUTS_AND_ZONES": "Audioausgänge und Zonen"
+        "AUDIO_OUTPUTS_AND_ZONES": "Audioausgänge und Zonen",
+        "ZONES_AND_OUTPUTS": "Zonen & Ausgänge",
+        "GROUP_DEVICES": "Geräte gruppieren",
+        "THIS_DEVICE": "Dieses Gerät",
+        "ACTIVE_GROUP": "Aktive Gruppe",
+        "REMOVE_ALL_DEVICES": "Alle Geräte entfernen",
+        "AVAILABLE_DEVICES": "Verfügbare Geräte",
+        "SYNCED_PLAYBACK_NOT_AVAILABLE": "Synchrone Wiedergabe nicht verfügbar"
     },
     "SIDEMENU": {
         "ANALOG_INPUT": "Analoger Eingang",
