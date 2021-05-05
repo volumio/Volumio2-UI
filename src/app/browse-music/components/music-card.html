@@ -1,5 +1,5 @@
 <div class="music-card" ng-click="browse.clickMusicCard(item)">
-    <div class="music-card__header">
+    <div class="music-card__header" ng-attr-id="{{item.active ? 'source-active': ''}}">
         <img
             class="music-card__img"
             src="{{browse.playerService.getAlbumart(item.albumart)}}"

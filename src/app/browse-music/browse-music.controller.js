@@ -651,7 +651,7 @@ class BrowseMusicController {
     if (item.type === 'song') {
       this.play(item);
     } else {
-      this.fetchLibrary({ uri: item.uri });
+      this.fetchLibrary(item);
     }
   }
 
