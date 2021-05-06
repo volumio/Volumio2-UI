@@ -2,7 +2,7 @@
     "UI_SETTINGS": {
         "THEME_SETTINGS": "Ajustes de tema",
         "UPLOAD_BACKGROUND": "Cargar nuevo fondo",
-        "UPLOAD_BACKGROUND_FILE": "Haz click y selecciona un fondo, o arrastra uno aquí.",
+        "UPLOAD_BACKGROUND_FILE": "Haz click y selecciona un fondo o arrastra uno aquí.",
         "UPLOAD_PROGRESS": "Progreso de subida:",
         "SELECT_BACKGROUND": "Seleccionar fondo",
         "SELECT_BACKGROUND_COLOR": "Seleccionar color de fondo",
@@ -13,7 +13,7 @@
     "COMMON": {
         "SAVE": "Guardar",
         "OK": "Ok",
-        "YES": "Si",
+        "YES": "Sí",
         "NO": "No",
         "GOT_IT": "Entendido",
         "CANCEL": "Cancelar",
@@ -82,7 +82,8 @@
         "YEAR": "Año",
         "GENRE": "Género",
         "EDIT": "Editar",
-        "GRID": "Cuadrícula"
+        "GRID": "Cuadrícula",
+        "REMOVE": "Quitar"
     },
     "BROWSER": {
         "PLAY": "Reproducir",
@@ -267,7 +268,14 @@
         "NOW_PLAYING": "Reproduciendo ahora",
         "PLAYBACK_ZONES": "Zonas de reproducción",
         "ZONES": "Zonas",
-        "AUDIO_OUTPUTS_AND_ZONES": "Zonas y salidas de audio"
+        "AUDIO_OUTPUTS_AND_ZONES": "Zonas y salidas de audio",
+        "ZONES_AND_OUTPUTS": "Zonas y Salidas",
+        "THIS_DEVICE": "Este dispositivo",
+        "AVAILABLE_DEVICES": "Dispositivos disponibles",
+        "ACTIVE_GROUP": "Grupo activo",
+        "SYNCED_PLAYBACK_NOT_AVAILABLE": "Reproducción sincronizada no disponible",
+        "REMOVE_ALL_DEVICES": "Quitar todos los dispositivos",
+        "GROUP_DEVICES": "Agrupar dispositivos"
     },
     "SIDEMENU": {
         "ANALOG_INPUT": "Entrada analógica",
@@ -277,8 +285,8 @@
         "ALREADY_LOGGED_IN": "Ya has iniciado sesión",
         "SUBSCRIPTION_STATUS": "Estado",
         "PREMIUM_STREAMING_AVAILABILITY_QOBUZ": "Qobuz está disponible para usuarios de MyVolumio Virtuoso y Superstar.",
-        "PAYING": "Pago …",
-        "CREATING_ACCOUNT": "Creando cuenta…",
+        "PAYING": "Pago…...",
+        "CREATING_ACCOUNT": "Creando cuenta…...",
         "MY_VOLUMIO": "MyVolumio",
         "ERROR": "Error de MyVolumio",
         "LOGIN": "Iniciar sesión",
@@ -332,7 +340,7 @@
         "PLEASE_VERIFY_EMAIL_DESC": "Para utilizar MyVolumio en todo su potencial, haz clic en el enlace de verificación que te hemos enviado a tu correo electrónico",
         "USER_EMAIL_NOT_VERIFIED": "Tu correo electrónico no se ha verificado",
         "ERROR_CHANGE_PLAN_NO_PREVIOUS_PLAN_FOUND": "Error, todavía no tienes ningún plan",
-        "ERROR_CHANGE_PLAN_NO_PLAN_SELECTED": "Selecciona un plan",
+        "ERROR_CHANGE_PLAN_NO_PLAN_SELECTED": "Por favor selecciona un plan",
         "PAYMENT_IN_PROGRESS": "Pago en curso",
         "USER_MISSING_MANDATORY_FIELDS": "Por favor completa todos los campos obligatorios",
         "USER_VERIFICATION_EMAIL_SENT_DESC": "Se acaba de enviar un correo electrónico de verificación a tu buzón, verifícalo y haz clic en el enlace de verificación para habilitar tu cuenta",
@@ -488,7 +496,7 @@
         "LANDING_FEATURE_BACKUP_TITLE": "Copia de seguridad y sincronización automática",
         "LANDING_FEATURE_BACKUP_TEXT": "Tus favoritos, listas de reproducción y radios web se sincronizan automáticamente con todos sus dispositivos y se guardan en una ubicación segura, listos para ser restaurados cada vez que configures un nuevo dispositivo MyVolumio.",
         "LANDING_FEATURE_CD_TITLE": "Reproducción y extracción de CD",
-        "SIGNUP_ERROR_CONTACT_SUPPORT": "Algo salió mal durante tu registro. Pónte en contacto con nuestro soporte en support@volumio.org y proporciona la siguiente información de error:",
+        "SIGNUP_ERROR_CONTACT_SUPPORT": "Algo salió mal durante tu registro. Ponte en contacto con nuestro soporte en support@volumio.org y proporciona la siguiente información de error: ",
         "REFERRAL_FAQ_BODY_5": "Una vez que tu(s) amigo(s) crean una cuenta en MyVolumio y alcanzas un objetivo, recibirás tu recompensa en unos minutos.",
         "REFERRAL_FAQ_BODY_7": "Separamos las recompensas según el tipo de suscripción para ser justos con todos los usuarios y que obtengan las recompensas según el valor de su suscripción.",
         "MODAL_DISCOVERY_PREMIUM_TEXT": "Metadatos mejorados para tu música y mucho más",
