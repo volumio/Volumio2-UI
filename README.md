@@ -22,7 +22,7 @@ Only the `dist/` and `dist3/` branches are needed by Volumio2, so there is a [di
 
 ## Set up development environment
 
-You must have Node.js, Npm and Bower installed. Node.js suggested version is 8.17.0 (lower versions and higher versions might fail). It's strongly suggested to use [NVM](https://github.com/nvm-sh/nvm) to set up the proper Node.js Environment.
+You must have Node.js, Npm and Bower installed. Node.js suggested version is 10.22.1 (lower versions and higher versions might fail). It's strongly suggested to use [NVM](https://github.com/nvm-sh/nvm) to set up the proper Node.js Environment.
 
 Clone the Repo:
 
@@ -58,7 +58,7 @@ The file will look like
 Now, feel free to edit and see live changes on a local browser with dynamically generated UI. To do so:
 
 ```shell
-gulp serve --theme="volumio" 
+gulp serve --theme="volumio"
 ```
 
 Additional parameters can be env, for selecting the environment which can be production or development
