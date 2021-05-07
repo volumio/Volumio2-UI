@@ -203,9 +203,9 @@
                 <i class="fa fa-pause"></i>
               </button>
               <span class="device__meta__song" title="{{ output.state.track }} - {{ output.state.artist }}">
-                {{ output.state.artist }}
-                <span ng-if="output.state.artist && output.state.track"> - </span>
-                {{ output.state.track }}</span>
+                <span ng-if="output.state.artist && output.state.artist !== 'undefined'">{{ output.state.artist }}</span>
+                <span ng-if="output.state.artist && output.state.artist !== 'undefined' && output.state.track && output.state.track !== 'undefined'"> - </span>
+                <span ng-if="output.state.track && output.state.track !== 'undefined'">{{ output.state.track }}</span></span>
             </div>
           </div> <!-- /.device__info -->
         </div> <!-- /.outputs__device -->
