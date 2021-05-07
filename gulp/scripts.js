@@ -14,7 +14,7 @@ var $ = require('gulp-load-plugins')();
 var requiredNodeVersion = require('../package').engines.node;
 if (compareVersions(process.versions.node, requiredNodeVersion) !== 0 && compareVersions(process.versions.node, requiredNodeVersion + '.*') !== 0) {
   console.log('\x1b[31m%s\x1b[0m', 'WARNING!',  'Unsupported nodejs version: ' + process.versions.node +' found, required: ' + requiredNodeVersion);
-  console.log('Install NVM and type: nvm install 8.17.0 && nvm use 8.17.0');
+  console.log('Install NVM and type: nvm install ' + requiredNodeVersion + ' && nvm use ' + requiredNodeVersion);
 }
 
 function webpack(watch, callback) {
