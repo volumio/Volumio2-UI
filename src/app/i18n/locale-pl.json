@@ -1,14 +1,14 @@
 {
     "UI_SETTINGS": {
         "THEME_SETTINGS": "Ustawienia motywu",
-        "UPLOAD_BACKGROUND": "Wgraj nowe tło",
+        "UPLOAD_BACKGROUND": "Prześlij nowe tło",
         "UPLOAD_BACKGROUND_FILE": "Kliknij i wybierz nowe tło, lub przeciągnij i upuść je tutaj.",
         "UPLOAD_PROGRESS": "Postęp wysyłania:",
         "SELECT_BACKGROUND": "Wybierz tło",
         "SELECT_BACKGROUND_COLOR": "Wybierz kolor tła",
-        "APPLY_BACKGROUND": "Ustaw ten motyw tła",
+        "APPLY_BACKGROUND": "Ustaw tło",
         "APPLY_BACKGROUND_COLOR": "Zastosuj kolor tła",
-        "DELETE_BACKGROUND": "Usuń ten motyw tła"
+        "DELETE_BACKGROUND": "Usuń tło"
     },
     "COMMON": {
         "SAVE": "Zapisz",
@@ -82,7 +82,8 @@
         "YEAR": "Rok",
         "GENRE": "Gatunek",
         "EDIT": "Edycja",
-        "GRID": "Miniatury"
+        "GRID": "Miniatury",
+        "REMOVE": "Usuń"
     },
     "BROWSER": {
         "PLAY": "Odtwarzaj",
@@ -267,7 +268,14 @@
         "NOW_PLAYING": "Teraz odtwarzane",
         "PLAYBACK_ZONES": "Strefy odtwarzania",
         "ZONES": "Strefy",
-        "AUDIO_OUTPUTS_AND_ZONES": "Wyjścia audio i strefy"
+        "AUDIO_OUTPUTS_AND_ZONES": "Wyjścia audio i strefy",
+        "ZONES_AND_OUTPUTS": "Strefy i wyjścia",
+        "GROUP_DEVICES": "Grupowanie urządzeń",
+        "SYNCED_PLAYBACK_NOT_AVAILABLE": "Synchroniczne odtwarzanie niedostępne",
+        "THIS_DEVICE": "To urządzenie",
+        "ACTIVE_GROUP": "Aktywna grupa",
+        "REMOVE_ALL_DEVICES": "Usuń wszystkie urządzenia",
+        "AVAILABLE_DEVICES": "Dostępne urządzenia"
     },
     "SIDEMENU": {
         "ANALOG_INPUT": "WEJŚCIE ANALOGOWE",
