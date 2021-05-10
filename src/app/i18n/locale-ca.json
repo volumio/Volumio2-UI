@@ -229,7 +229,12 @@
         "NOW_PLAYING": "En reproducció",
         "PLAYBACK_ZONES": "Zones de reproducció",
         "ZONES": "Zones",
-        "AUDIO_OUTPUTS_AND_ZONES": "Zones i sortides d'àudio"
+        "AUDIO_OUTPUTS_AND_ZONES": "Zones i sortides d'àudio",
+        "AVAILABLE_DEVICES": "Dispositius disponibles",
+        "ZONES_AND_OUTPUTS": "Zones i Sortides",
+        "GROUP_DEVICES": "Agrupar dispositius",
+        "THIS_DEVICE": "Aquest dispositiu",
+        "ACTIVE_GROUP": "Grup actiu"
     },
     "SIDEMENU": {
         "ANALOG_INPUT": "Entrada analògica",
@@ -443,7 +448,7 @@
         "PREMIUM_STREAMING_AVAILABILITY_TIDAL": "Tidal està disponible per a usuaris de MyVolumio Virtuoso i Superstar.",
         "PREMIUM_STREAMING_FEATURE_4": "Sincronitza els teus favorits i llistes de reproducció amb Volumio",
         "CODE_DEVICE_ALREADY_ACTIVATED": "El codi del teu dispositiu ja s'ha activat correctament i el teu pla és",
-        "SIGNUP_ERROR_CONTACT_SUPPORT": "Quelcom ha fallat en el teu registre. Posa't en contacte amb el nostre suport a support@volumio.org i proporciona la següent informació d'error:",
+        "SIGNUP_ERROR_CONTACT_SUPPORT": "Quelcom ha fallat en el teu registre. Posa't en contacte amb el nostre suport a support@volumio.org i proporciona la següent informació d'error: ",
         "REFERRING_EXPLANATION": "Guanya plans premium després dels objectius o supera el nostre desafiament de classificació mensual i guanya una subscripció a MyVolumio Superstar de per vida!",
         "REFERRAL_HOW_BODY_1": "Convida als teus amics per correu electrònic, Facebook, Twitter o WhatsApp",
         "REFERRAL_FAQ_BODY_1": "Simplement comparteix el teu enllaç únic amb un amic a qui li agradaria crear un compte a MyVolumio",
@@ -457,8 +462,8 @@
         "LANDING_FEATURES_TEXT": "La plataforma Volumio és de codi obert i gratuïta per sempre. No obstant això, si ets un veritable fanàtic de l'àudio, et brindem una experiència encara millor a través del conjunt de funcions addicionals de MyVolumio.",
         "LANDING_FEATURE_INTEGRATIONS_TEXT": "Accedeix a TIDAL i QOBUZ per a una reproducció en streaming en alta resolució perfecta. Integració disponible també per Alexa i Highresaudio.com. Amb ell pots evitar els problemes de remostreig i compatibilitat de DLNA.",
         "LANDING_FEATURE_BACKUP_TEXT": "Els teus favorits, llistes de reproducció i ràdios web es sincronitzen automàticament amb tots els seus dispositius i es guarden en una ubicació segura, llestos per a ser restaurats cada vegada que configuris un nou dispositiu MyVolumio.",
-        "PAYING": "Pagant …",
-        "CREATING_ACCOUNT": "Creant compte…"
+        "PAYING": "Pagant ...",
+        "CREATING_ACCOUNT": "Creant compte..."
     },
     "WIZARD": {
         "LANGUAGE": "Idioma",
