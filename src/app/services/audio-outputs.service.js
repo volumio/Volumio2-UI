@@ -61,7 +61,8 @@ class AudioOutputsService {
     let host = item.host;
     let mute = false;
     let volume = item.state.volume;
-    this.socketService.emit('setAudioOutputVolume', { id, type, host, mute, volume });
+    let  isSelf = item.isSelf;
+    this.socketService.emit('setAudioOutputVolume', { id, type, host, mute, volume, isSelf });
   }
 
   onDeviceListChange(data) {
@@ -87,6 +88,9 @@ class AudioOutputsService {
               output.mute = pushedOutput.mute;
               output.isSelf = pushedOutput.isSelf || output.isSelf;
               output.groupable = pushedOutput.hasOwnProperty('leader') && pushedOutput.plugin === 'audio_interface/multiroom';
+              if (output.isSelf) {
+                output.host = this.socketService.host;
+              }
             }
           }
         }
