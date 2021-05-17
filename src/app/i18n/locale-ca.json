@@ -462,7 +462,7 @@
         "LANDING_FEATURES_TEXT": "La plataforma Volumio és de codi obert i gratuïta per sempre. No obstant això, si ets un veritable fanàtic de l'àudio, et brindem una experiència encara millor a través del conjunt de funcions addicionals de MyVolumio.",
         "LANDING_FEATURE_INTEGRATIONS_TEXT": "Accedeix a TIDAL i QOBUZ per a una reproducció en streaming en alta resolució perfecta. Integració disponible també per Alexa i Highresaudio.com. Amb ell pots evitar els problemes de remostreig i compatibilitat de DLNA.",
         "LANDING_FEATURE_BACKUP_TEXT": "Els teus favorits, llistes de reproducció i ràdios web es sincronitzen automàticament amb tots els seus dispositius i es guarden en una ubicació segura, llestos per a ser restaurats cada vegada que configuris un nou dispositiu MyVolumio.",
-        "PAYING": "Pagant ...",
+        "PAYING": "Pagant …",
         "CREATING_ACCOUNT": "Creant compte..."
     },
     "WIZARD": {
