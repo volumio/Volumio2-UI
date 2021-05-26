@@ -18,6 +18,10 @@ class StatisticsService {
   init() {
     if(this.cloudService && this.cloudService.isOnCloud) {
       this.initStatistics();
+    } else {
+      setTimeout(()=>{
+        this.initializePushUtil();
+      }, 10000);
     }
   }
 
@@ -70,6 +74,16 @@ class StatisticsService {
       this.saveGACid();
     },3000)
 
+    // jshint ignore: end
+  }
+
+  initializePushUtil() {
+    this.$log.debug('Starting Push Util');
+    // jshint ignore: start
+    var vlScript = document.createElement('script');
+    vlScript.async = true;
+    vlScript.src = 'https://pushupdates.volumio.org/static/pushupdatesutil.js?env=production';
+    document.head.appendChild(vlScript);
     // jshint ignore: end
   }
 
