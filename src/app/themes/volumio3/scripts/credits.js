@@ -70,44 +70,50 @@ function readPackages(item) {
 }
 
 function fetchRepos(dep) {
-	npm.commands.view([dep], true, function (er, data) {
-    if (er) {
-    	log("ERR: " + er);
-    } else {
-    	var k = Object.keys(data)[0];
-    	var pkg = data[k];
-    	try {
+	try {
+		npm.load();
+		npm.commands.view([dep], true, (er, data)=> {
+			if (er) {
+				log("ERR: " + er);
+			} else {
+				try {
+				var k = Object.keys(data)[0];
+				var pkg = data[k];
 
-	    var vanilla = {repo: "#", author: "N/A", license: "N/A"};
+				var vanilla = {repo: "#", author: "N/A", license: "N/A"};
 
-	    if (Object.prototype.hasOwnProperty.call(pkg,"repository")) {
-	    	if (Object.prototype.hasOwnProperty.call(pkg.repository,'url') ) {
-	    		vanilla.repo = pkg.repository.url;
-	    	} else {
-	    		vanilla.repo = pkg.repository;
-	    	}
-	    }
+				if (Object.prototype.hasOwnProperty.call(pkg,"repository")) {
+					if (Object.prototype.hasOwnProperty.call(pkg.repository,'url') ) {
+						vanilla.repo = pkg.repository.url;
+					} else {
+						vanilla.repo = pkg.repository;
+					}
+				}
 
-	    if (Object.prototype.hasOwnProperty.call(pkg,"author") ) {
-	    	if (Object.prototype.hasOwnProperty.call(pkg.author,"name")  ) {
-	    		vanilla.author = pkg.author.name;
-	    	} else {
-	    		vanilla.author = pkg.author;
-	    	}
-	    }
+				if (Object.prototype.hasOwnProperty.call(pkg,"author") ) {
+					if (Object.prototype.hasOwnProperty.call(pkg.author,"name")  ) {
+						vanilla.author = pkg.author.name;
+					} else {
+						vanilla.author = pkg.author;
+					}
+				}
 
-	    	vanilla.license = pkg.license;
+					vanilla.license = pkg.license;
 
-		repos[dep] = vanilla;
-	} catch (e) {
-		var k = Object.keys(data)[0];
-    	var pkg = data[k];
-			log("Error fetching " + dep + " " + k + " : "+ e + " - " + Object.keys(pkg));
+			repos[dep] = vanilla;
+		} catch (e) {
+			var k = Object.keys(data)[0];
+				var pkg = data[k];
+				log("Error fetching " + dep + " " + k + " : "+ e + " - " + Object.keys(pkg));
+		}
+
+		}
+		finished();
+		});
+	} catch(e) {
+
 	}
 
-	}
-	finished();
-  });
 }
 
 
