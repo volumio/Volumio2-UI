@@ -82,7 +82,8 @@
         "YEAR": "Any",
         "EDIT": "Editar",
         "GRID": "Graella",
-        "EMAIL": "Correu electrònic"
+        "EMAIL": "Correu electrònic",
+        "REMOVE": "Eliminar"
     },
     "BROWSER": {
         "PLAY": "Reproduir",
@@ -234,7 +235,9 @@
         "ZONES_AND_OUTPUTS": "Zones i Sortides",
         "GROUP_DEVICES": "Agrupar dispositius",
         "THIS_DEVICE": "Aquest dispositiu",
-        "ACTIVE_GROUP": "Grup actiu"
+        "ACTIVE_GROUP": "Grup actiu",
+        "REMOVE_ALL_DEVICES": "Eliminar tots els dispositius",
+        "SYNCED_PLAYBACK_NOT_AVAILABLE": "La reproducció sincronitzada no està disponible"
     },
     "SIDEMENU": {
         "ANALOG_INPUT": "Entrada analògica",
