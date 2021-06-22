@@ -2,7 +2,7 @@
     "UI_SETTINGS": {
         "THEME_SETTINGS": "Thema instellingen",
         "UPLOAD_BACKGROUND": "Upload nieuwe achtergrond",
-        "UPLOAD_BACKGROUND_FILE": "Klik en selecteer een nieuwe achtergrond of sleep hier naartoe",
+        "UPLOAD_BACKGROUND_FILE": "Klik en selecteer een nieuwe achtergrond of drag en drop hier naartoe",
         "UPLOAD_PROGRESS": "Voortgang uploaden:",
         "SELECT_BACKGROUND": "Selecteer achtergrond",
         "SELECT_BACKGROUND_COLOR": "Selecteer achtergrond kleur",
@@ -36,7 +36,7 @@
         "ALBUM": "Album",
         "ALBUMS": "Albums",
         "SONG": "Nummer",
-        "SONGS": "Tracks",
+        "SONGS": "Nummers",
         "PLAYTIME": "Speeltijd",
         "TIME": "Tijd",
         "RESCAN": "Opnieuw scannen",
@@ -81,7 +81,9 @@
         "GENRE": "Genre",
         "UPDATE_ALBUMART": "Update Albumhoezen",
         "EDIT": "Aanpassen",
-        "GRID": "Raster"
+        "GRID": "Raster",
+        "TAB_OUTPUTS": "Uitgangen",
+        "REMOVE": "Verwijder"
     },
     "BROWSER": {
         "PLAY": "Afspelen",
@@ -162,7 +164,7 @@
         "CLEAR_QUEUE": "Wachtrij leegmaken",
         "REPEAT_ALL": "Repeat alles",
         "REPEAT_OFF": "Repeat uit",
-        "REPEAT_SINGLE": "Repeat"
+        "REPEAT_SINGLE": "Herhaal nummer"
     },
     "NETWORKFS": {
         "NO_DRIVES_FOUND": "Geen netwerkschijven gevonden",
@@ -239,10 +241,10 @@
         "DEVICE_CODE_VALIDATE": "Valideer Apparaat Code",
         "ERROR_ACTIVATING_DEVICE": "Apparaat Activeren mislukt",
         "DEVICE_ACTIVATED": "Uw apparaat is succesvol geactiveerd. U kunt nu gebruik maken van uw exclusieve features",
-        "EXPERIENCE_SETTINGS_TITLE": "Laat ons uw ervaring opmaat maken",
+        "EXPERIENCE_SETTINGS_TITLE": "Laat ons uw ervaring op maat maken",
         "EXPERIENCE_SETTINGS_TEXT_2": "Deze instelling kan later aangepast worden in de Systeem Instellingen",
         "DEVICECODE": "Apparaat Code",
-        "DEVICE_CODE_MESSAGE": "Voeg de Apparaat Activatie Code hier in om gebruik te maken van exclusieve features. (Als je een Apparaat Activatie code hebt ontvangen)",
+        "DEVICE_CODE_MESSAGE": "Als je een Apparaat Activatie code hebt ontvangen voeg dan de Apparaat Activatie Code hier in om gebruik te maken van exclusieve functies.",
         "EXPERIENCE_SETTINGS_TEXT": "Geeft u de voorkeur aan een makkelijk te gebruiken systeem, met simpele instellingen? of wilt u de volledige controle met geavanceerde functies?",
         "ADVANCEDSETTINGS": "Ervaring"
     },
@@ -266,15 +268,22 @@
         "NOW_PLAYING": "Speelt nu af",
         "PLAYBACK_ZONES": "Afspeelzones",
         "ZONES": "Zones",
-        "AUDIO_OUTPUTS_AND_ZONES": "Audio Outputs en Zones"
+        "AUDIO_OUTPUTS_AND_ZONES": "Audio Outputs en Zones",
+        "ZONES_AND_OUTPUTS": "Zones en uitgangen",
+        "SYNCED_PLAYBACK_NOT_AVAILABLE": "Synchrone weergave niet beschikbaar",
+        "GROUP_DEVICES": "Apparaten groeperen",
+        "THIS_DEVICE": "Dit apparaat",
+        "ACTIVE_GROUP": "Actieve groep",
+        "REMOVE_ALL_DEVICES": "Verwijder alle apparaten",
+        "AVAILABLE_DEVICES": "Beschikbare apparaten"
     },
     "SIDEMENU": {
-        "ANALOG_INPUT": "Analoge invoer",
+        "ANALOG_INPUT": "Analoge ingang",
         "BLUETOOTH": "Bluetooth"
     },
     "MYVOLUMIO": {
         "MY_VOLUMIO": "MyVolumio",
-        "ERROR": "Fout",
+        "ERROR": "MyVolumio Fout",
         "LOGIN": "Inloggen",
         "LOGOUT": "Uitloggen",
         "SIGNUP": "Aanmelden",
@@ -423,7 +432,7 @@
         "AND_ASSOCIATED_WITH_ACCOUNT": "en geassocieerd met account",
         "MY_ACHIEVEMENTS": "Achievements",
         "SUPPORT_MYVOLUMIO": "Ondersteun Volumio's ontwikkeling en ontvang Premium features.",
-        "SIGNUP_TO": "Registreer voor MyVolumio",
+        "SIGNUP_TO": "Registreer bij MyVolumio",
         "TRY_FOR_FREE": "Gratis proberen",
         "LIFETIME": "Lifetime",
         "MY_VOLUMIO_SHORTDESC": "MyVolumio is de premium Volumio ervaring. Registreer om gebruik te maken van premium diensten zoals TIDAL en QOBUZ integraties, CD Ripping, Bluetooth input en veel meer",
