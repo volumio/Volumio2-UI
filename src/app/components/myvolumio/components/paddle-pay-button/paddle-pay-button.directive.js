@@ -164,7 +164,7 @@ class PaddlePayButtonController {
     }));
 
     /* TODO: Replace with production payment URL */
-    this.$window.location.href = 'http://localhost:3000?p=' + base64Data;
+    this.$window.location.href = 'https://volumio-payment.vercel.app/?p=' + base64Data;
 
     /* jshint ignore:start */
     // Paddle.Checkout.open(checkoutProps, false);
