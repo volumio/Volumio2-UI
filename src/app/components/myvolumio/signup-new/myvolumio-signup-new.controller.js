@@ -248,7 +248,6 @@ class MyVolumioSignupNewController {
       this.showSignupErrorModal('no authenticated user found');
       return;
     }
-    /* jshint ignore:start */
 
     if (!this.newUser || !this.newUser.email || !this.newUser.uid) {
       this.newUser = this.authService.getCurrentAuthUser();
@@ -268,7 +267,7 @@ class MyVolumioSignupNewController {
       closeCallback: (data) => {
         this.closeCallback(data);
       }
-    }
+    };
 
     if (this.couponCode) {
       checkoutProps.coupon = this.couponCode;
@@ -279,8 +278,30 @@ class MyVolumioSignupNewController {
       checkoutProps.auth = trialAuth;
     }
 
-    Paddle.Checkout.open(checkoutProps, false);
-    /* jshint ignore:end */
+    /* TODO: add the database setting here */
+    const paymentInformationFromDatabase = false;
+
+    if (paymentInformationFromDatabase) {
+      /* jshint ignore:start */
+      Paddle.Checkout.open(checkoutProps, false);
+      /* jshint ignore:end */
+    } else {
+      const base64Data = this.base64Encode(JSON.stringify({
+        checkoutProps,
+        planDuration: this.planDuration,
+        plan: this.product.prices[this.planDuration],
+        planName: this.product.name,
+        redirectUrl: this.$window.location.origin
+      }));
+  
+      /* TODO: Replace with production payment URL */
+      this.$window.location.href = 'https://volumio-payment.vercel.app?p=' + base64Data;
+    }
+
+  }
+
+  base64Encode(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
   }
 
   successCallback(data) {

@@ -148,30 +148,29 @@ class PaddlePayButtonController {
       checkoutProps.auth = trialAuth;
     }
 
-    const base64Data = this.utf8_to_b64(JSON.stringify({
-      auth: checkoutProps.auth,
-      email: checkoutProps.email,
-      passthrough: checkoutProps.passthrough,
-      price: checkoutProps.price,
-      coupon: checkoutProps.coupon,
-      product: checkoutProps.product,
-      trialDays: checkoutProps.trialDays,
-      trialDaysAuth: checkoutProps.trialDaysAuth,
-      planDuration: this.planDuration,
-      plan: this.product.prices[this.planDuration],
-      planName: this.product.name,
-      redirectUrl: this.$window.location.origin
-    }));
+    /* TODO: add the database setting here */
+    const paymentInformationFromDatabase = false;
 
-    /* TODO: Replace with production payment URL */
-    this.$window.location.href = 'https://volumio-payment.vercel.app/?p=' + base64Data;
+    if (paymentInformationFromDatabase) {
+      /* jshint ignore:start */
+      Paddle.Checkout.open(checkoutProps, false);
+      /* jshint ignore:end */
+    } else {
+      const base64Data = this.base64Encode(JSON.stringify({
+        checkoutProps,
+        planDuration: this.planDuration,
+        plan: this.product.prices[this.planDuration],
+        planName: this.product.name,
+        redirectUrl: this.$window.location.origin
+      }));
+  
+      /* TODO: Replace with production payment URL */
+      this.$window.location.href = 'https://volumio-payment.vercel.app?p=' + base64Data;
+    }
 
-    /* jshint ignore:start */
-    // Paddle.Checkout.open(checkoutProps, false);
-    /* jshint ignore:end */
   }
 
-  utf8_to_b64(str) {
+  base64Encode(str) {
     return window.btoa(unescape(encodeURIComponent(str)));
   }
 

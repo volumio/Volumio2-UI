@@ -169,7 +169,6 @@ class MyVolumioPremiumStreamingController {
         alert("Error, no transaction occurred, no authenticated user found.");
         return;
       }
-      /* jshint ignore:start */
 
       let checkoutProps = {
         product: paddleId,
@@ -185,14 +184,35 @@ class MyVolumioPremiumStreamingController {
         closeCallback: (data) => {
           this.closeCallback(data);
         }
-      }
+      };
 
       if (this.couponCode) {
         checkoutProps.coupon = this.couponCode;
       }
+      /* TODO: add the database setting here */
+      const paymentInformationFromDatabase = false;
 
-      Paddle.Checkout.open(checkoutProps, false);
-      /* jshint ignore:end */
+      if (paymentInformationFromDatabase) {
+        /* jshint ignore:start */
+        Paddle.Checkout.open(checkoutProps, false);
+        /* jshint ignore:end */
+      } else {
+        const base64Data = this.base64Encode(JSON.stringify({
+          checkoutProps,
+          planDuration: this.planDuration,
+          plan: this.product.prices[this.planDuration],
+          planName: this.product.name,
+          redirectUrl: this.$window.location.origin
+        }));
+    
+        /* TODO: Replace with production payment URL */
+        this.$window.location.href = 'https://volumio-payment.vercel.app?p=' + base64Data;
+      }
+
+    }
+
+    base64Encode(str) {
+      return window.btoa(unescape(encodeURIComponent(str)));
     }
 
     successCallback(data) {
