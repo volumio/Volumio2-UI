@@ -1,5 +1,5 @@
 class MyVolumioSignupNewController {
-  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, $filter, user, $log, socketService, $rootScope, statisticsService) {
+  constructor($scope, paymentsService, productsService, $state, authService, modalService, $translate, $filter, user, $log, socketService, $rootScope, statisticsService, $window) {
     'ngInject';
     this.$scope = $scope;
     this.$state = $state;
@@ -8,11 +8,12 @@ class MyVolumioSignupNewController {
     this.$translate = $translate;
     this.filteredTranslate = $filter('translate');
     this.paymentsService = paymentsService;
-    this.productService = productsService;
+    this.productsService = productsService;
     this.$log = $log;
     this.socketService = socketService;
     this.$rootScope = $rootScope;
     this.statisticsService = statisticsService;
+    this.$window = $window;
 
     this.user = user;
     this.newUser = null;
@@ -97,7 +98,7 @@ class MyVolumioSignupNewController {
   }
 
   initProducts() {
-    this.productService.getProducts().then(products => {
+    this.productsService.getProducts().then(products => {
       this.productsObj = products;
       this.products = [ products.free, products.virtuoso, products.superstar ];
     });
@@ -278,26 +279,21 @@ class MyVolumioSignupNewController {
       checkoutProps.auth = trialAuth;
     }
 
-    /* TODO: add the database setting here */
-    const paymentInformationFromDatabase = false;
+    this.proceedToCheckout(checkoutProps);
+  }
 
-    if (paymentInformationFromDatabase) {
+  proceedToCheckout(checkoutProps) {
+    if (this.productsService.getHostedCheckoutEnabled()) {
+      checkoutProps.redirectUrl = this.$window.location.origin;
+      const base64Data = this.base64Encode(JSON.stringify(
+        checkoutProps
+        ));
+      this.$window.location.href = this.productsService.getHostedCheckoutUrl() + '?p=' + base64Data;
+    } else {
       /* jshint ignore:start */
       Paddle.Checkout.open(checkoutProps, false);
       /* jshint ignore:end */
-    } else {
-      const base64Data = this.base64Encode(JSON.stringify({
-        checkoutProps,
-        planDuration: this.planDuration,
-        plan: this.product.prices[this.planDuration],
-        planName: this.product.name,
-        redirectUrl: this.$window.location.origin
-      }));
-  
-      /* TODO: Replace with production payment URL */
-      this.$window.location.href = 'https://volumio-payment.vercel.app?p=' + base64Data;
     }
-
   }
 
   base64Encode(str) {
@@ -314,16 +310,16 @@ class MyVolumioSignupNewController {
   }
 
   getTrialOverride() {
-    return this.productService.getTrialOverride();
+    return this.productsService.getTrialOverride();
   }
 
   onCouponCodeChange(data){
     this.$log.debug('myvolumio coupon :', data);
     this.couponCode = data;
     if (this.couponCode.length) {
-      this.productService.setTrialOverride(true);
+      this.productsService.setTrialOverride(true);
     } else {
-      this.productService.setTrialOverride(false);
+      this.productsService.setTrialOverride(false);
     }
   }
 

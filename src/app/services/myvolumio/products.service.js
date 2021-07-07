@@ -1,5 +1,5 @@
 class ProductsService {
-  constructor(databaseService, socketService, $q) {
+  constructor(databaseService, socketService, $q, $window) {
     'ngInject';
     this.databaseService = databaseService;
     this.socketService = socketService;
@@ -11,6 +11,8 @@ class ProductsService {
     this.YEARLY_PLAN = 'yearly';
     this.LIFETIME_PLAN = 'lifetime';
     this.overrideTrial = false;
+    this.$window = $window;
+    this.cloudSettings = {};
 
     this.products = null;
     this.init();
@@ -20,6 +22,7 @@ class ProductsService {
     this.getProducts().then(productsPayload => {
 
     });
+    this.loadCloudSettings();
   }
 
   getProducts() {
@@ -43,6 +46,14 @@ class ProductsService {
       });
     });
     return loading.promise;
+  }
+
+  loadCloudSettings() {
+    this.cloudSettings.isHostedCheckoutEnabled = false;
+    this.cloudSettings.hostedCheckoutUrl = '';
+    this.databaseService.get('/cloud_settings').then((cloudSettingsValues) => {
+      this.cloudSettings = cloudSettingsValues;
+    }, (error) => {});
   }
 
   localizeProductsPricing() {
@@ -96,6 +107,23 @@ class ProductsService {
 
   getTrialOverride() {
     return this.overrideTrial;
+  }
+
+  getHostedCheckoutEnabled() {
+    var isCloudUI = this.$window.location.hostname === 'myvolumio.org' || this.$window.location.hostname === 'myvolumio-dev.firebaseapp.com';
+    if (this.cloudSettings && this.cloudSettings.isHostedCheckoutEnabled === true && this.cloudSettings.hostedCheckoutUrl !== undefined && isCloudUI === false) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getHostedCheckoutUrl() {
+    if (this.cloudSettings && this.cloudSettings.isHostedCheckoutEnabled === true && this.cloudSettings.hostedCheckoutUrl !== undefined) {
+      return this.cloudSettings.hostedCheckoutUrl;
+    } else {
+      return 'https://checkout.myvolumio.org';
+    }
   }
 }
 

@@ -147,27 +147,21 @@ class PaddlePayButtonController {
       checkoutProps.price = trialPrice;
       checkoutProps.auth = trialAuth;
     }
+    this.proceedToCheckout(checkoutProps);
+  }
 
-    /* TODO: add the database setting here */
-    const paymentInformationFromDatabase = false;
-
-    if (paymentInformationFromDatabase) {
+  proceedToCheckout(checkoutProps) {
+    if (this.productsService.getHostedCheckoutEnabled()) {
+      checkoutProps.redirectUrl = this.$window.location.origin;
+      const base64Data = this.base64Encode(JSON.stringify(
+        checkoutProps
+        ));
+      this.$window.location.href = this.productsService.getHostedCheckoutUrl() + '?p=' + base64Data;
+    } else {
       /* jshint ignore:start */
       Paddle.Checkout.open(checkoutProps, false);
       /* jshint ignore:end */
-    } else {
-      const base64Data = this.base64Encode(JSON.stringify({
-        checkoutProps,
-        planDuration: this.planDuration,
-        plan: this.product.prices[this.planDuration],
-        planName: this.product.name,
-        redirectUrl: this.$window.location.origin
-      }));
-  
-      /* TODO: Replace with production payment URL */
-      this.$window.location.href = 'https://volumio-payment.vercel.app?p=' + base64Data;
     }
-
   }
 
   base64Encode(str) {

@@ -123,38 +123,32 @@ class PaddleService {
   }
 
   openUpdateSubscriptionMethod(updateUrl) {
-    /* TODO: add the database setting here */
-    const paymentInformationFromDatabase = false;
-
-    if (paymentInformationFromDatabase) {
+    if (this.productsService.getHostedCheckoutEnabled()) {
+      this.paddleExternalApp(updateUrl);
+    } else {
       /* jshint ignore:start */
       Paddle.Checkout.open({
         override: updateUrl
       });
       /* jshint ignore:end */
-    } else {
-      this.paddleExternalApp(updateUrl);
     }
   }
 
   openCancelSubscriptionByUrl(cancelUrl) {
-    /* TODO: add the database setting here */
-    const paymentInformationFromDatabase = false;
-
-    if (paymentInformationFromDatabase) {
+    if (this.productsService.getHostedCheckoutEnabled()) {
+      this.paddleExternalApp(cancelUrl);
+    } else {
       /* jshint ignore:start */
       Paddle.Checkout.open({
         override: cancelUrl
       });
       /* jshint ignore:end */
-    } else {
-      this.paddleExternalApp(cancelUrl);
     }
   }
 
   paddleExternalApp(override) {
     /* TODO: Replace with production payment URL */
-    this.$window.location.href = `https://volumio-payment.vercel.app?override=${override}&redirectUrl=${this.$window.location.origin}`;
+    this.$window.location.href = this.productsService.getHostedCheckoutUrl() + '?override=' + override + '&redirectUrl=' + this.$window.location.origin;
   }
 
 }
