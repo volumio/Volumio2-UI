@@ -96,6 +96,17 @@ class NetworkDrivesPluginController {
     this.initService();
   }
 
+  fullShareName(drive){
+    switch (drive.fstype) {
+      case 'nfs':
+        return drive.ip + ':' + drive.path;
+      case 'cifs':
+        return '\\\\' + drive.ip + '\\' + drive.path;
+      default:
+        throw 'Unknown drive fstype ' + drive.fstype;
+    }
+  }
+
   registerListner() {
     this.socketService.on('pushListShares', (data) => {
       this.$log.debug('infoShare', data);
