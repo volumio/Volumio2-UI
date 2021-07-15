@@ -21,7 +21,7 @@
 
         <div class="outputs__device device">
           <div ng-if="audioOutputs.audioOutputsService.thisOutput.state" ng-click="audioOutputs.onDeviceClick(audioOutputs.audioOutputsService.thisOutput)" class="device__thumb">
-            <img src="{{audioOutputs.audioOutputsService.thisOutput.state.albumart}}" alt="cover image">
+            <img ng-src="{{audioOutputs.playerService.getAlbumart(audioOutputs.audioOutputsService.thisOutput.state.albumart)}}" alt="cover image">
           </div>
           <div class="device__info">
             <div class="device__title">
@@ -71,7 +71,7 @@
 
         <div ng-repeat="group in audioOutputs.audioOutputsService.groupedOutputs" class="outputs__device device groupped">
           <div class="device__thumb" ng-click="audioOutputs.onDeviceClick(group.leader)">
-            <img src="{{group.leader.state.albumart}}" alt="cover image">
+            <img ng-src="{{audioOutputs.playerService.getAlbumart(group.leader.state.albumart)}}" alt="cover image">
           </div>
           <div class="device__info">
             <div class="device__meta">
@@ -168,7 +168,7 @@
 
         <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device">
           <div ng-if="output.state" class="device__thumb" ng-click="audioOutputs.onDeviceClick(output)">
-            <img src="{{output.state.albumart}}" alt="cover image">
+            <img ng-src="{{audioOutputs.playerService.getAlbumart(output.state.albumart)}}" alt="cover image">
           </div>
           <div class="device__info">
             <div class="device__title">
@@ -229,7 +229,7 @@
 
       <div class="outputs__device device">
         <div class="device__thumb small">
-          <img src="{{ audioOutputs.audioOutputsService.thisOutput.state.albumart }}" alt="cover image">
+          <img ng-src="{{ audioOutputs.playerService.getAlbumart(audioOutputs.audioOutputsService.thisOutput.state.albumart) }}" alt="cover image">
         </div>
         <div class="device__info">
 
@@ -262,7 +262,7 @@
         </div>
         <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device {{ output.groupable ? '' : 'disabled'}}">
           <div class="device__thumb small">
-            <img src="{{output.state.albumart}}" alt="cover image">
+            <img ng-src="{{audioOutputs.playerService.getAlbumart(output.state.albumart)}}" alt="cover image">
           </div>
           <div class="device__info">
 
