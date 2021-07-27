@@ -83,7 +83,8 @@
         "GENRE": "Genre",
         "EDIT": "Éditer",
         "GRID": "Grille",
-        "NEXT": "Suivant"
+        "NEXT": "Suivant",
+        "REMOVE": "Supprimer"
     },
     "BROWSER": {
         "PLAY": "Lecture",
@@ -268,7 +269,14 @@
         "NOW_PLAYING": "En cours de lecture",
         "PLAYBACK_ZONES": "Zones de lecture",
         "ZONES": "Zones",
-        "AUDIO_OUTPUTS_AND_ZONES": "Sorties audio et zones"
+        "AUDIO_OUTPUTS_AND_ZONES": "Sorties audio et zones",
+        "ZONES_AND_OUTPUTS": "Zones & Sorties",
+        "SYNCED_PLAYBACK_NOT_AVAILABLE": "Lecture synchronisée non disponible",
+        "GROUP_DEVICES": "Groupes d'appareils",
+        "THIS_DEVICE": "Cet appareil",
+        "ACTIVE_GROUP": "Groupe actif",
+        "REMOVE_ALL_DEVICES": "Supprimer tous les appareils",
+        "AVAILABLE_DEVICES": "Appareils disponibles"
     },
     "SIDEMENU": {
         "ANALOG_INPUT": "Entrée Analogique",
