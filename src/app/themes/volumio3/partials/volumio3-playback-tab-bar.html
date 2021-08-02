@@ -19,7 +19,8 @@
       ng-class="{selected: state.current.name === 'volumio.outputs'}"
       ng-disabled="!audioOutputs.isMultiOutputsAvailable()"
       title="{{'COMMON.TAB_OUTPUTS' | translate}}">
-    <i class="material-icons md-24">speaker</i>
+    <i ng-if="audioOutputs.menuVisible" class="material-icons md-24">close</i>
+    <i ng-if="!audioOutputs.menuVisible" class="material-icons md-24">speaker_group</i>
     <span class="label" translate="COMMON.TAB_OUTPUTS"></span>
   </button>
 

@@ -29,8 +29,13 @@
     "SHOW_SETTINGS":"Mostra Impostazioni",
     "SETTINGS":"Impostazioni",
     "TAB_BROWSE":"Sfoglia",
+    "TAB_HOME": "Casa",
+    "TAB_SEARCH": "Cerca",
+    "TAB_SETTINGS": "Impostazioni",
     "TAB_PLAYBACK":"Riproduzione",
     "TAB_QUEUE":"Coda",
+    "TAB_OUTPUTS": "Uscite",
+    "TAB_VOLUME": "Volume",
     "ARTIST":"Artista",
     "ARTISTS":"Artisti",
     "ALBUM":"Album",
@@ -76,7 +81,9 @@
     "UPDATE_ALBUMART":"Aggiorna Copertina",
     "YEAR":"Year",
     "GENRE":"Genere",
-    "GRID": "Griglia"
+    "EDIT": "Edita",
+    "GRID": "Griglia",
+    "REMOVE": "Rimuovi"
   },
   "BROWSER": {
     "PLAY": "Riproduci",
@@ -228,7 +235,8 @@
     "WIFI_CONNECTION":"Seleziona la rete senza fili a cui vuoi connetterti",
     "DEVICECODE":"Codice",
     "DEVICE_CODE_TITLE":"Codice di attivazione dispositivo",
-    "DEVICE_CODE_MESSAGE":"Se avete ricevuto un Codice di Attivazione Dispositivo, inseritelo per godere delle funzionalità esclusive a voi riservate",
+    "DEVICE_CODE_MESSAGE":"Se avete ricevuto un Codice di Attivazione Dispositivo, inseritelo per godere delle funzionalità esclusive a voi riservate.",
+    "DEVICE_CODE_MESSAGE_CLICK":"Una volta inserito, cliccare su",
     "DEVICE_CODE_VALIDATE":"Verifica Codice Dispositivo",
     "ERROR_ACTIVATING_DEVICE":"Attivazione dispositivo fallita",
     "DEVICE_ACTIVATED": "Il Vostro dispositivo è stato attivato con successo. Puoi ora godere delle funzionalità esclusive",
@@ -254,7 +262,16 @@
     "ROOMS_AND_GROUPS": "Stanze e gruppi",
     "MULTI_ROOM_CONFIGURATION": "Configurazione Multi-Room",
     "GROUP": "Gruppo",
-    "NOW_PLAYING": "In riproduzione"
+    "NOW_PLAYING": "In riproduzione",
+    "PLAYBACK_ZONES":"Zone di riproduzione",
+    "ZONES":"Zone",
+    "ZONES_AND_OUTPUTS":"Zone & Uscite",
+    "GROUP_DEVICES":"Raggruppa dispositivi",
+    "THIS_DEVICE": "Questo dispositivo",
+    "ACTIVE_GROUP": "Gruppo attivo",
+    "REMOVE_ALL_DEVICES": "Rimuovi tutti",
+    "AVAILABLE_DEVICES": "Dispositivi disponibili",
+    "SYNCED_PLAYBACK_NOT_AVAILABLE": "Riproduzione sincrona non disponibile"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "INPUT ANALOGICO",

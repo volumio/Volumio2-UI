@@ -7,6 +7,9 @@ class AudioOutputsController {
 
     this.menuVisible = false;
     this.outputs = [];
+
+    this.defaultView = true;
+    this.groupView = false;
   }
 
   toggleMenu() {
@@ -14,11 +17,16 @@ class AudioOutputsController {
   }
 
   isMultiOutputsAvailable() {
-    if (this.audioOutputsService.outputs && this.audioOutputsService.outputs.length > 1) {
+    // TODO - MULTIROOM FIX AFTER DONE
+    // console.log(this.audioOutputsService.outputs);
+    // console.log(this.audioOutputsService.multiRoomDevices);
+
+    return true;
+    /* if (this.audioOutputsService.outputs && this.audioOutputsService.outputs.length > 1) {
       return true;
     } else {
       return false;
-    }
+    } */
   }
 
   toggleAudioOutput(id, enabled) {
@@ -50,6 +58,11 @@ class AudioOutputsController {
 
   onDeviceClick(device) {
     this.socketService.host = device.host;
+  }
+
+  toggleView() {
+    this.defaultView = !this.defaultView;
+    this.groupView = !this.groupView;
   }
 }
 

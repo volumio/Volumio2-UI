@@ -49,7 +49,7 @@ class BrowseService {
       if  (this.historyUri.length) {
         obj.prevUri = this.historyUri[this.historyUri.length - 1].uri;
       }
-      this.historyUri.push(item);
+      this.historyUri.push(obj);
     } else {
       this.historyUri.pop();
     }
@@ -121,11 +121,11 @@ class BrowseService {
   }
 
   goTo(emitPayload) {
-    this.backHome();
-    this.isSearching = true;
-    this.isBrowsing = false;
     this.$log.debug('goTo', emitPayload);
+    this.backHome();
     this.$timeout(() => {
+      this.isSearching = true;
+      this.isBrowsing = false;
       this.socketService.emit('goTo', emitPayload);
       // this.socketService.emit('search', emitPayload);
     }, 0);

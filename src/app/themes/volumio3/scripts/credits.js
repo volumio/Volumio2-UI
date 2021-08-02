@@ -70,44 +70,50 @@ function readPackages(item) {
 }
 
 function fetchRepos(dep) {
-	npm.commands.view([dep], true, function (er, data) {
-    if (er) {
-    	log("ERR: " + er);
-    } else {
-    	var k = Object.keys(data)[0];
-    	var pkg = data[k];
-    	try {
+	try {
+		npm.load();
+		npm.commands.view([dep], true, (er, data)=> {
+			if (er) {
+				log("ERR: " + er);
+			} else {
+				try {
+				var k = Object.keys(data)[0];
+				var pkg = data[k];
 
-	    var vanilla = {repo: "#", author: "N/A", license: "N/A"};
+				var vanilla = {repo: "#", author: "N/A", license: "N/A"};
 
-	    if (Object.prototype.hasOwnProperty.call(pkg,"repository")) {
-	    	if (Object.prototype.hasOwnProperty.call(pkg.repository,'url') ) {
-	    		vanilla.repo = pkg.repository.url;
-	    	} else {
-	    		vanilla.repo = pkg.repository;
-	    	}
-	    }
+				if (Object.prototype.hasOwnProperty.call(pkg,"repository")) {
+					if (Object.prototype.hasOwnProperty.call(pkg.repository,'url') ) {
+						vanilla.repo = pkg.repository.url;
+					} else {
+						vanilla.repo = pkg.repository;
+					}
+				}
 
-	    if (Object.prototype.hasOwnProperty.call(pkg,"author") ) {
-	    	if (Object.prototype.hasOwnProperty.call(pkg.author,"name")  ) {
-	    		vanilla.author = pkg.author.name;
-	    	} else {
-	    		vanilla.author = pkg.author;
-	    	}
-	    }
+				if (Object.prototype.hasOwnProperty.call(pkg,"author") ) {
+					if (Object.prototype.hasOwnProperty.call(pkg.author,"name")  ) {
+						vanilla.author = pkg.author.name;
+					} else {
+						vanilla.author = pkg.author;
+					}
+				}
 
-	    	vanilla.license = pkg.license;
+					vanilla.license = pkg.license;
 
-		repos[dep] = vanilla;
-	} catch (e) {
-		var k = Object.keys(data)[0];
-    	var pkg = data[k];
-			log("Error fetching " + dep + " " + k + " : "+ e + " - " + Object.keys(pkg));
+			repos[dep] = vanilla;
+		} catch (e) {
+			var k = Object.keys(data)[0];
+				var pkg = data[k];
+				log("Error fetching " + dep + " " + k + " : "+ e + " - " + Object.keys(pkg));
+		}
+
+		}
+		finished();
+		});
+	} catch(e) {
+
 	}
 
-	}
-	finished();
-  });
 }
 
 
@@ -399,12 +405,12 @@ function writeHTML() {
 	html += '<p><strong>Copyright © 2013-' + year + ' Michelangelo Guarise</strong>'
 	html += '<span class="help-block">We are not responsible for any damage to your computer or appliances caused by Volumio. Use it by your own risk.'
 	html += '<span class="help-block"><strong>Intellectual property</strong></span>'
-	html += 'This Agreement does not transfer from INTUITU di Michelangelo Guarise to you any INTUITU di Michelangelo Guarise or third party intellectual property, and all right, title and interest in and to such property'
-	html += 'will remain (as between the parties) solely with INTUITU di Michelangelo Guarise. INTUITU di Michelangelo Guarise, Volumio, the Volumio logo, and all other trademarks, service marks, graphics and logos used'
-  html += 'in connection with Volumio, or the Website are trademarks or registered trademarks of INTUITU di Michelangelo Guarise or INTUITU di Michelangelo Guarise’s licensors. Other trademarks, service marks, graphics '
-	html += 'in connection with Volumio, or the Website are trademarks or registered trademarks of INTUITU di Michelangelo Guarise or INTUITU di Michelangelo Guarise’s licensors. Other trademarks, service marks, graphics'
-	html += 'in connection with Volumio, or the Website are trademarks or registered trademarks of INTUITU di Michelangelo Guarise or INTUITU di Michelangelo Guarise’s licensors. Other trademarks, service marks, graphics '
-	html += 'and logos used in connection with the Website may be the trademarks of other third parties. Your use of the Website grants you no right or license to reproduce or otherwise use any INTUITU di Michelangelo Guarise'
+	html += 'This Agreement does not transfer from Volumio SRL to you any Volumio SRL or third party intellectual property, and all right, title and interest in and to such property'
+	html += 'will remain (as between the parties) solely with Volumio SRL. Volumio SRL, Volumio, the Volumio logo, and all other trademarks, service marks, graphics and logos used'
+  html += 'in connection with Volumio, or the Website are trademarks or registered trademarks of Volumio SRL or Volumio SRL’s licensors. Other trademarks, service marks, graphics '
+	html += 'in connection with Volumio, or the Website are trademarks or registered trademarks of Volumio SRL or Volumio SRL’s licensors. Other trademarks, service marks, graphics'
+	html += 'in connection with Volumio, or the Website are trademarks or registered trademarks of Volumio SRL or Volumio SRL’s licensors. Other trademarks, service marks, graphics '
+	html += 'and logos used in connection with the Website may be the trademarks of other third parties. Your use of the Website grants you no right or license to reproduce or otherwise use any Volumio SRL'
 	html += 'or third-party trademarks.'
 	html += '<span class="help-block"><strong>EULA</strong></span>'
 	html += 'End-User License Agreement<br>'

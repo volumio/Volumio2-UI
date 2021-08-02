@@ -14,7 +14,9 @@ class UiSettingsService {
 
     this.currentTheme = themeManager.theme;
     this.uiSettings = undefined;
+    this.enableVolumioKioskMode = false;
     this.enableMemorySavingTouchUi = false;
+    this.enableTouchUi = false;
 
     this.defaultUiSettings = {
       backgroundImg: 'default bkg'
@@ -46,13 +48,14 @@ class UiSettingsService {
       this.$document[0].body.style.background = '';
       this.$document[0].body.style.backgroundColor = this.uiSettings.color;
     } else {
-      if (this.uiSettings.background.title === 'Default') {
+      if (this.uiSettings.background && this.uiSettings.background.title === 'Default') {
         this.$document[0].body.style.background = `#333 url(${this.defaultBackgroundUrl}) repeat top left`;
         this.$document[0].body.style.backgroundSize = 'auto';
       } else {
-        this.$document[0].body.style.background =
-            `#333 url(${this.uiSettings.background.path}) no-repeat center center`;
-        this.$document[0].body.style.backgroundSize = 'cover';
+        if (this.uiSettings.background && this.uiSettings.background.path) {
+          this.$document[0].body.style.background = `#333 url(${this.uiSettings.background.path}) no-repeat center center`;
+          this.$document[0].body.style.backgroundSize = 'cover';
+        }
       }
     }
   }
@@ -185,14 +188,52 @@ class UiSettingsService {
   }
 
   detectVolumioTouschreenViaUserAgent() {
-    // If user agent is volumiokiosk-memorysave we will enable a special mode for low memory devices 
+    // If user agent is volumiokiosk-memorysave we will enable a special mode for low memory devices
+    if (this.$window.navigator.userAgent.includes('volumiokiosk')) {
+      this.enableVolumioKioskMode = true;
+      this.removeHoverEffects();
+    }
+
     if (this.$window.navigator.userAgent.includes('memorysave')) {
       this.enableMemorySavingTouchUi = true;
+      this.removeHoverEffects();
     }
+
+    if (this.$window.navigator.userAgent.includes('touch')) {
+      this.enableTouchUi = true;
+      this.increaseScrollbarWidth();
+      this.removeMultiroomDock();
+    }
+  }
+
+  removeHoverEffects(){
+    let style = document.createElement('style');
+    style.textContent = '.music-item:hover {background-color: transparent!important;}';
+    document.head.append(style);
+  }
+
+  increaseScrollbarWidth(){
+    let style = document.createElement('style');
+    style.textContent = '::-webkit-scrollbar {width: 20px!important;height: 10px!important;}';
+    document.head.append(style);
+  }
+
+  removeMultiroomDock(){
+    let style = document.createElement('style');
+    style.textContent = 'div#multiRoomDockWrapper {display: none;}';
+    document.head.append(style);
+  }
+
+  isVolumioKioskModeEnabled() {
+    return this.enableVolumioKioskMode;
   }
 
   isMemorySavingTouchUiEnabled() {
     return this.enableMemorySavingTouchUi;
+  }
+
+  isTouchUiEnabled() {
+    return this.enableTouchUi;
   }
 }
 

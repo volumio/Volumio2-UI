@@ -260,7 +260,8 @@ class BrowseMusicController {
       return false;
     }
     // We avoid that by mistake one clicks on play all NAS or USB, freezing volumio
-    if (item.type === 'folder' && item.uri && item.uri.startsWith('music-library/') && item.uri.split('/').length < 4 ) {
+    if ((item.type === 'folder' && item.uri && item.uri.startsWith('music-library/') && item.uri.split('/').length < 4 ) ||
+        item.disablePlayButton === true) {
       return false;
     }
     let ret = item.type === 'folder' || item.type === 'song' ||
@@ -650,7 +651,7 @@ class BrowseMusicController {
     if (item.type === 'song') {
       this.play(item);
     } else {
-      this.fetchLibrary({ uri: item.uri });
+      this.fetchLibrary(item);
     }
   }
 

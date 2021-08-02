@@ -81,7 +81,8 @@ class AuthService {
     this.$rootScope.$watch(() => this.angularFireService.dbUser, (user) => {
       this.user = user;
       setTimeout(()=>{
-        this.syncronizeWithGrowSurf();
+        // disabled growsurf
+        //this.syncronizeWithGrowSurf();
         this.syncronizeWithBackend();
         this.syncronizeWithStatistics();
       }, 2000);
