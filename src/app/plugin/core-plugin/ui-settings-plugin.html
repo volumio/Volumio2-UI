@@ -1,17 +1,35 @@
 <div id="uiSettings" ng-controller="UiSettingsPluginController as uiSettingsPlugin"
-class="panel panel-default">
-<div class="panel-heading">
-<h3 class="panel-title"><i class="fa fa-paint-brush"></i>
-  <span translate="UI_SETTINGS.THEME_SETTINGS"></span>
-</h3>
-</div>
-<div class="panel-body">
+    class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-paint-brush"></i>
+      <span translate="UI_SETTINGS.THEME_SETTINGS"></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <h4 class="sectionDescription" translate="UI_SETTINGS.UPLOAD_BACKGROUND_FILE"></h4>
+    <div ng-if="!uiSettingsPlugin.uploadPercentage">
+      <div
+          class="uploadDroppableArea"
+          ngf-drop="uiSettingsPlugin.uploadBackground()"
+          ngf-select="uiSettingsPlugin.uploadBackground()"
+          ngf-drag-over-class="'dragover'"
+          ng-model="uiSettingsPlugin.backgroundFile"
+          name="plugin">
+        <span translate="UI_SETTINGS.UPLOAD_BACKGROUND_FILE"></span>
+      </div>
+    </div>
 
-<!-- Tabbed panel: Background image or color -->
-<uib-tabset active="pluginManager.activeTab">
+    <div id="installProgressBar" ng-if="uiSettingsPlugin.uploadPercentage > 0">
+      <h3 translate="UI_SETTINGS.UPLOAD_BACKGROUND_FILE"></h3>
+      <uib-progressbar
+          class="progress-striped active"
+          value="uiSettingsPlugin.uploadPercentage"
+          type="default">{{uiSettingsPlugin.uploadPercentage}}%
+      </uib-progressbar>
+    </div>
 
-  <!-- Tab 1: Select or upload image -->
-  <uib-tab index="0" heading="{{'UI_SETTINGS.TAB_BACKGROUND_IMAGE' | translate}}">
+    <hr>
+
     <h4 class="sectionDescription" translate="UI_SETTINGS.SELECT_BACKGROUND"></h4>
     <div id="backgroundSelector" class="row">
       <div class="col-sm-6"
@@ -53,31 +71,6 @@ class="panel panel-default">
 
     <hr>
 
-    <h4 class="sectionDescription" translate="UI_SETTINGS.UPLOAD_BACKGROUND"></h4>
-    <div ng-if="!uiSettingsPlugin.uploadPercentage">
-      <div
-          class="uploadDroppableArea"
-          ngf-drop="uiSettingsPlugin.uploadBackground()"
-          ngf-select="uiSettingsPlugin.uploadBackground()"
-          ngf-drag-over-class="'dragover'"
-          ng-model="uiSettingsPlugin.backgroundFile"
-          name="plugin">
-        <btn class="btn btn-info" translate="UI_SETTINGS.UPLOAD_BACKGROUND_FILE_BTN"></btn><br><br><span><i class="fa fa-hand-pointer-o"></i> - {{ 'UI_SETTINGS.UPLOAD_BACKGROUND_FILE_DRAG' | translate }}</span>
-      </div>
-    </div>
-
-  <div id="installProgressBar" ng-if="uiSettingsPlugin.uploadPercentage > 0">
-    <h3 translate="UI_SETTINGS.UPLOAD_BACKGROUND_FILE"></h3>
-    <uib-progressbar
-        class="progress-striped active"
-        value="uiSettingsPlugin.uploadPercentage"
-        type="default">{{uiSettingsPlugin.uploadPercentage}}%
-    </uib-progressbar>
-  </div>
-  </uib-tab>
-
-  <!-- Tab 2: Select or specify a solid color -->
-  <uib-tab index="1" heading="{{'UI_SETTINGS.TAB_BACKGROUND_SOLIDCOLOR' | translate}}">
     <h4 class="sectionDescription" translate="UI_SETTINGS.SELECT_BACKGROUND_COLOR"></h4>
     <div id="backgroundColorSelector" class="row">
       <div class="col-xs-24" id="colorPalette">
@@ -108,8 +101,5 @@ class="panel panel-default">
         </div>
       </div>
     </div>
-  </uib-tab>
-
-</uib-tabset>
-</div>
+  </div>
 </div>
