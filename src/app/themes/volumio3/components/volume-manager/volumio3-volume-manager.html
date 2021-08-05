@@ -9,6 +9,8 @@
       </div>
       <div class="bigText">{{volumeManager.playerService.volume}}</div>
       <div class="smallText">/100</div>
+      <div ng-if="volumeManager.playerService.miniDspShdVolumeDbAvail" class="volDbText">
+        {{volumeManager.playerService.miniDspShdVolumeDb}} dB</div>
     </div>
     <knob
       value="volumeManager.playerService.volume"
@@ -41,6 +43,8 @@
   <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
     <div class="bigText">{{volumeManager.playerService.volume}}</div>
     <div class="smallText">/100</div>
+    <div ng-if="volumeManager.playerService.miniDspShdVolumeDbAvail" class="volDbText">
+      {{volumeManager.playerService.miniDspShdVolumeDb}} dB</div>
 
     <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}" ng-disabled="volumeManager.playerService.state.disableVolumeControl">
       <i class="fa fa-volume-up"></i>
@@ -93,7 +97,9 @@
     </slider>
 
     <div class='volume-text'>
-      {{volumeManager.playerService.volume}}/100
+      <span>{{volumeManager.playerService.volume}}/100</span>
+      <span ng-if="volumeManager.playerService.miniDspShdVolumeDbAvail" class="volDbText">
+        {{volumeManager.playerService.miniDspShdVolumeDb}} dB</span>
     </div>
 
 </div>

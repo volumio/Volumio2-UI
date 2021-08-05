@@ -4,6 +4,19 @@ volume-manager{
     position: relative;
     margin-top: 110px;
 
+    .knobInfosWrapper {
+      .smallText {
+        margin-top: 8px;
+        font-size: 16px;
+        height: 22px;
+      }
+      .volDbText {
+        color: $theme-primary-color;
+        margin-top: 14px;
+        font-size: 16px;
+        height: 22px;
+      }
+    }
     .volumeSliderWrapper {
       pointer-events: none;
 
@@ -27,6 +40,17 @@ volume-manager{
         color: $theme-primary-color;
         font-size: 28px;
         padding-top: 10px;
+      }
+      .smallText {
+        margin-top: 8px;
+        font-size: 16px;
+        height: 22px;
+      }
+      .volDbText {
+        color: $theme-primary-color;
+        margin-top: 16px;
+        font-size: 16px;
+        height: 22px;
       }
     }
 
@@ -73,6 +97,9 @@ volume-manager{
     .volume-text{
       font-size: smaller;
       text-align: center;
+      .volDbText {
+        margin-left: 20px;
+      }
     }
 
     .volumeSlider{

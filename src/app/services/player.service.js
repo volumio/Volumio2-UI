@@ -22,6 +22,7 @@ class PlayerService {
 
     this._volume = 80;
     this._volumeStep = 10;
+    this._miniDspShdVolumeDb = null; // optional value
     this.mute = undefined;
     this.disableVolumeControl = false;
 
@@ -192,6 +193,14 @@ class PlayerService {
     }
   }
 
+  get remoteMiniDspShdVolumeDb() {
+    if (this.state && this.state.deviceVolume) {
+      return parseFloat(this.state.deviceVolume);
+    } else {
+      return null; // not-available
+    }
+  }
+
   set remoteVolume(volume) {
     if (volume < 0) {
       volume = 0;
@@ -205,6 +214,7 @@ class PlayerService {
   get volume(){
     if(Date.now() - this.lastVolumeUpdateTime > 1000){
       this.localVolume = this.remoteVolume;
+      this._miniDspShdVolumeDb = this.remoteMiniDspShdVolumeDb;
     }
     return this.localVolume;
   }
@@ -215,6 +225,17 @@ class PlayerService {
       this.remoteVolume = volume;
     }
     this.localVolume = volume;
+  }
+
+  get miniDspShdVolumeDbAvail() {
+    return this._miniDspShdVolumeDb !== null;
+  }
+
+  get miniDspShdVolumeDb() {
+    if (this._miniDspShdVolumeDb !== null) {
+      return this._miniDspShdVolumeDb.toFixed(1);
+    }
+    return "Not-Available";
   }
 
   get albumart() {
