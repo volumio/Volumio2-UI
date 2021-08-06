@@ -212,7 +212,7 @@ class PlayerService {
   }
 
   get volume(){
-    if(Date.now() - this.lastVolumeUpdateTime > 1000){
+    if(Date.now() - this.lastVolumeUpdateTime > 100){
       this.localVolume = this.remoteVolume;
       this._miniDspShdVolumeDb = this.remoteMiniDspShdVolumeDb;
     }
@@ -223,6 +223,9 @@ class PlayerService {
     if(Date.now() - this.lastVolumeUpdateTime > 100 && this.localVolume !== volume){
       this.lastVolumeUpdateTime = Date.now();
       this.remoteVolume = volume;
+    }
+    else {
+      this.$log.warn('volume not emit to backend', volume);
     }
     this.localVolume = volume;
   }

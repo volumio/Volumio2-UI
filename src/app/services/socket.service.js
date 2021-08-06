@@ -122,7 +122,7 @@ class SocketService {
   }
 
   emit(eventName, data, callback) {
-    //this.$log.debug('emit', eventName);
+    this.$log.debug('emit', eventName, data);
     this.startLoadingBar(eventName);
     this.$window.socket.emit(eventName, data, (data) => {
       //let arg = arguments;
