@@ -1,8 +1,9 @@
 class PlayerService {
-  constructor($rootScope, $log, $interval, socketService, themeManager, uiSettingsService, $document) {
+  constructor($rootScope, $log, $interval, $timeout, socketService, themeManager, uiSettingsService, $document) {
     'ngInject';
     this.$log = $log;
     this.$interval = $interval;
+    this.$timeout = $timeout;
     this.socketService = socketService;
     this.themeManager = themeManager;
     this.$rootScope = $rootScope;
@@ -31,7 +32,11 @@ class PlayerService {
     this._repeatAlbum = false;
 
     this.localVolume = 0;
-    this.lastVolumeUpdateTime = -1000;
+    this.lastVolumeUpdateValue = -1;
+    // timer that delays issuing volume change request to backend,
+    // goal is to reduce frequency of requests by skipping
+    // intermediate requests
+    this._setVolumeTimeout = null; 
 
     this.init();
     $rootScope.$on('socket:init', () => {
@@ -212,20 +217,27 @@ class PlayerService {
   }
 
   get volume(){
-    if(Date.now() - this.lastVolumeUpdateTime > 100){
-      this.localVolume = this.remoteVolume;
-      this._miniDspShdVolumeDb = this.remoteMiniDspShdVolumeDb;
-    }
+    this.localVolume = this.remoteVolume;
+    this._miniDspShdVolumeDb = this.remoteMiniDspShdVolumeDb;
     return this.localVolume;
   }
 
   set volume(volume){
-    if(Date.now() - this.lastVolumeUpdateTime > 100 && this.localVolume !== volume){
-      this.lastVolumeUpdateTime = Date.now();
-      this.remoteVolume = volume;
+    if (this.lastVolumeUpdateValue != volume) {
+      // Cancel previous timer
+      if(this._setVolumeTimeout) {
+        this.$log.debug(`Canceling previous setVolume timer`);
+        this.$timeout.cancel(this._setVolumeTimeout);
+      }
+      // Set new timer
+      this.lastVolumeUpdateValue = volume;
+      this._setVolumeTimeout = this.$timeout((self) => {
+        self.$log.debug(`In setVolume timer function ${self.lastVolumeUpdateValue}`);
+        self.remoteVolume = self.lastVolumeUpdateValue;
+      },100, false, this);
     }
     else {
-      this.$log.warn('volume not emit to backend', volume);
+      this.$log.warn(`set volume ${volume} same as last value - ignore.`);
     }
     this.localVolume = volume;
   }
