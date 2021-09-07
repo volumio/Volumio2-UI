@@ -94,9 +94,6 @@ class AudioOutputsService {
         this.thisOutput = device;
         this.thisDeviceID = device.id;   
       }
-   
-      
-      //console.log(device);
     });
 
     //Add all other devices
@@ -138,8 +135,7 @@ class AudioOutputsService {
         leader: this.outputs.find(o => o.id === leader),
         children: this.outputs.filter(o => o.leader === leader && o.leader !==o.id && o.enabled)
       };
-    });
-    console.log(this.groupedOutputs);
+    });    
   }
 }
 
