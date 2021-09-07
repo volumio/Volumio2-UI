@@ -15,7 +15,7 @@
         </div>
       </div> <!-- /.outputs__title -->
 
-      <div ng-if="audioOutputs.audioOutputsService.thisOutput && audioOutputs.audioOutputsService.enabledOutputs().length === 0">
+      <div ng-if="audioOutputs.audioOutputsService.thisOutput && !audioOutputs.audioOutputsService.hasLeader()">
         <div class="outputs__subtitle small link" translate="MULTIDEVICE.THIS_DEVICE">
         </div>
 
@@ -92,7 +92,7 @@
 
             <div class="device__group__item">
               <div class="device__title">
-                <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(group.leader)">{{ group.leader.name }} {{ group.leader.state.status }}</div>
+                <div class="device__title__text" ng-click="audioOutputs.onDeviceClick(group.leader)">{{ group.leader.name }}</div>
                 <!-- <div class="device__actions">
                   <div ng-if="group.leader.volumeAvailable" class="device__volume">
                     <label for="{{group.leader.id}}-main" class="outputs__action device__control device__control--volume" title="{{ 'COMMON.TAB_VOLUME' | translate }} {{group.leader.state.volume}}">
@@ -258,9 +258,9 @@
       </div> <!-- /.device__group__action -->
 
       <div>
-        <div ng-if="audioOutputs.audioOutputsService.availableOutputs().length > 0" class="outputs__subtitle small" translate="MULTIDEVICE.AVAILABLE_DEVICES">
+        <div ng-if="audioOutputs.audioOutputsService.groupableOutputs().length > 0" class="outputs__subtitle small" translate="MULTIDEVICE.AVAILABLE_DEVICES">
         </div>
-        <div ng-repeat="output in audioOutputs.audioOutputsService.availableOutputs()" class="outputs__device device {{ output.groupable ? '' : 'disabled'}}">
+        <div ng-repeat="output in audioOutputs.audioOutputsService.groupableOutputs()" class="outputs__device device {{ output.groupable ? '' : 'disabled'}}">
           <div class="device__thumb small">
             <img src="{{output.state.albumart}}" alt="cover image">
           </div>
