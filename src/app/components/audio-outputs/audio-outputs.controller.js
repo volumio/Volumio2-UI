@@ -57,7 +57,9 @@ class AudioOutputsController {
   }
 
   onDeviceClick(device) {
-    this.socketService.host = device.host;
+    if (device.host) {
+      this.socketService.host = device.host;
+    }
   }
 
   toggleView() {
