@@ -191,9 +191,10 @@ function addSection(name) {
 function finished() {
 	finishCount++;
 
-	if (finishCount == finalCount) {
+	// TODO: Refactor in a way it writes only when fetched everything, and fix npm loading
+	//if (finishCount == finalCount) {
 		writeHTML();
-	}
+	//}
 }
 
 function addThirdPartCredits() {
