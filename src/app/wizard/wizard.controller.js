@@ -172,7 +172,9 @@ class WizardController {
 
   goToAccountSetup() {
     this.socketService.emit('setWizardAction', {action: 'close'});
-    return this.$state.go('myvolumio.signup');
+    setTimeout(() =>{
+      this.$state.go('myvolumio.signup');
+    }, 1500);
   }
 
   isAccountSetupRequired() {
