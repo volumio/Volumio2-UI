@@ -209,7 +209,7 @@
         </div>
         <div class="my-volumio__plan-grid">
 
-          <label ng-repeat="product in MyVolumioSignupNewController.products" for="{{ product.plan }}" class="plan__item focus__helper round" tabindex="7">
+          <label ng-repeat="product in MyVolumioSignupNewController.products" ng-if="product.plan!='free'" for="{{ product.plan }}" class="plan__item focus__helper round" tabindex="7">
             <input
               hidden
               class="plan__checkbox"
