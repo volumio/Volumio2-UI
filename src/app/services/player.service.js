@@ -23,7 +23,7 @@ class PlayerService {
 
     this._volume = 80;
     this._volumeStep = 10;
-    this._miniDspShdVolumeDb = null; // optional value
+    this._dbVolume = null; // optional value
     this.mute = undefined;
     this.disableVolumeControl = false;
 
@@ -198,7 +198,7 @@ class PlayerService {
     }
   }
 
-  get remoteMiniDspShdVolumeDb() {
+  getRemoteDbVolume() {
     if (this.state && this.state.dbVolume) {
       return parseFloat(this.state.dbVolume);
     } else {
@@ -218,7 +218,7 @@ class PlayerService {
 
   get volume(){
     this.localVolume = this.remoteVolume;
-    this._miniDspShdVolumeDb = this.remoteMiniDspShdVolumeDb;
+    this._dbVolume = this.getRemoteDbVolume();
     return this.localVolume;
   }
 
@@ -242,13 +242,13 @@ class PlayerService {
     this.localVolume = volume;
   }
 
-  get miniDspShdVolumeDbAvail() {
-    return this._miniDspShdVolumeDb !== null;
+  isDbVolumeAvail() {
+    return this._dbVolume !== null;
   }
 
-  get miniDspShdVolumeDb() {
-    if (this._miniDspShdVolumeDb !== null) {
-      return this._miniDspShdVolumeDb.toFixed(1);
+  getDbVolume() {
+    if (this._dbVolume !== null) {
+      return this._dbVolume.toFixed(1);
     }
     return "Not-Available";
   }
