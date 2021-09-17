@@ -199,8 +199,8 @@ class PlayerService {
   }
 
   get remoteMiniDspShdVolumeDb() {
-    if (this.state && this.state.deviceVolume) {
-      return parseFloat(this.state.deviceVolume);
+    if (this.state && this.state.dbVolume) {
+      return parseFloat(this.state.dbVolume);
     } else {
       return null; // not-available
     }
