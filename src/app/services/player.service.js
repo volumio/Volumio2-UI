@@ -22,6 +22,7 @@ class PlayerService {
 
     this._volume = 80;
     this._volumeStep = 10;
+    this._dbVolume = null;
     this.mute = undefined;
     this.disableVolumeControl = false;
 
@@ -192,6 +193,14 @@ class PlayerService {
     }
   }
 
+  getRemoteDbVolume() {
+    if (this.state && this.state.dbVolume !== undefined) {
+      return parseFloat(this.state.dbVolume);
+    } else {
+      return null;
+    }
+  }
+
   set remoteVolume(volume) {
     if (volume < 0) {
       volume = 0;
@@ -206,6 +215,9 @@ class PlayerService {
     if(Date.now() - this.lastVolumeUpdateTime > 1000){
       this.localVolume = this.remoteVolume;
     }
+    if(Date.now() - this.lastVolumeUpdateTime > 100){
+      this._dbVolume = this.getRemoteDbVolume();
+    }
     return this.localVolume;
   }
 
@@ -215,6 +227,17 @@ class PlayerService {
       this.remoteVolume = volume;
     }
     this.localVolume = volume;
+  }
+
+  isDbVolumeAvailable() {
+    return this._dbVolume !== null;
+  }
+
+  getDbVolume() {
+    if (this._dbVolume !== null) {
+      return this._dbVolume.toFixed(1);
+    }
+    return false;
   }
 
   get albumart() {

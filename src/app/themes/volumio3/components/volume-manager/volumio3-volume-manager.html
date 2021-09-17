@@ -7,8 +7,14 @@
       <div class="headerText green">
         <span ng-if="volumeManager.playerService.state.mute" translate="COMMON.VOLUME_MUTED"></span>
       </div>
-      <div class="bigText">{{volumeManager.playerService.volume}}</div>
-      <div class="smallText">/100</div>
+      <div ng-if="!volumeManager.playerService.isDbVolumeAvailable()">
+        <div class="bigText">{{volumeManager.playerService.volume}}</div>
+        <div class="smallText">/100</div>
+      </div>
+      <div ng-if="volumeManager.playerService.isDbVolumeAvailable()">
+        <div class="bigText">{{volumeManager.playerService.getDbVolume()}}</div>
+        <div class="smallText">dB</div>
+      </div>
     </div>
     <knob
       value="volumeManager.playerService.volume"
@@ -39,9 +45,14 @@
 <div ng-if="volumeManager.matchmediaService.isPhone || volumeManager.isOnFooter"  ng-class="{'volumeManager pull-right': true, 'on-footer hidden-md hidden-lg hidden-xl': volumeManager.isOnFooter}">
 
   <div class="volumeSliderWrapper" ng-show="volumeManager.showVerticalSlider">
-    <div class="bigText">{{volumeManager.playerService.volume}}</div>
-    <div class="smallText">/100</div>
-
+    <div ng-if="!volumeManager.playerService.isDbVolumeAvailable()">
+      <div class="bigText">{{volumeManager.playerService.volume}}</div>
+      <div class="smallText">/100</div>
+    </div>
+    <div ng-if="volumeManager.playerService.isDbVolumeAvailable()">
+      <div class="dbVolumeText">{{volumeManager.playerService.getDbVolume()}}</div>
+      <div class="smallText">dB</div>
+    </div>
     <button ng-click="volumeManager.playerService.volumeUp()" class="btn btn-link" title="{{'COMMON.VOLUME_UP' | translate}}" ng-disabled="volumeManager.playerService.state.disableVolumeControl">
       <i class="fa fa-volume-up"></i>
     </button>
@@ -92,8 +103,11 @@
       ng-disabled="volumeManager.playerService.state.disableVolumeControl">
     </slider>
 
-    <div class='volume-text'>
+    <div ng-if="!volumeManager.playerService.isDbVolumeAvailable()" class='volume-text'>
       {{volumeManager.playerService.volume}}/100
+    </div>
+    <div ng-if="volumeManager.playerService.isDbVolumeAvailable()" class='volume-text'>
+      {{volumeManager.playerService.getDbVolume()}} dB
     </div>
 
 </div>

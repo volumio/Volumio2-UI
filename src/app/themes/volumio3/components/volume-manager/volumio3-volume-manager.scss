@@ -28,6 +28,12 @@ volume-manager{
         font-size: 28px;
         padding-top: 10px;
       }
+      .dbVolumeText {
+        margin-top: 8px;
+        color: $theme-primary-color;
+        font-size: 16px;
+        height: 22px;
+      }
     }
 
   }
@@ -69,7 +75,7 @@ volume-manager{
   }
 
   .volume-slider{
-    
+
     .volume-text{
       font-size: smaller;
       text-align: center;
