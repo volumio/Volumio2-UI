@@ -340,6 +340,10 @@ class MyVolumioSignupNewController {
     var errorMessage = this.filteredTranslate("MYVOLUMIO.SIGNUP_ERROR_CONTACT_SUPPORT") + " " + message;
     this.modalService.openDefaultErrorModal(errorMessage);
   }
+
+  closeSignup(){
+    this.$state.go('volumio.playback');
+  }
 }
 
 export default MyVolumioSignupNewController;
