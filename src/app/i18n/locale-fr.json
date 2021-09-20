@@ -515,7 +515,7 @@
         "REMOTE_CONNECTION_1_DEVICE": "Connexion à distance pour 1'appareil",
         "QOBUZ_INTEGRATION": "Intégration de Qobuz",
         "TIDAL_INTEGRATION": "Intégration de TIDAL",
-        "NATIVE_TIDAL_QOBUZ_INTEGRATION": "Intégration native de TIDAL et Qobuz",
+        "NATIVE_TIDAL_QOBUZ_INTEGRATION": "Intégration native de TIDAL, TIDAL Connect et Qobuz",
         "AUTO_SYNC": "Synchronisation automatique des playlist et autres réglages Personnels",
         "MYVOLUMIO_6_DEVICES": "MyVolumio sur 6 appareils maximum",
         "REMOTE_CONNECTION_6_DEVICES": "Connexion à distance pour 6 appareils",

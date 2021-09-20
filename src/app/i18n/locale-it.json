@@ -502,7 +502,8 @@
     "LANDING_FEATURE_BACKUP_TITLE": "Backup e sincronizzazione automatica",
     "LANDING_FEATURE_BACKUP_TEXT": "Tutti i tuoi preferiti, le tue playlists e le tue radio web sono automaticamente sincronizzati su tutti i tuoi dispositivi e salvati, in modo da apparire automaticamente se aggiungi un nuovo dispositivo MyVolumio.",
     "LANDING_FEATURE_CD_TITLE": "Riproduzione e salvataggio CD",
-    "LANDING_FEATURE_CD_TEXT": "Riscopri la tua collezione di CD semplicemente collegando qualsiasi lettore CD USB al tuo dispositivo Volumio. Riproduci e salva i tuoi CD in formato lossless."
+    "LANDING_FEATURE_CD_TEXT": "Riscopri la tua collezione di CD semplicemente collegando qualsiasi lettore CD USB al tuo dispositivo Volumio. Riproduci e salva i tuoi CD in formato lossless.",
+    "NO_THANKS_NOT_INTERESTED": "No grazie, non sono interessato"
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",
