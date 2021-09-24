@@ -230,7 +230,7 @@ class PlayerService {
   }
 
   isDbVolumeAvailable() {
-    return this._dbVolume !== null;
+    return this._dbVolume !== null && !isNaN(this._dbVolume);
   }
 
   getDbVolume() {
