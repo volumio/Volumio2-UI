@@ -20,7 +20,8 @@
         {"name":"Berlin","author":"Fabrizio Nisi","link":"http://www.fabrizionisi.com"},
         {"name":"Cymatic","author":"Mordechai Braunstein","link":"http://www.facebook.com/cymagic.art"},
         {"name":"Jazzfest","author":"Edmund Zuber","link":"#"},
-        {"name":"MyVinyl","author":"Gianluca Bocci","link":"https://www.youtube.com/user/gianjackal"}
+        {"name":"MyVinyl","author":"Gianluca Bocci","link":"https://www.youtube.com/user/gianjackal"},
+        {"name":"Borealis","author":"Chong Wei","link":"https://unsplash.com/photos/G0DOU7zGTn8"}
     ]},
     {"name":"Services","icon":"fa-code","credits":[
         {"name":"Shoutcast Web Radio API","logo":"app/assets-common/shoutcast-logo.png","author":"Shoutcast","link":"http://www.shoutcast.com/"}
