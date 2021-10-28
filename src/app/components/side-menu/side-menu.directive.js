@@ -89,6 +89,8 @@ class SideMenuController {
       this.$window.open(item.params.url);
     } else if (item.id === 'static-page') {
       this.$state.go('volumio.static-page', {pageName: item.pageName});
+    } else if (item.id === 'iframe-page') {
+      this.$state.go('volumio.iframe-page', {url: item.params.url});
     } else if (item.state) {
       this.$log.debug(item.state, item.params);
       if (item.params) {

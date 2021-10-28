@@ -597,6 +597,17 @@ function routerConfig($stateProvider, $urlRouterProvider, $locationProvider, the
     }
   })
 
+  .state('volumio.iframe-page', {
+    url: 'iframe-page/:url',
+    views: {
+      'content@volumio': {
+        templateUrl: 'app/iframe-pages/iframe-page.html',
+        controller: 'IframePageController',
+        controllerAs: 'iframePage'
+      }
+    }
+  })
+
   .state('redirect', {
     url: '/redirect',
     views: {
