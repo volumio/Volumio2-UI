@@ -21,7 +21,9 @@
         {"name":"Cymatic","author":"Mordechai Braunstein","link":"http://www.facebook.com/cymagic.art"},
         {"name":"Jazzfest","author":"Edmund Zuber","link":"#"},
         {"name":"MyVinyl","author":"Gianluca Bocci","link":"https://www.youtube.com/user/gianjackal"},
-        {"name":"Borealis","author":"Chong Wei","link":"https://unsplash.com/photos/G0DOU7zGTn8"}
+        {"name":"Borealis","author":"Chong Wei","link":"https://unsplash.com/photos/G0DOU7zGTn8"},
+        {"name":"Aurora","author":"Maud Bocquillod","link":"https://unsplash.com/photos/bj7EB5my6og"},
+        {"name":"Nightsky","author":"Federico Beccari","link":"https://unsplash.com/photos/eGJg5iRGlg8"}
     ]},
     {"name":"Services","icon":"fa-code","credits":[
         {"name":"Shoutcast Web Radio API","logo":"app/themes/volumio/assets/graphics/shoutcast-logo.png","author":"Shoutcast","link":"http://www.shoutcast.com/"}
