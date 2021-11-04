@@ -24,6 +24,9 @@
             <span ng-if="trackManager.playerService.state.bitdepth">
               | {{trackManager.playerService.state.bitdepth}}
             </span>
+            <span ng-if="!trackManager.playerService.state.bitdepth && !trackManager.playerService.state.samplerate && trackManager.playerService.state.bitrate">
+              {{trackManager.playerService.state.bitrate}}
+            </span>
           </div>
         </div>
         <div class="bigText">
