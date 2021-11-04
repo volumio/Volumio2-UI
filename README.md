@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/volumio/Volumio2-UI.svg?branch=master)](https://travis-ci.org/volumio/Volumio2-UI)
-[![dependencies](https://david-dm.org/volumio/Volumio2-UI.svg)](https://david-dm.org/volumio/Volumio2-UI)
-[![devDependency Status](https://david-dm.org/volumio/Volumio2-UI/dev-status.svg)](https://david-dm.org/volumio/Volumio2-UI#info=devDependencies)
+[![Build Status](https://app.travis-ci.com/volumio/Volumio2-UI.svg?branch=master)](https://travis-ci.org/volumio/Volumio2-UI)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi)
 
