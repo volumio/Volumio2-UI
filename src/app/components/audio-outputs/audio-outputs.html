@@ -115,7 +115,9 @@
                     max="100" ng-model="group.leader.state.volume" style="width:100%!important" class="list-item-volume-bar" ng-change="audioOutputs.onDeviceVolumeChange(group.leader)" />
                 </div>
               </div> <!-- /.volume temporaray place -->
-              <div class="device__meta" translate="MULTIDEVICE.THIS_DEVICE">
+              <div ng-if="group.leader.id === audioOutputs.audioOutputsService.thisDeviceID" class="device__meta" translate="MULTIDEVICE.THIS_DEVICE">
+              </div>
+              <div ng-if="group.leader.id !== audioOutputs.audioOutputsService.thisDeviceID" class="device__meta" translate="MULTIDEVICE.GROUP_LEADER">
               </div>
             </div> <!-- /.device__group__item -->
 

@@ -124,7 +124,7 @@ class AudioOutputsService {
   generateGroupedOutputs() {
     /* First, let's extract the unique group leaders */
     const leaderIds = this.outputs.reduce((acc, output) => {
-      if (output.leader && output.leader !== output.id && output.enabled) {
+      if (output.leader && output.leader !== output.id && output.enabled && !acc.includes(output.leader)) {
         acc.push(output.leader);
       }
       return acc;
