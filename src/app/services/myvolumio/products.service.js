@@ -5,12 +5,14 @@ class ProductsService {
     this.socketService = socketService;
     this.$q = $q;
 
-    this.version = "002001"; //TODO GET VERSION
+    //this.version = "002001"; //TODO GET VERSION
+    this.version = "002002"; //TODO GET VERSION
 
     this.MONTHLY_PLAN = 'monthly';
     this.YEARLY_PLAN = 'yearly';
     this.LIFETIME_PLAN = 'lifetime';
     this.overrideTrial = false;
+    this.isVolumioV3 = true;
 
     this.products = null;
     this.init();
@@ -35,10 +37,16 @@ class ProductsService {
     var loading = this.$q.defer();
     this.databaseService.getInfByKey('products', this.version).then(productsPayload => {
       this.products = productsPayload[Object.keys(productsPayload)[0]];
-      this.products.free.features = ["MYVOLUMIO_PLANS.LATEST_NEWS", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"];
-      this.products.virtuoso.features = ["MYVOLUMIO_PLANS.MYVOLUMIO_1_DEVICE", "MYVOLUMIO_PLANS.AUTO_SYNC", "MYVOLUMIO_PLANS.REMOTE_CONNECTION_1_DEVICE", "MYVOLUMIO_PLANS.NATIVE_TIDAL_QOBUZ_INTEGRATION", "MYVOLUMIO_PLANS.CD_PLAYBACK_RIPPING", "MYVOLUMIO_PLANS.ALEXA_INTEGRATION", "MYVOLUMIO_PLANS.BLUETOOTH_INPUT"];
-      this.products.superstar.features = ["MYVOLUMIO_PLANS.ALL_VIRTUOSO_FEATURES", "MYVOLUMIO_PLANS.MYVOLUMIO_6_DEVICES", "MYVOLUMIO_PLANS.HIRESAUDIO_INTEGRATION", "MYVOLUMIO_PLANS.INPUT_PLAYBACK", "MYVOLUMIO_PLANS.MUSIC_METADATA", "EMPTY", "EMPTY"];
-      this.localizeProductsPricing().then(()=>{
+
+      if (this.isVolumioV3) {
+        this.products.free.features = ["MYVOLUMIO_PLANS.LATEST_NEWS", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"];
+        this.products.premium.features = ["MYVOLUMIO_PLANS.ALL_VIRTUOSO_FEATURES", "MYVOLUMIO_PLANS.MYVOLUMIO_6_DEVICES", "MYVOLUMIO_PLANS.HIRESAUDIO_INTEGRATION", "MYVOLUMIO_PLANS.INPUT_PLAYBACK", "MYVOLUMIO_PLANS.MUSIC_METADATA", "EMPTY", "EMPTY"];
+      } else {
+        this.products.free.features = ["MYVOLUMIO_PLANS.LATEST_NEWS", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY", "EMPTY"];
+        this.products.virtuoso.features = ["MYVOLUMIO_PLANS.MYVOLUMIO_1_DEVICE", "MYVOLUMIO_PLANS.AUTO_SYNC", "MYVOLUMIO_PLANS.REMOTE_CONNECTION_1_DEVICE", "MYVOLUMIO_PLANS.NATIVE_TIDAL_QOBUZ_INTEGRATION", "MYVOLUMIO_PLANS.CD_PLAYBACK_RIPPING", "MYVOLUMIO_PLANS.ALEXA_INTEGRATION", "MYVOLUMIO_PLANS.BLUETOOTH_INPUT"];
+        this.products.superstar.features = ["MYVOLUMIO_PLANS.ALL_VIRTUOSO_FEATURES", "MYVOLUMIO_PLANS.MYVOLUMIO_6_DEVICES", "MYVOLUMIO_PLANS.HIRESAUDIO_INTEGRATION", "MYVOLUMIO_PLANS.INPUT_PLAYBACK", "MYVOLUMIO_PLANS.MUSIC_METADATA", "EMPTY", "EMPTY"];
+      }
+            this.localizeProductsPricing().then(()=>{
         loading.resolve(this.products);
       });
     });
@@ -48,12 +56,19 @@ class ProductsService {
   localizeProductsPricing() {
     var defer = this.$q.defer();
     var promises = [];
-    for (var duration in this.products.virtuoso.prices) {
-        promises.push(this.localizeProductByCode(this.products.virtuoso.prices[duration].paddleId, duration, 'virtuoso'));
+    if (this.isVolumioV3) {
+      for (var duration in this.products.premium.prices) {
+          promises.push(this.localizeProductByCode(this.products.premium.prices[duration].paddleId, duration, 'premium'));
+      }
+    } else {
+      for (var duration in this.products.virtuoso.prices) {
+          promises.push(this.localizeProductByCode(this.products.virtuoso.prices[duration].paddleId, duration, 'virtuoso'));
+      }
+      for (var duration in this.products.superstar.prices) {
+          promises.push(this.localizeProductByCode(this.products.superstar.prices[duration].paddleId, duration, 'superstar'));
+      }
     }
-    for (var duration in this.products.superstar.prices) {
-        promises.push(this.localizeProductByCode(this.products.superstar.prices[duration].paddleId, duration, 'superstar'));
-    }
+
     this.$q.all(promises).then(() => {
       defer.resolve();
     });
