@@ -30,7 +30,6 @@ class MyVolumioPlanCardController {
     this.authService = authService;
     this.modalService = modalService;
     this.filteredTranslate = $filter('translate');
-
     this.product = this.$scope.product;
     this.isDefaultBehaviour = true;
     this.activateSubscribe = this.$scope.subscribe;
@@ -65,12 +64,32 @@ class MyVolumioPlanCardController {
     });
   }
 
+  // TODO: Implement logic to show monthly price derived from yearly
   getShownPrice(){
     if(this.product === undefined || this.product === null || this.product.plan === 'free'){
       return this.filteredTranslate('MYVOLUMIO.FREE').toUpperCase();
     }
     var planDuration = this.getCurrentPlanDuration();
-    return this.product.prices[planDuration].localizedPrice;
+    var returnedPrice = this.product.prices[planDuration].localizedPrice;
+    // TODO: Implement logic to show monthly price derived from yearly
+    //if (planDuration === 'yearly') {
+    //  returnedPrice = this.getMonthlyPriceFromYearlyPrice(returnedPrice);
+    //}
+    return returnedPrice;
+  }
+
+  getMonthlyPriceFromYearlyPrice(yearlyPrice) {
+    let priceNumber = yearlyPrice.split(' ')[0];
+    let priceCurrency = yearlyPrice.split(' ')[1];
+    let rawMonthlyPrice = (priceNumber/12);
+    let monthlyPrice = this.roundToTwo(rawMonthlyPrice);
+    let monthlyPriceWithCurrency = monthlyPrice + ' ' + priceCurrency;
+    return monthlyPriceWithCurrency;
+  }
+
+  roundToTwo(num) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (2 || -1) + '})?');
+    return num.toString().match(re)[0];
   }
 
   getCurrentPlanDuration(){
