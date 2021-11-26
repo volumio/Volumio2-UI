@@ -54,11 +54,8 @@ class PluginManagerController {
       name: plugin.name,
       category: this.selectedCategory.name
     };
-    this._openInstallerModal();
-    this.$timeout(() => {
-      this.$log.debug('emit installPlugin', emitPayload);
-      this.socketService.emit('installPlugin', emitPayload);
-    }, 300);
+    this.$log.debug('emit installPlugin', emitPayload);
+    this.socketService.emit('installPlugin', emitPayload);
   }
 
   updatePlugin(plugin) {
@@ -68,11 +65,8 @@ class PluginManagerController {
       prettyName: plugin.prettyName,
       category: this.selectedCategory.name
     };
-    this._openInstallerModal();
-    this.$timeout(() => {
-      this.$log.debug('emit updatePlugin', emitPayload);
-      this.socketService.emit('updatePlugin', emitPayload);
-    }, 300);
+    this.$log.debug('emit updatePlugin', emitPayload);
+    this.socketService.emit('updatePlugin', emitPayload);
   }
 
   unInstallPlugin(plugin) {
@@ -136,7 +130,9 @@ class PluginManagerController {
       this.availablePlugins = data;
       this.selectedCategory = this.availablePlugins.categories[0];
     });
-
+    this.socketService.on('openInstallerModal', (data) => {
+      this._openInstallerModal();
+    });
     this.$scope.$on('$destroy', () => {
       this.socketService.off('pushInstalledPlugins');
       this.socketService.off('pushAvailablePlugins');
