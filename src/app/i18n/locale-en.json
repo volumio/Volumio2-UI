@@ -523,6 +523,20 @@
         "INPUT_PLAYBACK": "Digital and Analog Inputs Playback",
         "BLUETOOTH_INPUT": "Bluetooth Audio Playback Input",
         "ALL_VIRTUOSO_FEATURES": "All Virtuoso Features",
-        "MUSIC_METADATA": "Music and Artists Credit Discovery"
+        "MUSIC_METADATA": "Music and Artists Credit Discovery",
+        "ALL_FREE_FEATURES": "All Free Features",
+        "MANIFEST_UI": "Manifest UI",
+        "MULTIROOM_PLAYBACK": "Multiroom Playback",
+        "FILES_PLAYBACK" : "Playback of all filetypes",
+        "WEBRADIOS_DIRECTORY" : "Integrated Webradios Directories",
+        "ALARM_AND_SLEEP_FUNCTION": "Alarm and sleep function",
+        "PLUGINS_STORE": "Plugins store",
+        "DLNA_UPNP_BROWSING": "DLNA UPNP Browsing",
+        "AIRPLAY_PLAYBACK": "Airplay Playback",
+        "UPNP_RENDERER_PLAYBACK": "UPNP Renderer Playback",
+        "CONTEMPORARY_UI": "Web User Interface",
+        "IOS_ANDROID_APP": "iOS and Android Apps",
+        "NETWORK_STORAGE_SUPPORT": "Network Storage Browsing",
+        "OVER_THE_AIR_UPDATES": "Over The Air Updates"
     }
 }
