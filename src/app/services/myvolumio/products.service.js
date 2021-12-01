@@ -5,7 +5,6 @@ class ProductsService {
     this.socketService = socketService;
     this.$q = $q;
 
-    //this.version = "002001"; //TODO GET VERSION
     this.version = "002001"; //TODO GET VERSION
 
     this.MONTHLY_PLAN = 'monthly';
@@ -13,6 +12,7 @@ class ProductsService {
     this.LIFETIME_PLAN = 'lifetime';
     this.overrideTrial = false;
     this.isVolumioV3 = true;
+    this.showSavingMessage = true;
 
     this.products = null;
     this.init();
@@ -112,6 +112,40 @@ class ProductsService {
   getTrialOverride() {
     return this.overrideTrial;
   }
+
+  getMonthlyPriceFromYearlyPrice(yearlyPrice) {
+    let priceNumber = yearlyPrice.split(' ')[0];
+    let priceCurrency = yearlyPrice.split(' ')[1];
+    let rawMonthlyPrice = (priceNumber / 12);
+    let monthlyPrice = this.roundToTwo(rawMonthlyPrice);
+    let monthlyPriceWithCurrency = monthlyPrice + ' ' + priceCurrency;
+    return monthlyPriceWithCurrency;
+  }
+
+  roundToTwo(num) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (2 || -1) + '})?');
+    return num.toString().match(re)[0];
+  }
+
+  getYearlyPriceFromMonhtlyPrice(monthlyPrice) {
+    let priceNumber = monthlyPrice.split(' ')[0];
+    let priceCurrency = monthlyPrice.split(' ')[1];
+    let rawYearlyPrice = (priceNumber * 12);
+    let yearlyPrice = this.roundToTwo(rawYearlyPrice);
+    let yearlyPriceWithCurrency = yearlyPrice + ' ' + priceCurrency;
+    return yearlyPriceWithCurrency;
+  }
+
+  getYearlySaving(monthlyPrice, yearlyPrice) {
+    let monthlyPriceNumber = monthlyPrice.split(' ')[0];
+    let yearlyPriceNumber = yearlyPrice.split(' ')[0];
+    let priceCurrency = monthlyPrice.split(' ')[1];
+    let rawSavePrice = (monthlyPriceNumber * 12) - yearlyPriceNumber;
+    let savePrice = this.roundToTwo(rawSavePrice);
+    let savePriceWithCurrency = savePrice + ' ' + priceCurrency;
+    return savePriceWithCurrency;
+  }
+
 }
 
 export default ProductsService;

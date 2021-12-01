@@ -409,7 +409,7 @@
         "LIFETIME": "Lifetime",
         "FREE": "Free",
         "KEEP_ME_UPDATED_VIA_MAIL": "Keep me updated with the latest Volumio news via email",
-        "MY_VOLUMIO_SHORTDESC": "MyVolumio is the premium tier of your Volumio experience. Sign up for premium services like TIDAL and QOBUZ integration, CD Ripping, Advanced Metadata, Bluetooth input and much more",
+        "MY_VOLUMIO_SHORTDESC": "Upgrade your experience with premium services like TIDAL, TIDAL Connect and QOBUZ integration, CD Ripping, Advanced Metadata, Bluetooth input and much more",
         "MY_VOLUMIO_MORE_INFO": "Discover all features",
         "CHOOSE_PLAN": "Choose a plan",
         "SUPPORT_MYVOLUMIO": "Support Volumio’s development and get premium features for the price of an espresso per month.",
@@ -505,7 +505,9 @@
         "LANDING_FEATURE_BACKUP_TEXT": "All your favorites, Playlists and web radios are automatically synced to all your devices and backed-up to a secure location, ready to be restored whenever you set-up a new MyVolumio device.",
         "LANDING_FEATURE_CD_TITLE": "CD Playback & Ripping",
         "LANDING_FEATURE_CD_TEXT": "Rediscover your CD collection by simply attaching any USB CD Rom drive to your Volumio device. Play or copy your CDs in the most accurate way.",
-        "NO_THANKS_NOT_INTERESTED": "No thanks, I am not interested"
+        "NO_THANKS_NOT_INTERESTED": "No thanks, I am not interested",
+        "GO_PREMIUM": "Go Premium",
+        "SAVE": "Save"
     },
     "MYVOLUMIO_PLANS": {
         "LATEST_NEWS": "Receive our MyVolumio News Feed",

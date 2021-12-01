@@ -14,6 +14,7 @@ class MyVolumioSignupNewController {
     this.$rootScope = $rootScope;
     this.statisticsService = statisticsService;
 
+
     this.user = user;
     this.newUser = null;
 
@@ -44,7 +45,12 @@ class MyVolumioSignupNewController {
     this.authInit();
     this.initProducts();
     this.initSocket();
-    this.$scope.model.selectedProduct = 'virtuoso';
+    if (this.productService.isVolumioV3) {
+      this.$scope.model.selectedProduct = 'premium';
+    } else {
+      this.$scope.model.selectedProduct = 'virtuoso';
+    }
+
   }
 
   authInit() {
@@ -99,7 +105,12 @@ class MyVolumioSignupNewController {
   initProducts() {
     this.productService.getProducts().then(products => {
       this.productsObj = products;
-      this.products = [ products.free, products.virtuoso, products.superstar ];
+
+      if (this.productService.isVolumioV3) {
+        this.products = [ products.free, products.premium ];
+      } else {
+        this.products = [ products.free, products.virtuoso, products.superstar ];
+      }
     });
   }
 
@@ -142,10 +153,8 @@ class MyVolumioSignupNewController {
       social: {},
       country: ''
     };
-
     this.authService.signup(user).then((newUser) => {
       /* this.$state.go('myvolumio.profile'); */
-
       this.newUser = newUser;
       this.statisticsService.signalLead();
       this.stepForwards();
@@ -343,6 +352,40 @@ class MyVolumioSignupNewController {
 
   closeSignup(){
     this.$state.go('volumio.playback');
+  }
+
+  getShownPrice(){
+    var planDuration = this.selectedPlanDuration;
+    var returnedPrice = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice;
+    if (planDuration === 'yearly') {
+      returnedPrice = this.productService.getMonthlyPriceFromYearlyPrice(returnedPrice);
+    }
+    returnedPrice = returnedPrice + ' / ' + this.filteredTranslate('MYVOLUMIO.MONTH').toUpperCase().toLowerCase();
+    return returnedPrice;
+  }
+
+  getShownPriceMessage(){
+    var planDuration = this.selectedPlanDuration;
+    var returnedPrice = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice;
+    var message = '';
+    if (planDuration === 'yearly') {
+      message = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+    } else {
+      message = this.productService.getYearlyPriceFromMonhtlyPrice(this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice) + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+    }
+    return message;
+  }
+
+  getSaveMessage(){
+    var planDuration = this.selectedPlanDuration;
+    var message = null;
+    if (planDuration === 'yearly' && this.productService.showSavingMessage) {
+      var monthlyPrice =  this.productsObj[this.$scope.model.selectedProduct].prices['monthly'].localizedPrice;
+      var yearlyPrice = this.productsObj[this.$scope.model.selectedProduct].prices['yearly'].localizedPrice;
+      var savePrice = this.productService.getYearlySaving(monthlyPrice, yearlyPrice);
+      message = this.filteredTranslate('MYVOLUMIO.SAVE').toUpperCase().toLowerCase() + ' ' + savePrice;
+    }
+    return message;
   }
 }
 

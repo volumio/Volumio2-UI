@@ -64,32 +64,43 @@ class MyVolumioPlanCardController {
     });
   }
 
-  // TODO: Implement logic to show monthly price derived from yearly
+
   getShownPrice(){
     if(this.product === undefined || this.product === null || this.product.plan === 'free'){
       return this.filteredTranslate('MYVOLUMIO.FREE').toUpperCase();
     }
     var planDuration = this.getCurrentPlanDuration();
     var returnedPrice = this.product.prices[planDuration].localizedPrice;
-    // TODO: Implement logic to show monthly price derived from yearly
-    //if (planDuration === 'yearly') {
-    //  returnedPrice = this.getMonthlyPriceFromYearlyPrice(returnedPrice);
-    //}
+
+    if (planDuration === 'yearly') {
+      returnedPrice = this.productsService.getMonthlyPriceFromYearlyPrice(returnedPrice);
+    }
+    returnedPrice = returnedPrice + ' / ' + this.filteredTranslate('MYVOLUMIO.MONTH').toUpperCase().toLowerCase();
     return returnedPrice;
   }
 
-  getMonthlyPriceFromYearlyPrice(yearlyPrice) {
-    let priceNumber = yearlyPrice.split(' ')[0];
-    let priceCurrency = yearlyPrice.split(' ')[1];
-    let rawMonthlyPrice = (priceNumber/12);
-    let monthlyPrice = this.roundToTwo(rawMonthlyPrice);
-    let monthlyPriceWithCurrency = monthlyPrice + ' ' + priceCurrency;
-    return monthlyPriceWithCurrency;
+  getShownPriceMessage(){
+    var planDuration = this.getCurrentPlanDuration();
+    var returnedPrice = this.product.prices[planDuration].localizedPrice;
+    var message = '';
+    if (planDuration === 'yearly') {
+      message = this.product.prices[planDuration].localizedPrice + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+    } else {
+      message = this.productsService.getYearlyPriceFromMonhtlyPrice(this.product.prices[planDuration].localizedPrice) + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+    }
+    return message;
   }
 
-  roundToTwo(num) {
-    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (2 || -1) + '})?');
-    return num.toString().match(re)[0];
+  getSaveMessage(){
+    var planDuration = this.getCurrentPlanDuration();
+    var message = null;
+    if (planDuration === 'yearly' && this.productsService.showSavingMessage) {
+      var monthlyPrice =  this.product.prices['monthly'].localizedPrice;
+      var yearlyPrice = this.product.prices['yearly'].localizedPrice;
+      var savePrice = this.productsService.getYearlySaving(monthlyPrice, yearlyPrice);
+      message = this.filteredTranslate('MYVOLUMIO.SAVE').toUpperCase().toLowerCase() + ' ' + savePrice;
+    }
+    return message;
   }
 
   getCurrentPlanDuration(){

@@ -13,7 +13,7 @@
         </div>
         <div class="my-volumio__user-card__user-name" ng-if="!myVolumioUserCardController.isUserFilledWithMandatory()" translate="MYVOLUMIO.LOGGED_BY_SOCIAL"></div>
         <div class="my-volumio__user-card__user-plan capitalize">
-          {{ myVolumioUserCardController.user.plan || 'MyVolumio Free' }}
+          {{ myVolumioUserCardController.user.plan || 'Free' }}
         </div>
       </div>
 
@@ -24,7 +24,7 @@
 
   <div ng-if="myVolumioUserCardController.user && !myVolumioUserCardController.user.plan" class="my-volumio__user-card__promo">
     <button ng-click="myVolumioUserCardController.upgradePlan()" class="my-volumio__btn btn__ghost btn__dark mb-2">
-      {{ 'MYVOLUMIO.UPGRADE_MYVOLUMIO' | translate }}
+      {{ 'MYVOLUMIO.GO_PREMIUM' | translate }}
     </button>
     <div class="d-flex align-items-center small">
       <span class="mr-2">♡</span>
