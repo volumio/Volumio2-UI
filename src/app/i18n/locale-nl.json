@@ -435,7 +435,7 @@
         "SIGNUP_TO": "Registreer bij MyVolumio",
         "TRY_FOR_FREE": "Gratis proberen",
         "LIFETIME": "Lifetime",
-        "MY_VOLUMIO_SHORTDESC": "MyVolumio is de premium Volumio ervaring. Registreer om gebruik te maken van premium diensten zoals TIDAL en QOBUZ integraties, CD Ripping, Bluetooth input en veel meer",
+        "MY_VOLUMIO_SHORTDESC": "Upgrade je volumio ervaring met premium diensten zoals TIDAL, TIDAL Connect en Qobuz integratie, gesynchroniseerde multiroom playback, Manifest UI, CD Ripping, Bluetooth input, metadata en nog veel meer.",
         "PREMIUM_STREAMING_FULLY_INTEGRATED_TIDAL": "Tidal is volledig geïntegreerd in Volumio",
         "MORE_INFO_DESCRIPTION": "Ontvang premium features en ondersteun de ontwikkeling van Volumio.",
         "CODE_DEVICE_ALREADY_ACTIVATED": "Uw apparaat code is al succesvol geactiveerd en uw plan is",
@@ -505,7 +505,10 @@
         "LANDING_FEATURES_TEXT": "Het Volumio-platform is open source en voor altijd gratis. Ben je echter een echte muziekliefhebber, dan bieden we een nog betere ervaring met extra functies via MyVolumio.",
         "LANDING_FEATURE_INTEGRATIONS_TEXT": "Integreer TIDAL en QOBUZ als streamingdiensten voor het afspelen van bit-nauwkeurige hi-res streams. Andere integraties zijn beschikbaar voor Alexa en Highresaudio.com. Dit voorkomt DLNA-resampling en gerelateerde compatibiliteitsproblemen.",
         "LANDING_FEATURE_DISCOVERY_TEXT": "Kom meer te weten over artiesten, albums, opnamestudio's, bijdragers (credits) van al uw lokale muziek of de geïntegreerde services zoals TIDAL, QOBUZ, Spotify en meer.",
-        "LANDING_FEATURE_CD_TEXT": "Herontdek uw CD verzameling door simpelweg een USB CD speler aan uw Volumio apparaat te koppelen. Speel of kopieer uw CD's met de grootste precisie."
+        "LANDING_FEATURE_CD_TEXT": "Herontdek uw CD verzameling door simpelweg een USB CD speler aan uw Volumio apparaat te koppelen. Speel of kopieer uw CD's met de grootste precisie.",
+        "NO_THANKS_NOT_INTERESTED": "Nee dank je, ik ben niet geïnteresseerd",
+        "GO_PREMIUM": "Neem Premium",
+        "SAVE": "Opslaan"
     },
     "MYVOLUMIO_PLANS": {
         "LATEST_NEWS": "Ontvang onze MyVolumio Nieuws Feed",
@@ -523,6 +526,20 @@
         "INPUT_PLAYBACK": "Gebruik Digitale en Analoge Input",
         "BLUETOOTH_INPUT": "Bluetooth Audio ingang",
         "ALL_VIRTUOSO_FEATURES": "Alle Virtuoso Features",
-        "MUSIC_METADATA": "Muziek en informatie over artiesten zoeken"
+        "MUSIC_METADATA": "Muziek en informatie over artiesten zoeken",
+        "ALL_FREE_FEATURES": "Alle gratis features",
+        "MANIFEST_UI": "Manifest UI",
+        "MULTIROOM_PLAYBACK": "Gesynchroniseerde Multiroom Playback",
+        "FILES_PLAYBACK" : "Afspelen van alle bestandstypes",
+        "WEBRADIOS_DIRECTORY" : "Grote database met internet radio",
+        "ALARM_AND_SLEEP_FUNCTION": "Alarm en sleep functies",
+        "PLUGINS_STORE": "Plugins store",
+        "DLNA_UPNP_BROWSING": "DLNA UPNP Browsen",
+        "AIRPLAY_PLAYBACK": "Airplay integratie",
+        "UPNP_RENDERER_PLAYBACK": "UPNP Renderer integratie",
+        "CONTEMPORARY_UI": "Web User Interface",
+        "IOS_ANDROID_APP": "iOS en Android Apps",
+        "NETWORK_STORAGE_SUPPORT": "Bladeren in NAS opslag",
+        "OVER_THE_AIR_UPDATES": "Over The Air Updates"
     }
 }
