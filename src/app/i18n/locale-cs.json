@@ -207,7 +207,7 @@
         "SECURE_NETWORK":"Zabezpečená síť",
         "SECURITY":"Zabezpečení",
         "MANUAL_WIFI_CONNECTION":"Ruční nastavení Wi-Fi",
-        "NETWORK_NAME":"Jméno sítě"
+        "NETWORK_NAME":"Jméno sítě",
         "WIRELESS_NETWORK_CONNECTION": "Připojené    bezdrátové sítě"
     },
     "WIZARD": {
