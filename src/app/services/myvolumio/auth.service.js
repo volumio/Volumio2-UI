@@ -452,7 +452,7 @@ class AuthService {
   }
 
   isSubscribedToPlan(user) {
-    return (user.plan && (user.plan === 'virtuoso' || user.plan === 'superstar')); // TODO move logic in product service
+    return (user.plan && (user.plan === 'virtuoso' || user.plan === 'superstar' || user.plan === 'premium')); // TODO move logic in product service
   }
 
   deleteUserFromFirebase(user) {
