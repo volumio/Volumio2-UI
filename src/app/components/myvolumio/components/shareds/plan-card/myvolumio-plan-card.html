@@ -9,7 +9,7 @@
         <h1>
           {{myVolumioPlanCardController.getShownPrice()}}
         </h1>
-        <span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free'" style="font-size: small;">{{'MYVOLUMIO.'+myVolumioPlanCardController.showMode.planDuration + '_PER'| uppercase | translate | lowercase}}</span><br>
+        <span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free'" style="font-size: small;">{{myVolumioPlanCardController.getShownPriceMessage()}}</span><span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free' && myVolumioPlanCardController.getSaveMessage()">, <span style="font-size: small;">{{myVolumioPlanCardController.getSaveMessage()}}</span></span><br>
         <h4 class="trial-text" ng-if="myVolumioPlanCardController.isTrialAvailable() && !myVolumioPlanCardController.getTrialOverride()">{{myVolumioPlanCardController.getTrialDays()}} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}</h4>
       </div>
       <table class="table">

@@ -20,7 +20,7 @@
 
   .the-price
   {
-    min-height: 7em;
+    min-height: 10em;
     background-color: rgba(220,220,220,.17);
     box-shadow: 0 1px 0 #dcdcdc, inset 0 1px 0 #fff;
     padding: 20px;
@@ -124,5 +124,6 @@
 }
 
 td.myvolumio-feature {
-    font-size: 12pt;
+  font-size: 10pt;
+  padding: 6px;
 }

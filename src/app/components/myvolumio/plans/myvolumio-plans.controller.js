@@ -9,6 +9,7 @@ class MyVolumioPlansController {
     this.$q = $q;
     this.paymentsService = paymentsService;
     this.modalService = modalService;
+    this.isVolumioV3 = true;
 
     this.user = user;
 
@@ -48,9 +49,14 @@ class MyVolumioPlansController {
   initProducts() {
     this.productService.getProducts().then(products => {
       this.products = products;
-      this.product0 = this.products.free;
-      this.product1 = this.products.virtuoso;
-      this.product2 = this.products.superstar;
+      if (this.isVolumioV3) {
+        this.product0 = this.products.free;
+        this.product1 = this.products.premium;
+      } else {
+        this.product0 = this.products.free;
+        this.product1 = this.products.virtuoso;
+        this.product2 = this.products.superstar;
+      }
     });
   }
 

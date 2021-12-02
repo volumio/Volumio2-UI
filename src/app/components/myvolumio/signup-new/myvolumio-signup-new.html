@@ -1,10 +1,11 @@
 <div class="box">
+  <!--
   <div class="boxHeader d-flex align-items-center justify-content-between">
     <div class="title">
-      <!-- <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2> -->
+      <!-- <h2 translate="MYVOLUMIO.MY_VOLUMIO"></h2>
       <h2>{{ 'MYVOLUMIO.SIGNUP_TO' | translate }}</h2>
     </div>
-  </div>
+  </div> -->
   <div id="authSignupPlugin" class="panel panel-default my-volumio__panel">
 
     <div ng-class="MyVolumioSignupNewController.$scope.step === 1 ? 'show' : 'hide'" class="panel-body">
@@ -175,13 +176,13 @@
     <div class="panel-body">
 
       <div ng-show="MyVolumioSignupNewController.user == null">
-        <!-- This is the monthly\yearly selector
+        <!-- This is the monthly\yearly selector-->
         <div class="row">
           <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
             <div class="my-volumio__toggle-header">
               <div class="toggle-header__space">
-                <h3>{{ 'MYVOLUMIO.CHOOSE_PLAN' | translate }}</h3>
-                <p>{{ 'MYVOLUMIO.SAVE_20' | translate }}</p>
+                <h3>{{ 'MYVOLUMIO.GO_PREMIUM' | translate }}</h3>
+                <!-- <p>{{ 'MYVOLUMIO.SAVE_20' | translate }}</p>-->
               </div>
               <div class="my-volumio__toggle">
                 <input ng-model="MyVolumioSignupNewController.selectedPlanDuration" class="toggle__label-radio" checked hidden type="radio" name="planPeriod" id="yearly" value="yearly">
@@ -199,12 +200,11 @@
 
           </div>
         </div>
-        -->
         <div class="row">
           <div class="col-xs-24 col-sm-16 col-md-12 col-sm-offset-4 col-md-offset-6">
             <div class="my-volumio__info-card my-volumio__border-round">
                 <span class="my-volumio__info-card__description">{{ 'MYVOLUMIO.MY_VOLUMIO_SHORTDESC' | translate }}.
-                  <a href="https://volumio.org/myvolumio" target="_blank">{{ 'MYVOLUMIO.MY_VOLUMIO_MORE_INFO' | translate }}</a>&nbsp;
+                  <a href="https://volumio.com/volumio-premium-plan" target="_blank">{{ 'MYVOLUMIO.MY_VOLUMIO_MORE_INFO' | translate }}</a>&nbsp;
                 </span>
               </div>
           </div>
@@ -221,7 +221,7 @@
               ng-model="model.selectedProduct"
               ng-change="MyVolumioSignupNewController.selectProduct(product.plan)"
               id="{{ product.plan }}"
-              ng-checked="{{ product.plan === 'virtuoso' }}">
+              ng-checked="{{ product.plan === MyVolumioSignupNewController.products[1].plan }}">
             <div class="plan__card">
               <div class="plan__title d-flex align-items-center">
                 <div class="d-flex align-items-center">
@@ -239,9 +239,9 @@
                     {{ product.prices[MyVolumioSignupNewController.selectedPlanDuration].trial.trialDays }} {{'MYVOLUMIO.FREE_DAYS_TRIAL' | translate}}
                   </span>&nbsp;
                 </div>
-                <div class="plan__price">{{ product.prices[MyVolumioSignupNewController.selectedPlanDuration].amount }} €</div>
+                <div class="plan__price">{{MyVolumioSignupNewController.getShownPrice()}}</div>
                 <div class="plan__period" ng-if="product.plan !== 'free'">
-                  {{ 'MYVOLUMIO.'+MyVolumioSignupNewController.selectedPlanDuration + '_PER' | uppercase | translate | lowercase }}
+                  {{MyVolumioSignupNewController.getShownPriceMessage()}}<span ng-if="myVolumioPlanCardController.product.plan.toLowerCase() != 'free' && MyVolumioSignupNewController.getSaveMessage()" style="font-size: small;">, {{MyVolumioSignupNewController.getSaveMessage()}}</span>
                 </div>
                 <div class="plan__period" ng-if="product.plan === 'free'">
                   forever
