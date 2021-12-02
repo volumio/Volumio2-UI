@@ -120,7 +120,7 @@
         "CREDITS_NOT_FOUND": "Medverkande kunde inte hittas",
         "ARTIST_STORY_NOT_FOUND_FOR": "Artistartikel kunde inte hittas för"
     },
-    "MY_MUSIC": { 
+    "MY_MUSIC": {
         "UPDATE": "Uppdatera",
         "UPDATE_DOC": "Uppdatera musikdatabasen med ändrade, nya eller borttagna filer",
         "RESCAN": "Sök igen",
@@ -414,12 +414,12 @@
         "FINISH_SIGNUP": "Avsluta registrering",
         "CREATING_ACCOUNT": "Skapar konto...",
         "UPGRADE_MYVOLUMIO": "Uppgradera MyVolumio",
-        "UPGRADE_SUPERSTAR": "Uppgradera till Superstar",
+        "UPGRADE_SUPERSTAR": "Uppgradera till Premium",
         "PREMIUM_STREAMING_TITLE": "Musik med studiokvalitet hemma",
         "PREMIUM_STREAMING_FULLY_INTEGRATED_QOBUZ": "Qobuz är helt integrerad med Volumio",
         "PREMIUM_STREAMING_FULLY_INTEGRATED_TIDAL": "Tidal är helt integrerad med Volumio",
-        "PREMIUM_STREAMING_AVAILABILITY_QOBUZ": "Qobuz är tillgänglig för MyVolumio Virtuoso- och Superstar-användare.",
-        "PREMIUM_STREAMING_AVAILABILITY_TIDAL": "Tidal är tillgänglig för MyVolumio Virtuoso- och Superstar-användare.",
+        "PREMIUM_STREAMING_AVAILABILITY_QOBUZ": "Qobuz är tillgänglig för Volumio Premium-användare.",
+        "PREMIUM_STREAMING_AVAILABILITY_TIDAL": "Tidal är tillgänglig för Volumio Premium-användare.",
         "MONTH": "månad",
         "UPGRADE_FROM": "Uppgradera från",
         "MORE_INFO": "Mer info",
@@ -477,7 +477,7 @@
         "REFERRAL_FAQ_BODY_8": "Det finns ingen gräns! Ju mer du tjänar, desto närmare toppen kommer du!",
         "ACCOUNT": "konto",
         "MODAL_DISCOVERY_PREMIUM_TITLE": "Upptäck mer om musik, artister och andra medverkande",
-        "MODAL_DISCOVERY_PREMIUM_HEADING": "Denna funktion är tillgänglig för Volumio Superstar-prenumeranter",
+        "MODAL_DISCOVERY_PREMIUM_HEADING": "Denna funktion är tillgänglig för Volumio Premium-prenumeranter",
         "MODAL_DISCOVERY_PREMIUM_TEXT": "Utökade metadata för din musik och mycket mer",
         "WELCOME": "Välkommen",
         "LANDING_REFERRAL_WELCOME_TEXT1": "Har din kompis berättat om Volumio och bjudit in dig att testa? Vad kul, välkommen! ",

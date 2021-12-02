@@ -97,7 +97,7 @@ class ModalTrackManagerActionsController {
   }
 
   getArtistStory() {
-    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (!this.checkIfCreditsCanBeShown()) {
       this.showPremiumFeatureModal();
       return;
     }
@@ -125,7 +125,7 @@ class ModalTrackManagerActionsController {
   }
 
   getTrackStory() {
-    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (!this.checkIfCreditsCanBeShown()) {
       this.showPremiumFeatureModal();
       return;
     }
@@ -156,7 +156,7 @@ class ModalTrackManagerActionsController {
 
 
   getAlbumCredits() {
-    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (!this.checkIfCreditsCanBeShown()) {
       this.showPremiumFeatureModal();
       return;
     }
@@ -185,7 +185,7 @@ class ModalTrackManagerActionsController {
   }
 
   getAlbumStory() {
-    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (!this.checkIfCreditsCanBeShown()) {
       this.showPremiumFeatureModal();
       return;
     }
@@ -286,6 +286,18 @@ class ModalTrackManagerActionsController {
       }
     }
     return result;
+  }
+
+  checkIfCreditsCanBeShown() {
+    if (this.authService && this.authService.isEnabled) {
+      if (this.authService.user && this.authService.user.plan && (this.authService.user.plan === 'superstar' || this.authService.user.plan === 'premium')) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
   }
 
 }
