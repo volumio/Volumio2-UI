@@ -70,7 +70,7 @@ class MyVolumioPlanCardController {
       return this.filteredTranslate('MYVOLUMIO.FREE').toUpperCase();
     }
     var planDuration = this.getCurrentPlanDuration();
-    var returnedPrice = this.product.prices[planDuration].localizedPrice;
+    var returnedPrice = this.product.prices[planDuration].localizedPrice.replace('.00','');
 
     if (planDuration === 'yearly') {
       returnedPrice = this.productsService.getMonthlyPriceFromYearlyPrice(returnedPrice);
@@ -81,12 +81,12 @@ class MyVolumioPlanCardController {
 
   getShownPriceMessage(){
     var planDuration = this.getCurrentPlanDuration();
-    var returnedPrice = this.product.prices[planDuration].localizedPrice;
+    var returnedPrice = this.product.prices[planDuration].localizedPrice.replace('.00','');
     var message = '';
     if (planDuration === 'yearly') {
-      message = this.product.prices[planDuration].localizedPrice + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+      message = this.product.prices[planDuration].localizedPrice.replace('.00','') + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
     } else {
-      message = this.productsService.getYearlyPriceFromMonhtlyPrice(this.product.prices[planDuration].localizedPrice) + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+      message = this.productsService.getYearlyPriceFromMonhtlyPrice(this.product.prices[planDuration].localizedPrice.replace('.00','')) + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
     }
     return message;
   }
@@ -95,8 +95,8 @@ class MyVolumioPlanCardController {
     var planDuration = this.getCurrentPlanDuration();
     var message = null;
     if (planDuration === 'yearly' && this.productsService.showSavingMessage) {
-      var monthlyPrice =  this.product.prices['monthly'].localizedPrice;
-      var yearlyPrice = this.product.prices['yearly'].localizedPrice;
+      var monthlyPrice =  this.product.prices['monthly'].localizedPrice.replace('.00','');
+      var yearlyPrice = this.product.prices['yearly'].localizedPrice.replace('.00','');
       var savePrice = this.productsService.getYearlySaving(monthlyPrice, yearlyPrice);
       message = this.filteredTranslate('MYVOLUMIO.SAVE').toUpperCase().toLowerCase() + ' ' + savePrice;
     }

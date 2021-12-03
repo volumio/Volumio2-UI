@@ -356,7 +356,7 @@ class MyVolumioSignupNewController {
 
   getShownPrice(){
     var planDuration = this.selectedPlanDuration;
-    var returnedPrice = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice;
+    var returnedPrice = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice.replace('.00','');
     if (planDuration === 'yearly') {
       returnedPrice = this.productService.getMonthlyPriceFromYearlyPrice(returnedPrice);
     }
@@ -366,12 +366,12 @@ class MyVolumioSignupNewController {
 
   getShownPriceMessage(){
     var planDuration = this.selectedPlanDuration;
-    var returnedPrice = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice;
+    var returnedPrice = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice.replace('.00','');
     var message = '';
     if (planDuration === 'yearly') {
-      message = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+      message = this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice.replace('.00','') + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
     } else {
-      message = this.productService.getYearlyPriceFromMonhtlyPrice(this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice) + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
+      message = this.productService.getYearlyPriceFromMonhtlyPrice(this.productsObj[this.$scope.model.selectedProduct].prices[this.selectedPlanDuration].localizedPrice.replace('.00','')) + ' ' + this.filteredTranslate('MYVOLUMIO.YEARLY_PER').toUpperCase().toLowerCase();
     }
     return message;
   }
@@ -380,8 +380,8 @@ class MyVolumioSignupNewController {
     var planDuration = this.selectedPlanDuration;
     var message = null;
     if (planDuration === 'yearly' && this.productService.showSavingMessage) {
-      var monthlyPrice =  this.productsObj[this.$scope.model.selectedProduct].prices['monthly'].localizedPrice;
-      var yearlyPrice = this.productsObj[this.$scope.model.selectedProduct].prices['yearly'].localizedPrice;
+      var monthlyPrice =  this.productsObj[this.$scope.model.selectedProduct].prices['monthly'].localizedPrice.replace('.00','');
+      var yearlyPrice = this.productsObj[this.$scope.model.selectedProduct].prices['yearly'].localizedPrice.replace('.00','');
       var savePrice = this.productService.getYearlySaving(monthlyPrice, yearlyPrice);
       message = this.filteredTranslate('MYVOLUMIO.SAVE').toUpperCase().toLowerCase() + ' ' + savePrice;
     }

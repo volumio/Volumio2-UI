@@ -115,7 +115,7 @@ class ProductsService {
 
   getMonthlyPriceFromYearlyPrice(yearlyPrice) {
     let priceNumber = yearlyPrice.split(' ')[0];
-    let priceCurrency = yearlyPrice.split(' ')[1];
+    let priceCurrency = yearlyPrice.split(' ')[1].replace('.00','');
     let rawMonthlyPrice = (priceNumber / 12);
     let monthlyPrice = this.roundToTwo(rawMonthlyPrice);
     let monthlyPriceWithCurrency = monthlyPrice + ' ' + priceCurrency;
@@ -124,7 +124,7 @@ class ProductsService {
 
   roundToTwo(num) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (2 || -1) + '})?');
-    return num.toString().match(re)[0];
+    return num.toString().match(re)[0].replace('.00', '');
   }
 
   getYearlyPriceFromMonhtlyPrice(monthlyPrice) {
