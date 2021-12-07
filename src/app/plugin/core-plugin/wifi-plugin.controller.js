@@ -105,7 +105,12 @@ class WifiPluginController {
           this.wirelessNetworks.available.push(network);
         }
       });
-      this.wirelessNetworks = this.addManualConnectionEntry(this.wirelessNetworks);
+      try {
+        this.wirelessNetworks = this.addManualConnectionEntry(this.wirelessNetworks);
+      } catch(e) {
+
+      }
+
 
       this.wirelessNetworks.available.map((network) => {
         if (!network.security || network.security === '') {
