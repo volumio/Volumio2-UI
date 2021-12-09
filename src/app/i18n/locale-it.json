@@ -243,7 +243,8 @@
     "ADVANCEDSETTINGS": "Esperienza",
     "EXPERIENCE_SETTINGS_TITLE":"Configuriamo la tua esperienza",
     "EXPERIENCE_SETTINGS_TEXT" :"Preferisci un sistema semplice da usare con una gamma semplificata di opzioni o preferisci il controllo completo sulle funzionalità avanzate?",
-    "EXPERIENCE_SETTINGS_TEXT_2" :"Questa impostazione può essere cambiata in seguito tramite le impostazioni di sistema"
+    "EXPERIENCE_SETTINGS_TEXT_2" :"Questa impostazione può essere cambiata in seguito tramite le impostazioni di sistema",
+    "NO_NEED_DEVICE_CODE_MESSAGE" : "Se avete già inserito il codice, non è necessario inserirlo ancora"
   },
   "SLEEP": {
     "POWER_OFF": "Spegni",
