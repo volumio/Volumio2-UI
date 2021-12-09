@@ -1,4 +1,4 @@
-{
+﻿{
    "UI_SETTINGS":{
       "THEME_SETTINGS":"Thema instellingen",
       "UPLOAD_BACKGROUND":"Upload nieuwe achtergrond",
@@ -246,7 +246,8 @@
       "DEVICECODE":"Apparaatcode",
       "DEVICE_CODE_MESSAGE":"Als je een Apparaat Activatie code hebt ontvangen voeg dan de Apparaat Activatie Code hier in om gebruik te maken van exclusieve functies.",
       "EXPERIENCE_SETTINGS_TEXT":"Geeft u de voorkeur aan een makkelijk te gebruiken systeem, met simpele instellingen? of wilt u de volledige controle met geavanceerde functies?",
-      "ADVANCEDSETTINGS":"Ervaring"
+      "ADVANCEDSETTINGS":"Ervaring",
+      "NO_NEED_DEVICE_CODE_MESSAGE" : "Als de apparaatcode al eerder is ingevoerd, dan hoeft dit niet opnieuw"
    },
    "SLEEP":{
       "POWER_OFF":"Uitzetten",
