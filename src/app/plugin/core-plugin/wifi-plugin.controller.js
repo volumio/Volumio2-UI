@@ -8,6 +8,7 @@ class WifiPluginController {
     this.$translate = $translate;
     this.uiSettingsService = uiSettingsService;
     //this.wirelessNetworks = mockService.get('wirelessNetworks');
+    this.retryGetWirelessNetworks = false;
     this.init();
   }
 
@@ -92,6 +93,16 @@ class WifiPluginController {
 
       if (!data) {
         data = {'available' : []};
+      }
+
+      if (data.available && data.available.length === 0) {
+        if (!this.retryGetWirelessNetworks) {
+          this.retryGetWirelessNetworks = true;
+          setTimeout(() => {
+            this.socketService.emit('getWirelessNetworks');
+            this.retryGetWirelessNetworks = false;
+          }, 2000);    
+        }            
       }
 
       data.available.forEach((network) => {
