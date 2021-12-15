@@ -33,6 +33,7 @@ Then, install its depencencies
 
 ```shell
 cd Volumio2-UI
+npm install bower -g
 npm install
 bower install
 ```
