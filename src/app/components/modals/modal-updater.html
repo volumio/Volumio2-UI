@@ -13,8 +13,12 @@
         value="modal.updaterService.updateProgress.progress"
         type="default">{{modal.updaterService.updateProgress.progress}}%
     </uib-progressbar>
-    <span translate="UPDATER.DOWNLOAD_SPEED"></span>: {{modal.updaterService.updateProgress.downloadSpeed}} |
-    <span translate="UPDATER.TIME_REMAINING"></span>: {{modal.updaterService.updateProgress.eta}}
+    <span ng-if="modal.updaterService.updateProgress.downloadSpeed">
+      <span  translate="UPDATER.DOWNLOAD_SPEED"></span>: {{modal.updaterService.updateProgress.downloadSpeed}} |
+    </span>
+    <span ng-if="modal.updaterService.updateProgress.eta">
+      <span translate="UPDATER.TIME_REMAINING"></span>: {{modal.updaterService.updateProgress.eta}}
+    </span>
   </div>
 
   <div ng-if="modal.updaterService.status === 'updateDone'">
