@@ -73,6 +73,9 @@
       }
     }
 
+    #trackInfo-album:before {
+      content: "\00a0\2010\00a0";
+    }
     #trackInfo-album{
       color: $theme-text-light-color;
     }
