@@ -57,6 +57,10 @@ class HeaderController {
       "label": "한국어"
     },
     {
+      "value": "lt",
+      "label": "Lietuvių"
+    },
+    {
       "value": "hu",
       "label": "Magyar"
     },
