@@ -59,8 +59,8 @@
 
     <button
         ng-if="modal.updaterService.updateDone.status === 'error'"
-        class="btn btn-primary" ng-click="modal.update('now')">
-      <span translate="COMMON.TRY_AGAIN"></span>
+        class="btn btn-primary" ng-click="modal.cancel()">
+      <span translate="COMMON.OK"></span>
     </button>
   </div>
 </div>
