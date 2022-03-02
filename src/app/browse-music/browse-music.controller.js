@@ -288,7 +288,7 @@ class BrowseMusicController {
   }
 
   showMoreStory(details) {
-    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (!this.checkCreditsEnabledForPlan()) {
       this.showPremiumFeatureModal();
       return;
     }
@@ -326,6 +326,18 @@ class BrowseMusicController {
       }
     }
     return result;
+  }
+
+  checkCreditsEnabledForPlan() {
+    if (this.checkAuthAndSubscription().authEnabled) {
+      if (this.checkAuthAndSubscription().plan === 'superstar' || this.checkAuthAndSubscription().plan === 'premium') {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   timeFormat(time) {
@@ -392,7 +404,7 @@ class BrowseMusicController {
 
   getArtistInfo(albumInfo) {
 
-    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (!this.checkCreditsEnabledForPlan()) {
       this.showPremiumFeatureModal();
       return;
     }
@@ -567,7 +579,7 @@ class BrowseMusicController {
   }
 
   showAlbumCredits() {
-    if (this.checkAuthAndSubscription().authEnabled && this.checkAuthAndSubscription().plan !== 'superstar') {
+    if (!this.checkCreditsEnabledForPlan()) {
       this.showPremiumFeatureModal();
       return;
     }
