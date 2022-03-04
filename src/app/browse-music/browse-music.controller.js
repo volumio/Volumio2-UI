@@ -214,7 +214,7 @@ class BrowseMusicController {
   }
 
   search() {
-    if (this.searchField && this.searchField.length >= 3) {
+    if (this.searchField && this.searchField.length >= 2) {
       this.browseService.isSearching = true;
       if (this.searchTimeoutHandler) {
         this.$timeout.cancel(this.searchTimeoutHandler);
