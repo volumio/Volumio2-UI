@@ -74,7 +74,7 @@ class NetworkDrivesPluginController {
   }
 
   selectShare(share, disk) {
-    this.drive.ip = share.name;
+    this.drive.ip = share.ip || share.name;
     this.drive.name = disk.sharename;
     this.drive.path = disk.path;
   }
