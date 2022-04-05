@@ -272,7 +272,8 @@
     "ACTIVE_GROUP": "Gruppo attivo",
     "REMOVE_ALL_DEVICES": "Rimuovi tutti",
     "AVAILABLE_DEVICES": "Dispositivi disponibili",
-    "SYNCED_PLAYBACK_NOT_AVAILABLE": "Riproduzione sincrona non disponibile"
+    "SYNCED_PLAYBACK_NOT_AVAILABLE": "Riproduzione sincrona non disponibile",
+    "GROUP_LEADER": "Leader del gruppo"
   },
   "SIDEMENU": {
     "ANALOG_INPUT": "INPUT ANALOGICO",
@@ -506,7 +507,9 @@
     "LANDING_FEATURE_CD_TEXT": "Riscopri la tua collezione di CD semplicemente collegando qualsiasi lettore CD USB al tuo dispositivo Volumio. Riproduci e salva i tuoi CD in formato lossless.",
     "NO_THANKS_NOT_INTERESTED": "No grazie, non sono interessato",
     "GO_PREMIUM": "Passa a Premium",
-    "SAVE": "Risparmia"
+    "SAVE": "Risparmia",
+    "MANIFEST_UI_ACCESS": "Accesso all'interfaccia Manifest",
+    "MANIFEST_UI_ACCESS_DESCRIPTION": "Questa interfaccia richiede un piano Premium.Seleziona OK per accedere a MyVolumio. Premi annulla per uscire da questa interfaccia."
   },
   "MYVOLUMIO_PLANS": {
     "LATEST_NEWS": "Ricevi tutte le ultime notizie su MyVolumio",

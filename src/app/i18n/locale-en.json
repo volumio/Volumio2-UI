@@ -275,7 +275,8 @@
         "ACTIVE_GROUP": "Active group",
         "REMOVE_ALL_DEVICES": "Remove all devices",
         "AVAILABLE_DEVICES": "Available devices",
-        "SYNCED_PLAYBACK_NOT_AVAILABLE": "Synchronized playback not available"
+        "SYNCED_PLAYBACK_NOT_AVAILABLE": "Synchronized playback not available",
+        "GROUP_LEADER": "Group leader"
     },
     "SIDEMENU": {
         "ANALOG_INPUT": "ANALOG INPUT",
@@ -508,7 +509,9 @@
         "LANDING_FEATURE_CD_TEXT": "Rediscover your CD collection by simply attaching any USB CD Rom drive to your Volumio device. Play or copy your CDs in the most accurate way.",
         "NO_THANKS_NOT_INTERESTED": "No thanks, I am not interested",
         "GO_PREMIUM": "Go Premium",
-        "SAVE": "Save"
+        "SAVE": "Save",
+        "MANIFEST_UI_ACCESS": "Manifest UI Access",
+        "MANIFEST_UI_ACCESS_DESCRIPTION": "This UI requires a Volumio premium plan. Press OK to login or register to myVolumio. Press cancel to exit this UI."
     },
     "MYVOLUMIO_PLANS": {
         "LATEST_NEWS": "Receive our MyVolumio News Feed",
