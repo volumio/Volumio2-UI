@@ -100,6 +100,8 @@ class SettingsController {
       this.$window.open(item.params.url);
     } else if (item.id === 'static-page') {
       this.$state.go('volumio.static-page', {pageName: item.pageName});
+    } else if (item.id === 'iframe-page') {
+      this.$state.go('volumio.iframe-page', {url: item.params.url});
     } else if (item.state) {
       if (item.params) {
         for (let param in item.params) {

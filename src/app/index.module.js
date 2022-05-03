@@ -99,6 +99,7 @@ import FooterController from './footer/footer.controller';
 
 import DebugController from './debug/debug.controller';
 import StaticPageController from './static-pages/static-page.controller';
+import IframePageController from './iframe-pages/iframe-page.controller';
 import MultiRoomManagerController from './multi-room-manager/multi-room-manager.controller';
 
 import BrowseController from './browse/browse.controller';
@@ -208,6 +209,7 @@ angular.module('volumio', [
   .config(config)
   .config(routerConfig)
 
+
   .run(runBlock)
 
   .service('socketService', SocketService)
@@ -301,6 +303,7 @@ angular.module('volumio', [
 
   .controller('DebugController', DebugController)
   .controller('StaticPageController', StaticPageController)
+  .controller('IframePageController', IframePageController)
   .controller('MultiRoomManagerController', MultiRoomManagerController)
 
   .controller('PluginController', PluginController)

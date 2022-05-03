@@ -134,7 +134,7 @@ class MainMenuController {
   }
 
   isMenuLink(data) {
-    if (data.id === 'link' || data.id === 'plugin-manager' || data.id === 'shutdown') {
+    if (data.id === 'link' || data.id === 'iframe-page' || data.id === 'plugin-manager' || data.id === 'shutdown') {
       return true;
     } else {
       return false;
@@ -158,6 +158,8 @@ class MainMenuController {
           item.params.modalSize || 'lg');
         } else if (item.id === 'link') {
           this.$window.open(item.params.url);
+        } else if (item.id === 'iframe-page') {
+          this.$state.go('volumio.iframe-page', {url: item.params.url});
         } else if (item.id === 'static-page') {
           this.$state.go('volumio.static-page', {pageName: item.pageName});
         } else if (item.state) {
