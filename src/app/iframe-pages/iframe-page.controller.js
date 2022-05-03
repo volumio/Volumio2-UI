@@ -1,7 +1,9 @@
 class IframePageController {
-  constructor($http, $log, $stateParams, themeManager, $scope) {
+  constructor($http, $log, $stateParams, themeManager, $scope, $sce) {
     'ngInject';
-    this.url = $stateParams.url;
+
+    // We provide the url and whitelist it
+    this.url = $sce.trustAsResourceUrl($stateParams.url);
   }
 }
 

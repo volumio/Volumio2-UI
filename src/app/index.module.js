@@ -209,6 +209,7 @@ angular.module('volumio', [
   .config(config)
   .config(routerConfig)
 
+
   .run(runBlock)
 
   .service('socketService', SocketService)
