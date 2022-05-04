@@ -168,6 +168,9 @@ body {
   -webkit-overflow-scrolling: touch;
   #content {
     @include make-sm-column(24);
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
     // border: solid 15px black;
     // position: absolute;
     // top: 0;
