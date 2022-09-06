@@ -2,7 +2,16 @@
   <div class="modal-header">
     <h3 class="modal-title">{{::modal.dataObj.title}}</h3>
   </div>
-  <div class="modal-body">
+  <script type="text/javascript">
+    fetch('https://volumio.github.io/volumio-tos/', {method : "GET", cache : "default"})
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(body) {
+            document.getElementById('tosContainer').innerHTML = body;
+        });
+  </script>
+  <div class="modal-body" id="tosContainer">
     <div ng-include="'app/components/myvolumio/templates/terms-and-conditions.html'"></div>
   </div>
   <div class="modal-footer">

@@ -190,4 +190,10 @@ gulp.task('credits', function (cb) {
   });
 })
 
-gulp.task('build-app', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title', 'meta-cards']);
+gulp.task('tos', function (cb) {
+  exec('curl https://volumio.github.io/volumio-tos/ --output ' + path.join('src','app','components','myvolumio','templates','terms-and-conditions.html'), function (err, stdout, stderr) {
+    cb(err);
+  });
+})
+
+gulp.task('build-app', ['credits', 'fonts', 'fontawesome', 'other', 'static-pages', 'theme', 'replace-page-title', 'meta-cards', 'tos']);
