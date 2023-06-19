@@ -31,7 +31,7 @@ function config(theme, variant, $logProvider, toastrConfig, themeManagerProvider
   // i18n Configs
   $translateProvider
     .useStaticFilesLoader({
-      prefix: 'app/i18n/locale-',
+      prefix: 'app/i18n/strings_',
       suffix: '.json'
     })
     // Back end send default language, this improve translation consistency
