@@ -58,24 +58,24 @@ class StatisticsService {
   }
 
   initializeGA() {
-    this.$log.debug('Starting GA');
-    // jshint ignore: start
-    var gaScript1 = document.createElement('script');
-    gaScript1.async = true;
-    gaScript1.src = 'https://www.googletagmanager.com/gtag/js?id=UA-46374275-1';
-    document.head.appendChild(gaScript1);
-    var gaScript2 = document.createElement('script');
-    gaScript2.innerHTML += 'window.dataLayer = window.dataLayer || [];';
-    gaScript2.innerHTML += 'function gtag(){dataLayer.push(arguments);}';
-    gaScript2.innerHTML += 'gtag("js", new Date());';
-    gaScript2.innerHTML += 'gtag("config", "UA-46374275-1", { "anonymize_ip": true });';
-    document.head.appendChild(gaScript2);
-    setTimeout(()=>{
-      this.saveGACid();
-    },3000)
+      this.$log.debug('Starting GA');
+      // jshint ignore: start
+      var gaScript1 = document.createElement('script');
+      gaScript1.async = true;
+      gaScript1.src = 'https://www.googletagmanager.com/gtag/js?id=G-EMK40SCD1G';
+      document.head.appendChild(gaScript1);
+      var gaScript2 = document.createElement('script');
+      gaScript2.innerHTML += 'window.dataLayer = window.dataLayer || [];';
+      gaScript2.innerHTML += 'function gtag(){dataLayer.push(arguments);}';
+      gaScript2.innerHTML += 'gtag("js", new Date());';
+      gaScript2.innerHTML += 'gtag("config", "G-EMK40SCD1G", { "anonymize_ip": true });';
+      document.head.appendChild(gaScript2);
+      setTimeout(()=>{
+        this.saveGACid();
+      },3000)
 
-    // jshint ignore: end
-  }
+      // jshint ignore: end
+    }
 
   initializePushUtil() {
     this.$log.debug('Starting Push Util');
@@ -148,19 +148,12 @@ class StatisticsService {
     }
   }
 
-  getGACid() {
-    try {
-      return this.$window.ga.getAll()[0].get('clientId');
-    } catch(e) {
-      return undefined;
-    }
-  }
-
   saveGACid() {
-    var gaCid = this.getGACid();
-    if (this.user && this.user.uid && !this.user.gaCid && gaCid) {
-      this.databaseService.write('users/' + this.user.uid + '/gaCid', gaCid);
-    }
+    this.$window.gtag('get', 'G-EMK40SCD1G', 'client_id', (client_id) => {
+      if (this.user && this.user.uid && !this.user.gaCid && client_id) {
+        this.databaseService.write('users/' + this.user.uid + '/gaCid', client_id);
+      }
+    });
   }
 
   saveUserCountry(countryCode) {
