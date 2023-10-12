@@ -54,10 +54,11 @@
 }
 
 .item__number {
-    display: inline-block;
-    text-align: center;
+    display: block;
+    width: 2em;
+    text-align: right;
     color: $theme-light-color;
-    padding: 0 16px 0 0;
+    margin: 0 16px 0 0;
 }
 
 .item__albumart {
