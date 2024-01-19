@@ -49,21 +49,14 @@ class PlaylistService {
   addToFavourites(item) {
     if (item && item.uri) {
       this.$log.debug('addToFavourites', item);
-      this.socketService.emit('addToFavourites', {
-        uri: item.uri,
-        title: item.title,
-        service: (item.service || null)
-      });
+      this.socketService.emit('addToFavourites', item);
     }
   }
 
   removeFromFavourites(item) {
     if (item && item.uri) {
       this.$log.debug('removeFromFavourites', item);
-      this.socketService.emit('removeFromFavourites', {
-        uri: item.uri,
-        service: (item.service || null)
-      });
+      this.socketService.emit('removeFromFavourites', item);
     }
   }
 
