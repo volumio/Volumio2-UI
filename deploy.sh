@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
+# These variables are set by CI builds.
+if [ ! -n "$GH_TOKEN" ] && [ ! -n "$GH_REF" ]; then
+    # Assume a test build, pushing to a contoributor's forked repository
+    myorigin=$(git config --get remote.origin.url)
+    mydir=$(dirname $(realpath $0))
+    export PATH="${mydir}/node_modules/.bin:${PATH}"
+fi
+
 # VOLUMIO THEME
 # clear and re-create the dist directory
 rm -rf dist || exit 0;
@@ -25,7 +33,12 @@ git add .
 git commit -m "Deploy to Dist Branch"
 
 # Force push from the current repo's master branch to the dist branch for deployment
-git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist > /dev/null 2>&1
+if [ -n "$myorigin" ]; then
+    git remote add origin "$myorigin"
+    git push --force origin master:dist
+else
+    git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist > /dev/null 2>&1
+fi
 
 cd ..
 # VOLUMIO3 THEME
@@ -52,4 +65,9 @@ git add .
 git commit -m "Deploy to Dist3 Branch"
 
 # Force push from the current repo's master branch to the dist branch for deployment
-git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist3 > /dev/null 2>&1
+if [ -n "$myorigin" ]; then
+    git remote add origin "$myorigin"
+    git push --force origin master:dist3
+else
+    git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist3 > /dev/null 2>&1
+fi
