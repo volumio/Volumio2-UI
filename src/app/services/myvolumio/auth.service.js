@@ -21,6 +21,7 @@ class AuthService {
     this.firebaseApiFunctionsService = firebaseApiFunctionsService;
     this.growSurfService = growSurfService;
     this.statisticsService = statisticsService;
+    this.systemInfo = {};
 
     this.isEnabled = false;
 
@@ -176,7 +177,18 @@ class AuthService {
       this.socketService.off('pushMyVolumioStatus');
     });
 
+    this.socketService.on('pushSystemInfo', (data) => {
+      if (data !== null) {
+        this.systemInfo = data;
+      }
+    });
+
+    this.$rootScope.$on('$destroy', () => {
+      this.socketService.off('pushSystemInfo');
+    });
+
     this.socketService.emit('getMyVolumioStatus');
+    this.socketService.emit('getSystemInfo');
 
     return getting.promise;
   }
@@ -455,6 +467,10 @@ class AuthService {
     return (user.plan && (user.plan === 'virtuoso' || user.plan === 'superstar' || user.plan === 'premium')); // TODO move logic in product service
   }
 
+  hasPremium() {
+    return (this.user && this.user.plan && (this.user.plan === 'superstar' || this.user.plan === 'premium')); // TODO move logic in product service
+  }
+
   deleteUserFromFirebase(user) {
     var deleting = this.$q.defer();
     const userPath = `users/${user.uid}`;
@@ -523,6 +539,14 @@ class AuthService {
 
   getCurrentAuthUser() {
     return this.user;
+  }
+
+  isPremiumDevice() {
+    if (this.systemInfo && this.systemInfo.isPremiumDevice === true) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

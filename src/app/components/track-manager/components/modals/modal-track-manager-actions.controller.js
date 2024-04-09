@@ -292,6 +292,8 @@ class ModalTrackManagerActionsController {
     if (this.authService && this.authService.isEnabled) {
       if (this.authService.user && this.authService.user.plan && (this.authService.user.plan === 'superstar' || this.authService.user.plan === 'premium')) {
         return true;
+      } else if (this.authService.isPremiumDevice()) {
+        return true;
       } else {
         return false;
       }

@@ -288,7 +288,7 @@ class BrowseMusicController {
   }
 
   showMoreStory(details) {
-    if (!this.checkCreditsEnabledForPlan()) {
+    if (!this.authService.hasPremium() && !this.authService.isPremiumDevice()) {
       this.showPremiumFeatureModal();
       return;
     }
