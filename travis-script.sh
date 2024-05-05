@@ -49,6 +49,6 @@ echo "Initializing Git Repo"
 git init && git add . && git commit -m "Deploy to dist3 branch"
 
 echo "Pushing to dist3 branch"
-git push --force --quiet master:dist3
+git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:dist3
 
 cd ..
