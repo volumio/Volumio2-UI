@@ -24,9 +24,17 @@ jobs:
         npm install
         bower install
 
-    - name: Run Script
-      run: bash ./travis-script.sh
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GH_REF: github.com/volumio/Volumio2-UI.git
+    - name: Build Volumio Classic UI
+      run: |
+        npm run build:volumio
+        mv dist dist-volumio
+        cd "dist-volumio"
+        echo '{"localhost": "http://127.0.0.1:3000"}' > app/local-config.json
+        git init 
+        git config user.name "Volumio"
+        git config user.email "info@volumio.org"
+        git add .
+        git commit -m "Deploy to dist branch"
+        git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/volumio/Volumio2-UI.git" master:dist
+
         
