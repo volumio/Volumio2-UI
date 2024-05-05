@@ -16,7 +16,7 @@ echo "Configuring Git User"
 git config --global user.name "Volumio"
 git config --global user.email "info@volumio.org"
 
-console.log(${GITHUB_TOKEN})
+console.log(${GH_TOKEN})
 git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/volumio/Volumio2-UI.git
 
 # Push classic UI on 'dist' branch
