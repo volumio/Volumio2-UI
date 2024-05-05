@@ -24,7 +24,7 @@ jobs:
         npm install
         bower install
 
-    - name: Build Volumio Classic UI
+    - name: Build and Deploy Volumio Classic UI
       run: |
         npm run build:volumio
         mv dist dist-volumio
@@ -37,7 +37,20 @@ jobs:
         git commit -m "Deploy to dist branch"
         git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/volumio/Volumio2-UI.git
         git push --force origin master:dist
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        cd ..
+    - name: Build and Deploy Volumio Manifest UI
+      run: |
+        npm run build:volumio3
+        mv dist dist-volumio3
+        cd "dist-volumio3"
+        echo '{"localhost": "http://127.0.0.1:3000"}' > app/local-config.json
+        git init 
+        git config user.name "Volumio"
+        git config user.email "info@volumio.org"
+        git add .
+        git commit -m "Deploy to dist3 branch"
+        git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/volumio/Volumio2-UI.git
+        git push --force origin master:dist3
+ 
 
         
