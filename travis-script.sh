@@ -19,8 +19,6 @@ npm run build:volumio3 && mv dist dist-volumio3
 echo "Configuring Git User"
 git config --global user.name "Volumio"
 git config --global user.email "info@volumio.org"
-
-
 git remote set-url origin https://x-access-token:$GH_TOKEN@github.com/volumio/Volumio2-UI.git
 
 # Push classic UI on 'dist' branch
@@ -35,7 +33,7 @@ echo "Initializing Git Repo"
 git init && git add . && git commit -m "Deploy to dist branch"
 
 echo "Pushing to dist branch"
-git push --force --quiet master:dist
+git push --force "https://${GH_TOKEN}@${GH_REF}" master:dist
 
 cd .. 
 
