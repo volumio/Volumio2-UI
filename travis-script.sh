@@ -3,6 +3,8 @@
 # exit with nonzero exit code if anything fails
 set -e
 
+console.log(${GH_REF})
+
 # Build the classic UI and move it into "dist-volumio"
 echo "Building Volumio UI"
 npm run build:volumio && mv dist dist-volumio
