@@ -35,6 +35,9 @@ jobs:
         git config user.email "info@volumio.org"
         git add .
         git commit -m "Deploy to dist branch"
-        git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/volumio/Volumio2-UI.git" master:dist
+        git remote add origin https://github.com/volumio/Volumio2-UI.git
+        git push --force origin master:dist
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         
