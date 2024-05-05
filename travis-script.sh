@@ -4,6 +4,8 @@
 set -e
 
 echo $GH_REF
+echo $GH_TOKEN
+echo https://x-access-token:$GH_TOKEN@github.com/volumio/Volumio2-UI.git
 
 # Build the classic UI and move it into "dist-volumio"
 echo "Building Volumio UI"
@@ -17,8 +19,7 @@ npm run build:volumio3 && mv dist dist-volumio3
 echo "Configuring Git User"
 git config --global user.name "Volumio"
 git config --global user.email "info@volumio.org"
-echo $GH_TOKEN
-echo https://x-access-token:$GH_TOKEN@github.com/volumio/Volumio2-UI.git
+
 
 git remote set-url origin https://x-access-token:$GH_TOKEN@github.com/volumio/Volumio2-UI.git
 
