@@ -28,5 +28,5 @@ jobs:
       run: bash ./travis-script.sh
 
 env:
-  GH_REF: github.com/volumio/Volumio2-UI.git
+  GH_REF: https://github.com/volumio/Volumio2-UI.git
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
