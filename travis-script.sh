@@ -28,7 +28,8 @@ echo "Initializing Git Repo"
 git init && git add . && git commit -m "Deploy to dist branch"
 
 echo "Pushing to dist branch"
-git push --force --quiet "https://${secrets.GITHUB_TOKEN}@${GH_REF}" master:dist
+echo ${GH_REF}
+git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:dist
 
 cd .. 
 
