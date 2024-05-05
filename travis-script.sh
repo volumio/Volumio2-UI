@@ -15,7 +15,7 @@ npm run build:volumio3 && mv dist dist-volumio3
 echo "Configuring Git User"
 git config --global user.name "Volumio"
 git config --global user.email "info@volumio.org"
-console.log(${{ secrets.GITHUB_TOKEN }})
+
 console.log(${GITHUB_TOKEN})
 git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/volumio/Volumio2-UI.git
 
