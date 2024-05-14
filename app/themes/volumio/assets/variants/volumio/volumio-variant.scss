@@ -1,0 +1,115 @@
+// COLORS
+$theme-primary-color: #54C688;
+$theme-accent-color: #333;
+$theme-danger-color: #DF4649;
+$theme-light-color: #7a848e;
+$theme-dark-color: #3C3C3C;
+$theme-darker-color: #090909;
+$theme-header-color: $theme-darker-color;
+$theme-footer-color: $theme-darker-color;
+$theme-source-active-color: $theme-primary-color;
+
+
+$theme-background-color: #555;
+$theme-transparent-buttons-background: rgba(0, 0, 0, 0.6);
+$theme-transparent-background: rgba(20, 20, 20, 0.6);
+$theme-dark-transparent-background: rgba(0, 0, 0, 0.6);
+$theme-playbtn-gradient: linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.0) 72%, rgba(0, 0, 0, 0.6) 72%,
+  rgba(0, 0, 0, 0.6) 100%);
+$theme-table-border-color: #7C7C7C;
+
+$theme-text-color: #FFF;
+$theme-dark-text-color: #AAA;
+$theme-darker-text-color: #999;
+
+$theme-link-color: white;
+$theme-link-hover-color: $theme-primary-color;
+$theme-footer-link-color: white;
+$theme-footer-link-selected-background-color: $theme-accent-color;
+$theme-footer-link-hover-color: white;
+$theme-link-playback-color: $theme-primary-color;
+
+$theme-sidebar-background-color: rgba(30, 30, 30, 0.95);
+
+$body-bg: transparent;
+$brand-primary: #222;
+
+$knob-foreground-color: $theme-primary-color;
+$knob-background-color: rgba(0, 0, 0, 0.4);
+$knob-content-background-color: rgba(0, 0, 0, 0.7);
+
+// FONTS
+$fonts-path: "/app/themes/volumio/assets/variants/volumio/fonts";
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Regular.eot');
+  src: url('#{$fonts-path}/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Regular.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Light.eot');
+  src: url('#{$fonts-path}/Lato-Light.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Light.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('#{$fonts-path}/Lato-Bold.eot');
+  src: url('#{$fonts-path}/Lato-Bold.eot?#iefix') format('embedded-opentype'),
+       url('#{$fonts-path}/Lato-Bold.woff') format('woff'),
+       url('#{$fonts-path}/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+$font-family-sans-serif: "Lato";
+
+// CSS EXPOSED FOR JS READ
+// Color is used for the knob foreground color
+// Background color is used for knob background color
+#cssExposer {
+  color: $knob-foreground-color;
+  background-color: $knob-background-color;
+  display: none;
+}
+
+$theme-link-color: white;
+$theme-link-hover-color: darken($theme-primary-color, 15%);
+$theme-footer-link-color: white;
+$theme-footer-link-selected-background-color: $theme-primary-color;
+$theme-footer-link-hover-color: white;
+$theme-link-playback-color: $theme-light-color;
+$theme-footer-link-selected-color: white;
+
+.toast-success {}
+
+.toast-info {}
+
+.toast-error {}
+
+.toast-warning {}
+
+.browseTable .listWrapper.grid .image {
+    border: solid 0px #444 !important;
+}
+
+.browseTable .listWrapper.grid .itemTab {
+    border: solid 0px #7C7C7C !important;
+    margin: 5px !important;
+}
+
+div#source-active {
+    background-color: $theme-source-active-color;
+}

@@ -1,0 +1,20 @@
+{
+  "app": "Volumio",
+  "pageTitle": "Volumio - Audiophile Music Player",
+  "sideMenu": {
+    "checkboxes": {
+        "analogInput": false,
+        "bluetooth": false
+      }
+  },
+  "pluginsDoc": {
+    "showDoc": true,
+    "showDescription": true
+  },
+  "addressBarColor": "black",
+  "knobThicknessDesktop": 0.2,
+  "knobThicknessMobile": 0.09,
+  "indexState": "playback",
+  "browseSourcesView": "grid",
+  "loadingBar": true
+}
