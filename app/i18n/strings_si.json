@@ -1,0 +1,18 @@
+{
+    "UI_SETTINGS": {
+        "THEME_SETTINGS": "තේමාවේ සැකසුම්"
+    },
+    "COMMON": {
+        "SAVE": "සුරකින්න",
+        "OK": "හරි",
+        "YES": "ඔව්",
+        "NO": "නැහැ",
+        "CANCEL": "අවලංගු",
+        "ACTION": "ක්‍රියාමාර්ග",
+        "TAB_SEARCH": "සොයන්න",
+        "TAB_SETTINGS": "සැකසුම්",
+        "TIME": "වේලාව",
+        "CLOSE": "වසන්න",
+        "NEW": "නව"
+    }
+}
