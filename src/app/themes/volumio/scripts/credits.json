@@ -49,10 +49,12 @@
         {"name":"Czech translation","author":"stranskj"},
         {"name":"Slovensky translation","author":"olej-a"},
         {"name":"Turkish translation","author":"Ajiba"},
-        {"name":"Croatian translation","author":"Vlado64"}
+        {"name":"Croatian translation","author":"Vlado64"},
+         {"name":"Thai translation","author":"Andy Yong"}
         ]},
         {"name":"Graphic Design","icon":"fa-thumbs-o-up","credits":[
             {"name":"Sources Icons","author":"Tommaso Greco"}
             ]}
 ]
 }
+
